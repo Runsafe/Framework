@@ -1,0 +1,5 @@
+name: RunsafeMinecraftPluginFramework
+main: me.Kruithne.RMPF.RMPF
+version: 1.0
+author: Kruithne
+description: A framework for Minecraft plugins.
