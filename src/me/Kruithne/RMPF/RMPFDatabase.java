@@ -7,30 +7,22 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 
-public class RMPFDatabase {
+public class RMPFDatabase implements IDatabase {
 	
 	private String databaseURL;
 	private String databaseUsername;
 	private String databasePassword;
 	
-	private RMPFOutput pluginOutput;
+	private IOutput pluginOutput;
 	
 	private Connection databaseConnection;
 
-	public RMPFDatabase(String dbURL, String dbUsername, String dbPassword)
+	public RMPFDatabase(IConfiguration config, IOutput output)
 	{
-		this.databaseURL = dbURL;
-		this.databaseUsername = dbUsername;
-		this.databasePassword = dbPassword;
-	}
-	
-	public RMPFDatabase(String dbURL, String dbUsername, String dbPassword, RMPFOutput output)
-	{
-		this.databaseURL = dbURL;
-		this.databaseUsername = dbUsername;
-		this.databasePassword = dbPassword;
-		
 		this.pluginOutput = output;
+		this.databaseURL = config.getConfigValueAsString("database.url");
+		this.databaseUsername = config.getConfigValueAsString("database.username");
+		this.databasePassword = config.getConfigValueAsString("database.password");
 	}
 	
 	private void establishConnection()
@@ -45,6 +37,10 @@ public class RMPFDatabase {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see me.Kruithne.RMPF.IDatabase#closeConnection()
+	 */
+	@Override
 	public void closeConnection()
 	{
 		try
@@ -57,6 +53,10 @@ public class RMPFDatabase {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see me.Kruithne.RMPF.IDatabase#getQuery(java.lang.String)
+	 */
+	@Override
 	public ResultSet getQuery(String query)
 	{
 		this.checkConnection();
@@ -76,7 +76,11 @@ public class RMPFDatabase {
 		return result;
 	}
     
-    public boolean query(String query)
+    /* (non-Javadoc)
+	 * @see me.Kruithne.RMPF.IDatabase#query(java.lang.String)
+	 */
+    @Override
+	public boolean query(String query)
     {
     	this.checkConnection();
 
@@ -124,6 +128,5 @@ public class RMPFDatabase {
 		{
 			this.pluginOutput.outputToConsole(message, level);
 		}
-	}
-	
+	}	
 }

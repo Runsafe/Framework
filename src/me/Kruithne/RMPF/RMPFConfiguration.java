@@ -10,47 +10,21 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 
-public class RMPFConfiguration {
+public abstract class RMPFConfiguration implements IConfiguration {
 
 	private String configFilePath;
 	private InputStream defaultConfigFile;
-	
-	private RMPFOutput pluginOutput;
+	private IOutput pluginOutput;
 	private FileConfiguration configFile;
 	
-	// Default constructor using only the config file path
-	public RMPFConfiguration(String configFilePath)
+	public RMPFConfiguration(IOutput pluginOutput, IConfigurationFile configFileProvider, IConfigurationDefaults configDefaultProvider)
 	{
-		this.configFilePath = configFilePath;
-		this.load();
-	}
-	
-	// Secondary constructor with supplied outputter for errors/info debug
-	public RMPFConfiguration(String configFilePath, RMPFOutput pluginOutput)
-	{
-		this.configFilePath = configFilePath;
 		this.pluginOutput = pluginOutput;
-		this.load();
+		this.configFilePath = configFileProvider.getConfigurationPath();
+		this.defaultConfigFile = configDefaultProvider.getDefaultConfiguration();
 	}
 	
-	// Constructor with an extra parameter to supply a defualt configuraion file
-	public RMPFConfiguration(String configFilePath, RMPFOutput pluginOutput, InputStream defaultConfigFile)
-	{
-		this.configFilePath = configFilePath;
-		this.pluginOutput = pluginOutput;
-		this.defaultConfigFile = defaultConfigFile;
-		this.load();
-	}
-	
-	// Secondary constructor with supplied outputter for errors/info debug
-	public RMPFConfiguration(String configFilePath, InputStream defaultConfigFile)
-	{
-		this.configFilePath = configFilePath;
-		this.defaultConfigFile = defaultConfigFile;
-		this.load();
-	}
-	
-	// Loads the configuration from disk. Prepares defaults if available.
+	@Override
 	public void load()
 	{
 		if (this.configFile == null)
@@ -60,7 +34,7 @@ public class RMPFConfiguration {
 		
 		if (this.defaultConfigFile != null)
 		{
-			this.configFile.setDefaults(YamlConfiguration.loadConfiguration(defaultConfigFile));
+			this.configFile.setDefaults(YamlConfiguration.loadConfiguration(this.defaultConfigFile));
 			this.output(RMPFConstants.configurationInfo_defaults);
 		}
 		this.configFile.options().copyDefaults(true);
@@ -68,6 +42,10 @@ public class RMPFConfiguration {
 	}
 	
 	// Replaces the current configuration values with the supplied defaults
+	/* (non-Javadoc)
+	 * @see me.Kruithne.RMPF.IConfiguration#restoreToDefaults()
+	 */
+	@Override
 	public boolean restoreToDefaults()
 	{
 		if (this.configFile.getDefaults() != null)
@@ -81,6 +59,10 @@ public class RMPFConfiguration {
 	}
 	
 	// Saves the current configuration file to disk
+	/* (non-Javadoc)
+	 * @see me.Kruithne.RMPF.IConfiguration#save()
+	 */
+	@Override
 	public void save()
 	{	
 		if (this.configFile != null)
@@ -97,35 +79,59 @@ public class RMPFConfiguration {
 	}
 	
 	// Returns a configuration value as a string
+	/* (non-Javadoc)
+	 * @see me.Kruithne.RMPF.IConfiguration#getConfigValueAsString(java.lang.String)
+	 */
+	@Override
 	public String getConfigValueAsString(String value)
 	{
 		return this.configFile.getString(value);
 	}
 	
 	// Returns a configuration value as an integer
+	/* (non-Javadoc)
+	 * @see me.Kruithne.RMPF.IConfiguration#getConfigValueAsInt(java.lang.String)
+	 */
+	@Override
 	public int getConfigValueAsInt(String value)
 	{
 		return Integer.parseInt(this.getConfigValueAsString(value));
 	}
 	
 	// Returns a configuration value as a double
+	/* (non-Javadoc)
+	 * @see me.Kruithne.RMPF.IConfiguration#getConfigValueAsDouble(java.lang.String)
+	 */
+	@Override
 	public double getConfigValueAsDouble(String value)
 	{
 		return Double.parseDouble(this.getConfigValueAsString(value));
 	}
 	
 	// Returns a configuration value as a float
+	/* (non-Javadoc)
+	 * @see me.Kruithne.RMPF.IConfiguration#getConfigValueAsFloat(java.lang.String)
+	 */
+	@Override
 	public float getConfigValueAsFloat(String value)
 	{
 		return Float.parseFloat(this.getConfigValueAsString(value));
 	}
 	
+	/* (non-Javadoc)
+	 * @see me.Kruithne.RMPF.IConfiguration#getConfigValueAsList(java.lang.String)
+	 */
+	@Override
 	public List<String> getConfigValueAsList(String value)
 	{
 		return this.configFile.getStringList(value);
 	}
 	
 	// Sets a configuration value with the specified key -> value
+	/* (non-Javadoc)
+	 * @see me.Kruithne.RMPF.IConfiguration#setConfigValue(java.lang.String, java.lang.Object)
+	 */
+	@Override
 	public void setConfigValue(String key, Object value)
 	{
 		this.configFile.set(key, value);
