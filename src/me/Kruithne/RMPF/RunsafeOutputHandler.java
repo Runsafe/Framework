@@ -6,13 +6,13 @@ import java.util.logging.Logger;
 import org.bukkit.Server;
 
 
-public class RMPFOutput implements IOutput {
+public class RunsafeOutputHandler implements IOutput {
 
 	private Server serverOutput;
 	private Logger consoleLog;
 	private Level debugLevel;
 	
-	public RMPFOutput(Server server, Logger logger)
+	public RunsafeOutputHandler(Server server, Logger logger)
 	{
 		this.serverOutput = server;
 		this.consoleLog = logger;
@@ -58,7 +58,7 @@ public class RMPFOutput implements IOutput {
 	public void outputDebugToConsole(String message, Level messageLevel)
 	{
 		if(messageLevel.intValue() <= debugLevel.intValue())	
-			outputToConsole(message, messageLevel);
+			outputToConsole(message, Level.INFO);
 	}
 	
 	// Broadcasts the supplied string to all players on the server the outputter has

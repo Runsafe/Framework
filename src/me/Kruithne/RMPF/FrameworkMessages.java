@@ -1,6 +1,6 @@
 package me.Kruithne.RMPF;
 
-public class RMPFConstants {
+public class FrameworkMessages {
 
 	public static String frameworkLoaded = "The Runsafe Minecraft Plugin Framework has loaded";
 	

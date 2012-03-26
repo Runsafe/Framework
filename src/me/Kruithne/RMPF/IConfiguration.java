@@ -1,47 +1,9 @@
 package me.Kruithne.RMPF;
 
-import java.io.InputStream;
 import java.util.List;
 
 public interface IConfiguration {
 
-	public abstract void setConfigFilePath(String path);
-
-	public abstract void setDefaultConfigFile(InputStream defaultConfigFile);
-
-	/*
-	// Default constructor using only the config file path
-	public RMPFConfiguration(String configFilePath)
-	{
-		this.configFilePath = configFilePath;
-		this.load();
-	}
-	
-	// Secondary constructor with supplied outputter for errors/info debug
-	public RMPFConfiguration(String configFilePath, RMPFOutput pluginOutput)
-	{
-		this.configFilePath = configFilePath;
-		this.pluginOutput = pluginOutput;
-		this.load();
-	}
-	
-	// Constructor with an extra parameter to supply a defualt configuraion file
-	public RMPFConfiguration(String configFilePath, RMPFOutput pluginOutput, InputStream defaultConfigFile)
-	{
-		this.configFilePath = configFilePath;
-		this.pluginOutput = pluginOutput;
-		this.defaultConfigFile = defaultConfigFile;
-		this.load();
-	}
-	
-	// Secondary constructor with supplied outputter for errors/info debug
-	public RMPFConfiguration(String configFilePath, InputStream defaultConfigFile)
-	{
-		this.configFilePath = configFilePath;
-		this.defaultConfigFile = defaultConfigFile;
-		this.load();
-	}
-	 */
 	// Loads the configuration from disk. Prepares defaults if available.
 	public abstract void load();
 

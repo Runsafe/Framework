@@ -10,18 +10,19 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 
-public abstract class RMPFConfiguration implements IConfiguration {
+public class RunsafeConfigurationHandler implements IConfiguration {
 
 	private String configFilePath;
 	private InputStream defaultConfigFile;
 	private IOutput pluginOutput;
 	private FileConfiguration configFile;
 	
-	public RMPFConfiguration(IOutput pluginOutput, IConfigurationFile configFileProvider, IConfigurationDefaults configDefaultProvider)
+	public RunsafeConfigurationHandler(IOutput pluginOutput, IConfigurationFile configFileProvider, IConfigurationDefaults configDefaultProvider)
 	{
 		this.pluginOutput = pluginOutput;
 		this.configFilePath = configFileProvider.getConfigurationPath();
 		this.defaultConfigFile = configDefaultProvider.getDefaultConfiguration();
+		this.load();
 	}
 	
 	@Override
@@ -35,7 +36,7 @@ public abstract class RMPFConfiguration implements IConfiguration {
 		if (this.defaultConfigFile != null)
 		{
 			this.configFile.setDefaults(YamlConfiguration.loadConfiguration(this.defaultConfigFile));
-			this.output(RMPFConstants.configurationInfo_defaults);
+			this.output(FrameworkMessages.configurationInfo_defaults);
 		}
 		this.configFile.options().copyDefaults(true);
 		this.save();
@@ -52,7 +53,7 @@ public abstract class RMPFConfiguration implements IConfiguration {
 		{
 			this.configFile.options().copyDefaults(true);
 			this.save();
-			this.output(RMPFConstants.configurationInfo_restored);
+			this.output(FrameworkMessages.configurationInfo_restored);
 			return true;
 		}
 		return false;
@@ -73,7 +74,7 @@ public abstract class RMPFConfiguration implements IConfiguration {
 			}
 			catch (IOException ex)
 			{
-				this.output(String.format(RMPFConstants.configurationError_save, this.configFilePath), Level.SEVERE);
+				this.output(String.format(FrameworkMessages.configurationError_save, this.configFilePath), Level.SEVERE);
 			}
 		}
 	}

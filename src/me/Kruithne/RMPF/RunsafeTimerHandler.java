@@ -3,12 +3,12 @@ package me.Kruithne.RMPF;
 import org.bukkit.Server;
 import org.bukkit.plugin.Plugin;
 
-public class RMPFTimedEventHandler implements IScheduler {
+public class RunsafeTimerHandler implements IScheduler {
 
 	private Plugin plugin;
 	private Server server;
 
-	public RMPFTimedEventHandler(Server server, Plugin plugin)
+	public RunsafeTimerHandler(Server server, Plugin plugin)
 	{
 		this.server = server;
 		this.plugin = plugin;
