@@ -2,6 +2,8 @@ package no.runsafe.framework;
 
 import java.util.List;
 
+import org.bukkit.configuration.ConfigurationSection;
+
 public interface IConfiguration {
 
 	// Loads the configuration from disk. Prepares defaults if available.
@@ -29,5 +31,7 @@ public interface IConfiguration {
 
 	// Sets a configuration value with the specified key -> value
 	public abstract void setConfigValue(String key, Object value);
+
+	public abstract ConfigurationSection getSection(String path);
 
 }

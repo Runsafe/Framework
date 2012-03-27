@@ -57,7 +57,7 @@ public class RunsafeOutputHandler implements IOutput {
 	@Override
 	public void outputDebugToConsole(String message, Level messageLevel)
 	{
-		if(messageLevel.intValue() <= debugLevel.intValue())	
+		if(debugLevel != null && messageLevel.intValue() >= debugLevel.intValue())	
 			outputToConsole(message, Level.INFO);
 	}
 	

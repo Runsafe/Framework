@@ -1,9 +1,15 @@
 package no.runsafe.framework;
 
-import org.hibernate.Session;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 
-public interface IDatabase {
+public interface IDatabase 
+{
+	public abstract PreparedStatement prepare(String sql);
 
-	Session getSession();
+	public abstract void rollbackTransaction(Connection conn);
 
+	public abstract void commitTransaction(Connection conn);
+
+	public abstract Connection beginTransaction();
 }

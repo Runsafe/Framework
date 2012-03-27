@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
 Implementation-Title: Runsafe plugin framework
 Implementation-Version: 1.1.0
-Class-Path: picocontainer-2.14.1.jar hibernate-core-4.1.1.Final.jar dom4j-1.6.1.jar hibernate-commons-annotations-4.0.1.Final.jar jboss-logging-3.1.0.GA.jar jboss-transaction-api_1.1_spec-1.0.0.Final.jar
+Class-Path: picocontainer-2.14.1.jar  
 

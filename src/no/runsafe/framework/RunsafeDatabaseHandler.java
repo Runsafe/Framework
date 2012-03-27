@@ -1,48 +1,96 @@
 package no.runsafe.framework;
 
-import java.util.Properties;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
 
-public class RunsafeDatabaseHandler implements IDatabase {
-	
-	private Configuration hibernateConfig;
-	private SessionFactory sessionFactory;
+public class RunsafeDatabaseHandler implements IDatabase 
+{
+	private String databaseURL;
+	private String databaseUsername;
+	private String databasePassword;
 
-	@SuppressWarnings("rawtypes")
-	public RunsafeDatabaseHandler(IConfiguration config, IDatabaseTypeProvider typeProvider)
+	private IOutput output;
+
+	public RunsafeDatabaseHandler(IConfiguration config, IOutput output)
 	{
-		Properties props = new Properties();
-		props.put("hibernate.dialect", String.format("org.hibernate.dialect.%s", config.getConfigValueAsString("database.dialect"))); 
-		props.put("hibernate.connection.driver_class", config.getConfigValueAsString("database.driver"));
-		props.put("hibernate.connection.url", config.getConfigValueAsString("database.url"));
-		props.put("hibernate.connection.username", config.getConfigValueAsString("database.username"));
-		props.put("hibernate.connection.password", config.getConfigValueAsString("database.password"));
-		props.put("hibernate.connection.pool_size", "1");
-		props.put("hibernate.hbm2ddl.auto", "create");
-		
-		props.put("hibernate.show_sql", "false");
-		props.put("hibernate.jdbc.use_streams_for_binary", "true");
-		props.put("hibernate.use_outer_join", "false");
-		props.put("hibernate.jdbc.batch_size", "0");
-		props.put("hibernate.jdbc.use_scrollable_resultset", "true");
-		props.put("hibernate.statement_cache.size", "0");
-		
-		hibernateConfig = new Configuration().setProperties(props);
-		for (Class modelType : typeProvider.getModelClasses()) 
-		{
-			hibernateConfig.addClass(modelType);
-		}
-		ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(hibernateConfig.getProperties()).buildServiceRegistry();
-		sessionFactory = hibernateConfig.buildSessionFactory(serviceRegistry);
+		this.databaseURL = config.getConfigValueAsString("database.url");
+		this.databaseUsername = config.getConfigValueAsString("database.username");
+		this.databasePassword = config.getConfigValueAsString("database.password");
+		this.output = output;
 	}
 	
 	@Override
-	public Session getSession()
+	public Connection beginTransaction()
 	{
-		return sessionFactory.openSession();
+		try 
+		{
+			Connection conn = getConnection();
+			conn.setAutoCommit(false);
+			return conn;
+		} 
+		catch (SQLException e) 
+		{
+			this.output.outputToConsole(e.getMessage() + e.getStackTrace(), Level.SEVERE);
+			return null;
+		}
+	}
+	
+	@Override
+	public void commitTransaction(Connection conn)
+	{
+		try
+		{
+			conn.commit();
+			conn.close();
+		}
+		catch(SQLException e)
+		{
+			this.output.outputToConsole(e.getMessage() + e.getStackTrace(), Level.SEVERE);			
+		}
+	}
+	
+	@Override
+	public void rollbackTransaction(Connection conn)
+	{
+		try
+		{
+			conn.rollback();
+			conn.close();
+		}
+		catch(SQLException e)
+		{
+			this.output.outputToConsole(e.getMessage() + e.getStackTrace(), Level.SEVERE);			
+		}
+	}
+	
+	@Override
+	public PreparedStatement prepare(String sql) 
+	{
+		try
+		{
+			Connection conn = getConnection();
+			return conn.prepareStatement(sql);
+		}
+		catch(SQLException e)
+		{
+			this.output.outputToConsole(e.getMessage() + e.getStackTrace(), Level.SEVERE);
+			return null;
+		}
+	}
+	
+	protected Connection getConnection()
+	{
+		try
+		{
+			return DriverManager.getConnection(this.databaseURL, this.databaseUsername, this.databasePassword);
+		}
+		catch (SQLException e)
+		{
+			this.output.outputToConsole(e.getMessage() + e.getStackTrace(), Level.SEVERE);
+		}
+		return null;
 	}
 }

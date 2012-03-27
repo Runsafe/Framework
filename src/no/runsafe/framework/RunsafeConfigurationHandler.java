@@ -2,10 +2,10 @@ package no.runsafe.framework;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 import java.util.logging.Level;
 
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -13,7 +13,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 public class RunsafeConfigurationHandler implements IConfiguration {
 
 	private String configFilePath;
-	private InputStream defaultConfigFile;
+	private IConfigurationDefaults defaultConfigFile;
 	private IOutput pluginOutput;
 	private FileConfiguration configFile;
 	
@@ -21,22 +21,27 @@ public class RunsafeConfigurationHandler implements IConfiguration {
 	{
 		this.pluginOutput = pluginOutput;
 		this.configFilePath = configFileProvider.getConfigurationPath();
-		this.defaultConfigFile = configDefaultProvider.getDefaultConfiguration();
+		this.defaultConfigFile = configDefaultProvider;
 		this.load();
 	}
 	
 	@Override
 	public void load()
 	{
-		if (this.configFile == null)
+		if (this.configFilePath == null)
+			return;
+		
+		File configFile = new File(this.configFilePath);
+		if(!configFile.exists() && this.defaultConfigFile != null)
 		{
-			this.configFile = YamlConfiguration.loadConfiguration(new File(this.configFilePath));
+			this.output(FrameworkMessages.configurationInfo_defaults);
 		}
+
+		this.configFile = YamlConfiguration.loadConfiguration(configFile);
 		
 		if (this.defaultConfigFile != null)
 		{
-			this.configFile.setDefaults(YamlConfiguration.loadConfiguration(this.defaultConfigFile));
-			this.output(FrameworkMessages.configurationInfo_defaults);
+			this.configFile.setDefaults(YamlConfiguration.loadConfiguration(this.defaultConfigFile.getDefaultConfiguration()));
 		}
 		this.configFile.options().copyDefaults(true);
 		this.save();
@@ -126,6 +131,12 @@ public class RunsafeConfigurationHandler implements IConfiguration {
 	public List<String> getConfigValueAsList(String value)
 	{
 		return this.configFile.getStringList(value);
+	}
+	
+	@Override
+	public ConfigurationSection getSection(String path) 
+	{
+		return this.configFile.getConfigurationSection(path);
 	}
 	
 	// Sets a configuration value with the specified key -> value

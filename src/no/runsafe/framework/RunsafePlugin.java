@@ -6,17 +6,19 @@ import java.util.logging.Level;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.picocontainer.DefaultPicoContainer;
+import org.picocontainer.behaviors.Caching;
 
 public class RunsafePlugin extends JavaPlugin
 {	
 	@Override
 	public void onEnable()
-	{
-		container = new DefaultPicoContainer();
+	{	
+		container = new DefaultPicoContainer(new Caching());
 		container.addComponent(this);
 		container.addComponent(this.getServer());
 		container.addComponent(this.getLogger());
@@ -24,15 +26,10 @@ public class RunsafePlugin extends JavaPlugin
 		container.addComponent(RunsafeOutputHandler.class);
 		container.addComponent(RunsafeDatabaseHandler.class);
 		container.addComponent(RunsafeTimerHandler.class);
+		container.addComponent(DatabaseHelper.class);
 		
 		output = container.getComponent(IOutput.class);
-		output.outputToConsole("Console message test");
-		output.outputToServer("Server broadcast test");
-		output.setDebugLevel(Level.FINE);
-		output.outputDebugToConsole("Debug message test 1", Level.FINE);
-		output.outputDebugToConsole("Debug message test 2", Level.FINER);
-		output.outputDebugToConsole("Debug message test 3", Level.INFO);
-		
+
 		this.PluginSetup();
 		
 		output.outputDebugToConsole(String.format("Initiating plugin %s", this.getName()), Level.FINE);
@@ -95,55 +92,18 @@ public class RunsafePlugin extends JavaPlugin
 	
 	private void RegisterCommands()
 	{
-//		CommandMap commandMap = GetCommandMap();
-//		if(commandMap == null)
-//		{
-//			this.getLogger().info("Unable to get command map");
-//			return;
-//		}
-//		this.getLogger().info("registering commands");
 		commands = new HashMap<String, RunsafeCommandHandler>();
 		List<RunsafeCommandHandler> commandList = this.GetCommands();
 		for(RunsafeCommandHandler handler : commandList)
 		{
-			getCommand(handler.getName()).setExecutor(handler);
+			PluginCommand command = getCommand(handler.getName());
+			
+			if(command == null)
+				output.outputToConsole(String.format("Command not found: %s - does it exist in plugin.yml?", handler.getName()));
+			else
+				command.setExecutor(handler);
 		}
-//		if(commandList != null && !commandList.isEmpty())
-//		{
-//			for (RunsafeCommandHandler handler : commandList)
-//			{
-//				commandMap.register(handler.getName(), handler);
-//				getCommand(handler.getName()).setExecutor(handler);
-//				//for (String alias : handler.getCommandWithAliases())
-//				//{
-//				//	commands.put(alias.toLowerCase(), handler);
-//				//}
-//			}
-//		}
 	}
-	
-//	private CommandMap GetCommandMap()
-//	{
-//		try 
-//		{
-//			Field field = SimplePluginManager.class.getDeclaredField("commandMap");
-//			field.setAccessible(true);
-//			return (CommandMap)(field.get(getServer().getPluginManager()));
-//		} catch (SecurityException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (NoSuchFieldException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IllegalArgumentException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IllegalAccessException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
 	
 	private void UnregisterEvents() 
 	{
