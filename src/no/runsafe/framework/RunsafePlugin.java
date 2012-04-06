@@ -37,6 +37,11 @@ public class RunsafePlugin extends JavaPlugin
 		RegisterCommands();
 		output.outputDebugToConsole(String.format("Registered %d event listeners", eventListeners.size()), Level.FINE);
 		output.outputDebugToConsole(String.format("Initiation completed", this.getName()), Level.FINE);
+		
+		for(IPluginEnabled impl : container.getComponents(IPluginEnabled.class))
+		{
+			impl.OnPluginEnabled();
+		}
 	}
 	
 	@Override
@@ -44,6 +49,11 @@ public class RunsafePlugin extends JavaPlugin
 	{
 		output.outputDebugToConsole(String.format("Deinitiating plugin %s", this.getName()), Level.FINE);
 		UnregisterEvents();
+		
+		for(IPluginDisabled impl : container.getComponents(IPluginDisabled.class))
+		{
+			impl.OnPluginDisabled();
+		}
 	}
 	
 	@Override
