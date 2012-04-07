@@ -1,5 +1,5 @@
 package no.runsafe.framework.database;
 
-public class RunsafeEntity {
+public abstract class RunsafeEntity {
 
 }
