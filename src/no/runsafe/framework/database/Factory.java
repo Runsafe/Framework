@@ -1,4 +1,4 @@
-package no.runsafe.framework;
+package no.runsafe.framework.database;
 
 public interface Factory<T> 
 {

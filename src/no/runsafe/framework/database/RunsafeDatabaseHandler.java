@@ -1,10 +1,14 @@
-package no.runsafe.framework;
+package no.runsafe.framework.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
+
+import no.runsafe.framework.interfaces.IConfiguration;
+import no.runsafe.framework.interfaces.IDatabase;
+import no.runsafe.framework.interfaces.IOutput;
 
 public class RunsafeDatabaseHandler implements IDatabase 
 {
