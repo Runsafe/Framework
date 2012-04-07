@@ -4,6 +4,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 
+import no.runsafe.framework.command.RunsafeCommandHandler;
+import no.runsafe.framework.configuration.RunsafeConfigurationHandler;
+import no.runsafe.framework.database.DatabaseHelper;
+import no.runsafe.framework.database.RunsafeDatabaseHandler;
+import no.runsafe.framework.interfaces.IKernel;
+import no.runsafe.framework.interfaces.IOutput;
+import no.runsafe.framework.interfaces.IPluginDisabled;
+import no.runsafe.framework.interfaces.IPluginEnabled;
+import no.runsafe.framework.output.RunsafeOutputHandler;
+import no.runsafe.framework.timer.RunsafeTimerHandler;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
@@ -13,35 +24,36 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.picocontainer.DefaultPicoContainer;
 import org.picocontainer.behaviors.Caching;
 
-public class RunsafePlugin extends JavaPlugin
+public class RunsafePlugin extends JavaPlugin implements IKernel
 {	
 	@Override
 	public void onEnable()
 	{	
-		container = new DefaultPicoContainer(new Caching());
-		container.addComponent(this);
-		container.addComponent(this.getServer());
-		container.addComponent(this.getLogger());
-		container.addComponent(RunsafeConfigurationHandler.class);
-		container.addComponent(RunsafeOutputHandler.class);
-		container.addComponent(RunsafeDatabaseHandler.class);
-		container.addComponent(RunsafeTimerHandler.class);
-		container.addComponent(DatabaseHelper.class);
-		
-		output = container.getComponent(IOutput.class);
-
-		this.PluginSetup();
-		
-		output.outputDebugToConsole(String.format("Initiating plugin %s", this.getName()), Level.FINE);
-		RegisterEvents();
-		RegisterCommands();
-		output.outputDebugToConsole(String.format("Registered %d event listeners", eventListeners.size()), Level.FINE);
-		output.outputDebugToConsole(String.format("Initiation completed", this.getName()), Level.FINE);
-		
-		for(IPluginEnabled impl : container.getComponents(IPluginEnabled.class))
+		if(container == null)
+		{
+			container = new DefaultPicoContainer(new Caching());
+			addComponent(this);
+			addComponent(this.getServer());
+			addComponent(this.getLogger());
+			addComponent(RunsafeConfigurationHandler.class);
+			addComponent(RunsafeOutputHandler.class);
+			addComponent(RunsafeDatabaseHandler.class);
+			addComponent(RunsafeTimerHandler.class);
+			addComponent(DatabaseHelper.class);		
+			output = getComponent(IOutput.class);
+			this.PluginSetup();
+			
+			output.outputDebugToConsole(String.format("Initiating plugin %s", this.getName()), Level.FINE);
+			RegisterEvents();
+			RegisterCommands();
+			output.outputDebugToConsole(String.format("Registered %d event listeners", eventListeners.size()), Level.FINE);
+			output.outputDebugToConsole(String.format("Initiation completed", this.getName()), Level.FINE);
+		}
+		for(IPluginEnabled impl : getComponents(IPluginEnabled.class))
 		{
 			impl.OnPluginEnabled();
 		}
+		
 	}
 	
 	@Override
@@ -50,7 +62,7 @@ public class RunsafePlugin extends JavaPlugin
 		output.outputDebugToConsole(String.format("Deinitiating plugin %s", this.getName()), Level.FINE);
 		UnregisterEvents();
 		
-		for(IPluginDisabled impl : container.getComponents(IPluginDisabled.class))
+		for(IPluginDisabled impl : getComponents(IPluginDisabled.class))
 		{
 			impl.OnPluginDisabled();
 		}
@@ -66,20 +78,33 @@ public class RunsafePlugin extends JavaPlugin
 		return false;
 	}
 	
-	protected void addComponent(Object implOrInstance)
+	@Override
+	public void addComponent(Object implOrInstance)
 	{
 		output.outputDebugToConsole(String.format("Plugin %s added component %s", this.getName(), implOrInstance.getClass().getCanonicalName()), Level.FINE);
 		container.addComponent(implOrInstance);
 	}
 	
+	@Override
+	public <T> T getComponent(Class<T> type)
+	{
+		return this.container.getComponent(type);
+	}
+	
+	@Override
+	public <T> List<T> getComponents(Class<T> type)
+	{
+		return this.container.getComponents(type);
+	}
+	
 	protected List<Listener> GetEvents()
 	{
-		return container.getComponents(Listener.class);
+		return getComponents(Listener.class);
 	}		
 
 	protected List<RunsafeCommandHandler> GetCommands()
 	{
-		return container.getComponents(RunsafeCommandHandler.class);
+		return getComponents(RunsafeCommandHandler.class);
 	}
 	
 	protected void PluginSetup()
@@ -120,7 +145,7 @@ public class RunsafePlugin extends JavaPlugin
 		// Not supported by bukkit?!
 	}
 	
-	protected DefaultPicoContainer container; 
+	protected DefaultPicoContainer container = null; 
 	private List<Listener> eventListeners;
 	private IOutput output;
 	private HashMap<String, RunsafeCommandHandler> commands;

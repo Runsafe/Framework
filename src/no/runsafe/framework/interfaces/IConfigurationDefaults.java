@@ -1,4 +1,4 @@
-package no.runsafe.framework;
+package no.runsafe.framework.interfaces;
 
 import java.io.InputStream;
 

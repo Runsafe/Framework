@@ -1,4 +1,4 @@
-package no.runsafe.framework;
+package no.runsafe.framework.command;
 
 import java.util.ArrayList;
 import java.util.List;

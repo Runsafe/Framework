@@ -1,9 +1,15 @@
-package no.runsafe.framework;
+package no.runsafe.framework.configuration;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
+
+import no.runsafe.framework.FrameworkMessages;
+import no.runsafe.framework.interfaces.IConfiguration;
+import no.runsafe.framework.interfaces.IConfigurationDefaults;
+import no.runsafe.framework.interfaces.IConfigurationFile;
+import no.runsafe.framework.interfaces.IOutput;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;

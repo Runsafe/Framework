@@ -1,4 +1,4 @@
-package no.runsafe.framework;
+package no.runsafe.framework.interfaces;
 
 import java.util.List;
 
@@ -33,5 +33,4 @@ public interface IConfiguration {
 	public abstract void setConfigValue(String key, Object value);
 
 	public abstract ConfigurationSection getSection(String path);
-
 }

@@ -1,4 +1,6 @@
-package no.runsafe.framework;
+package no.runsafe.framework.interfaces;
+
+import no.runsafe.framework.database.RunsafeEntity;
 
 public interface IRepository<T extends RunsafeEntity, KT> 
 {

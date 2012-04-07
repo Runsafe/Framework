@@ -1,4 +1,4 @@
-package no.runsafe.framework;
+package no.runsafe.framework.database;
 
 import java.lang.reflect.Field;
 import java.sql.ResultSet;
@@ -7,6 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Level;
+
+import no.runsafe.framework.interfaces.IOutput;
 
 public class DatabaseHelper 
 {

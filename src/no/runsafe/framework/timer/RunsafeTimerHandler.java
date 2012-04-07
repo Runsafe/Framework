@@ -1,4 +1,6 @@
-package no.runsafe.framework;
+package no.runsafe.framework.timer;
+
+import no.runsafe.framework.interfaces.IScheduler;
 
 import org.bukkit.Server;
 import org.bukkit.plugin.Plugin;

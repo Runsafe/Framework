@@ -1,7 +1,9 @@
-package no.runsafe.framework;
+package no.runsafe.framework.output;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import no.runsafe.framework.interfaces.IOutput;
 
 import org.bukkit.Server;
 
