@@ -32,14 +32,14 @@ public class RunsafePlugin extends JavaPlugin implements IKernel
 		if(container == null)
 		{
 			container = new DefaultPicoContainer(new Caching());
-			addComponent(this);
-			addComponent(this.getServer());
-			addComponent(this.getLogger());
-			addComponent(RunsafeConfigurationHandler.class);
-			addComponent(RunsafeOutputHandler.class);
-			addComponent(RunsafeDatabaseHandler.class);
-			addComponent(RunsafeTimerHandler.class);
-			addComponent(DatabaseHelper.class);		
+			this.container.addComponent(this);
+			this.container.addComponent(this.getServer());
+			this.container.addComponent(this.getLogger());
+			this.container.addComponent(RunsafeConfigurationHandler.class);
+			this.container.addComponent(RunsafeOutputHandler.class);
+			this.container.addComponent(RunsafeDatabaseHandler.class);
+			this.container.addComponent(RunsafeTimerHandler.class);
+			this.container.addComponent(DatabaseHelper.class);		
 			output = getComponent(IOutput.class);
 			this.PluginSetup();
 			
