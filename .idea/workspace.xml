@@ -306,7 +306,11 @@
       <created>1334170267332</created>
       <updated>1334170267332</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add missing idea files">
+      <created>1334170298163</created>
+      <updated>1334170298163</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
