@@ -16,22 +16,22 @@ public class RunsafeTimerHandler implements IScheduler {
 		this.plugin = plugin;
 	}
 	
-	/* (non-Javadoc)
-	 * @see me.Kruithne.RMPF.IScheduler#setTimedEvent(java.lang.Runnable, java.lang.Long)
-	 */
 	@Override
-	public void setTimedEvent(Runnable func, Long ticks)
+	public int setTimedEvent(Runnable func, Long ticks)
 	{
-		this.server.getScheduler().scheduleSyncDelayedTask(this.plugin, func, ticks);
+		return this.server.getScheduler().scheduleSyncDelayedTask(this.plugin, func, ticks);
 	}
-	
-	/* (non-Javadoc)
-	 * @see me.Kruithne.RMPF.IScheduler#setTimedEvent(java.lang.Runnable, int)
-	 */
+
 	@Override
-	public void setTimedEvent(Runnable func, int seconds)
+	public int setTimedEvent(Runnable func, int seconds)
 	{
-		this.server.getScheduler().scheduleSyncDelayedTask(this.plugin, func, seconds * 20);
+		return this.setTimedEvent(func, (long)seconds * 20);
+		//this.server.getScheduler().scheduleSyncDelayedTask(this.plugin, func, seconds * 20);
 	}
-	
+
+	@Override
+	public void cancelTimedEvent(int eventId)
+	{
+		this.server.getScheduler().cancelTask(eventId);
+	}
 }
