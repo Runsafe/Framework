@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Class-Path: picocontainer-2.14.1.jar
+
