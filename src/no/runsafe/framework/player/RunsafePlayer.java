@@ -20,6 +20,11 @@ public class RunsafePlayer {
 	{
 		return new RunsafeWorld(bukkitPlayer.getWorld());
 	}
+
+    public Player getRawPlayer()
+    {
+        return this.bukkitPlayer;
+    }
 	
 	private Player bukkitPlayer;
 }
