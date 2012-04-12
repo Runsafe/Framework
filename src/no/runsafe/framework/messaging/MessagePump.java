@@ -1,6 +1,7 @@
 package no.runsafe.framework.messaging;
 
 import no.runsafe.framework.RunsafePlugin;
+import no.runsafe.framework.output.IOutput;
 import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
