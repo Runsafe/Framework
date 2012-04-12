@@ -5,10 +5,13 @@ import no.runsafe.framework.configuration.RunsafeConfigurationHandler;
 import no.runsafe.framework.database.DatabaseHelper;
 import no.runsafe.framework.database.RunsafeDatabaseHandler;
 import no.runsafe.framework.event.EventEngine;
-import no.runsafe.framework.event.IRunsafeEvent;
-import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.event.IPluginDisabled;
 import no.runsafe.framework.event.IPluginEnabled;
+import no.runsafe.framework.event.IRunsafeEvent;
+import no.runsafe.framework.messaging.IMessageBusService;
+import no.runsafe.framework.messaging.IMessagePump;
+import no.runsafe.framework.messaging.MessagePump;
+import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.output.RunsafeOutputHandler;
 import no.runsafe.framework.timer.RunsafeTimerHandler;
 import org.bukkit.command.Command;
@@ -29,7 +32,8 @@ public class RunsafePlugin extends JavaPlugin implements IKernel
 	@Override
 	public void onEnable()
 	{
-		if (container == null) {
+		if (container == null)
+		{
 			container = new DefaultPicoContainer(new Caching());
 			this.container.addComponent(this);
 			this.container.addComponent(this.getServer());
@@ -40,7 +44,20 @@ public class RunsafePlugin extends JavaPlugin implements IKernel
 			this.container.addComponent(RunsafeTimerHandler.class);
 			this.container.addComponent(DatabaseHelper.class);
 			output = getComponent(IOutput.class);
+
 			this.PluginSetup();
+
+			IMessagePump pump = MessagePump.GetPump(this);
+			if (pump != null)
+			{
+				List<IMessageBusService> services = getComponents(IMessageBusService.class);
+				if (services != null)
+					for (IMessageBusService svc : services)
+					{
+						output.outputDebugToConsole(String.format("Registering %s message bus service in %s", svc.getServiceName(), svc.getClass().getName()), Level.INFO);
+						pump.RegisterService(svc);
+					}
+			}
 
 			output.outputDebugToConsole(String.format("Initiating plugin %s", this.getName()), Level.FINE);
 			RegisterEvents();
@@ -48,7 +65,8 @@ public class RunsafePlugin extends JavaPlugin implements IKernel
 			output.outputDebugToConsole(String.format("Registered %d event listeners", eventListeners.size()), Level.FINE);
 			output.outputDebugToConsole(String.format("Initiation completed", this.getName()), Level.FINE);
 		}
-		for (IPluginEnabled impl : getComponents(IPluginEnabled.class)) {
+		for (IPluginEnabled impl : getComponents(IPluginEnabled.class))
+		{
 			impl.OnPluginEnabled();
 		}
 
@@ -60,7 +78,20 @@ public class RunsafePlugin extends JavaPlugin implements IKernel
 		output.outputDebugToConsole(String.format("Deinitiating plugin %s", this.getName()), Level.FINE);
 		UnregisterEvents();
 
-		for (IPluginDisabled impl : getComponents(IPluginDisabled.class)) {
+		IMessagePump pump = MessagePump.GetPump(this);
+		if (pump != null)
+		{
+			List<IMessageBusService> services = getComponents(IMessageBusService.class);
+			if (services != null)
+				for (IMessageBusService svc : services)
+				{
+					output.outputDebugToConsole(String.format("UnRegistering %s message bus service in %s", svc.getServiceName(), svc.getClass().getName()), Level.INFO);
+					pump.UnregisterService(svc);
+				}
+		}
+
+		for (IPluginDisabled impl : getComponents(IPluginDisabled.class))
+		{
 			impl.OnPluginDisabled();
 		}
 	}
@@ -113,15 +144,17 @@ public class RunsafePlugin extends JavaPlugin implements IKernel
 		PluginManager pluginManager = this.getServer().getPluginManager();
 
 		EventEngine engine = new EventEngine(container.getComponents(IRunsafeEvent.class));
-		for(Listener listener : engine.getListeners())
+		for (Listener listener : engine.getListeners())
 		{
 			pluginManager.registerEvents(listener, this);
 			output.outputDebugToConsole(String.format("Registered event listener %s", listener.getClass().getName()), Level.FINER);
 		}
 
 		eventListeners = GetEvents();
-		if (eventListeners != null && !eventListeners.isEmpty()) {
-			for (Listener listener : eventListeners) {
+		if (eventListeners != null && !eventListeners.isEmpty())
+		{
+			for (Listener listener : eventListeners)
+			{
 				pluginManager.registerEvents(listener, this);
 				output.outputDebugToConsole(String.format("Registered event listener %s", listener.getClass().getName()), Level.FINER);
 			}
@@ -132,7 +165,8 @@ public class RunsafePlugin extends JavaPlugin implements IKernel
 	{
 		commands = new HashMap<String, RunsafeCommandHandler>();
 		List<RunsafeCommandHandler> commandList = this.GetCommands();
-		for (RunsafeCommandHandler handler : commandList) {
+		for (RunsafeCommandHandler handler : commandList)
+		{
 			PluginCommand command = getCommand(handler.getName());
 
 			if (command == null)
