@@ -1,5 +1,6 @@
 package no.runsafe.framework.event;
 
+import no.runsafe.framework.event.subscriber.IRunsafeEvent;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
