@@ -1,6 +1,6 @@
-package no.runsafe.framework.player.event;
+package no.runsafe.framework.event.subscriber.player;
 
-import no.runsafe.framework.event.IRunsafeEvent;
+import no.runsafe.framework.event.subscriber.IRunsafeEvent;
 import no.runsafe.framework.player.RunsafePlayer;
 
 public interface IPlayerLoginEvent extends IRunsafeEvent

@@ -1,11 +1,12 @@
 package no.runsafe.framework.event;
 
-import no.runsafe.framework.entity.event.EntityDamageByEntity;
-import no.runsafe.framework.entity.event.EntityDeath;
-import no.runsafe.framework.entity.event.IEntityDamageByEntityEvent;
-import no.runsafe.framework.entity.event.IEntityDeathEvent;
-import no.runsafe.framework.player.event.IPlayerChangedWorldEvent;
-import no.runsafe.framework.player.event.PlayerChangedWorld;
+import no.runsafe.framework.event.listener.entity.EntityDamageByEntity;
+import no.runsafe.framework.event.listener.entity.EntityDeath;
+import no.runsafe.framework.event.subscriber.IRunsafeEvent;
+import no.runsafe.framework.event.subscriber.entity.IEntityDamageByEntityEvent;
+import no.runsafe.framework.event.subscriber.entity.IEntityDeathEvent;
+import no.runsafe.framework.event.subscriber.player.IPlayerChangedWorldEvent;
+import no.runsafe.framework.event.listener.player.PlayerChangedWorld;
 import org.bukkit.event.Listener;
 
 import java.util.ArrayList;
