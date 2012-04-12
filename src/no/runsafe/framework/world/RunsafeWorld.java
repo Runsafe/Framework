@@ -13,6 +13,11 @@ public class RunsafeWorld {
 	{
 		return bukkitWorld.getName();
 	}
+
+    public World getRawWorld()
+    {
+        return this.bukkitWorld;
+    }
 	
 	private World bukkitWorld;
 }
