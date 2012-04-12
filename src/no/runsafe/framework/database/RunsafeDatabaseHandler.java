@@ -6,9 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 
-import no.runsafe.framework.interfaces.IConfiguration;
-import no.runsafe.framework.interfaces.IDatabase;
-import no.runsafe.framework.interfaces.IOutput;
+import no.runsafe.framework.configuration.IConfiguration;
+import no.runsafe.framework.output.IOutput;
 
 public class RunsafeDatabaseHandler implements IDatabase 
 {

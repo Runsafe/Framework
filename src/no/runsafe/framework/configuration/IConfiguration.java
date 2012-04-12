@@ -1,4 +1,4 @@
-package no.runsafe.framework.interfaces;
+package no.runsafe.framework.configuration;
 
 import java.util.List;
 

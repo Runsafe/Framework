@@ -6,10 +6,7 @@ import java.util.List;
 import java.util.logging.Level;
 
 import no.runsafe.framework.FrameworkMessages;
-import no.runsafe.framework.interfaces.IConfiguration;
-import no.runsafe.framework.interfaces.IConfigurationDefaults;
-import no.runsafe.framework.interfaces.IConfigurationFile;
-import no.runsafe.framework.interfaces.IOutput;
+import no.runsafe.framework.output.IOutput;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;

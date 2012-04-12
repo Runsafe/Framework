@@ -1,4 +1,4 @@
-package no.runsafe.framework.interfaces;
+package no.runsafe.framework.output;
 
 import java.util.logging.Level;
 
