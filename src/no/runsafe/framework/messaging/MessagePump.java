@@ -10,7 +10,7 @@ public class MessagePump implements IMessagePump
 {
 	public static IMessagePump GetPump(RunsafePlugin plugin)
 	{
-		Plugin pump = plugin.getServer().getPluginManager().getPlugin("RunsafeMessagePump");
+		Plugin pump = plugin.getServer().getPluginManager().getPlugin("RunsafeMessageBus");
 		if (pump == null || !(pump instanceof IPumpProvider))
 			return null;
 

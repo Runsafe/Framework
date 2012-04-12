@@ -10,6 +10,7 @@ import no.runsafe.framework.event.subscriber.IPluginEnabled;
 import no.runsafe.framework.event.subscriber.IRunsafeEvent;
 import no.runsafe.framework.messaging.IMessageBusService;
 import no.runsafe.framework.messaging.IMessagePump;
+import no.runsafe.framework.messaging.IPumpProvider;
 import no.runsafe.framework.messaging.MessagePump;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.output.RunsafeOutputHandler;
@@ -46,24 +47,21 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 			this.container.addComponent(DatabaseHelper.class);
 			output = getComponent(IOutput.class);
 
-			// DEBUG
-			Plugin pumpPlugin = this.getServer().getPluginManager().getPlugin("RunsafeMessagePump");
-			if(pumpPlugin == null)
-				output.outputToConsole("Not getting RunsafeMessagePump plugin");
-
-			IMessagePump pump = MessagePump.GetPump(this);
-			if (pump != null)
+			if (!(this instanceof IPumpProvider))
 			{
-				addComponent(pump);
-				List<IMessageBusService> services = getComponents(IMessageBusService.class);
-				if (services != null)
-					for (IMessageBusService svc : services)
-					{
-						output.outputDebugToConsole(String.format("Registering %s message bus service in %s", svc.getServiceName(), svc.getClass().getName()), Level.INFO);
-						pump.RegisterService(svc);
-					}
+				IMessagePump pump = MessagePump.GetPump(this);
+				if (pump != null)
+				{
+					addComponent(pump);
+					List<IMessageBusService> services = getComponents(IMessageBusService.class);
+					if (services != null)
+						for (IMessageBusService svc : services)
+						{
+							output.outputDebugToConsole(String.format("Registering %s message bus service in %s", svc.getServiceName(), svc.getClass().getName()), Level.INFO);
+							pump.RegisterService(svc);
+						}
+				}
 			}
-
 			this.PluginSetup();
 
 			output.outputDebugToConsole(String.format("Initiating plugin %s", this.getName()), Level.FINE);
