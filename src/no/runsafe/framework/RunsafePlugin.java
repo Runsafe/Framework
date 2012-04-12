@@ -19,7 +19,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.event.Listener;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.picocontainer.DefaultPicoContainer;
@@ -47,22 +46,24 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 			this.container.addComponent(DatabaseHelper.class);
 			output = getComponent(IOutput.class);
 
+			IMessagePump pump = null;
 			if (!(this instanceof IPumpProvider))
 			{
-				IMessagePump pump = MessagePump.GetPump(this);
+				pump = MessagePump.GetPump(this);
 				if (pump != null)
-				{
 					addComponent(pump);
-					List<IMessageBusService> services = getComponents(IMessageBusService.class);
-					if (services != null)
-						for (IMessageBusService svc : services)
-						{
-							output.outputDebugToConsole(String.format("Registering %s message bus service in %s", svc.getServiceName(), svc.getClass().getName()), Level.INFO);
-							pump.RegisterService(svc);
-						}
-				}
 			}
 			this.PluginSetup();
+			if (pump != null)
+			{
+				List<IMessageBusService> services = getComponents(IMessageBusService.class);
+				if (services != null)
+					for (IMessageBusService svc : services)
+					{
+						output.outputDebugToConsole(String.format("Registering %s message bus service in %s", svc.getServiceName(), svc.getClass().getName()), Level.INFO);
+						pump.RegisterService(svc);
+					}
+			}
 
 			output.outputDebugToConsole(String.format("Initiating plugin %s", this.getName()), Level.FINE);
 			RegisterEvents();
