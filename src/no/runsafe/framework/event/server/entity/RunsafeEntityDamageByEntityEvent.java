@@ -11,7 +11,7 @@ public class RunsafeEntityDamageByEntityEvent extends RunsafeEntityDamageEvent
 		event = toWrap;
 	}
 
-	public RunsafeEntity getDamager()
+	public RunsafeEntity getDamageActor()
 	{
 		return new RunsafeEntity(event.getDamager());
 	}

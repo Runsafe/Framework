@@ -51,9 +51,6 @@ public class RunsafeConfigurationHandler implements IConfiguration {
 	}
 	
 	// Replaces the current configuration values with the supplied defaults
-	/* (non-Javadoc)
-	 * @see me.Kruithne.RMPF.IConfiguration#restoreToDefaults()
-	 */
 	@Override
 	public boolean restoreToDefaults()
 	{
@@ -68,9 +65,6 @@ public class RunsafeConfigurationHandler implements IConfiguration {
 	}
 	
 	// Saves the current configuration file to disk
-	/* (non-Javadoc)
-	 * @see me.Kruithne.RMPF.IConfiguration#save()
-	 */
 	@Override
 	public void save()
 	{	
@@ -88,9 +82,6 @@ public class RunsafeConfigurationHandler implements IConfiguration {
 	}
 	
 	// Returns a configuration value as a string
-	/* (non-Javadoc)
-	 * @see me.Kruithne.RMPF.IConfiguration#getConfigValueAsString(java.lang.String)
-	 */
 	@Override
 	public String getConfigValueAsString(String value)
 	{
@@ -98,9 +89,6 @@ public class RunsafeConfigurationHandler implements IConfiguration {
 	}
 	
 	// Returns a configuration value as an integer
-	/* (non-Javadoc)
-	 * @see me.Kruithne.RMPF.IConfiguration#getConfigValueAsInt(java.lang.String)
-	 */
 	@Override
 	public int getConfigValueAsInt(String value)
 	{
@@ -108,9 +96,6 @@ public class RunsafeConfigurationHandler implements IConfiguration {
 	}
 	
 	// Returns a configuration value as a double
-	/* (non-Javadoc)
-	 * @see me.Kruithne.RMPF.IConfiguration#getConfigValueAsDouble(java.lang.String)
-	 */
 	@Override
 	public double getConfigValueAsDouble(String value)
 	{
@@ -118,18 +103,12 @@ public class RunsafeConfigurationHandler implements IConfiguration {
 	}
 	
 	// Returns a configuration value as a float
-	/* (non-Javadoc)
-	 * @see me.Kruithne.RMPF.IConfiguration#getConfigValueAsFloat(java.lang.String)
-	 */
 	@Override
 	public float getConfigValueAsFloat(String value)
 	{
 		return Float.parseFloat(this.getConfigValueAsString(value));
 	}
-	
-	/* (non-Javadoc)
-	 * @see me.Kruithne.RMPF.IConfiguration#getConfigValueAsList(java.lang.String)
-	 */
+
 	@Override
 	public List<String> getConfigValueAsList(String value)
 	{
@@ -143,9 +122,6 @@ public class RunsafeConfigurationHandler implements IConfiguration {
 	}
 	
 	// Sets a configuration value with the specified key -> value
-	/* (non-Javadoc)
-	 * @see me.Kruithne.RMPF.IConfiguration#setConfigValue(java.lang.String, java.lang.Object)
-	 */
 	@Override
 	public void setConfigValue(String key, Object value)
 	{

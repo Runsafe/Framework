@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.logging.Level;
 
 import no.runsafe.framework.configuration.IConfiguration;
@@ -36,7 +37,7 @@ public class RunsafeDatabaseHandler implements IDatabase
 		} 
 		catch (SQLException e) 
 		{
-			this.output.outputToConsole(e.getMessage() + e.getStackTrace(), Level.SEVERE);
+			this.output.outputToConsole(e.getMessage(), Level.SEVERE);
 			return null;
 		}
 	}
@@ -51,7 +52,7 @@ public class RunsafeDatabaseHandler implements IDatabase
 		}
 		catch(SQLException e)
 		{
-			this.output.outputToConsole(e.getMessage() + e.getStackTrace(), Level.SEVERE);			
+			this.output.outputToConsole(e.getMessage() + Arrays.toString(e.getStackTrace()), Level.SEVERE);
 		}
 	}
 	
@@ -65,7 +66,7 @@ public class RunsafeDatabaseHandler implements IDatabase
 		}
 		catch(SQLException e)
 		{
-			this.output.outputToConsole(e.getMessage() + e.getStackTrace(), Level.SEVERE);			
+			this.output.outputToConsole(e.getMessage() + Arrays.toString(e.getStackTrace()), Level.SEVERE);
 		}
 	}
 	
@@ -79,7 +80,7 @@ public class RunsafeDatabaseHandler implements IDatabase
 		}
 		catch(SQLException e)
 		{
-			this.output.outputToConsole(e.getMessage() + e.getStackTrace(), Level.SEVERE);
+			this.output.outputToConsole(e.getMessage() + Arrays.toString(e.getStackTrace()), Level.SEVERE);
 			return null;
 		}
 	}
@@ -92,7 +93,7 @@ public class RunsafeDatabaseHandler implements IDatabase
 		}
 		catch (SQLException e)
 		{
-			this.output.outputToConsole(e.getMessage() + e.getStackTrace(), Level.SEVERE);
+			this.output.outputToConsole(e.getMessage() + Arrays.toString(e.getStackTrace()), Level.SEVERE);
 		}
 		return null;
 	}

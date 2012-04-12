@@ -6,18 +6,18 @@ public class RunsafeWorld
 {
 	public RunsafeWorld(World toWrap)
 	{
-		bukkitWorld = toWrap;
+		world = toWrap;
 	}
 
 	public String getName()
 	{
-		return bukkitWorld.getName();
+		return world.getName();
 	}
 
 	public World getRaw()
 	{
-		return bukkitWorld;
+		return world;
 	}
 
-	private World bukkitWorld;
+	private World world;
 }

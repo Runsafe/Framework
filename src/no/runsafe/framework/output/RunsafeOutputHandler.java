@@ -18,32 +18,26 @@ public class RunsafeOutputHandler implements IOutput {
 		this.consoleLog = logger;
 	}
 
-	// Check if the outputter has a server available to broadcast to
+	// Check if the output handler has a server available to broadcast to
 	private boolean hasServer()
 	{
 		return this.serverOutput != null;
 	}
 	
-	// Check if the outputter has a console/log available to broadcast to
+	// Check if the output handler has a console/log available to broadcast to
 	private boolean hasConsole()
 	{
 		return this.serverOutput != null;
 	}
 	
-	// Sends the supplied string to the console/log the outputter has
-	/* (non-Javadoc)
-	 * @see me.Kruithne.RMPF.IOutput#outputToConsole(java.lang.String)
-	 */
+	// Sends the supplied string to the console/log the output handler has
 	@Override
 	public void outputToConsole(String message)
 	{
 		outputToConsole(message, Level.INFO);
 	}
 	
-	// Sends the supplied string with the supplied logging level to the console/log the outputter has
-	/* (non-Javadoc)
-	 * @see me.Kruithne.RMPF.IOutput#outputToConsole(java.lang.String, java.util.logging.Level)
-	 */
+	// Sends the supplied string with the supplied logging level to the console/log the output handler has
 	@Override
 	public void outputToConsole(String message, Level level)
 	{
@@ -53,7 +47,7 @@ public class RunsafeOutputHandler implements IOutput {
 		}
 	}
 
-	// Sends the supplied string to the console/log the outputter has if the debug level is high enough
+	// Sends the supplied string to the console/log the output handler has if the debug level is high enough
 	@Override
 	public void outputDebugToConsole(String message, Level messageLevel)
 	{
@@ -61,10 +55,7 @@ public class RunsafeOutputHandler implements IOutput {
 			outputToConsole(message, Level.INFO);
 	}
 	
-	// Broadcasts the supplied string to all players on the server the outputter has
-	/* (non-Javadoc)
-	 * @see me.Kruithne.RMPF.IOutput#outputToServer(java.lang.String)
-	 */
+	// Broadcasts the supplied string to all players on the server the output handler has
 	@Override
 	public void outputToServer(String message)
 	{
