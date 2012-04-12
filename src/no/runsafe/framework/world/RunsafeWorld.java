@@ -14,9 +14,9 @@ public class RunsafeWorld
 		return world.getName();
 	}
 
-    public World getRawWorld()
+    public World getRaw()
     {
-        return this.bukkitWorld;
+        return this.world;
     }
 
 	private World world;

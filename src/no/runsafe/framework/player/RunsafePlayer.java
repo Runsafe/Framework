@@ -21,9 +21,9 @@ public class RunsafePlayer {
 		return new RunsafeWorld(player.getWorld());
 	}
 
-    public Player getRawPlayer()
+    public Player getRaw()
     {
-        return this.bukkitPlayer;
+        return this.player;
     }
 	
 	private Player player;
