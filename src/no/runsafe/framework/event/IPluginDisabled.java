@@ -1,4 +1,4 @@
-package no.runsafe.framework.interfaces;
+package no.runsafe.framework.event;
 
 public interface IPluginDisabled {
 	public void OnPluginDisabled();

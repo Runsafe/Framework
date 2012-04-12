@@ -1,4 +1,4 @@
-package no.runsafe.framework.interfaces;
+package no.runsafe.framework.timer;
 
 public interface IScheduler {
 

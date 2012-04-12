@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Level;
 
-import no.runsafe.framework.interfaces.IOutput;
+import no.runsafe.framework.output.IOutput;
 
 public class DatabaseHelper 
 {

@@ -1,4 +1,4 @@
-package no.runsafe.framework.interfaces;
+package no.runsafe.framework.database;
 
 import no.runsafe.framework.database.RunsafeEntity;
 

@@ -1,4 +1,4 @@
-package no.runsafe.framework.interfaces;
+package no.runsafe.framework.database;
 
 public interface IDatabaseTypeProvider {
 	@SuppressWarnings("rawtypes")
