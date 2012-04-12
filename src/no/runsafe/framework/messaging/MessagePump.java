@@ -7,15 +7,15 @@ import org.bukkit.plugin.Plugin;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public abstract class MessagePump extends RunsafePlugin implements IMessagePump
+public class MessagePump implements IMessagePump
 {
 	public static IMessagePump GetPump(RunsafePlugin plugin)
 	{
 		Plugin pump = plugin.getServer().getPluginManager().getPlugin("RunsafeMessagePump");
-		if (pump == null || !(pump instanceof IMessagePump))
+		if (pump == null || !(pump instanceof IPumpProvider))
 			return null;
 
-		return (IMessagePump) pump;
+		return ((IPumpProvider)pump).getInstance();
 	}
 
 	@Override
