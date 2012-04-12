@@ -45,11 +45,10 @@ public class RunsafePlugin extends JavaPlugin implements IKernel
 			this.container.addComponent(DatabaseHelper.class);
 			output = getComponent(IOutput.class);
 
-			this.PluginSetup();
-
 			IMessagePump pump = MessagePump.GetPump(this);
 			if (pump != null)
 			{
+				addComponent(pump);
 				List<IMessageBusService> services = getComponents(IMessageBusService.class);
 				if (services != null)
 					for (IMessageBusService svc : services)
@@ -58,6 +57,8 @@ public class RunsafePlugin extends JavaPlugin implements IKernel
 						pump.RegisterService(svc);
 					}
 			}
+
+			this.PluginSetup();
 
 			output.outputDebugToConsole(String.format("Initiating plugin %s", this.getName()), Level.FINE);
 			RegisterEvents();

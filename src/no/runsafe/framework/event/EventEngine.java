@@ -1,7 +1,9 @@
 package no.runsafe.framework.event;
 
 import no.runsafe.framework.entity.event.EntityDamageByEntity;
+import no.runsafe.framework.entity.event.EntityDeath;
 import no.runsafe.framework.entity.event.IEntityDamageByEntityEvent;
+import no.runsafe.framework.entity.event.IEntityDeathEvent;
 import no.runsafe.framework.player.event.IPlayerChangedWorldEvent;
 import no.runsafe.framework.player.event.PlayerChangedWorld;
 import org.bukkit.event.Listener;
@@ -25,6 +27,9 @@ public class EventEngine
 
 			else if (sub instanceof IPlayerChangedWorldEvent)
 				listeners.add(new PlayerChangedWorld((IPlayerChangedWorldEvent) sub));
+
+			else if (sub instanceof IEntityDeathEvent)
+				listeners.add(new EntityDeath((IEntityDeathEvent) sub));
 		}
 		return listeners;
 	}
