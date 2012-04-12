@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 
-public class RunsafePlugin extends JavaPlugin implements IKernel
+public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 {
 	@Override
 	public void onEnable()
@@ -64,7 +64,7 @@ public class RunsafePlugin extends JavaPlugin implements IKernel
 			RegisterEvents();
 			RegisterCommands();
 			output.outputDebugToConsole(String.format("Registered %d event listeners", eventListeners.size()), Level.FINE);
-			output.outputDebugToConsole(String.format("Initiation completed", this.getName()), Level.FINE);
+			output.outputDebugToConsole(String.format("Initiation of %s completed", this.getName()), Level.FINE);
 		}
 		for (IPluginEnabled impl : getComponents(IPluginEnabled.class))
 		{
@@ -76,8 +76,7 @@ public class RunsafePlugin extends JavaPlugin implements IKernel
 	@Override
 	public void onDisable()
 	{
-		output.outputDebugToConsole(String.format("Deinitiating plugin %s", this.getName()), Level.FINE);
-		UnregisterEvents();
+		output.outputDebugToConsole(String.format("Disabling plugin %s", this.getName()), Level.FINE);
 
 		IMessagePump pump = MessagePump.GetPump(this);
 		if (pump != null)
@@ -101,10 +100,7 @@ public class RunsafePlugin extends JavaPlugin implements IKernel
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
 	{
 		String command = cmd.getName().toLowerCase();
-		if (commands.containsKey(command))
-			return commands.get(command).onCommand(sender, cmd, label, args);
-
-		return false;
+		return commands.containsKey(command) && commands.get(command).onCommand(sender, cmd, label, args);
 	}
 
 	@Override
@@ -136,9 +132,7 @@ public class RunsafePlugin extends JavaPlugin implements IKernel
 		return getComponents(RunsafeCommandHandler.class);
 	}
 
-	protected void PluginSetup()
-	{
-	}
+	protected abstract void PluginSetup();
 
 	private void RegisterEvents()
 	{
@@ -175,11 +169,6 @@ public class RunsafePlugin extends JavaPlugin implements IKernel
 			else
 				command.setExecutor(handler);
 		}
-	}
-
-	private void UnregisterEvents()
-	{
-		// Not supported by bukkit?!
 	}
 
 	protected DefaultPicoContainer container = null;

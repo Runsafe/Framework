@@ -14,25 +14,25 @@ public class Response
 
 	public String getResponse()
 	{
-		return response;
+		return responseMessage;
 	}
 
 	public void setResponse(String response)
 	{
-		this.response = response;
+		responseMessage = response;
 	}
 
 	public MessageBusStatus getStatus()
 	{
-		return status;
+		return messageStatus;
 	}
 
 	public void setStatus(MessageBusStatus status)
 	{
-		this.status = status;
+		this.messageStatus = status;
 	}
 
 	private String sourceServiceName;
-	private String response;
-	private MessageBusStatus status;
+	private String responseMessage;
+	private MessageBusStatus messageStatus;
 }

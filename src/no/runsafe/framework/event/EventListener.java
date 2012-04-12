@@ -7,7 +7,7 @@ import org.bukkit.event.Listener;
 
 public abstract class EventListener<TSub extends IRunsafeEvent, TEvent extends Event> implements Listener
 {
-	public EventListener(TSub sub)
+	protected EventListener(TSub sub)
 	{
 		eventSubscriber = sub;
 	}

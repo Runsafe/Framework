@@ -6,13 +6,18 @@ public class RunsafeItem
 {
 	public RunsafeItem(Item toWrap)
 	{
-		bukkitItem = toWrap;
+		item = toWrap;
 	}
 	
 	public int getEntityId()
 	{
-		return bukkitItem.getEntityId();
+		return item.getEntityId();
+	}
+
+	public Item getRaw()
+	{
+		return item;
 	}
 	
-	private Item bukkitItem;
+	private Item item;
 }

@@ -1,5 +1,6 @@
 package no.runsafe.framework.database;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,11 +32,11 @@ public class DatabaseHelper
 		} 
 		catch (SQLException e) 
 		{
-			this.output.outputToConsole(e.getMessage() + e.getStackTrace(), Level.SEVERE);			
+			this.output.outputToConsole(e.getMessage(), Level.SEVERE);
 		} 
 		catch (IllegalArgumentException e) 
 		{
-			this.output.outputToConsole(e.getMessage() + e.getStackTrace(), Level.SEVERE);			
+			this.output.outputToConsole(e.getMessage(), Level.SEVERE);
 		} 
 		
 		return result;
@@ -62,15 +63,15 @@ public class DatabaseHelper
 		} 
 		catch (SQLException e) 
 		{
-			this.output.outputToConsole(e.getMessage() + e.getStackTrace(), Level.SEVERE);			
+			this.output.outputToConsole(e.getMessage(), Level.SEVERE);
 		} 
 		catch (IllegalArgumentException e) 
 		{
-			this.output.outputToConsole(e.getMessage() + e.getStackTrace(), Level.SEVERE);			
+			this.output.outputToConsole(e.getMessage(), Level.SEVERE);
 		} 
 		catch (IllegalAccessException e) 
 		{
-			this.output.outputToConsole(e.getMessage() + e.getStackTrace(), Level.SEVERE);			
+			this.output.outputToConsole(e.getMessage(), Level.SEVERE);
 		}
 		
 		return result;

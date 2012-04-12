@@ -31,13 +31,13 @@ public class RunsafeEntityDamageEvent extends RunsafeEntityEvent implements Canc
 	@Override
 	public boolean getCancelled()
 	{
-		return ((Cancellable)event).isCancelled();
+		return event.isCancelled();
 	}
 
 	@Override
 	public void setCancelled(boolean cancel)
 	{
-		((Cancellable)event).setCancelled(cancel);
+		event.setCancelled(cancel);
 	}
 
 	private EntityDamageEvent event;

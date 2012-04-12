@@ -8,17 +8,17 @@ public class RunsafePlayer {
 	
 	public RunsafePlayer(Player toWrap)
 	{
-		bukkitPlayer = toWrap;
+		player = toWrap;
 	}
 	
 	public String getName()
 	{
-		return bukkitPlayer.getName();
+		return player.getName();
 	}
 	
 	public RunsafeWorld getWorld()
 	{
-		return new RunsafeWorld(bukkitPlayer.getWorld());
+		return new RunsafeWorld(player.getWorld());
 	}
 
     public Player getRawPlayer()
@@ -26,5 +26,5 @@ public class RunsafePlayer {
         return this.bukkitPlayer;
     }
 	
-	private Player bukkitPlayer;
+	private Player player;
 }
