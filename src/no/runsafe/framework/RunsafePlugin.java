@@ -18,6 +18,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.picocontainer.DefaultPicoContainer;
@@ -44,6 +45,11 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 			this.container.addComponent(RunsafeTimerHandler.class);
 			this.container.addComponent(DatabaseHelper.class);
 			output = getComponent(IOutput.class);
+
+			// DEBUG
+			Plugin pumpPlugin = this.getServer().getPluginManager().getPlugin("RunsafeMessagePump");
+			if(pumpPlugin == null)
+				output.outputToConsole("Not getting RunsafeMessagePump plugin");
 
 			IMessagePump pump = MessagePump.GetPump(this);
 			if (pump != null)
