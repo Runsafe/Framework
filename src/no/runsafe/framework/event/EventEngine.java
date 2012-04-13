@@ -1,12 +1,9 @@
 package no.runsafe.framework.event;
 
-import no.runsafe.framework.event.listener.entity.EntityDamageByEntity;
-import no.runsafe.framework.event.listener.entity.EntityDeath;
-import no.runsafe.framework.event.listener.player.PlayerChangedWorld;
-import no.runsafe.framework.event.subscriber.IRunsafeEvent;
-import no.runsafe.framework.event.subscriber.entity.IEntityDamageByEntityEvent;
-import no.runsafe.framework.event.subscriber.entity.IEntityDeathEvent;
-import no.runsafe.framework.event.subscriber.player.IPlayerChangedWorldEvent;
+import no.runsafe.framework.event.listener.entity.*;
+import no.runsafe.framework.event.listener.player.*;
+import no.runsafe.framework.event.entity.*;
+import no.runsafe.framework.event.player.*;
 import org.bukkit.event.Listener;
 
 import java.util.ArrayList;
@@ -32,6 +29,21 @@ public class EventEngine
 
 			else if (sub instanceof IEntityDeathEvent)
 				listeners.add(new EntityDeath((IEntityDeathEvent) sub));
+
+			else if (sub instanceof IPlayerCommandPreprocessEvent)
+				listeners.add(new PlayerCommandPreprocess((IPlayerCommandPreprocessEvent) sub));
+
+			else if (sub instanceof IPlayerDropItemEvent)
+				listeners.add(new PlayerDropItem((IPlayerDropItemEvent) sub));
+
+			else if (sub instanceof IPlayerLoginEvent)
+				listeners.add(new PlayerLogin((IPlayerLoginEvent) sub));
+
+			else if (sub instanceof IPlayerQuitEvent)
+				listeners.add(new PlayerQuit((IPlayerQuitEvent) sub));
+
+			else if (sub instanceof IPlayerTeleportEvent)
+				listeners.add(new PlayerTeleport((IPlayerTeleportEvent) sub));
 		}
 		return listeners;
 	}

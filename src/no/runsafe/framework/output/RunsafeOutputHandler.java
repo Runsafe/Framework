@@ -18,7 +18,7 @@ public class RunsafeOutputHandler implements IOutput {
 		this.consoleLog = logger;
 	}
 
-	// Check if the output handler has a server available to broadcast to
+	// Check if the output handler has a event available to broadcast to
 	private boolean hasServer()
 	{
 		return this.serverOutput != null;
@@ -55,7 +55,7 @@ public class RunsafeOutputHandler implements IOutput {
 			outputToConsole(message, Level.INFO);
 	}
 	
-	// Broadcasts the supplied string to all players on the server the output handler has
+	// Broadcasts the supplied string to all players on the event the output handler has
 	@Override
 	public void outputToServer(String message)
 	{
