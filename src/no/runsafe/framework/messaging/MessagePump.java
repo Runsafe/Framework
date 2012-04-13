@@ -11,11 +11,11 @@ public class MessagePump implements IMessagePump
 {
 	public static IMessagePump GetPump(RunsafePlugin plugin)
 	{
-		Plugin pump = plugin.getServer().getPluginManager().getPlugin("RunsafeMessagePump");
+		Plugin pump = plugin.getServer().getPluginManager().getPlugin("RunsafeMessageBus");
 		if (pump == null || !(pump instanceof IPumpProvider))
 			return null;
 
-		return ((IPumpProvider)pump).getInstance();
+		return ((IPumpProvider) pump).getInstance();
 	}
 
 	@Override
@@ -46,10 +46,13 @@ public class MessagePump implements IMessagePump
 		Response response = new Response();
 		response.setStatus(MessageBusStatus.MISSING);
 
-		if (services.containsKey((message.getTargetService()))) {
-			for (IMessageBusService svc : services.get(message.getTargetService())) {
+		if (services.containsKey((message.getTargetService())))
+		{
+			for (IMessageBusService svc : services.get(message.getTargetService()))
+			{
 				Response reply = svc.processMessage(message);
-				if (reply != null) {
+				if (reply != null)
+				{
 					response = reply;
 					break;
 				}

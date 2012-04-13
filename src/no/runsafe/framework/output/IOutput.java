@@ -13,7 +13,7 @@ public interface IOutput {
 	// Sends the supplied string to the console/log the output handler has if the debug level is high enough
 	public abstract void outputDebugToConsole(String message, Level messageLevel);
 
-	// Broadcasts the supplied string to all players on the server the output handler has
+	// Broadcasts the supplied string to all players on the event the output handler has
 	public abstract void outputToServer(String message);
 
 	// Gets the current debug output level

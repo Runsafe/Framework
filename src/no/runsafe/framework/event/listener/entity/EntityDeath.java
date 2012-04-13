@@ -1,7 +1,7 @@
 package no.runsafe.framework.event.listener.entity;
 
-import no.runsafe.framework.event.server.entity.RunsafeEntityDeathEvent;
-import no.runsafe.framework.event.subscriber.entity.IEntityDeathEvent;
+import no.runsafe.framework.server.event.entity.RunsafeEntityDeathEvent;
+import no.runsafe.framework.event.entity.IEntityDeathEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;

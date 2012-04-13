@@ -9,6 +9,7 @@
       <w>runsafe</w>
       <w>teleport</w>
       <w>unregister</w>
+      <w>whitelisted</w>
     </words>
   </dictionary>
 </component>

@@ -5,15 +5,16 @@ import no.runsafe.framework.configuration.RunsafeConfigurationHandler;
 import no.runsafe.framework.database.DatabaseHelper;
 import no.runsafe.framework.database.RunsafeDatabaseHandler;
 import no.runsafe.framework.event.EventEngine;
-import no.runsafe.framework.event.subscriber.IPluginDisabled;
-import no.runsafe.framework.event.subscriber.IPluginEnabled;
-import no.runsafe.framework.event.subscriber.IRunsafeEvent;
+import no.runsafe.framework.event.IPluginDisabled;
+import no.runsafe.framework.event.IPluginEnabled;
+import no.runsafe.framework.event.IRunsafeEvent;
 import no.runsafe.framework.messaging.IMessageBusService;
 import no.runsafe.framework.messaging.IMessagePump;
+import no.runsafe.framework.messaging.IPumpProvider;
 import no.runsafe.framework.messaging.MessagePump;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.output.RunsafeOutputHandler;
-import no.runsafe.framework.timer.RunsafeTimerHandler;
+import no.runsafe.framework.timer.Scheduler;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
@@ -41,14 +42,20 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 			this.container.addComponent(RunsafeConfigurationHandler.class);
 			this.container.addComponent(RunsafeOutputHandler.class);
 			this.container.addComponent(RunsafeDatabaseHandler.class);
-			this.container.addComponent(RunsafeTimerHandler.class);
+			this.container.addComponent(Scheduler.class);
 			this.container.addComponent(DatabaseHelper.class);
 			output = getComponent(IOutput.class);
 
-			IMessagePump pump = MessagePump.GetPump(this);
+			IMessagePump pump = null;
+			if (!(this instanceof IPumpProvider))
+			{
+				pump = MessagePump.GetPump(this);
+				if (pump != null)
+					addComponent(pump);
+			}
+			this.PluginSetup();
 			if (pump != null)
 			{
-				addComponent(pump);
 				List<IMessageBusService> services = getComponents(IMessageBusService.class);
 				if (services != null)
 					for (IMessageBusService svc : services)
@@ -57,8 +64,6 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 						pump.RegisterService(svc);
 					}
 			}
-
-			this.PluginSetup();
 
 			output.outputDebugToConsole(String.format("Initiating plugin %s", this.getName()), Level.FINE);
 			RegisterEvents();
