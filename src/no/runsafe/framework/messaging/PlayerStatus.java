@@ -15,6 +15,7 @@ public class PlayerStatus
 	public boolean getVisibility(RunsafePlayer player)
 	{
 		Message question = new Message();
+		question.setTargetService("PlayerStatus");
 		question.setQuestion("get.player.invisibility.on");
 		question.setPlayer(player);
 		List<Response> response = messagePump.HandleMessageAll(question);
@@ -24,6 +25,7 @@ public class PlayerStatus
 	public void setVisibility(RunsafePlayer player, boolean visible)
 	{
 		Message question = new Message();
+		question.setTargetService("PlayerStatus");
 		if (visible)
 			question.setQuestion("set.player.invisibility.off");
 		else
