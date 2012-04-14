@@ -8,10 +8,7 @@ import no.runsafe.framework.event.EventEngine;
 import no.runsafe.framework.event.IPluginDisabled;
 import no.runsafe.framework.event.IPluginEnabled;
 import no.runsafe.framework.event.IRunsafeEvent;
-import no.runsafe.framework.messaging.IMessageBusService;
-import no.runsafe.framework.messaging.IMessagePump;
-import no.runsafe.framework.messaging.IPumpProvider;
-import no.runsafe.framework.messaging.MessagePump;
+import no.runsafe.framework.messaging.*;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.output.RunsafeOutputHandler;
 import no.runsafe.framework.timer.Scheduler;
@@ -44,6 +41,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 			this.container.addComponent(RunsafeDatabaseHandler.class);
 			this.container.addComponent(Scheduler.class);
 			this.container.addComponent(DatabaseHelper.class);
+			this.container.addComponent(PlayerStatus.class);
 			output = getComponent(IOutput.class);
 
 			IMessagePump pump = null;
