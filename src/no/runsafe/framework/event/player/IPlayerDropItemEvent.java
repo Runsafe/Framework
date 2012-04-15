@@ -5,5 +5,5 @@ import no.runsafe.framework.event.IRunsafeEvent;
 
 public interface IPlayerDropItemEvent extends IRunsafeEvent
 {
-	public boolean OnPlayerDropItem(RunsafePlayerDropItemEvent event);
+	public void OnPlayerDropItem(RunsafePlayerDropItemEvent event);
 }
