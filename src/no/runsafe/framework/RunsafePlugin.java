@@ -11,6 +11,7 @@ import no.runsafe.framework.event.IRunsafeEvent;
 import no.runsafe.framework.messaging.*;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.output.RunsafeOutputHandler;
+import no.runsafe.framework.plugin.PluginResolver;
 import no.runsafe.framework.timer.Scheduler;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -42,6 +43,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 			this.container.addComponent(Scheduler.class);
 			this.container.addComponent(DatabaseHelper.class);
 			this.container.addComponent(PlayerStatus.class);
+			this.container.addComponent(PluginResolver.class);
 			output = getComponent(IOutput.class);
 
 			IMessagePump pump = null;
