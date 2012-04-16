@@ -15,7 +15,27 @@ public class RunsafePlayer {
 	{
 		return player.getName();
 	}
-	
+
+	public float getXP()
+	{
+		return player.getExp();
+	}
+
+	public void setXP(float points)
+	{
+		player.setExp(points);
+	}
+
+	public int getLevel()
+	{
+		return player.getLevel();
+	}
+
+	public void setLevel(int level)
+	{
+		player.setLevel(level);
+	}
+
 	public RunsafeWorld getWorld()
 	{
 		return new RunsafeWorld(player.getWorld());

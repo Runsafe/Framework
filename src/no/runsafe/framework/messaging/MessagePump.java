@@ -6,6 +6,7 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class MessagePump implements IMessagePump
 {
@@ -59,6 +60,24 @@ public class MessagePump implements IMessagePump
 			}
 		}
 		return response;
+	}
+
+	@Override
+	public List<Response> HandleMessageAll(Message message)
+	{
+		if (!services.containsKey(message.getTargetService()))
+			return null;
+
+		ArrayList<Response> responses = new ArrayList<Response>();
+		for (IMessageBusService svc : services.get(message.getTargetService()))
+		{
+			Response reply = svc.processMessage(message);
+			if (reply != null)
+			{
+				responses.add(reply);
+			}
+		}
+		return responses;
 	}
 
 	private HashMap<String, ArrayList<IMessageBusService>> services = new HashMap<String, ArrayList<IMessageBusService>>();
