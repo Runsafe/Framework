@@ -44,6 +44,9 @@ public class EventEngine
 
 			else if (sub instanceof IPlayerTeleportEvent)
 				listeners.add(new PlayerTeleport((IPlayerTeleportEvent) sub));
+
+            else if (sub instanceof IPlayerInteractEvent)
+                listeners.add(new PlayerInteract((IPlayerInteractEvent) sub));
 		}
 		return listeners;
 	}

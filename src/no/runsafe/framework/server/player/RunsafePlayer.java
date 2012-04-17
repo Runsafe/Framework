@@ -1,5 +1,6 @@
 package no.runsafe.framework.server.player;
 
+import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeWorld;
 
 import org.bukkit.entity.Player;
@@ -35,6 +36,21 @@ public class RunsafePlayer {
 	{
 		player.setLevel(level);
 	}
+
+    public void setFallDistance(float distance)
+    {
+        player.setFallDistance(distance);
+    }
+
+    public void teleport(RunsafeLocation location)
+    {
+        player.teleport(location.getRaw());
+    }
+
+    public void sendMessage(String message)
+    {
+        player.sendMessage(message);
+    }
 
 	public RunsafeWorld getWorld()
 	{
