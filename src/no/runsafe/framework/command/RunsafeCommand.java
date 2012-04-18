@@ -44,8 +44,9 @@ public class RunsafeCommand implements ICommand
 	@Override
 	public boolean Execute(RunsafePlayer player, String[] args)
 	{
-		if(subCommands.containsKey(args[0]))
-			return subCommands.get(args[0]).Execute(player, getSubArgs(args));
+        if (args.length > 0)
+		    if(subCommands.containsKey(args[0]))
+			    return subCommands.get(args[0]).Execute(player, getSubArgs(args));
 
 		return false;
 	}
@@ -53,8 +54,9 @@ public class RunsafeCommand implements ICommand
 	@Override
 	public boolean Execute(String[] args)
 	{
-		if(subCommands.containsKey(args[0]))
-			return subCommands.get(args[0]).Execute(getSubArgs(args));
+        if (args.length > 0)
+		    if(subCommands.containsKey(args[0]))
+			    return subCommands.get(args[0]).Execute(getSubArgs(args));
 
 		return false;
 	}
