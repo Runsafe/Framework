@@ -1,5 +1,6 @@
 package no.runsafe.framework;
 
+import no.runsafe.framework.command.ICommand;
 import no.runsafe.framework.command.RunsafeCommandHandler;
 import no.runsafe.framework.configuration.RunsafeConfigurationHandler;
 import no.runsafe.framework.database.DatabaseHelper;
@@ -22,6 +23,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.picocontainer.DefaultPicoContainer;
 import org.picocontainer.behaviors.Caching;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
@@ -134,7 +136,11 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 
 	protected List<RunsafeCommandHandler> GetCommands()
 	{
-		return getComponents(RunsafeCommandHandler.class);
+		ArrayList<RunsafeCommandHandler> handlers = new ArrayList<RunsafeCommandHandler>();
+		for(ICommand command : getComponents(ICommand.class))
+			handlers.add(new RunsafeCommandHandler(command));
+
+		return handlers;
 	}
 
 	protected abstract void PluginSetup();
