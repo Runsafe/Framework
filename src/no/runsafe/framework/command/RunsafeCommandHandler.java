@@ -30,7 +30,7 @@ public class RunsafeCommandHandler implements CommandExecutor {
 			return commandObject.Execute(new RunsafePlayer((Player)sender), args);
 
 		else
-			return commandObject.Execute(null, args);
+			return commandObject.Execute(args);
 	}
 
 	private ICommand commandObject;

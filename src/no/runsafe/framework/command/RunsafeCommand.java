@@ -45,7 +45,7 @@ public class RunsafeCommand implements ICommand
 	public boolean Execute(RunsafePlayer player, String[] args)
 	{
 		if(subCommands.containsKey(args[0]))
-			return subCommands.get(args[0]).Execute(player, Arrays.copyOfRange(args, 1, args.length - 1));
+			return subCommands.get(args[0]).Execute(player, getSubArgs(args));
 
 		return false;
 	}
@@ -54,9 +54,17 @@ public class RunsafeCommand implements ICommand
 	public boolean Execute(String[] args)
 	{
 		if(subCommands.containsKey(args[0]))
-			return subCommands.get(args[0]).Execute(Arrays.copyOfRange(args, 1, args.length - 1));
+			return subCommands.get(args[0]).Execute(getSubArgs(args));
 
 		return false;
+	}
+
+	private String[] getSubArgs(String[] args)
+	{
+		if(args.length == 1 || args.length == 0)
+			return new String[]{};
+
+		return Arrays.copyOfRange(args, 1, args.length - 1);
 	}
 
 	private HashMap<String, ICommand> subCommands;
