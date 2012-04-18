@@ -3,6 +3,7 @@ package no.runsafe.framework.command;
 import java.util.ArrayList;
 import java.util.List;
 
+import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -27,7 +28,7 @@ public abstract class RunsafeCommandHandler implements CommandExecutor {
 		}
 		if(sender instanceof Player)
 		{
-			return this.playerExecute((Player)sender, argList);
+			return this.playerExecute(new RunsafePlayer((Player)sender), argList);
 		}
 		else 
 		{
@@ -45,7 +46,7 @@ public abstract class RunsafeCommandHandler implements CommandExecutor {
 	public abstract String getName();
 	protected abstract boolean getConsoleAccessible();
 	
-	protected boolean playerExecute(Player player, List<String> args)
+	protected boolean playerExecute(RunsafePlayer player, List<String> args)
 	{
 		return false;
 	}

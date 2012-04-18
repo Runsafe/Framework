@@ -3,6 +3,7 @@ package no.runsafe.framework.server.player;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeWorld;
 
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 public class RunsafePlayer {
@@ -45,6 +46,11 @@ public class RunsafePlayer {
     public void teleport(RunsafeLocation location)
     {
         player.teleport(location.getRaw());
+    }
+
+    public void teleport(RunsafeWorld world, double x, double y, double z)
+    {
+        player.teleport(new Location(world.getRaw(), x, y, z));
     }
 
     public void sendMessage(String message)

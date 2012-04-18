@@ -36,6 +36,18 @@ public class RunsafeBlock
         return block;
     }
 
+    public boolean isHazardous()
+    {
+        int blockType = this.getTypeId();
+
+        if (blockType == Material.LAVA.getId() ||
+                blockType == Material.STATIONARY_LAVA.getId() ||
+                blockType == Material.FIRE.getId())
+            return true;
+
+        return false;
+    }
+
     private static final ArrayList<Integer> passableBlocks = new ArrayList<Integer>();
 
     static
@@ -49,6 +61,7 @@ public class RunsafeBlock
         passableBlocks.add(Material.ENDER_PORTAL.getId());
         passableBlocks.add(Material.FIRE.getId());
         passableBlocks.add(Material.LADDER.getId());
+        passableBlocks.add(Material.LAVA.getId());
         passableBlocks.add(Material.LEVER.getId());
         passableBlocks.add(Material.LONG_GRASS.getId());
         passableBlocks.add(Material.MELON_STEM.getId());
@@ -65,6 +78,7 @@ public class RunsafeBlock
         passableBlocks.add(Material.SAPLING.getId());
         passableBlocks.add(Material.SIGN_POST.getId());
         passableBlocks.add(Material.SNOW.getId());
+        passableBlocks.add(Material.STATIONARY_LAVA.getId());
         passableBlocks.add(Material.STATIONARY_WATER.getId());
         passableBlocks.add(Material.STONE_BUTTON.getId());
         passableBlocks.add(Material.STONE_PLATE.getId());
