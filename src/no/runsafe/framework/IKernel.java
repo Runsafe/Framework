@@ -10,4 +10,5 @@ public interface IKernel {
 
 	public abstract <T> List<T> getComponents(Class<T> type);
 
+	<T> T getInstance(Class<T> type);
 }

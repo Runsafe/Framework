@@ -124,6 +124,15 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 	}
 
 	@Override
+	public <T> T getInstance(Class<T> type)
+	{
+		container.addComponent(type);
+		T instance = container.getComponent(type);
+		container.removeComponent(type);
+		return instance;
+	}
+
+	@Override
 	public <T> List<T> getComponents(Class<T> type)
 	{
 		return this.container.getComponents(type);
