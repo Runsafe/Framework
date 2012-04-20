@@ -47,6 +47,9 @@ public class EventEngine
 
             else if (sub instanceof IPlayerInteractEvent)
                 listeners.add(new PlayerInteract((IPlayerInteractEvent) sub));
+
+            else if (sub instanceof IPlayerChatEvent)
+                listeners.add(new PlayerChat((IPlayerChatEvent) sub));
 		}
 		return listeners;
 	}
