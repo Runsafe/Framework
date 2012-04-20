@@ -53,6 +53,11 @@ public class RunsafePlayer {
         player.teleport(new Location(world.getRaw(), x, y, z));
     }
 
+    public RunsafeLocation getLocation()
+    {
+        return new RunsafeLocation(player.getLocation());
+    }
+
     public void sendMessage(String message)
     {
         player.sendMessage(message);

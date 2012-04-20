@@ -14,6 +14,11 @@ public class RunsafeLocation
         location = new Location(world.getRaw(), x, y, z);
     }
 
+    public RunsafeLocation(RunsafeWorld world, double x, double y, double z, float yaw, float pitch)
+    {
+        location = new Location(world.getRaw(), x, y, z, yaw, pitch);
+    }
+
     public double getX()
     {
         return location.getX();
@@ -27,6 +32,26 @@ public class RunsafeLocation
     public double getZ()
     {
         return location.getZ();
+    }
+
+    public void setYaw(float yaw)
+    {
+        location.setYaw(yaw);
+    }
+
+    public void setPitch(float pitch)
+    {
+        location.setPitch(pitch);
+    }
+
+    public float getYaw()
+    {
+        return location.getYaw();
+    }
+
+    public float getPitch()
+    {
+        return location.getPitch();
     }
 
     public void setX(double x)
