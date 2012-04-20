@@ -2,12 +2,12 @@ package no.runsafe.framework.server.player;
 
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeWorld;
+import no.runsafe.framework.server.inventory.RunsafeInventory;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 public class RunsafePlayer
 {
-
 	public RunsafePlayer(Player toWrap)
 	{
 		player = toWrap;
@@ -71,6 +71,22 @@ public class RunsafePlayer
 	public Player getRaw()
 	{
 		return this.player;
+	}
+
+	public RunsafeInventory getInventory()
+	{
+		return new RunsafeInventory(player.getInventory());
+	}
+
+	@SuppressWarnings("deprecation")
+	public void updateInventory()
+	{
+		player.updateInventory();
+	}
+
+	public boolean hasPermission(String permission)
+	{
+		return player.hasPermission(permission);
 	}
 
 	private Player player;

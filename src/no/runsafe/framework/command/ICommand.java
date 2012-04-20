@@ -11,6 +11,8 @@ public interface ICommand
 
 	String getCommandName();
 
+	String requiredPermission();
+
 	Collection<ICommand> getSubCommands();
 
 	void addSubCommand(ICommand command);

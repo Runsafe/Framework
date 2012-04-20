@@ -42,11 +42,24 @@ public class RunsafeCommand implements ICommand
 	}
 
 	@Override
+	public String requiredPermission()
+	{
+		return null;
+	}
+
+	@Override
 	public boolean Execute(RunsafePlayer player, String[] args)
 	{
 		if(args != null && args.length > 0 && subCommands.containsKey(args[0]))
+		{
+			ICommand command = subCommands.get(args[0]);
+			if(command.requiredPermission() != null && !player.hasPermission(command.requiredPermission()))
+			{
+				player.sendMessage("No access to that command.");
+				return true;
+			}
 			return subCommands.get(args[0]).Execute(player, getSubArgs(args));
-
+		}
 		return false;
 	}
 
