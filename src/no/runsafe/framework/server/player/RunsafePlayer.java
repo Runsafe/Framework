@@ -2,17 +2,17 @@ package no.runsafe.framework.server.player;
 
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeWorld;
-
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
-public class RunsafePlayer {
-	
+public class RunsafePlayer
+{
+
 	public RunsafePlayer(Player toWrap)
 	{
 		player = toWrap;
 	}
-	
+
 	public String getName()
 	{
 		return player.getName();
@@ -38,20 +38,20 @@ public class RunsafePlayer {
 		player.setLevel(level);
 	}
 
-    public void setFallDistance(float distance)
-    {
-        player.setFallDistance(distance);
-    }
+	public void setFallDistance(float distance)
+	{
+		player.setFallDistance(distance);
+	}
 
-    public void teleport(RunsafeLocation location)
-    {
-        player.teleport(location.getRaw());
-    }
+	public void teleport(RunsafeLocation location)
+	{
+		player.teleport(location.getRaw());
+	}
 
-    public void teleport(RunsafeWorld world, double x, double y, double z)
-    {
-        player.teleport(new Location(world.getRaw(), x, y, z));
-    }
+	public void teleport(RunsafeWorld world, double x, double y, double z)
+	{
+		player.teleport(new Location(world.getRaw(), x, y, z));
+	}
 
     public RunsafeLocation getLocation()
     {
@@ -68,10 +68,10 @@ public class RunsafePlayer {
 		return new RunsafeWorld(player.getWorld());
 	}
 
-    public Player getRaw()
-    {
-        return this.player;
-    }
-	
+	public Player getRaw()
+	{
+		return this.player;
+	}
+
 	private Player player;
 }
