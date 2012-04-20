@@ -50,6 +50,9 @@ public class EventEngine
 
             else if (sub instanceof IPlayerChatEvent)
                 listeners.add(new PlayerChat((IPlayerChatEvent) sub));
+
+            else if (sub instanceof IPlayerJoinEvent)
+                listeners.add(new PlayerJoin((IPlayerJoinEvent) sub));
 		}
 		return listeners;
 	}
