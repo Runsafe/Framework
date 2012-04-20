@@ -87,6 +87,13 @@ public class RunsafeConfigurationHandler implements IConfiguration {
 	{
 		return this.configFile.getString(value);
 	}
+
+    // Returns a configuration value as a boolean
+    @Override
+    public boolean getConfigValueAsBoolean(String value)
+    {
+        return Boolean.parseBoolean(this.getConfigValueAsString(value));
+    }
 	
 	// Returns a configuration value as an integer
 	@Override

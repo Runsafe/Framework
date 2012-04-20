@@ -18,6 +18,9 @@ public interface IConfiguration {
 	// Returns a configuration value as a string
 	public abstract String getConfigValueAsString(String value);
 
+    // Returns a configuration value as a boolean
+    public abstract boolean getConfigValueAsBoolean(String value);
+
 	// Returns a configuration value as an integer
 	public abstract int getConfigValueAsInt(String value);
 
