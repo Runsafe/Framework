@@ -1,5 +1,11 @@
 package no.runsafe.framework.event;
 
+import no.runsafe.framework.event.block.IBlockBreakEvent;
+import no.runsafe.framework.event.block.IBlockDispenseEvent;
+import no.runsafe.framework.event.block.IBlockPlaceEvent;
+import no.runsafe.framework.event.listener.block.BlockBreak;
+import no.runsafe.framework.event.listener.block.BlockDispense;
+import no.runsafe.framework.event.listener.block.BlockPlace;
 import no.runsafe.framework.event.listener.entity.*;
 import no.runsafe.framework.event.listener.player.*;
 import no.runsafe.framework.event.entity.*;
@@ -53,6 +59,15 @@ public class EventEngine
 
             else if (sub instanceof IPlayerJoinEvent)
                 listeners.add(new PlayerJoin((IPlayerJoinEvent) sub));
+
+            else if (sub instanceof IBlockBreakEvent)
+                listeners.add(new BlockBreak((IBlockBreakEvent) sub));
+
+            else if (sub instanceof IBlockPlaceEvent)
+                listeners.add(new BlockPlace((IBlockPlaceEvent) sub));
+
+            else if (sub instanceof IBlockDispenseEvent)
+                listeners.add(new BlockDispense((IBlockDispenseEvent) sub));
 		}
 		return listeners;
 	}
