@@ -1,6 +1,6 @@
 package no.runsafe.framework.server.event.block;
 
-import no.runsafe.framework.server.RunsafeBlock;
+import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.event.RunsafeEvent;
 import org.bukkit.event.block.BlockEvent;
 

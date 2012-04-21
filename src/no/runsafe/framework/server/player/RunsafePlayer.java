@@ -3,6 +3,7 @@ package no.runsafe.framework.server.player;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
+import no.runsafe.framework.server.item.RunsafeItemStack;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -52,6 +53,11 @@ public class RunsafePlayer
 	{
 		player.teleport(new Location(world.getRaw(), x, y, z));
 	}
+
+    public RunsafeItemStack getItemInHand()
+    {
+        return new RunsafeItemStack(player.getItemInHand());
+    }
 
     public RunsafeLocation getLocation()
     {

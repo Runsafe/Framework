@@ -1,9 +1,8 @@
 package no.runsafe.framework.server.event.block;
 
-import no.runsafe.framework.server.RunsafeBlock;
+import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.event.CancellableEvent;
 import no.runsafe.framework.server.player.RunsafePlayer;
-import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 
 public class RunsafeBlockPlaceEvent extends RunsafeBlockEvent implements CancellableEvent

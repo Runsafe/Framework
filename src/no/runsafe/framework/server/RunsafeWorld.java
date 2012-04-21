@@ -1,5 +1,8 @@
 package no.runsafe.framework.server;
 
+import no.runsafe.framework.server.block.RunsafeBlock;
+import no.runsafe.framework.server.item.RunsafeItem;
+import no.runsafe.framework.server.item.RunsafeItemStack;
 import org.bukkit.World;
 
 public class RunsafeWorld
@@ -33,6 +36,21 @@ public class RunsafeWorld
 	{
 		return world.getBlockTypeIdAt(x, y, z);
 	}
+
+    public RunsafeItem dropItem(RunsafeLocation location, RunsafeItemStack itemStack)
+    {
+        return new RunsafeItem((world.dropItem(location.getRaw(), itemStack.getRaw())));
+    }
+
+    public void strikeLightning(RunsafeLocation location)
+    {
+        world.strikeLightning(location.getRaw());
+    }
+
+    public void createExplosion(RunsafeLocation location, float power, boolean setFire)
+    {
+        world.createExplosion(location.getRaw(), power, setFire);
+    }
 
 	public World getRaw()
 	{
