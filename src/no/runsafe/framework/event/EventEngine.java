@@ -30,43 +30,43 @@ public class EventEngine
 			if (sub instanceof IEntityDamageByEntityEvent)
 				listeners.add(new EntityDamageByEntity((IEntityDamageByEntityEvent) sub));
 
-			else if (sub instanceof IPlayerChangedWorldEvent)
+			if (sub instanceof IPlayerChangedWorldEvent)
 				listeners.add(new PlayerChangedWorld((IPlayerChangedWorldEvent) sub));
 
-			else if (sub instanceof IEntityDeathEvent)
+			if (sub instanceof IEntityDeathEvent)
 				listeners.add(new EntityDeath((IEntityDeathEvent) sub));
 
-			else if (sub instanceof IPlayerCommandPreprocessEvent)
+			if (sub instanceof IPlayerCommandPreprocessEvent)
 				listeners.add(new PlayerCommandPreprocess((IPlayerCommandPreprocessEvent) sub));
 
-			else if (sub instanceof IPlayerDropItemEvent)
+			if (sub instanceof IPlayerDropItemEvent)
 				listeners.add(new PlayerDropItem((IPlayerDropItemEvent) sub));
 
-			else if (sub instanceof IPlayerLoginEvent)
+			if (sub instanceof IPlayerLoginEvent)
 				listeners.add(new PlayerLogin((IPlayerLoginEvent) sub));
 
-			else if (sub instanceof IPlayerQuitEvent)
+			if (sub instanceof IPlayerQuitEvent)
 				listeners.add(new PlayerQuit((IPlayerQuitEvent) sub));
 
-			else if (sub instanceof IPlayerTeleportEvent)
+			if (sub instanceof IPlayerTeleportEvent)
 				listeners.add(new PlayerTeleport((IPlayerTeleportEvent) sub));
 
-            else if (sub instanceof IPlayerInteractEvent)
+            if (sub instanceof IPlayerInteractEvent)
                 listeners.add(new PlayerInteract((IPlayerInteractEvent) sub));
 
-            else if (sub instanceof IPlayerChatEvent)
+            if (sub instanceof IPlayerChatEvent)
                 listeners.add(new PlayerChat((IPlayerChatEvent) sub));
 
-            else if (sub instanceof IPlayerJoinEvent)
+            if (sub instanceof IPlayerJoinEvent)
                 listeners.add(new PlayerJoin((IPlayerJoinEvent) sub));
 
-            else if (sub instanceof IBlockBreakEvent)
+            if (sub instanceof IBlockBreakEvent)
                 listeners.add(new BlockBreak((IBlockBreakEvent) sub));
 
-            else if (sub instanceof IBlockPlaceEvent)
+            if (sub instanceof IBlockPlaceEvent)
                 listeners.add(new BlockPlace((IBlockPlaceEvent) sub));
 
-            else if (sub instanceof IBlockDispenseEvent)
+            if (sub instanceof IBlockDispenseEvent)
                 listeners.add(new BlockDispense((IBlockDispenseEvent) sub));
 		}
 		return listeners;
