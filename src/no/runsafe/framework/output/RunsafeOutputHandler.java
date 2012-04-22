@@ -36,7 +36,13 @@ public class RunsafeOutputHandler implements IOutput {
 	{
 		outputToConsole(message, Level.INFO);
 	}
-	
+
+	@Override
+	public void outputColoredToConsole(String message, Level level)
+	{
+		outputToConsole(ConsoleColors.FromMinecraft(message), level);
+	}
+
 	// Sends the supplied string with the supplied logging level to the console/log the output handler has
 	@Override
 	public void outputToConsole(String message, Level level)
