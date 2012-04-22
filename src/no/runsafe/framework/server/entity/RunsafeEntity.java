@@ -9,5 +9,10 @@ public class RunsafeEntity
 		entity = toWrap;
 	}
 
+    public Entity getRaw()
+    {
+        return entity;
+    }
+
 	private Entity entity;
 }
