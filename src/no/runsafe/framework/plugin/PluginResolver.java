@@ -10,13 +10,14 @@ public class PluginResolver
 		bukkitServer = server;
 	}
 
+	@SuppressWarnings("unchecked")
 	public <T extends Plugin> T getPlugin(String name)
 	{
 		Plugin plugin = bukkitServer.getPluginManager().getPlugin(name);
-		if(plugin == null)
+		if (plugin == null)
 			return null;
 
-		return (T)plugin;
+		return (T) plugin;
 	}
 
 	private Server bukkitServer;
