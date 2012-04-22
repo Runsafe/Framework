@@ -76,6 +76,6 @@ public class RunsafeCommand implements ICommand
 		return Arrays.copyOfRange(args, 1, args.length);
 	}
 
-	private HashMap<String, ICommand> subCommands;
-	private String commandName;
+	protected HashMap<String, ICommand> subCommands;
+	protected String commandName;
 }
