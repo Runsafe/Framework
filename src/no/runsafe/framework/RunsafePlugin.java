@@ -3,6 +3,7 @@ package no.runsafe.framework;
 import no.runsafe.framework.command.ICommand;
 import no.runsafe.framework.command.RunsafeCommandHandler;
 import no.runsafe.framework.configuration.IConfiguration;
+import no.runsafe.framework.configuration.IConfigurationFile;
 import no.runsafe.framework.configuration.RunsafeConfigurationHandler;
 import no.runsafe.framework.database.DatabaseHelper;
 import no.runsafe.framework.database.RunsafeDatabaseHandler;
@@ -46,6 +47,9 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 			this.container.addComponent(PluginResolver.class);
 			output = getComponent(IOutput.class);
 
+			if(this instanceof IConfigurationFile)
+				getComponent(IConfiguration.class).setConfigFileProvider((IConfigurationFile)this);
+
 			IMessagePump pump = null;
 			if (!(this instanceof IPumpProvider))
 			{
@@ -53,7 +57,9 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 				if (pump != null)
 					addComponent(pump);
 			}
+
 			this.PluginSetup();
+
 			if (pump != null)
 			{
 				List<IMessageBusService> services = getComponents(IMessageBusService.class);
@@ -71,11 +77,11 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 			output.outputDebugToConsole(String.format("Registered %d event listeners", eventListeners.size()), Level.FINE);
 			output.outputDebugToConsole(String.format("Initiation of %s completed", this.getName()), Level.FINE);
 		}
+
 		for (IPluginEnabled impl : getComponents(IPluginEnabled.class))
 		{
 			impl.OnPluginEnabled();
 		}
-
 	}
 
 	@Override

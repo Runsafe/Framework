@@ -40,4 +40,6 @@ public interface IConfiguration
 	public abstract ConfigurationSection getSection(String path);
 
 	public void setListeners(List<IConfigurationChanged> subscribers);
+
+	void setConfigFileProvider(IConfigurationFile provider);
 }

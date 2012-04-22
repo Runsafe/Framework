@@ -27,14 +27,16 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 	private FileConfiguration configFile;
 	private List<IConfigurationChanged> subscribers;
 
-	public RunsafeConfigurationHandler(
-		IOutput pluginOutput,
-		IConfigurationFile configFileProvider
-	)
+	public RunsafeConfigurationHandler(IOutput pluginOutput)
 	{
 		this.pluginOutput = pluginOutput;
-		this.configFilePath = configFileProvider.getConfigurationPath();
-		this.configurationFile = configFileProvider;
+	}
+
+	@Override
+	public void setConfigFileProvider(IConfigurationFile provider)
+	{
+		this.configFilePath = provider.getConfigurationPath();
+		this.configurationFile = provider;
 		this.load();
 	}
 
