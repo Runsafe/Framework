@@ -3,6 +3,7 @@ package no.runsafe.framework.server.event.player;
 import no.runsafe.framework.server.event.CancellableEvent;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import no.runsafe.framework.server.player.RunsafePlayerList;
+import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerChatEvent;
 
 public class RunsafePlayerChatEvent extends RunsafePlayerEvent implements CancellableEvent
@@ -52,7 +53,7 @@ public class RunsafePlayerChatEvent extends RunsafePlayerEvent implements Cancel
 
 	public void setPlayer(RunsafePlayer player)
 	{
-		event.setPlayer(player.getRaw());
+		event.setPlayer((Player)player.getRaw());
 	}
 
 	public RunsafePlayerList getRecipients()
