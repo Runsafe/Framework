@@ -1,10 +1,11 @@
 package no.runsafe.framework.configuration;
 
-import java.util.List;
-
 import org.bukkit.configuration.ConfigurationSection;
 
-public interface IConfiguration {
+import java.util.List;
+
+public interface IConfiguration
+{
 
 	// Loads the configuration from disk. Prepares defaults if available.
 	public abstract void load();
@@ -18,8 +19,8 @@ public interface IConfiguration {
 	// Returns a configuration value as a string
 	public abstract String getConfigValueAsString(String value);
 
-    // Returns a configuration value as a boolean
-    public abstract boolean getConfigValueAsBoolean(String value);
+	// Returns a configuration value as a boolean
+	public abstract boolean getConfigValueAsBoolean(String value);
 
 	// Returns a configuration value as an integer
 	public abstract int getConfigValueAsInt(String value);

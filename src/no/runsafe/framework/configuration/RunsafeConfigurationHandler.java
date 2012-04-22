@@ -1,47 +1,58 @@
 package no.runsafe.framework.configuration;
 
+import no.runsafe.framework.FrameworkMessages;
+import no.runsafe.framework.event.IConfigurationChanged;
+import no.runsafe.framework.messaging.IMessageBusService;
+import no.runsafe.framework.messaging.Message;
+import no.runsafe.framework.messaging.MessageBusStatus;
+import no.runsafe.framework.messaging.Response;
+import no.runsafe.framework.output.IOutput;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 
-import no.runsafe.framework.FrameworkMessages;
-import no.runsafe.framework.output.IOutput;
 
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-
-
-public class RunsafeConfigurationHandler implements IConfiguration {
-
+public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusService
+{
 	private String configFilePath;
 	private IConfigurationDefaults defaultConfigFile;
 	private IOutput pluginOutput;
 	private FileConfiguration configFile;
-	
-	public RunsafeConfigurationHandler(IOutput pluginOutput, IConfigurationFile configFileProvider, IConfigurationDefaults configDefaultProvider)
+	private IConfigurationChanged[] subscribers;
+
+	public RunsafeConfigurationHandler(
+		IOutput pluginOutput,
+		IConfigurationFile configFileProvider,
+		IConfigurationDefaults configDefaultProvider,
+		IConfigurationChanged[] listeners
+	)
 	{
 		this.pluginOutput = pluginOutput;
 		this.configFilePath = configFileProvider.getConfigurationPath();
 		this.defaultConfigFile = configDefaultProvider;
+		this.subscribers = listeners;
 		this.load();
 	}
-	
+
 	@Override
 	public void load()
 	{
 		if (this.configFilePath == null)
 			return;
-		
+
 		File configFile = new File(this.configFilePath);
-		if(!configFile.exists() && this.defaultConfigFile != null)
+		if (!configFile.exists() && this.defaultConfigFile != null)
 		{
 			this.output(FrameworkMessages.configurationInfo_defaults);
 		}
 
 		this.configFile = YamlConfiguration.loadConfiguration(configFile);
-		
+
 		if (this.defaultConfigFile != null)
 		{
 			this.configFile.setDefaults(YamlConfiguration.loadConfiguration(this.defaultConfigFile.getDefaultConfiguration()));
@@ -49,7 +60,7 @@ public class RunsafeConfigurationHandler implements IConfiguration {
 		this.configFile.options().copyDefaults(true);
 		this.save();
 	}
-	
+
 	// Replaces the current configuration values with the supplied defaults
 	@Override
 	public boolean restoreToDefaults()
@@ -63,11 +74,11 @@ public class RunsafeConfigurationHandler implements IConfiguration {
 		}
 		return false;
 	}
-	
+
 	// Saves the current configuration file to disk
 	@Override
 	public void save()
-	{	
+	{
 		if (this.configFile != null)
 		{
 			try
@@ -80,7 +91,7 @@ public class RunsafeConfigurationHandler implements IConfiguration {
 			}
 		}
 	}
-	
+
 	// Returns a configuration value as a string
 	@Override
 	public String getConfigValueAsString(String value)
@@ -88,27 +99,27 @@ public class RunsafeConfigurationHandler implements IConfiguration {
 		return this.configFile.getString(value);
 	}
 
-    // Returns a configuration value as a boolean
-    @Override
-    public boolean getConfigValueAsBoolean(String value)
-    {
-        return Boolean.parseBoolean(this.getConfigValueAsString(value));
-    }
-	
+	// Returns a configuration value as a boolean
+	@Override
+	public boolean getConfigValueAsBoolean(String value)
+	{
+		return Boolean.parseBoolean(this.getConfigValueAsString(value));
+	}
+
 	// Returns a configuration value as an integer
 	@Override
 	public int getConfigValueAsInt(String value)
 	{
 		return Integer.parseInt(this.getConfigValueAsString(value));
 	}
-	
+
 	// Returns a configuration value as a double
 	@Override
 	public double getConfigValueAsDouble(String value)
 	{
 		return Double.parseDouble(this.getConfigValueAsString(value));
 	}
-	
+
 	// Returns a configuration value as a float
 	@Override
 	public float getConfigValueAsFloat(String value)
@@ -121,20 +132,20 @@ public class RunsafeConfigurationHandler implements IConfiguration {
 	{
 		return this.configFile.getStringList(value);
 	}
-	
+
 	@Override
-	public ConfigurationSection getSection(String path) 
+	public ConfigurationSection getSection(String path)
 	{
 		return this.configFile.getConfigurationSection(path);
 	}
-	
+
 	// Sets a configuration value with the specified key -> value
 	@Override
 	public void setConfigValue(String key, Object value)
 	{
 		this.configFile.set(key, value);
 	}
-	
+
 	private void output(String message)
 	{
 		if (this.pluginOutput != null)
@@ -142,7 +153,7 @@ public class RunsafeConfigurationHandler implements IConfiguration {
 			this.pluginOutput.outputToConsole(message);
 		}
 	}
-	
+
 	private void output(String message, Level level)
 	{
 		if (this.pluginOutput != null)
@@ -150,5 +161,24 @@ public class RunsafeConfigurationHandler implements IConfiguration {
 			this.pluginOutput.outputToConsole(message, level);
 		}
 	}
-	
+
+	@Override
+	public String getServiceName()
+	{
+		return "Configuration";
+	}
+
+	@Override
+	public Response processMessage(Message message)
+	{
+		load();
+		if (subscribers != null)
+			for (IConfigurationChanged sub : subscribers)
+				sub.OnConfigurationChanged();
+
+		return new Response()
+		{{
+				setStatus(MessageBusStatus.OK);
+			}};
+	}
 }
