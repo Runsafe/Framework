@@ -39,6 +39,11 @@ public class RunsafePlayer
 		player.setLevel(level);
 	}
 
+    public void sendBlockChange(RunsafeLocation location, int itemId, byte data)
+    {
+        player.sendBlockChange(location.getRaw(), itemId, data);
+    }
+
 	public void setFallDistance(float distance)
 	{
 		player.setFallDistance(distance);

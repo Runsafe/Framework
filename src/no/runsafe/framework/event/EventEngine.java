@@ -3,9 +3,11 @@ package no.runsafe.framework.event;
 import no.runsafe.framework.event.block.IBlockBreakEvent;
 import no.runsafe.framework.event.block.IBlockDispenseEvent;
 import no.runsafe.framework.event.block.IBlockPlaceEvent;
+import no.runsafe.framework.event.block.IBlockRedstoneEvent;
 import no.runsafe.framework.event.listener.block.BlockBreak;
 import no.runsafe.framework.event.listener.block.BlockDispense;
 import no.runsafe.framework.event.listener.block.BlockPlace;
+import no.runsafe.framework.event.listener.block.BlockRedstone;
 import no.runsafe.framework.event.listener.entity.*;
 import no.runsafe.framework.event.listener.player.*;
 import no.runsafe.framework.event.entity.*;
@@ -65,6 +67,9 @@ public class EventEngine
 
             if (sub instanceof IBlockPlaceEvent)
                 listeners.add(new BlockPlace((IBlockPlaceEvent) sub));
+
+            if (sub instanceof IBlockRedstoneEvent)
+                listeners.add(new BlockRedstone((IBlockRedstoneEvent) sub));
 
             if (sub instanceof IBlockDispenseEvent)
                 listeners.add(new BlockDispense((IBlockDispenseEvent) sub));
