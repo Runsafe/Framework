@@ -12,6 +12,7 @@ import no.runsafe.framework.messaging.*;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.output.RunsafeOutputHandler;
 import no.runsafe.framework.plugin.PluginResolver;
+import no.runsafe.framework.server.player.PlayerByPermissionProvider;
 import no.runsafe.framework.timer.Scheduler;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -29,6 +30,17 @@ import java.util.logging.Level;
 
 public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 {
+	public static IKernel getPluginKernel()
+	{
+		return kernel;
+	}
+
+	public RunsafePlugin()
+	{
+		super();
+		kernel = this;
+	}
+
 	@Override
 	public void onEnable()
 	{
@@ -45,6 +57,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 			this.container.addComponent(DatabaseHelper.class);
 			this.container.addComponent(PlayerStatus.class);
 			this.container.addComponent(PluginResolver.class);
+			this.container.addComponent(PlayerByPermissionProvider.class);
 			output = getComponent(IOutput.class);
 
 			if(this instanceof IConfigurationFile)
@@ -203,4 +216,5 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 	private List<Listener> eventListeners;
 	private IOutput output;
 	private HashMap<String, RunsafeCommandHandler> commands;
+	private static IKernel kernel;
 }
