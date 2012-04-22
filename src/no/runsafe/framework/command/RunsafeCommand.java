@@ -57,7 +57,7 @@ public class RunsafeCommand implements ICommand
 			}
 			return subCommands.get(args[0]).Execute(player, getSubArgs(args));
 		}
-		return false;
+		return Execute(args);
 	}
 
 	@Override
