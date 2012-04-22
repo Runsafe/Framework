@@ -1,5 +1,9 @@
 package no.runsafe.framework.configuration;
 
-public interface IConfigurationFile {
+import java.io.InputStream;
+
+public interface IConfigurationFile
+{
 	public String getConfigurationPath();
+	public InputStream getDefaultConfiguration();
 }

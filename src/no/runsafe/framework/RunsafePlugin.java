@@ -2,13 +2,11 @@ package no.runsafe.framework;
 
 import no.runsafe.framework.command.ICommand;
 import no.runsafe.framework.command.RunsafeCommandHandler;
+import no.runsafe.framework.configuration.IConfiguration;
 import no.runsafe.framework.configuration.RunsafeConfigurationHandler;
 import no.runsafe.framework.database.DatabaseHelper;
 import no.runsafe.framework.database.RunsafeDatabaseHandler;
-import no.runsafe.framework.event.EventEngine;
-import no.runsafe.framework.event.IPluginDisabled;
-import no.runsafe.framework.event.IPluginEnabled;
-import no.runsafe.framework.event.IRunsafeEvent;
+import no.runsafe.framework.event.*;
 import no.runsafe.framework.messaging.*;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.output.RunsafeOutputHandler;
@@ -174,6 +172,10 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 				output.outputDebugToConsole(String.format("Registered event listener %s", listener.getClass().getName()), Level.FINER);
 			}
 		}
+
+		List<IConfigurationChanged> configListeners = getComponents(IConfigurationChanged.class);
+		if(configListeners != null && configListeners.size() > 0)
+			getComponent(IConfiguration.class).setListeners(configListeners);
 	}
 
 	private void RegisterCommands()

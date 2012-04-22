@@ -1,6 +1,7 @@
 package no.runsafe.framework.configuration;
 
 import no.runsafe.framework.FrameworkMessages;
+import no.runsafe.framework.IKernel;
 import no.runsafe.framework.event.IConfigurationChanged;
 import no.runsafe.framework.messaging.IMessageBusService;
 import no.runsafe.framework.messaging.Message;
@@ -13,6 +14,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -20,22 +22,19 @@ import java.util.logging.Level;
 public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusService
 {
 	private String configFilePath;
-	private IConfigurationDefaults defaultConfigFile;
+	private IConfigurationFile configurationFile;
 	private IOutput pluginOutput;
 	private FileConfiguration configFile;
-	private IConfigurationChanged[] subscribers;
+	private List<IConfigurationChanged> subscribers;
 
 	public RunsafeConfigurationHandler(
 		IOutput pluginOutput,
-		IConfigurationFile configFileProvider,
-		IConfigurationDefaults configDefaultProvider,
-		IConfigurationChanged[] listeners
+		IConfigurationFile configFileProvider
 	)
 	{
 		this.pluginOutput = pluginOutput;
 		this.configFilePath = configFileProvider.getConfigurationPath();
-		this.defaultConfigFile = configDefaultProvider;
-		this.subscribers = listeners;
+		this.configurationFile = configFileProvider;
 		this.load();
 	}
 
@@ -46,18 +45,14 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 			return;
 
 		File configFile = new File(this.configFilePath);
-		if (!configFile.exists() && this.defaultConfigFile != null)
-		{
-			this.output(FrameworkMessages.configurationInfo_defaults);
-		}
 
 		this.configFile = YamlConfiguration.loadConfiguration(configFile);
-
-		if (this.defaultConfigFile != null)
+		InputStream defaults = this.configurationFile.getDefaultConfiguration();
+		if (defaults != null)
 		{
-			this.configFile.setDefaults(YamlConfiguration.loadConfiguration(this.defaultConfigFile.getDefaultConfiguration()));
+			this.configFile.setDefaults(YamlConfiguration.loadConfiguration(defaults));
+			this.configFile.options().copyDefaults(true);
 		}
-		this.configFile.options().copyDefaults(true);
 		this.save();
 	}
 
@@ -180,5 +175,11 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 		{{
 				setStatus(MessageBusStatus.OK);
 			}};
+	}
+
+	@Override
+	public void setListeners(List<IConfigurationChanged> subscribers)
+	{
+		this.subscribers = subscribers;
 	}
 }

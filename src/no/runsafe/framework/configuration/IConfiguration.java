@@ -1,5 +1,6 @@
 package no.runsafe.framework.configuration;
 
+import no.runsafe.framework.event.IConfigurationChanged;
 import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.List;
@@ -37,4 +38,6 @@ public interface IConfiguration
 	public abstract void setConfigValue(String key, Object value);
 
 	public abstract ConfigurationSection getSection(String path);
+
+	public void setListeners(List<IConfigurationChanged> subscribers);
 }
