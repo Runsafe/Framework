@@ -4,13 +4,15 @@ import no.runsafe.framework.event.block.IBlockBreakEvent;
 import no.runsafe.framework.event.block.IBlockDispenseEvent;
 import no.runsafe.framework.event.block.IBlockPlaceEvent;
 import no.runsafe.framework.event.block.IBlockRedstoneEvent;
+import no.runsafe.framework.event.entity.IEntityDamageByEntityEvent;
+import no.runsafe.framework.event.entity.IEntityDeathEvent;
 import no.runsafe.framework.event.listener.block.BlockBreak;
 import no.runsafe.framework.event.listener.block.BlockDispense;
 import no.runsafe.framework.event.listener.block.BlockPlace;
 import no.runsafe.framework.event.listener.block.BlockRedstone;
-import no.runsafe.framework.event.listener.entity.*;
+import no.runsafe.framework.event.listener.entity.EntityDamageByEntity;
+import no.runsafe.framework.event.listener.entity.EntityDeath;
 import no.runsafe.framework.event.listener.player.*;
-import no.runsafe.framework.event.entity.*;
 import no.runsafe.framework.event.player.*;
 import org.bukkit.event.Listener;
 
@@ -53,26 +55,26 @@ public class EventEngine
 			if (sub instanceof IPlayerTeleportEvent)
 				listeners.add(new PlayerTeleport((IPlayerTeleportEvent) sub));
 
-            if (sub instanceof IPlayerInteractEvent)
-                listeners.add(new PlayerInteract((IPlayerInteractEvent) sub));
+			if (sub instanceof IPlayerInteractEvent)
+				listeners.add(new PlayerInteract((IPlayerInteractEvent) sub));
 
-            if (sub instanceof IPlayerChatEvent)
-                listeners.add(new PlayerChat((IPlayerChatEvent) sub));
+			if (sub instanceof IPlayerChatEvent)
+				listeners.add(new PlayerChat((IPlayerChatEvent) sub));
 
-            if (sub instanceof IPlayerJoinEvent)
-                listeners.add(new PlayerJoin((IPlayerJoinEvent) sub));
+			if (sub instanceof IPlayerJoinEvent)
+				listeners.add(new PlayerJoin((IPlayerJoinEvent) sub));
 
-            if (sub instanceof IBlockBreakEvent)
-                listeners.add(new BlockBreak((IBlockBreakEvent) sub));
+			if (sub instanceof IBlockBreakEvent)
+				listeners.add(new BlockBreak((IBlockBreakEvent) sub));
 
-            if (sub instanceof IBlockPlaceEvent)
-                listeners.add(new BlockPlace((IBlockPlaceEvent) sub));
+			if (sub instanceof IBlockPlaceEvent)
+				listeners.add(new BlockPlace((IBlockPlaceEvent) sub));
 
-            if (sub instanceof IBlockRedstoneEvent)
-                listeners.add(new BlockRedstone((IBlockRedstoneEvent) sub));
+			if (sub instanceof IBlockRedstoneEvent)
+				listeners.add(new BlockRedstone((IBlockRedstoneEvent) sub));
 
-            if (sub instanceof IBlockDispenseEvent)
-                listeners.add(new BlockDispense((IBlockDispenseEvent) sub));
+			if (sub instanceof IBlockDispenseEvent)
+				listeners.add(new BlockDispense((IBlockDispenseEvent) sub));
 		}
 		return listeners;
 	}
