@@ -60,7 +60,7 @@ public class RunsafePlayerList implements Set<RunsafePlayer>
 	@Override
 	public boolean add(RunsafePlayer runsafePlayer)
 	{
-		return playerSet.add(runsafePlayer.getRaw());
+		return playerSet.add((Player)runsafePlayer.getRaw());
 	}
 
 	@Override
