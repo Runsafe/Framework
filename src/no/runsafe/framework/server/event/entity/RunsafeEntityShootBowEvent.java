@@ -16,5 +16,10 @@ public class RunsafeEntityShootBowEvent extends RunsafeEntityEvent
         event.setProjectile(entity.getRaw());
     }
 
+    public RunsafeEntity getProjectile()
+    {
+        return new RunsafeEntity(event.getProjectile());
+    }
+
     private EntityShootBowEvent event;
 }

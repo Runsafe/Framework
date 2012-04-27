@@ -6,12 +6,14 @@ import no.runsafe.framework.event.block.IBlockPlaceEvent;
 import no.runsafe.framework.event.block.IBlockRedstoneEvent;
 import no.runsafe.framework.event.entity.IEntityDamageByEntityEvent;
 import no.runsafe.framework.event.entity.IEntityDeathEvent;
+import no.runsafe.framework.event.entity.IEntityShootBowEvent;
 import no.runsafe.framework.event.listener.block.BlockBreak;
 import no.runsafe.framework.event.listener.block.BlockDispense;
 import no.runsafe.framework.event.listener.block.BlockPlace;
 import no.runsafe.framework.event.listener.block.BlockRedstone;
 import no.runsafe.framework.event.listener.entity.EntityDamageByEntity;
 import no.runsafe.framework.event.listener.entity.EntityDeath;
+import no.runsafe.framework.event.listener.entity.EntityShootBow;
 import no.runsafe.framework.event.listener.player.*;
 import no.runsafe.framework.event.player.*;
 import org.bukkit.event.Listener;
@@ -75,6 +77,9 @@ public class EventEngine
 
 			if (sub instanceof IBlockDispenseEvent)
 				listeners.add(new BlockDispense((IBlockDispenseEvent) sub));
+
+            if (sub instanceof IEntityShootBowEvent)
+                listeners.add(new EntityShootBow((IEntityShootBowEvent) sub));
 		}
 		return listeners;
 	}

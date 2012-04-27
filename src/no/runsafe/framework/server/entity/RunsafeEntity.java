@@ -1,5 +1,6 @@
 package no.runsafe.framework.server.entity;
 
+import no.runsafe.framework.server.RunsafeWorld;
 import org.bukkit.entity.Entity;
 
 public class RunsafeEntity
@@ -12,6 +13,11 @@ public class RunsafeEntity
     public Entity getRaw()
     {
         return entity;
+    }
+
+    public RunsafeWorld getWorld()
+    {
+        return new RunsafeWorld(entity.getWorld());
     }
 
 	private Entity entity;

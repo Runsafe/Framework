@@ -1,9 +1,11 @@
 package no.runsafe.framework.server;
 
 import no.runsafe.framework.server.block.RunsafeBlock;
+import no.runsafe.framework.server.entity.RunsafeEntity;
 import no.runsafe.framework.server.item.RunsafeItem;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import org.bukkit.World;
+import org.bukkit.entity.EntityType;
 
 public class RunsafeWorld
 {
@@ -61,6 +63,11 @@ public class RunsafeWorld
 	{
 		return world.getMaxHeight();
 	}
+
+    public RunsafeEntity spawnCreature(RunsafeLocation location, EntityType entityType)
+    {
+        return new RunsafeEntity(world.spawnCreature(location.getRaw(), entityType));
+    }
 
 	private World world;
 }
