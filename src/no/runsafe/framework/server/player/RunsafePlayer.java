@@ -113,7 +113,7 @@ public class RunsafePlayer
 		return new RunsafeWorld(player.getWorld());
 	}
 
-	public Player getRaw()
+	public OfflinePlayer getRaw()
 	{
 		return this.player;
 	}
