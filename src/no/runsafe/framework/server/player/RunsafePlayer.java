@@ -1,8 +1,6 @@
 package no.runsafe.framework.server.player;
 
-import com.avaje.ebean.enhance.ant.OfflineFileTransform;
 import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
@@ -18,8 +16,10 @@ public class RunsafePlayer
 	{
 		Server server = RunsafePlugin.getPluginKernel().getComponent(Server.class);
 		player = server.getPlayer(playerName);
-		if(player == null)
+		if (player == null)
 			basePlayer = server.getOfflinePlayer(playerName);
+		else
+			basePlayer = player;
 	}
 
 	public RunsafePlayer(Player toWrap)
@@ -55,82 +55,116 @@ public class RunsafePlayer
 
 	public float getXP()
 	{
+		if (player == null)
+			return 0;
+
 		return player.getExp();
 	}
 
 	public void setXP(float points)
 	{
-		player.setExp(points);
+		if (player != null)
+			player.setExp(points);
 	}
 
 	public int getLevel()
 	{
+		if (player == null)
+			return 0;
+
 		return player.getLevel();
 	}
 
 	public void setLevel(int level)
 	{
-		player.setLevel(level);
+		if (player != null)
+			player.setLevel(level);
 	}
 
 	public void sendBlockChange(RunsafeLocation location, int itemId, byte data)
 	{
-		player.sendBlockChange(location.getRaw(), itemId, data);
+		if (player != null)
+			player.sendBlockChange(location.getRaw(), itemId, data);
 	}
 
 	public void setFallDistance(float distance)
 	{
-		player.setFallDistance(distance);
+		if (player != null)
+			player.setFallDistance(distance);
 	}
 
 	public void teleport(RunsafeLocation location)
 	{
-		player.teleport(location.getRaw());
+		if (player != null)
+			player.teleport(location.getRaw());
 	}
 
 	public void teleport(RunsafeWorld world, double x, double y, double z)
 	{
-		player.teleport(new Location(world.getRaw(), x, y, z));
+		if (player != null)
+			player.teleport(new Location(world.getRaw(), x, y, z));
 	}
 
 	public RunsafeItemStack getItemInHand()
 	{
-		return new RunsafeItemStack(player.getItemInHand());
+		if (player != null)
+			return new RunsafeItemStack(player.getItemInHand());
+
+		return null;
 	}
 
 	public RunsafeLocation getLocation()
 	{
-		return new RunsafeLocation(player.getLocation());
+		if (player != null)
+			return new RunsafeLocation(player.getLocation());
+
+		return null;
 	}
 
 	public void sendMessage(String message)
 	{
-		player.sendMessage(message);
+		if (player != null)
+			player.sendMessage(message);
 	}
 
 	public RunsafeWorld getWorld()
 	{
-		return new RunsafeWorld(player.getWorld());
+		if (player != null)
+			return new RunsafeWorld(player.getWorld());
+
+		return null;
 	}
 
-	public OfflinePlayer getRaw()
+	public Player getRawPlayer()
 	{
 		return this.player;
 	}
 
+	public OfflinePlayer getRaw()
+	{
+		return this.basePlayer;
+	}
+
 	public RunsafeInventory getInventory()
 	{
-		return new RunsafeInventory(player.getInventory());
+		if (player != null)
+			return new RunsafeInventory(player.getInventory());
+
+		return null;
 	}
 
 	@SuppressWarnings("deprecation")
 	public void updateInventory()
 	{
-		player.updateInventory();
+		if (player != null)
+			player.updateInventory();
 	}
 
 	public boolean hasPermission(String permission)
 	{
+		if (player == null)
+			return false;
+
 		return player.hasPermission(permission);
 	}
 
