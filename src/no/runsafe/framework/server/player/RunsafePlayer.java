@@ -11,6 +11,8 @@ import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.PlayerInventory;
 
 public class RunsafePlayer
 {
@@ -118,10 +120,15 @@ public class RunsafePlayer
 		return this.player;
 	}
 
-	public RunsafeInventory getInventory()
-	{
-		return new RunsafeInventory(player.getInventory());
-	}
+    public PlayerInventory getInventory()
+    {
+        return this.player.getInventory();
+    }
+
+	//public RunsafeInventory getInventory()
+	//{
+	//	return new RunsafeInventory(player.getInventory());
+	//}
 
 	@SuppressWarnings("deprecation")
 	public void updateInventory()
