@@ -78,8 +78,8 @@ public class EventEngine
 			if (sub instanceof IBlockDispenseEvent)
 				listeners.add(new BlockDispense((IBlockDispenseEvent) sub));
 
-            if (sub instanceof IEntityShootBowEvent)
-                listeners.add(new EntityShootBow((IEntityShootBowEvent) sub));
+			if (sub instanceof IEntityShootBowEvent)
+				listeners.add(new EntityShootBow((IEntityShootBowEvent) sub));
 		}
 		return listeners;
 	}

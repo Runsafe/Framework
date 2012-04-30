@@ -33,35 +33,35 @@ public class RunsafeBlock
 		this.block.setTypeId(materialID);
 	}
 
-    public RunsafeWorld getWorld()
-    {
-        return new RunsafeWorld(block.getWorld());
-    }
+	public RunsafeWorld getWorld()
+	{
+		return new RunsafeWorld(block.getWorld());
+	}
 
-    public RunsafeBlockState getBlockState()
-    {
-        return new RunsafeBlockState(block.getState());
-    }
+	public RunsafeBlockState getBlockState()
+	{
+		return new RunsafeBlockState(block.getState());
+	}
 
-    public RunsafeLocation getLocation()
-    {
-        return new RunsafeLocation(block.getLocation());
-    }
+	public RunsafeLocation getLocation()
+	{
+		return new RunsafeLocation(block.getLocation());
+	}
 
 	public Block getRaw()
 	{
 		return block;
 	}
 
-    public RunsafeMaterial getMaterialType()
-    {
-        return new RunsafeMaterial(block.getType());
-    }
+	public RunsafeMaterial getMaterialType()
+	{
+		return new RunsafeMaterial(block.getType());
+	}
 
-    public void breakNaturally()
-    {
-        block.breakNaturally();
-    }
+	public void breakNaturally()
+	{
+		block.breakNaturally();
+	}
 
 	public boolean isHazardous()
 	{
@@ -73,6 +73,11 @@ public class RunsafeBlock
 			return true;
 
 		return false;
+	}
+
+	public boolean isAir()
+	{
+		return this.getTypeId() == Material.AIR.getId();
 	}
 
 	private static final ArrayList<Integer> passableBlocks = new ArrayList<Integer>();

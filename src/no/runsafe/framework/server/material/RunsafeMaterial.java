@@ -4,20 +4,20 @@ import org.bukkit.Material;
 
 public class RunsafeMaterial
 {
-    public RunsafeMaterial(Material toWrap)
-    {
-        material = toWrap;
-    }
+	public RunsafeMaterial(Material toWrap)
+	{
+		material = toWrap;
+	}
 
-    public int getMaterialId()
-    {
-        return material.getId();
-    }
+	public int getMaterialId()
+	{
+		return material.getId();
+	}
 
-    public Material getRaw()
-    {
-        return material;
-    }
+	public Material getRaw()
+	{
+		return material;
+	}
 
-    private Material material;
+	private Material material;
 }
