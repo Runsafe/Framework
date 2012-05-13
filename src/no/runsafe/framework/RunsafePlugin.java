@@ -12,6 +12,7 @@ import no.runsafe.framework.messaging.*;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.output.RunsafeOutputHandler;
 import no.runsafe.framework.plugin.PluginResolver;
+import no.runsafe.framework.server.RunsafeServer;
 import no.runsafe.framework.server.player.PlayerByPermissionProvider;
 import no.runsafe.framework.timer.Scheduler;
 import org.bukkit.command.Command;
@@ -48,7 +49,11 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		{
 			container = new DefaultPicoContainer(new Caching());
 			this.container.addComponent(this);
+
+            //REMOVE THIS ONCE ALL MOVE TO RUNSAFE SERVER
 			this.container.addComponent(this.getServer());
+            this.container.addComponent(new RunsafeServer(this.getServer()));
+
 			this.container.addComponent(this.getLogger());
 			this.container.addComponent(RunsafeConfigurationHandler.class);
 			this.container.addComponent(RunsafeOutputHandler.class);
