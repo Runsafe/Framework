@@ -1,17 +1,30 @@
 package no.runsafe.framework.server;
 
+import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.entity.RunsafeEntity;
 import no.runsafe.framework.server.item.RunsafeItem;
 import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.player.RunsafePlayer;
+import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RunsafeWorld
 {
 	public RunsafeWorld(World toWrap)
 	{
 		world = toWrap;
+	}
+
+	public RunsafeWorld(String worldName)
+	{
+		Server server = RunsafePlugin.getPluginKernel().getComponent(Server.class);
+		world = server.getWorld(worldName);
 	}
 
 	public String getName()
@@ -39,20 +52,20 @@ public class RunsafeWorld
 		return world.getBlockTypeIdAt(x, y, z);
 	}
 
-    public RunsafeItem dropItem(RunsafeLocation location, RunsafeItemStack itemStack)
-    {
-        return new RunsafeItem((world.dropItem(location.getRaw(), itemStack.getRaw())));
-    }
+	public RunsafeItem dropItem(RunsafeLocation location, RunsafeItemStack itemStack)
+	{
+		return new RunsafeItem((world.dropItem(location.getRaw(), itemStack.getRaw())));
+	}
 
-    public void strikeLightning(RunsafeLocation location)
-    {
-        world.strikeLightning(location.getRaw());
-    }
+	public void strikeLightning(RunsafeLocation location)
+	{
+		world.strikeLightning(location.getRaw());
+	}
 
-    public void createExplosion(RunsafeLocation location, float power, boolean setFire)
-    {
-        world.createExplosion(location.getRaw(), power, setFire);
-    }
+	public void createExplosion(RunsafeLocation location, float power, boolean setFire)
+	{
+		world.createExplosion(location.getRaw(), power, setFire);
+	}
 
 	public World getRaw()
 	{
@@ -64,10 +77,18 @@ public class RunsafeWorld
 		return world.getMaxHeight();
 	}
 
-    public RunsafeEntity spawnCreature(RunsafeLocation location, EntityType entityType)
-    {
-        return new RunsafeEntity(world.spawnCreature(location.getRaw(), entityType));
-    }
+	public RunsafeEntity spawnCreature(RunsafeLocation location, EntityType entityType)
+	{
+		return new RunsafeEntity(world.spawnCreature(location.getRaw(), entityType));
+	}
+
+	public List<RunsafePlayer> getPlayers()
+	{
+		ArrayList<RunsafePlayer> result = new ArrayList<RunsafePlayer>();
+		for(Player p : world.getPlayers())
+			result.add(new RunsafePlayer(p));
+		return result;
+	}
 
 	private World world;
 }
