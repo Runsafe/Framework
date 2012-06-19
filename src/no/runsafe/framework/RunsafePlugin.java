@@ -13,7 +13,6 @@ import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.output.RunsafeOutputHandler;
 import no.runsafe.framework.plugin.PluginResolver;
 import no.runsafe.framework.server.RunsafeServer;
-import no.runsafe.framework.server.player.PlayerByPermissionProvider;
 import no.runsafe.framework.timer.Scheduler;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -62,7 +61,6 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 			this.container.addComponent(DatabaseHelper.class);
 			this.container.addComponent(PlayerStatus.class);
 			this.container.addComponent(PluginResolver.class);
-			this.container.addComponent(PlayerByPermissionProvider.class);
 			output = getComponent(IOutput.class);
 
 			if(this instanceof IConfigurationFile)
