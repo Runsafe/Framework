@@ -213,12 +213,13 @@ public class RunsafeServer
         return this.server.getOnlineMode();
     }
 
-    public RunsafePlayer[] getOnlinePlayers()
+    public List<RunsafePlayer> getOnlinePlayers()
     {
-        Player[] bukkitPlayerArray = this.server.getOnlinePlayers();
-        RunsafePlayer[] playerArray = Arrays.copyOf(bukkitPlayerArray, bukkitPlayerArray.length, RunsafePlayer[].class);
+			List<RunsafePlayer> players = new ArrayList<RunsafePlayer>();
+      for(Player bukkitPlayer : this.server.getOnlinePlayers())
+				players.add(new RunsafePlayer(bukkitPlayer));
 
-        return playerArray;
+			return players;
     }
 
     //TODO: Cast OfflinePlayer to Runsafe

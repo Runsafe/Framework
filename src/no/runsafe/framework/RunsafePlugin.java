@@ -9,6 +9,7 @@ import no.runsafe.framework.database.DatabaseHelper;
 import no.runsafe.framework.database.RunsafeDatabaseHandler;
 import no.runsafe.framework.event.*;
 import no.runsafe.framework.messaging.*;
+import no.runsafe.framework.output.Console;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.output.RunsafeOutputHandler;
 import no.runsafe.framework.plugin.PluginResolver;
@@ -62,6 +63,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 			this.container.addComponent(PlayerStatus.class);
 			this.container.addComponent(PluginResolver.class);
 			output = getComponent(IOutput.class);
+			Console.setWriter(output);
 
 			if(this instanceof IConfigurationFile)
 				getComponent(IConfiguration.class).setConfigFileProvider((IConfigurationFile)this);
