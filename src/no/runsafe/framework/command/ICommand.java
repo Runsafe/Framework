@@ -9,7 +9,7 @@ public interface ICommand
 	public boolean CanExecute(RunsafePlayer player, String[] args);
 	public boolean Execute(RunsafePlayer player, String[] args);
 	public boolean Execute(String[] args);
-	public String OnExecute(String[] args);
+	public String OnExecute(RunsafePlayer executor, String[] args);
 
 	String getCommandName();
 

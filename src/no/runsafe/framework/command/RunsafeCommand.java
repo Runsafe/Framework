@@ -39,7 +39,7 @@ public class RunsafeCommand implements ICommand
 	{
 		String usage = "/" + getCommandParams();
 		if(subCommands != null && !subCommands.isEmpty())
-			usage += String.format(" [%s]", StringUtils.join(subCommands.keySet(), "|"));
+			usage += String.format(" %s", StringUtils.join(subCommands.keySet(), "|"));
 		return usage;
 	}
 
@@ -110,7 +110,7 @@ public class RunsafeCommand implements ICommand
 
 		else
 		{
-			player.sendMessage(OnExecute(args));
+			player.sendMessage(OnExecute(player, args));
 			return true;
 		}
 
@@ -137,7 +137,7 @@ public class RunsafeCommand implements ICommand
 
 		else
 		{
-			Console.write(OnExecute(args));
+			Console.write(OnExecute(null, args));
 			return true;
 		}
 
@@ -145,7 +145,7 @@ public class RunsafeCommand implements ICommand
 	}
 
 	@Override
-	public String OnExecute(String[] args)
+	public String OnExecute(RunsafePlayer executor, String[] args)
 	{
 		return getCommandUsage();
 	}

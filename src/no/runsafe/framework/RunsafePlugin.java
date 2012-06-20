@@ -63,7 +63,6 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 			this.container.addComponent(PlayerStatus.class);
 			this.container.addComponent(PluginResolver.class);
 			output = getComponent(IOutput.class);
-			Console.setWriter(output);
 
 			if(this instanceof IConfigurationFile)
 				getComponent(IConfiguration.class).setConfigFileProvider((IConfigurationFile)this);
