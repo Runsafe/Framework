@@ -62,5 +62,5 @@ public class RunsafePlayerLoginEvent extends RunsafePlayerEvent
 		event.setKickMessage(message);
 	}
 
-	PlayerLoginEvent event;
+	private final PlayerLoginEvent event;
 }

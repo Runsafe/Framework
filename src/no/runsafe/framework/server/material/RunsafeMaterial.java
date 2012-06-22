@@ -19,5 +19,5 @@ public class RunsafeMaterial
 		return material;
 	}
 
-	private Material material;
+	private final Material material;
 }

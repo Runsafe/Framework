@@ -19,5 +19,5 @@ public class EntityDamageByEntity implements Listener
 		eventSubscriber.OnEntityDamageByEntity(new RunsafeEntityDamageByEntityEvent(entityDamageByEntityEvent));
 	}
 
-	private IEntityDamageByEntityEvent eventSubscriber;
+	private final IEntityDamageByEntityEvent eventSubscriber;
 }

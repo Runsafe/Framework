@@ -46,5 +46,5 @@ public class RunsafeBlockDispenseEvent extends RunsafeBlockEvent implements Canc
         event.setCancelled(cancel);
     }
 
-    private BlockDispenseEvent event;
+    private final BlockDispenseEvent event;
 }

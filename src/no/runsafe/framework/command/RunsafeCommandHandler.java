@@ -13,7 +13,6 @@ import java.util.regex.Pattern;
 
 public class RunsafeCommandHandler implements CommandExecutor
 {
-
 	public RunsafeCommandHandler(ICommand command)
 	{
 		commandObject = command;
@@ -76,5 +75,5 @@ public class RunsafeCommandHandler implements CommandExecutor
 		return args.toArray(new String[args.size()]);
 	}
 
-	private ICommand commandObject;
+	private final ICommand commandObject;
 }

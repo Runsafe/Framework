@@ -19,5 +19,5 @@ public class BlockRedstone implements Listener
         eventSubscriber.OnBlockRedstoneEvent(new RunsafeBlockRedstoneEvent(event));
     }
 
-    private IBlockRedstoneEvent eventSubscriber;
+    private final IBlockRedstoneEvent eventSubscriber;
 }

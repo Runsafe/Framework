@@ -19,5 +19,5 @@ public class PlayerDropItem implements Listener
 		eventSubscriber.OnPlayerDropItem(new RunsafePlayerDropItemEvent(event));
 	}
 
-	private IPlayerDropItemEvent eventSubscriber;
+	private final IPlayerDropItemEvent eventSubscriber;
 }

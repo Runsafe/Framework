@@ -19,5 +19,5 @@ public class EntityDeath implements Listener
 		eventSubscriber.OnEntityDeath(new RunsafeEntityDeathEvent(entityDeathEvent));
 	}
 
-	IEntityDeathEvent eventSubscriber;
+	private final IEntityDeathEvent eventSubscriber;
 }

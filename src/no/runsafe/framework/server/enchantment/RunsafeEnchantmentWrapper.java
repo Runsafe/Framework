@@ -19,5 +19,5 @@ public class RunsafeEnchantmentWrapper
         return enchantmentWrapper;
     }
 
-    private EnchantmentWrapper enchantmentWrapper;
+    private final EnchantmentWrapper enchantmentWrapper;
 }

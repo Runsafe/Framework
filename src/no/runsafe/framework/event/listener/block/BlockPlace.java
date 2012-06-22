@@ -19,5 +19,5 @@ public class BlockPlace implements Listener
         eventSubscriber.OnBlockPlaceEvent(new RunsafeBlockPlaceEvent(event));
     }
 
-    private IBlockPlaceEvent eventSubscriber;
+    private final IBlockPlaceEvent eventSubscriber;
 }

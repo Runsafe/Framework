@@ -29,5 +29,5 @@ public class RunsafePlayerDropItemEvent extends RunsafePlayerEvent implements Ca
 		return new RunsafeItem(event.getItemDrop());
 	}
 
-	private PlayerDropItemEvent event;
+	private final PlayerDropItemEvent event;
 }

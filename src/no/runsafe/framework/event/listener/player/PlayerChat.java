@@ -19,5 +19,5 @@ public class PlayerChat implements Listener
         eventSubscriber.OnPlayerChatEvent(new RunsafePlayerChatEvent(event));
     }
 
-    private IPlayerChatEvent eventSubscriber;
+    private final IPlayerChatEvent eventSubscriber;
 }

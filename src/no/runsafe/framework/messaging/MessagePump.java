@@ -79,5 +79,5 @@ public class MessagePump implements IMessagePump
 		return responses;
 	}
 
-	private HashMap<String, ArrayList<IMessageBusService>> services = new HashMap<String, ArrayList<IMessageBusService>>();
+	private final HashMap<String, ArrayList<IMessageBusService>> services = new HashMap<String, ArrayList<IMessageBusService>>();
 }

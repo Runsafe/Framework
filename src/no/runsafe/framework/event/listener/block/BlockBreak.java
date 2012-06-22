@@ -19,5 +19,5 @@ public class BlockBreak implements Listener
         eventSubscriber.OnBlockBreakEvent(new RunsafeBlockBreakEvent(event));
     }
 
-    private IBlockBreakEvent eventSubscriber;
+    private final IBlockBreakEvent eventSubscriber;
 }

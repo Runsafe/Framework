@@ -19,5 +19,5 @@ public class RunsafeItem
 		return item;
 	}
 	
-	private Item item;
+	private final Item item;
 }

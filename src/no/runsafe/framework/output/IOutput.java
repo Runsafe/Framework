@@ -24,4 +24,20 @@ public interface IOutput {
 	
 	// Sets the debug output level
 	public void setDebugLevel(Level level);
+
+	void write(String message);
+
+	void severe(String message);
+
+	void warning(String message);
+
+	void info(String message);
+
+	void config(String message);
+
+	void fine(String message);
+
+	void finer(String message);
+
+	void finest(String message);
 }

@@ -15,5 +15,5 @@ public class RunsafeMaterialData
         return materialData;
     }
 
-    private MaterialData materialData;
+    private final MaterialData materialData;
 }

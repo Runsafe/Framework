@@ -77,5 +77,5 @@ public class DatabaseHelper
 		return result;
 	}
 	
-	private IOutput output;
+	private final IOutput output;
 }

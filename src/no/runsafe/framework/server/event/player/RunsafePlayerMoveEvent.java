@@ -44,5 +44,5 @@ public class RunsafePlayerMoveEvent extends RunsafePlayerEvent implements Cancel
 		event.setTo(location.getRaw());
 	}
 
-	private PlayerMoveEvent event;
+	private final PlayerMoveEvent event;
 }

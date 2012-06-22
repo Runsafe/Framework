@@ -41,5 +41,5 @@ public class RunsafePlayerInteractEvent extends RunsafePlayerEvent implements Ca
         event.setCancelled(cancel);
     }
 
-    private PlayerInteractEvent event;
+    private final PlayerInteractEvent event;
 }

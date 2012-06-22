@@ -1,8 +1,5 @@
 package no.runsafe.framework.command;
 
-import no.runsafe.framework.output.Console;
-import no.runsafe.framework.server.player.RunsafePlayer;
-
 import java.util.Collection;
 
 public class RunsafePlayerCommand extends RunsafeCommand

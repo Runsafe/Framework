@@ -102,5 +102,5 @@ public class RunsafePlayerList implements Set<RunsafePlayer>
 		playerSet.clear();
 	}
 
-	private Set<Player> playerSet;
+	private final Set<Player> playerSet;
 }

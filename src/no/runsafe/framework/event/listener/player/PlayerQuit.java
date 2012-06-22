@@ -19,5 +19,5 @@ public class PlayerQuit implements Listener
 		eventSubscriber.OnPlayerQuit(new RunsafePlayerQuitEvent(event));
 	}
 
-	private IPlayerQuitEvent eventSubscriber;
+	private final IPlayerQuitEvent eventSubscriber;
 }

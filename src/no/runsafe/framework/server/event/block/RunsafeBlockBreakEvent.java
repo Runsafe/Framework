@@ -29,5 +29,5 @@ public class RunsafeBlockBreakEvent extends RunsafeBlockEvent implements Cancell
         event.setCancelled(cancel);
     }
 
-    private BlockBreakEvent event;
+    private final BlockBreakEvent event;
 }

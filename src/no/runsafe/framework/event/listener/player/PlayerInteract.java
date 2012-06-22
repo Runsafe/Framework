@@ -19,5 +19,5 @@ public class PlayerInteract  implements Listener
         eventSubscriber.OnPlayerInteractEvent(new RunsafePlayerInteractEvent(event));
     }
 
-    private IPlayerInteractEvent eventSubscriber;
+    private final IPlayerInteractEvent eventSubscriber;
 }

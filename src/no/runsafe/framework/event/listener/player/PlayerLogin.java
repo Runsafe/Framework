@@ -19,5 +19,5 @@ public class PlayerLogin implements Listener
 		eventSubscriber.OnPlayerLogin(new RunsafePlayerLoginEvent(event));
 	}
 
-	private IPlayerLoginEvent eventSubscriber;
+	private final IPlayerLoginEvent eventSubscriber;
 }

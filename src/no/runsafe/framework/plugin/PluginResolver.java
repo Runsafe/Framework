@@ -20,5 +20,5 @@ public class PluginResolver
 		return (T) plugin;
 	}
 
-	private Server bukkitServer;
+	private final Server bukkitServer;
 }

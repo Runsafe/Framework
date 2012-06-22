@@ -17,5 +17,5 @@ public class RunsafeBlockEvent extends RunsafeEvent
         return new RunsafeBlock(this.event.getBlock());
     }
 
-    private BlockEvent event;
+    private final BlockEvent event;
 }

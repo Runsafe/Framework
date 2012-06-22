@@ -56,5 +56,5 @@ public class RunsafeBlockPlaceEvent extends RunsafeBlockEvent implements Cancell
         event.setCancelled(cancel);
     }
 
-    private BlockPlaceEvent event;
+    private final BlockPlaceEvent event;
 }

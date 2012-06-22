@@ -48,7 +48,7 @@ public abstract class Timer implements ITimer, Runnable
 		}
 	}
 
-	private IScheduler systemScheduler;
+	private final IScheduler systemScheduler;
 	protected long delay;
 	protected long period;
 	private int timerId;

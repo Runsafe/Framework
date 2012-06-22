@@ -20,5 +20,5 @@ public class RunsafePlayerQuitEvent extends RunsafePlayerEvent
 		event.setQuitMessage(message);
 	}
 
-	private PlayerQuitEvent event;
+	private final PlayerQuitEvent event;
 }

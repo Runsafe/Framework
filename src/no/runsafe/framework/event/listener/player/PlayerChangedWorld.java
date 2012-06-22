@@ -19,5 +19,5 @@ public class PlayerChangedWorld implements Listener
 		eventSubscriber.OnPlayerChangedWorld(new RunsafePlayerChangedWorldEvent(event));
 	}
 
-	private IPlayerChangedWorldEvent eventSubscriber;
+	private final IPlayerChangedWorldEvent eventSubscriber;
 }

@@ -26,5 +26,5 @@ public class RunsafeEntityDeathEvent extends RunsafeEntityEvent
 		event.setDroppedExp(xp);
 	}
 
-	private EntityDeathEvent event;
+	private final EntityDeathEvent event;
 }

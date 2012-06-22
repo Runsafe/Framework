@@ -19,5 +19,5 @@ public class BlockDispense implements Listener
         eventSubscriber.OnBlockDispenseEvent(new RunsafeBlockDispenseEvent(event));
     }
 
-    private IBlockDispenseEvent eventSubscriber;
+    private final IBlockDispenseEvent eventSubscriber;
 }

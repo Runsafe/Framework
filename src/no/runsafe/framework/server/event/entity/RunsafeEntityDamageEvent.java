@@ -39,5 +39,5 @@ public class RunsafeEntityDamageEvent extends RunsafeEntityEvent implements Canc
 		event.setCancelled(cancel);
 	}
 
-	private EntityDamageEvent event;
+	private final EntityDamageEvent event;
 }

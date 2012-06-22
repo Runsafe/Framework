@@ -23,7 +23,7 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 {
 	private String configFilePath;
 	private IConfigurationFile configurationFile;
-	private IOutput pluginOutput;
+	private final IOutput pluginOutput;
 	private FileConfiguration configFile;
 	private List<IConfigurationChanged> subscribers;
 

@@ -16,5 +16,5 @@ public class RunsafePlayerChangedWorldEvent extends RunsafePlayerEvent
 		return new RunsafeWorld(event.getFrom());
 	}
 
-	private PlayerChangedWorldEvent event;
+	private final PlayerChangedWorldEvent event;
 }

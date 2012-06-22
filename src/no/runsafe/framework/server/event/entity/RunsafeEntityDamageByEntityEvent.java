@@ -16,5 +16,5 @@ public class RunsafeEntityDamageByEntityEvent extends RunsafeEntityDamageEvent
 		return new RunsafeEntity(event.getDamager());
 	}
 
-	private EntityDamageByEntityEvent event;
+	private final EntityDamageByEntityEvent event;
 }

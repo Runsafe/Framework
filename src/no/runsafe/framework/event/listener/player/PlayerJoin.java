@@ -22,5 +22,5 @@ public class PlayerJoin implements Listener
         eventSubscriber.OnPlayerJoinEvent(new RunsafePlayerJoinEvent(event));
     }
 
-    private IPlayerJoinEvent eventSubscriber;
+    private final IPlayerJoinEvent eventSubscriber;
 }

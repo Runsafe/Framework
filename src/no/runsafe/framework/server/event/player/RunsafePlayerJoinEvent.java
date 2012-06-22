@@ -26,5 +26,5 @@ public class RunsafePlayerJoinEvent extends RunsafePlayerEvent
         event.setJoinMessage(message);
     }
 
-    private PlayerJoinEvent event;
+    private final PlayerJoinEvent event;
 }

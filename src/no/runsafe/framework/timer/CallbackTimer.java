@@ -17,5 +17,5 @@ public class CallbackTimer extends Timer
 		callbackMethod.run();
 	}
 
-	private Runnable callbackMethod;
+	private final Runnable callbackMethod;
 }

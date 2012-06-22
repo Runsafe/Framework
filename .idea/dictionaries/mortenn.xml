@@ -2,13 +2,20 @@
   <dictionary name="mortenn">
     <words>
       <w>bukkit</w>
+      <w>chestplate</w>
+      <w>commandsender</w>
+      <w>ender</w>
+      <w>laytonsmith</w>
       <w>minecraft</w>
       <w>picocontainer</w>
       <w>preprocess</w>
       <w>rawtypes</w>
+      <w>redstone</w>
       <w>runsafe</w>
       <w>teleport</w>
+      <w>unban</w>
       <w>unregister</w>
+      <w>whitelist</w>
       <w>whitelisted</w>
     </words>
   </dictionary>

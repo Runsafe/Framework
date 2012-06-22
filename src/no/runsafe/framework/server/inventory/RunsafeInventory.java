@@ -14,5 +14,5 @@ public class RunsafeInventory
 		inventory.clear();
 	}
 
-	private Inventory inventory;
+	private final Inventory inventory;
 }

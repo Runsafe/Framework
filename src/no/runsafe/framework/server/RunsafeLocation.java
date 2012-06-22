@@ -94,5 +94,5 @@ public class RunsafeLocation
 		return location;
 	}
 
-	private Location location;
+	private final Location location;
 }

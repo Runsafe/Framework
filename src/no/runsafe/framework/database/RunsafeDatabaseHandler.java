@@ -12,11 +12,11 @@ import no.runsafe.framework.output.IOutput;
 
 public class RunsafeDatabaseHandler implements IDatabase 
 {
-	private String databaseURL;
-	private String databaseUsername;
-	private String databasePassword;
+	private final String databaseURL;
+	private final String databaseUsername;
+	private final String databasePassword;
 
-	private IOutput output;
+	private final IOutput output;
 
 	public RunsafeDatabaseHandler(IConfiguration config, IOutput output)
 	{

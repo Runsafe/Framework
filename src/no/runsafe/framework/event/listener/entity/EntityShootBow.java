@@ -19,5 +19,5 @@ public class EntityShootBow implements Listener
         eventSubscriber.OnEntityShootBowEvent(new RunsafeEntityShootBowEvent(event));
     }
 
-    private IEntityShootBowEvent eventSubscriber;
+    private final IEntityShootBowEvent eventSubscriber;
 }

@@ -17,5 +17,5 @@ public class RunsafeEntityEvent extends RunsafeEvent
 		return new RunsafeEntity(event.getEntity());
 	}
 
-	private EntityEvent event;
+	private final EntityEvent event;
 }

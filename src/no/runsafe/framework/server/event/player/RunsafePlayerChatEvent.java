@@ -61,5 +61,5 @@ public class RunsafePlayerChatEvent extends RunsafePlayerEvent implements Cancel
 		return new RunsafePlayerList(event.getRecipients());
 	}
 
-	PlayerChatEvent event;
+	private final PlayerChatEvent event;
 }

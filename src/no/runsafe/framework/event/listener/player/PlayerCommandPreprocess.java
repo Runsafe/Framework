@@ -19,5 +19,5 @@ public class PlayerCommandPreprocess implements Listener
 		eventSubscriber.OnBeforePlayerCommand(new RunsafePlayerCommandPreprocessEvent(event));
 	}
 
-	private  IPlayerCommandPreprocessEvent eventSubscriber;
+	private final IPlayerCommandPreprocessEvent eventSubscriber;
 }

@@ -167,5 +167,5 @@ public class RunsafeItemStackList implements List<RunsafeItemStack>
 		return null;
 	}
 
-	private List<ItemStack> itemStacks;
+	private final List<ItemStack> itemStacks;
 }

@@ -19,5 +19,5 @@ public class PlayerTeleport implements Listener
 		eventSubscriber.OnPlayerTeleport(new RunsafePlayerTeleportEvent(event));
 	}
 
-	private IPlayerTeleportEvent eventSubscriber;
+	private final IPlayerTeleportEvent eventSubscriber;
 }

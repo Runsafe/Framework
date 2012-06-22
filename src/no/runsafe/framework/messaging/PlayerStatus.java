@@ -3,6 +3,7 @@ package no.runsafe.framework.messaging;
 import no.runsafe.framework.server.player.RunsafePlayer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PlayerStatus
@@ -58,8 +59,7 @@ public class PlayerStatus
 		ArrayList<String> regions = new ArrayList<String>();
 		for (Response answer : response)
 			if (answer.getStatus() == MessageBusStatus.OK)
-				for (String region : answer.getResponse().split(";"))
-					regions.add(region);
+				Collections.addAll(regions, answer.getResponse().split(";"));
 
 		return regions;
 	}
@@ -88,5 +88,5 @@ public class PlayerStatus
 		return true;
 	}
 
-	private IMessagePump messagePump;
+	private final IMessagePump messagePump;
 }

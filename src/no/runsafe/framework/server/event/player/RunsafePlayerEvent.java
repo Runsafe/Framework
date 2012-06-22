@@ -17,5 +17,5 @@ public class RunsafePlayerEvent extends RunsafeEvent
 		return new RunsafePlayer(event.getPlayer());
 	}
 
-	private PlayerEvent event;
+	private final PlayerEvent event;
 }

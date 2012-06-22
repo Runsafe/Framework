@@ -9,5 +9,5 @@ public class RunsafeEnchantment
         enchantment = toWrap;
     }
 
-    private Enchantment enchantment;
+    private final Enchantment enchantment;
 }

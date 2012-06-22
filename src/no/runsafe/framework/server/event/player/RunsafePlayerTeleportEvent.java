@@ -40,5 +40,5 @@ public class RunsafePlayerTeleportEvent extends RunsafePlayerMoveEvent
 		return event.getCause() == PlayerTeleportEvent.TeleportCause.UNKNOWN;
 	}
 
-	private PlayerTeleportEvent event;
+	private final PlayerTeleportEvent event;
 }

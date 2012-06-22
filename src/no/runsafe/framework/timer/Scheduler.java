@@ -7,8 +7,8 @@ import org.bukkit.scheduler.BukkitScheduler;
 public class Scheduler implements IScheduler
 {
 
-	private Plugin plugin;
-	private BukkitScheduler scheduler;
+	private final Plugin plugin;
+	private final BukkitScheduler scheduler;
 
 	public Scheduler(Server server, Plugin plugin)
 	{

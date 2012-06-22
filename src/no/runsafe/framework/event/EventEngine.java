@@ -28,6 +28,7 @@ public class EventEngine
 		eventSubscribers = events;
 	}
 
+	@SuppressWarnings("ConstantConditions")
 	public List<Listener> getListeners()
 	{
 		ArrayList<Listener> listeners = new ArrayList<Listener>();
@@ -84,5 +85,5 @@ public class EventEngine
 		return listeners;
 	}
 
-	private List<IRunsafeEvent> eventSubscribers;
+	private final List<IRunsafeEvent> eventSubscribers;
 }

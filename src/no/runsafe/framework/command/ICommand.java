@@ -1,15 +1,18 @@
 package no.runsafe.framework.command;
 
+import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.player.RunsafePlayer;
 
 import java.util.Collection;
 
-public interface ICommand
-{
-	public boolean CanExecute(RunsafePlayer player, String[] args);
-	public boolean Execute(RunsafePlayer player, String[] args);
-	public boolean Execute(String[] args);
-	public String OnExecute(RunsafePlayer executor, String[] args);
+public interface ICommand {
+	boolean CanExecute(RunsafePlayer player, String[] args);
+
+	boolean Execute(RunsafePlayer player, String[] args);
+
+	boolean Execute(String[] args);
+
+	String OnExecute(RunsafePlayer executor, String[] args);
 
 	String getCommandName();
 
@@ -26,4 +29,6 @@ public interface ICommand
 	void setSuperCommand(ICommand command);
 
 	String getArg(String name);
+
+	void setConsole(IOutput output);
 }

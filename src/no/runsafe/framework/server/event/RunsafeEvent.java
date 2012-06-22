@@ -14,5 +14,5 @@ public class RunsafeEvent
 		return event.getEventName();
 	}
 
-	private Event event;
+	private final Event event;
 }

@@ -7,92 +7,85 @@ import no.runsafe.framework.server.material.RunsafeMaterial;
 import no.runsafe.framework.server.material.RunsafeMaterialData;
 import org.bukkit.block.BlockState;
 
-public class RunsafeBlockState
-{
-    public RunsafeBlockState(BlockState toWrap)
-    {
-        blockState = toWrap;
-    }
+import java.util.ArrayList;
+import java.util.List;
 
-    public RunsafeChunk getChunk()
-    {
-        return new RunsafeChunk(blockState.getChunk());
-    }
+public class RunsafeBlockState {
 
-    public RunsafeMaterialData getMaterialData()
-    {
-        return new RunsafeMaterialData(blockState.getData());
-    }
+	public static List<RunsafeBlockState> convert(BlockState[] tileEntities) {
+		ArrayList<RunsafeBlockState> result = new ArrayList<RunsafeBlockState>();
+		for(BlockState state : tileEntities)
+			result.add(new RunsafeBlockState(state));
+		return result;
+	}
 
-    public byte getLightLevel()
-    {
-        return blockState.getLightLevel();
-    }
+	public RunsafeBlockState(BlockState toWrap) {
+		blockState = toWrap;
+	}
 
-    public RunsafeLocation getLocation()
-    {
-        return new RunsafeLocation(blockState.getLocation());
-    }
+	public RunsafeChunk getChunk() {
+		return new RunsafeChunk(blockState.getChunk());
+	}
 
-    public RunsafeMaterial getMaterial()
-    {
-        return new RunsafeMaterial(blockState.getType());
-    }
+	public RunsafeMaterialData getMaterialData() {
+		return new RunsafeMaterialData(blockState.getData());
+	}
 
-    public int getMaterialID()
-    {
-        return blockState.getTypeId();
-    }
+	public byte getLightLevel() {
+		return blockState.getLightLevel();
+	}
 
-    public RunsafeWorld getWorld()
-    {
-        return new RunsafeWorld(blockState.getWorld());
-    }
+	public RunsafeLocation getLocation() {
+		return new RunsafeLocation(blockState.getLocation());
+	}
 
-    public int getX()
-    {
-        return blockState.getX();
-    }
+	public RunsafeMaterial getMaterial() {
+		return new RunsafeMaterial(blockState.getType());
+	}
 
-    public int getY()
-    {
-        return blockState.getY();
-    }
+	public int getMaterialID() {
+		return blockState.getTypeId();
+	}
 
-    public int getZ()
-    {
-        return blockState.getZ();
-    }
+	public RunsafeWorld getWorld() {
+		return new RunsafeWorld(blockState.getWorld());
+	}
 
-    public void setMaterialData(RunsafeMaterialData materialData)
-    {
-        blockState.setData(materialData.getRaw());
-    }
+	public int getX() {
+		return blockState.getX();
+	}
 
-    public void setMaterial(RunsafeMaterial material)
-    {
-        blockState.setType(material.getRaw());
-    }
+	public int getY() {
+		return blockState.getY();
+	}
 
-    public void setMaterialId(int materialId)
-    {
-        blockState.setTypeId(materialId);
-    }
+	public int getZ() {
+		return blockState.getZ();
+	}
 
-    public void update(boolean forceUpdate)
-    {
-        blockState.update(forceUpdate);
-    }
+	public void setMaterialData(RunsafeMaterialData materialData) {
+		blockState.setData(materialData.getRaw());
+	}
 
-    public void update()
-    {
-        blockState.update();
-    }
+	public void setMaterial(RunsafeMaterial material) {
+		blockState.setType(material.getRaw());
+	}
 
-    public BlockState getRaw()
-    {
-        return blockState;
-    }
+	public void setMaterialId(int materialId) {
+		blockState.setTypeId(materialId);
+	}
 
-    private BlockState blockState;
+	public void update(boolean forceUpdate) {
+		blockState.update(forceUpdate);
+	}
+
+	public void update() {
+		blockState.update();
+	}
+
+	public BlockState getRaw() {
+		return blockState;
+	}
+
+	private final BlockState blockState;
 }
