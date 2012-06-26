@@ -29,13 +29,10 @@ import java.util.List;
 import java.util.logging.Level;
 
 public abstract class RunsafePlugin extends JavaPlugin implements IKernel {
-//	public static IKernel getPluginKernel() {
-//		return kernel;
-//	}
-
 	public RunsafePlugin() {
 		super();
-//		kernel = this;
+		if(RunsafeServer.Instance == null)
+			RunsafeServer.Instance = new RunsafeServer(this.getServer());
 	}
 
 	@Override
@@ -195,5 +192,5 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel {
 	private List<Listener> eventListeners;
 	private IOutput output;
 	private HashMap<String, RunsafeCommandHandler> commands;
-//	private static IKernel kernel;
+	//	private static IKernel kernel;
 }

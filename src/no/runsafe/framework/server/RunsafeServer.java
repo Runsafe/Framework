@@ -28,6 +28,8 @@ import java.util.*;
 import java.util.logging.Logger;
 
 public class RunsafeServer {
+	public static RunsafeServer Instance = null;
+
 	public RunsafeServer(Server toWrap) {
 		this.server = toWrap;
 	}
