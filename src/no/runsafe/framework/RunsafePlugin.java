@@ -29,10 +29,14 @@ import java.util.List;
 import java.util.logging.Level;
 
 public abstract class RunsafePlugin extends JavaPlugin implements IKernel {
+	public static HashMap<String, RunsafePlugin> Instances = new HashMap<String, RunsafePlugin>();
+
 	public RunsafePlugin() {
 		super();
 		if(RunsafeServer.Instance == null)
 			RunsafeServer.Instance = new RunsafeServer(this.getServer());
+
+		Instances.put(getName(), this);
 	}
 
 	@Override
