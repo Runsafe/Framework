@@ -101,8 +101,11 @@ public class RunsafeCommand implements ICommand {
 
 	@Override
 	public boolean Execute(String[] args) {
+		Console.finer(String.format("Execute: %s, %s", commandName, StringUtils.join(args, ", ")));
+
 		subArgOffset = 0;
 		if(args.length < params.size()) {
+			Console.finest(String.format("Missing params (%d < %d)", args.length, params.size()));
 			Console.write(getCommandUsage());
 			return true;
 		}
@@ -110,16 +113,18 @@ public class RunsafeCommand implements ICommand {
 
 		ICommand sub = null;
 		if(args.length > subArgOffset)
-			sub = getSubCommand(args[0]);
+			sub = getSubCommand(args[subArgOffset]);
 
 		if(sub != null)
 			subArgOffset++;
 
 		else {
+			Console.finest("Exeuting command..");
 			Console.write(OnExecute(null, args));
 			return true;
 		}
 
+		Console.finest("Passing command off to subcommand..");
 		return sub.Execute(getSubArgs(args));
 	}
 
@@ -155,13 +160,20 @@ public class RunsafeCommand implements ICommand {
 	}
 
 	protected ICommand getSubCommand(String name) {
+		Console.finest(String.format("Looking up subcommand %s", name));
 		if(subCommands.containsKey(name))
+		{
+			Console.finest("Found exact match..");
 			return subCommands.get(name);
-
+		}
 		for(String sub : subCommands.keySet())
 			if(sub.startsWith(name))
+			{
+				Console.finest(String.format("Found partial match in %s", sub));
 				return subCommands.get(sub);
+			}
 
+		Console.finest("Unknown subcommand");
 		return null;
 	}
 

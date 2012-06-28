@@ -33,14 +33,14 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel {
 
 	public RunsafePlugin() {
 		super();
-		if(RunsafeServer.Instance == null)
-			RunsafeServer.Instance = new RunsafeServer(this.getServer());
-
-		Instances.put(getName(), this);
 	}
 
 	@Override
 	public void onEnable() {
+		if(RunsafeServer.Instance == null)
+			RunsafeServer.Instance = new RunsafeServer(this.getServer());
+		Instances.put(getName(), this);
+
 		if(container == null) {
 			container = new DefaultPicoContainer(new Caching());
 			this.container.addComponent(this);
@@ -149,7 +149,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel {
 		ArrayList<RunsafeCommandHandler> handlers = new ArrayList<RunsafeCommandHandler>();
 		for(ICommand command : getComponents(ICommand.class)) {
 			command.setConsole(output);
-			handlers.add(new RunsafeCommandHandler(command));
+			handlers.add(new RunsafeCommandHandler(command, output));
 		}
 		return handlers;
 	}

@@ -1,5 +1,6 @@
 package no.runsafe.framework.command;
 
+import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
@@ -8,14 +9,16 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class RunsafeCommandHandler implements CommandExecutor
 {
-	public RunsafeCommandHandler(ICommand command)
+	public RunsafeCommandHandler(ICommand command, IOutput output)
 	{
 		commandObject = command;
+		console = output;
 	}
 
 	public String getName()
@@ -30,6 +33,7 @@ public class RunsafeCommandHandler implements CommandExecutor
 
 		if (sender instanceof Player)
 		{
+			console.write(String.format("[PLAYER_COMMAND] %s", StringUtils.join(rawArgs, " ")));
 			if (commandObject.requiredPermission() != null && !sender.hasPermission(commandObject.requiredPermission()))
 			{
 				sender.sendMessage(ChatColor.RED + "No access to that command.");
@@ -76,4 +80,5 @@ public class RunsafeCommandHandler implements CommandExecutor
 	}
 
 	private final ICommand commandObject;
+	private final IOutput console;
 }
