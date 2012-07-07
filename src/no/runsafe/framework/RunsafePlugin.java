@@ -6,23 +6,29 @@ import no.runsafe.framework.configuration.IConfiguration;
 import no.runsafe.framework.configuration.IConfigurationFile;
 import no.runsafe.framework.configuration.RunsafeConfigurationHandler;
 import no.runsafe.framework.database.DatabaseHelper;
+import no.runsafe.framework.database.ISchemaUpdater;
 import no.runsafe.framework.database.RunsafeDatabaseHandler;
+import no.runsafe.framework.database.SchemaRevisionRepository;
 import no.runsafe.framework.event.*;
 import no.runsafe.framework.messaging.*;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.output.RunsafeOutputHandler;
+import no.runsafe.framework.plugin.IPluginUpdate;
 import no.runsafe.framework.plugin.PluginResolver;
 import no.runsafe.framework.server.RunsafeServer;
 import no.runsafe.framework.timer.Scheduler;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
+import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.picocontainer.DefaultPicoContainer;
 import org.picocontainer.behaviors.Caching;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,6 +63,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel {
 			this.container.addComponent(DatabaseHelper.class);
 			this.container.addComponent(PlayerStatus.class);
 			this.container.addComponent(PluginResolver.class);
+			this.container.addComponent(SchemaRevisionRepository.class);
 			output = getComponent(IOutput.class);
 
 			if(this instanceof IConfigurationFile)
@@ -70,6 +77,12 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel {
 			}
 
 			this.PluginSetup();
+			String lastVersion = getLastVersion();
+			if(!getDescription().getVersion().equals(lastVersion)){
+				IPluginUpdate updater = getComponent(IPluginUpdate.class);
+				if(updater == null || updater.UpdateFrom(lastVersion))
+					saveCurrentVersion();
+			}
 
 			if(pump != null) {
 				List<IMessageBusService> services = getComponents(IMessageBusService.class);
@@ -87,8 +100,44 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel {
 			output.outputDebugToConsole(String.format("Initiation of %s completed", this.getName()), Level.FINE);
 		}
 
+		for(ISchemaUpdater impl : getComponents(ISchemaUpdater.class)) {
+			impl.Run();
+		}
+
 		for(IPluginEnabled impl : getComponents(IPluginEnabled.class)) {
 			impl.OnPluginEnabled();
+		}
+	}
+
+	public String getLastVersion()
+	{
+		YamlConfiguration config = new YamlConfiguration();
+		try {
+			config.load("runsafe/plugins.yml");
+		} catch(IOException e) {
+			return null;
+		} catch(InvalidConfigurationException e) {
+			output.outputToConsole(String.format("Invalid yml in runsafe/plugins.yml! - %s", e.getMessage()), Level.WARNING);
+			return null;
+		}
+		return config.getString(this.getName());
+	}
+
+	public void saveCurrentVersion()
+	{
+		YamlConfiguration config = new YamlConfiguration();
+		try {
+			config.load("runsafe/plugins.yml");
+		} catch(IOException e) {
+			output.outputToConsole(String.format("Problem loading runsafe/plugins.yml! - %s", e.getMessage()), Level.WARNING);
+		} catch(InvalidConfigurationException e) {
+			output.outputToConsole(String.format("Invalid yml in runsafe/plugins.yml! - %s", e.getMessage()), Level.WARNING);
+		}
+		config.set(getName(), getDescription().getVersion());
+		try {
+			config.save("runsafe/plugins.yml");
+		} catch(IOException e) {
+			output.outputToConsole(String.format("Unable to save runsafe/plugins.yml! - %s", e.getMessage()), Level.SEVERE);
 		}
 	}
 
@@ -129,7 +178,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel {
 	}
 
 	@Override
-	public <T> T getInstance(Class<T> type) {
+/**/	public <T> T getInstance(Class<T> type) {
 		container.addComponent(type);
 		T instance = container.getComponent(type);
 		container.removeComponent(type);
