@@ -93,6 +93,8 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 	@Override
 	public String getConfigValueAsString(String value)
 	{
+		if(this.configFile == null)
+			return null;
 		return this.configFile.getString(value);
 	}
 
@@ -127,6 +129,8 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 	@Override
 	public List<String> getConfigValueAsList(String value)
 	{
+		if(this.configFile == null)
+			return null;
 		return this.configFile.getStringList(value);
 	}
 
