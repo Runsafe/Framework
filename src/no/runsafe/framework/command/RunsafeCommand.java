@@ -8,6 +8,7 @@ import org.bukkit.ChatColor;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.logging.Level;
 
 public class RunsafeCommand implements ICommand {
 	public RunsafeCommand(String name, Collection<ICommand> subs, String... params) {
@@ -92,7 +93,9 @@ public class RunsafeCommand implements ICommand {
 			subArgOffset++;
 
 		else {
-			player.sendMessage(OnExecute(player, args));
+			String output = OnExecute(player, args);
+			if(output != null)
+				player.sendMessage(output);
 			return true;
 		}
 
@@ -120,7 +123,9 @@ public class RunsafeCommand implements ICommand {
 
 		else {
 			Console.finest("Exeuting command..");
-			Console.write(OnExecute(null, args));
+			String output = OnExecute(null, args);
+			if(output != null)
+				Console.outputColoredToConsole(output, Level.INFO);
 			return true;
 		}
 
@@ -161,14 +166,12 @@ public class RunsafeCommand implements ICommand {
 
 	protected ICommand getSubCommand(String name) {
 		Console.finest(String.format("Looking up subcommand %s", name));
-		if(subCommands.containsKey(name))
-		{
+		if(subCommands.containsKey(name)) {
 			Console.finest("Found exact match..");
 			return subCommands.get(name);
 		}
 		for(String sub : subCommands.keySet())
-			if(sub.startsWith(name))
-			{
+			if(sub.startsWith(name)) {
 				Console.finest(String.format("Found partial match in %s", sub));
 				return subCommands.get(sub);
 			}
