@@ -1,5 +1,6 @@
 package no.runsafe.framework.server.player;
 
+import no.runsafe.framework.extensibility.ITeleport;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
@@ -13,16 +14,6 @@ import java.util.List;
 import java.util.Set;
 
 public class RunsafePlayer {
-	//	public RunsafePlayer(String playerName)
-	//	{
-	//		Server server = RunsafePlugin.getPluginKernel().getComponent(Server.class);
-	//		player = server.getPlayer(playerName);
-	//		if (player == null)
-	//			basePlayer = server.getOfflinePlayer(playerName);
-	//		else
-	//			basePlayer = player;
-	//	}
-
 	public static List<RunsafePlayer> convert(OfflinePlayer[] players) {
 		ArrayList<RunsafePlayer> result = new ArrayList<RunsafePlayer>();
 		for(OfflinePlayer player : players)
@@ -30,12 +21,15 @@ public class RunsafePlayer {
 		return result;
 	}
 
-
 	public static List<RunsafePlayer> convert(Set<OfflinePlayer> players) {
 		ArrayList<RunsafePlayer> result = new ArrayList<RunsafePlayer>();
 		for(OfflinePlayer player : players)
 			result.add(new RunsafePlayer(player));
 		return result;
+	}
+
+	public static void setTeleporter(ITeleport teleporter) {
+		teleportHook = teleporter;
 	}
 
 	public RunsafePlayer(Player toWrap) {
@@ -104,13 +98,15 @@ public class RunsafePlayer {
 	}
 
 	public void teleport(RunsafeLocation location) {
+		if(RunsafePlayer.teleportHook != null)
+			location = RunsafePlayer.teleportHook.engage(location);
+
 		if(player != null)
 			player.teleport(location.getRaw());
 	}
 
 	public void teleport(RunsafeWorld world, double x, double y, double z) {
-		if(player != null)
-			player.teleport(new Location(world.getRaw(), x, y, z));
+		teleport(new RunsafeLocation(world, x, y, z));
 	}
 
 	public RunsafeItemStack getItemInHand() {
@@ -166,5 +162,5 @@ public class RunsafePlayer {
 
 	private Player player;
 	private final OfflinePlayer basePlayer;
-
+	private static ITeleport teleportHook;
 }
