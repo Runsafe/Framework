@@ -205,7 +205,11 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel {
 
 	private IMessagePump getMessagePump() {
 		IMessagePump pump = null;
-		if(!(this instanceof IPumpProvider)) {
+		if(this instanceof IPumpProvider)
+			return ((IPumpProvider) this).getInstance();
+
+		pump = getComponent(IMessagePump.class);
+		if(pump == null) {
 			pump = MessagePump.GetPump(this);
 			if(pump != null)
 				addComponent(pump);
@@ -235,7 +239,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel {
 				boolean success = true;
 				for(Integer rev : queries.keySet()) {
 					if(rev > revision) {
-						output.write(String.format("Updating table %s to revision %d", changes.getTableName(), rev));
+						output.write(String.format("Updating table %s from revision %d to revision %d", changes.getTableName(), revision, rev));
 						for(String sql : queries.get(rev)) {
 							try {
 								PreparedStatement query = db.prepare(sql);
