@@ -1,13 +1,12 @@
 package no.runsafe.framework.server;
 
-import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.entity.RunsafeEntity;
 import no.runsafe.framework.server.item.RunsafeItem;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.server.player.RunsafePlayer;
-import org.bukkit.Server;
 import org.bukkit.World;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
@@ -76,17 +75,33 @@ public class RunsafeWorld
 		return world.getMaxHeight();
 	}
 
-	public RunsafeEntity spawnCreature(RunsafeLocation location, EntityType entityType)
+	public RunsafeEntity spawnCreature(RunsafeLocation location, String type)
 	{
-		return new RunsafeEntity(world.spawnCreature(location.getRaw(), entityType));
+		return new RunsafeEntity(world.spawnCreature(location.getRaw(), EntityType.fromName(type)));
+	}
+
+	public RunsafeEntity spawnCreature(RunsafeLocation location, int id)
+	{
+		return new RunsafeEntity(world.spawnCreature(location.getRaw(), EntityType.fromId(id)));
 	}
 
 	public List<RunsafePlayer> getPlayers()
 	{
 		ArrayList<RunsafePlayer> result = new ArrayList<RunsafePlayer>();
-		for(Player p : world.getPlayers())
+		for (Player p : world.getPlayers())
 			result.add(new RunsafePlayer(p));
 		return result;
+	}
+
+	public List<RunsafeEntity> getEntities()
+	{
+		ArrayList<RunsafeEntity> entities = new ArrayList<RunsafeEntity>();
+		for (Entity entity : world.getEntities())
+			if (entity instanceof Player)
+				entities.add(new RunsafePlayer((Player) entity));
+			else
+				entities.add(new RunsafeEntity(entity));
+		return entities;
 	}
 
 	private final World world;

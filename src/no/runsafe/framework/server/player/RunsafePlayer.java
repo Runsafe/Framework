@@ -3,6 +3,7 @@ package no.runsafe.framework.server.player;
 import no.runsafe.framework.extensibility.ITeleport;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeWorld;
+import no.runsafe.framework.server.entity.RunsafeEntity;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import org.bukkit.Location;
@@ -13,7 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class RunsafePlayer {
+public class RunsafePlayer extends RunsafeEntity
+{
 	public static List<RunsafePlayer> convert(OfflinePlayer[] players) {
 		ArrayList<RunsafePlayer> result = new ArrayList<RunsafePlayer>();
 		for(OfflinePlayer player : players)
@@ -33,13 +35,17 @@ public class RunsafePlayer {
 	}
 
 	public RunsafePlayer(Player toWrap) {
+		super(toWrap);
 		player = toWrap;
 		basePlayer = toWrap;
 	}
 
 	public RunsafePlayer(OfflinePlayer toWrap) {
+		super(null);
 		if(toWrap instanceof Player)
 			player = (Player) toWrap;
+		else
+			player = null;
 		basePlayer = toWrap;
 	}
 
@@ -92,19 +98,6 @@ public class RunsafePlayer {
 			player.sendBlockChange(location.getRaw(), itemId, data);
 	}
 
-	public void setFallDistance(float distance) {
-		if(player != null)
-			player.setFallDistance(distance);
-	}
-
-	public void teleport(RunsafeLocation location) {
-		if(RunsafePlayer.teleportHook != null)
-			location = RunsafePlayer.teleportHook.engage(location);
-
-		if(player != null)
-			player.teleport(location.getRaw());
-	}
-
 	public void teleport(RunsafeWorld world, double x, double y, double z) {
 		teleport(new RunsafeLocation(world, x, y, z));
 	}
@@ -116,31 +109,13 @@ public class RunsafePlayer {
 		return null;
 	}
 
-	public RunsafeLocation getLocation() {
-		if(player != null)
-			return new RunsafeLocation(player.getLocation());
-
-		return null;
-	}
-
 	public void sendMessage(String message) {
 		if(player != null)
 			player.sendMessage(message);
 	}
 
-	public RunsafeWorld getWorld() {
-		if(player != null)
-			return new RunsafeWorld(player.getWorld());
-
-		return null;
-	}
-
 	public Player getRawPlayer() {
 		return this.player;
-	}
-
-	public OfflinePlayer getRaw() {
-		return this.basePlayer;
 	}
 
 	public RunsafeInventory getInventory() {
@@ -160,7 +135,7 @@ public class RunsafePlayer {
 		return player != null && player.hasPermission(permission);
 	}
 
-	private Player player;
+	private final Player player;
 	private final OfflinePlayer basePlayer;
 	private static ITeleport teleportHook;
 }
