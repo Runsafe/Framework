@@ -12,59 +12,64 @@ public class RunsafePlayerInventory extends RunsafeInventory {
 		inventory = toWrap;
 	}
 
-	List<RunsafeItemStack> getArmorContents() {
+	public List<RunsafeItemStack> getArmorContents() {
 		return RunsafeItemStack.convert(inventory.getArmorContents());
 	}
 
-	RunsafeItemStack getHelmet() {
+	public RunsafeItemStack getHelmet() {
 		return new RunsafeItemStack(inventory.getHelmet());
 	}
 
-	RunsafeItemStack getChestplate() {
+	public RunsafeItemStack getChestplate() {
 		return new RunsafeItemStack(inventory.getChestplate());
 	}
 
-	RunsafeItemStack getLeggings() {
+	public RunsafeItemStack getLeggings() {
 		return new RunsafeItemStack(inventory.getLeggings());
 	}
 
-	RunsafeItemStack getBoots() {
+	public RunsafeItemStack getBoots() {
 		return new RunsafeItemStack(inventory.getBoots());
 	}
 
-	void setArmorContents(List<RunsafeItemStack> itemStacks) {
+	public void setArmorContents(List<RunsafeItemStack> itemStacks) {
 		ItemStack[] stacks = new ItemStack[itemStacks.size()];
 		for(int i = 0; i < itemStacks.size(); ++i)
 			stacks[i] = itemStacks.get(i).getRaw();
 		inventory.setArmorContents(stacks);
 	}
 
-	void setHelmet(RunsafeItemStack itemStack) {
+	public void setHelmet(RunsafeItemStack itemStack) {
 		inventory.setHelmet(itemStack.getRaw());
 	}
 
-	void setChestplate(RunsafeItemStack itemStack) {
+	public void setChestplate(RunsafeItemStack itemStack) {
 		inventory.setChestplate(itemStack.getRaw());
 	}
 
-	void setLeggings(RunsafeItemStack itemStack) {
+	public void setLeggings(RunsafeItemStack itemStack) {
 		inventory.setLeggings(itemStack.getRaw());
 	}
 
-	void setBoots(RunsafeItemStack itemStack) {
+	public void setBoots(RunsafeItemStack itemStack) {
 		inventory.setBoots(itemStack.getRaw());
 	}
 
-	RunsafeItemStack getItemInHand() {
+	public RunsafeItemStack getItemInHand() {
 		return new RunsafeItemStack(inventory.getItemInHand());
 	}
 
-	void setItemInHand(RunsafeItemStack itemStack) {
+	public void setItemInHand(RunsafeItemStack itemStack) {
 		inventory.setItemInHand(itemStack.getRaw());
 	}
 
-	int getHeldItemSlot() {
+	public int getHeldItemSlot() {
 		return inventory.getHeldItemSlot();
+	}
+
+	public void clear() {
+		super.clear();
+		inventory.setArmorContents(new ItemStack[4]);
 	}
 
 	private final PlayerInventory inventory;

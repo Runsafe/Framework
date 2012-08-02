@@ -21,11 +21,10 @@ public class RunsafeWorld
 		world = toWrap;
 	}
 
-//	public RunsafeWorld(String worldName)
-//	{
-//		Server server = RunsafePlugin.getPluginKernel().getComponent(Server.class);
-//		world = server.getWorld(worldName);
-//	}
+	public RunsafeWorld(String worldName)
+	{
+		world = RunsafeServer.Instance.getWorld(worldName).getRaw();
+	}
 
 	public String getName()
 	{

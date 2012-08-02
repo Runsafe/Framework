@@ -42,7 +42,10 @@ public class RunsafeCommandHandler implements CommandExecutor
 			return commandObject.Execute(new RunsafePlayer((Player) sender), args);
 		}
 		else
+		{
+			console.write(String.format("[CONSOLE_COMMAND] %s %s", label, StringUtils.join(rawArgs, " ")));
 			return commandObject.Execute(args);
+		}
 	}
 
 	private String[] tokenizeArgs(String[] rawArgs)
