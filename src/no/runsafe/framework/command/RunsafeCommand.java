@@ -15,9 +15,13 @@ public class RunsafeCommand implements ICommand {
 		subCommands = new HashMap<String, ICommand>();
 		this.params = new HashMap<String, String>();
 		if(params != null) {
+			paramKeys = params;
 			for(String param : params)
 				this.params.put(param, null);
 		}
+		else
+			paramKeys = null;
+
 		if(subs != null) {
 			for(ICommand command : subs)
 				subCommands.put(command.getCommandName(), command);
@@ -154,8 +158,8 @@ public class RunsafeCommand implements ICommand {
 	}
 
 	protected void captureArgs(String[] args) {
-		if(!params.isEmpty())
-			for(String param : params.keySet())
+		if(paramKeys != null && paramKeys.length > 0)
+			for(String param : paramKeys)
 				params.put(param, args[subArgOffset++]);
 	}
 
@@ -188,6 +192,7 @@ public class RunsafeCommand implements ICommand {
 	protected final HashMap<String, ICommand> subCommands;
 	protected final String commandName;
 	protected int subArgOffset;
+	protected final String[] paramKeys;
 	protected final HashMap<String, String> params;
 	protected IOutput Console;
 }
