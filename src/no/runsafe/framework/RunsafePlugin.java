@@ -260,9 +260,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 			SchemaRevisionRepository repository = getComponent(SchemaRevisionRepository.class);
 			IDatabase db = getComponent(IDatabase.class);
 			for (ISchemaUpdater impl : updaters)
-			{
 				impl.Run(repository, db);
-			}
 		}
 	}
 
