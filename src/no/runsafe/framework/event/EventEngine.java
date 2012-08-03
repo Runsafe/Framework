@@ -17,6 +17,7 @@ import no.runsafe.framework.event.listener.entity.EntityShootBow;
 import no.runsafe.framework.event.listener.player.*;
 import no.runsafe.framework.event.player.*;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,6 +82,9 @@ public class EventEngine
 
 			if (sub instanceof IEntityShootBowEvent)
 				listeners.add(new EntityShootBow((IEntityShootBowEvent) sub));
+
+            if (sub instanceof IPlayerInteractEntityEvent)
+                listeners.add(new PlayerInteractEntity((IPlayerInteractEntityEvent) sub));
 		}
 		return listeners;
 	}
