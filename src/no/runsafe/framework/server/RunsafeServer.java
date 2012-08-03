@@ -180,7 +180,7 @@ public class RunsafeServer {
 	}
 
 	public List<RunsafePlayer> getOnlinePlayers() {
-		return RunsafePlayer.convert(server.getOnlinePlayers());
+		return RunsafePlayer.convert((OfflinePlayer[]) server.getOnlinePlayers());
 	}
 
 	public List<RunsafePlayer> getOperators() {
