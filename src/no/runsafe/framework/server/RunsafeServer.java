@@ -11,6 +11,7 @@ import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.PluginCommand;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.help.HelpMap;
@@ -180,7 +181,7 @@ public class RunsafeServer {
 	}
 
 	public List<RunsafePlayer> getOnlinePlayers() {
-		return RunsafePlayer.convert(server.getOnlinePlayers());
+		return RunsafePlayer.convert((OfflinePlayer[]) server.getOnlinePlayers());
 	}
 
 	public List<RunsafePlayer> getOperators() {
