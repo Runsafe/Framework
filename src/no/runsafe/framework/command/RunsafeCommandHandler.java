@@ -9,9 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.io.Console;
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 public class RunsafeCommandHandler implements CommandExecutor
 {
@@ -53,23 +51,23 @@ public class RunsafeCommandHandler implements CommandExecutor
 		ArrayList<String> args = new ArrayList<String>();
 		boolean combining = false;
 		String combined = "";
-		for(String arg : rawArgs)
+		for (String arg : rawArgs)
 		{
-			if(combining)
+			if (combining)
 			{
-				if(arg.endsWith("\""))
+				if (arg.endsWith("\""))
 				{
 					arg = arg.substring(0, arg.length() - 1);
 					combining = false;
 				}
 				combined += " " + arg;
-				if(!combining)
+				if (!combining)
 				{
 					args.add(combined);
 					combined = "";
 				}
 			}
-			else if(arg.startsWith("\""))
+			else if (arg.startsWith("\""))
 			{
 				combining = true;
 				combined = arg.substring(1);

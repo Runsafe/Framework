@@ -3,67 +3,83 @@ package no.runsafe.framework.server.block;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.material.RunsafeMaterial;
+import no.runsafe.framework.server.metadata.RunsafeMetadata;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 
 import java.util.ArrayList;
 
-public class RunsafeBlock {
-	public RunsafeBlock(Block toWrap) {
+public class RunsafeBlock extends RunsafeMetadata
+{
+	public RunsafeBlock(Block toWrap)
+	{
+		super(toWrap);
 		block = toWrap;
 	}
 
-	public int getTypeId() {
+	public int getTypeId()
+	{
 		return block.getTypeId();
 	}
 
-	public boolean canPassThrough() {
+	public boolean canPassThrough()
+	{
 		return passableBlocks.contains(this.getTypeId());
 	}
 
-	public void setTypeId(int materialID) {
+	public void setTypeId(int materialID)
+	{
 		this.block.setTypeId(materialID);
 	}
 
-	public RunsafeWorld getWorld() {
+	public RunsafeWorld getWorld()
+	{
 		return new RunsafeWorld(block.getWorld());
 	}
 
-	public RunsafeBlockState getBlockState() {
+	public RunsafeBlockState getBlockState()
+	{
 		return new RunsafeBlockState(block.getState());
 	}
 
-	public RunsafeLocation getLocation() {
+	public RunsafeLocation getLocation()
+	{
 		return new RunsafeLocation(block.getLocation());
 	}
 
-	public Block getRaw() {
+	public Block getRaw()
+	{
 		return block;
 	}
 
-	public RunsafeMaterial getMaterialType() {
+	public RunsafeMaterial getMaterialType()
+	{
 		return new RunsafeMaterial(block.getType());
 	}
 
-	public void breakNaturally() {
+	public void breakNaturally()
+	{
 		block.breakNaturally();
 	}
 
-	public boolean isHazardous() {
+	public boolean isHazardous()
+	{
 		int blockType = this.getTypeId();
 
 		return blockType == Material.LAVA.getId() ||
-				blockType == Material.STATIONARY_LAVA.getId() ||
-				blockType == Material.FIRE.getId();
+			blockType == Material.STATIONARY_LAVA.getId() ||
+			blockType == Material.FIRE.getId();
 	}
 
-	public boolean isAir() {
+	public boolean isAir()
+	{
 		return this.getTypeId() == Material.AIR.getId();
 	}
 
 	private static final ArrayList<Integer> passableBlocks = new ArrayList<Integer>();
 
-	static {
+	static
+	{
 		passableBlocks.add(Material.AIR.getId());
 		passableBlocks.add(Material.BROWN_MUSHROOM.getId());
 		passableBlocks.add(Material.CROPS.getId());

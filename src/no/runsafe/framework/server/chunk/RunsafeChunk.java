@@ -1,5 +1,6 @@
 package no.runsafe.framework.server.chunk;
 
+import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.block.RunsafeBlockState;
@@ -8,24 +9,30 @@ import org.bukkit.Chunk;
 
 import java.util.List;
 
-public class RunsafeChunk {
-	public RunsafeChunk(Chunk toWrap) {
+public class RunsafeChunk
+{
+	public RunsafeChunk(Chunk toWrap)
+	{
 		chunk = toWrap;
 	}
 
-	public int getX() {
+	public int getX()
+	{
 		return chunk.getX();
 	}
 
-	public int getZ() {
+	public int getZ()
+	{
 		return chunk.getZ();
 	}
 
-	public RunsafeWorld getWorld() {
+	public RunsafeWorld getWorld()
+	{
 		return new RunsafeWorld(chunk.getWorld());
 	}
 
-	public RunsafeBlock getBlock(int i, int i1, int i2) {
+	public RunsafeBlock getBlock(int i, int i1, int i2)
+	{
 		return new RunsafeBlock(chunk.getBlock(i, i1, i2));
 	}
 
@@ -33,35 +40,43 @@ public class RunsafeChunk {
 
 	//RunsafeChunkSnapshot getChunkSnapshot(boolean b, boolean b1, boolean b2);
 
-	public List<RunsafeEntity> getEntities() {
-		return RunsafeEntity.convert(chunk.getEntities());
+	public List<RunsafeEntity> getEntities()
+	{
+		return ObjectWrapper.convert(chunk.getEntities());
 	}
 
-	public List<RunsafeBlockState> getTileEntities() {
-		return RunsafeBlockState.convert(chunk.getTileEntities());
+	public List<RunsafeBlockState> getTileEntities()
+	{
+		return ObjectWrapper.convert(chunk.getTileEntities());
 	}
 
-	public boolean isLoaded() {
+	public boolean isLoaded()
+	{
 		return chunk.isLoaded();
 	}
 
-	public boolean load(boolean b) {
+	public boolean load(boolean b)
+	{
 		return chunk.load(b);
 	}
 
-	public boolean load() {
+	public boolean load()
+	{
 		return chunk.load();
 	}
 
-	public boolean unload(boolean b, boolean b1) {
+	public boolean unload(boolean b, boolean b1)
+	{
 		return chunk.unload(b, b1);
 	}
 
-	public boolean unload(boolean b) {
+	public boolean unload(boolean b)
+	{
 		return chunk.unload(b);
 	}
 
-	public boolean unload() {
+	public boolean unload()
+	{
 		return chunk.unload();
 	}
 

@@ -4,25 +4,26 @@ import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.entity.RunsafeEntity;
 import no.runsafe.framework.server.item.RunsafeItem;
 import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.metadata.RunsafeMetadata;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.World;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RunsafeWorld
+public class RunsafeWorld extends RunsafeMetadata
 {
 	public RunsafeWorld(World toWrap)
 	{
+		super(toWrap);
 		world = toWrap;
 	}
 
 	public RunsafeWorld(String worldName)
 	{
-		world = RunsafeServer.Instance.getWorld(worldName).getRaw();
+		this(RunsafeServer.Instance.getWorld(worldName).getRaw());
 	}
 
 	public String getName()
@@ -95,13 +96,14 @@ public class RunsafeWorld
 
 	public List<RunsafeEntity> getEntities()
 	{
-		ArrayList<RunsafeEntity> entities = new ArrayList<RunsafeEntity>();
-		for (Entity entity : world.getEntities())
-			if (entity instanceof Player)
-				entities.add(new RunsafePlayer((Player) entity));
-			else
-				entities.add(new RunsafeEntity(entity));
-		return entities;
+		return ObjectWrapper.convert(world.getEntities());
+//		ArrayList<RunsafeEntity> entities = new ArrayList<RunsafeEntity>();
+//		for (Entity entity : world.getEntities())
+//			if (entity instanceof Player)
+//				entities.add(new RunsafePlayer((Player) entity));
+//			else
+//				entities.add(new RunsafeEntity(entity));
+//		return entities;
 	}
 
 	private final World world;

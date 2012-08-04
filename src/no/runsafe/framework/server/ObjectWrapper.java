@@ -4,7 +4,7 @@ import no.runsafe.framework.server.block.*;
 import no.runsafe.framework.server.entity.RunsafeEntity;
 import no.runsafe.framework.server.entity.RunsafeLivingEntity;
 import no.runsafe.framework.server.entity.RunsafePainting;
-import no.runsafe.framework.server.entity.RunsafePlayer;
+import no.runsafe.framework.server.player.RunsafePlayer;
 import no.runsafe.framework.server.metadata.RunsafeMetadata;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.World;

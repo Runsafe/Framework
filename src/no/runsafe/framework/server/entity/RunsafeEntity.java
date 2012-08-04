@@ -1,28 +1,29 @@
 package no.runsafe.framework.server.entity;
 
+import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeServer;
 import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.event.entity.RunsafeEntityDamageEvent;
+import no.runsafe.framework.server.metadata.RunsafeMetadata;
 import org.bukkit.entity.Entity;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class RunsafeEntity
+public class RunsafeEntity extends RunsafeMetadata
 {
-
-	public static List<RunsafeEntity> convert(Entity[] entities)
-	{
-		ArrayList<RunsafeEntity> result = new ArrayList<RunsafeEntity>();
-		for (Entity entity : entities)
-			result.add(new RunsafeEntity(entity));
-		return result;
-	}
+//	public static List<RunsafeEntity> convert(Entity[] entities)
+//	{
+//		ArrayList<RunsafeEntity> result = new ArrayList<RunsafeEntity>();
+//		for (Entity entity : entities)
+//			result.add(new RunsafeEntity(entity));
+//		return result;
+//	}
 
 	public RunsafeEntity(Entity toWrap)
 	{
+		super(toWrap);
 		entity = toWrap;
 	}
 
@@ -53,7 +54,7 @@ public class RunsafeEntity
 
 	public List<RunsafeEntity> getNearbyEntities(double x, double y, double z)
 	{
-		return RunsafeEntity.convert((Entity[]) entity.getNearbyEntities(x, y, z).toArray());
+		return ObjectWrapper.convert(entity.getNearbyEntities(x, y, z));
 	}
 
 	public int getEntityId()

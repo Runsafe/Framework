@@ -1,6 +1,5 @@
 package no.runsafe.framework.messaging;
 
-import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.server.player.RunsafePlayer;
 
 public class Message

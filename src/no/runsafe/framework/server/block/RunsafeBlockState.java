@@ -5,85 +5,94 @@ import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.chunk.RunsafeChunk;
 import no.runsafe.framework.server.material.RunsafeMaterial;
 import no.runsafe.framework.server.material.RunsafeMaterialData;
+import no.runsafe.framework.server.metadata.RunsafeMetadata;
 import org.bukkit.block.BlockState;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class RunsafeBlockState {
-
-	public static List<RunsafeBlockState> convert(BlockState[] tileEntities) {
-		ArrayList<RunsafeBlockState> result = new ArrayList<RunsafeBlockState>();
-		for(BlockState state : tileEntities)
-			result.add(new RunsafeBlockState(state));
-		return result;
-	}
-
-	public RunsafeBlockState(BlockState toWrap) {
+public class RunsafeBlockState extends RunsafeMetadata
+{
+	public RunsafeBlockState(BlockState toWrap)
+	{
+		super(toWrap);
 		blockState = toWrap;
 	}
 
-	public RunsafeChunk getChunk() {
+	public RunsafeChunk getChunk()
+	{
 		return new RunsafeChunk(blockState.getChunk());
 	}
 
-	public RunsafeMaterialData getMaterialData() {
+	public RunsafeMaterialData getMaterialData()
+	{
 		return new RunsafeMaterialData(blockState.getData());
 	}
 
-	public byte getLightLevel() {
+	public byte getLightLevel()
+	{
 		return blockState.getLightLevel();
 	}
 
-	public RunsafeLocation getLocation() {
+	public RunsafeLocation getLocation()
+	{
 		return new RunsafeLocation(blockState.getLocation());
 	}
 
-	public RunsafeMaterial getMaterial() {
+	public RunsafeMaterial getMaterial()
+	{
 		return new RunsafeMaterial(blockState.getType());
 	}
 
-	public int getMaterialID() {
+	public int getMaterialID()
+	{
 		return blockState.getTypeId();
 	}
 
-	public RunsafeWorld getWorld() {
+	public RunsafeWorld getWorld()
+	{
 		return new RunsafeWorld(blockState.getWorld());
 	}
 
-	public int getX() {
+	public int getX()
+	{
 		return blockState.getX();
 	}
 
-	public int getY() {
+	public int getY()
+	{
 		return blockState.getY();
 	}
 
-	public int getZ() {
+	public int getZ()
+	{
 		return blockState.getZ();
 	}
 
-	public void setMaterialData(RunsafeMaterialData materialData) {
+	public void setMaterialData(RunsafeMaterialData materialData)
+	{
 		blockState.setData(materialData.getRaw());
 	}
 
-	public void setMaterial(RunsafeMaterial material) {
+	public void setMaterial(RunsafeMaterial material)
+	{
 		blockState.setType(material.getRaw());
 	}
 
-	public void setMaterialId(int materialId) {
+	public void setMaterialId(int materialId)
+	{
 		blockState.setTypeId(materialId);
 	}
 
-	public void update(boolean forceUpdate) {
+	public void update(boolean forceUpdate)
+	{
 		blockState.update(forceUpdate);
 	}
 
-	public void update() {
+	public void update()
+	{
 		blockState.update();
 	}
 
-	public BlockState getRaw() {
+	public BlockState getRaw()
+	{
 		return blockState;
 	}
 

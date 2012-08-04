@@ -2,23 +2,12 @@ package no.runsafe.framework.server.entity;
 
 import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeLocation;
-import no.runsafe.framework.server.RunsafeServer;
-import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.block.RunsafeBlock;
-import no.runsafe.framework.server.event.entity.RunsafeEntityDamageEvent;
-import org.bukkit.Location;
-import org.bukkit.block.Block;
-import org.bukkit.entity.Entity;
+import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Projectile;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.UUID;
 
 public class RunsafeLivingEntity extends RunsafeEntity
 {
