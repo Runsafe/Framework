@@ -332,7 +332,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 			output.outputDebugToConsole(String.format("Registered event listener %s", listener.getClass().getName()), Level.FINER);
 		}
 
-		eventListeners = GetEvents();
+		List<Listener> eventListeners = GetEvents();
 		if (eventListeners != null && !eventListeners.isEmpty())
 		{
 			for (Listener listener : eventListeners)
@@ -368,7 +368,6 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 	}
 
 	protected DefaultPicoContainer container = null;
-	private List<Listener> eventListeners;
 	private IOutput output;
 	private HashMap<String, RunsafeCommandHandler> commands;
 }

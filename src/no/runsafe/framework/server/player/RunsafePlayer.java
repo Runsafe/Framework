@@ -1,6 +1,5 @@
 package no.runsafe.framework.server.player;
 
-import no.runsafe.framework.extensibility.ITeleport;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.entity.RunsafeLivingEntity;
@@ -12,11 +11,6 @@ import org.bukkit.entity.Player;
 
 public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHolder
 {
-	public static void setTeleporter(ITeleport teleporter)
-	{
-		teleportHook = teleporter;
-	}
-
 	public RunsafePlayer(Player toWrap)
 	{
 		super(toWrap);
@@ -139,5 +133,4 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 
 	private final Player player;
 	private final OfflinePlayer basePlayer;
-	private static ITeleport teleportHook;
 }
