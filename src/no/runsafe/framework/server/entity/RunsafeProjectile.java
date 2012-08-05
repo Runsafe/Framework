@@ -31,5 +31,5 @@ public class RunsafeProjectile extends RunsafeEntity
 		projectile.setBounce(b);
 	}
 
-	Projectile projectile;
+	private final Projectile projectile;
 }

@@ -33,7 +33,7 @@ public class RunsafeDatabaseHandler implements IDatabase {
 			try {
 				config.save("runsafe/db.yml");
 			} catch(IOException e1) {
-				e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+				e1.printStackTrace();
 			}
 			output.write("\n" +
 					"\n" +
@@ -44,9 +44,9 @@ public class RunsafeDatabaseHandler implements IDatabase {
 					ConsoleColors.reset
 			);
 		} catch(IOException e) {
-			e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+			e.printStackTrace();
 		} catch(InvalidConfigurationException e) {
-			e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+			e.printStackTrace();
 		}
 		this.databaseURL = config.getString("database.url");
 		this.databaseUsername = config.getString("database.username");

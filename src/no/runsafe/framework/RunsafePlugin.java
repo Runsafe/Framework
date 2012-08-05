@@ -10,7 +10,8 @@ import no.runsafe.framework.event.*;
 import no.runsafe.framework.messaging.*;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.output.RunsafeOutputHandler;
-import no.runsafe.framework.plugin.*;
+import no.runsafe.framework.plugin.IPluginUpdate;
+import no.runsafe.framework.plugin.PluginResolver;
 import no.runsafe.framework.server.RunsafeServer;
 import no.runsafe.framework.timer.Scheduler;
 import org.bukkit.command.Command;
@@ -34,7 +35,7 @@ import java.util.logging.Level;
 
 public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 {
-	public static HashMap<String, RunsafePlugin> Instances = new HashMap<String, RunsafePlugin>();
+	public static final HashMap<String, RunsafePlugin> Instances = new HashMap<String, RunsafePlugin>();
 
 	public RunsafePlugin()
 	{
@@ -44,12 +45,12 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 	@Override
 	public void onEnable()
 	{
-		if (container == null)
+		if(container == null)
 			initializePlugin();
 
 		registerServices();
 
-		for (IPluginEnabled impl : getComponents(IPluginEnabled.class))
+		for(IPluginEnabled impl : getComponents(IPluginEnabled.class))
 			impl.OnPluginEnabled();
 
 		logPluginVersion();
@@ -62,7 +63,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 
 		unregisterServices();
 
-		for (IPluginDisabled impl : getComponents(IPluginDisabled.class))
+		for(IPluginDisabled impl : getComponents(IPluginDisabled.class))
 		{
 			impl.OnPluginDisabled();
 		}
@@ -109,12 +110,10 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		try
 		{
 			config.load("runsafe/plugins.yml");
-		}
-		catch (IOException e)
+		} catch(IOException e)
 		{
 			return null;
-		}
-		catch (InvalidConfigurationException e)
+		} catch(InvalidConfigurationException e)
 		{
 			output.outputToConsole(String.format("Invalid yml in runsafe/plugins.yml! - %s", e.getMessage()), Level.WARNING);
 			return null;
@@ -128,12 +127,10 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		try
 		{
 			config.load("runsafe/plugins.yml");
-		}
-		catch (IOException e)
+		} catch(IOException e)
 		{
 			output.outputToConsole(String.format("Problem loading runsafe/plugins.yml! - %s", e.getMessage()), Level.WARNING);
-		}
-		catch (InvalidConfigurationException e)
+		} catch(InvalidConfigurationException e)
 		{
 			output.outputToConsole(String.format("Invalid yml in runsafe/plugins.yml! - %s", e.getMessage()), Level.WARNING);
 		}
@@ -141,8 +138,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		try
 		{
 			config.save("runsafe/plugins.yml");
-		}
-		catch (IOException e)
+		} catch(IOException e)
 		{
 			output.outputToConsole(String.format("Unable to save runsafe/plugins.yml! - %s", e.getMessage()), Level.SEVERE);
 		}
@@ -156,7 +152,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 	protected List<RunsafeCommandHandler> GetCommands()
 	{
 		ArrayList<RunsafeCommandHandler> handlers = new ArrayList<RunsafeCommandHandler>();
-		for (ICommand command : getComponents(ICommand.class))
+		for(ICommand command : getComponents(ICommand.class))
 		{
 			command.setConsole(output);
 			handlers.add(new RunsafeCommandHandler(command, output));
@@ -168,7 +164,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 
 	private void initializePlugin()
 	{
-		if (RunsafeServer.Instance == null)
+		if(RunsafeServer.Instance == null)
 			RunsafeServer.Instance = new RunsafeServer(this.getServer());
 		Instances.put(getName(), this);
 
@@ -176,10 +172,10 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		addStandardComponents();
 
 		output = getComponent(IOutput.class);
-		output.outputDebugToConsole(String.format("Wiring up plugin", this.getName()), Level.FINE);
+		output.outputDebugToConsole("Wiring up plugin", Level.FINE);
 
 		// When the plugin has configuration, get it.
-		if (this instanceof IConfigurationFile)
+		if(this instanceof IConfigurationFile)
 			getComponent(IConfiguration.class).setConfigFileProvider((IConfigurationFile) this);
 
 		// Initiate pump before plugin setup is done
@@ -191,7 +187,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		RegisterCommands();
 		executeSchemaUpdaters();
 		executeSchemaChanges();
-		output.outputDebugToConsole(String.format("Initiation complete", this.getName()), Level.FINE);
+		output.outputDebugToConsole("Initiation complete", Level.FINE);
 	}
 
 	private void addStandardComponents()
@@ -217,8 +213,8 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 	{
 		IMessagePump pump = getMessagePump();
 		List<IMessageBusService> services = getComponents(IMessageBusService.class);
-		if (services != null)
-			for (IMessageBusService svc : services)
+		if(services != null)
+			for(IMessageBusService svc : services)
 			{
 				output.outputDebugToConsole(String.format("Registering %s message bus service in %s", svc.getServiceName(), svc.getClass().getName()), Level.INFO);
 				pump.RegisterService(svc);
@@ -228,25 +224,25 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 	private void logPluginVersion()
 	{
 		String lastVersion = getLastVersion();
-		if (!getDescription().getVersion().equals(lastVersion))
+		if(!getDescription().getVersion().equals(lastVersion))
 		{
 			IPluginUpdate updater = getComponent(IPluginUpdate.class);
-			if (updater == null || updater.UpdateFrom(lastVersion))
+			if(updater == null || updater.UpdateFrom(lastVersion))
 				saveCurrentVersion();
 		}
 	}
 
 	private IMessagePump getMessagePump()
 	{
-		IMessagePump pump = null;
-		if (this instanceof IPumpProvider)
+		IMessagePump pump;
+		if(this instanceof IPumpProvider)
 			return ((IPumpProvider) this).getInstance();
 
 		pump = getComponent(IMessagePump.class);
-		if (pump == null)
+		if(pump == null)
 		{
-			pump = MessagePump.GetPump(this);
-			if (pump != null)
+			pump = MessagePump.GetPump();
+			if(pump != null)
 				addComponent(pump);
 		}
 		return pump;
@@ -255,41 +251,40 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 	private void executeSchemaUpdaters()
 	{
 		List<ISchemaUpdater> updaters = getComponents(ISchemaUpdater.class);
-		if (!updaters.isEmpty())
+		if(!updaters.isEmpty())
 		{
 			SchemaRevisionRepository repository = getComponent(SchemaRevisionRepository.class);
 			IDatabase db = getComponent(IDatabase.class);
-			for (ISchemaUpdater impl : updaters)
+			for(ISchemaUpdater impl : updaters)
 				impl.Run(repository, db);
 		}
 	}
 
 	private void executeSchemaChanges()
 	{
-		List<ISchemaChanges> changeses = getComponents(ISchemaChanges.class);
-		if (!changeses.isEmpty())
+		List<ISchemaChanges> changeSets = getComponents(ISchemaChanges.class);
+		if(!changeSets.isEmpty())
 		{
 			SchemaRevisionRepository repository = getComponent(SchemaRevisionRepository.class);
 			IDatabase db = getComponent(IDatabase.class);
-			for (ISchemaChanges changes : changeses)
+			for(ISchemaChanges changes : changeSets)
 			{
 				int revision = repository.getRevision(changes.getTableName());
 				HashMap<Integer, List<String>> queries = changes.getSchemaUpdateQueries();
 				boolean success = true;
-				for (Integer rev : queries.keySet())
+				for(Integer rev : queries.keySet())
 				{
-					if (rev > revision)
+					if(rev > revision)
 					{
 						output.write(String.format("Updating table %s from revision %d to revision %d", changes.getTableName(), revision, rev));
-						for (String sql : queries.get(rev))
+						for(String sql : queries.get(rev))
 						{
 							try
 							{
 								PreparedStatement query = db.prepare(sql);
 								query.execute();
 								revision = rev;
-							}
-							catch (SQLException e)
+							} catch(SQLException e)
 							{
 								output.write(String.format("Failed executing query %s: %s", sql, e.getMessage()));
 								e.printStackTrace();
@@ -297,7 +292,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 								break;
 							}
 						}
-						if (!success)
+						if(!success)
 							break;
 					}
 				}
@@ -308,12 +303,12 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 
 	private void unregisterServices()
 	{
-		IMessagePump pump = MessagePump.GetPump(this);
-		if (pump != null)
+		IMessagePump pump = MessagePump.GetPump();
+		if(pump != null)
 		{
 			List<IMessageBusService> services = getComponents(IMessageBusService.class);
-			if (services != null)
-				for (IMessageBusService svc : services)
+			if(services != null)
+				for(IMessageBusService svc : services)
 				{
 					output.outputDebugToConsole(String.format("UnRegistering %s message bus service in %s", svc.getServiceName(), svc.getClass().getName()), Level.INFO);
 					pump.UnregisterService(svc);
@@ -326,16 +321,16 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		PluginManager pluginManager = this.getServer().getPluginManager();
 
 		EventEngine engine = new EventEngine(container.getComponents(IRunsafeEvent.class));
-		for (Listener listener : engine.getListeners())
+		for(Listener listener : engine.getListeners())
 		{
 			pluginManager.registerEvents(listener, this);
 			output.outputDebugToConsole(String.format("Registered event listener %s", listener.getClass().getName()), Level.FINER);
 		}
 
 		List<Listener> eventListeners = GetEvents();
-		if (eventListeners != null && !eventListeners.isEmpty())
+		if(eventListeners != null && !eventListeners.isEmpty())
 		{
-			for (Listener listener : eventListeners)
+			for(Listener listener : eventListeners)
 			{
 				pluginManager.registerEvents(listener, this);
 				output.outputDebugToConsole(String.format("Registered event listener %s", listener.getClass().getName()), Level.FINER);
@@ -343,21 +338,22 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		}
 
 		List<IConfigurationChanged> configListeners = getComponents(IConfigurationChanged.class);
-		if (configListeners != null && configListeners.size() > 0)
+		if(configListeners != null && configListeners.size() > 0)
 			getComponent(IConfiguration.class).setListeners(configListeners);
 
-		output.outputDebugToConsole(String.format("Registered %d event listeners", eventListeners.size()), Level.FINE);
+		if(eventListeners != null)
+			output.outputDebugToConsole(String.format("Registered %d event listeners", eventListeners.size()), Level.FINE);
 	}
 
 	private void RegisterCommands()
 	{
 		commands = new HashMap<String, RunsafeCommandHandler>();
 		List<RunsafeCommandHandler> commandList = this.GetCommands();
-		for (RunsafeCommandHandler handler : commandList)
+		for(RunsafeCommandHandler handler : commandList)
 		{
 			PluginCommand command = getCommand(handler.getName());
 
-			if (command == null)
+			if(command == null)
 				output.outputToConsole(String.format("Command not found: %s - does it exist in plugin.yml?", handler.getName()));
 			else
 			{

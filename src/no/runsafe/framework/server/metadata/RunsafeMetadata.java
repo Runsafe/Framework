@@ -32,5 +32,5 @@ public class RunsafeMetadata
 		meta.removeMetadata(s, plugin);
 	}
 
-	private Metadatable meta;
+	private final Metadatable meta;
 }

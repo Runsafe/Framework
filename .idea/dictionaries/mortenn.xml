@@ -5,13 +5,17 @@
       <w>chestplate</w>
       <w>commandsender</w>
       <w>ender</w>
+      <w>jdbc</w>
       <w>laytonsmith</w>
       <w>minecraft</w>
+      <w>minecraftuser</w>
       <w>picocontainer</w>
       <w>preprocess</w>
       <w>rawtypes</w>
       <w>redstone</w>
       <w>runsafe</w>
+      <w>spawner</w>
+      <w>subcommand</w>
       <w>teleport</w>
       <w>unban</w>
       <w>unregister</w>

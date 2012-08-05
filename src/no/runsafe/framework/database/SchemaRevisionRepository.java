@@ -23,7 +23,6 @@ public class SchemaRevisionRepository {
 			create.close();
 		} catch(SQLException e) {
 			e.printStackTrace();
-			return;
 		}
 	}
 
@@ -60,9 +59,9 @@ public class SchemaRevisionRepository {
 			update.close();
 
 		} catch(SQLException e) {
-			e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+			e.printStackTrace();
 		}
 	}
 
-	private IDatabase database;
+	private final IDatabase database;
 }

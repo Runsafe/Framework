@@ -126,7 +126,7 @@ public class RunsafeCommand implements ICommand {
 			subArgOffset++;
 
 		else {
-			Console.finest("Exeuting command..");
+			Console.finest("Executing command..");
 			String output = OnExecute(null, args);
 			if(output != null)
 				Console.outputColoredToConsole(output, Level.INFO);

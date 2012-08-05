@@ -27,5 +27,5 @@ public class RunsafePainting extends RunsafeEntity
 		painting.setArt(Art.getById(id));
 	}
 
-	private Painting painting;
+	private final Painting painting;
 }

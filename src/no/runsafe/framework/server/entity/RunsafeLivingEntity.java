@@ -160,5 +160,5 @@ public class RunsafeLivingEntity extends RunsafeEntity
 	//	{
 	//	}
 
-	private LivingEntity entity;
+	private final LivingEntity entity;
 }

@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MessagePump implements IMessagePump {
-	public static IMessagePump GetPump(RunsafePlugin plugin) {
+	public static IMessagePump GetPump() {
 		Plugin pump = RunsafePlugin.Instances.get("RunsafeServices");
 		if(pump == null || !(pump instanceof IPumpProvider))
 			return null;
