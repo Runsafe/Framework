@@ -3,14 +3,14 @@ package no.runsafe.framework.server.player;
 import no.runsafe.framework.extensibility.ITeleport;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeWorld;
-import no.runsafe.framework.server.entity.RunsafeEntity;
+import no.runsafe.framework.server.entity.RunsafeLivingEntity;
 import no.runsafe.framework.server.inventory.IInventoryHolder;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
-public class RunsafePlayer extends RunsafeEntity implements IInventoryHolder
+public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHolder
 {
 	public static void setTeleporter(ITeleport teleporter)
 	{
@@ -27,7 +27,7 @@ public class RunsafePlayer extends RunsafeEntity implements IInventoryHolder
 	public RunsafePlayer(OfflinePlayer toWrap)
 	{
 		super((toWrap instanceof Player) ? (Player) toWrap : null);
-		if (toWrap instanceof Player)
+		if(toWrap instanceof Player)
 			player = (Player) toWrap;
 		else
 			player = null;
@@ -61,7 +61,7 @@ public class RunsafePlayer extends RunsafeEntity implements IInventoryHolder
 
 	public float getXP()
 	{
-		if (player == null)
+		if(player == null)
 			return 0;
 
 		return player.getExp();
@@ -69,13 +69,13 @@ public class RunsafePlayer extends RunsafeEntity implements IInventoryHolder
 
 	public void setXP(float points)
 	{
-		if (player != null)
+		if(player != null)
 			player.setExp(points);
 	}
 
 	public int getLevel()
 	{
-		if (player == null)
+		if(player == null)
 			return 0;
 
 		return player.getLevel();
@@ -83,13 +83,13 @@ public class RunsafePlayer extends RunsafeEntity implements IInventoryHolder
 
 	public void setLevel(int level)
 	{
-		if (player != null)
+		if(player != null)
 			player.setLevel(level);
 	}
 
 	public void sendBlockChange(RunsafeLocation location, int itemId, byte data)
 	{
-		if (player != null)
+		if(player != null)
 			player.sendBlockChange(location.getRaw(), itemId, data);
 	}
 
@@ -100,7 +100,7 @@ public class RunsafePlayer extends RunsafeEntity implements IInventoryHolder
 
 	public RunsafeItemStack getItemInHand()
 	{
-		if (player != null)
+		if(player != null)
 			return new RunsafeItemStack(player.getItemInHand());
 
 		return null;
@@ -108,7 +108,7 @@ public class RunsafePlayer extends RunsafeEntity implements IInventoryHolder
 
 	public void sendMessage(String message)
 	{
-		if (player != null)
+		if(player != null)
 			player.sendMessage(message);
 	}
 
@@ -119,7 +119,7 @@ public class RunsafePlayer extends RunsafeEntity implements IInventoryHolder
 
 	public RunsafeInventory getInventory()
 	{
-		if (player != null)
+		if(player != null)
 			return new RunsafeInventory(player.getInventory());
 
 		return null;
@@ -128,7 +128,7 @@ public class RunsafePlayer extends RunsafeEntity implements IInventoryHolder
 	@SuppressWarnings("deprecation")
 	public void updateInventory()
 	{
-		if (player != null)
+		if(player != null)
 			player.updateInventory();
 	}
 

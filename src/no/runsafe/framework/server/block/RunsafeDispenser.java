@@ -1,5 +1,6 @@
 package no.runsafe.framework.server.block;
 
+import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.inventory.IInventoryHolder;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
 import org.bukkit.block.Dispenser;
@@ -20,7 +21,7 @@ public class RunsafeDispenser extends RunsafeBlockState implements IInventoryHol
 	@Override
 	public RunsafeInventory getInventory()
 	{
-		return new RunsafeInventory(dispenser.getInventory());
+		return ObjectWrapper.convert(dispenser.getInventory());
 	}
 
 	private final Dispenser dispenser;

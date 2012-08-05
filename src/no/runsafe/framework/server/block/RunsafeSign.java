@@ -1,6 +1,5 @@
 package no.runsafe.framework.server.block;
 
-import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
 
 public class RunsafeSign extends RunsafeBlockState

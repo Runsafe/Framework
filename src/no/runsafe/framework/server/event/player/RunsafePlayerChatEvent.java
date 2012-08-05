@@ -50,7 +50,7 @@ public class RunsafePlayerChatEvent extends RunsafePlayerEvent implements Cancel
 
 	public RunsafePlayer getPlayer()
 	{
-		return new RunsafePlayer(event.getPlayer());
+		return ObjectWrapper.convert(event.getPlayer());
 	}
 
 	public void setPlayer(RunsafePlayer player)

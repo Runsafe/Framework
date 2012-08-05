@@ -13,14 +13,6 @@ import java.util.UUID;
 
 public class RunsafeEntity extends RunsafeMetadata
 {
-//	public static List<RunsafeEntity> convert(Entity[] entities)
-//	{
-//		ArrayList<RunsafeEntity> result = new ArrayList<RunsafeEntity>();
-//		for (Entity entity : entities)
-//			result.add(new RunsafeEntity(entity));
-//		return result;
-//	}
-
 	public RunsafeEntity(Entity toWrap)
 	{
 		super(toWrap);
@@ -34,12 +26,12 @@ public class RunsafeEntity extends RunsafeMetadata
 
 	public RunsafeLocation getLocation()
 	{
-		return null;  //To change body of implemented methods use File | Settings | File Templates.
+		return ObjectWrapper.convert(entity.getLocation());
 	}
 
 	public RunsafeWorld getWorld()
 	{
-		return new RunsafeWorld(entity.getWorld());
+		return ObjectWrapper.convert(entity.getWorld());
 	}
 
 	public boolean teleport(RunsafeLocation location)
@@ -94,9 +86,7 @@ public class RunsafeEntity extends RunsafeMetadata
 
 	public RunsafeEntity getPassenger()
 	{
-		if (entity.getPassenger() == null)
-			return null;
-		return new RunsafeEntity(entity.getPassenger());
+		return ObjectWrapper.convert(entity.getPassenger());
 	}
 
 	public boolean setPassenger(RunsafeEntity entity)
@@ -161,7 +151,7 @@ public class RunsafeEntity extends RunsafeMetadata
 
 	public RunsafeEntity getVehicle()
 	{
-		return new RunsafeEntity(entity.getVehicle());
+		return ObjectWrapper.convert(entity.getVehicle());
 	}
 
 	private final Entity entity;

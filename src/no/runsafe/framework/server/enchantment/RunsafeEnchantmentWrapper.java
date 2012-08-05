@@ -4,20 +4,20 @@ import org.bukkit.enchantments.EnchantmentWrapper;
 
 public class RunsafeEnchantmentWrapper
 {
-    public RunsafeEnchantmentWrapper(EnchantmentWrapper toWrap)
-    {
-        enchantmentWrapper = toWrap;
-    }
+	public RunsafeEnchantmentWrapper(EnchantmentWrapper toWrap)
+	{
+		enchantmentWrapper = toWrap;
+	}
 
-    public RunsafeEnchantmentWrapper(int enchantId)
-    {
-        enchantmentWrapper = new EnchantmentWrapper(enchantId);
-    }
+	public RunsafeEnchantmentWrapper(int enchantId)
+	{
+		enchantmentWrapper = new EnchantmentWrapper(enchantId);
+	}
 
-    public EnchantmentWrapper getRaw()
-    {
-        return enchantmentWrapper;
-    }
+	public EnchantmentWrapper getRaw()
+	{
+		return enchantmentWrapper;
+	}
 
-    private final EnchantmentWrapper enchantmentWrapper;
+	private final EnchantmentWrapper enchantmentWrapper;
 }

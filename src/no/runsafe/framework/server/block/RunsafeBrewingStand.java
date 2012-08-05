@@ -1,5 +1,6 @@
 package no.runsafe.framework.server.block;
 
+import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.inventory.IInventoryHolder;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
 import org.bukkit.block.BrewingStand;
@@ -25,7 +26,7 @@ public class RunsafeBrewingStand extends RunsafeBlockState implements IInventory
 	// TODO replace inventory class
 	public RunsafeInventory getInventory()
 	{
-		return new RunsafeInventory(stand.getInventory());
+		return ObjectWrapper.convert(stand.getInventory());
 	}
 
 	private final BrewingStand stand;

@@ -14,7 +14,12 @@ public class RunsafeLivingEntity extends RunsafeEntity
 	public RunsafeLivingEntity(LivingEntity toWrap)
 	{
 		super(toWrap);
-		this.entity = entity;
+		this.entity = toWrap;
+	}
+
+	public LivingEntity getRaw()
+	{
+		return entity;
 	}
 
 	public int getHealth()
@@ -44,7 +49,7 @@ public class RunsafeLivingEntity extends RunsafeEntity
 
 	public RunsafeLocation getEyeLocation()
 	{
-		return new RunsafeLocation(entity.getEyeLocation());
+		return ObjectWrapper.convert(entity.getEyeLocation());
 	}
 
 	public List<RunsafeBlock> getLineOfSight(HashSet<Byte> bytes, int i)
@@ -131,29 +136,29 @@ public class RunsafeLivingEntity extends RunsafeEntity
 		return ObjectWrapper.convert(entity.getKiller());
 	}
 
-//	public boolean addPotionEffect(PotionEffect potionEffect)
-//	{
-//	}
-//
-//	public boolean addPotionEffect(PotionEffect potionEffect, boolean b)
-//	{
-//	}
-//
-//	public boolean addPotionEffects(Collection<PotionEffect> potionEffects)
-//	{
-//	}
-//
-//	public boolean hasPotionEffect(PotionEffectType potionEffectType)
-//	{
-//	}
-//
-//	public void removePotionEffect(PotionEffectType potionEffectType)
-//	{
-//	}
-//
-//	public Collection<PotionEffect> getActivePotionEffects()
-//	{
-//	}
+	//	public boolean addPotionEffect(PotionEffect potionEffect)
+	//	{
+	//	}
+	//
+	//	public boolean addPotionEffect(PotionEffect potionEffect, boolean b)
+	//	{
+	//	}
+	//
+	//	public boolean addPotionEffects(Collection<PotionEffect> potionEffects)
+	//	{
+	//	}
+	//
+	//	public boolean hasPotionEffect(PotionEffectType potionEffectType)
+	//	{
+	//	}
+	//
+	//	public void removePotionEffect(PotionEffectType potionEffectType)
+	//	{
+	//	}
+	//
+	//	public Collection<PotionEffect> getActivePotionEffects()
+	//	{
+	//	}
 
 	private LivingEntity entity;
 }

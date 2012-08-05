@@ -1,5 +1,6 @@
 package no.runsafe.framework.server.event.player;
 
+import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeWorld;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 
@@ -13,7 +14,7 @@ public class RunsafePlayerChangedWorldEvent extends RunsafePlayerEvent
 
 	public RunsafeWorld getSourceWorld()
 	{
-		return new RunsafeWorld(event.getFrom());
+		return ObjectWrapper.convert(event.getFrom());
 	}
 
 	private final PlayerChangedWorldEvent event;

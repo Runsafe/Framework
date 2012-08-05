@@ -1,5 +1,6 @@
 package no.runsafe.framework.server.block;
 
+import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.chunk.RunsafeChunk;
@@ -18,12 +19,12 @@ public class RunsafeBlockState extends RunsafeMetadata
 
 	public RunsafeChunk getChunk()
 	{
-		return new RunsafeChunk(blockState.getChunk());
+		return ObjectWrapper.convert(blockState.getChunk());
 	}
 
 	public RunsafeMaterialData getMaterialData()
 	{
-		return new RunsafeMaterialData(blockState.getData());
+		return ObjectWrapper.convert(blockState.getData());
 	}
 
 	public byte getLightLevel()
@@ -33,12 +34,12 @@ public class RunsafeBlockState extends RunsafeMetadata
 
 	public RunsafeLocation getLocation()
 	{
-		return new RunsafeLocation(blockState.getLocation());
+		return ObjectWrapper.convert(blockState.getLocation());
 	}
 
 	public RunsafeMaterial getMaterial()
 	{
-		return new RunsafeMaterial(blockState.getType());
+		return ObjectWrapper.convert(blockState.getType());
 	}
 
 	public int getMaterialID()
@@ -48,7 +49,7 @@ public class RunsafeBlockState extends RunsafeMetadata
 
 	public RunsafeWorld getWorld()
 	{
-		return new RunsafeWorld(blockState.getWorld());
+		return ObjectWrapper.convert(blockState.getWorld());
 	}
 
 	public int getX()

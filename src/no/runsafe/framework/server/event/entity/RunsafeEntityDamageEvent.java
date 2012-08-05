@@ -1,5 +1,6 @@
 package no.runsafe.framework.server.event.entity;
 
+import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.entity.RunsafeEntity;
 import no.runsafe.framework.server.event.CancellableEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -24,7 +25,7 @@ public class RunsafeEntityDamageEvent extends RunsafeEntityEvent implements Canc
 
 	public RunsafeEntity getEntity()
 	{
-		return new RunsafeEntity(event.getEntity());
+		return ObjectWrapper.convert(event.getEntity());
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package no.runsafe.framework.server.block;
 
+import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.material.RunsafeMaterial;
@@ -34,17 +35,17 @@ public class RunsafeBlock extends RunsafeMetadata
 
 	public RunsafeWorld getWorld()
 	{
-		return new RunsafeWorld(block.getWorld());
+		return ObjectWrapper.convert(block.getWorld());
 	}
 
 	public RunsafeBlockState getBlockState()
 	{
-		return new RunsafeBlockState(block.getState());
+		return ObjectWrapper.convert(block.getState());
 	}
 
 	public RunsafeLocation getLocation()
 	{
-		return new RunsafeLocation(block.getLocation());
+		return ObjectWrapper.convert(block.getLocation());
 	}
 
 	public Block getRaw()
@@ -54,7 +55,7 @@ public class RunsafeBlock extends RunsafeMetadata
 
 	public RunsafeMaterial getMaterialType()
 	{
-		return new RunsafeMaterial(block.getType());
+		return ObjectWrapper.convert(block.getType());
 	}
 
 	public void breakNaturally()

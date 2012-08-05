@@ -1,5 +1,6 @@
 package no.runsafe.framework.server.block;
 
+import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.inventory.IInventoryHolder;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
@@ -25,14 +26,14 @@ public class RunsafeDoubleChest implements IInventoryHolder
 			@Override
 			public RunsafeInventory getInventory()
 			{
-				return new RunsafeInventory(chest.getLeftSide().getInventory());
+				return ObjectWrapper.convert(chest.getLeftSide().getInventory());
 			}
 		};
 	}
 
 	public RunsafeLocation getLocation()
 	{
-		return new RunsafeLocation(chest.getLocation());
+		return ObjectWrapper.convert(chest.getLocation());
 	}
 
 	public IInventoryHolder getRightSide()
@@ -42,7 +43,7 @@ public class RunsafeDoubleChest implements IInventoryHolder
 			@Override
 			public RunsafeInventory getInventory()
 			{
-				return new RunsafeInventory(chest.getRightSide().getInventory());
+				return ObjectWrapper.convert(chest.getRightSide().getInventory());
 			}
 		};
 	}

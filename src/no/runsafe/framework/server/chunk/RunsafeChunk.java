@@ -28,12 +28,12 @@ public class RunsafeChunk
 
 	public RunsafeWorld getWorld()
 	{
-		return new RunsafeWorld(chunk.getWorld());
+		return ObjectWrapper.convert(chunk.getWorld());
 	}
 
 	public RunsafeBlock getBlock(int i, int i1, int i2)
 	{
-		return new RunsafeBlock(chunk.getBlock(i, i1, i2));
+		return ObjectWrapper.convert(chunk.getBlock(i, i1, i2));
 	}
 
 	//RunsafeChunkSnapshot getChunkSnapshot();

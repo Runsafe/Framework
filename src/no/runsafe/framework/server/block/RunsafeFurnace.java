@@ -1,5 +1,6 @@
 package no.runsafe.framework.server.block;
 
+import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.inventory.IInventoryHolder;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
 import org.bukkit.block.Furnace;
@@ -35,7 +36,7 @@ public class RunsafeFurnace extends RunsafeBlockState implements IInventoryHolde
 	// TODO Implement proper inventory class
 	public RunsafeInventory getInventory()
 	{
-		return new RunsafeInventory(furnace.getInventory());
+		return ObjectWrapper.convert(furnace.getInventory());
 	}
 
 	private final Furnace furnace;

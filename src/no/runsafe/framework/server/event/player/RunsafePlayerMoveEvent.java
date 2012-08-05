@@ -1,7 +1,8 @@
 package no.runsafe.framework.server.event.player;
 
-import no.runsafe.framework.server.event.CancellableEvent;
+import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeLocation;
+import no.runsafe.framework.server.event.CancellableEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 public class RunsafePlayerMoveEvent extends RunsafePlayerEvent implements CancellableEvent
@@ -26,7 +27,7 @@ public class RunsafePlayerMoveEvent extends RunsafePlayerEvent implements Cancel
 
 	public RunsafeLocation getFrom()
 	{
-		return new RunsafeLocation(event.getFrom());
+		return ObjectWrapper.convert(event.getFrom());
 	}
 
 	public void setFrom(RunsafeLocation location)
@@ -36,7 +37,7 @@ public class RunsafePlayerMoveEvent extends RunsafePlayerEvent implements Cancel
 
 	public RunsafeLocation getTo()
 	{
-		return new RunsafeLocation(event.getTo());
+		return ObjectWrapper.convert(event.getTo());
 	}
 
 	public void setTo(RunsafeLocation location)
