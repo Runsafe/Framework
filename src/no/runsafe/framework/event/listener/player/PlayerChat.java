@@ -4,7 +4,7 @@ import no.runsafe.framework.event.player.IPlayerChatEvent;
 import no.runsafe.framework.server.event.player.RunsafePlayerChatEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerChatEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 public class PlayerChat implements Listener
 {
@@ -14,7 +14,7 @@ public class PlayerChat implements Listener
     }
 
     @EventHandler
-    public void OnEvent(PlayerChatEvent event)
+    public void OnEvent(AsyncPlayerChatEvent event)
     {
         eventSubscriber.OnPlayerChatEvent(new RunsafePlayerChatEvent(event));
     }

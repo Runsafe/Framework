@@ -4,13 +4,14 @@ import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.event.CancellableEvent;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 //import org.bukkit.event.player.PlayerChatEvent;
 
 import java.util.List;
 
 public class RunsafePlayerChatEvent extends RunsafePlayerEvent implements CancellableEvent
 {
-	public RunsafePlayerChatEvent(PlayerChatEvent toWrap)
+	public RunsafePlayerChatEvent(AsyncPlayerChatEvent toWrap)
 	{
 		super(toWrap);
 		event = toWrap;
@@ -53,15 +54,10 @@ public class RunsafePlayerChatEvent extends RunsafePlayerEvent implements Cancel
 		return ObjectWrapper.convert(event.getPlayer());
 	}
 
-	public void setPlayer(RunsafePlayer player)
-	{
-		event.setPlayer((Player) player.getRaw());
-	}
-
 	public List<RunsafePlayer> getRecipients()
 	{
 		return ObjectWrapper.convert(event.getRecipients());
 	}
 
-	private final PlayerChatEvent event;
+	private final AsyncPlayerChatEvent event;
 }
