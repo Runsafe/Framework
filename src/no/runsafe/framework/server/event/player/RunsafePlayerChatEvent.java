@@ -4,7 +4,7 @@ import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.event.CancellableEvent;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerChatEvent;
+//import org.bukkit.event.player.PlayerChatEvent;
 
 import java.util.List;
 
