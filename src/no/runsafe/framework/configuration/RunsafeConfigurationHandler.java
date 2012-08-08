@@ -1,7 +1,6 @@
 package no.runsafe.framework.configuration;
 
 import no.runsafe.framework.FrameworkMessages;
-import no.runsafe.framework.IKernel;
 import no.runsafe.framework.event.IConfigurationChanged;
 import no.runsafe.framework.messaging.IMessageBusService;
 import no.runsafe.framework.messaging.Message;
@@ -56,6 +55,7 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 			this.configFile.options().copyDefaults(true);
 		}
 		this.save();
+		notifySubscribers();
 	}
 
 	// Replaces the current configuration values with the supplied defaults
@@ -93,7 +93,7 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 	@Override
 	public String getConfigValueAsString(String value)
 	{
-		if(this.configFile == null)
+		if (this.configFile == null)
 			return null;
 		return this.configFile.getString(value);
 	}
@@ -129,7 +129,7 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 	@Override
 	public List<String> getConfigValueAsList(String value)
 	{
-		if(this.configFile == null)
+		if (this.configFile == null)
 			return null;
 		return this.configFile.getStringList(value);
 	}
@@ -173,10 +173,6 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 	public Response processMessage(Message message)
 	{
 		load();
-		if (subscribers != null)
-			for (IConfigurationChanged sub : subscribers)
-				sub.OnConfigurationChanged();
-
 		return new Response()
 		{{
 				setStatus(MessageBusStatus.OK);
@@ -187,5 +183,14 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 	public void setListeners(List<IConfigurationChanged> subscribers)
 	{
 		this.subscribers = subscribers;
+		if(this.configFile != null)
+			notifySubscribers();
+	}
+
+	private void notifySubscribers()
+	{
+		if (subscribers != null)
+			for (IConfigurationChanged sub : subscribers)
+				sub.OnConfigurationChanged();
 	}
 }
