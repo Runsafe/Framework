@@ -272,12 +272,13 @@ public class RunsafeServer
 
 	public RunsafeWorld getWorld(String worldName)
 	{
-		return new RunsafeWorld(this.server.getWorld(worldName));
+		return ObjectWrapper.convert(this.server.getWorld(worldName));
 	}
 
 	public RunsafeWorld getWorld(UUID uid)
 	{
-		return new RunsafeWorld(this.server.getWorld(uid));
+		return ObjectWrapper.convert(this.server.getWorld(uid));
+
 	}
 
 	public File getWorldContainer()
