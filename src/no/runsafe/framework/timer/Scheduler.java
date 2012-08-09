@@ -29,6 +29,18 @@ public class Scheduler implements IScheduler
 	}
 
 	@Override
+	public int startAsyncTask(Runnable func, Long ticks)
+	{
+		return this.scheduler.scheduleAsyncDelayedTask(this.plugin, func, ticks);
+	}
+
+	@Override
+	public int startAsyncTask(Runnable func, int seconds)
+	{
+		return this.startAsyncTask(func, (long) seconds * 20);
+	}
+
+	@Override
 	public int startSyncRepeatingTask(Runnable func, int delay, int period)
 	{
 		return this.startSyncRepeatingTask(func, (long) delay * 20, (long) period * 20);
@@ -43,7 +55,7 @@ public class Scheduler implements IScheduler
 	@Override
 	public void cancelTask(int eventId)
 	{
-		if(this.scheduler.isQueued(eventId))
+		if (this.scheduler.isQueued(eventId))
 			this.scheduler.cancelTask(eventId);
 	}
 
