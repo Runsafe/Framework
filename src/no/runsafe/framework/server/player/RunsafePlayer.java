@@ -53,6 +53,11 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 		return basePlayer.isWhitelisted();
 	}
 
+	public boolean isBanned()
+	{
+		return basePlayer.isBanned();
+	}
+
 	public float getXP()
 	{
 		if(player == null)
