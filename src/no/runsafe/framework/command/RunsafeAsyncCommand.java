@@ -55,8 +55,6 @@ public abstract class RunsafeAsyncCommand extends RunsafeCommand
 						OnCommandCompletion(player, output);
 					}
 				}, 0L);
-				if (output != null)
-					player.sendMessage(output);
 			}
 		}, 0L);
 		return true;
