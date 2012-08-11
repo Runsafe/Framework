@@ -2,6 +2,9 @@ package no.runsafe.framework.command;
 
 import java.util.Collection;
 
+/**
+ * Only use this if you cannot use Async commands.
+ */
 public class RunsafePlayerCommand extends RunsafeCommand
 {
 	public RunsafePlayerCommand(String name, Collection<ICommand> subs, String... params)

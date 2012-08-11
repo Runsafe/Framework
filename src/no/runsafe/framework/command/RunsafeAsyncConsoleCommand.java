@@ -1,17 +1,13 @@
 package no.runsafe.framework.command;
 
 import no.runsafe.framework.server.player.RunsafePlayer;
+import no.runsafe.framework.timer.IScheduler;
 
-import java.util.Collection;
-
-/**
- * Only use this if you cannot use Async commands.
- */
-public class RunsafeConsoleCommand extends RunsafeCommand
+public abstract class RunsafeAsyncConsoleCommand extends RunsafeAsyncCommand
 {
-	public RunsafeConsoleCommand(String name, Collection<ICommand> subs, String... params)
+	public RunsafeAsyncConsoleCommand(String name, IScheduler scheduler, String... params)
 	{
-		super(name, subs, params);
+		super(name, scheduler, params);
 	}
 
 	@Override
