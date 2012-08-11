@@ -14,38 +14,50 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.logging.Level;
 
-public class RunsafeDatabaseHandler implements IDatabase {
+public class RunsafeDatabaseHandler implements IDatabase
+{
 	private final String databaseURL;
 	private final String databaseUsername;
 	private final String databasePassword;
 
 	private final IOutput output;
 
-	public RunsafeDatabaseHandler(IOutput output) {
+	public RunsafeDatabaseHandler(IOutput output)
+	{
 		YamlConfiguration config = new YamlConfiguration();
-		try {
+		try
+		{
 			config.load("runsafe/db.yml");
-		} catch(FileNotFoundException e) {
+		}
+		catch (FileNotFoundException e)
+		{
 			config.createSection("database");
 			config.set("database.url", "jdbc:mysql://localhost:3306/minecraft");
 			config.set("database.username", "minecraftuser");
 			config.set("database.password", "p4ssw0rd");
-			try {
+			try
+			{
 				config.save("runsafe/db.yml");
-			} catch(IOException e1) {
+			}
+			catch (IOException e1)
+			{
 				e1.printStackTrace();
 			}
 			output.write("\n" +
-					"\n" +
-					ConsoleColors.RED +
-					"================================================================\n" +
-					"Created new default runsafe/db.yml - you should change this now!\n" +
-					"================================================================" +
-					ConsoleColors.reset
+				"\n" +
+				ConsoleColors.RED +
+				"================================================================\n" +
+				"Created new default runsafe/db.yml - you should change this now!\n" +
+				"================================================================" +
+				ConsoleColors.reset
 			);
-		} catch(IOException e) {
+		}
+		catch (IOException e)
+		{
 			e.printStackTrace();
-		} catch(InvalidConfigurationException e) {
+		}
+		catch (InvalidConfigurationException e)
+		{
 			e.printStackTrace();
 		}
 		this.databaseURL = config.getString("database.url");
@@ -55,59 +67,83 @@ public class RunsafeDatabaseHandler implements IDatabase {
 	}
 
 	@Override
-	public Connection beginTransaction() {
-		try {
+	public Connection beginTransaction()
+	{
+		try
+		{
 			Connection conn = getConnection();
 			conn.setAutoCommit(false);
 			return conn;
-		} catch(SQLException e) {
+		}
+		catch (SQLException e)
+		{
 			this.output.outputToConsole(e.getMessage(), Level.SEVERE);
 			return null;
 		}
 	}
 
 	@Override
-	public void commitTransaction(Connection conn) {
-		try {
+	public void commitTransaction(Connection conn)
+	{
+		try
+		{
 			conn.commit();
 			conn.close();
-		} catch(SQLException e) {
+		}
+		catch (SQLException e)
+		{
 			this.output.outputToConsole(e.getMessage() + Arrays.toString(e.getStackTrace()), Level.SEVERE);
 		}
 	}
 
 	@Override
-	public void rollbackTransaction(Connection conn) {
-		try {
+	public void rollbackTransaction(Connection conn)
+	{
+		try
+		{
 			conn.rollback();
 			conn.close();
-		} catch(SQLException e) {
+		}
+		catch (SQLException e)
+		{
 			this.output.outputToConsole(e.getMessage() + Arrays.toString(e.getStackTrace()), Level.SEVERE);
 		}
 	}
 
 	@Override
-	public PreparedStatement prepare(String sql) {
-		try {
+	public PreparedStatement prepare(String sql)
+	{
+		try
+		{
 			Connection conn = getConnection();
-			if(conn == null)
+			if (conn == null)
 				return null;
 			return conn.prepareStatement(sql);
-		} catch(SQLException e) {
+		}
+		catch (SQLException e)
+		{
 			this.output.outputToConsole(e.getMessage() + Arrays.toString(e.getStackTrace()), Level.SEVERE);
 			return null;
 		}
 	}
 
-	protected Connection getConnection() {
-		try {
-			output.fine(String.format("Opening connection to %s by %s", databaseURL, databaseUsername));
-			if(conn == null || conn.isClosed())
-			conn = DriverManager.getConnection(this.databaseURL, this.databaseUsername, this.databasePassword);
-			if(conn == null)
+	protected Connection getConnection()
+	{
+		try
+		{
+			if (conn == null || conn.isClosed())
+			{
+				conn = DriverManager.getConnection(this.databaseURL, this.databaseUsername, this.databasePassword);
+				output.fine(String.format("Opening connection to %s by %s", databaseURL, databaseUsername));
+			}
+			else
+				output.fine(String.format("Reusing connection to %s", databaseURL));
+			if (conn == null)
 				output.fine("Connection is null");
 			return conn;
-		} catch(SQLException e) {
+		}
+		catch (SQLException e)
+		{
 			this.output.write(e.getMessage());
 			return null;
 		}
