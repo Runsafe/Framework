@@ -3,6 +3,7 @@ package no.runsafe.framework.command;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import no.runsafe.framework.timer.IScheduler;
 import org.apache.commons.lang.StringUtils;
+import org.bukkit.ChatColor;
 
 import java.util.Collection;
 import java.util.logging.Level;
@@ -28,15 +29,21 @@ public abstract class RunsafeAsyncCommand extends RunsafeCommand
 	}
 
 	@Override
-	public boolean Execute(final RunsafePlayer player, final String[] args)
+	public boolean Execute(RunsafePlayer executor, String[] arguments)
 	{
-		Console.finer(String.format("Execute: %s, %s", commandName, StringUtils.join(args, ", ")));
-
+		final RunsafePlayer player = executor;
+		final String[] args = arguments;
+		Console.finer(String.format("Player Execute: %s, %s", commandName, StringUtils.join(args, ", ")));
+		if (!CanExecute(player, args))
+		{
+			player.sendMessage(String.format("%sRequired permission %s missing.", ChatColor.RED, requiredPermission()));
+			return true;
+		}
 		subArgOffset = 0;
 		if (args.length < params.size())
 		{
 			Console.finest(String.format("Missing params (%d < %d)", args.length, params.size()));
-			Console.write(getCommandUsage());
+			player.sendMessage(getCommandUsage(player));
 			return true;
 		}
 		captureArgs(args);
@@ -63,13 +70,13 @@ public abstract class RunsafeAsyncCommand extends RunsafeCommand
 	@Override
 	public boolean Execute(final String[] args)
 	{
-		Console.finer(String.format("Execute: %s, %s", commandName, StringUtils.join(args, ", ")));
+		Console.finer(String.format("Console Execute: %s, %s", commandName, StringUtils.join(args, ", ")));
 
 		subArgOffset = 0;
 		if (args.length < params.size())
 		{
 			Console.finest(String.format("Missing params (%d < %d)", args.length, params.size()));
-			Console.write(getCommandUsage());
+			Console.write(getCommandUsage(null));
 			return true;
 		}
 		captureArgs(args);
@@ -101,11 +108,10 @@ public abstract class RunsafeAsyncCommand extends RunsafeCommand
 		if (message == null)
 			return;
 
-		if (player == null)
-			Console.outputColoredToConsole(message, Level.INFO);
-
 		if (player != null)
 			player.sendMessage(message);
+		else
+			Console.outputColoredToConsole(message, Level.INFO);
 	}
 
 	@Override
