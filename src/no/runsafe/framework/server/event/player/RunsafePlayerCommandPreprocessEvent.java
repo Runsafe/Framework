@@ -40,5 +40,5 @@ public class RunsafePlayerCommandPreprocessEvent extends RunsafePlayerEvent impl
         this.event.setPlayer((Player) player.getRaw());
     }
 
-    private PlayerCommandPreprocessEvent event;
+    private final PlayerCommandPreprocessEvent event;
 }

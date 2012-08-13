@@ -114,5 +114,5 @@ public abstract class RunsafeAsyncCommand extends RunsafeCommand
 		return null;
 	}
 
-	private IScheduler scheduler;
+	private final IScheduler scheduler;
 }
