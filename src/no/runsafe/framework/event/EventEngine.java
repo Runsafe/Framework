@@ -62,6 +62,12 @@ public class EventEngine
 			if (sub instanceof IPlayerInteractEvent)
 				listeners.add(new PlayerInteract((IPlayerInteractEvent) sub));
 
+			if (sub instanceof IPlayerRightClickEvent)
+				listeners.add(new PlayerRightClick((IPlayerRightClickEvent) sub));
+
+			if (sub instanceof IPlayerLeftClickEvent)
+				listeners.add(new PlayerLeftClick((IPlayerLeftClickEvent) sub));
+
 			if (sub instanceof IPlayerChatEvent)
 				listeners.add(new PlayerChat((IPlayerChatEvent) sub));
 

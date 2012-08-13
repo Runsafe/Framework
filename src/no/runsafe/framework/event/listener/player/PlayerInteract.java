@@ -6,18 +6,18 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-public class PlayerInteract  implements Listener
+public class PlayerInteract implements Listener
 {
-    public PlayerInteract(IPlayerInteractEvent subscriber)
-    {
-        eventSubscriber = subscriber;
-    }
+	public PlayerInteract(IPlayerInteractEvent subscriber)
+	{
+		eventSubscriber = subscriber;
+	}
 
-    @EventHandler
-    public void OnEvent(PlayerInteractEvent event)
-    {
-        eventSubscriber.OnPlayerInteractEvent(new RunsafePlayerInteractEvent(event));
-    }
+	@EventHandler
+	public void OnEvent(PlayerInteractEvent event)
+	{
+		eventSubscriber.OnPlayerInteractEvent(new RunsafePlayerInteractEvent(event));
+	}
 
-    private final IPlayerInteractEvent eventSubscriber;
+	private final IPlayerInteractEvent eventSubscriber;
 }
