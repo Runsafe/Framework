@@ -19,11 +19,6 @@ public class RunsafeServer
 		this.server = toWrap;
 	}
 
-//	//TODO: CREATE RUNSAFE RECIPE
-//	public boolean addRecipe(Recipe recipe) {
-//		return this.server.addRecipe(recipe);
-//	}
-
 	public void banIP(String address)
 	{
 		this.server.banIP(address);
