@@ -10,9 +10,9 @@ public class Scheduler implements IScheduler
 	private final Plugin plugin;
 	private final BukkitScheduler scheduler;
 
-	public Scheduler(Server server, Plugin plugin)
+	public Scheduler(BukkitScheduler scheduler, Plugin plugin)
 	{
-		scheduler = server.getScheduler();
+		this.scheduler = scheduler;
 		this.plugin = plugin;
 	}
 
