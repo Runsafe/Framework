@@ -1,115 +1,135 @@
 package no.runsafe.framework.output;
 
-import org.bukkit.Server;
+import no.runsafe.framework.server.RunsafeServer;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class RunsafeOutputHandler implements IOutput {
-
-	private final Server serverOutput;
+public class RunsafeOutputHandler implements IOutput
+{
+	private final RunsafeServer serverOutput;
 	private final Logger consoleLog;
 	private Level debugLevel;
 
-	public RunsafeOutputHandler(Server server, Logger logger) {
+	public RunsafeOutputHandler(RunsafeServer server, Logger logger)
+	{
 		this.serverOutput = server;
 		this.consoleLog = logger;
 	}
 
 	// Check if the output handler has a event available to broadcast to
-	private boolean hasServer() {
+	private boolean hasServer()
+	{
 		return this.serverOutput != null;
 	}
 
 	// Check if the output handler has a console/log available to broadcast to
-	private boolean hasConsole() {
+	private boolean hasConsole()
+	{
 		return this.serverOutput != null;
 	}
 
 	// Sends the supplied string to the console/log the output handler has
 	@Override
-	public void outputToConsole(String message) {
+	public void outputToConsole(String message)
+	{
 		outputToConsole(message, Level.INFO);
 	}
 
 	@Override
-	public void outputColoredToConsole(String message, Level level) {
+	public void outputColoredToConsole(String message, Level level)
+	{
 		outputToConsole(ConsoleColors.FromMinecraft(message), level);
 	}
 
 	// Sends the supplied string with the supplied logging level to the console/log the output handler has
 	@Override
-	public void outputToConsole(String message, Level level) {
-		if(this.hasConsole()) {
+	public void outputToConsole(String message, Level level)
+	{
+		if (this.hasConsole())
+		{
 			this.consoleLog.log(level, message);
 		}
 	}
 
 	// Sends the supplied string to the console/log the output handler has if the debug level is high enough
 	@Override
-	public void outputDebugToConsole(String message, Level messageLevel) {
-		if(debugLevel != null && messageLevel.intValue() >= debugLevel.intValue())
+	public void outputDebugToConsole(String message, Level messageLevel)
+	{
+		if (debugLevel != null && messageLevel.intValue() >= debugLevel.intValue())
 			outputToConsole(message, Level.INFO);
 	}
 
 	// Broadcasts the supplied string to all players on the event the output handler has
 	@Override
-	public void outputToServer(String message) {
-		if(this.hasServer()) {
+	public void outputToServer(String message)
+	{
+		if (this.hasServer())
+		{
 			this.serverOutput.broadcastMessage(message);
 		}
 	}
 
 	// Gets the current debug output level
 	@Override
-	public Level getDebugLevel() {
+	public Level getDebugLevel()
+	{
 		return this.debugLevel;
 	}
 
 	// Sets the debug output level
 	@Override
-	public void setDebugLevel(Level level) {
+	public void setDebugLevel(Level level)
+	{
 		this.debugLevel = level;
 	}
 
 	@Override
-	public void write(String message) {
+	public void write(String message)
+	{
 		outputToConsole(message);
 	}
 
 	@Override
-	public void severe(String message) {
+	public void severe(String message)
+	{
 		outputDebugToConsole(message, Level.SEVERE);
 	}
 
 	@Override
-	public void warning(String message) {
+	public void warning(String message)
+	{
 		outputDebugToConsole(message, Level.WARNING);
 	}
 
 	@Override
-	public void info(String message) {
+	public void info(String message)
+	{
 		outputDebugToConsole(message, Level.INFO);
 	}
 
 	@Override
-	public void config(String message) {
+	public void config(String message)
+	{
 		outputDebugToConsole(message, Level.CONFIG);
 	}
 
 	@Override
-	public void fine(String message) {
+	public void fine(String message)
+	{
 		outputDebugToConsole(message, Level.FINE);
 	}
 
 	@Override
-	public void finer(String message) {
+	public void finer(String message)
+	{
 		outputDebugToConsole(message, Level.FINER);
 	}
 
 	@Override
-	public void finest(String message) {
+	public void finest(String message)
+	{
 		outputDebugToConsole(message, Level.FINEST);
 	}
 
