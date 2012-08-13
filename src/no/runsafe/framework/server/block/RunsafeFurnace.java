@@ -33,7 +33,6 @@ public class RunsafeFurnace extends RunsafeBlockState implements IInventoryHolde
 		furnace.setCookTime(i);
 	}
 
-	// TODO Implement proper inventory class
 	public RunsafeInventory getInventory()
 	{
 		return ObjectWrapper.convert(furnace.getInventory());

@@ -44,34 +44,6 @@ public class RunsafeServer
 		this.server.clearRecipes();
 	}
 
-//	//TODO: Question this
-//	public void configureDbConfig(ServerConfig config) {
-//		this.server.configureDbConfig(config);
-//	}
-
-//	//TODO: Cast all inventory objects to Runsafe
-//	public RunsafeInventory createInventory(InventoryHolder inventoryHolder, InventoryType inventoryType) {
-//		return new RunsafeInventory(this.server.createInventory(inventoryHolder, inventoryType));
-//	}
-//
-//	public RunsafeInventory createInventory(InventoryHolder inventoryHolder, int size) {
-//		return new RunsafeInventory(this.server.createInventory(inventoryHolder, size));
-//	}
-//
-//	public RunsafeInventory createInventory(InventoryHolder inventoryHolder, int size, String title) {
-//		return new RunsafeInventory(this.server.createInventory(inventoryHolder, size, title));
-//	}
-//
-//	//TODO: Make RunsafeMapView
-//	public MapView createMap(RunsafeWorld world) {
-//		return this.server.createMap(world.getRaw());
-//	}
-//
-//	//TODO: Cast commandsender to runsafe
-//	public boolean dispatchCommand(CommandSender sender, String command) {
-//		return this.server.dispatchCommand(sender, command);
-//	}
-
 	public boolean getAllowEnd()
 	{
 		return this.server.getAllowEnd();
@@ -110,25 +82,10 @@ public class RunsafeServer
 		return this.server.getConnectionThrottle();
 	}
 
-//	//TODO: Cast this to Runsafe
-//	public ConsoleCommandSender getConsoleSender() {
-//		return this.server.getConsoleSender();
-//	}
-//
-//	//TODO: Cast GameMode to Runsafe
-//	public GameMode getDefaultGameMode() {
-//		return this.server.getDefaultGameMode();
-//	}
-
 	public boolean getGenerateStructures()
 	{
 		return this.server.getGenerateStructures();
 	}
-
-//	//TODO: Cast HelpMap to runsafe
-//	public HelpMap getHelpMap() {
-//		return this.server.getHelpMap();
-//	}
 
 	public String getIp()
 	{
@@ -140,29 +97,15 @@ public class RunsafeServer
 		return this.server.getIPBans();
 	}
 
-//	public Set<String> getListeningPluginChannels() {
-//		return this.server.getListeningPluginChannels();
-//	}
-
 	public Logger getLogger()
 	{
 		return this.server.getLogger();
 	}
 
-//	//TODO: Cast MapView to runsafe
-//	public MapView getMap(short mapID) {
-//		return this.server.getMap(mapID);
-//	}
-
 	public int getMaxPlayers()
 	{
 		return this.server.getMaxPlayers();
 	}
-
-//	//TODO: Cast Messenger to Runsafe
-//	public Messenger getMessenger() {
-//		return this.server.getMessenger();
-//	}
 
 	public String getName()
 	{
@@ -200,30 +143,10 @@ public class RunsafeServer
 		return new RunsafePlayer(this.server.getPlayerExact(playerName));
 	}
 
-//	//TODO: Cast PluginCommand to Runsafe
-//	public PluginCommand getPluginCommand(String commandName) {
-//		return this.server.getPluginCommand(commandName);
-//	}
-//
-//	// TODO: Cast PluginManager to Runsafe
-//	public PluginManager getPluginManager() {
-//		return this.server.getPluginManager();
-//	}
-
 	public int getPort()
 	{
 		return this.server.getPort();
 	}
-
-//	//TODO: Cast Recipe to Runsafe
-//	public List<Recipe> getRecipesFor(RunsafeItemStack result) {
-//		return this.server.getRecipesFor(result.getRaw());
-//	}
-//
-//	//TODO: Cast BukkitScheduler to Runsafe?
-//	public BukkitScheduler getScheduler() {
-//		return this.server.getScheduler();
-//	}
 
 	public String getServerId()
 	{
@@ -234,11 +157,6 @@ public class RunsafeServer
 	{
 		return this.server.getServerName();
 	}
-
-//	//TODO: Cast ServicesManager to Runsafe
-//	public ServicesManager getServicesManager() {
-//		return this.server.getServicesManager();
-//	}
 
 	public int getSpawnRadius()
 	{
@@ -278,7 +196,6 @@ public class RunsafeServer
 	public RunsafeWorld getWorld(UUID uid)
 	{
 		return ObjectWrapper.convert(this.server.getWorld(uid));
-
 	}
 
 	public File getWorldContainer()
@@ -320,11 +237,6 @@ public class RunsafeServer
 		return returnList;
 	}
 
-//	//TODO: Cast Recipe to Runsafe
-//	public Iterator<Recipe> recipeIterator() {
-//		return this.server.recipeIterator();
-//	}
-
 	public void reload()
 	{
 		this.server.reload();
@@ -344,16 +256,6 @@ public class RunsafeServer
 	{
 		this.server.savePlayers();
 	}
-
-//	//TODO: Cast Plugin to runsafe.. or can it already be done?
-//	public void sendPluginMessage(Plugin source, String channel, byte[] message) {
-//		this.server.sendPluginMessage(source, channel, message);
-//	}
-
-//	//TODO: Cast GameMode to Runsafe
-//	public void setDefaultGameMode(GameMode gameMode) {
-//		this.server.setDefaultGameMode(gameMode);
-//	}
 
 	public void setSpawnRadius(int radius)
 	{

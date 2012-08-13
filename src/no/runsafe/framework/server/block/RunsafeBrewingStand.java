@@ -23,7 +23,6 @@ public class RunsafeBrewingStand extends RunsafeBlockState implements IInventory
 		stand.setBrewingTime(i);
 	}
 
-	// TODO replace inventory class
 	public RunsafeInventory getInventory()
 	{
 		return ObjectWrapper.convert(stand.getInventory());

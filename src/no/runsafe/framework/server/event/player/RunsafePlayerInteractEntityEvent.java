@@ -26,12 +26,6 @@ public class RunsafePlayerInteractEntityEvent extends RunsafePlayerEvent impleme
 		return ObjectWrapper.convert(this.event.getPlayer());
 	}
 
-//	// TODO: Cast HandlerList to Bukkit
-//	public HandlerList getHandlers()
-//	{
-//		return this.event.getHandlers();
-//	}
-
 	@Override
 	public boolean getCancelled()
 	{
