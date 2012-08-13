@@ -1,23 +1,28 @@
 package no.runsafe.framework.event.listener.player;
 
-import no.runsafe.framework.server.event.player.RunsafePlayerChangedWorldEvent;
+import no.runsafe.framework.event.listener.EventRouter;
 import no.runsafe.framework.event.player.IPlayerChangedWorldEvent;
+import no.runsafe.framework.server.event.player.RunsafePlayerChangedWorldEvent;
+import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 
-public class PlayerChangedWorld implements Listener
+public class PlayerChangedWorld extends EventRouter<IPlayerChangedWorldEvent, PlayerChangedWorldEvent>
 {
-	public PlayerChangedWorld(IPlayerChangedWorldEvent subscriber)
+	public PlayerChangedWorld(IScheduler scheduler, IPlayerChangedWorldEvent handler)
 	{
-		eventSubscriber = subscriber;
+		super(scheduler, handler);
 	}
 
 	@EventHandler
-	public void OnEvent(PlayerChangedWorldEvent event)
+	@Override
+	public void AcceptEvent(PlayerChangedWorldEvent event)
 	{
-		eventSubscriber.OnPlayerChangedWorld(new RunsafePlayerChangedWorldEvent(event));
+		super.AcceptEvent(event);
 	}
 
-	private final IPlayerChangedWorldEvent eventSubscriber;
+	public void OnEvent(PlayerChangedWorldEvent event)
+	{
+		handler.OnPlayerChangedWorld(new RunsafePlayerChangedWorldEvent(event));
+	}
 }

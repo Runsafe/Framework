@@ -1,33 +1,38 @@
 package no.runsafe.framework.event.listener.player;
 
+import no.runsafe.framework.event.listener.EventRouter;
 import no.runsafe.framework.event.player.IPlayerRightClickAirEvent;
 import no.runsafe.framework.event.player.IPlayerRightClickBlockEvent;
 import no.runsafe.framework.event.player.IPlayerRightClickEvent;
 import no.runsafe.framework.server.event.player.RunsafePlayerClickEvent;
+import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-public class PlayerRightClick implements Listener
+public class PlayerRightClick extends EventRouter<IPlayerRightClickEvent, PlayerInteractEvent>
 {
-	public PlayerRightClick(IPlayerRightClickEvent subscriber)
+	public PlayerRightClick(IScheduler scheduler, IPlayerRightClickEvent handler)
 	{
-		eventSubscriber = subscriber;
+		super(scheduler, handler);
 	}
 
 	@EventHandler
-	public void OnEvent(PlayerInteractEvent event)
+	@Override
+	public void AcceptEvent(PlayerInteractEvent event)
 	{
-		if (!(eventSubscriber instanceof IPlayerRightClickAirEvent || eventSubscriber instanceof IPlayerRightClickBlockEvent))
-			eventSubscriber.OnPlayerRightClick(new RunsafePlayerClickEvent(event));
-
-		else if (eventSubscriber instanceof IPlayerRightClickAirEvent && event.getAction() == Action.RIGHT_CLICK_AIR)
-			eventSubscriber.OnPlayerRightClick(new RunsafePlayerClickEvent(event));
-
-		else if (eventSubscriber instanceof IPlayerRightClickBlockEvent && event.getAction() == Action.RIGHT_CLICK_BLOCK)
-			eventSubscriber.OnPlayerRightClick(new RunsafePlayerClickEvent(event));
+		super.AcceptEvent(event);
 	}
 
-	private final IPlayerRightClickEvent eventSubscriber;
+	public void OnEvent(PlayerInteractEvent event)
+	{
+		if (!(handler instanceof IPlayerRightClickAirEvent || handler instanceof IPlayerRightClickBlockEvent))
+			handler.OnPlayerRightClick(new RunsafePlayerClickEvent(event));
+
+		else if (handler instanceof IPlayerRightClickAirEvent && event.getAction() == Action.RIGHT_CLICK_AIR)
+			handler.OnPlayerRightClick(new RunsafePlayerClickEvent(event));
+
+		else if (handler instanceof IPlayerRightClickBlockEvent && event.getAction() == Action.RIGHT_CLICK_BLOCK)
+			handler.OnPlayerRightClick(new RunsafePlayerClickEvent(event));
+	}
 }

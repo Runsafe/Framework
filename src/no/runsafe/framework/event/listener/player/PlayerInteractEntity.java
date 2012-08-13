@@ -1,23 +1,28 @@
 package no.runsafe.framework.event.listener.player;
 
+import no.runsafe.framework.event.listener.EventRouter;
 import no.runsafe.framework.event.player.IPlayerInteractEntityEvent;
 import no.runsafe.framework.server.event.player.RunsafePlayerInteractEntityEvent;
+import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 
-public class PlayerInteractEntity implements Listener
+public class PlayerInteractEntity extends EventRouter<IPlayerInteractEntityEvent, PlayerInteractEntityEvent>
 {
-    public PlayerInteractEntity(IPlayerInteractEntityEvent subscriber)
-    {
-        this.eventSubscriber = subscriber;
-    }
+	public PlayerInteractEntity(IScheduler scheduler, IPlayerInteractEntityEvent handler)
+	{
+		super(scheduler, handler);
+	}
 
-    @EventHandler
-    public void OnEvent(PlayerInteractEntityEvent event)
-    {
-        this.eventSubscriber.OnPlayerInteractEntityEvent(new RunsafePlayerInteractEntityEvent(event));
-    }
+	@EventHandler
+	@Override
+	public void AcceptEvent(PlayerInteractEntityEvent event)
+	{
+		super.AcceptEvent(event);
+	}
 
-    private final IPlayerInteractEntityEvent eventSubscriber;
+	public void OnEvent(PlayerInteractEntityEvent event)
+	{
+		handler.OnPlayerInteractEntityEvent(new RunsafePlayerInteractEntityEvent(event));
+	}
 }

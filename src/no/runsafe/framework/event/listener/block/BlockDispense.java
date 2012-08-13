@@ -1,23 +1,28 @@
 package no.runsafe.framework.event.listener.block;
 
 import no.runsafe.framework.event.block.IBlockDispenseEvent;
+import no.runsafe.framework.event.listener.EventRouter;
 import no.runsafe.framework.server.event.block.RunsafeBlockDispenseEvent;
+import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockDispenseEvent;
 
-public class BlockDispense implements Listener
+public class BlockDispense extends EventRouter<IBlockDispenseEvent, BlockDispenseEvent>
 {
-    public BlockDispense(IBlockDispenseEvent subscriber)
-    {
-        eventSubscriber = subscriber;
-    }
+	public BlockDispense(IScheduler scheduler, IBlockDispenseEvent handler)
+	{
+		super(scheduler, handler);
+	}
 
-    @EventHandler
-    public void OnEvent(BlockDispenseEvent event)
-    {
-        eventSubscriber.OnBlockDispenseEvent(new RunsafeBlockDispenseEvent(event));
-    }
+	@EventHandler
+	@Override
+	public void AcceptEvent(BlockDispenseEvent event)
+	{
+		super.AcceptEvent(event);
+	}
 
-    private final IBlockDispenseEvent eventSubscriber;
+	public void OnEvent(BlockDispenseEvent event)
+	{
+		handler.OnBlockDispenseEvent(new RunsafeBlockDispenseEvent(event));
+	}
 }

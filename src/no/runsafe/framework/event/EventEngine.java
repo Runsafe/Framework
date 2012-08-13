@@ -16,17 +16,18 @@ import no.runsafe.framework.event.listener.entity.EntityDeath;
 import no.runsafe.framework.event.listener.entity.EntityShootBow;
 import no.runsafe.framework.event.listener.player.*;
 import no.runsafe.framework.event.player.*;
+import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class EventEngine
 {
-	public EventEngine(List<IRunsafeEvent> events)
+	public EventEngine(IScheduler scheduler, List<IRunsafeEvent> events)
 	{
 		eventSubscribers = events;
+		this.scheduler = scheduler;
 	}
 
 	@SuppressWarnings("ConstantConditions")
@@ -36,64 +37,65 @@ public class EventEngine
 		for (IRunsafeEvent sub : eventSubscribers)
 		{
 			if (sub instanceof IEntityDamageByEntityEvent)
-				listeners.add(new EntityDamageByEntity((IEntityDamageByEntityEvent) sub));
+				listeners.add(new EntityDamageByEntity(scheduler, (IEntityDamageByEntityEvent) sub));
 
 			if (sub instanceof IPlayerChangedWorldEvent)
-				listeners.add(new PlayerChangedWorld((IPlayerChangedWorldEvent) sub));
+				listeners.add(new PlayerChangedWorld(scheduler, (IPlayerChangedWorldEvent) sub));
 
 			if (sub instanceof IEntityDeathEvent)
-				listeners.add(new EntityDeath((IEntityDeathEvent) sub));
+				listeners.add(new EntityDeath(scheduler, (IEntityDeathEvent) sub));
 
 			if (sub instanceof IPlayerCommandPreprocessEvent)
-				listeners.add(new PlayerCommandPreprocess((IPlayerCommandPreprocessEvent) sub));
+				listeners.add(new PlayerCommandPreprocess(scheduler, (IPlayerCommandPreprocessEvent) sub));
 
 			if (sub instanceof IPlayerDropItemEvent)
-				listeners.add(new PlayerDropItem((IPlayerDropItemEvent) sub));
+				listeners.add(new PlayerDropItem(scheduler, (IPlayerDropItemEvent) sub));
 
 			if (sub instanceof IPlayerLoginEvent)
-				listeners.add(new PlayerLogin((IPlayerLoginEvent) sub));
+				listeners.add(new PlayerLogin(scheduler, (IPlayerLoginEvent) sub));
 
 			if (sub instanceof IPlayerQuitEvent)
-				listeners.add(new PlayerQuit((IPlayerQuitEvent) sub));
+				listeners.add(new PlayerQuit(scheduler, (IPlayerQuitEvent) sub));
 
 			if (sub instanceof IPlayerTeleportEvent)
-				listeners.add(new PlayerTeleport((IPlayerTeleportEvent) sub));
+				listeners.add(new PlayerTeleport(scheduler, (IPlayerTeleportEvent) sub));
 
 			if (sub instanceof IPlayerInteractEvent)
-				listeners.add(new PlayerInteract((IPlayerInteractEvent) sub));
+				listeners.add(new PlayerInteract(scheduler, (IPlayerInteractEvent) sub));
 
 			if (sub instanceof IPlayerRightClickEvent)
-				listeners.add(new PlayerRightClick((IPlayerRightClickEvent) sub));
+				listeners.add(new PlayerRightClick(scheduler, (IPlayerRightClickEvent) sub));
 
 			if (sub instanceof IPlayerLeftClickEvent)
-				listeners.add(new PlayerLeftClick((IPlayerLeftClickEvent) sub));
+				listeners.add(new PlayerLeftClick(scheduler, (IPlayerLeftClickEvent) sub));
 
 			if (sub instanceof IPlayerChatEvent)
-				listeners.add(new PlayerChat((IPlayerChatEvent) sub));
+				listeners.add(new PlayerChat(scheduler, (IPlayerChatEvent) sub));
 
 			if (sub instanceof IPlayerJoinEvent)
-				listeners.add(new PlayerJoin((IPlayerJoinEvent) sub));
+				listeners.add(new PlayerJoin(scheduler, (IPlayerJoinEvent) sub));
 
 			if (sub instanceof IBlockBreakEvent)
-				listeners.add(new BlockBreak((IBlockBreakEvent) sub));
+				listeners.add(new BlockBreak(scheduler, (IBlockBreakEvent) sub));
 
 			if (sub instanceof IBlockPlaceEvent)
-				listeners.add(new BlockPlace((IBlockPlaceEvent) sub));
+				listeners.add(new BlockPlace(scheduler, (IBlockPlaceEvent) sub));
 
 			if (sub instanceof IBlockRedstoneEvent)
-				listeners.add(new BlockRedstone((IBlockRedstoneEvent) sub));
+				listeners.add(new BlockRedstone(scheduler, (IBlockRedstoneEvent) sub));
 
 			if (sub instanceof IBlockDispenseEvent)
-				listeners.add(new BlockDispense((IBlockDispenseEvent) sub));
+				listeners.add(new BlockDispense(scheduler, (IBlockDispenseEvent) sub));
 
 			if (sub instanceof IEntityShootBowEvent)
-				listeners.add(new EntityShootBow((IEntityShootBowEvent) sub));
+				listeners.add(new EntityShootBow(scheduler, (IEntityShootBowEvent) sub));
 
-            if (sub instanceof IPlayerInteractEntityEvent)
-                listeners.add(new PlayerInteractEntity((IPlayerInteractEntityEvent) sub));
+			if (sub instanceof IPlayerInteractEntityEvent)
+				listeners.add(new PlayerInteractEntity(scheduler, (IPlayerInteractEntityEvent) sub));
 		}
 		return listeners;
 	}
 
 	private final List<IRunsafeEvent> eventSubscribers;
+	private final IScheduler scheduler;
 }

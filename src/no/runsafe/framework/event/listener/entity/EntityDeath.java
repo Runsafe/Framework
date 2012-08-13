@@ -1,23 +1,28 @@
 package no.runsafe.framework.event.listener.entity;
 
-import no.runsafe.framework.server.event.entity.RunsafeEntityDeathEvent;
 import no.runsafe.framework.event.entity.IEntityDeathEvent;
+import no.runsafe.framework.event.listener.EventRouter;
+import no.runsafe.framework.server.event.entity.RunsafeEntityDeathEvent;
+import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 
-public class EntityDeath implements Listener
+public class EntityDeath extends EventRouter<IEntityDeathEvent, EntityDeathEvent>
 {
-	public EntityDeath(IEntityDeathEvent subscriber)
+	public EntityDeath(IScheduler scheduler, IEntityDeathEvent handler)
 	{
-		eventSubscriber = subscriber;
+		super(scheduler, handler);
 	}
 
 	@EventHandler
-	public void OnEvent(EntityDeathEvent entityDeathEvent)
+	@Override
+	public void AcceptEvent(EntityDeathEvent event)
 	{
-		eventSubscriber.OnEntityDeath(new RunsafeEntityDeathEvent(entityDeathEvent));
+		super.AcceptEvent(event);
 	}
 
-	private final IEntityDeathEvent eventSubscriber;
+	public void OnEvent(EntityDeathEvent entityDeathEvent)
+	{
+		handler.OnEntityDeath(new RunsafeEntityDeathEvent(entityDeathEvent));
+	}
 }

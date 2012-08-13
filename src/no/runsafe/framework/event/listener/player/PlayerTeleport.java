@@ -1,23 +1,28 @@
 package no.runsafe.framework.event.listener.player;
 
-import no.runsafe.framework.server.event.player.RunsafePlayerTeleportEvent;
+import no.runsafe.framework.event.listener.EventRouter;
 import no.runsafe.framework.event.player.IPlayerTeleportEvent;
+import no.runsafe.framework.server.event.player.RunsafePlayerTeleportEvent;
+import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
-public class PlayerTeleport implements Listener
+public class PlayerTeleport extends EventRouter<IPlayerTeleportEvent, PlayerTeleportEvent>
 {
-	public PlayerTeleport(IPlayerTeleportEvent subscriber)
+	public PlayerTeleport(IScheduler scheduler, IPlayerTeleportEvent handler)
 	{
-		eventSubscriber = subscriber;
+		super(scheduler, handler);
 	}
 
 	@EventHandler
-	public void OnEvent(PlayerTeleportEvent event)
+	@Override
+	public void AcceptEvent(PlayerTeleportEvent event)
 	{
-		eventSubscriber.OnPlayerTeleport(new RunsafePlayerTeleportEvent(event));
+		super.AcceptEvent(event);
 	}
 
-	private final IPlayerTeleportEvent eventSubscriber;
+	public void OnEvent(PlayerTeleportEvent event)
+	{
+		handler.OnPlayerTeleport(new RunsafePlayerTeleportEvent(event));
+	}
 }
