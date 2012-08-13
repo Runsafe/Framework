@@ -78,12 +78,12 @@ public class RunsafeWorld extends RunsafeMetadata
 
 	public RunsafeEntity spawnCreature(RunsafeLocation location, String type)
 	{
-		return new RunsafeEntity(world.spawnCreature(location.getRaw(), EntityType.fromName(type)));
+		return ObjectWrapper.convert(world.spawnEntity(location.getRaw(), EntityType.fromName(type)));
 	}
 
 	public RunsafeEntity spawnCreature(RunsafeLocation location, int id)
 	{
-		return new RunsafeEntity(world.spawnCreature(location.getRaw(), EntityType.fromId(id)));
+		return ObjectWrapper.convert(world.spawnEntity(location.getRaw(), EntityType.fromId(id)));
 	}
 
 	public List<RunsafePlayer> getPlayers()
@@ -97,13 +97,6 @@ public class RunsafeWorld extends RunsafeMetadata
 	public List<RunsafeEntity> getEntities()
 	{
 		return ObjectWrapper.convert(world.getEntities());
-//		ArrayList<RunsafeEntity> entities = new ArrayList<RunsafeEntity>();
-//		for (Entity entity : world.getEntities())
-//			if (entity instanceof Player)
-//				entities.add(new RunsafePlayer((Player) entity));
-//			else
-//				entities.add(new RunsafeEntity(entity));
-//		return entities;
 	}
 
 	private final World world;
