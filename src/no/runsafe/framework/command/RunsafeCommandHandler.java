@@ -1,7 +1,7 @@
 package no.runsafe.framework.command;
 
 import no.runsafe.framework.output.IOutput;
-import no.runsafe.framework.server.player.RunsafePlayer;
+import no.runsafe.framework.server.ObjectWrapper;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -37,7 +37,7 @@ public class RunsafeCommandHandler implements CommandExecutor
 				sender.sendMessage(ChatColor.RED + "No access to that command.");
 				return true;
 			}
-			return commandObject.Execute(new RunsafePlayer((Player) sender), args);
+			return commandObject.Execute(ObjectWrapper.convert((Player) sender), args);
 		}
 		else
 		{
