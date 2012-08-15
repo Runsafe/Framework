@@ -16,6 +16,8 @@ public interface ICommand {
 
 	String getCommandName();
 
+	String getDescription();
+
 	String getCommandUsage(RunsafePlayer executor);
 
 	String getCommandParams();
