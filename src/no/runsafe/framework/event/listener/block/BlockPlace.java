@@ -15,6 +15,13 @@ public class BlockPlace extends EventRouter<IBlockPlaceEvent, BlockPlaceEvent>
 	}
 
 	@EventHandler
+	@Override
+	public void AcceptEvent(BlockPlaceEvent event)
+	{
+		super.AcceptEvent(event);
+	}
+
+	@EventHandler
 	public void OnEvent(BlockPlaceEvent event)
 	{
 		handler.OnBlockPlaceEvent(new RunsafeBlockPlaceEvent(event));

@@ -15,6 +15,7 @@ public class PlayerInteract extends EventRouter<IPlayerInteractEvent, PlayerInte
 	}
 
 	@Override
+	@EventHandler
 	public void AcceptEvent(PlayerInteractEvent event)
 	{
 		super.AcceptEvent(event);
