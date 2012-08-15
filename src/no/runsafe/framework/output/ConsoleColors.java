@@ -21,6 +21,7 @@ public class ConsoleColors {
 				.replaceAll(ChatColor.LIGHT_PURPLE.toString(), MAGENTA)
 				.replaceAll(ChatColor.BLACK.toString(), BLACK)
 				.replaceAll(ChatColor.WHITE.toString(), WHITE)
+				.replaceAll(ChatColor.RESET.toString(), reset)
 				+ reset;
 	}
 
