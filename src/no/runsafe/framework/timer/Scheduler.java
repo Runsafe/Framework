@@ -1,16 +1,12 @@
 package no.runsafe.framework.timer;
 
-import org.bukkit.Server;
+import no.runsafe.framework.RunsafePlugin;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
 public class Scheduler implements IScheduler
 {
-
-	private final Plugin plugin;
-	private final BukkitScheduler scheduler;
-
-	public Scheduler(BukkitScheduler scheduler, Plugin plugin)
+	public Scheduler(BukkitScheduler scheduler, RunsafePlugin plugin)
 	{
 		this.scheduler = scheduler;
 		this.plugin = plugin;
@@ -53,10 +49,15 @@ public class Scheduler implements IScheduler
 	}
 
 	@Override
-	public void cancelTask(int eventId)
+	public int startAsyncRepeatingTask(Runnable func, int delay, int period)
 	{
-		if (this.scheduler.isQueued(eventId))
-			this.scheduler.cancelTask(eventId);
+		return this.startAsyncRepeatingTask(func, (long) delay * 20, (long) period * 20);
+	}
+
+	@Override
+	public int startAsyncRepeatingTask(Runnable func, long delay, long period)
+	{
+		return this.scheduler.scheduleAsyncRepeatingTask(this.plugin, func, delay, period);
 	}
 
 	@Override
@@ -80,6 +81,40 @@ public class Scheduler implements IScheduler
 	@Override
 	public ITimer createSyncTimer(Runnable func, Long delay, Long period)
 	{
-		return new CallbackTimer(this, func, delay, period);
+		return new CallbackTimer(this, func, delay, period, false);
 	}
+
+	@Override
+	public ITimer createAsyncTimer(Runnable func, int seconds)
+	{
+		return createAsyncTimer(func, seconds, 0);
+	}
+
+	@Override
+	public ITimer createAsyncTimer(Runnable func, int delay, int period)
+	{
+		return createAsyncTimer(func, (long) delay * 20, (long) period * 20);
+	}
+
+	@Override
+	public ITimer createAsyncTimer(Runnable func, Long delay)
+	{
+		return createAsyncTimer(func, delay, 0L);
+	}
+
+	@Override
+	public ITimer createAsyncTimer(Runnable func, Long delay, Long period)
+	{
+		return new CallbackTimer(this, func, delay, period, true);
+	}
+
+	@Override
+	public void cancelTask(int eventId)
+	{
+		if (this.scheduler.isQueued(eventId))
+			this.scheduler.cancelTask(eventId);
+	}
+
+	private final RunsafePlugin plugin;
+	private final BukkitScheduler scheduler;
 }

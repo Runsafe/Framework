@@ -2,9 +2,9 @@ package no.runsafe.framework.timer;
 
 public class CallbackTimer extends Timer
 {
-	public CallbackTimer(IScheduler scheduler, Runnable callback, long delay, long period)
+	public CallbackTimer(IScheduler scheduler, Runnable callback, long delay, long period, boolean asynchronous)
 	{
-		super(scheduler);
+		super(scheduler, asynchronous);
 		this.delay = delay;
 		this.period = period;
 		callbackMethod = callback;
@@ -12,7 +12,7 @@ public class CallbackTimer extends Timer
 	}
 
 	@Override
-	public void run()
+	public void OnElapsed()
 	{
 		callbackMethod.run();
 	}
