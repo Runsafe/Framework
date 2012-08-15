@@ -18,7 +18,7 @@ public class BlockRedstone extends EventRouter<IBlockRedstoneEvent, BlockRedston
 	@Override
 	public void AcceptEvent(BlockRedstoneEvent event)
 	{
-		super.AcceptEvent(event);    //To change body of overridden methods use File | Settings | File Templates.
+		super.AcceptEvent(event);
 	}
 
 	public void OnEvent(BlockRedstoneEvent event)
