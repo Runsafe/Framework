@@ -54,9 +54,9 @@ public class RunsafeCommand implements ICommand
 	@Override
 	public String getCommandUsage(RunsafePlayer executor)
 	{
+		HashMap<String, String> available = new HashMap<String, String>();
 		if (subCommands != null && !subCommands.isEmpty())
 		{
-			HashMap<String, String> available = new HashMap<String, String>();
 			for (ICommand sub : subCommands.values())
 			{
 				if (executor == null && (sub instanceof RunsafePlayerCommand || sub instanceof RunsafeAsyncPlayerCommand))
@@ -65,7 +65,7 @@ public class RunsafeCommand implements ICommand
 				if (executor != null && (sub instanceof RunsafeConsoleCommand || sub instanceof RunsafeAsyncConsoleCommand))
 					continue;
 
-				if (executor == null || sub.requiredPermission() == null || executor.hasPermission(sub.requiredPermission()))
+				if (sub.CouldExecute(executor))
 				{
 					String description = sub.getDescription();
 					if (description == null)
@@ -74,40 +74,39 @@ public class RunsafeCommand implements ICommand
 						available.put(sub.getCommandName(), String.format(" - %s", sub.getDescription()));
 				}
 			}
-			StringBuilder usage = new StringBuilder();
-			if (available.isEmpty())
-				usage.append(String.format("/%s\n", getCommandParams()));
-			else
-			{
-				usage.append(
-					String.format(
-						"/%1$s%4$s%3$s <%2$scommand%3$s>\n%5$s\n Available commands:\n",
-						ChatColor.BLUE,
-						ChatColor.YELLOW,
-						ChatColor.RESET,
-						getCommandParams(),
-						getDescription() == null ? "" : getDescription()
-					)
-				);
-				int width = 0;
-				for (String cmd : available.keySet())
-					if (cmd.length() > width)
-						width = cmd.length();
-				String format = String.format("  %%1s%%2$-%ds%%3$s%%4$s\n", width);
-				for (String cmd : available.keySet())
-					usage.append(String.format(format, ChatColor.YELLOW, cmd, ChatColor.RESET, available.get(cmd)));
-			}
-			return usage.toString();
 		}
-		return null;
+		StringBuilder usage = new StringBuilder();
+		if (available.isEmpty())
+			return String.format("/%s\n", getCommandParams());
+
+		int width = 0;
+		for (String cmd : available.keySet())
+			if (cmd.length() > width)
+				width = cmd.length();
+		String format = String.format("  %%1s%%2$-%ds%%3$s%%4$s\n", width);
+		for (String cmd : available.keySet())
+			usage.append(String.format(format, ChatColor.YELLOW, cmd, ChatColor.RESET, available.get(cmd)));
+
+		return String.format(
+			"/%3$s <%1$scommand%2$s>\n%4$s\n Available commands:\n%5$s",
+			ChatColor.YELLOW,
+			ChatColor.RESET,
+			getCommandParams(),
+			getDescription() == null ? "" : getDescription(),
+			usage
+		);
 	}
 
 	@Override
 	public String getCommandParams()
 	{
-		String part = commandName;
+		String part = ChatColor.BLUE + commandName + ChatColor.RESET;
 		if (!params.isEmpty())
-			part += " <" + StringUtils.join(params.keySet(), "> <") + ">";
+			part += " <" +
+				ChatColor.YELLOW + StringUtils.join(
+				params.keySet(),
+				ChatColor.RESET + "> <" + ChatColor.YELLOW
+			) + ChatColor.RESET + ">";
 
 		if (superCommand != null)
 			return superCommand.getCommandParams() + " " + part;
@@ -141,15 +140,33 @@ public class RunsafeCommand implements ICommand
 	}
 
 	@Override
+	public boolean CouldExecute(RunsafePlayer player)
+	{
+		if (player == null)
+			return true;
+
+		if (requiredPermission() != null)
+			return player.hasPermission(requiredPermission());
+
+		if (subCommands != null)
+			for (ICommand sub : subCommands.values())
+				if (sub.CouldExecute(player))
+					return true;
+
+		return false;
+	}
+
+	@Override
 	public boolean Execute(RunsafePlayer player, String[] args)
 	{
 		Console.finer(String.format("Player sync Execute: %s, %s", commandName, StringUtils.join(args, ", ")));
 
 		subArgOffset = 0;
-		if (!CanExecute(player, args))
+		if (!CouldExecute(player) || !CanExecute(player, args))
 		{
 			Console.outputToConsole(String.format("%s was denied access to command.", player.getName()), Level.WARNING);
-			player.sendMessage(String.format("%sRequired permission %s missing.", ChatColor.RED, requiredPermission()));
+			if (requiredPermission() != null)
+				player.sendMessage(String.format("%sRequired permission %s missing.", ChatColor.RED, requiredPermission()));
 			return true;
 		}
 

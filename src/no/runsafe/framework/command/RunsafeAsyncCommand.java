@@ -34,12 +34,14 @@ public abstract class RunsafeAsyncCommand extends RunsafeCommand
 		final RunsafePlayer player = executor;
 		final String[] args = arguments;
 		Console.finer(String.format("Player Execute: %s, %s", commandName, StringUtils.join(args, ", ")));
-		if (!CanExecute(player, args))
+		if (!CouldExecute(player) || !CanExecute(player, args))
 		{
 			Console.outputToConsole(String.format("%s was denied access to command.", player.getName()), Level.WARNING);
-			player.sendMessage(String.format("%sRequired permission %s missing.", ChatColor.RED, requiredPermission()));
+			if (requiredPermission() != null)
+				player.sendMessage(String.format("%sRequired permission %s missing.", ChatColor.RED, requiredPermission()));
 			return true;
 		}
+		Console.finer(String.format("Player %s has access to command", player.getName()));
 		subArgOffset = 0;
 		if (args.length < params.size())
 		{
