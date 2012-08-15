@@ -100,30 +100,42 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 
 	// Returns a configuration value as a boolean
 	@Override
-	public boolean getConfigValueAsBoolean(String value)
+	public boolean getConfigValueAsBoolean(String key)
 	{
-		return Boolean.parseBoolean(this.getConfigValueAsString(value));
+		String value = this.getConfigValueAsString(key);
+		if (value == null)
+			return false;
+		return Boolean.parseBoolean(value);
 	}
 
 	// Returns a configuration value as an integer
 	@Override
-	public int getConfigValueAsInt(String value)
+	public int getConfigValueAsInt(String key)
 	{
-		return Integer.parseInt(this.getConfigValueAsString(value));
+		String value = this.getConfigValueAsString(key);
+		if (value == null)
+			return 0;
+		return Integer.parseInt(value);
 	}
 
 	// Returns a configuration value as a double
 	@Override
-	public double getConfigValueAsDouble(String value)
+	public double getConfigValueAsDouble(String key)
 	{
-		return Double.parseDouble(this.getConfigValueAsString(value));
+		String value = this.getConfigValueAsString(key);
+		if (value == null)
+			return 0;
+		return Double.parseDouble(value);
 	}
 
 	// Returns a configuration value as a float
 	@Override
-	public float getConfigValueAsFloat(String value)
+	public float getConfigValueAsFloat(String key)
 	{
-		return Float.parseFloat(this.getConfigValueAsString(value));
+		String value = this.getConfigValueAsString(key);
+		if (value == null)
+			return 0;
+		return Float.parseFloat(value);
 	}
 
 	@Override
@@ -183,7 +195,7 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 	public void setListeners(List<IConfigurationChanged> subscribers)
 	{
 		this.subscribers = subscribers;
-		if(this.configFile != null)
+		if (this.configFile != null)
 			notifySubscribers();
 	}
 
