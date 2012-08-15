@@ -38,11 +38,6 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 {
 	public static final HashMap<String, RunsafePlugin> Instances = new HashMap<String, RunsafePlugin>();
 
-	public RunsafePlugin()
-	{
-		super();
-	}
-
 	@Override
 	public void onEnable()
 	{
