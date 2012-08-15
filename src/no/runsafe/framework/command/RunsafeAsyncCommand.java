@@ -12,7 +12,7 @@ public abstract class RunsafeAsyncCommand extends RunsafeCommand
 {
 	public RunsafeAsyncCommand(String name, IScheduler scheduler, String... params)
 	{
-		super(name, null, params);
+		super(name, params);
 		this.scheduler = scheduler;
 	}
 
@@ -36,6 +36,7 @@ public abstract class RunsafeAsyncCommand extends RunsafeCommand
 		Console.finer(String.format("Player Execute: %s, %s", commandName, StringUtils.join(args, ", ")));
 		if (!CanExecute(player, args))
 		{
+			Console.outputToConsole(String.format("%s was denied access to command.", player.getName()), Level.WARNING);
 			player.sendMessage(String.format("%sRequired permission %s missing.", ChatColor.RED, requiredPermission()));
 			return true;
 		}
@@ -43,7 +44,9 @@ public abstract class RunsafeAsyncCommand extends RunsafeCommand
 		if (args.length < params.size())
 		{
 			Console.finest(String.format("Missing params (%d < %d)", args.length, params.size()));
-			player.sendMessage(getCommandUsage(player));
+			String usage = getCommandUsage(player);
+			if (usage != null)
+				player.sendMessage(usage);
 			return true;
 		}
 		captureArgs(args);
@@ -76,7 +79,9 @@ public abstract class RunsafeAsyncCommand extends RunsafeCommand
 		if (args.length < params.size())
 		{
 			Console.finest(String.format("Missing params (%d < %d)", args.length, params.size()));
-			Console.write(getCommandUsage(null));
+			String usage = getCommandUsage(null);
+			if (usage != null)
+				Console.write(usage);
 			return true;
 		}
 		captureArgs(args);
