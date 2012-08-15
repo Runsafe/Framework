@@ -7,9 +7,15 @@ import java.util.Collection;
  */
 public class RunsafePlayerCommand extends RunsafeCommand
 {
+	@Deprecated
 	public RunsafePlayerCommand(String name, Collection<ICommand> subs, String... params)
 	{
 		super(name, subs, params);
+	}
+
+	public RunsafePlayerCommand(String name, String... params)
+	{
+		super(name, params);
 	}
 
 	@Override

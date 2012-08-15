@@ -9,9 +9,15 @@ import java.util.Collection;
  */
 public class RunsafeConsoleCommand extends RunsafeCommand
 {
+	@Deprecated
 	public RunsafeConsoleCommand(String name, Collection<ICommand> subs, String... params)
 	{
 		super(name, subs, params);
+	}
+
+	public RunsafeConsoleCommand(String name, String... params)
+	{
+		super(name, params);
 	}
 
 	@Override
