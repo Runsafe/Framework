@@ -5,7 +5,6 @@ import no.runsafe.framework.server.player.RunsafePlayer;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -13,7 +12,19 @@ import java.util.logging.Level;
 
 public class RunsafeCommand implements ICommand
 {
+	/**
+	 * @deprecated use .addSubCommand to add sub commands.
+	 */
+	@Deprecated
 	public RunsafeCommand(String name, Collection<ICommand> subs, String... params)
+	{
+		this(name, params);
+		if (subs != null)
+			for (ICommand sub : subs)
+				addSubCommand(sub);
+	}
+
+	public RunsafeCommand(String name, String... params)
 	{
 		commandName = name;
 		subCommands = new HashMap<String, ICommand>();
@@ -26,12 +37,6 @@ public class RunsafeCommand implements ICommand
 		}
 		else
 			paramKeys = null;
-
-		if (subs != null)
-		{
-			for (ICommand command : subs)
-				subCommands.put(command.getCommandName(), command);
-		}
 	}
 
 	@Override
@@ -41,19 +46,60 @@ public class RunsafeCommand implements ICommand
 	}
 
 	@Override
+	public String getDescription()
+	{
+		return null;
+	}
+
+	@Override
 	public String getCommandUsage(RunsafePlayer executor)
 	{
-		String usage = "/" + getCommandParams();
 		if (subCommands != null && !subCommands.isEmpty())
 		{
-			ArrayList<String> available = new ArrayList<String>();
+			HashMap<String, String> available = new HashMap<String, String>();
 			for (ICommand sub : subCommands.values())
+			{
+				if (executor == null && (sub instanceof RunsafePlayerCommand || sub instanceof RunsafeAsyncPlayerCommand))
+					continue;
+
+				if (executor != null && (sub instanceof RunsafeConsoleCommand || sub instanceof RunsafeAsyncConsoleCommand))
+					continue;
+
 				if (executor == null || sub.requiredPermission() == null || executor.hasPermission(sub.requiredPermission()))
-					available.add(sub.getCommandName());
-			if (available.size() > 0)
-				usage += String.format(" %s", StringUtils.join(available, "|"));
+				{
+					String description = sub.getDescription();
+					if (description == null)
+						available.put(sub.getCommandName(), "");
+					else
+						available.put(sub.getCommandName(), String.format(" - %s", sub.getDescription()));
+				}
+			}
+			StringBuilder usage = new StringBuilder();
+			if (available.isEmpty())
+				usage.append(String.format("/%s\n", getCommandParams()));
+			else
+			{
+				usage.append(
+					String.format(
+						"/%1$s%4$s%3$s <%2$scommand%3$s>\n%5$s\n Available commands:\n",
+						ChatColor.BLUE,
+						ChatColor.YELLOW,
+						ChatColor.RESET,
+						getCommandParams(),
+						getDescription() == null ? "" : getDescription()
+					)
+				);
+				int width = 0;
+				for (String cmd : available.keySet())
+					if (cmd.length() > width)
+						width = cmd.length();
+				String format = String.format("  %%1s%%2$-%ds%%3$s%%4$s\n", width);
+				for (String cmd : available.keySet())
+					usage.append(String.format(format, ChatColor.YELLOW, cmd, ChatColor.RESET, available.get(cmd)));
+			}
+			return usage.toString();
 		}
-		return usage;
+		return null;
 	}
 
 	@Override
@@ -102,13 +148,16 @@ public class RunsafeCommand implements ICommand
 		subArgOffset = 0;
 		if (!CanExecute(player, args))
 		{
+			Console.outputToConsole(String.format("%s was denied access to command.", player.getName()), Level.WARNING);
 			player.sendMessage(String.format("%sRequired permission %s missing.", ChatColor.RED, requiredPermission()));
 			return true;
 		}
 
 		if (args.length < params.size())
 		{
-			player.sendMessage(getCommandUsage(player));
+			String usage = getCommandUsage(player);
+			if (usage != null)
+				player.sendMessage(usage);
 			return true;
 		}
 		captureArgs(args);
@@ -140,7 +189,9 @@ public class RunsafeCommand implements ICommand
 		if (args.length < params.size())
 		{
 			Console.finest(String.format("Missing params (%d < %d)", args.length, params.size()));
-			Console.write(getCommandUsage(null));
+			String usage = getCommandUsage(null);
+			if (usage != null)
+				Console.write(usage);
 			return true;
 		}
 		captureArgs(args);
