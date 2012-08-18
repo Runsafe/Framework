@@ -38,6 +38,14 @@ public interface IScheduler
 	 */
 	int startAsyncTask(Runnable func, int seconds);
 
+	/**
+	 * Don't use this method, use createSyncTimer.
+	 *
+	 * @param func   Code to be executed
+	 * @param delay  Delay before executing in ticks
+	 * @param period Delay between each execution in ticks
+	 * @return Timer ID
+	 */
 	int startSyncRepeatingTask(Runnable func, long delay, long period);
 
 	/**
@@ -72,8 +80,9 @@ public interface IScheduler
 
 	/**
 	 * Create a timer that will run on the main thread periodically
-	 * @param func Code to be executed
-	 * @param delay Delay before first execution in ticks
+	 *
+	 * @param func   Code to be executed
+	 * @param delay  Delay before first execution in ticks
 	 * @param period Delay between each execution in ticks
 	 * @return a timer
 	 */
@@ -81,7 +90,8 @@ public interface IScheduler
 
 	/**
 	 * Create a timer that will run on the main thread periodically
-	 * @param func Code to be executed
+	 *
+	 * @param func  Code to be executed
 	 * @param delay Delay before first execution in ticks
 	 * @return a timer
 	 */
@@ -89,8 +99,9 @@ public interface IScheduler
 
 	/**
 	 * Create a timer that will run on the main thread periodically
-	 * @param func Code to be executed
-	 * @param delay Delay before first execution in seconds
+	 *
+	 * @param func   Code to be executed
+	 * @param delay  Delay before first execution in seconds
 	 * @param period Delay between each execution in seconds
 	 * @return a timer
 	 */
@@ -98,7 +109,8 @@ public interface IScheduler
 
 	/**
 	 * Create a timer that will run on the main thread periodically
-	 * @param func Code to be executed
+	 *
+	 * @param func  Code to be executed
 	 * @param delay Delay before first execution in ticks
 	 * @return a timer
 	 */
@@ -106,8 +118,9 @@ public interface IScheduler
 
 	/**
 	 * Create a timer that will run on a background thread periodically
-	 * @param func Code to be executed
-	 * @param delay Delay before first execution in ticks
+	 *
+	 * @param func   Code to be executed
+	 * @param delay  Delay before first execution in ticks
 	 * @param period Delay between each execution in ticks
 	 * @return a timer
 	 */
@@ -115,7 +128,8 @@ public interface IScheduler
 
 	/**
 	 * Create a timer that will run on a background thread periodically
-	 * @param func Code to be executed
+	 *
+	 * @param func  Code to be executed
 	 * @param delay Delay before first execution in ticks
 	 * @return a timer
 	 */
@@ -123,8 +137,9 @@ public interface IScheduler
 
 	/**
 	 * Create a timer that will run on a background thread periodically
-	 * @param func Code to be executed
-	 * @param delay Delay before first execution in seconds
+	 *
+	 * @param func   Code to be executed
+	 * @param delay  Delay before first execution in seconds
 	 * @param period Delay between each execution in seconds
 	 * @return a timer
 	 */
@@ -132,7 +147,8 @@ public interface IScheduler
 
 	/**
 	 * Create a timer that will run on a background thread periodically
-	 * @param func Code to be executed
+	 *
+	 * @param func  Code to be executed
 	 * @param delay Delay before first execution in seconds
 	 * @return a timer
 	 */
@@ -140,6 +156,7 @@ public interface IScheduler
 
 	/**
 	 * Cancels a timer, should not be used directly
+	 *
 	 * @param eventId The timer ID that should be cancelled
 	 */
 	void cancelTask(int eventId);

@@ -1,7 +1,6 @@
 package no.runsafe.framework.timer;
 
 import no.runsafe.framework.RunsafePlugin;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
 public class Scheduler implements IScheduler
