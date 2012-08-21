@@ -103,9 +103,7 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 	public boolean getConfigValueAsBoolean(String key)
 	{
 		String value = this.getConfigValueAsString(key);
-		if (value == null)
-			return false;
-		return Boolean.parseBoolean(value);
+		return value != null && Boolean.parseBoolean(value);
 	}
 
 	// Returns a configuration value as an integer

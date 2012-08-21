@@ -76,5 +76,5 @@ public abstract class Timer implements ITimer, Runnable
 	protected long delay;
 	protected long period;
 	private int timerId;
-	private boolean asynchronous;
+	private final boolean asynchronous;
 }

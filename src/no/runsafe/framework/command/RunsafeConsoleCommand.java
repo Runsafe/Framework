@@ -9,6 +9,7 @@ import java.util.Collection;
  */
 public class RunsafeConsoleCommand extends RunsafeCommand
 {
+	@SuppressWarnings("deprecation")
 	@Deprecated
 	public RunsafeConsoleCommand(String name, Collection<ICommand> subs, String... params)
 	{

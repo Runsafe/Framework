@@ -38,6 +38,7 @@ public abstract class Worker<TokenType, StateType> implements Runnable
 
 	public abstract void process(TokenType key, StateType value);
 
+	@SuppressWarnings("EmptyMethod")
 	protected void onWorkerDone()
 	{
 	}
@@ -58,8 +59,8 @@ public abstract class Worker<TokenType, StateType> implements Runnable
 			worker.start();
 	}
 
-	private IScheduler scheduler;
+	private final IScheduler scheduler;
 	private ITimer worker;
-	private ConcurrentHashMap<TokenType, StateType> state = new ConcurrentHashMap<TokenType, StateType>();
-	private Stack<TokenType> queue = new Stack<TokenType>();
+	private final ConcurrentHashMap<TokenType, StateType> state = new ConcurrentHashMap<TokenType, StateType>();
+	private final Stack<TokenType> queue = new Stack<TokenType>();
 }

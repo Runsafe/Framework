@@ -40,13 +40,12 @@ public class RunsafePlayerInteractEvent extends RunsafePlayerEvent implements Ca
 	public RunsafeLocation getTargetBlock()
 	{
 		BlockFace face = event.getBlockFace();
-		RunsafeLocation target = new RunsafeLocation(
+		return new RunsafeLocation(
 			getBlock().getWorld(),
 			event.getClickedBlock().getX() + face.getModX(),
 			event.getClickedBlock().getY() + face.getModY(),
 			event.getClickedBlock().getZ() + face.getModZ()
 		);
-		return target;
 	}
 
 	@Override

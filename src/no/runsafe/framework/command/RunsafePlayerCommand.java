@@ -7,6 +7,7 @@ import java.util.Collection;
  */
 public class RunsafePlayerCommand extends RunsafeCommand
 {
+	@SuppressWarnings("deprecation")
 	@Deprecated
 	public RunsafePlayerCommand(String name, Collection<ICommand> subs, String... params)
 	{
