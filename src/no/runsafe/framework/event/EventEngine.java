@@ -15,7 +15,9 @@ import no.runsafe.framework.event.listener.entity.EntityDamageByEntity;
 import no.runsafe.framework.event.listener.entity.EntityDeath;
 import no.runsafe.framework.event.listener.entity.EntityShootBow;
 import no.runsafe.framework.event.listener.player.*;
+import no.runsafe.framework.event.listener.world.*;
 import no.runsafe.framework.event.player.*;
+import no.runsafe.framework.event.world.*;
 import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.Listener;
 
@@ -92,6 +94,30 @@ public class EventEngine
 
 			if (sub instanceof IPlayerInteractEntityEvent)
 				listeners.add(new PlayerInteractEntity(scheduler, (IPlayerInteractEntityEvent) sub));
+
+			if (sub instanceof IChunkLoad)
+				listeners.add(new ChunkLoad(scheduler, (IChunkLoad) sub));
+
+			if (sub instanceof IChunkPopulate)
+				listeners.add(new ChunkPopulate(scheduler, (IChunkPopulate) sub));
+
+			if (sub instanceof IChunkUnload)
+				listeners.add(new ChunkUnload(scheduler, (IChunkUnload) sub));
+
+			if (sub instanceof ISpawnChange)
+				listeners.add(new SpawnChange(scheduler, (ISpawnChange) sub));
+
+			if (sub instanceof IWorldInit)
+				listeners.add(new WorldInit(scheduler, (IWorldInit) sub));
+
+			if (sub instanceof IWorldLoad)
+				listeners.add(new WorldLoad(scheduler, (IWorldLoad) sub));
+
+			if (sub instanceof IWorldSave)
+				listeners.add(new WorldSave(scheduler, (IWorldSave) sub));
+
+			if (sub instanceof IWorldUnload)
+				listeners.add(new WorldUnload(scheduler, (IWorldUnload) sub));
 		}
 		return listeners;
 	}
