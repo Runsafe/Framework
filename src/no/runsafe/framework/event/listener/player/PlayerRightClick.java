@@ -4,6 +4,7 @@ import no.runsafe.framework.event.listener.EventRouter;
 import no.runsafe.framework.event.player.IPlayerRightClickAirEvent;
 import no.runsafe.framework.event.player.IPlayerRightClickBlockEvent;
 import no.runsafe.framework.event.player.IPlayerRightClickEvent;
+import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.event.player.RunsafePlayerClickEvent;
 import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.EventHandler;
@@ -12,9 +13,9 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public class PlayerRightClick extends EventRouter<IPlayerRightClickEvent, PlayerInteractEvent>
 {
-	public PlayerRightClick(IScheduler scheduler, IPlayerRightClickEvent handler)
+	public PlayerRightClick(IOutput output, IScheduler scheduler, IPlayerRightClickEvent handler)
 	{
-		super(scheduler, handler);
+		super(output, scheduler, handler);
 	}
 
 	@EventHandler
@@ -24,7 +25,7 @@ public class PlayerRightClick extends EventRouter<IPlayerRightClickEvent, Player
 		super.AcceptEvent(event);
 	}
 
-	public void OnEvent(PlayerInteractEvent event)
+	public boolean OnEvent(PlayerInteractEvent event)
 	{
 		if (!(handler instanceof IPlayerRightClickAirEvent || handler instanceof IPlayerRightClickBlockEvent))
 			handler.OnPlayerRightClick(new RunsafePlayerClickEvent(event));
@@ -34,5 +35,7 @@ public class PlayerRightClick extends EventRouter<IPlayerRightClickEvent, Player
 
 		else if (handler instanceof IPlayerRightClickBlockEvent && event.getAction() == Action.RIGHT_CLICK_BLOCK)
 			handler.OnPlayerRightClick(new RunsafePlayerClickEvent(event));
+
+		return true;
 	}
 }

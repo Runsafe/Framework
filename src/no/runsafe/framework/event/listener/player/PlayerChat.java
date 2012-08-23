@@ -2,6 +2,7 @@ package no.runsafe.framework.event.listener.player;
 
 import no.runsafe.framework.event.listener.EventRouter;
 import no.runsafe.framework.event.player.IPlayerChatEvent;
+import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.event.player.RunsafePlayerChatEvent;
 import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.EventHandler;
@@ -9,9 +10,9 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 public class PlayerChat extends EventRouter<IPlayerChatEvent, AsyncPlayerChatEvent>
 {
-	public PlayerChat(IScheduler scheduler, IPlayerChatEvent handler)
+	public PlayerChat(IOutput output, IScheduler scheduler, IPlayerChatEvent handler)
 	{
-		super(scheduler, handler);
+		super(output, scheduler, handler);
 	}
 
 	@EventHandler
@@ -23,8 +24,9 @@ public class PlayerChat extends EventRouter<IPlayerChatEvent, AsyncPlayerChatEve
 	}
 
 	@Override
-	public void OnEvent(AsyncPlayerChatEvent event)
+	public boolean OnEvent(AsyncPlayerChatEvent event)
 	{
 		handler.OnPlayerChatEvent(new RunsafePlayerChatEvent(event));
+		return true;
 	}
 }

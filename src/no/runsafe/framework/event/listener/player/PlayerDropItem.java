@@ -1,18 +1,18 @@
 package no.runsafe.framework.event.listener.player;
 
 import no.runsafe.framework.event.listener.EventRouter;
-import no.runsafe.framework.server.event.player.RunsafePlayerDropItemEvent;
 import no.runsafe.framework.event.player.IPlayerDropItemEvent;
+import no.runsafe.framework.output.IOutput;
+import no.runsafe.framework.server.event.player.RunsafePlayerDropItemEvent;
 import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
 
 public class PlayerDropItem extends EventRouter<IPlayerDropItemEvent, PlayerDropItemEvent>
 {
-	public PlayerDropItem(IScheduler scheduler, IPlayerDropItemEvent handler)
+	public PlayerDropItem(IOutput output, IScheduler scheduler, IPlayerDropItemEvent handler)
 	{
-		super(scheduler, handler);
+		super(output, scheduler, handler);
 	}
 
 	@EventHandler
@@ -22,8 +22,9 @@ public class PlayerDropItem extends EventRouter<IPlayerDropItemEvent, PlayerDrop
 		super.AcceptEvent(event);
 	}
 
-	public void OnEvent(PlayerDropItemEvent event)
+	public boolean OnEvent(PlayerDropItemEvent event)
 	{
 		handler.OnPlayerDropItem(new RunsafePlayerDropItemEvent(event));
+		return true;
 	}
 }

@@ -2,6 +2,7 @@ package no.runsafe.framework.event.listener.player;
 
 import no.runsafe.framework.event.listener.EventRouter;
 import no.runsafe.framework.event.player.IPlayerTeleportEvent;
+import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.event.player.RunsafePlayerTeleportEvent;
 import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.EventHandler;
@@ -9,9 +10,9 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 
 public class PlayerTeleport extends EventRouter<IPlayerTeleportEvent, PlayerTeleportEvent>
 {
-	public PlayerTeleport(IScheduler scheduler, IPlayerTeleportEvent handler)
+	public PlayerTeleport(IOutput output, IScheduler scheduler, IPlayerTeleportEvent handler)
 	{
-		super(scheduler, handler);
+		super(output, scheduler, handler);
 	}
 
 	@EventHandler
@@ -21,8 +22,9 @@ public class PlayerTeleport extends EventRouter<IPlayerTeleportEvent, PlayerTele
 		super.AcceptEvent(event);
 	}
 
-	public void OnEvent(PlayerTeleportEvent event)
+	public boolean OnEvent(PlayerTeleportEvent event)
 	{
 		handler.OnPlayerTeleport(new RunsafePlayerTeleportEvent(event));
+		return true;
 	}
 }

@@ -2,6 +2,7 @@ package no.runsafe.framework.event.listener.player;
 
 import no.runsafe.framework.event.listener.EventRouter;
 import no.runsafe.framework.event.player.IPlayerChangedWorldEvent;
+import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.event.player.RunsafePlayerChangedWorldEvent;
 import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.EventHandler;
@@ -9,9 +10,9 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 
 public class PlayerChangedWorld extends EventRouter<IPlayerChangedWorldEvent, PlayerChangedWorldEvent>
 {
-	public PlayerChangedWorld(IScheduler scheduler, IPlayerChangedWorldEvent handler)
+	public PlayerChangedWorld(IOutput output, IScheduler scheduler, IPlayerChangedWorldEvent handler)
 	{
-		super(scheduler, handler);
+		super(output, scheduler, handler);
 	}
 
 	@EventHandler
@@ -21,8 +22,9 @@ public class PlayerChangedWorld extends EventRouter<IPlayerChangedWorldEvent, Pl
 		super.AcceptEvent(event);
 	}
 
-	public void OnEvent(PlayerChangedWorldEvent event)
+	public boolean OnEvent(PlayerChangedWorldEvent event)
 	{
 		handler.OnPlayerChangedWorld(new RunsafePlayerChangedWorldEvent(event));
+		return true;
 	}
 }

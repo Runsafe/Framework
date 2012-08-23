@@ -1,16 +1,18 @@
 package no.runsafe.framework.event.listener.block;
 
-import no.runsafe.framework.event.block.IBlockPlace;
+import no.runsafe.framework.event.block.IBlockPlaceEvent;
 import no.runsafe.framework.event.listener.EventRouter;
 import no.runsafe.framework.output.IOutput;
-import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.server.event.block.RunsafeBlockPlaceEvent;
 import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockPlaceEvent;
 
-public class BlockPlace extends EventRouter<IBlockPlace, BlockPlaceEvent>
+@SuppressWarnings("deprecation")
+@Deprecated
+public class BlockPlaceListener extends EventRouter<IBlockPlaceEvent, BlockPlaceEvent>
 {
-	public BlockPlace(IOutput output, IScheduler scheduler, IBlockPlace handler)
+	public BlockPlaceListener(IOutput output, IScheduler scheduler, IBlockPlaceEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -25,10 +27,7 @@ public class BlockPlace extends EventRouter<IBlockPlace, BlockPlaceEvent>
 	@EventHandler
 	public boolean OnEvent(BlockPlaceEvent event)
 	{
-		return handler.OnBlockPlace(
-			ObjectWrapper.convert(event.getPlayer()),
-			ObjectWrapper.convert(event.getBlock())
-		);
+		handler.OnBlockPlaceEvent(new RunsafeBlockPlaceEvent(event));
+		return true;
 	}
 }
-

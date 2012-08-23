@@ -1,16 +1,18 @@
 package no.runsafe.framework.event.listener.block;
 
-import no.runsafe.framework.event.block.IBlockDispense;
+import no.runsafe.framework.event.block.IBlockDispenseEvent;
 import no.runsafe.framework.event.listener.EventRouter;
 import no.runsafe.framework.output.IOutput;
-import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.server.event.block.RunsafeBlockDispenseEvent;
 import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockDispenseEvent;
 
-public class BlockDispense extends EventRouter<IBlockDispense, BlockDispenseEvent>
+@SuppressWarnings("deprecation")
+@Deprecated
+public class BlockDispenseListener extends EventRouter<IBlockDispenseEvent, BlockDispenseEvent>
 {
-	public BlockDispense(IOutput output, IScheduler scheduler, IBlockDispense handler)
+	public BlockDispenseListener(IOutput output, IScheduler scheduler, IBlockDispenseEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -24,10 +26,7 @@ public class BlockDispense extends EventRouter<IBlockDispense, BlockDispenseEven
 
 	public boolean OnEvent(BlockDispenseEvent event)
 	{
-		return handler.OnBlockDispense(
-			ObjectWrapper.convert(event.getBlock()),
-			ObjectWrapper.convert(event.getItem())
-		);
+		handler.OnBlockDispenseEvent(new RunsafeBlockDispenseEvent(event));
+		return true;
 	}
 }
-

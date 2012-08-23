@@ -2,6 +2,7 @@ package no.runsafe.framework.event.listener.world;
 
 import no.runsafe.framework.event.listener.EventRouter;
 import no.runsafe.framework.event.world.IWorldSave;
+import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.EventHandler;
@@ -9,9 +10,9 @@ import org.bukkit.event.world.WorldSaveEvent;
 
 public class WorldSave extends EventRouter<IWorldSave, WorldSaveEvent>
 {
-	public WorldSave(IScheduler scheduler, IWorldSave handler)
+	public WorldSave(IOutput output, IScheduler scheduler, IWorldSave handler)
 	{
-		super(scheduler, handler);
+		super(output, scheduler, handler);
 	}
 
 	@EventHandler
@@ -22,8 +23,9 @@ public class WorldSave extends EventRouter<IWorldSave, WorldSaveEvent>
 	}
 
 	@Override
-	public void OnEvent(WorldSaveEvent event)
+	public boolean OnEvent(WorldSaveEvent event)
 	{
 		handler.OnWorldSave(ObjectWrapper.convert(event.getWorld()));
+		return true;
 	}
 }

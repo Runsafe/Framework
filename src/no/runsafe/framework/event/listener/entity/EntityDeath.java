@@ -2,6 +2,7 @@ package no.runsafe.framework.event.listener.entity;
 
 import no.runsafe.framework.event.entity.IEntityDeathEvent;
 import no.runsafe.framework.event.listener.EventRouter;
+import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.event.entity.RunsafeEntityDeathEvent;
 import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.EventHandler;
@@ -9,9 +10,9 @@ import org.bukkit.event.entity.EntityDeathEvent;
 
 public class EntityDeath extends EventRouter<IEntityDeathEvent, EntityDeathEvent>
 {
-	public EntityDeath(IScheduler scheduler, IEntityDeathEvent handler)
+	public EntityDeath(IOutput output, IScheduler scheduler, IEntityDeathEvent handler)
 	{
-		super(scheduler, handler);
+		super(output, scheduler, handler);
 	}
 
 	@EventHandler
@@ -21,8 +22,9 @@ public class EntityDeath extends EventRouter<IEntityDeathEvent, EntityDeathEvent
 		super.AcceptEvent(event);
 	}
 
-	public void OnEvent(EntityDeathEvent entityDeathEvent)
+	public boolean OnEvent(EntityDeathEvent entityDeathEvent)
 	{
 		handler.OnEntityDeath(new RunsafeEntityDeathEvent(entityDeathEvent));
+		return true;
 	}
 }
