@@ -37,7 +37,9 @@ public abstract class RunsafeAsyncCommand extends RunsafeCommand
 		if (!CouldExecute(player) || !CanExecute(player, args))
 		{
 			Console.outputToConsole(String.format("%s was denied access to command.", player.getName()), Level.WARNING);
-			if (requiredPermission() != null)
+			if (requiredPermission() == null)
+				player.sendMessage(String.format("%sPermission denied to that command.", ChatColor.RED));
+			else
 				player.sendMessage(String.format("%sRequired permission %s missing.", ChatColor.RED, requiredPermission()));
 			return true;
 		}
@@ -83,7 +85,7 @@ public abstract class RunsafeAsyncCommand extends RunsafeCommand
 			Console.finest(String.format("Missing params (%d < %d)", args.length, params.size()));
 			String usage = getCommandUsage(null);
 			if (usage != null)
-				Console.write(usage);
+				Console.outputColoredToConsole(usage, Level.INFO);
 			return true;
 		}
 		captureArgs(args);
