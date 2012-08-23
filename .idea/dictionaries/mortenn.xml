@@ -1,6 +1,7 @@
 <component name="ProjectDictionaryState">
   <dictionary name="mortenn">
     <words>
+      <w>async</w>
       <w>bukkit</w>
       <w>chestplate</w>
       <w>commandsender</w>
@@ -16,6 +17,7 @@
       <w>runsafe</w>
       <w>spawner</w>
       <w>subcommand</w>
+      <w>subcommands</w>
       <w>teleport</w>
       <w>unban</w>
       <w>unregister</w>
