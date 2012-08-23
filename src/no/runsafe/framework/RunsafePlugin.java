@@ -15,6 +15,8 @@ import no.runsafe.framework.plugin.PluginResolver;
 import no.runsafe.framework.server.RunsafeServer;
 import no.runsafe.framework.timer.IScheduler;
 import no.runsafe.framework.timer.Scheduler;
+import org.apache.commons.lang.exception.ExceptionUtils;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
@@ -284,8 +286,17 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 							}
 							catch (SQLException e)
 							{
-								output.write(String.format("Failed executing query %s: %s", sql, e.getMessage()));
-								e.printStackTrace();
+								output.outputColoredToConsole(
+									String.format(
+										"Failed executing query %s: %s%s%s\n%s",
+										sql,
+										ChatColor.RED,
+										ExceptionUtils.getMessage(e),
+										ChatColor.RESET,
+										ExceptionUtils.getStackTrace(e)
+									),
+									Level.SEVERE
+								);
 								success = false;
 								break;
 							}
@@ -318,7 +329,11 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 	{
 		PluginManager pluginManager = this.getServer().getPluginManager();
 
-		EventEngine engine = new EventEngine(container.getComponent(IScheduler.class), container.getComponents(IRunsafeEvent.class));
+		EventEngine engine = new EventEngine(
+			container.getComponent(IOutput.class),
+			container.getComponent(IScheduler.class),
+			container.getComponents(IRunsafeEvent.class)
+		);
 		for (Listener listener : engine.getListeners())
 		{
 			pluginManager.registerEvents(listener, this);
