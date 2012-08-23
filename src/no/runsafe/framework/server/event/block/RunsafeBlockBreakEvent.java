@@ -30,5 +30,10 @@ public class RunsafeBlockBreakEvent extends RunsafeBlockEvent implements Cancell
 		event.setCancelled(cancel);
 	}
 
+	public void setXP(int xp)
+	{
+		event.setExpToDrop(xp);
+	}
+
 	private final BlockBreakEvent event;
 }
