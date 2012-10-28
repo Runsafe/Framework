@@ -14,7 +14,7 @@ public class RunsafeServer
 {
 	public static RunsafeServer Instance = null;
 
-	public RunsafeServer(Server toWrap)
+ 	public RunsafeServer(Server toWrap)
 	{
 		this.server = toWrap;
 	}
