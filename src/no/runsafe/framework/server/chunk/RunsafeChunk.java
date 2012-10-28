@@ -7,6 +7,7 @@ import no.runsafe.framework.server.block.RunsafeBlockState;
 import no.runsafe.framework.server.entity.RunsafeEntity;
 import org.bukkit.Chunk;
 
+import java.io.Console;
 import java.util.List;
 
 public class RunsafeChunk
@@ -42,7 +43,14 @@ public class RunsafeChunk
 
 	public List<RunsafeEntity> getEntities()
 	{
-		return ObjectWrapper.convert(chunk.getEntities());
+		try
+		{
+			return ObjectWrapper.convert(chunk.getEntities());
+		}
+		catch (NullPointerException npe)
+		{
+			return null;
+		}
 	}
 
 	public List<RunsafeBlockState> getTileEntities()
