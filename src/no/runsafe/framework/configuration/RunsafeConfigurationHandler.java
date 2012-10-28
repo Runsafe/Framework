@@ -7,6 +7,8 @@ import no.runsafe.framework.messaging.Message;
 import no.runsafe.framework.messaging.MessageBusStatus;
 import no.runsafe.framework.messaging.Response;
 import no.runsafe.framework.output.IOutput;
+import org.apache.commons.lang.exception.ExceptionUtils;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -201,6 +203,24 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 	{
 		if (subscribers != null)
 			for (IConfigurationChanged sub : subscribers)
-				sub.OnConfigurationChanged();
+			{
+				try
+				{
+					sub.OnConfigurationChanged();
+				}
+				catch (Exception e)
+				{
+					pluginOutput.outputColoredToConsole(
+						String.format(
+							"Configuration error: %s%s%s\n%s",
+							ChatColor.RED,
+							ExceptionUtils.getMessage(e),
+							ChatColor.RESET,
+							ExceptionUtils.getStackTrace(e)
+						),
+						Level.SEVERE
+					);
+				}
+			}
 	}
 }
