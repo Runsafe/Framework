@@ -62,7 +62,10 @@ public class EventEngine
 				listeners.add(new PlayerInteract(output, scheduler, (IPlayerInteractEvent) sub));
 
 			if (sub instanceof IPlayerRightClickEvent)
-				listeners.add(new PlayerRightClick(output, scheduler, (IPlayerRightClickEvent) sub));
+				listeners.add(new PlayerRightClickListener(output, scheduler, (IPlayerRightClickEvent) sub));
+
+			if (sub instanceof IPlayerRightClick)
+				listeners.add(new PlayerRightClick(output, scheduler, (IPlayerRightClick) sub));
 
 			if (sub instanceof IPlayerLeftClickEvent)
 				listeners.add(new PlayerLeftClick(output, scheduler, (IPlayerLeftClickEvent) sub));
@@ -126,6 +129,9 @@ public class EventEngine
 
 			if (sub instanceof IWorldUnload)
 				listeners.add(new WorldUnload(output, scheduler, (IWorldUnload) sub));
+
+			if (sub instanceof ISignChange)
+				listeners.add(new SignChange(output, scheduler, (ISignChange) sub));
 		}
 		return listeners;
 	}

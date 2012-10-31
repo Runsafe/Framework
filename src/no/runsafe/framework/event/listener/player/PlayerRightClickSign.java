@@ -2,8 +2,6 @@ package no.runsafe.framework.event.listener.player;
 
 import no.runsafe.framework.event.listener.EventRouter;
 import no.runsafe.framework.event.player.IPlayerRightClick;
-import no.runsafe.framework.event.player.IPlayerRightClickAir;
-import no.runsafe.framework.event.player.IPlayerRightClickBlock;
 import no.runsafe.framework.event.player.IPlayerRightClickSign;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.ObjectWrapper;
@@ -14,9 +12,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-public class PlayerRightClick extends EventRouter<IPlayerRightClick, PlayerInteractEvent>
+public class PlayerRightClickSign extends EventRouter<IPlayerRightClickSign, PlayerInteractEvent>
 {
-	public PlayerRightClick(IOutput output, IScheduler scheduler, IPlayerRightClick handler)
+	public PlayerRightClickSign(IOutput output, IScheduler scheduler, IPlayerRightClickSign handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -30,18 +28,17 @@ public class PlayerRightClick extends EventRouter<IPlayerRightClick, PlayerInter
 
 	public boolean OnEvent(PlayerInteractEvent event)
 	{
-		if (handler instanceof IPlayerRightClickAir && event.getAction() != Action.RIGHT_CLICK_AIR)
+		if(event.getAction() != Action.RIGHT_CLICK_BLOCK)
 			return true;
 
-		if (handler instanceof IPlayerRightClickBlock && event.getAction() != Action.RIGHT_CLICK_BLOCK)
+		if(event.getClickedBlock() == null || !(event.getClickedBlock().getState() instanceof Sign))
 			return true;
 
 		return
-			handler.OnPlayerRightClick(
+			handler.OnPlayerRightClickSign(
 				ObjectWrapper.convert(event.getPlayer()),
 				ObjectWrapper.convert(event.getItem()),
-				ObjectWrapper.convert(event.getClickedBlock())
+				(RunsafeSign)ObjectWrapper.convert(event.getClickedBlock().getState())
 			);
 	}
 }
-
