@@ -12,11 +12,14 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
+import java.util.logging.Level;
+
 public class PlayerRightClickSign extends EventRouter<IPlayerRightClickSign, PlayerInteractEvent>
 {
 	public PlayerRightClickSign(IOutput output, IScheduler scheduler, IPlayerRightClickSign handler)
 	{
 		super(output, scheduler, handler);
+		console = output;
 	}
 
 	@EventHandler
@@ -32,8 +35,17 @@ public class PlayerRightClickSign extends EventRouter<IPlayerRightClickSign, Pla
 			return true;
 
 		if(event.getClickedBlock() == null || !(event.getClickedBlock().getState() instanceof Sign))
+		{
+			console.outputDebugToConsole(String.format(
+				"%s right clicked something that was not a sign.",
+				event.getPlayer().getName()
+			), Level.FINER);
 			return true;
-
+		}
+		console.outputDebugToConsole(String.format(
+			"%s right clicked a sign.",
+			event.getPlayer().getName()
+		), Level.FINE);
 		return
 			handler.OnPlayerRightClickSign(
 				ObjectWrapper.convert(event.getPlayer()),
@@ -41,4 +53,6 @@ public class PlayerRightClickSign extends EventRouter<IPlayerRightClickSign, Pla
 				(RunsafeSign)ObjectWrapper.convert(event.getClickedBlock().getState())
 			);
 	}
+
+	private IOutput console;
 }

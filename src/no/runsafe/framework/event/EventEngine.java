@@ -61,6 +61,9 @@ public class EventEngine
 			if (sub instanceof IPlayerInteractEvent)
 				listeners.add(new PlayerInteract(output, scheduler, (IPlayerInteractEvent) sub));
 
+			if (sub instanceof IPlayerRightClickSign)
+				listeners.add(new PlayerRightClickSign(output, scheduler, (IPlayerRightClickSign) sub));
+
 			if (sub instanceof IPlayerRightClickEvent)
 				listeners.add(new PlayerRightClickListener(output, scheduler, (IPlayerRightClickEvent) sub));
 

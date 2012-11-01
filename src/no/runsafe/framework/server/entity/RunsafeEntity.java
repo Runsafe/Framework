@@ -6,6 +6,7 @@ import no.runsafe.framework.server.RunsafeServer;
 import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.event.entity.RunsafeEntityDamageEvent;
 import no.runsafe.framework.server.metadata.RunsafeMetadata;
+import org.bukkit.Chunk;
 import org.bukkit.entity.Entity;
 
 import java.util.List;
@@ -36,6 +37,10 @@ public class RunsafeEntity extends RunsafeMetadata
 
 	public boolean teleport(RunsafeLocation location)
 	{
+		Chunk targetChunk = location.getWorld().getRaw().getChunkAt(location.getRaw());
+		if(!targetChunk.isLoaded())
+			targetChunk.load();
+
 		return entity.teleport(location.getRaw());
 	}
 
