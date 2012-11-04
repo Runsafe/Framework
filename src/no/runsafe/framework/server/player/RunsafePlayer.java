@@ -7,6 +7,7 @@ import no.runsafe.framework.server.entity.RunsafeLivingEntity;
 import no.runsafe.framework.server.inventory.IInventoryHolder;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
 import no.runsafe.framework.server.item.RunsafeItemStack;
+import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
@@ -47,6 +48,21 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 	public boolean isOP()
 	{
 		return basePlayer.isOp();
+	}
+
+	public boolean isSurvivalist()
+	{
+		return player.getGameMode().equals(GameMode.SURVIVAL);
+	}
+
+	public boolean isCreative()
+	{
+		return player.getGameMode().equals(GameMode.CREATIVE);
+	}
+
+	public boolean isAdventurer()
+	{
+		return player.getGameMode().equals(GameMode.ADVENTURE);
 	}
 
 	public boolean isWhitelisted()

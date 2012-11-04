@@ -6,6 +6,8 @@ import no.runsafe.framework.server.item.RunsafeItem;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.server.metadata.RunsafeMetadata;
 import no.runsafe.framework.server.player.RunsafePlayer;
+import org.bukkit.Difficulty;
+import org.bukkit.GameMode;
 import org.bukkit.World;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
