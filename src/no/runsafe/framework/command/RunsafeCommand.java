@@ -104,7 +104,7 @@ public class RunsafeCommand implements ICommand
 		if (!params.isEmpty())
 			part += " <" +
 				ChatColor.YELLOW + StringUtils.join(
-				params.keySet(),
+				paramKeys,
 				ChatColor.RESET + "> <" + ChatColor.YELLOW
 			) + ChatColor.RESET + ">";
 
