@@ -206,7 +206,7 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 			{
 				try
 				{
-					sub.OnConfigurationChanged();
+					sub.OnConfigurationChanged(this);
 				}
 				catch (Exception e)
 				{
