@@ -77,7 +77,7 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 
 	public void setBanned(boolean banned)
 	{
-		player.setBanned(banned);
+		basePlayer.setBanned(banned);
 	}
 
 	public void kick(String reason)
