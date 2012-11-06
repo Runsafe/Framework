@@ -7,12 +7,14 @@ import no.runsafe.framework.configuration.IConfigurationFile;
 import no.runsafe.framework.configuration.RunsafeConfigurationHandler;
 import no.runsafe.framework.database.*;
 import no.runsafe.framework.event.*;
+import no.runsafe.framework.hook.IPlayerDataProvider;
 import no.runsafe.framework.messaging.*;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.output.RunsafeOutputHandler;
 import no.runsafe.framework.plugin.IPluginUpdate;
 import no.runsafe.framework.plugin.PluginResolver;
 import no.runsafe.framework.server.RunsafeServer;
+import no.runsafe.framework.server.player.RunsafePlayer;
 import no.runsafe.framework.timer.IScheduler;
 import no.runsafe.framework.timer.Scheduler;
 import org.apache.commons.lang.exception.ExceptionUtils;
@@ -47,11 +49,19 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 			initializePlugin();
 
 		registerServices();
+		addFrameworkHooks();
 
 		for (IPluginEnabled impl : getComponents(IPluginEnabled.class))
 			impl.OnPluginEnabled();
 
 		logPluginVersion();
+	}
+
+	private void addFrameworkHooks()
+	{
+		List<IPlayerDataProvider> playerHooks = container.getComponents(IPlayerDataProvider.class);
+		if (playerHooks != null && playerHooks.size() > 0)
+			RunsafePlayer.dataHooks.addAll(playerHooks);
 	}
 
 	@Override

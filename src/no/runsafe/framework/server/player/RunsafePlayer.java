@@ -1,6 +1,9 @@
 package no.runsafe.framework.server.player;
 
+import no.runsafe.framework.RunsafePlugin;
+import no.runsafe.framework.hook.IPlayerDataProvider;
 import no.runsafe.framework.server.RunsafeLocation;
+import no.runsafe.framework.server.RunsafeServer;
 import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.entity.RunsafeLivingEntity;
@@ -10,6 +13,9 @@ import no.runsafe.framework.server.item.RunsafeItemStack;
 import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHolder
 {
@@ -168,6 +174,23 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 		return player != null && player.hasPermission(permission);
 	}
 
+	public HashMap<String, String> getData()
+	{
+		HashMap<String, String> results = new HashMap<String, String>();
+		for(IPlayerDataProvider provider : dataHooks)
+			results.putAll(provider.GetPlayerData(this));
+		return results;
+	}
+
+	public String getDataValue(String key)
+	{
+		HashMap<String, String> data = getData();
+		if(data.containsKey(key))
+			return data.get(key);
+		return null;
+	}
+
+	public static ArrayList<IPlayerDataProvider> dataHooks = new ArrayList<IPlayerDataProvider>();
 	private final Player player;
 	private final OfflinePlayer basePlayer;
 }
