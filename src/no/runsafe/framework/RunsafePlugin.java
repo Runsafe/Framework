@@ -8,6 +8,8 @@ import no.runsafe.framework.configuration.RunsafeConfigurationHandler;
 import no.runsafe.framework.database.*;
 import no.runsafe.framework.event.*;
 import no.runsafe.framework.hook.IPlayerDataProvider;
+import no.runsafe.framework.hook.IPlayerLookupService;
+import no.runsafe.framework.hook.IPlayerVisibility;
 import no.runsafe.framework.messaging.*;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.output.RunsafeOutputHandler;
@@ -59,9 +61,17 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 
 	private void addFrameworkHooks()
 	{
-		List<IPlayerDataProvider> playerHooks = container.getComponents(IPlayerDataProvider.class);
-		if (playerHooks != null && playerHooks.size() > 0)
-			RunsafePlayer.dataHooks.addAll(playerHooks);
+		List<IPlayerDataProvider> dataHooks = container.getComponents(IPlayerDataProvider.class);
+		if (dataHooks != null)
+			RunsafePlayer.dataHooks.addAll(dataHooks);
+
+		List<IPlayerVisibility> visibilityHooks = container.getComponents(IPlayerVisibility.class);
+		if(visibilityHooks != null)
+			RunsafePlayer.visibilityHooks.addAll(visibilityHooks);
+
+		List<IPlayerLookupService> lookupHooks = container.getComponents(IPlayerLookupService.class);
+		if(lookupHooks != null)
+			RunsafeServer.lookupHooks.addAll(lookupHooks);
 	}
 
 	@Override

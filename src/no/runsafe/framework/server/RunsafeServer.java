@@ -1,5 +1,7 @@
 package no.runsafe.framework.server;
 
+import no.runsafe.framework.hook.IPlayerLookupService;
+import no.runsafe.framework.server.player.RunsafeAmbiguousPlayer;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
@@ -14,7 +16,7 @@ public class RunsafeServer
 {
 	public static RunsafeServer Instance = null;
 
- 	public RunsafeServer(Server toWrap)
+	public RunsafeServer(Server toWrap)
 	{
 		this.server = toWrap;
 	}
@@ -109,7 +111,19 @@ public class RunsafeServer
 
 	public RunsafePlayer getPlayer(String playerName)
 	{
-		return new RunsafePlayer(this.server.getOfflinePlayer(playerName));
+		ArrayList<String> hits = new ArrayList<String>();
+		for (IPlayerLookupService lookup : lookupHooks)
+			for (String hit : lookup.findPlayer(playerName))
+				if (!hits.contains(hit))
+					hits.add(hit);
+
+		if (hits.size() == 0)
+			return new RunsafePlayer(server.getOfflinePlayer(playerName));
+
+		if (hits.size() == 1)
+			return new RunsafePlayer(server.getOfflinePlayer(hits.get(0)));
+
+		return new RunsafeAmbiguousPlayer(server.getOfflinePlayer(hits.get(0)), hits);
 	}
 
 	public List<RunsafePlayer> getOfflinePlayers()
@@ -287,5 +301,6 @@ public class RunsafeServer
 		return this.server.useExactLoginLocation();
 	}
 
-	private final Server server;
+public static ArrayList<IPlayerLookupService> lookupHooks = new ArrayList<IPlayerLookupService>();
+private final Server server;
 }

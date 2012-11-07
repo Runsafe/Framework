@@ -2,6 +2,9 @@ package no.runsafe.framework.server.player;
 
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.hook.IPlayerDataProvider;
+import no.runsafe.framework.hook.IPlayerLookupService;
+import no.runsafe.framework.hook.IPlayerPermissions;
+import no.runsafe.framework.hook.IPlayerVisibility;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeServer;
 import no.runsafe.framework.server.RunsafeWorld;
@@ -16,6 +19,7 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHolder
 {
@@ -177,7 +181,7 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 	public HashMap<String, String> getData()
 	{
 		HashMap<String, String> results = new HashMap<String, String>();
-		for(IPlayerDataProvider provider : dataHooks)
+		for (IPlayerDataProvider provider : dataHooks)
 			results.putAll(provider.GetPlayerData(this));
 		return results;
 	}
@@ -185,12 +189,36 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 	public String getDataValue(String key)
 	{
 		HashMap<String, String> data = getData();
-		if(data.containsKey(key))
+		if (data.containsKey(key))
 			return data.get(key);
 		return null;
 	}
 
+	public boolean canSee(RunsafePlayer target)
+	{
+		if (visibilityHooks.isEmpty())
+			return true;
+		for (IPlayerVisibility check : visibilityHooks)
+			if (!check.canPlayerASeeB(this, target))
+				return true;
+		return false;
+	}
+
+	public List<String> getGroups()
+	{
+		ArrayList<String> result = new ArrayList<String>();
+		for (IPlayerPermissions hook : permissionHooks)
+		{
+			List<String> groups = hook.getUserGroups(this);
+			if (groups != null)
+				result.addAll(groups);
+		}
+		return result;
+	}
+
 	public static ArrayList<IPlayerDataProvider> dataHooks = new ArrayList<IPlayerDataProvider>();
+	public static ArrayList<IPlayerVisibility> visibilityHooks = new ArrayList<IPlayerVisibility>();
+	public static ArrayList<IPlayerPermissions> permissionHooks = new ArrayList<IPlayerPermissions>();
 	private final Player player;
 	private final OfflinePlayer basePlayer;
 }
