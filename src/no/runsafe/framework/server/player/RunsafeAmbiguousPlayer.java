@@ -9,6 +9,7 @@ public class RunsafeAmbiguousPlayer extends RunsafePlayer
 	public RunsafeAmbiguousPlayer(OfflinePlayer toWrap, List<String> ambiguous)
 	{
 		super(toWrap);
+		ambiguity = ambiguous;
 	}
 
 	public List<String> getAmbiguity()
