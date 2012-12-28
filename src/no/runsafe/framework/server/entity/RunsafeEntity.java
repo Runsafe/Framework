@@ -27,11 +27,15 @@ public class RunsafeEntity extends RunsafeMetadata
 
 	public RunsafeLocation getLocation()
 	{
+		if(entity == null)
+			return null;
 		return ObjectWrapper.convert(entity.getLocation());
 	}
 
 	public RunsafeWorld getWorld()
 	{
+		if(entity == null)
+			return null;
 		return ObjectWrapper.convert(entity.getWorld());
 	}
 
@@ -91,6 +95,8 @@ public class RunsafeEntity extends RunsafeMetadata
 
 	public RunsafeEntity getPassenger()
 	{
+		if(entity == null)
+			return null;
 		return ObjectWrapper.convert(entity.getPassenger());
 	}
 
