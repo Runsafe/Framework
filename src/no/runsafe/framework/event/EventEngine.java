@@ -79,6 +79,9 @@ public class EventEngine
 			if (sub instanceof IPlayerJoinEvent)
 				listeners.add(new PlayerJoin(output, scheduler, (IPlayerJoinEvent) sub));
 
+			if (sub instanceof IPlayerDeathEvent)
+				listeners.add(new PlayerDeath(output, scheduler, (IPlayerDeathEvent) sub));
+
 			if (sub instanceof IBlockBreakEvent)
 				listeners.add(new BlockBreakListener(output, scheduler, (IBlockBreakEvent) sub));
 
