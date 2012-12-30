@@ -46,6 +46,9 @@ public class EventEngine
 			if (sub instanceof IPlayerCommandPreprocessEvent)
 				listeners.add(new PlayerCommandPreprocess(output, scheduler, (IPlayerCommandPreprocessEvent) sub));
 
+			if (sub instanceof IPlayerKickEvent)
+				listeners.add(new PlayerKick(output, scheduler, (IPlayerKickEvent) sub));
+
 			if (sub instanceof IPlayerDropItemEvent)
 				listeners.add(new PlayerDropItem(output, scheduler, (IPlayerDropItemEvent) sub));
 
