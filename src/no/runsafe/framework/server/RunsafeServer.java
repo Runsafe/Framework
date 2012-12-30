@@ -128,7 +128,23 @@ public class RunsafeServer
 
 	public List<RunsafePlayer> getOfflinePlayers()
 	{
-		return ObjectWrapper.convert(server.getOfflinePlayers()); // RunsafePlayer.convert(server.getOfflinePlayers());
+		return ObjectWrapper.convert(server.getOfflinePlayers());
+	}
+
+	public RunsafePlayer getOnlinePlayer(RunsafePlayer context, String playerName)
+	{
+		ArrayList<String> hits = new ArrayList<String>();
+		for(RunsafePlayer player : getOnlinePlayers())
+			if(player.getName().toLowerCase().contains(playerName) && (context == null || context.canSee(player)))
+				hits.add(player.getName());
+
+		if (hits.size() == 0)
+			return null;
+
+		if (hits.size() == 1)
+			return new RunsafePlayer(server.getPlayerExact(hits.get(0)));
+
+		return new RunsafeAmbiguousPlayer(server.getPlayerExact(hits.get(0)), hits);
 	}
 
 	public boolean getOnlineMode()
