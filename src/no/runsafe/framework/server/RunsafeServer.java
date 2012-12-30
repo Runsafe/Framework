@@ -134,8 +134,8 @@ public class RunsafeServer
 	public RunsafePlayer getOnlinePlayer(RunsafePlayer context, String playerName)
 	{
 		ArrayList<String> hits = new ArrayList<String>();
-		for(RunsafePlayer player : getOnlinePlayers())
-			if(player.getName().toLowerCase().contains(playerName) && (context == null || context.canSee(player)))
+		for (RunsafePlayer player : getOnlinePlayers())
+			if (player.getName().toLowerCase().contains(playerName) && (context == null || context.canSee(player)))
 				hits.add(player.getName());
 
 		if (hits.size() == 0)
@@ -317,6 +317,6 @@ public class RunsafeServer
 		return this.server.useExactLoginLocation();
 	}
 
-public static ArrayList<IPlayerLookupService> lookupHooks = new ArrayList<IPlayerLookupService>();
-private final Server server;
+	public static ArrayList<IPlayerLookupService> lookupHooks = new ArrayList<IPlayerLookupService>();
+	private final Server server;
 }
