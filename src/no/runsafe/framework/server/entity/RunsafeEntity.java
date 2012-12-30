@@ -165,5 +165,22 @@ public class RunsafeEntity extends RunsafeMetadata
 		return ObjectWrapper.convert(entity.getVehicle());
 	}
 
+	public void strikeWithLightning()
+	{
+		entity.getWorld().strikeLightning(entity.getLocation());
+	}
+
+	public void explode(float power, boolean setFire, boolean breakBlocks)
+	{
+		entity.getWorld().createExplosion(
+			entity.getLocation().getBlockX(),
+			entity.getLocation().getBlockY(),
+			entity.getLocation().getBlockZ(),
+			power,
+			setFire,
+			breakBlocks
+		);
+	}
+
 	private final Entity entity;
 }
