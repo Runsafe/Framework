@@ -1,5 +1,8 @@
 package no.runsafe.framework.server.event.player;
 
+import no.runsafe.framework.IKernel;
+import no.runsafe.framework.RunsafePlugin;
+import no.runsafe.framework.event.player.IPlayerJoinEvent;
 import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -25,6 +28,13 @@ public class RunsafePlayerJoinEvent extends RunsafePlayerEvent
 	public void setJoinMessage(String message)
 	{
 		event.setJoinMessage(message);
+	}
+
+	public void Fire()
+	{
+		for (IKernel plugin : RunsafePlugin.Instances.values())
+			for (IPlayerJoinEvent listener : plugin.getComponents(IPlayerJoinEvent.class))
+				listener.OnPlayerJoinEvent(this);
 	}
 
 	private final PlayerJoinEvent event;

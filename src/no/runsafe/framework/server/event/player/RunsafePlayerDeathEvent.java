@@ -1,5 +1,9 @@
 package no.runsafe.framework.server.event.player;
 
+import no.runsafe.framework.IKernel;
+import no.runsafe.framework.RunsafePlugin;
+import no.runsafe.framework.event.player.IPlayerDeathEvent;
+import no.runsafe.framework.event.player.IPlayerKickEvent;
 import no.runsafe.framework.server.event.entity.RunsafeEntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
@@ -59,6 +63,13 @@ public class RunsafePlayerDeathEvent extends RunsafeEntityDeathEvent
 	public void setKeepLevel(boolean keepLevel)
 	{
 		this.event.setKeepLevel(keepLevel);
+	}
+
+	public void Fire()
+	{
+		for (IKernel plugin : RunsafePlugin.Instances.values())
+			for (IPlayerDeathEvent listener : plugin.getComponents(IPlayerDeathEvent.class))
+				listener.OnPlayerDeathEvent(this);
 	}
 
 	private final PlayerDeathEvent event;

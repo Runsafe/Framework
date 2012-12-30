@@ -1,5 +1,9 @@
 package no.runsafe.framework.server.event.player;
 
+import no.runsafe.framework.IKernel;
+import no.runsafe.framework.RunsafePlugin;
+import no.runsafe.framework.event.player.IPlayerLoginEvent;
+import no.runsafe.framework.event.player.IPlayerQuitEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 
 import java.net.InetAddress;
@@ -60,6 +64,13 @@ public class RunsafePlayerLoginEvent extends RunsafePlayerEvent
 	public void setKickMessage(String message)
 	{
 		event.setKickMessage(message);
+	}
+
+	public void Fire()
+	{
+		for (IKernel plugin : RunsafePlugin.Instances.values())
+			for (IPlayerLoginEvent listener : plugin.getComponents(IPlayerLoginEvent.class))
+				listener.OnPlayerLogin(this);
 	}
 
 	private final PlayerLoginEvent event;

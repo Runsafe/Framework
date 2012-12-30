@@ -1,13 +1,16 @@
 package no.runsafe.framework.server.event.player;
 
+import no.runsafe.framework.IKernel;
+import no.runsafe.framework.RunsafePlugin;
+import no.runsafe.framework.event.player.IPlayerChatEvent;
 import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.event.CancellableEvent;
 import no.runsafe.framework.server.player.RunsafePlayer;
-import org.bukkit.entity.Player;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-//import org.bukkit.event.player.PlayerChatEvent;
 
 import java.util.List;
+
+//import org.bukkit.event.player.PlayerChatEvent;
 
 public class RunsafePlayerChatEvent extends RunsafePlayerEvent implements CancellableEvent
 {
@@ -57,6 +60,13 @@ public class RunsafePlayerChatEvent extends RunsafePlayerEvent implements Cancel
 	public List<RunsafePlayer> getRecipients()
 	{
 		return ObjectWrapper.convert(event.getRecipients());
+	}
+
+	public void Fire()
+	{
+		for (IKernel plugin : RunsafePlugin.Instances.values())
+			for (IPlayerChatEvent listener : plugin.getComponents(IPlayerChatEvent.class))
+				listener.OnPlayerChatEvent(this);
 	}
 
 	private final AsyncPlayerChatEvent event;
