@@ -206,6 +206,7 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 			{
 				try
 				{
+					pluginOutput.outputDebugToConsole(String.format("Notifying subscriber %s about updated configuration.", sub.getClass().getCanonicalName()), Level.FINE);
 					sub.OnConfigurationChanged(this);
 				}
 				catch (Exception e)
