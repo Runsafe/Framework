@@ -1,12 +1,9 @@
 package no.runsafe.framework.server.player;
 
-import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.hook.IPlayerDataProvider;
-import no.runsafe.framework.hook.IPlayerLookupService;
 import no.runsafe.framework.hook.IPlayerPermissions;
 import no.runsafe.framework.hook.IPlayerVisibility;
 import no.runsafe.framework.server.RunsafeLocation;
-import no.runsafe.framework.server.RunsafeServer;
 import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.entity.RunsafeLivingEntity;
@@ -205,6 +202,16 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 			return true;
 		for (IPlayerVisibility check : visibilityHooks)
 			if (!check.canPlayerASeeB(this, target))
+				return false;
+		return true;
+	}
+
+	public boolean isVanished()
+	{
+		if (visibilityHooks.isEmpty())
+			return false;
+		for (IPlayerVisibility check : visibilityHooks)
+			if (check.isPlayerVanished(this))
 				return true;
 		return false;
 	}
