@@ -7,10 +7,7 @@ import no.runsafe.framework.configuration.IConfigurationFile;
 import no.runsafe.framework.configuration.RunsafeConfigurationHandler;
 import no.runsafe.framework.database.*;
 import no.runsafe.framework.event.*;
-import no.runsafe.framework.hook.IPlayerDataProvider;
-import no.runsafe.framework.hook.IPlayerLookupService;
-import no.runsafe.framework.hook.IPlayerPermissions;
-import no.runsafe.framework.hook.IPlayerVisibility;
+import no.runsafe.framework.hook.*;
 import no.runsafe.framework.messaging.*;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.output.RunsafeOutputHandler;
@@ -50,6 +47,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 	{
 		if (container == null)
 			initializePlugin();
+		IOutput console = getComponent(IOutput.class);
 
 		registerServices();
 		addFrameworkHooks();
@@ -77,6 +75,10 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		List<IPlayerLookupService> lookupHooks = container.getComponents(IPlayerLookupService.class);
 		if (lookupHooks != null)
 			RunsafeServer.lookupHooks.addAll(lookupHooks);
+
+		List<IPlayerNameDecorator> decoratorHooks = container.getComponents(IPlayerNameDecorator.class);
+		if(decoratorHooks != null)
+			RunsafePlayer.decoratorHooks.addAll(decoratorHooks);
 	}
 
 	@Override
@@ -102,7 +104,13 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 	@Override
 	public void addComponent(Object implOrInstance)
 	{
-		output.outputDebugToConsole(String.format("Plugin %s added component %s", this.getName(), implOrInstance.getClass().getCanonicalName()), Level.FINE);
+		output.outputDebugToConsole(
+			String.format("Plugin %s added component %s",
+				this.getName(),
+				implOrInstance instanceof Class ? ((Class) implOrInstance).getCanonicalName() : implOrInstance.getClass().getCanonicalName()
+			),
+			Level.FINE
+		);
 		container.addComponent(implOrInstance);
 	}
 
@@ -204,9 +212,13 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 
 		// When the plugin has configuration, get it.
 		if (this instanceof IConfigurationFile)
+		{
+			output.outputDebugToConsole("Loading configuration for plugin..", Level.FINE);
 			getComponent(IConfiguration.class).setConfigFileProvider((IConfigurationFile) this);
+		}
 
 		// Initiate pump before plugin setup is done
+		output.outputDebugToConsole("Initiating message pump", Level.FINE);
 		getMessagePump();
 
 		this.PluginSetup();
@@ -260,14 +272,20 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 	{
 		IMessagePump pump;
 		if (this instanceof IPumpProvider)
+		{
+			getComponent(IOutput.class).outputDebugToConsole("We are the pump..", Level.FINE);
 			return ((IPumpProvider) this).getInstance();
+		}
 
 		pump = getComponent(IMessagePump.class);
 		if (pump == null)
 		{
+			getComponent(IOutput.class).outputDebugToConsole("Looking for the pump..", Level.FINE);
 			pump = MessagePump.GetPump();
 			if (pump != null)
 				addComponent(pump);
+			else
+				getComponent(IOutput.class).outputDebugToConsole("Pump not found!", Level.FINE);
 		}
 		return pump;
 	}
