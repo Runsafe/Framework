@@ -55,6 +55,11 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 		return basePlayer.isOnline();
 	}
 
+	public void setPlayerListName(String playerName)
+	{
+		this.player.setPlayerListName(playerName);
+	}
+
 	public boolean isOP()
 	{
 		return basePlayer.isOp();
