@@ -1,6 +1,7 @@
 package no.runsafe.framework.server.player;
 
 import no.runsafe.framework.hook.IPlayerDataProvider;
+import no.runsafe.framework.hook.IPlayerNameDecorator;
 import no.runsafe.framework.hook.IPlayerPermissions;
 import no.runsafe.framework.hook.IPlayerVisibility;
 import no.runsafe.framework.server.RunsafeLocation;
@@ -13,6 +14,7 @@ import no.runsafe.framework.server.item.RunsafeItemStack;
 import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,6 +42,15 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 	public String getName()
 	{
 		return basePlayer.getName();
+	}
+
+	public String getPrettyName()
+	{
+		String name = getName();
+		if (!decoratorHooks.isEmpty())
+			for (IPlayerNameDecorator decorator : decoratorHooks)
+				name = decorator.DecorateName(this, name);
+		return name;
 	}
 
 	public boolean hasPlayedBefore()
@@ -188,6 +199,33 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 		return results;
 	}
 
+	public DateTime lastLogout()
+	{
+		if (this.isOnline() || dataHooks.isEmpty())
+			return null;
+		DateTime logout = null;
+		for (IPlayerDataProvider provider : dataHooks)
+		{
+			DateTime value = provider.GetPlayerLogout(this);
+			if (value != null && (logout == null || value.isAfter(logout)))
+				logout = value;
+		}
+		return logout;
+	}
+
+	public String getBanReason()
+	{
+		if (!this.isBanned() || dataHooks.isEmpty())
+			return null;
+		for (IPlayerDataProvider provider : dataHooks)
+		{
+			String reason = provider.GetPlayerBanReason(this);
+			if (reason != null)
+				return reason;
+		}
+		return null;
+	}
+
 	public String getDataValue(String key)
 	{
 		HashMap<String, String> data = getData();
@@ -231,6 +269,7 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 	public static ArrayList<IPlayerDataProvider> dataHooks = new ArrayList<IPlayerDataProvider>();
 	public static ArrayList<IPlayerVisibility> visibilityHooks = new ArrayList<IPlayerVisibility>();
 	public static ArrayList<IPlayerPermissions> permissionHooks = new ArrayList<IPlayerPermissions>();
+	public static ArrayList<IPlayerNameDecorator> decoratorHooks = new ArrayList<IPlayerNameDecorator>();
 	private final Player player;
 	private final OfflinePlayer basePlayer;
 }
