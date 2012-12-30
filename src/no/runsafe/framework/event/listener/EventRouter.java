@@ -55,7 +55,6 @@ public abstract class EventRouter<Wrapper extends IRunsafeEvent, EventType exten
 			},
 			0
 		);
-
 	}
 
 	private void Invoke(EventType event)
