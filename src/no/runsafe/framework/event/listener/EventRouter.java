@@ -68,7 +68,7 @@ public abstract class EventRouter<Wrapper extends IRunsafeEvent, EventType exten
 		{
 			console.outputColoredToConsole(
 				String.format(
-					"Database failure: %s%s%s\n%s",
+					"Exception in event handler: %s%s%s\n%s",
 					ChatColor.RED,
 					ExceptionUtils.getMessage(e),
 					ChatColor.RESET,
