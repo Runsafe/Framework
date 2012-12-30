@@ -27,14 +27,14 @@ public class RunsafeEntity extends RunsafeMetadata
 
 	public RunsafeLocation getLocation()
 	{
-		if(entity == null)
+		if (entity == null)
 			return null;
 		return ObjectWrapper.convert(entity.getLocation());
 	}
 
 	public RunsafeWorld getWorld()
 	{
-		if(entity == null)
+		if (entity == null)
 			return null;
 		return ObjectWrapper.convert(entity.getWorld());
 	}
@@ -42,7 +42,7 @@ public class RunsafeEntity extends RunsafeMetadata
 	public boolean teleport(RunsafeLocation location)
 	{
 		Chunk targetChunk = location.getWorld().getRaw().getChunkAt(location.getRaw());
-		if(!targetChunk.isLoaded())
+		if (!targetChunk.isLoaded())
 			targetChunk.load();
 
 		return entity.teleport(location.getRaw());
@@ -95,7 +95,7 @@ public class RunsafeEntity extends RunsafeMetadata
 
 	public RunsafeEntity getPassenger()
 	{
-		if(entity == null)
+		if (entity == null)
 			return null;
 		return ObjectWrapper.convert(entity.getPassenger());
 	}
@@ -165,9 +165,12 @@ public class RunsafeEntity extends RunsafeMetadata
 		return ObjectWrapper.convert(entity.getVehicle());
 	}
 
-	public void strikeWithLightning()
+	public void strikeWithLightning(boolean effectOnly)
 	{
-		entity.getWorld().strikeLightning(entity.getLocation());
+		if (effectOnly)
+			entity.getWorld().strikeLightningEffect(entity.getLocation());
+		else
+			entity.getWorld().strikeLightning(entity.getLocation());
 	}
 
 	public void explode(float power, boolean setFire, boolean breakBlocks)
