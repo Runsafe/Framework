@@ -62,8 +62,12 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 	{
 		List<IPlayerDataProvider> dataHooks = container.getComponents(IPlayerDataProvider.class);
 		if (dataHooks != null)
+		{
+			output.outputDebugToConsole("Hooking PlayerDataProviders..", Level.FINE);
+			for (IPlayerDataProvider provider : dataHooks)
+				output.outputDebugToConsole(String.format("Provider %s found.", provider.getClass().getCanonicalName()), Level.FINER);
 			RunsafePlayer.dataHooks.addAll(dataHooks);
-
+		}
 		List<IPlayerVisibility> visibilityHooks = container.getComponents(IPlayerVisibility.class);
 		if (visibilityHooks != null)
 			RunsafePlayer.visibilityHooks.addAll(visibilityHooks);
@@ -77,7 +81,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 			RunsafeServer.lookupHooks.addAll(lookupHooks);
 
 		List<IPlayerNameDecorator> decoratorHooks = container.getComponents(IPlayerNameDecorator.class);
-		if(decoratorHooks != null)
+		if (decoratorHooks != null)
 			RunsafePlayer.decoratorHooks.addAll(decoratorHooks);
 	}
 
