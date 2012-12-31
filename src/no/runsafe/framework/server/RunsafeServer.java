@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
 public class RunsafeServer
@@ -135,7 +136,8 @@ public class RunsafeServer
 	{
 		ArrayList<String> hits = new ArrayList<String>();
 		for (RunsafePlayer player : getOnlinePlayers())
-			if (player.getName().toLowerCase().contains(playerName) && (context == null || context.canSee(player)))
+			if (player.getName().toLowerCase().contains(playerName.toLowerCase())
+				&& (context == null || context.canSee(player)))
 				hits.add(player.getName());
 
 		if (hits.size() == 0)
@@ -155,7 +157,6 @@ public class RunsafeServer
 	public List<RunsafePlayer> getOnlinePlayers()
 	{
 		return ObjectWrapper.convert((OfflinePlayer[]) server.getOnlinePlayers());
-		//return RunsafePlayer.convert((OfflinePlayer[]) server.getOnlinePlayers());
 	}
 
 	public List<RunsafePlayer> getOperators()
@@ -317,6 +318,27 @@ public class RunsafeServer
 		return this.server.useExactLoginLocation();
 	}
 
+	public void banPlayer(RunsafePlayer banner, RunsafePlayer player, String reason)
+	{
+		kickingPlayer.put(player.getName(), banner);
+		player.setBanned(true);
+		player.kick(reason);
+	}
+
+	public void kickPlayer(RunsafePlayer kicker, RunsafePlayer player, String reason)
+	{
+		kickingPlayer.put(player.getName(), kicker);
+		player.kick(reason);
+	}
+
+	public RunsafePlayer getKicker(String playerName)
+	{
+		if (kickingPlayer.containsKey(playerName))
+			return kickingPlayer.get(playerName);
+		return null;
+	}
+
 	public static ArrayList<IPlayerLookupService> lookupHooks = new ArrayList<IPlayerLookupService>();
+	private final ConcurrentHashMap<String, RunsafePlayer> kickingPlayer = new ConcurrentHashMap<String, RunsafePlayer>();
 	private final Server server;
 }

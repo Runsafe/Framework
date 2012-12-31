@@ -2,9 +2,9 @@ package no.runsafe.framework.server.event.player;
 
 import no.runsafe.framework.IKernel;
 import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.event.player.IPlayerJoinEvent;
 import no.runsafe.framework.event.player.IPlayerKickEvent;
-import org.bukkit.event.player.PlayerEvent;
+import no.runsafe.framework.server.RunsafeServer;
+import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.event.player.PlayerKickEvent;
 
 public class RunsafePlayerKickEvent extends RunsafePlayerEvent
@@ -13,6 +13,7 @@ public class RunsafePlayerKickEvent extends RunsafePlayerEvent
 	{
 		super(toWrap);
 		this.event = toWrap;
+		this.kicker = RunsafeServer.Instance.getKicker(toWrap.getPlayer().getName());
 	}
 
 	public String getLeaveMessage()
@@ -42,5 +43,11 @@ public class RunsafePlayerKickEvent extends RunsafePlayerEvent
 				listener.OnPlayerKick(this);
 	}
 
+	public RunsafePlayer getKicker()
+	{
+		return kicker;
+	}
+
 	private final PlayerKickEvent event;
+	private final RunsafePlayer kicker;
 }
