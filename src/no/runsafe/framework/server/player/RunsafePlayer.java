@@ -14,6 +14,7 @@ import no.runsafe.framework.server.item.RunsafeItemStack;
 import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
@@ -184,6 +185,12 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 	{
 		if (player != null)
 			player.updateInventory();
+	}
+
+	public void removeBuffs()
+	{
+		for (PotionEffect effect : player.getActivePotionEffects())
+			player.removePotionEffect(effect.getType());
 	}
 
 	public boolean hasPermission(String permission)
