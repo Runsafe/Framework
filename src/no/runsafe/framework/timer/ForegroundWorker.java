@@ -3,12 +3,12 @@ package no.runsafe.framework.timer;
 import java.util.Stack;
 import java.util.concurrent.ConcurrentHashMap;
 
-public abstract class Worker<TokenType, StateType> implements Runnable
+public abstract class ForegroundWorker<TokenType, StateType> implements Runnable
 {
-	public Worker(IScheduler scheduler)
+	public ForegroundWorker(IScheduler scheduler)
 	{
 		this.scheduler = scheduler;
-		this.worker = scheduler.createAsyncTimer(this, 100L, 100L);
+		this.worker = scheduler.createSyncTimer(this, 100L, 100L);
 	}
 
 	public void Push(TokenType key, StateType value)
@@ -18,6 +18,11 @@ public abstract class Worker<TokenType, StateType> implements Runnable
 			queue.remove(key);
 		queue.push(key);
 		pokeWorker();
+	}
+
+	public boolean isQueued(TokenType key)
+	{
+		return queue.contains(key);
 	}
 
 	@Override
@@ -49,7 +54,7 @@ public abstract class Worker<TokenType, StateType> implements Runnable
 		{
 			if (this.worker != null)
 				worker.stop();
-			worker = scheduler.createAsyncTimer(this, 10L, ticks);
+			worker = scheduler.createSyncTimer(this, 10L, ticks);
 		}
 	}
 
