@@ -58,6 +58,9 @@ public class EventEngine
 			if (sub instanceof IPlayerQuitEvent)
 				listeners.add(new PlayerQuit(output, scheduler, (IPlayerQuitEvent) sub));
 
+			if (sub instanceof IPlayerMove)
+				listeners.add(new PlayerMove(output, scheduler, (IPlayerMove) sub));
+
 			if (sub instanceof IPlayerTeleportEvent)
 				listeners.add(new PlayerTeleport(output, scheduler, (IPlayerTeleportEvent) sub));
 
