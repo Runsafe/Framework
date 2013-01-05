@@ -202,11 +202,18 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 	private void notifySubscribers()
 	{
 		if (subscribers != null)
+		{
 			for (IConfigurationChanged sub : subscribers)
 			{
 				try
 				{
-					pluginOutput.outputDebugToConsole(String.format("Notifying subscriber %s about updated configuration.", sub.getClass().getCanonicalName()), Level.FINE);
+					pluginOutput.outputDebugToConsole(
+						String.format(
+							"Notifying subscriber %s about updated configuration.",
+							sub.getClass().getCanonicalName()
+						),
+						Level.FINE
+					);
 					sub.OnConfigurationChanged(this);
 				}
 				catch (Exception e)
@@ -223,5 +230,9 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 					);
 				}
 			}
+			pluginOutput.outputToConsole(
+				String.format("Configuration change notifications sent to %d modules.", subscribers.size())
+			);
+		}
 	}
 }
