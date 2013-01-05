@@ -19,6 +19,16 @@ public class RunsafeLocation
 		location = new Location(world.getRaw(), x, y, z, yaw, pitch);
 	}
 
+	public RunsafeLocation top()
+	{
+		Location target = location.getWorld().getHighestBlockAt(location).getLocation();
+		target.setPitch(location.getPitch());
+		target.setYaw(location.getYaw());
+		target.setX(location.getX());
+		target.setZ(location.getZ());
+		return ObjectWrapper.convert(target);
+	}
+
 	public double getX()
 	{
 		return location.getX();
