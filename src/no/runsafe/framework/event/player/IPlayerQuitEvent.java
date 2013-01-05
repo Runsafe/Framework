@@ -5,5 +5,5 @@ import no.runsafe.framework.event.IRunsafeEvent;
 
 public interface IPlayerQuitEvent extends IRunsafeEvent
 {
-	public void OnPlayerQuit(RunsafePlayerQuitEvent event);
+	void OnPlayerQuit(RunsafePlayerQuitEvent event);
 }

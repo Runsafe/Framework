@@ -52,6 +52,9 @@ public class EventEngine
 			if (sub instanceof IPlayerDropItemEvent)
 				listeners.add(new PlayerDropItem(output, scheduler, (IPlayerDropItemEvent) sub));
 
+			if (sub instanceof IPlayerPreLoginEvent)
+				listeners.add(new PlayerPreLogin(output, scheduler, (IPlayerPreLoginEvent) sub));
+
 			if (sub instanceof IPlayerLoginEvent)
 				listeners.add(new PlayerLogin(output, scheduler, (IPlayerLoginEvent) sub));
 
