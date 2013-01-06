@@ -62,8 +62,6 @@ public abstract class EventRouter<Wrapper extends IRunsafeEvent, EventType exten
 		boolean result;
 		try
 		{
-			if (event instanceof Cancellable && ((Cancellable) event).isCancelled())
-				return;
 			result = OnEvent(event);
 		}
 		catch (Exception e)
