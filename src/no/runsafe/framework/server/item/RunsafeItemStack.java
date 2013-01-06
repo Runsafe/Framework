@@ -2,7 +2,9 @@ package no.runsafe.framework.server.item;
 
 import no.runsafe.framework.server.enchantment.RunsafeEnchantmentWrapper;
 import no.runsafe.framework.server.material.RunsafeMaterial;
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.material.MaterialData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +33,8 @@ public class RunsafeItemStack
 
 	public RunsafeItemStack(int materialId, int amount, short durability, Byte data)
 	{
-		itemStack = new ItemStack(materialId, amount, durability, data);
+		itemStack = new ItemStack(materialId, amount, durability);
+		itemStack.setData(new MaterialData(Material.getMaterial(materialId), data));
 	}
 
 	public boolean containsEnchantment(RunsafeEnchantmentWrapper enchantmentWrapper)

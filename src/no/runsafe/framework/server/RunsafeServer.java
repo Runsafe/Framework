@@ -338,7 +338,7 @@ public class RunsafeServer
 		return null;
 	}
 
-	public static ArrayList<IPlayerLookupService> lookupHooks = new ArrayList<IPlayerLookupService>();
+	public static final ArrayList<IPlayerLookupService> lookupHooks = new ArrayList<IPlayerLookupService>();
 	private final ConcurrentHashMap<String, RunsafePlayer> kickingPlayer = new ConcurrentHashMap<String, RunsafePlayer>();
 	private final Server server;
 }

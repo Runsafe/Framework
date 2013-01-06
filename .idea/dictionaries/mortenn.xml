@@ -15,7 +15,9 @@
       <w>rawtypes</w>
       <w>redstone</w>
       <w>runsafe</w>
+      <w>scommand</w>
       <w>spawner</w>
+      <w>strikethrough</w>
       <w>subcommand</w>
       <w>subcommands</w>
       <w>teleport</w>

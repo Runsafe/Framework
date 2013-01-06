@@ -17,5 +17,5 @@ public class RunsafeAmbiguousPlayer extends RunsafePlayer
 		return ambiguity;
 	}
 
-	private List<String> ambiguity;
+	private final List<String> ambiguity;
 }

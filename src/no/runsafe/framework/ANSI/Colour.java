@@ -26,5 +26,5 @@ public enum Colour
 		return code + 40;
 	}
 
-	private int code;
+	private final int code;
 }

@@ -24,18 +24,6 @@ public class Scheduler implements IScheduler
 	}
 
 	@Override
-	public int startAsyncTask(Runnable func, Long ticks)
-	{
-		return this.scheduler.scheduleAsyncDelayedTask(this.plugin, func, ticks);
-	}
-
-	@Override
-	public int startAsyncTask(Runnable func, int seconds)
-	{
-		return this.startAsyncTask(func, (long) seconds * 20);
-	}
-
-	@Override
 	public int startSyncRepeatingTask(Runnable func, int delay, int period)
 	{
 		return this.startSyncRepeatingTask(func, (long) delay * 20, (long) period * 20);
@@ -45,18 +33,6 @@ public class Scheduler implements IScheduler
 	public int startSyncRepeatingTask(Runnable func, long delay, long period)
 	{
 		return this.scheduler.scheduleSyncRepeatingTask(this.plugin, func, delay, period);
-	}
-
-	@Override
-	public int startAsyncRepeatingTask(Runnable func, int delay, int period)
-	{
-		return this.startAsyncRepeatingTask(func, (long) delay * 20, (long) period * 20);
-	}
-
-	@Override
-	public int startAsyncRepeatingTask(Runnable func, long delay, long period)
-	{
-		return this.scheduler.scheduleAsyncRepeatingTask(this.plugin, func, delay, period);
 	}
 
 	@Override
@@ -112,6 +88,34 @@ public class Scheduler implements IScheduler
 	{
 		if (this.scheduler.isQueued(eventId))
 			this.scheduler.cancelTask(eventId);
+	}
+
+	@Override
+	@Deprecated
+	public int startAsyncTask(Runnable func, Long ticks)
+	{
+		return this.scheduler.scheduleAsyncDelayedTask(this.plugin, func, ticks);
+	}
+
+	@Override
+	@Deprecated
+	public int startAsyncTask(Runnable func, int seconds)
+	{
+		return this.startAsyncTask(func, (long) seconds * 20);
+	}
+
+	@Override
+	@Deprecated
+	public int startAsyncRepeatingTask(Runnable func, int delay, int period)
+	{
+		return this.startAsyncRepeatingTask(func, (long) delay * 20, (long) period * 20);
+	}
+
+	@Override
+	@Deprecated
+	public int startAsyncRepeatingTask(Runnable func, long delay, long period)
+	{
+		return this.scheduler.scheduleAsyncRepeatingTask(this.plugin, func, delay, period);
 	}
 
 	private final RunsafePlugin plugin;

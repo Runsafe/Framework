@@ -299,10 +299,10 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 		return result;
 	}
 
-	public static ArrayList<IPlayerDataProvider> dataHooks = new ArrayList<IPlayerDataProvider>();
-	public static ArrayList<IPlayerVisibility> visibilityHooks = new ArrayList<IPlayerVisibility>();
-	public static ArrayList<IPlayerPermissions> permissionHooks = new ArrayList<IPlayerPermissions>();
-	public static ArrayList<IPlayerNameDecorator> decoratorHooks = new ArrayList<IPlayerNameDecorator>();
+	public static final ArrayList<IPlayerDataProvider> dataHooks = new ArrayList<IPlayerDataProvider>();
+	public static final ArrayList<IPlayerVisibility> visibilityHooks = new ArrayList<IPlayerVisibility>();
+	public static final ArrayList<IPlayerPermissions> permissionHooks = new ArrayList<IPlayerPermissions>();
+	public static final ArrayList<IPlayerNameDecorator> decoratorHooks = new ArrayList<IPlayerNameDecorator>();
 	private final Player player;
 	private final OfflinePlayer basePlayer;
 }

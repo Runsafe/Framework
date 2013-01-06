@@ -1,5 +1,6 @@
 package no.runsafe.framework.server.item;
 
+import com.mysql.jdbc.NotImplemented;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Collection;
@@ -7,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+@Deprecated
 public class RunsafeItemStackList implements List<RunsafeItemStack>
 {
 	public RunsafeItemStackList(List<ItemStack> stacks)
@@ -37,19 +39,19 @@ public class RunsafeItemStackList implements List<RunsafeItemStack>
 	@Override
 	public Iterator<RunsafeItemStack> iterator()
 	{
-		return null;
+		throw new NoSuchMethodError();
 	}
 
 	@Override
 	public Object[] toArray()
 	{
-		return new Object[0];  //To change body of implemented methods use File | Settings | File Templates.
+		throw new NoSuchMethodError();
 	}
 
 	@Override
 	public <T> T[] toArray(T[] a)
 	{
-		return null;
+		throw new NoSuchMethodError();
 	}
 
 	@Override
@@ -70,31 +72,31 @@ public class RunsafeItemStackList implements List<RunsafeItemStack>
 	@Override
 	public boolean containsAll(Collection<?> c)
 	{
-		return false;
+		throw new NoSuchMethodError();
 	}
 
 	@Override
 	public boolean addAll(Collection<? extends RunsafeItemStack> c)
 	{
-		return false;
+		throw new NoSuchMethodError();
 	}
 
 	@Override
 	public boolean addAll(int index, Collection<? extends RunsafeItemStack> c)
 	{
-		return false;
+		throw new NoSuchMethodError();
 	}
 
 	@Override
 	public boolean removeAll(Collection<?> c)
 	{
-		return false;
+		throw new NoSuchMethodError();
 	}
 
 	@Override
 	public boolean retainAll(Collection<?> c)
 	{
-		return false;
+		throw new NoSuchMethodError();
 	}
 
 	@Override
@@ -152,19 +154,19 @@ public class RunsafeItemStackList implements List<RunsafeItemStack>
 	@Override
 	public ListIterator<RunsafeItemStack> listIterator()
 	{
-		return null;
+		throw new NoSuchMethodError();
 	}
 
 	@Override
 	public ListIterator<RunsafeItemStack> listIterator(int index)
 	{
-		return null;
+		throw new NoSuchMethodError();
 	}
 
 	@Override
 	public List<RunsafeItemStack> subList(int fromIndex, int toIndex)
 	{
-		return null;
+		throw new NoSuchMethodError();
 	}
 
 	private final List<ItemStack> itemStacks;

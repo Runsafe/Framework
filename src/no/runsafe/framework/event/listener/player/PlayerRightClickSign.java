@@ -54,5 +54,5 @@ public class PlayerRightClickSign extends EventRouter<IPlayerRightClickSign, Pla
 			);
 	}
 
-	private IOutput console;
+	private final IOutput console;
 }
