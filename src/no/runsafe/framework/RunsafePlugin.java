@@ -101,6 +101,8 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
 	{
+		if(commands == null)
+			return false;
 		String command = cmd.getName().toLowerCase();
 		return commands.containsKey(command) && commands.get(command).onCommand(sender, cmd, label, args);
 	}

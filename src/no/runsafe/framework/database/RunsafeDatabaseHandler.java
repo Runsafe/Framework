@@ -51,7 +51,7 @@ public class RunsafeDatabaseHandler implements IDatabase
 				"================================================================\n" +
 				"Created new default runsafe/db.yml - you should change this now!\n" +
 				"================================================================" +
-				ConsoleColors.reset
+				ConsoleColors.RESET
 			);
 		}
 		catch (IOException e)

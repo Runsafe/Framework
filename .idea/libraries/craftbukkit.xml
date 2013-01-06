@@ -6,6 +6,7 @@
     <JAVADOC />
     <SOURCES>
       <root url="jar://$PROJECT_DIR$/lib/craftbukkit.jar!/" />
+      <root url="file://$PROJECT_DIR$/../other/Bukkit/src/main/java" />
     </SOURCES>
   </library>
 </component>
