@@ -7,16 +7,20 @@ public abstract class ForegroundWorker<TokenType, StateType> implements Runnable
 {
 	public ForegroundWorker(IScheduler scheduler)
 	{
+		this(scheduler, 1L);
+	}
+
+	public ForegroundWorker(IScheduler scheduler, long ticks)
+	{
 		this.scheduler = scheduler;
-		this.worker = scheduler.createSyncTimer(this, 100L, 100L);
+		this.worker = scheduler.createSyncTimer(this, ticks, ticks);
 	}
 
 	public void Push(TokenType key, StateType value)
 	{
 		state.put(key, value);
-		if (queue.contains(key))
-			queue.remove(key);
-		queue.push(key);
+		if (!queue.contains(key))
+			queue.push(key);
 		pokeWorker();
 	}
 
@@ -54,7 +58,7 @@ public abstract class ForegroundWorker<TokenType, StateType> implements Runnable
 		{
 			if (this.worker != null)
 				worker.stop();
-			worker = scheduler.createSyncTimer(this, 10L, ticks);
+			worker = scheduler.createSyncTimer(this, 1L, ticks);
 		}
 	}
 

@@ -7,16 +7,20 @@ public abstract class Worker<TokenType, StateType> implements Runnable
 {
 	public Worker(IScheduler scheduler)
 	{
+		this(scheduler, 10L);
+	}
+
+	public Worker(IScheduler scheduler, long ticks)
+	{
 		this.scheduler = scheduler;
-		this.worker = scheduler.createAsyncTimer(this, 100L, 100L);
+		this.worker = scheduler.createAsyncTimer(this, ticks, ticks);
 	}
 
 	public void Push(TokenType key, StateType value)
 	{
 		state.put(key, value);
-		if (queue.contains(key))
-			queue.remove(key);
-		queue.push(key);
+		if (!queue.contains(key))
+			queue.push(key);
 		pokeWorker();
 	}
 
