@@ -19,6 +19,7 @@ import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHolder
@@ -200,10 +201,35 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 
 	public HashMap<String, String> getData()
 	{
-		HashMap<String, String> results = new HashMap<String, String>();
+		HashMap<String, String> results = getBasicData();
 		for (IPlayerDataProvider provider : dataHooks)
-			results.putAll(provider.GetPlayerData(this));
+		{
+			HashMap<String, String> data = provider.GetPlayerData(this);
+			if (data != null)
+				results.putAll(data);
+		}
 		return results;
+	}
+
+	public HashMap<String, String> getBasicData()
+	{
+		LinkedHashMap<String, String> data = new LinkedHashMap<String, String>();
+		if (isOnline())
+		{
+			data.put("game.ip",
+				String.format("%s [%s]",
+					player.getAddress().getAddress().getHostAddress(),
+					player.getAddress().getHostName()
+				)
+			);
+			data.put("game.mode", player.getGameMode().name());
+			data.put("game.flying", player.isFlying() ? "true" : "false");
+			data.put("game.health", String.format("%d/%d", getHealth(), getMaxHealth()));
+		}
+		data.put("game.experience", String.format("%.1f", getXP()));
+		data.put("game.level", String.format("%d", getLevel()));
+		data.put("game.op", isOP() ? "true" : "false");
+		return data;
 	}
 
 	public DateTime lastLogout()
