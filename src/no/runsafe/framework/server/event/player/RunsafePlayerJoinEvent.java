@@ -4,10 +4,11 @@ import no.runsafe.framework.IKernel;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.event.player.IPlayerJoinEvent;
 import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.server.event.IFakeAbleEvent;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-public class RunsafePlayerJoinEvent extends RunsafePlayerEvent
+public class RunsafePlayerJoinEvent extends RunsafePlayerEvent implements IFakeAbleEvent
 {
 	public RunsafePlayerJoinEvent(PlayerJoinEvent toWrap)
 	{
@@ -32,10 +33,18 @@ public class RunsafePlayerJoinEvent extends RunsafePlayerEvent
 
 	public void Fire()
 	{
+		isFake = true;
 		for (IKernel plugin : RunsafePlugin.Instances.values())
 			for (IPlayerJoinEvent listener : plugin.getComponents(IPlayerJoinEvent.class))
 				listener.OnPlayerJoinEvent(this);
 	}
 
+	@Override
+	public boolean isFake()
+	{
+		return isFake;
+	}
+
 	private final PlayerJoinEvent event;
+	private boolean isFake;
 }

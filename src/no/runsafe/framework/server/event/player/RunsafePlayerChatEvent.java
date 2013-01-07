@@ -5,6 +5,7 @@ import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.event.player.IPlayerChatEvent;
 import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.event.CancellableEvent;
+import no.runsafe.framework.server.event.IFakeAbleEvent;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
 //import org.bukkit.event.player.PlayerChatEvent;
 
-public class RunsafePlayerChatEvent extends RunsafePlayerEvent implements CancellableEvent
+public class RunsafePlayerChatEvent extends RunsafePlayerEvent implements CancellableEvent, IFakeAbleEvent
 {
 	public RunsafePlayerChatEvent(AsyncPlayerChatEvent toWrap)
 	{
@@ -64,10 +65,18 @@ public class RunsafePlayerChatEvent extends RunsafePlayerEvent implements Cancel
 
 	public void Fire()
 	{
+		isFake = true;
 		for (IKernel plugin : RunsafePlugin.Instances.values())
 			for (IPlayerChatEvent listener : plugin.getComponents(IPlayerChatEvent.class))
 				listener.OnPlayerChatEvent(this);
 	}
 
+	@Override
+	public boolean isFake()
+	{
+		return isFake;
+	}
+
 	private final AsyncPlayerChatEvent event;
+	private boolean isFake = false;
 }

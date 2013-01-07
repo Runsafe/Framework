@@ -4,10 +4,11 @@ import no.runsafe.framework.IKernel;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.event.player.IPlayerKickEvent;
 import no.runsafe.framework.server.RunsafeServer;
+import no.runsafe.framework.server.event.IFakeAbleEvent;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.event.player.PlayerKickEvent;
 
-public class RunsafePlayerKickEvent extends RunsafePlayerEvent
+public class RunsafePlayerKickEvent extends RunsafePlayerEvent implements IFakeAbleEvent
 {
 	public RunsafePlayerKickEvent(PlayerKickEvent toWrap)
 	{
@@ -38,9 +39,16 @@ public class RunsafePlayerKickEvent extends RunsafePlayerEvent
 
 	public void Fire()
 	{
+		isFake = true;
 		for (IKernel plugin : RunsafePlugin.Instances.values())
 			for (IPlayerKickEvent listener : plugin.getComponents(IPlayerKickEvent.class))
 				listener.OnPlayerKick(this);
+	}
+
+	@Override
+	public boolean isFake()
+	{
+		return isFake;
 	}
 
 	public RunsafePlayer getKicker()
@@ -50,4 +58,5 @@ public class RunsafePlayerKickEvent extends RunsafePlayerEvent
 
 	private final PlayerKickEvent event;
 	private final RunsafePlayer kicker;
+	private boolean isFake = false;
 }

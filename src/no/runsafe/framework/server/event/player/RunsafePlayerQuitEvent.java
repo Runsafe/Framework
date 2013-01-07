@@ -2,14 +2,11 @@ package no.runsafe.framework.server.event.player;
 
 import no.runsafe.framework.IKernel;
 import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.event.IRunsafeEvent;
 import no.runsafe.framework.event.player.IPlayerQuitEvent;
+import no.runsafe.framework.server.event.IFakeAbleEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class RunsafePlayerQuitEvent extends RunsafePlayerEvent
+public class RunsafePlayerQuitEvent extends RunsafePlayerEvent implements IFakeAbleEvent
 {
 	public RunsafePlayerQuitEvent(PlayerQuitEvent toWrap)
 	{
@@ -29,10 +26,18 @@ public class RunsafePlayerQuitEvent extends RunsafePlayerEvent
 
 	public void Fire()
 	{
+		isFake = true;
 		for (IKernel plugin : RunsafePlugin.Instances.values())
 			for (IPlayerQuitEvent listener : plugin.getComponents(IPlayerQuitEvent.class))
 				listener.OnPlayerQuit(this);
 	}
 
+	@Override
+	public boolean isFake()
+	{
+		return isFake;
+	}
+
 	private final PlayerQuitEvent event;
+	private boolean isFake = false;
 }

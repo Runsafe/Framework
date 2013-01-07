@@ -4,11 +4,12 @@ import no.runsafe.framework.IKernel;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.event.player.IPlayerLoginEvent;
 import no.runsafe.framework.event.player.IPlayerQuitEvent;
+import no.runsafe.framework.server.event.IFakeAbleEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 
 import java.net.InetAddress;
 
-public class RunsafePlayerLoginEvent extends RunsafePlayerEvent
+public class RunsafePlayerLoginEvent extends RunsafePlayerEvent implements IFakeAbleEvent
 {
 	public RunsafePlayerLoginEvent(PlayerLoginEvent toWrap)
 	{
@@ -68,10 +69,18 @@ public class RunsafePlayerLoginEvent extends RunsafePlayerEvent
 
 	public void Fire()
 	{
+		isFake = true;
 		for (IKernel plugin : RunsafePlugin.Instances.values())
 			for (IPlayerLoginEvent listener : plugin.getComponents(IPlayerLoginEvent.class))
 				listener.OnPlayerLogin(this);
 	}
 
+	@Override
+	public boolean isFake()
+	{
+		return isFake;
+	}
+
 	private final PlayerLoginEvent event;
+	private boolean isFake = false;
 }

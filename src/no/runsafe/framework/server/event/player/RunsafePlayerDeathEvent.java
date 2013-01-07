@@ -3,11 +3,11 @@ package no.runsafe.framework.server.event.player;
 import no.runsafe.framework.IKernel;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.event.player.IPlayerDeathEvent;
-import no.runsafe.framework.event.player.IPlayerKickEvent;
+import no.runsafe.framework.server.event.IFakeAbleEvent;
 import no.runsafe.framework.server.event.entity.RunsafeEntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
-public class RunsafePlayerDeathEvent extends RunsafeEntityDeathEvent
+public class RunsafePlayerDeathEvent extends RunsafeEntityDeathEvent implements IFakeAbleEvent
 {
 	public RunsafePlayerDeathEvent(PlayerDeathEvent toWrap)
 	{
@@ -67,10 +67,18 @@ public class RunsafePlayerDeathEvent extends RunsafeEntityDeathEvent
 
 	public void Fire()
 	{
+		isFake = true;
 		for (IKernel plugin : RunsafePlugin.Instances.values())
 			for (IPlayerDeathEvent listener : plugin.getComponents(IPlayerDeathEvent.class))
 				listener.OnPlayerDeathEvent(this);
 	}
 
+	@Override
+	public boolean isFake()
+	{
+		return isFake;
+	}
+
 	private final PlayerDeathEvent event;
+	private boolean isFake = false;
 }
