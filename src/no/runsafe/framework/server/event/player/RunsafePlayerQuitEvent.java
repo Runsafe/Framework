@@ -3,10 +3,10 @@ package no.runsafe.framework.server.event.player;
 import no.runsafe.framework.IKernel;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.event.player.IPlayerQuitEvent;
-import no.runsafe.framework.server.event.IFakeAbleEvent;
+import no.runsafe.framework.server.event.IFakeableEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-public class RunsafePlayerQuitEvent extends RunsafePlayerEvent implements IFakeAbleEvent
+public class RunsafePlayerQuitEvent extends RunsafePlayerEvent implements IFakeableEvent
 {
 	public RunsafePlayerQuitEvent(PlayerQuitEvent toWrap)
 	{

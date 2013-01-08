@@ -5,7 +5,7 @@ import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.event.player.IPlayerChatEvent;
 import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.event.CancellableEvent;
-import no.runsafe.framework.server.event.IFakeAbleEvent;
+import no.runsafe.framework.server.event.IFakeableEvent;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
@@ -13,7 +13,7 @@ import java.util.List;
 
 //import org.bukkit.event.player.PlayerChatEvent;
 
-public class RunsafePlayerChatEvent extends RunsafePlayerEvent implements CancellableEvent, IFakeAbleEvent
+public class RunsafePlayerChatEvent extends RunsafePlayerEvent implements CancellableEvent, IFakeableEvent
 {
 	public RunsafePlayerChatEvent(AsyncPlayerChatEvent toWrap)
 	{

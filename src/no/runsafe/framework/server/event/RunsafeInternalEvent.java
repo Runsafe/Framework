@@ -1,6 +1,6 @@
 package no.runsafe.framework.server.event;
 
-public abstract class RunsafeInternalEvent implements IFakeAbleEvent
+public abstract class RunsafeInternalEvent implements IFakeableEvent
 {
 	@Override
 	public boolean isFake()

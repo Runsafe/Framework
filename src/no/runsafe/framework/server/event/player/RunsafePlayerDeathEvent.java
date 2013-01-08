@@ -3,11 +3,11 @@ package no.runsafe.framework.server.event.player;
 import no.runsafe.framework.IKernel;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.event.player.IPlayerDeathEvent;
-import no.runsafe.framework.server.event.IFakeAbleEvent;
+import no.runsafe.framework.server.event.IFakeableEvent;
 import no.runsafe.framework.server.event.entity.RunsafeEntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
-public class RunsafePlayerDeathEvent extends RunsafeEntityDeathEvent implements IFakeAbleEvent
+public class RunsafePlayerDeathEvent extends RunsafeEntityDeathEvent implements IFakeableEvent
 {
 	public RunsafePlayerDeathEvent(PlayerDeathEvent toWrap)
 	{
