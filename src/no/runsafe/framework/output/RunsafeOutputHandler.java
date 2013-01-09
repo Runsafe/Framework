@@ -58,7 +58,15 @@ public class RunsafeOutputHandler implements IOutput
 	public void outputDebugToConsole(String message, Level messageLevel)
 	{
 		if (debugLevel != null && messageLevel.intValue() >= debugLevel.intValue())
-			outputToConsole(message, Level.INFO);
+			outputToConsole(
+				String.format(
+					"[%s%s%s] %s",
+					ConsoleColors.DARK_GREEN,
+					messageLevel.getName(),
+					ConsoleColors.RESET, message
+				),
+				Level.INFO
+			);
 	}
 
 	// Broadcasts the supplied string to all players on the event the output handler has
