@@ -1,6 +1,6 @@
 package no.runsafe.framework.server.event;
 
-public interface IFakeAbleEvent
+public interface IFakeableEvent
 {
 	void Fire();
 	boolean isFake();

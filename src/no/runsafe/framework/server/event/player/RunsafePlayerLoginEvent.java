@@ -4,12 +4,12 @@ import no.runsafe.framework.IKernel;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.event.player.IPlayerLoginEvent;
 import no.runsafe.framework.event.player.IPlayerQuitEvent;
-import no.runsafe.framework.server.event.IFakeAbleEvent;
+import no.runsafe.framework.server.event.IFakeableEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 
 import java.net.InetAddress;
 
-public class RunsafePlayerLoginEvent extends RunsafePlayerEvent implements IFakeAbleEvent
+public class RunsafePlayerLoginEvent extends RunsafePlayerEvent implements IFakeableEvent
 {
 	public RunsafePlayerLoginEvent(PlayerLoginEvent toWrap)
 	{

@@ -4,11 +4,11 @@ import no.runsafe.framework.IKernel;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.event.player.IPlayerJoinEvent;
 import no.runsafe.framework.server.ObjectWrapper;
-import no.runsafe.framework.server.event.IFakeAbleEvent;
+import no.runsafe.framework.server.event.IFakeableEvent;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-public class RunsafePlayerJoinEvent extends RunsafePlayerEvent implements IFakeAbleEvent
+public class RunsafePlayerJoinEvent extends RunsafePlayerEvent implements IFakeableEvent
 {
 	public RunsafePlayerJoinEvent(PlayerJoinEvent toWrap)
 	{
