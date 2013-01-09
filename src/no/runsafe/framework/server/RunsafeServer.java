@@ -1,11 +1,13 @@
 package no.runsafe.framework.server;
 
 import no.runsafe.framework.hook.IPlayerLookupService;
+import no.runsafe.framework.server.entity.RunsafeEntity;
 import no.runsafe.framework.server.player.RunsafeAmbiguousPlayer;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
 import org.bukkit.World;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import java.io.File;
@@ -327,14 +329,19 @@ public class RunsafeServer
 
 	public void kickPlayer(RunsafePlayer kicker, RunsafePlayer player, String reason)
 	{
-		kickingPlayer.put(player.getName(), kicker);
+		if (kicker != null)
+			kickingPlayer.put(player.getName(), kicker);
 		player.kick(reason);
 	}
 
 	public RunsafePlayer getKicker(String playerName)
 	{
 		if (kickingPlayer.containsKey(playerName))
-			return kickingPlayer.get(playerName);
+		{
+			RunsafePlayer kicker = kickingPlayer.get(playerName);
+			kickingPlayer.remove(playerName);
+			return kicker;
+		}
 		return null;
 	}
 

@@ -6,9 +6,8 @@ import no.runsafe.framework.server.item.RunsafeItem;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.server.metadata.RunsafeMetadata;
 import no.runsafe.framework.server.player.RunsafePlayer;
-import org.bukkit.Difficulty;
-import org.bukkit.GameMode;
 import org.bukkit.World;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
@@ -99,6 +98,14 @@ public class RunsafeWorld extends RunsafeMetadata
 	public List<RunsafeEntity> getEntities()
 	{
 		return ObjectWrapper.convert(world.getEntities());
+	}
+
+	public RunsafeEntity getEntityById(int id)
+	{
+		for (Entity entity : world.getEntities())
+			if (entity.getEntityId() == id)
+				return ObjectWrapper.convert(entity);
+		return null;
 	}
 
 	private final World world;
