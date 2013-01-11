@@ -23,7 +23,7 @@
 
     <target name="jar" depends="compile">
         <mkdir dir="${jar.dir}"/>
-        <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+        <jar destfile="${jar.dir}/framework.jar" basedir="${classes.dir}">
             <manifest>
                 <attribute name="Class-Path" value="picocontainer-2.14.1.jar joda-time-2.1.jar" />
             </manifest>
