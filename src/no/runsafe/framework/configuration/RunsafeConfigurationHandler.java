@@ -1,6 +1,5 @@
 package no.runsafe.framework.configuration;
 
-import no.runsafe.framework.FrameworkMessages;
 import no.runsafe.framework.event.IConfigurationChanged;
 import no.runsafe.framework.messaging.IMessageBusService;
 import no.runsafe.framework.messaging.Message;
@@ -68,7 +67,7 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 		{
 			this.configFile.options().copyDefaults(true);
 			this.save();
-			this.output(FrameworkMessages.configurationInfo_restored);
+			this.output("Configuration restored to defaults.");
 			return true;
 		}
 		return false;
@@ -86,7 +85,7 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 			}
 			catch (IOException ex)
 			{
-				this.output(String.format(FrameworkMessages.configurationError_save, this.configFilePath), Level.SEVERE);
+				this.output(String.format("Unable to save to configuration file: %s", this.configFilePath), Level.SEVERE);
 			}
 		}
 	}
