@@ -31,13 +31,14 @@ public class RunsafeCommandHandler implements CommandExecutor
 
 		if (sender instanceof Player)
 		{
-			if (commandObject.isConsoleLogEnabled())
-				console.write(String.format("[PLAYER_COMMAND] <%s> /%s %s", sender.getName(), label, StringUtils.join(rawArgs, " ")));
 			if (commandObject.requiredPermission() != null && !sender.hasPermission(commandObject.requiredPermission()))
 			{
+				console.write(String.format("[PLAYER_COMMAND] <%s> /%s %s", sender.getName(), label, StringUtils.join(rawArgs, " ")));
 				sender.sendMessage(ChatColor.RED + "No access to that command.");
 				return true;
 			}
+			if (commandObject.isConsoleLogEnabled())
+				console.write(String.format("[PLAYER_COMMAND] <%s> /%s %s", sender.getName(), label, StringUtils.join(rawArgs, " ")));
 			return commandObject.Execute(ObjectWrapper.convert((Player) sender), args);
 		}
 		else
