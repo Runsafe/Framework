@@ -9,6 +9,8 @@ public interface IOutput {
 
 	public void writeColoured(String message, Object... params);
 
+	public void writeColoured(String message, Level level, Object... params);
+
 	// Sends the supplied string to the console/log the output handler has
 	public void outputToConsole(String message);
 
