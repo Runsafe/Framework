@@ -6,35 +6,35 @@ import java.util.regex.Pattern;
 
 public enum ChatColour
 {
-	BLACK('0', ChatColor.BLACK),
-	DARK_BLUE('1', ChatColor.DARK_BLUE),
-	DARK_GREEN('2', ChatColor.DARK_GREEN),
-	DARK_AQUA('3', ChatColor.DARK_AQUA),
-	DARK_RED('4', ChatColor.DARK_RED),
-	DARK_PURPLE('5', ChatColor.DARK_PURPLE),
-	GOLD('6', ChatColor.GOLD),
-	GRAY('7', ChatColor.GRAY),
-	DARK_GRAY('8', ChatColor.DARK_GRAY),
-	BLUE('9', ChatColor.BLUE),
-	GREEN('a', ChatColor.GREEN),
-	AQUA('b', ChatColor.AQUA),
-	RED('c', ChatColor.RED),
-	LIGHT_PURPLE('d', ChatColor.LIGHT_PURPLE),
-	YELLOW('e', ChatColor.YELLOW),
-	WHITE('f', ChatColor.WHITE),
-	MAGIC('k', ChatColor.MAGIC),
-	BOLD('l', ChatColor.BOLD),
-	STRIKETHROUGH('m', ChatColor.STRIKETHROUGH),
-	UNDERLINE('n', ChatColor.UNDERLINE),
-	ITALIC('o', ChatColor.ITALIC),
-	RESET('r', ChatColor.RESET);
+	BLACK('0', ChatColor.BLACK, ConsoleColors.BLACK),
+	DARK_BLUE('1', ChatColor.DARK_BLUE, ConsoleColors.DARK_BLUE),
+	DARK_GREEN('2', ChatColor.DARK_GREEN, ConsoleColors.DARK_GREEN),
+	DARK_AQUA('3', ChatColor.DARK_AQUA, ConsoleColors.DARK_AQUA),
+	DARK_RED('4', ChatColor.DARK_RED, ConsoleColors.DARK_RED),
+	DARK_PURPLE('5', ChatColor.DARK_PURPLE, ConsoleColors.DARK_PURPLE),
+	GOLD('6', ChatColor.GOLD, ConsoleColors.GOLD),
+	GRAY('7', ChatColor.GRAY, ConsoleColors.GRAY),
+	DARK_GRAY('8', ChatColor.DARK_GRAY, ConsoleColors.DARK_GRAY),
+	BLUE('9', ChatColor.BLUE, ConsoleColors.BLUE),
+	GREEN('a', ChatColor.GREEN, ConsoleColors.GREEN),
+	AQUA('b', ChatColor.AQUA, ConsoleColors.AQUA),
+	RED('c', ChatColor.RED, ConsoleColors.RED),
+	LIGHT_PURPLE('d', ChatColor.LIGHT_PURPLE, ConsoleColors.LIGHT_PURPLE),
+	YELLOW('e', ChatColor.YELLOW, ConsoleColors.YELLOW),
+	WHITE('f', ChatColor.WHITE, ConsoleColors.WHITE),
+	MAGIC('k', ChatColor.MAGIC, ConsoleColors.MAGIC),
+	BOLD('l', ChatColor.BOLD, ConsoleColors.BOLD),
+	STRIKETHROUGH('m', ChatColor.STRIKETHROUGH, ConsoleColors.STRIKETHROUGH),
+	UNDERLINE('n', ChatColor.UNDERLINE, ConsoleColors.UNDERLINE),
+	ITALIC('o', ChatColor.ITALIC, ConsoleColors.ITALIC),
+	RESET('r', ChatColor.RESET, ConsoleColors.RESET);
 
-	ChatColour(char colourCode, ChatColor bukkitColour)
+	ChatColour(char colourCode, ChatColor bukkitColour, String ansiCode)
 	{
 		code = String.format("&%s", colourCode);
 		colour = bukkitColour;
 		bukkitCode = colour.toString();
-		consoleCode = ConsoleColors.FromMinecraft(bukkitCode);
+		consoleCode = ansiCode;
 	}
 
 	@Override
