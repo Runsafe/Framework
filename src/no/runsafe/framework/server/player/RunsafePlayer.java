@@ -72,7 +72,7 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 		if (playerName.length() > 16)
 			this.player.setPlayerListName(playerName.substring(0, 16));
 		else
-			this.player.setPlayerListName(playerName.substring(0, 16));
+			this.player.setPlayerListName(playerName);
 	}
 
 	public boolean isOP()
