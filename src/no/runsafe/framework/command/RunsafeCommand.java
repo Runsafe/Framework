@@ -262,6 +262,18 @@ public class RunsafeCommand implements ICommand
 			sub.setConsole(output);
 	}
 
+	@Override
+	public void setConsoleLogging(boolean isEnabled)
+	{
+		logToConsole = isEnabled;
+	}
+
+	@Override
+	public boolean isConsoleLogEnabled()
+	{
+		return logToConsole;
+	}
+
 	protected void captureArgs(String[] args)
 	{
 		if (paramKeys != null && paramKeys.length > 0)
@@ -303,4 +315,5 @@ public class RunsafeCommand implements ICommand
 	protected final String[] paramKeys;
 	protected final HashMap<String, String> params;
 	protected IOutput Console;
+	protected boolean logToConsole = true;
 }

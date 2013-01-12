@@ -35,4 +35,8 @@ public interface ICommand {
 	String getArg(String name);
 
 	void setConsole(IOutput output);
+
+	void setConsoleLogging(boolean isEnabled);
+
+	boolean isConsoleLogEnabled();
 }
