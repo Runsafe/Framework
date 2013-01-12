@@ -76,7 +76,7 @@ public enum ChatColour
 		message = CODE_UNDERLINE.matcher(message).replaceAll(UNDERLINE.toBukkit());
 		message = CODE_ITALIC.matcher(message).replaceAll(ITALIC.toBukkit());
 		message = CODE_RESET.matcher(message).replaceAll(RESET.toBukkit());
-		return message + RESET.toBukkit();
+		return message;
 	}
 
 	public static String ToConsole(String message)
