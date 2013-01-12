@@ -77,7 +77,7 @@ public enum ChatColour
 		message = BUKKIT_UNDERLINE.matcher(message).replaceAll(UNDERLINE.toBukkit());
 		message = BUKKIT_ITALIC.matcher(message).replaceAll(ITALIC.toBukkit());
 		message = BUKKIT_RESET.matcher(message).replaceAll(RESET.toBukkit());
-		return message + RESET;
+		return message + RESET.toBukkit();
 	}
 
 	public static String ToConsole(String message)
@@ -104,7 +104,7 @@ public enum ChatColour
 		message = BUKKIT_UNDERLINE.matcher(message).replaceAll(UNDERLINE.toConsole());
 		message = BUKKIT_ITALIC.matcher(message).replaceAll(ITALIC.toConsole());
 		message = BUKKIT_RESET.matcher(message).replaceAll(RESET.toConsole());
-		return message + RESET;
+		return message + RESET.toConsole();
 	}
 
 	private final String code;
