@@ -1,13 +1,9 @@
 package no.runsafe.framework.event;
 
 import no.runsafe.framework.event.block.*;
-import no.runsafe.framework.event.entity.IEntityDamageByEntityEvent;
-import no.runsafe.framework.event.entity.IEntityDeathEvent;
-import no.runsafe.framework.event.entity.IEntityShootBowEvent;
+import no.runsafe.framework.event.entity.*;
 import no.runsafe.framework.event.listener.block.*;
-import no.runsafe.framework.event.listener.entity.EntityDamageByEntity;
-import no.runsafe.framework.event.listener.entity.EntityDeath;
-import no.runsafe.framework.event.listener.entity.EntityShootBow;
+import no.runsafe.framework.event.listener.entity.*;
 import no.runsafe.framework.event.listener.player.*;
 import no.runsafe.framework.event.listener.world.*;
 import no.runsafe.framework.event.player.*;
@@ -34,6 +30,12 @@ public class EventEngine
 		ArrayList<Listener> listeners = new ArrayList<Listener>();
 		for (IRunsafeEvent sub : eventSubscribers)
 		{
+			if (sub instanceof IMobSpawnerPulsed)
+				listeners.add(new CreatureSpawn(output, scheduler, (IMobSpawnerPulsed) sub));
+
+			if (sub instanceof ISpawnEggUsed)
+				listeners.add(new SpawnEggUsed(output, scheduler, (ISpawnEggUsed) sub));
+
 			if (sub instanceof IEntityDamageByEntityEvent)
 				listeners.add(new EntityDamageByEntity(output, scheduler, (IEntityDamageByEntityEvent) sub));
 
