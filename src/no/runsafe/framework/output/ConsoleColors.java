@@ -67,7 +67,7 @@ public class ConsoleColors
 	public static final String GRAY = Rendition.Clear().Foreground(Colour.White).toString();
 	public static final String DARK_GRAY = Rendition.Clear().Faint().Foreground(Colour.White).toString();
 	public static final String BLUE = Rendition.Clear().Foreground(Colour.Blue).toString();
-	public static final String GREEN = Rendition.Clear().Foreground(Colour.Green).toString();
+	public static final String GREEN = Rendition.Clear().Foreground(Colour.Green).Bright().toString();
 	public static final String AQUA = Rendition.Clear().Foreground(Colour.Cyan).toString();
 	public static final String RED = Rendition.Clear().Foreground(Colour.Red).toString();
 	public static final String LIGHT_PURPLE = Rendition.Clear().Foreground(Colour.Magenta).toString();
