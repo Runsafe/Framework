@@ -164,9 +164,9 @@ public class RunsafeCommand implements ICommand
 		{
 			Console.outputToConsole(String.format("%s was denied access to command.", player.getName()), Level.WARNING);
 			if (requiredPermission() == null)
-				player.sendMessage(String.format("%sPermission denied to that command.", ChatColor.RED));
+				player.sendColouredMessage("&cPermission denied to that command.");
 			else
-				player.sendMessage(String.format("%sRequired permission %s missing.", ChatColor.RED, requiredPermission()));
+				player.sendColouredMessage(String.format("&cRequired permission %s missing.", requiredPermission()));
 			return true;
 		}
 
@@ -190,7 +190,7 @@ public class RunsafeCommand implements ICommand
 		{
 			String output = OnExecute(player, args);
 			if (output != null)
-				player.sendMessage(output);
+				player.sendColouredMessage(output);
 			return true;
 		}
 
@@ -208,7 +208,7 @@ public class RunsafeCommand implements ICommand
 			Console.finest(String.format("Missing params (%d < %d)", args.length, params.size()));
 			String usage = getCommandUsage(null);
 			if (usage != null)
-				Console.outputColoredToConsole(usage, Level.INFO);
+				Console.writeColoured(usage, Level.INFO);
 			return true;
 		}
 		captureArgs(args);
@@ -225,7 +225,7 @@ public class RunsafeCommand implements ICommand
 			Console.finest("Executing command..");
 			String output = OnExecute(null, args);
 			if (output != null)
-				Console.outputColoredToConsole(output, Level.INFO);
+				Console.writeColoured(output, Level.INFO);
 			return true;
 		}
 
