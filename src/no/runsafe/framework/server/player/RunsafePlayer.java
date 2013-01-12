@@ -69,7 +69,7 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 
 	public void setPlayerListName(String playerName)
 	{
-		this.player.setPlayerListName(playerName);
+		this.player.setPlayerListName(playerName.substring(0,16));
 	}
 
 	public boolean isOP()
