@@ -73,7 +73,7 @@ public class ConsoleColors
 	public static final String LIGHT_PURPLE = Rendition.Clear().Foreground(Colour.Magenta).Bright().toString();
 	public static final String YELLOW = Rendition.Clear().Foreground(Colour.Yellow).Bright().toString();
 	public static final String WHITE = Rendition.Clear().Bright().Foreground(Colour.White).toString();
-	public static final String MAGIC = Rendition.Clear().Foreground(Colour.White).Background(Colour.Black).Bright().toString();
+	public static final String MAGIC = Rendition.Clear().Foreground(Colour.Black).Background(Colour.White).Bright().Reverse().toString();
 	public static final String BOLD = Rendition.Clear().Bright().toString();
 	public static final String STRIKETHROUGH = Rendition.Clear().CrossedOut().toString();
 	public static final String UNDERLINE = Rendition.Clear().Underline().toString();
