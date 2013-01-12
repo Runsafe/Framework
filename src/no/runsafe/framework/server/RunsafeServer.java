@@ -1,13 +1,11 @@
 package no.runsafe.framework.server;
 
 import no.runsafe.framework.hook.IPlayerLookupService;
-import no.runsafe.framework.server.entity.RunsafeEntity;
 import no.runsafe.framework.server.player.RunsafeAmbiguousPlayer;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
 import org.bukkit.World;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import java.io.File;
@@ -343,6 +341,23 @@ public class RunsafeServer
 			return kicker;
 		}
 		return null;
+	}
+
+	public boolean someoneHasPermission(String permission)
+	{
+		for (Player player : server.getOnlinePlayers())
+			if (player.hasPermission(permission))
+				return true;
+		return false;
+	}
+
+	public List<RunsafePlayer> getPlayersWithPermission(String permission)
+	{
+		ArrayList<RunsafePlayer> results = new ArrayList<RunsafePlayer>();
+		for (Player player : server.getOnlinePlayers())
+			if (player.hasPermission(permission))
+				results.add(ObjectWrapper.convert(player));
+		return results;
 	}
 
 	public static final ArrayList<IPlayerLookupService> lookupHooks = new ArrayList<IPlayerLookupService>();
