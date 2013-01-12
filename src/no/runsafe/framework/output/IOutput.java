@@ -5,7 +5,9 @@ import java.util.logging.Level;
 public interface IOutput {
 
 	// Sends the supplied string to the console with &-codes replaced with ANSI sequences
-	public void writeColoured(String messsage);
+	public void writeColoured(String message);
+
+	public void writeColoured(String message, Object... params);
 
 	// Sends the supplied string to the console/log the output handler has
 	public void outputToConsole(String message);
