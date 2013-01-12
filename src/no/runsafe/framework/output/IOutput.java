@@ -49,4 +49,6 @@ public interface IOutput {
 	void finest(String message);
 
 	void broadcastColoured(String message);
+
+	void broadcastColoured(String format, Object... params);
 }

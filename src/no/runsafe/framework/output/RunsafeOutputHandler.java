@@ -103,6 +103,12 @@ public class RunsafeOutputHandler implements IOutput
 		outputToServer(ChatColour.ToMinecraft(message));
 	}
 
+	@Override
+	public void broadcastColoured(String format, Object... params)
+	{
+		broadcastColoured(String.format(format, params));
+	}
+
 	// Gets the current debug output level
 	@Override
 	public Level getDebugLevel()
