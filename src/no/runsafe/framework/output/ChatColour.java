@@ -32,8 +32,7 @@ public enum ChatColour
 	ChatColour(char colourCode, ChatColor bukkitColour, String ansiCode)
 	{
 		code = String.format("&%s", colourCode);
-		colour = bukkitColour;
-		bukkitCode = colour.toString();
+		bukkitCode = bukkitColour.toString();
 		consoleCode = ansiCode;
 	}
 
@@ -55,83 +54,109 @@ public enum ChatColour
 
 	public static String ToMinecraft(String message)
 	{
-		message = BUKKIT_DARK_GREEN.matcher(message).replaceAll(DARK_GREEN.toBukkit());
-		message = BUKKIT_DARK_BLUE.matcher(message).replaceAll(DARK_BLUE.toBukkit());
-		message = BUKKIT_BLACK.matcher(message).replaceAll(BLACK.toBukkit());
-		message = BUKKIT_DARK_AQUA.matcher(message).replaceAll(DARK_AQUA.toBukkit());
-		message = BUKKIT_DARK_RED.matcher(message).replaceAll(DARK_RED.toBukkit());
-		message = BUKKIT_DARK_PURPLE.matcher(message).replaceAll(DARK_PURPLE.toBukkit());
-		message = BUKKIT_GOLD.matcher(message).replaceAll(GOLD.toBukkit());
-		message = BUKKIT_GRAY.matcher(message).replaceAll(GRAY.toBukkit());
-		message = BUKKIT_DARK_GRAY.matcher(message).replaceAll(DARK_GRAY.toBukkit());
-		message = BUKKIT_BLUE.matcher(message).replaceAll(BLUE.toBukkit());
-		message = BUKKIT_GREEN.matcher(message).replaceAll(GREEN.toBukkit());
-		message = BUKKIT_AQUA.matcher(message).replaceAll(AQUA.toBukkit());
-		message = BUKKIT_RED.matcher(message).replaceAll(RED.toBukkit());
-		message = BUKKIT_LIGHT_PURPLE.matcher(message).replaceAll(LIGHT_PURPLE.toBukkit());
-		message = BUKKIT_YELLOW.matcher(message).replaceAll(YELLOW.toBukkit());
-		message = BUKKIT_WHITE.matcher(message).replaceAll(WHITE.toBukkit());
-		message = BUKKIT_MAGIC.matcher(message).replaceAll(MAGIC.toBukkit());
-		message = BUKKIT_BOLD.matcher(message).replaceAll(BOLD.toBukkit());
-		message = BUKKIT_STRIKETHROUGH.matcher(message).replaceAll(STRIKETHROUGH.toBukkit());
-		message = BUKKIT_UNDERLINE.matcher(message).replaceAll(UNDERLINE.toBukkit());
-		message = BUKKIT_ITALIC.matcher(message).replaceAll(ITALIC.toBukkit());
-		message = BUKKIT_RESET.matcher(message).replaceAll(RESET.toBukkit());
+		message = CODE_DARK_GREEN.matcher(message).replaceAll(DARK_GREEN.toBukkit());
+		message = CODE_DARK_BLUE.matcher(message).replaceAll(DARK_BLUE.toBukkit());
+		message = CODE_BLACK.matcher(message).replaceAll(BLACK.toBukkit());
+		message = CODE_DARK_AQUA.matcher(message).replaceAll(DARK_AQUA.toBukkit());
+		message = CODE_DARK_RED.matcher(message).replaceAll(DARK_RED.toBukkit());
+		message = CODE_DARK_PURPLE.matcher(message).replaceAll(DARK_PURPLE.toBukkit());
+		message = CODE_GOLD.matcher(message).replaceAll(GOLD.toBukkit());
+		message = CODE_GRAY.matcher(message).replaceAll(GRAY.toBukkit());
+		message = CODE_DARK_GRAY.matcher(message).replaceAll(DARK_GRAY.toBukkit());
+		message = CODE_BLUE.matcher(message).replaceAll(BLUE.toBukkit());
+		message = CODE_GREEN.matcher(message).replaceAll(GREEN.toBukkit());
+		message = CODE_AQUA.matcher(message).replaceAll(AQUA.toBukkit());
+		message = CODE_RED.matcher(message).replaceAll(RED.toBukkit());
+		message = CODE_LIGHT_PURPLE.matcher(message).replaceAll(LIGHT_PURPLE.toBukkit());
+		message = CODE_YELLOW.matcher(message).replaceAll(YELLOW.toBukkit());
+		message = CODE_WHITE.matcher(message).replaceAll(WHITE.toBukkit());
+		message = CODE_MAGIC.matcher(message).replaceAll(MAGIC.toBukkit());
+		message = CODE_BOLD.matcher(message).replaceAll(BOLD.toBukkit());
+		message = CODE_STRIKETHROUGH.matcher(message).replaceAll(STRIKETHROUGH.toBukkit());
+		message = CODE_UNDERLINE.matcher(message).replaceAll(UNDERLINE.toBukkit());
+		message = CODE_ITALIC.matcher(message).replaceAll(ITALIC.toBukkit());
+		message = CODE_RESET.matcher(message).replaceAll(RESET.toBukkit());
 		return message + RESET.toBukkit();
 	}
 
 	public static String ToConsole(String message)
 	{
-		message = BUKKIT_DARK_GREEN.matcher(message).replaceAll(DARK_GREEN.toConsole());
-		message = BUKKIT_DARK_BLUE.matcher(message).replaceAll(DARK_BLUE.toConsole());
-		message = BUKKIT_BLACK.matcher(message).replaceAll(BLACK.toConsole());
-		message = BUKKIT_DARK_AQUA.matcher(message).replaceAll(DARK_AQUA.toConsole());
-		message = BUKKIT_DARK_RED.matcher(message).replaceAll(DARK_RED.toConsole());
-		message = BUKKIT_DARK_PURPLE.matcher(message).replaceAll(DARK_PURPLE.toConsole());
-		message = BUKKIT_GOLD.matcher(message).replaceAll(GOLD.toConsole());
-		message = BUKKIT_GRAY.matcher(message).replaceAll(GRAY.toConsole());
-		message = BUKKIT_DARK_GRAY.matcher(message).replaceAll(DARK_GRAY.toConsole());
-		message = BUKKIT_BLUE.matcher(message).replaceAll(BLUE.toConsole());
-		message = BUKKIT_GREEN.matcher(message).replaceAll(GREEN.toConsole());
-		message = BUKKIT_AQUA.matcher(message).replaceAll(AQUA.toConsole());
-		message = BUKKIT_RED.matcher(message).replaceAll(RED.toConsole());
-		message = BUKKIT_LIGHT_PURPLE.matcher(message).replaceAll(LIGHT_PURPLE.toConsole());
-		message = BUKKIT_YELLOW.matcher(message).replaceAll(YELLOW.toConsole());
-		message = BUKKIT_WHITE.matcher(message).replaceAll(WHITE.toConsole());
-		message = BUKKIT_MAGIC.matcher(message).replaceAll(MAGIC.toConsole());
-		message = BUKKIT_BOLD.matcher(message).replaceAll(BOLD.toConsole());
-		message = BUKKIT_STRIKETHROUGH.matcher(message).replaceAll(STRIKETHROUGH.toConsole());
-		message = BUKKIT_UNDERLINE.matcher(message).replaceAll(UNDERLINE.toConsole());
-		message = BUKKIT_ITALIC.matcher(message).replaceAll(ITALIC.toConsole());
-		message = BUKKIT_RESET.matcher(message).replaceAll(RESET.toConsole());
+		message = CODE_DARK_GREEN.matcher(message).replaceAll(DARK_GREEN.toConsole());
+		message = CODE_DARK_BLUE.matcher(message).replaceAll(DARK_BLUE.toConsole());
+		message = CODE_BLACK.matcher(message).replaceAll(BLACK.toConsole());
+		message = CODE_DARK_AQUA.matcher(message).replaceAll(DARK_AQUA.toConsole());
+		message = CODE_DARK_RED.matcher(message).replaceAll(DARK_RED.toConsole());
+		message = CODE_DARK_PURPLE.matcher(message).replaceAll(DARK_PURPLE.toConsole());
+		message = CODE_GOLD.matcher(message).replaceAll(GOLD.toConsole());
+		message = CODE_GRAY.matcher(message).replaceAll(GRAY.toConsole());
+		message = CODE_DARK_GRAY.matcher(message).replaceAll(DARK_GRAY.toConsole());
+		message = CODE_BLUE.matcher(message).replaceAll(BLUE.toConsole());
+		message = CODE_GREEN.matcher(message).replaceAll(GREEN.toConsole());
+		message = CODE_AQUA.matcher(message).replaceAll(AQUA.toConsole());
+		message = CODE_RED.matcher(message).replaceAll(RED.toConsole());
+		message = CODE_LIGHT_PURPLE.matcher(message).replaceAll(LIGHT_PURPLE.toConsole());
+		message = CODE_YELLOW.matcher(message).replaceAll(YELLOW.toConsole());
+		message = CODE_WHITE.matcher(message).replaceAll(WHITE.toConsole());
+		message = CODE_MAGIC.matcher(message).replaceAll(MAGIC.toConsole());
+		message = CODE_BOLD.matcher(message).replaceAll(BOLD.toConsole());
+		message = CODE_STRIKETHROUGH.matcher(message).replaceAll(STRIKETHROUGH.toConsole());
+		message = CODE_UNDERLINE.matcher(message).replaceAll(UNDERLINE.toConsole());
+		message = CODE_ITALIC.matcher(message).replaceAll(ITALIC.toConsole());
+		message = CODE_RESET.matcher(message).replaceAll(RESET.toConsole());
 		return message + RESET.toConsole();
 	}
 
+	public static String Strip(String message)
+	{
+		message = CODE_DARK_GREEN.matcher(message).replaceAll("");
+		message = CODE_DARK_BLUE.matcher(message).replaceAll("");
+		message = CODE_BLACK.matcher(message).replaceAll("");
+		message = CODE_DARK_AQUA.matcher(message).replaceAll("");
+		message = CODE_DARK_RED.matcher(message).replaceAll("");
+		message = CODE_DARK_PURPLE.matcher(message).replaceAll("");
+		message = CODE_GOLD.matcher(message).replaceAll("");
+		message = CODE_GRAY.matcher(message).replaceAll("");
+		message = CODE_DARK_GRAY.matcher(message).replaceAll("");
+		message = CODE_BLUE.matcher(message).replaceAll("");
+		message = CODE_GREEN.matcher(message).replaceAll("");
+		message = CODE_AQUA.matcher(message).replaceAll("");
+		message = CODE_RED.matcher(message).replaceAll("");
+		message = CODE_LIGHT_PURPLE.matcher(message).replaceAll("");
+		message = CODE_YELLOW.matcher(message).replaceAll("");
+		message = CODE_WHITE.matcher(message).replaceAll("");
+		message = CODE_MAGIC.matcher(message).replaceAll("");
+		message = CODE_BOLD.matcher(message).replaceAll("");
+		message = CODE_STRIKETHROUGH.matcher(message).replaceAll("");
+		message = CODE_UNDERLINE.matcher(message).replaceAll("");
+		message = CODE_ITALIC.matcher(message).replaceAll("");
+		message = CODE_RESET.matcher(message).replaceAll("");
+		return message;
+	}
+
 	private final String code;
-	private final ChatColor colour;
 	private final String bukkitCode;
 	private final String consoleCode;
 
-	private static final Pattern BUKKIT_BLACK = Pattern.compile(ChatColour.BLACK.toString());
-	private static final Pattern BUKKIT_DARK_GREEN = Pattern.compile(ChatColour.DARK_GREEN.toString());
-	private static final Pattern BUKKIT_DARK_BLUE = Pattern.compile(ChatColour.DARK_BLUE.toString());
-	private static final Pattern BUKKIT_DARK_AQUA = Pattern.compile(ChatColour.DARK_AQUA.toString());
-	private static final Pattern BUKKIT_DARK_RED = Pattern.compile(ChatColour.DARK_RED.toString());
-	private static final Pattern BUKKIT_DARK_PURPLE = Pattern.compile(ChatColour.DARK_PURPLE.toString());
-	private static final Pattern BUKKIT_GOLD = Pattern.compile(ChatColour.GOLD.toString());
-	private static final Pattern BUKKIT_GRAY = Pattern.compile(ChatColour.GRAY.toString());
-	private static final Pattern BUKKIT_DARK_GRAY = Pattern.compile(ChatColour.DARK_GRAY.toString());
-	private static final Pattern BUKKIT_BLUE = Pattern.compile(ChatColour.BLUE.toString());
-	private static final Pattern BUKKIT_GREEN = Pattern.compile(ChatColour.GREEN.toString());
-	private static final Pattern BUKKIT_AQUA = Pattern.compile(ChatColour.AQUA.toString());
-	private static final Pattern BUKKIT_RED = Pattern.compile(ChatColour.RED.toString());
-	private static final Pattern BUKKIT_LIGHT_PURPLE = Pattern.compile(ChatColour.LIGHT_PURPLE.toString());
-	private static final Pattern BUKKIT_YELLOW = Pattern.compile(ChatColour.YELLOW.toString());
-	private static final Pattern BUKKIT_WHITE = Pattern.compile(ChatColour.WHITE.toString());
-	private static final Pattern BUKKIT_MAGIC = Pattern.compile(ChatColour.MAGIC.toString());
-	private static final Pattern BUKKIT_BOLD = Pattern.compile(ChatColour.BOLD.toString());
-	private static final Pattern BUKKIT_STRIKETHROUGH = Pattern.compile(ChatColour.STRIKETHROUGH.toString());
-	private static final Pattern BUKKIT_UNDERLINE = Pattern.compile(ChatColour.UNDERLINE.toString());
-	private static final Pattern BUKKIT_ITALIC = Pattern.compile(ChatColour.ITALIC.toString());
-	private static final Pattern BUKKIT_RESET = Pattern.compile(ChatColour.RESET.toString());
+	private static final Pattern CODE_BLACK = Pattern.compile(ChatColour.BLACK.toString());
+	private static final Pattern CODE_DARK_GREEN = Pattern.compile(ChatColour.DARK_GREEN.toString());
+	private static final Pattern CODE_DARK_BLUE = Pattern.compile(ChatColour.DARK_BLUE.toString());
+	private static final Pattern CODE_DARK_AQUA = Pattern.compile(ChatColour.DARK_AQUA.toString());
+	private static final Pattern CODE_DARK_RED = Pattern.compile(ChatColour.DARK_RED.toString());
+	private static final Pattern CODE_DARK_PURPLE = Pattern.compile(ChatColour.DARK_PURPLE.toString());
+	private static final Pattern CODE_GOLD = Pattern.compile(ChatColour.GOLD.toString());
+	private static final Pattern CODE_GRAY = Pattern.compile(ChatColour.GRAY.toString());
+	private static final Pattern CODE_DARK_GRAY = Pattern.compile(ChatColour.DARK_GRAY.toString());
+	private static final Pattern CODE_BLUE = Pattern.compile(ChatColour.BLUE.toString());
+	private static final Pattern CODE_GREEN = Pattern.compile(ChatColour.GREEN.toString());
+	private static final Pattern CODE_AQUA = Pattern.compile(ChatColour.AQUA.toString());
+	private static final Pattern CODE_RED = Pattern.compile(ChatColour.RED.toString());
+	private static final Pattern CODE_LIGHT_PURPLE = Pattern.compile(ChatColour.LIGHT_PURPLE.toString());
+	private static final Pattern CODE_YELLOW = Pattern.compile(ChatColour.YELLOW.toString());
+	private static final Pattern CODE_WHITE = Pattern.compile(ChatColour.WHITE.toString());
+	private static final Pattern CODE_MAGIC = Pattern.compile(ChatColour.MAGIC.toString());
+	private static final Pattern CODE_BOLD = Pattern.compile(ChatColour.BOLD.toString());
+	private static final Pattern CODE_STRIKETHROUGH = Pattern.compile(ChatColour.STRIKETHROUGH.toString());
+	private static final Pattern CODE_UNDERLINE = Pattern.compile(ChatColour.UNDERLINE.toString());
+	private static final Pattern CODE_ITALIC = Pattern.compile(ChatColour.ITALIC.toString());
+	private static final Pattern CODE_RESET = Pattern.compile(ChatColour.RESET.toString());
 }
