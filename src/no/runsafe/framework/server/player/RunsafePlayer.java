@@ -4,6 +4,7 @@ import no.runsafe.framework.hook.IPlayerDataProvider;
 import no.runsafe.framework.hook.IPlayerNameDecorator;
 import no.runsafe.framework.hook.IPlayerPermissions;
 import no.runsafe.framework.hook.IPlayerVisibility;
+import no.runsafe.framework.output.ChatColour;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.block.RunsafeBlock;
@@ -179,6 +180,16 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 	{
 		if (player != null)
 			player.sendMessage(message);
+	}
+
+	public void sendColouredMessage(String message)
+	{
+		sendMessage(ChatColour.ToMinecraft(message));
+	}
+
+	public void sendColouredMessage(String format, Object... params)
+	{
+		sendColouredMessage(String.format(format, params));
 	}
 
 	public Player getRawPlayer()
