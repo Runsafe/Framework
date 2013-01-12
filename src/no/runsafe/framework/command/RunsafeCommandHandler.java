@@ -49,6 +49,11 @@ public class RunsafeCommandHandler implements CommandExecutor
 		}
 	}
 
+	public ICommand getCommandObject()
+	{
+		return commandObject;
+	}
+
 	private String[] tokenizeArgs(String[] rawArgs)
 	{
 		ArrayList<String> args = new ArrayList<String>();

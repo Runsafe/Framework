@@ -20,6 +20,7 @@ import no.runsafe.framework.timer.Scheduler;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -41,6 +42,24 @@ import java.util.logging.Level;
 public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 {
 	public static final HashMap<String, RunsafePlugin> Instances = new HashMap<String, RunsafePlugin>();
+
+	public static ICommand getPluginCommand(String name)
+	{
+		for (String plugin : Instances.keySet())
+		{
+			PluginCommand command = Instances.get(plugin).getCommand(name);
+			if (command != null)
+			{
+				CommandExecutor executor = command.getExecutor();
+				if (executor instanceof RunsafeCommandHandler)
+				{
+					RunsafeCommandHandler handler = (RunsafeCommandHandler) executor;
+					return handler.getCommandObject();
+				}
+			}
+		}
+		return null;
+	}
 
 	@Override
 	public void onEnable()
@@ -101,7 +120,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
 	{
-		if(commands == null)
+		if (commands == null)
 			return false;
 		String command = cmd.getName().toLowerCase();
 		return commands.containsKey(command) && commands.get(command).onCommand(sender, cmd, label, args);
