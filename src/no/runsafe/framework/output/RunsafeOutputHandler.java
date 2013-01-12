@@ -45,7 +45,7 @@ public class RunsafeOutputHandler implements IOutput
 	@Override
 	public void writeColoured(String message, Level level, Object... params)
 	{
-		outputToConsole(String.format(ChatColour.ToConsole(message), params), level);
+		outputToConsole(ChatColour.ToConsole(String.format(message, params)), level);
 	}
 
 	// Sends the supplied string to the console/log the output handler has
