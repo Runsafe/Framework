@@ -4,7 +4,7 @@ import no.runsafe.framework.output.ChatColour;
 import no.runsafe.framework.server.ObjectWrapper;
 import org.bukkit.entity.Player;
 
-public class BukkitCommandExecutor implements org.bukkit.command.CommandExecutor
+public final class BukkitCommandExecutor implements org.bukkit.command.CommandExecutor
 {
 	public BukkitCommandExecutor(ICommandHandler command)
 	{

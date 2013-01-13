@@ -1,6 +1,7 @@
 package no.runsafe.framework.command;
 
 import no.runsafe.framework.server.player.RunsafePlayer;
+import no.runsafe.framework.timer.IScheduler;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.HashMap;
 import java.util.Stack;
 import java.util.regex.Pattern;
 
-public class PreparedCommand
+public final class PreparedCommand
 {
 	public PreparedCommand(RunsafePlayer executor, Stack<Command> definingCommand, String[] args, HashMap<String, String> parameters)
 	{
@@ -37,7 +38,13 @@ public class PreparedCommand
 		if (target instanceof ExecutableCommand)
 		{
 			if (!parameters.containsValue(null))
+			{
+				if (target instanceof AsyncCommand)
+					((AsyncCommand) target).Schedule(this);
+				if (target instanceof AsyncCallbackCommand)
+					((AsyncCallbackCommand) target).Schedule(this);
 				return ((ExecutableCommand) target).OnExecute(executor, parameters, arguments);
+			}
 		}
 
 		ArrayList<String> params = new ArrayList<String>();
@@ -47,10 +54,54 @@ public class PreparedCommand
 		return String.format("Usage: /%1$s %2$s", StringUtils.join(params, " "), target.getUsage());
 	}
 
+	public void Schedule(final IScheduler scheduler)
+	{
+		final AsyncCommand target = (AsyncCommand) command.peek();
+		scheduler.startAsyncTask(
+			new Runnable()
+			{
+				@Override
+				public void run()
+				{
+					target.OnAsyncExecute(executor, parameters, arguments);
+				}
+			},
+			1L
+		);
+	}
+
+	public void ScheduleCallback(final IScheduler scheduler)
+	{
+		final AsyncCallbackCommand target = (AsyncCallbackCommand) command.peek();
+		scheduler.startAsyncTask(
+			new Runnable()
+			{
+				@Override
+				public void run()
+				{
+					final Object result = target.OnAsyncExecute(executor, parameters, arguments);
+					scheduler.startSyncTask(
+						new Runnable()
+						{
+							@Override
+							public void run()
+							{
+								target.SyncPostExecute(result);
+							}
+						}, 1L
+					);
+				}
+			},
+			1L
+		);
+	}
+
+
 	private final RunsafePlayer executor;
 	private final Stack<Command> command;
 	private final String[] arguments;
 	private final HashMap<String, String> parameters;
 	private final String requiredPermission;
 	private final static Pattern paramPermission = Pattern.compile(".*<.*>.*");
+
 }
