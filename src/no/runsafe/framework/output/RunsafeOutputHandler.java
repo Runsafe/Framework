@@ -136,49 +136,51 @@ public class RunsafeOutputHandler implements IOutput
 	@Override
 	public void severe(String message, Object... params)
 	{
-		outputDebugToConsole(message, Level.SEVERE);
+		outputDebugToConsole(message, Level.SEVERE, params);
 	}
 
 	@Override
 	public void warning(String message, Object... params)
 	{
-		outputDebugToConsole(message, Level.WARNING);
+		outputDebugToConsole(message, Level.WARNING, params);
 	}
 
 	@Override
 	public void info(String message, Object... params)
 	{
-		outputDebugToConsole(message, Level.INFO);
+		outputDebugToConsole(message, Level.INFO, params);
 	}
 
 	@Override
 	public void config(String message, Object... params)
 	{
-		outputDebugToConsole(message, Level.CONFIG);
+		outputDebugToConsole(message, Level.CONFIG, params);
 	}
 
 	@Override
 	public void fine(String message, Object... params)
 	{
-		outputDebugToConsole(message, Level.FINE);
+		outputDebugToConsole(message, Level.FINE, params);
 	}
 
 	@Override
 	public void finer(String message, Object... params)
 	{
-		outputDebugToConsole(message, Level.FINER);
+		outputDebugToConsole(message, Level.FINER, params);
 	}
 
 	@Override
 	public void finest(String message, Object... params)
 	{
-		outputDebugToConsole(message, Level.FINEST);
+		outputDebugToConsole(message, Level.FINEST, params);
 	}
 
-	public void dumpData(Object raw)
+	@Override
+	public void dumpData(Object raw, Level messageLevel)
 	{
-		if (raw instanceof RunsafeItemStack)
-			dumpData(((RunsafeItemStack) raw).getRaw());
+		if (debugLevel != null && messageLevel.intValue() >= debugLevel.intValue())
+			if (raw instanceof RunsafeItemStack)
+				dumpData(((RunsafeItemStack) raw).getRaw());
 	}
 
 	private void dumpData(ConfigurationSerializable raw)

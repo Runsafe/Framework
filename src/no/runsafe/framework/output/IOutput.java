@@ -52,5 +52,5 @@ public interface IOutput {
 
 	void broadcastColoured(String format, Object... params);
 
-	void dumpData(Object object);
+	void dumpData(Object object, Level messageLevel);
 }
