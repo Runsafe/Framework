@@ -1,7 +1,10 @@
 package no.runsafe.framework.output;
 
 import no.runsafe.framework.server.RunsafeServer;
+import no.runsafe.framework.server.item.RunsafeItemStack;
+import org.bukkit.configuration.serialization.ConfigurationSerializable;
 
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -171,4 +174,17 @@ public class RunsafeOutputHandler implements IOutput
 		outputDebugToConsole(message, Level.FINEST);
 	}
 
+	public void dumpData(Object raw)
+	{
+		if(raw instanceof RunsafeItemStack)
+			dumpData(((RunsafeItemStack)raw).getRaw());
+	}
+
+	private void dumpData(ConfigurationSerializable raw)
+	{
+		outputToConsole(String.format("Dumping instance of %s", raw.getClass().getCanonicalName()));
+		Map<String, Object> values = raw.serialize();
+		for (String key : values.keySet())
+			outputToConsole(String.format(" - %s: %s", key, values.get(key)));
+	}
 }
