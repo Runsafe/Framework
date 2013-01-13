@@ -1,6 +1,8 @@
 package no.runsafe.framework;
 
+import no.runsafe.framework.command.BukkitCommandExecutor;
 import no.runsafe.framework.command.ICommand;
+import no.runsafe.framework.command.ICommandHandler;
 import no.runsafe.framework.command.RunsafeCommandHandler;
 import no.runsafe.framework.configuration.IConfiguration;
 import no.runsafe.framework.configuration.IConfigurationFile;
@@ -117,14 +119,14 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		}
 	}
 
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
-	{
-		if (commands == null)
-			return false;
-		String command = cmd.getName().toLowerCase();
-		return commands.containsKey(command) && commands.get(command).onCommand(sender, cmd, label, args);
-	}
+//	@Override
+//	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
+//	{
+//		if (commands == null)
+//			return false;
+//		String command = cmd.getName().toLowerCase();
+//		return commands.containsKey(command) && commands.get(command).onCommand(sender, cmd, label, args);
+//	}
 
 	@Override
 	public void addComponent(Object implOrInstance)
@@ -210,7 +212,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		return getComponents(Listener.class);
 	}
 
-	protected List<RunsafeCommandHandler> GetCommands()
+	protected List<RunsafeCommandHandler> GetLegacyCommands()
 	{
 		ArrayList<RunsafeCommandHandler> handlers = new ArrayList<RunsafeCommandHandler>();
 		for (ICommand command : getComponents(ICommand.class))
@@ -218,6 +220,14 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 			command.setConsole(output);
 			handlers.add(new RunsafeCommandHandler(command, output));
 		}
+		return handlers;
+	}
+
+	protected List<BukkitCommandExecutor> GetCommands()
+	{
+		ArrayList<BukkitCommandExecutor> handlers = new ArrayList<BukkitCommandExecutor>();
+		for(ICommandHandler command : getComponents(ICommandHandler.class))
+			handlers.add(new BukkitCommandExecutor(command));
 		return handlers;
 	}
 
@@ -428,9 +438,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 
 	private void RegisterCommands()
 	{
-		commands = new HashMap<String, RunsafeCommandHandler>();
-		List<RunsafeCommandHandler> commandList = this.GetCommands();
-		for (RunsafeCommandHandler handler : commandList)
+		for (RunsafeCommandHandler handler : this.GetLegacyCommands())
 		{
 			PluginCommand command = getCommand(handler.getName());
 
@@ -442,9 +450,22 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 				command.setExecutor(handler);
 			}
 		}
+		for(BukkitCommandExecutor executor : this.GetCommands())
+		{
+			PluginCommand command = getCommand(executor.getName());
+
+			if (command == null)
+				output.outputToConsole(String.format("Command not found: %s - does it exist in plugin.yml?", executor.getName()));
+			else
+			{
+				output.fine(String.format("Command handler for %s registered with bukkit.", executor.getName()));
+				command.setExecutor(executor);
+			}
+		}
 	}
 
 	protected DefaultPicoContainer container = null;
 	private IOutput output;
-	private HashMap<String, RunsafeCommandHandler> commands;
+//	private HashMap<String, RunsafeCommandHandler> legacyCommands;
+//	private HashMap<String, Command> commands;
 }

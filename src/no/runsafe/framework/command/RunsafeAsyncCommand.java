@@ -8,6 +8,7 @@ import org.bukkit.ChatColor;
 import java.util.Collection;
 import java.util.logging.Level;
 
+@Deprecated
 public abstract class RunsafeAsyncCommand extends RunsafeCommand
 {
 	public RunsafeAsyncCommand(String name, IScheduler scheduler, String... params)

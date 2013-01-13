@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 
+@Deprecated
 public class RunsafeCommandHandler implements CommandExecutor
 {
 	public RunsafeCommandHandler(ICommand command, IOutput output)

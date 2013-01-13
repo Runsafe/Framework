@@ -5,6 +5,7 @@ import java.util.Collection;
 /**
  * Only use this if you cannot use Async commands.
  */
+@Deprecated
 public class RunsafePlayerCommand extends RunsafeCommand
 {
 	public RunsafePlayerCommand(String name, String... params)

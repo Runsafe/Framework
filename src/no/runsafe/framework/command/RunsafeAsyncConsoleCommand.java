@@ -3,6 +3,7 @@ package no.runsafe.framework.command;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import no.runsafe.framework.timer.IScheduler;
 
+@Deprecated
 public abstract class RunsafeAsyncConsoleCommand extends RunsafeAsyncCommand
 {
 	public RunsafeAsyncConsoleCommand(String name, IScheduler scheduler, String... params)

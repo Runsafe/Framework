@@ -5,6 +5,7 @@ import no.runsafe.framework.server.player.RunsafePlayer;
 
 import java.util.Collection;
 
+@Deprecated
 public interface ICommand
 {
 	boolean CanExecute(RunsafePlayer player, String[] args);

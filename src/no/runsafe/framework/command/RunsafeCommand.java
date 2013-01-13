@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 
+@Deprecated
 public class RunsafeCommand implements ICommand
 {
 	public RunsafeCommand(String name, String... params)

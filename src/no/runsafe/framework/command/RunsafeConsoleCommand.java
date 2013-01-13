@@ -7,6 +7,7 @@ import java.util.Collection;
 /**
  * Only use this if you cannot use Async commands.
  */
+@Deprecated
 public class RunsafeConsoleCommand extends RunsafeCommand
 {
 	public RunsafeConsoleCommand(String name, String... params)
