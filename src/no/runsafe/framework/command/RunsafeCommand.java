@@ -331,10 +331,10 @@ public class RunsafeCommand implements ICommand
 
 	private String[] getSubArgs(String[] args)
 	{
-		if (args.length == 1 || args.length == 0)
+		if (args.length == 1 || args.length == 0 || args.length <= params.size())
 			return new String[]{};
 
-		return Arrays.copyOfRange(args, params.size(), args.length);
+		return Arrays.copyOfRange(args, params.size() + 1, args.length);
 	}
 
 	protected ICommand superCommand;
