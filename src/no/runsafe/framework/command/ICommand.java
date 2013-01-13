@@ -42,4 +42,6 @@ public interface ICommand
 	void setConsoleLogging(boolean isEnabled);
 
 	boolean isConsoleLogEnabled();
+
+	ICommand getTargetCommand(String[] args);
 }

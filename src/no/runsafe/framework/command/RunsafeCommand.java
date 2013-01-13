@@ -1,5 +1,6 @@
 package no.runsafe.framework.command;
 
+import com.google.common.collect.ImmutableList;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.apache.commons.lang.StringUtils;
@@ -8,22 +9,11 @@ import org.bukkit.ChatColor;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 
 public class RunsafeCommand implements ICommand
 {
-	/**
-	 * @deprecated use .addSubCommand to add sub commands.
-	 */
-	@Deprecated
-	public RunsafeCommand(String name, Collection<ICommand> subs, String... params)
-	{
-		this(name, params);
-		if (subs != null)
-			for (ICommand sub : subs)
-				addSubCommand(sub);
-	}
-
 	public RunsafeCommand(String name, String... params)
 	{
 		commandName = name;
@@ -31,7 +21,7 @@ public class RunsafeCommand implements ICommand
 		this.params = new HashMap<String, String>();
 		if (params != null)
 		{
-			paramKeys = params;
+			paramKeys = new ImmutableList.Builder<String>().add(params).build();
 			for (String param : params)
 				this.params.put(param, null);
 		}
@@ -136,12 +126,14 @@ public class RunsafeCommand implements ICommand
 	@Override
 	public String requiredPermission(String[] args)
 	{
+		if (args.length < params.size())
+			return requiredPermission();
 		subArgOffset = 0;
 		captureArgs(args);
 		ICommand sub = null;
 		if (args.length > subArgOffset)
 			sub = getSubCommand(args[subArgOffset]);
-		if(sub == null)
+		if (sub == null)
 			return requiredPermission();
 		return sub.requiredPermission(getSubArgs(args));
 	}
@@ -267,6 +259,17 @@ public class RunsafeCommand implements ICommand
 		return null;
 	}
 
+	public String getArg(String[] args, String name)
+	{
+		if (paramKeys == null || paramKeys.isEmpty() || !paramKeys.contains(name))
+			return null;
+
+		int index = paramKeys.indexOf(name);
+		if (args.length >= index)
+			return null;
+		return args[index];
+	}
+
 	@Override
 	public void setConsole(IOutput output)
 	{
@@ -287,9 +290,22 @@ public class RunsafeCommand implements ICommand
 		return logToConsole;
 	}
 
+	@Override
+	public ICommand getTargetCommand(String[] args)
+	{
+		if (args.length <= params.size())
+			return this;
+
+		ICommand sub = getSubCommand(args[params.size()]);
+		if(sub == null)
+			return this;
+
+		return sub.getTargetCommand(getSubArgs(args));
+	}
+
 	protected void captureArgs(String[] args)
 	{
-		if (paramKeys != null && paramKeys.length > 0)
+		if (paramKeys != null && !paramKeys.isEmpty())
 			for (String param : paramKeys)
 				params.put(param, args[subArgOffset++]);
 	}
@@ -318,14 +334,14 @@ public class RunsafeCommand implements ICommand
 		if (args.length == 1 || args.length == 0)
 			return new String[]{};
 
-		return Arrays.copyOfRange(args, subArgOffset, args.length);
+		return Arrays.copyOfRange(args, params.size(), args.length);
 	}
 
 	protected ICommand superCommand;
 	protected final HashMap<String, ICommand> subCommands;
 	protected final String commandName;
 	protected int subArgOffset;
-	protected final String[] paramKeys;
+	protected final List<String> paramKeys;
 	protected final HashMap<String, String> params;
 	protected IOutput Console;
 	protected boolean logToConsole = true;
