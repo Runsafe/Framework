@@ -5,7 +5,8 @@ import no.runsafe.framework.server.player.RunsafePlayer;
 
 import java.util.Collection;
 
-public interface ICommand {
+public interface ICommand
+{
 	boolean CanExecute(RunsafePlayer player, String[] args);
 
 	boolean CouldExecute(RunsafePlayer player);
@@ -25,6 +26,8 @@ public interface ICommand {
 	String getCommandParams();
 
 	String requiredPermission();
+
+	String requiredPermission(String[] args);
 
 	Collection<ICommand> getSubCommands();
 

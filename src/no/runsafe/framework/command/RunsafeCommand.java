@@ -134,6 +134,19 @@ public class RunsafeCommand implements ICommand
 	}
 
 	@Override
+	public String requiredPermission(String[] args)
+	{
+		subArgOffset = 0;
+		captureArgs(args);
+		ICommand sub = null;
+		if (args.length > subArgOffset)
+			sub = getSubCommand(args[subArgOffset]);
+		if(sub == null)
+			return requiredPermission();
+		return sub.requiredPermission(getSubArgs(args));
+	}
+
+	@Override
 	public boolean CanExecute(RunsafePlayer player, String[] args)
 	{
 		return requiredPermission() == null || player.hasPermission(requiredPermission());
@@ -163,7 +176,7 @@ public class RunsafeCommand implements ICommand
 		if (!CouldExecute(player) || !CanExecute(player, args))
 		{
 			Console.outputToConsole(String.format("%s was denied access to command.", player.getName()), Level.WARNING);
-			if (requiredPermission() == null)
+			if (requiredPermission(args) == null)
 				player.sendColouredMessage("&cPermission denied to that command.");
 			else
 				player.sendColouredMessage(String.format("&cRequired permission %s missing.", requiredPermission()));
