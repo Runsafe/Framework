@@ -30,6 +30,7 @@ public class RunsafeCommandHandler implements CommandExecutor
 		String[] args = tokenizeArgs(rawArgs);
 		ICommand target = commandObject.getTargetCommand(args);
 		console.fine(String.format("Target command object: %s [%s]", target.getClass().getCanonicalName(), target.getCommandName()));
+		console.fine(String.format("Target arguments: %s", StringUtils.join(target.getTargetArgs(args), ",")));
 		if (sender instanceof Player)
 		{
 			if (commandObject.requiredPermission() != null && !sender.hasPermission(commandObject.requiredPermission()))

@@ -44,4 +44,6 @@ public interface ICommand
 	boolean isConsoleLogEnabled();
 
 	ICommand getTargetCommand(String[] args);
+
+	String[] getTargetArgs(String[] args);
 }

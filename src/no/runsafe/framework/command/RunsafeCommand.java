@@ -256,6 +256,9 @@ public class RunsafeCommand implements ICommand
 		if (params.containsKey(name))
 			return params.get(name);
 
+		if(superCommand != null)
+			return superCommand.getArg(name);
+
 		return null;
 	}
 
@@ -301,6 +304,18 @@ public class RunsafeCommand implements ICommand
 			return this;
 
 		return sub.getTargetCommand(getSubArgs(args));
+	}
+
+	@Override
+	public String[] getTargetArgs(String[] args)
+	{
+		int offset = params.size();
+		if(superCommand != null)
+		{
+			args = superCommand.getTargetArgs(args);
+			offset++;
+		}
+		return Arrays.copyOfRange(args, offset, args.length);
 	}
 
 	protected void captureArgs(String[] args)
