@@ -76,7 +76,7 @@ public class RunsafeOutputHandler implements IOutput
 
 	// Sends the supplied string to the console/log the output handler has if the debug level is high enough
 	@Override
-	public void outputDebugToConsole(String message, Level messageLevel)
+	public void outputDebugToConsole(String message, Level messageLevel, Object... params)
 	{
 		if (debugLevel != null && messageLevel.intValue() >= debugLevel.intValue())
 			outputToConsole(
@@ -84,7 +84,8 @@ public class RunsafeOutputHandler implements IOutput
 					"[%s%s%s] %s",
 					ConsoleColors.DARK_GREEN,
 					messageLevel.getName(),
-					ConsoleColors.RESET, message
+					ConsoleColors.RESET,
+					String.format(message, params)
 				),
 				Level.INFO
 			);
@@ -133,51 +134,51 @@ public class RunsafeOutputHandler implements IOutput
 	}
 
 	@Override
-	public void severe(String message)
+	public void severe(String message, Object... params)
 	{
 		outputDebugToConsole(message, Level.SEVERE);
 	}
 
 	@Override
-	public void warning(String message)
+	public void warning(String message, Object... params)
 	{
 		outputDebugToConsole(message, Level.WARNING);
 	}
 
 	@Override
-	public void info(String message)
+	public void info(String message, Object... params)
 	{
 		outputDebugToConsole(message, Level.INFO);
 	}
 
 	@Override
-	public void config(String message)
+	public void config(String message, Object... params)
 	{
 		outputDebugToConsole(message, Level.CONFIG);
 	}
 
 	@Override
-	public void fine(String message)
+	public void fine(String message, Object... params)
 	{
 		outputDebugToConsole(message, Level.FINE);
 	}
 
 	@Override
-	public void finer(String message)
+	public void finer(String message, Object... params)
 	{
 		outputDebugToConsole(message, Level.FINER);
 	}
 
 	@Override
-	public void finest(String message)
+	public void finest(String message, Object... params)
 	{
 		outputDebugToConsole(message, Level.FINEST);
 	}
 
 	public void dumpData(Object raw)
 	{
-		if(raw instanceof RunsafeItemStack)
-			dumpData(((RunsafeItemStack)raw).getRaw());
+		if (raw instanceof RunsafeItemStack)
+			dumpData(((RunsafeItemStack) raw).getRaw());
 	}
 
 	private void dumpData(ConfigurationSerializable raw)

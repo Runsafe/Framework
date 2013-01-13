@@ -21,7 +21,7 @@ public interface IOutput {
 	public void outputColoredToConsole(String message, Level level);
 
 	// Sends the supplied string to the console/log the output handler has if the debug level is high enough
-	public void outputDebugToConsole(String message, Level messageLevel);
+	public void outputDebugToConsole(String message, Level messageLevel, Object... params);
 
 	// Broadcasts the supplied string to all players on the event the output handler has
 	public void outputToServer(String message);
@@ -34,19 +34,19 @@ public interface IOutput {
 
 	void write(String message);
 
-	void severe(String message);
+	void severe(String message, Object... params);
 
-	void warning(String message);
+	void warning(String message, Object... params);
 
-	void info(String message);
+	void info(String message, Object... params);
 
-	void config(String message);
+	void config(String message, Object... params);
 
-	void fine(String message);
+	void fine(String message, Object... params);
 
-	void finer(String message);
+	void finer(String message, Object... params);
 
-	void finest(String message);
+	void finest(String message, Object... params);
 
 	void broadcastColoured(String message);
 
