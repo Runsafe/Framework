@@ -268,17 +268,6 @@ public class RunsafeCommand implements ICommand
 		return null;
 	}
 
-//	public String getArg(String[] args, String name)
-//	{
-//		if (paramKeys == null || paramKeys.isEmpty() || !paramKeys.contains(name))
-//			return null;
-//
-//		int index = paramKeys.indexOf(name);
-//		if (args.length >= index)
-//			return null;
-//		return args[index];
-//	}
-
 	@Override
 	public void setConsole(IOutput output)
 	{

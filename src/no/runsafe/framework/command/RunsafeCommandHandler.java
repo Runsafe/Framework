@@ -28,27 +28,33 @@ public class RunsafeCommandHandler implements CommandExecutor
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] rawArgs)
 	{
 		String[] args = tokenizeArgs(rawArgs);
-		ICommand target = commandObject.getTargetCommand(args);
-		console.fine(String.format("Target command object: %s [%s]", target.getClass().getCanonicalName(), target.getCommandName()));
-		console.fine(String.format("Target arguments: %s", StringUtils.join(target.getTargetArgs(args), ",")));
 		if (sender instanceof Player)
 		{
-			if (commandObject.requiredPermission() != null && !sender.hasPermission(commandObject.requiredPermission()))
+			ICommand target = commandObject.getTargetCommand(args);
+			String[] targetArgs = target.getTargetArgs(args);
+			String permission = target.requiredPermission(targetArgs);
+			console.fine("Target command object: %s [%s]", target.getClass().getCanonicalName(), target.getCommandName());
+			console.fine("Target arguments: %s", StringUtils.join(target.getTargetArgs(args), ","));
+			console.fine("Target requires permission %s", permission);
+			if (permission != null && !sender.hasPermission(permission))
 			{
 				console.write(String.format("[PLAYER_COMMAND] <%s> /%s %s", sender.getName(), label, StringUtils.join(rawArgs, " ")));
 				sender.sendMessage(ChatColor.RED + "No access to that command.");
+				console.writeColoured("Player %s does not have permission &c%s&r.", sender.getName(), permission);
 				return true;
 			}
 			if (commandObject.isConsoleLogEnabled())
 				console.write(String.format("[PLAYER_COMMAND] <%s> /%s %s", sender.getName(), label, StringUtils.join(rawArgs, " ")));
-			return commandObject.Execute(ObjectWrapper.convert((Player) sender), args);
+			commandObject.Execute(ObjectWrapper.convert((Player) sender), args);
+			return true;
 		}
 		else
 		{
 			if (commandObject.isConsoleLogEnabled())
 				console.write(String.format("[CONSOLE_COMMAND] %s %s", label, StringUtils.join(rawArgs, " ")));
-			return commandObject.Execute(args);
+			commandObject.Execute(args);
 		}
+		return true;
 	}
 
 	public ICommand getCommandObject()
