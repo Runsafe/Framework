@@ -251,6 +251,12 @@ public class RunsafeCommand implements ICommand
 	}
 
 	@Override
+	public ICommand getSuperCommand()
+	{
+		return superCommand;
+	}
+
+	@Override
 	public String getArg(String name)
 	{
 		if (params.containsKey(name))
@@ -262,16 +268,16 @@ public class RunsafeCommand implements ICommand
 		return null;
 	}
 
-	public String getArg(String[] args, String name)
-	{
-		if (paramKeys == null || paramKeys.isEmpty() || !paramKeys.contains(name))
-			return null;
-
-		int index = paramKeys.indexOf(name);
-		if (args.length >= index)
-			return null;
-		return args[index];
-	}
+//	public String getArg(String[] args, String name)
+//	{
+//		if (paramKeys == null || paramKeys.isEmpty() || !paramKeys.contains(name))
+//			return null;
+//
+//		int index = paramKeys.indexOf(name);
+//		if (args.length >= index)
+//			return null;
+//		return args[index];
+//	}
 
 	@Override
 	public void setConsole(IOutput output)
@@ -315,6 +321,7 @@ public class RunsafeCommand implements ICommand
 		{
 			index++;
 			index += tier.getArgumentCount();
+			tier = tier.getSuperCommand();
 		}
 		return Arrays.copyOfRange(args, index, args.length);
 	}

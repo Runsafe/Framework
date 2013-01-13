@@ -48,4 +48,6 @@ public interface ICommand
 	ICommand getTargetCommand(String[] args);
 
 	String[] getTargetArgs(String[] args);
+
+	ICommand getSuperCommand();
 }
