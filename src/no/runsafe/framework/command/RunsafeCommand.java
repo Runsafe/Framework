@@ -309,13 +309,20 @@ public class RunsafeCommand implements ICommand
 	@Override
 	public String[] getTargetArgs(String[] args)
 	{
-		int offset = params.size();
-		if(superCommand != null)
+		ICommand tier = superCommand;
+		int index = 0;
+		while(tier != null)
 		{
-			args = superCommand.getTargetArgs(args);
-			offset++;
+			index++;
+			index += tier.getArgumentCount();
 		}
-		return Arrays.copyOfRange(args, offset, args.length);
+		return Arrays.copyOfRange(args, index, args.length);
+	}
+
+	@Override
+	public int getArgumentCount()
+	{
+		return params.size();
 	}
 
 	protected void captureArgs(String[] args)

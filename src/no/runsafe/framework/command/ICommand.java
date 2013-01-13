@@ -29,6 +29,8 @@ public interface ICommand
 
 	String requiredPermission(String[] args);
 
+	int getArgumentCount();
+
 	Collection<ICommand> getSubCommands();
 
 	void addSubCommand(ICommand command);
