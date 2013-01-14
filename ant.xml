@@ -30,6 +30,10 @@
         </jar>
     </target>
 
+    <target name="doc">
+        <javadoc destdir="docs/api" sourcepath="src" packagenames="no.runsafe.*" windowtitle="Runsafe Plugin Framework" />
+    </target>
+
     <target name="clean-build" depends="clean,jar"/>
 
 </project>
