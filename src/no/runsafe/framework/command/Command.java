@@ -1,6 +1,10 @@
 package no.runsafe.framework.command;
 
 import com.google.common.collect.ImmutableList;
+import no.runsafe.framework.command.prepared.IPreparedCommand;
+import no.runsafe.framework.command.prepared.PreparedAsynchronousCallbackCommand;
+import no.runsafe.framework.command.prepared.PreparedAsynchronousCommand;
+import no.runsafe.framework.command.prepared.PreparedSynchronousCommand;
 import no.runsafe.framework.output.ChatColour;
 import no.runsafe.framework.server.ICommandExecutor;
 import org.apache.commons.lang.StringUtils;
@@ -98,12 +102,12 @@ public class Command implements ICommandHandler
 	}
 
 	@Override
-	public final PreparedCommand prepare(ICommandExecutor executor, String[] args)
+	public final IPreparedCommand prepare(ICommandExecutor executor, String[] args)
 	{
 		return prepare(executor, new HashMap<String, String>(), args, new Stack<Command>());
 	}
 
-	private PreparedCommand prepare(ICommandExecutor executor, HashMap<String, String> params, String[] args, Stack<Command> stack)
+	private IPreparedCommand prepare(ICommandExecutor executor, HashMap<String, String> params, String[] args, Stack<Command> stack)
 	{
 		stack.add(this);
 		params.putAll(getParameters(args));
@@ -121,7 +125,14 @@ public class Command implements ICommandHandler
 				return subCommand.prepare(executor, params, args, stack);
 			}
 		}
-		return new PreparedCommand(executor, stack, args, params);
+
+		if (stack.peek() instanceof AsyncCallbackCommand)
+			return new PreparedAsynchronousCallbackCommand(executor, stack, args, params);
+
+		if (stack.peek() instanceof AsyncCommand)
+			return new PreparedAsynchronousCommand(executor, stack, args, params);
+
+		return new PreparedSynchronousCommand(executor, stack, args, params);
 	}
 
 	private HashMap<String, String> getParameters(String[] args)

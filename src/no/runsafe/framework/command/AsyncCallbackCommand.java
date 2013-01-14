@@ -1,5 +1,6 @@
 package no.runsafe.framework.command;
 
+import no.runsafe.framework.command.prepared.PreparedAsynchronousCallbackCommand;
 import no.runsafe.framework.server.ICommandExecutor;
 import no.runsafe.framework.timer.IScheduler;
 
@@ -23,9 +24,9 @@ public abstract class AsyncCallbackCommand<T> extends ExecutableCommand
 
 	public abstract void SyncPostExecute(T result);
 
-	public void Schedule(PreparedCommand target)
+	public void Schedule(PreparedAsynchronousCallbackCommand target)
 	{
-		target.ScheduleCallback(scheduler);
+		target.Schedule(scheduler);
 	}
 
 	private final IScheduler scheduler;

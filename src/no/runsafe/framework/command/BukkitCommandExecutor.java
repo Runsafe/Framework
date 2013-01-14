@@ -1,5 +1,7 @@
 package no.runsafe.framework.command;
 
+import no.runsafe.framework.command.prepared.IPreparedCommand;
+import no.runsafe.framework.command.prepared.PreparedCommand;
 import no.runsafe.framework.output.ChatColour;
 import no.runsafe.framework.server.ICommandExecutor;
 import no.runsafe.framework.server.ObjectWrapper;
@@ -26,7 +28,7 @@ public final class BukkitCommandExecutor implements org.bukkit.command.CommandEx
 	@Override
 	public boolean onCommand(org.bukkit.command.CommandSender sender, org.bukkit.command.Command command, String label, String[] args)
 	{
-		PreparedCommand preparedCommand;
+		IPreparedCommand preparedCommand;
 		if (sender instanceof Player)
 			preparedCommand = this.command.prepare(ObjectWrapper.convert((Player) sender), args);
 		else
