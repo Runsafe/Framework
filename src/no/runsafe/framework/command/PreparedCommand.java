@@ -1,8 +1,6 @@
 package no.runsafe.framework.command;
 
-import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.ICommandExecutor;
-import no.runsafe.framework.server.player.RunsafePlayer;
 import no.runsafe.framework.timer.IScheduler;
 import org.apache.commons.lang.StringUtils;
 
@@ -23,7 +21,12 @@ public final class PreparedCommand
 		this.command = definingCommand;
 		this.arguments = args;
 		this.parameters = parameters;
-		String permission = command.peek().getPermission();
+		Command execute = command.peek();
+		String permission = null;
+		if (execute instanceof IContextPermissionProvider)
+			permission = ((IContextPermissionProvider) execute).getPermission(executor, parameters, args);
+		if (permission == null)
+			permission = command.peek().getPermission();
 		if (permission != null)
 			for (String param : parameters.keySet())
 				if (parameters.get(param) != null)
