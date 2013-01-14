@@ -18,6 +18,11 @@ public final class BukkitCommandExecutor implements org.bukkit.command.CommandEx
 		return command.getName();
 	}
 
+	public ICommandHandler getHandler()
+	{
+		return command;
+	}
+
 	@Override
 	public boolean onCommand(org.bukkit.command.CommandSender sender, org.bukkit.command.Command command, String label, String[] args)
 	{

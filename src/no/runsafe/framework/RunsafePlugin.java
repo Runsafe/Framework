@@ -1,9 +1,6 @@
 package no.runsafe.framework;
 
-import no.runsafe.framework.command.BukkitCommandExecutor;
-import no.runsafe.framework.command.ICommand;
-import no.runsafe.framework.command.ICommandHandler;
-import no.runsafe.framework.command.RunsafeCommandHandler;
+import no.runsafe.framework.command.*;
 import no.runsafe.framework.configuration.IConfiguration;
 import no.runsafe.framework.configuration.IConfigurationFile;
 import no.runsafe.framework.configuration.RunsafeConfigurationHandler;
@@ -45,7 +42,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 {
 	public static final HashMap<String, RunsafePlugin> Instances = new HashMap<String, RunsafePlugin>();
 
-	public static ICommand getPluginCommand(String name)
+	public static ICommandHandler getPluginCommand(String name)
 	{
 		for (String plugin : Instances.keySet())
 		{
@@ -53,10 +50,10 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 			if (command != null)
 			{
 				CommandExecutor executor = command.getExecutor();
-				if (executor instanceof RunsafeCommandHandler)
+				if (executor instanceof BukkitCommandExecutor)
 				{
-					RunsafeCommandHandler handler = (RunsafeCommandHandler) executor;
-					return handler.getCommandObject();
+					BukkitCommandExecutor handler = (BukkitCommandExecutor) executor;
+					return handler.getHandler();
 				}
 			}
 		}
@@ -123,15 +120,6 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 			impl.OnPluginDisabled();
 		}
 	}
-
-//	@Override
-//	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
-//	{
-//		if (commands == null)
-//			return false;
-//		String command = cmd.getName().toLowerCase();
-//		return commands.containsKey(command) && commands.get(command).onCommand(sender, cmd, label, args);
-//	}
 
 	@Override
 	public void addComponent(Object implOrInstance)
