@@ -9,9 +9,9 @@ import java.util.HashMap;
 
 public abstract class ConsoleAsyncCommand extends AsyncCommand
 {
-	public ConsoleAsyncCommand(String name, String description, String permission, IScheduler scheduler, String... args)
+	public ConsoleAsyncCommand(String name, String description, IScheduler scheduler, String... args)
 	{
-		super(name, description, permission, scheduler, args);
+		super(name, description, null, scheduler, args);
 	}
 
 	@Override

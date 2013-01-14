@@ -8,9 +8,9 @@ import java.util.HashMap;
 
 public abstract class ConsoleCommand extends ExecutableCommand
 {
-	public ConsoleCommand(String commandName, String description, String permission, String... arguments)
+	public ConsoleCommand(String commandName, String description, String... arguments)
 	{
-		super(commandName, description, permission, arguments);
+		super(commandName, description, null, arguments);
 	}
 
 	@Override
