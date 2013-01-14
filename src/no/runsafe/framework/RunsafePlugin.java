@@ -1,6 +1,9 @@
 package no.runsafe.framework;
 
-import no.runsafe.framework.command.*;
+import no.runsafe.framework.command.BukkitCommandExecutor;
+import no.runsafe.framework.command.ICommand;
+import no.runsafe.framework.command.ICommandHandler;
+import no.runsafe.framework.command.RunsafeCommandHandler;
 import no.runsafe.framework.configuration.IConfiguration;
 import no.runsafe.framework.configuration.IConfigurationFile;
 import no.runsafe.framework.configuration.RunsafeConfigurationHandler;
@@ -221,7 +224,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		ICommandExecutor console = new RunsafeConsole(output);
 		ArrayList<BukkitCommandExecutor> handlers = new ArrayList<BukkitCommandExecutor>();
 		for (ICommandHandler command : getComponents(ICommandHandler.class))
-			handlers.add(new BukkitCommandExecutor(command, console));
+			handlers.add(new BukkitCommandExecutor(command, console, output));
 		return handlers;
 	}
 

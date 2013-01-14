@@ -6,6 +6,7 @@ import no.runsafe.framework.command.prepared.PreparedAsynchronousCallbackCommand
 import no.runsafe.framework.command.prepared.PreparedAsynchronousCommand;
 import no.runsafe.framework.command.prepared.PreparedSynchronousCommand;
 import no.runsafe.framework.output.ChatColour;
+import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.ICommandExecutor;
 import org.apache.commons.lang.StringUtils;
 
@@ -107,6 +108,12 @@ public class Command implements ICommandHandler
 		return prepare(executor, new HashMap<String, String>(), args, new Stack<Command>());
 	}
 
+	@Override
+	public void setConsole(IOutput console)
+	{
+		this.console = console;
+	}
+
 	private IPreparedCommand prepare(ICommandExecutor executor, HashMap<String, String> params, String[] args, Stack<Command> stack)
 	{
 		stack.add(this);
@@ -127,11 +134,16 @@ public class Command implements ICommandHandler
 		}
 
 		if (stack.peek() instanceof AsyncCallbackCommand)
+		{
+			console.fine("Preparing AsyncCallback command with %d params and %d args", params.size(), args.length);
 			return new PreparedAsynchronousCallbackCommand(executor, stack, args, params);
-
+		}
 		if (stack.peek() instanceof AsyncCommand)
+		{
+			console.fine("Preparing Async command with %d params and %d args", params.size(), args.length);
 			return new PreparedAsynchronousCommand(executor, stack, args, params);
-
+		}
+		console.fine("Preparing Sync command with %d params and %d args", params.size(), args.length);
 		return new PreparedSynchronousCommand(executor, stack, args, params);
 	}
 
@@ -156,4 +168,5 @@ public class Command implements ICommandHandler
 	private final String name;
 	private final String permission;
 	private final String description;
+	protected IOutput console;
 }

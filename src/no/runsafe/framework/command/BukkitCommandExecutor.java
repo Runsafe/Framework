@@ -1,18 +1,19 @@
 package no.runsafe.framework.command;
 
 import no.runsafe.framework.command.prepared.IPreparedCommand;
-import no.runsafe.framework.command.prepared.PreparedCommand;
 import no.runsafe.framework.output.ChatColour;
+import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.ICommandExecutor;
 import no.runsafe.framework.server.ObjectWrapper;
 import org.bukkit.entity.Player;
 
 public final class BukkitCommandExecutor implements org.bukkit.command.CommandExecutor
 {
-	public BukkitCommandExecutor(ICommandHandler command, ICommandExecutor console)
+	public BukkitCommandExecutor(ICommandHandler command, ICommandExecutor console, IOutput output)
 	{
 		this.command = command;
 		this.console = console;
+		this.command.setConsole(output);
 	}
 
 	public String getName()
