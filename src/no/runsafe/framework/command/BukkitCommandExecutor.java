@@ -34,7 +34,11 @@ public final class BukkitCommandExecutor implements org.bukkit.command.CommandEx
 
 		String permission = preparedCommand.getRequiredPermission();
 		if (permission == null || sender.hasPermission(permission))
-			sender.sendMessage(ChatColour.ToMinecraft(preparedCommand.execute()));
+		{
+			String feedback = preparedCommand.execute();
+			if (feedback != null)
+				sender.sendMessage(ChatColour.ToMinecraft(feedback));
+		}
 		else
 		{
 			sender.sendMessage(
