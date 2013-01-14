@@ -59,6 +59,7 @@ public class RunsafeOutputHandler implements IOutput
 	}
 
 	@Override
+	@Deprecated
 	public void outputColoredToConsole(String message, Level level)
 	{
 		outputToConsole(ConsoleColors.FromMinecraft(message), level);

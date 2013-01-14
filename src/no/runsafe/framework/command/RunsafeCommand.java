@@ -1,10 +1,10 @@
 package no.runsafe.framework.command;
 
 import com.google.common.collect.ImmutableList;
+import no.runsafe.framework.output.ChatColour;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.apache.commons.lang.StringUtils;
-import org.bukkit.ChatColor;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -76,12 +76,12 @@ public class RunsafeCommand implements ICommand
 				width = cmd.length();
 		String format = String.format("  %%1s%%2$-%ds%%3$s%%4$s\n", width);
 		for (String cmd : available.keySet())
-			usage.append(String.format(format, ChatColor.YELLOW, cmd, ChatColor.RESET, available.get(cmd)));
+			usage.append(String.format(format, ChatColour.YELLOW.toBukkit(), cmd, ChatColour.RESET.toBukkit(), available.get(cmd)));
 
 		return String.format(
 			"/%3$s <%1$scommand%2$s>\n%4$s\n Available commands:\n%5$s",
-			ChatColor.YELLOW,
-			ChatColor.RESET,
+			ChatColour.YELLOW.toBukkit(),
+			ChatColour.RESET.toBukkit(),
 			getCommandParams(),
 			getDescription() == null ? "" : getDescription(),
 			usage
@@ -91,13 +91,13 @@ public class RunsafeCommand implements ICommand
 	@Override
 	public String getCommandParams()
 	{
-		String part = ChatColor.BLUE + commandName + ChatColor.RESET;
+		String part = ChatColour.BLUE.toBukkit() + commandName + ChatColour.RESET.toBukkit();
 		if (!params.isEmpty())
 			part += " <" +
-				ChatColor.YELLOW + StringUtils.join(
+				ChatColour.YELLOW.toBukkit() + StringUtils.join(
 				paramKeys,
-				ChatColor.RESET + "> <" + ChatColor.YELLOW
-			) + ChatColor.RESET + ">";
+				ChatColour.RESET.toBukkit() + "> <" + ChatColour.YELLOW.toBukkit()
+			) + ChatColour.RESET.toBukkit() + ">";
 
 		if (superCommand != null)
 			return superCommand.getCommandParams() + " " + part;
@@ -263,7 +263,7 @@ public class RunsafeCommand implements ICommand
 		if (params.containsKey(name))
 			return params.get(name);
 
-		if(superCommand != null)
+		if (superCommand != null)
 			return superCommand.getArg(name);
 
 		return null;
@@ -296,7 +296,7 @@ public class RunsafeCommand implements ICommand
 			return this;
 
 		ICommand sub = getSubCommand(args[params.size()]);
-		if(sub == null)
+		if (sub == null)
 			return this;
 
 		return sub.getTargetCommand(getSubArgs(args));
@@ -307,7 +307,7 @@ public class RunsafeCommand implements ICommand
 	{
 		ICommand tier = superCommand;
 		int index = 0;
-		while(tier != null)
+		while (tier != null)
 		{
 			index++;
 			index += tier.getArgumentCount();

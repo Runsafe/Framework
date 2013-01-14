@@ -11,19 +11,19 @@ import no.runsafe.framework.database.*;
 import no.runsafe.framework.event.*;
 import no.runsafe.framework.hook.*;
 import no.runsafe.framework.messaging.*;
+import no.runsafe.framework.output.ChatColour;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.output.RunsafeOutputHandler;
 import no.runsafe.framework.plugin.IPluginUpdate;
 import no.runsafe.framework.plugin.PluginResolver;
+import no.runsafe.framework.server.ICommandExecutor;
+import no.runsafe.framework.server.RunsafeConsole;
 import no.runsafe.framework.server.RunsafeServer;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import no.runsafe.framework.timer.IScheduler;
 import no.runsafe.framework.timer.Scheduler;
 import org.apache.commons.lang.exception.ExceptionUtils;
-import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -69,14 +69,19 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		if (container == null)
 			initializePlugin();
 		IOutput console = getComponent(IOutput.class);
+		console.fine("Plugin initialized.");
 
 		registerServices();
+		console.fine("Plugin services registered.");
 		addFrameworkHooks();
+		console.fine("Plugin framework hooks added.");
 
 		for (IPluginEnabled impl : getComponents(IPluginEnabled.class))
 			impl.OnPluginEnabled();
+		console.fine("Plugin enabled event executed.");
 
 		logPluginVersion();
+		console.fine("Plugin version logged.");
 	}
 
 	private void addFrameworkHooks()
@@ -225,9 +230,10 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 
 	protected List<BukkitCommandExecutor> GetCommands()
 	{
+		ICommandExecutor console = new RunsafeConsole(output);
 		ArrayList<BukkitCommandExecutor> handlers = new ArrayList<BukkitCommandExecutor>();
-		for(ICommandHandler command : getComponents(ICommandHandler.class))
-			handlers.add(new BukkitCommandExecutor(command));
+		for (ICommandHandler command : getComponents(ICommandHandler.class))
+			handlers.add(new BukkitCommandExecutor(command, console));
 		return handlers;
 	}
 
@@ -364,16 +370,14 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 							}
 							catch (SQLException e)
 							{
-								output.outputColoredToConsole(
-									String.format(
-										"Failed executing query %s: %s%s%s\n%s",
-										sql,
-										ChatColor.RED,
-										ExceptionUtils.getMessage(e),
-										ChatColor.RESET,
-										ExceptionUtils.getStackTrace(e)
-									),
-									Level.SEVERE
+								output.writeColoured(
+									"Failed executing query %s: %s%s%s\n%s",
+									Level.SEVERE,
+									sql,
+									ChatColour.RED,
+									ExceptionUtils.getMessage(e),
+									ChatColour.RESET,
+									ExceptionUtils.getStackTrace(e)
 								);
 								success = false;
 								break;
@@ -450,7 +454,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 				command.setExecutor(handler);
 			}
 		}
-		for(BukkitCommandExecutor executor : this.GetCommands())
+		for (BukkitCommandExecutor executor : this.GetCommands())
 		{
 			PluginCommand command = getCommand(executor.getName());
 

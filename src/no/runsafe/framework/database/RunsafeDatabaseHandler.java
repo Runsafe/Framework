@@ -1,9 +1,9 @@
 package no.runsafe.framework.database;
 
+import no.runsafe.framework.output.ChatColour;
 import no.runsafe.framework.output.ConsoleColors;
 import no.runsafe.framework.output.IOutput;
 import org.apache.commons.lang.exception.ExceptionUtils;
-import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -43,7 +43,7 @@ public class RunsafeDatabaseHandler implements IDatabase
 			}
 			catch (IOException e1)
 			{
-				output.outputColoredToConsole(ChatColor.RED + ExceptionUtils.getMessage(e1), Level.SEVERE);
+				output.writeColoured(ChatColour.RED + ExceptionUtils.getMessage(e1), Level.SEVERE);
 			}
 			output.write("\n" +
 				"\n" +
@@ -56,11 +56,11 @@ public class RunsafeDatabaseHandler implements IDatabase
 		}
 		catch (IOException e)
 		{
-			output.outputColoredToConsole(ChatColor.RED + ExceptionUtils.getMessage(e), Level.SEVERE);
+			output.writeColoured(ChatColour.RED + ExceptionUtils.getMessage(e), Level.SEVERE);
 		}
 		catch (InvalidConfigurationException e)
 		{
-			output.outputColoredToConsole(ChatColor.RED + ExceptionUtils.getMessage(e), Level.SEVERE);
+			output.writeColoured(ChatColour.RED + ExceptionUtils.getMessage(e), Level.SEVERE);
 		}
 		this.databaseURL = config.getString("database.url");
 		this.databaseUsername = config.getString("database.username");

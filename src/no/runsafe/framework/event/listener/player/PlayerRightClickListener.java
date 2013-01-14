@@ -23,7 +23,8 @@ public class PlayerRightClickListener extends EventRouter<IPlayerRightClickEvent
 	@Override
 	public void AcceptEvent(PlayerInteractEvent event)
 	{
-		super.AcceptEvent(event);
+		if (event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR)
+			super.AcceptEvent(event);
 	}
 
 	public boolean OnEvent(PlayerInteractEvent event)

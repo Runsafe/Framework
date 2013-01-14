@@ -1,6 +1,6 @@
 package no.runsafe.framework.command;
 
-import no.runsafe.framework.server.player.RunsafePlayer;
+import no.runsafe.framework.server.ICommandExecutor;
 import no.runsafe.framework.timer.IScheduler;
 
 import java.util.HashMap;
@@ -13,7 +13,13 @@ public abstract class AsyncCommand extends ExecutableCommand
 		this.scheduler = scheduler;
 	}
 
-	public abstract void OnAsyncExecute(RunsafePlayer executor, HashMap<String, String> parameters, String[] arguments);
+	@Override
+	public String OnExecute(ICommandExecutor executor, HashMap<String, String> parameters, String[] arguments)
+	{
+		return null;
+	}
+
+	public abstract String OnAsyncExecute(ICommandExecutor executor, HashMap<String, String> parameters, String[] arguments);
 
 	public void Schedule(PreparedCommand target)
 	{

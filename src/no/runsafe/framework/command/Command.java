@@ -2,11 +2,12 @@ package no.runsafe.framework.command;
 
 import com.google.common.collect.ImmutableList;
 import no.runsafe.framework.output.ChatColour;
-import no.runsafe.framework.server.player.RunsafePlayer;
+import no.runsafe.framework.server.ICommandExecutor;
 import org.apache.commons.lang.StringUtils;
-import org.bukkit.ChatColor;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Stack;
 
 public class Command implements ICommandHandler
 {
@@ -24,14 +25,14 @@ public class Command implements ICommandHandler
 	public String getUsage()
 	{
 		HashMap<String, String> available = new HashMap<String, String>();
-		if (subCommands != null && !subCommands.isEmpty())
+		if (!subCommands.isEmpty())
 		{
 			for (Command sub : subCommands.values())
 			{
-					if (sub.description == null)
-						available.put(sub.getName(), "");
-					else
-						available.put(sub.getName(), String.format(" - %s", sub.description));
+				if (sub.description == null)
+					available.put(sub.getName(), "");
+				else
+					available.put(sub.getName(), String.format(" - %s", sub.description));
 			}
 		}
 		StringBuilder usage = new StringBuilder();
@@ -44,7 +45,7 @@ public class Command implements ICommandHandler
 				width = cmd.length();
 		String format = String.format("  %%1s%%2$-%ds%%3$s%%4$s\n", width);
 		for (String cmd : available.keySet())
-			usage.append(String.format(format, ChatColor.YELLOW, cmd, ChatColor.RESET, available.get(cmd)));
+			usage.append(String.format(format, ChatColour.YELLOW, cmd, ChatColour.RESET, available.get(cmd)));
 
 		return String.format(
 			"<%1$scommand%2$s>\nAvailable commands:\n%3$s",
@@ -97,12 +98,12 @@ public class Command implements ICommandHandler
 	}
 
 	@Override
-	public final PreparedCommand prepare(RunsafePlayer executor, String[] args)
+	public final PreparedCommand prepare(ICommandExecutor executor, String[] args)
 	{
 		return prepare(executor, new HashMap<String, String>(), args, new Stack<Command>());
 	}
 
-	private PreparedCommand prepare(RunsafePlayer executor, HashMap<String, String> params, String[] args, Stack<Command> stack)
+	private PreparedCommand prepare(ICommandExecutor executor, HashMap<String, String> params, String[] args, Stack<Command> stack)
 	{
 		stack.add(this);
 		params.putAll(getParameters(args));

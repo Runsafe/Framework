@@ -1,8 +1,8 @@
 package no.runsafe.framework.database;
 
+import no.runsafe.framework.output.ChatColour;
 import no.runsafe.framework.output.IOutput;
 import org.apache.commons.lang.exception.ExceptionUtils;
-import org.bukkit.ChatColor;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,15 +29,13 @@ public class SchemaRevisionRepository
 		}
 		catch (SQLException e)
 		{
-			output.outputColoredToConsole(
-				String.format(
-					"Database failure: %s%s%s\n%s",
-					ChatColor.RED,
-					ExceptionUtils.getMessage(e),
-					ChatColor.RESET,
-					ExceptionUtils.getStackTrace(e)
-				),
-				Level.SEVERE
+			output.writeColoured(
+				"Database failure: %s%s%s\n%s",
+				Level.SEVERE,
+				ChatColour.RED,
+				ExceptionUtils.getMessage(e),
+				ChatColour.RESET,
+				ExceptionUtils.getStackTrace(e)
 			);
 		}
 	}
@@ -61,15 +59,13 @@ public class SchemaRevisionRepository
 		}
 		catch (SQLException e)
 		{
-			console.outputColoredToConsole(
-				String.format(
-					"Database failure: %s%s%s\n%s",
-					ChatColor.RED,
-					ExceptionUtils.getMessage(e),
-					ChatColor.RESET,
-					ExceptionUtils.getStackTrace(e)
-				),
-				Level.SEVERE
+			console.writeColoured(
+				"Database failure: %s%s%s\n%s",
+				Level.SEVERE,
+				ChatColour.RED,
+				ExceptionUtils.getMessage(e),
+				ChatColour.RESET,
+				ExceptionUtils.getStackTrace(e)
 			);
 		}
 		return -1;
@@ -91,15 +87,13 @@ public class SchemaRevisionRepository
 		}
 		catch (SQLException e)
 		{
-			console.outputColoredToConsole(
-				String.format(
-					"Database failure: %s%s%s\n%s",
-					ChatColor.RED,
-					ExceptionUtils.getMessage(e),
-					ChatColor.RESET,
-					ExceptionUtils.getStackTrace(e)
-				),
-				Level.SEVERE
+			console.writeColoured(
+				"Database failure: %s%s%s\n%s",
+				Level.SEVERE,
+				ChatColour.RED,
+				ExceptionUtils.getMessage(e),
+				ChatColour.RESET,
+				ExceptionUtils.getStackTrace(e)
 			);
 		}
 	}

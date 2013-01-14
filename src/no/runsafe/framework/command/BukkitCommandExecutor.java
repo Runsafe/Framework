@@ -1,14 +1,21 @@
 package no.runsafe.framework.command;
 
 import no.runsafe.framework.output.ChatColour;
+import no.runsafe.framework.server.ICommandExecutor;
 import no.runsafe.framework.server.ObjectWrapper;
 import org.bukkit.entity.Player;
 
 public final class BukkitCommandExecutor implements org.bukkit.command.CommandExecutor
 {
-	public BukkitCommandExecutor(ICommandHandler command)
+	public BukkitCommandExecutor(ICommandHandler command, ICommandExecutor console)
 	{
 		this.command = command;
+		this.console = console;
+	}
+
+	public String getName()
+	{
+		return command.getName();
 	}
 
 	@Override
@@ -18,7 +25,7 @@ public final class BukkitCommandExecutor implements org.bukkit.command.CommandEx
 		if (sender instanceof Player)
 			preparedCommand = this.command.prepare(ObjectWrapper.convert((Player) sender), args);
 		else
-			preparedCommand = this.command.prepare(null, args);
+			preparedCommand = this.command.prepare(console, args);
 
 		String permission = preparedCommand.getRequiredPermission();
 		if (permission == null || sender.hasPermission(permission))
@@ -35,9 +42,5 @@ public final class BukkitCommandExecutor implements org.bukkit.command.CommandEx
 	}
 
 	private final ICommandHandler command;
-
-	public String getName()
-	{
-		return command.getName();
-	}
+	private final ICommandExecutor console;
 }

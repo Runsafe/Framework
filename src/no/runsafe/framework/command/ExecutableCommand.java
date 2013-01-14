@@ -1,6 +1,6 @@
 package no.runsafe.framework.command;
 
-import no.runsafe.framework.server.player.RunsafePlayer;
+import no.runsafe.framework.server.ICommandExecutor;
 
 import java.util.HashMap;
 
@@ -11,5 +11,5 @@ public abstract class ExecutableCommand extends Command
 		super(commandName, description, permission, arguments);
 	}
 
-	public abstract String OnExecute(RunsafePlayer executor, HashMap<String, String> parameters, String[] arguments);
+	public abstract String OnExecute(ICommandExecutor executor, HashMap<String, String> parameters, String[] arguments);
 }

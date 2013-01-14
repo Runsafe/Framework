@@ -1,5 +1,7 @@
 package no.runsafe.framework.command;
 
+import no.runsafe.framework.output.IOutput;
+import no.runsafe.framework.server.ICommandExecutor;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import no.runsafe.framework.timer.IScheduler;
 import org.apache.commons.lang.StringUtils;
@@ -11,7 +13,11 @@ import java.util.regex.Pattern;
 
 public final class PreparedCommand
 {
-	public PreparedCommand(RunsafePlayer executor, Stack<Command> definingCommand, String[] args, HashMap<String, String> parameters)
+	public PreparedCommand(
+		ICommandExecutor executor,
+		Stack<Command> definingCommand,
+		String[] args,
+		HashMap<String, String> parameters)
 	{
 		this.executor = executor;
 		this.command = definingCommand;
@@ -63,7 +69,18 @@ public final class PreparedCommand
 				@Override
 				public void run()
 				{
-					target.OnAsyncExecute(executor, parameters, arguments);
+					final String result = target.OnAsyncExecute(executor, parameters, arguments);
+					if (result != null && executor != null)
+						scheduler.startSyncTask(
+							new Runnable()
+							{
+								@Override
+								public void run()
+								{
+									executor.sendColouredMessage(result);
+								}
+							}, 1L
+						);
 				}
 			},
 			1L
@@ -97,11 +114,10 @@ public final class PreparedCommand
 	}
 
 
-	private final RunsafePlayer executor;
+	private final ICommandExecutor executor;
 	private final Stack<Command> command;
 	private final String[] arguments;
 	private final HashMap<String, String> parameters;
 	private final String requiredPermission;
 	private final static Pattern paramPermission = Pattern.compile(".*<.*>.*");
-
 }

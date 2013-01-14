@@ -5,6 +5,7 @@ import no.runsafe.framework.hook.IPlayerNameDecorator;
 import no.runsafe.framework.hook.IPlayerPermissions;
 import no.runsafe.framework.hook.IPlayerVisibility;
 import no.runsafe.framework.output.ChatColour;
+import no.runsafe.framework.server.ICommandExecutor;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.block.RunsafeBlock;
@@ -24,7 +25,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHolder
+public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHolder, ICommandExecutor
 {
 	public RunsafePlayer(Player toWrap)
 	{
@@ -43,6 +44,7 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 		basePlayer = toWrap;
 	}
 
+	@Override
 	public String getName()
 	{
 		return basePlayer.getName();
@@ -179,17 +181,20 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 		return null;
 	}
 
+	@Override
 	public void sendMessage(String message)
 	{
 		if (player != null)
 			player.sendMessage(message);
 	}
 
+	@Override
 	public void sendColouredMessage(String message)
 	{
 		sendMessage(ChatColour.ToMinecraft(message));
 	}
 
+	@Override
 	public void sendColouredMessage(String format, Object... params)
 	{
 		sendColouredMessage(String.format(format, params));
@@ -221,6 +226,7 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 			player.removePotionEffect(effect.getType());
 	}
 
+	@Override
 	public boolean hasPermission(String permission)
 	{
 		return player != null && player.hasPermission(permission);

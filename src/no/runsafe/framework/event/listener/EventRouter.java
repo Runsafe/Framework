@@ -2,10 +2,10 @@ package no.runsafe.framework.event.listener;
 
 import no.runsafe.framework.event.IAsyncEvent;
 import no.runsafe.framework.event.IRunsafeEvent;
+import no.runsafe.framework.output.ChatColour;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.timer.IScheduler;
 import org.apache.commons.lang.exception.ExceptionUtils;
-import org.bukkit.ChatColor;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
@@ -66,15 +66,13 @@ public abstract class EventRouter<Wrapper extends IRunsafeEvent, EventType exten
 		}
 		catch (Exception e)
 		{
-			console.outputColoredToConsole(
-				String.format(
-					"Exception in event handler: %s%s%s\n%s",
-					ChatColor.RED,
-					ExceptionUtils.getMessage(e),
-					ChatColor.RESET,
-					ExceptionUtils.getStackTrace(e)
-				),
-				Level.SEVERE
+			console.writeColoured(
+				"Exception in event handler: %s%s%s\n%s",
+				Level.SEVERE,
+				ChatColour.RED,
+				ExceptionUtils.getMessage(e),
+				ChatColour.RESET,
+				ExceptionUtils.getStackTrace(e)
 			);
 			return;
 		}

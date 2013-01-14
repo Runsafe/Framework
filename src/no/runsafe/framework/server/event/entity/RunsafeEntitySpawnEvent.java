@@ -46,5 +46,5 @@ public class RunsafeEntitySpawnEvent extends RunsafeEntityEvent implements Cance
 		event.setCancelled(cancel);
 	}
 
-	CreatureSpawnEvent event;
+	private final CreatureSpawnEvent event;
 }

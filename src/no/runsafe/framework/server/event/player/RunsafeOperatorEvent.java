@@ -25,9 +25,6 @@ public class RunsafeOperatorEvent extends RunsafeInternalEvent
 		return op;
 	}
 
-	private RunsafePlayer player;
-	private boolean op;
-
 	@Override
 	public void Fire()
 	{
@@ -35,4 +32,7 @@ public class RunsafeOperatorEvent extends RunsafeInternalEvent
 			for (IPlayerOperatorEvent listener : plugin.getComponents(IPlayerOperatorEvent.class))
 				listener.OnPlayerOP(this);
 	}
+
+	private final RunsafePlayer player;
+	private final boolean op;
 }

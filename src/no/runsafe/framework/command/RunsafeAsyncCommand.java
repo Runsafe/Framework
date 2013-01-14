@@ -3,7 +3,6 @@ package no.runsafe.framework.command;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import no.runsafe.framework.timer.IScheduler;
 import org.apache.commons.lang.StringUtils;
-import org.bukkit.ChatColor;
 
 import java.util.Collection;
 import java.util.logging.Level;
@@ -86,7 +85,7 @@ public abstract class RunsafeAsyncCommand extends RunsafeCommand
 			Console.finest(String.format("Missing params (%d < %d)", args.length, params.size()));
 			String usage = getCommandUsage(null);
 			if (usage != null)
-				Console.outputColoredToConsole(usage, Level.INFO);
+				Console.writeColoured(usage, Level.INFO);
 			return true;
 		}
 		captureArgs(args);

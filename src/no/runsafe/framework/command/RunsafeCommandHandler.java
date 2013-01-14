@@ -1,9 +1,9 @@
 package no.runsafe.framework.command;
 
+import no.runsafe.framework.output.ChatColour;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.ObjectWrapper;
 import org.apache.commons.lang.StringUtils;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -40,7 +40,7 @@ public class RunsafeCommandHandler implements CommandExecutor
 			if (permission != null && !sender.hasPermission(permission))
 			{
 				console.write(String.format("[PLAYER_COMMAND] <%s> /%s %s", sender.getName(), label, StringUtils.join(rawArgs, " ")));
-				sender.sendMessage(ChatColor.RED + "No access to that command.");
+				sender.sendMessage(ChatColour.RED.toBukkit() + "No access to that command.");
 				console.writeColoured("Player %s does not have permission &c%s&r.", sender.getName(), permission);
 				return true;
 			}

@@ -84,7 +84,7 @@ public class RunsafeFakePlayer extends RunsafePlayer
 	}
 
 	private final String name;
+	private final List<String> groups = new ArrayList<String>();
 	private boolean isOp;
-	private List<String> groups = new ArrayList<String>();
 	private RunsafeWorld world;
 }
