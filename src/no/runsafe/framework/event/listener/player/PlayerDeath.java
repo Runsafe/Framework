@@ -1,6 +1,5 @@
 package no.runsafe.framework.event.listener.player;
 
-import com.sun.corba.se.impl.transport.EventHandlerBase;
 import no.runsafe.framework.event.listener.EventRouter;
 import no.runsafe.framework.event.player.IPlayerDeathEvent;
 import no.runsafe.framework.output.IOutput;
