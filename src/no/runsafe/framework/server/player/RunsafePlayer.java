@@ -191,7 +191,8 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 	@Override
 	public void sendColouredMessage(String message)
 	{
-		sendMessage(ChatColour.ToMinecraft(message));
+		if (message != null)
+			sendMessage(ChatColour.ToMinecraft(message));
 	}
 
 	@Override
