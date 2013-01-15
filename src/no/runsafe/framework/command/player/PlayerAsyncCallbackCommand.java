@@ -24,10 +24,26 @@ public abstract class PlayerAsyncCallbackCommand<T> extends AsyncCallbackCommand
 	}
 
 	@Override
+	public String OnExecute(ICommandExecutor executor, HashMap<String, String> parameters)
+	{
+		if (executor instanceof RunsafeConsole)
+			return "This command cannot be used from the console.";
+		return OnExecute((RunsafePlayer) executor, parameters);
+	}
+
+	@Override
 	public final T OnAsyncExecute(ICommandExecutor executor, HashMap<String, String> parameters, String[] arguments)
 	{
 		if (executor instanceof RunsafePlayer)
 			return OnAsyncExecute((RunsafePlayer) executor, parameters, arguments);
+		return null;
+	}
+
+	@Override
+	public final T OnAsyncExecute(ICommandExecutor executor, HashMap<String, String> parameters)
+	{
+		if (executor instanceof RunsafePlayer)
+			return OnAsyncExecute((RunsafePlayer) executor, parameters);
 		return null;
 	}
 

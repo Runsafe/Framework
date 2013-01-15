@@ -30,6 +30,14 @@ public abstract class PlayerAsyncCommand extends AsyncCommand
 		return "This command cannot be used from the console.";
 	}
 
+	@Override
+	public final String OnAsyncExecute(ICommandExecutor executor, HashMap<String, String> parameters)
+	{
+		if (executor instanceof RunsafePlayer)
+			return OnAsyncExecute((RunsafePlayer) executor, parameters);
+		return "This command cannot be used from the console.";
+	}
+
 	public String OnExecute(RunsafePlayer executor, HashMap<String, String> parameters, String[] arguments)
 	{
 		return OnExecute(executor, parameters);

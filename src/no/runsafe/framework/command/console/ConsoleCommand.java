@@ -22,6 +22,15 @@ public abstract class ConsoleCommand extends ExecutableCommand
 		return "This command must be used from the console.";
 	}
 
+	@Override
+	public final String OnExecute(ICommandExecutor executor, HashMap<String, String> parameters)
+	{
+		if (executor instanceof RunsafeConsole)
+			return OnExecute(parameters);
+
+		return "This command must be used from the console.";
+	}
+
 	public String OnExecute(HashMap<String, String> parameters, String[] arguments)
 	{
 		return OnExecute(parameters);
