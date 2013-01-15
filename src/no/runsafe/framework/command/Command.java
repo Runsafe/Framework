@@ -105,30 +105,42 @@ public class Command implements ICommandHandler
 	@Override
 	public final IPreparedCommand prepare(ICommandExecutor executor, String[] args)
 	{
+		if (args != null)
+			console.fine("Preparing command %s %s", getName(), StringUtils.join(args, " "));
+		else
+			console.fine("Preparing command %s", getName());
 		return prepare(executor, new HashMap<String, String>(), args, new Stack<Command>());
 	}
 
 	@Override
 	public void setConsole(IOutput console)
 	{
+		console.fine("Setting console on command object.");
 		this.console = console;
 	}
 
 	private IPreparedCommand prepare(ICommandExecutor executor, HashMap<String, String> params, String[] args, Stack<Command> stack)
 	{
 		stack.add(this);
-		params.putAll(getParameters(args));
-		if (args.length > params.size())
-			args = Arrays.copyOfRange(args, params.size(), args.length);
-		else
-			args = new String[0];
-
+		HashMap<String, String> myParams = getParameters(args);
+		params.putAll(myParams);
+		if (myParams.size() > 0)
+		{
+			if (args.length > myParams.size())
+				args = Arrays.copyOfRange(args, myParams.size(), args.length);
+			else
+				args = new String[0];
+		}
+		console.fine("Command %s has %d parameters and %d args", getName(), myParams.size(), args.length);
 		if (args.length > 0)
 		{
+			console.fine("Looking for subcommand %s", args[0]);
 			Command subCommand = getSubCommand(args[0]);
 			if (subCommand != null)
 			{
+				subCommand.setConsole(console);
 				args = Arrays.copyOfRange(args, 1, args.length);
+				console.fine("Preparing subcommand %s", executor.getName());
 				return subCommand.prepare(executor, params, args, stack);
 			}
 		}
@@ -168,5 +180,5 @@ public class Command implements ICommandHandler
 	private final String name;
 	private final String permission;
 	private final String description;
-	protected IOutput console;
+	private IOutput console;
 }

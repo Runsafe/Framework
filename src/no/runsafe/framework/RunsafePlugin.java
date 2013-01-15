@@ -224,7 +224,10 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		ICommandExecutor console = new RunsafeConsole(output);
 		ArrayList<BukkitCommandExecutor> handlers = new ArrayList<BukkitCommandExecutor>();
 		for (ICommandHandler command : getComponents(ICommandHandler.class))
-			handlers.add(new BukkitCommandExecutor(command, console, output));
+		{
+			command.setConsole(getComponent(IOutput.class));
+			handlers.add(new BukkitCommandExecutor(command, console));
+		}
 		return handlers;
 	}
 

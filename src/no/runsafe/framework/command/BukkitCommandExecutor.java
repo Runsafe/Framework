@@ -2,18 +2,16 @@ package no.runsafe.framework.command;
 
 import no.runsafe.framework.command.prepared.IPreparedCommand;
 import no.runsafe.framework.output.ChatColour;
-import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.ICommandExecutor;
 import no.runsafe.framework.server.ObjectWrapper;
 import org.bukkit.entity.Player;
 
 public final class BukkitCommandExecutor implements org.bukkit.command.CommandExecutor
 {
-	public BukkitCommandExecutor(ICommandHandler command, ICommandExecutor console, IOutput output)
+	public BukkitCommandExecutor(ICommandHandler command, ICommandExecutor console)
 	{
 		this.command = command;
 		this.console = console;
-		this.command.setConsole(output);
 	}
 
 	public String getName()
@@ -30,6 +28,8 @@ public final class BukkitCommandExecutor implements org.bukkit.command.CommandEx
 	public boolean onCommand(org.bukkit.command.CommandSender sender, org.bukkit.command.Command command, String label, String[] args)
 	{
 		IPreparedCommand preparedCommand;
+		if (args == null)
+			args = new String[0];
 		if (sender instanceof Player)
 			preparedCommand = this.command.prepare(ObjectWrapper.convert((Player) sender), args);
 		else
