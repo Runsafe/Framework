@@ -1,12 +1,12 @@
 package no.runsafe.framework.server.item.meta;
 
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.enchantment.RunsafeEnchantment;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import javax.xml.bind.DatatypeConverter;
 import java.io.*;
 import java.util.HashMap;
 import java.util.List;
@@ -97,7 +97,7 @@ public class RunsafeItemMeta
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			ObjectOutputStream out = new ObjectOutputStream(bos);
 			out.writeObject(meta.serialize());
-			return Base64.encode(bos.toByteArray());
+			return DatatypeConverter.printBase64Binary(bos.toByteArray());
 		}
 		catch (IOException e)
 		{
@@ -111,7 +111,7 @@ public class RunsafeItemMeta
 		//De-serialization
 		try
 		{
-			ByteArrayInputStream bis = new ByteArrayInputStream(Base64.decode(data));
+			ByteArrayInputStream bis = new ByteArrayInputStream(DatatypeConverter.parseBase64Binary(data));
 			ObjectInputStream in = new ObjectInputStream(bis);
 			Map<String, Object> in_serl = (Map<String, Object>) in.readObject();
 			return (ItemMeta) ConfigurationSerialization.deserializeObject(in_serl);
