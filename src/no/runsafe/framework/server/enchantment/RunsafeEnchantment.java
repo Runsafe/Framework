@@ -1,10 +1,7 @@
 package no.runsafe.framework.server.enchantment;
 
-import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.enchantments.EnchantmentTarget;
-import org.bukkit.inventory.ItemStack;
 
 public class RunsafeEnchantment
 {

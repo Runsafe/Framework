@@ -2,7 +2,6 @@ package no.runsafe.framework.server.event.entity;
 
 import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.item.RunsafeItemStack;
-import no.runsafe.framework.server.item.RunsafeItemStackList;
 import org.bukkit.event.entity.EntityDeathEvent;
 
 import java.util.List;
