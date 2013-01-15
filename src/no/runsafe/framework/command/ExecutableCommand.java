@@ -11,5 +11,10 @@ public abstract class ExecutableCommand extends Command
 		super(commandName, description, permission, arguments);
 	}
 
-	public abstract String OnExecute(ICommandExecutor executor, HashMap<String, String> parameters, String[] arguments);
+	public String OnExecute(ICommandExecutor executor, HashMap<String, String> parameters, String[] arguments)
+	{
+		return OnExecute(executor, parameters);
+	}
+
+	public abstract String OnExecute(ICommandExecutor executor, HashMap<String, String> parameters);
 }

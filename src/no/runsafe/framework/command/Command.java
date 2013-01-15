@@ -102,6 +102,11 @@ public class Command implements ICommandHandler
 		return name;
 	}
 
+	protected final void captureTail()
+	{
+		captureTail = true;
+	}
+
 	@Override
 	public final IPreparedCommand prepare(ICommandExecutor executor, String[] args)
 	{
@@ -126,7 +131,7 @@ public class Command implements ICommandHandler
 		params.putAll(myParams);
 		if (myParams.size() > 0)
 		{
-			if (args.length > myParams.size())
+			if (!captureTail && args.length > myParams.size())
 				args = Arrays.copyOfRange(args, myParams.size(), args.length);
 			else
 				args = new String[0];
@@ -172,6 +177,8 @@ public class Command implements ICommandHandler
 			index++;
 			parameters.put(parameter, value);
 		}
+		if (captureTail && args.length > index)
+			parameters.put(argumentList.get(index - 1), StringUtils.join(args, " ", index - 1, args.length));
 		return parameters;
 	}
 
@@ -181,4 +188,5 @@ public class Command implements ICommandHandler
 	private final String permission;
 	private final String description;
 	private IOutput console;
+	private boolean captureTail;
 }

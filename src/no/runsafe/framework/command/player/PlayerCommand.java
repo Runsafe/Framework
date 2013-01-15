@@ -22,5 +22,10 @@ public abstract class PlayerCommand extends ExecutableCommand
 		return "This command cannot be used from the console.";
 	}
 
-	public abstract String OnExecute(RunsafePlayer executor, HashMap<String, String> parameters, String[] arguments);
+	public String OnExecute(RunsafePlayer executor, HashMap<String, String> parameters, String[] arguments)
+	{
+		return OnExecute(executor, parameters);
+	}
+
+	public abstract String OnExecute(RunsafePlayer executor, HashMap<String, String> parameters);
 }

@@ -32,8 +32,18 @@ public abstract class ConsoleAsyncCommand extends AsyncCommand
 
 	public String OnExecute(HashMap<String, String> parameters, String[] arguments)
 	{
+		return OnExecute(parameters);
+	}
+
+	public String OnExecute(HashMap<String, String> parameters)
+	{
 		return null;
 	}
 
-	public abstract String OnAsyncExecute(RunsafeConsole executor, HashMap<String, String> parameters, String[] arguments);
+	public String OnAsyncExecute(RunsafeConsole executor, HashMap<String, String> parameters, String[] arguments)
+	{
+		return OnAsyncExecute(executor, parameters);
+	}
+
+	public abstract String OnAsyncExecute(RunsafeConsole executor, HashMap<String, String> parameters);
 }

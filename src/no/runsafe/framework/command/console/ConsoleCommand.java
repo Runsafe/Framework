@@ -22,5 +22,10 @@ public abstract class ConsoleCommand extends ExecutableCommand
 		return "This command must be used from the console.";
 	}
 
-	public abstract String OnExecute(HashMap<String, String> parameters, String[] arguments);
+	public String OnExecute(HashMap<String, String> parameters, String[] arguments)
+	{
+		return OnExecute(parameters);
+	}
+
+	public abstract String OnExecute(HashMap<String, String> parameters);
 }

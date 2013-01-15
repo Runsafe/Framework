@@ -15,12 +15,17 @@ public abstract class AsyncCommand extends ExecutableCommand
 	}
 
 	@Override
-	public String OnExecute(ICommandExecutor executor, HashMap<String, String> parameters, String[] arguments)
+	public String OnExecute(ICommandExecutor executor, HashMap<String, String> parameters)
 	{
 		return null;
 	}
 
-	public abstract String OnAsyncExecute(ICommandExecutor executor, HashMap<String, String> parameters, String[] arguments);
+	public String OnAsyncExecute(ICommandExecutor executor, HashMap<String, String> parameters, String[] arguments)
+	{
+		return OnAsyncExecute(executor, parameters);
+	}
+
+	public abstract String OnAsyncExecute(ICommandExecutor executor, HashMap<String, String> parameters);
 
 	public void Schedule(PreparedAsynchronousCommand target)
 	{

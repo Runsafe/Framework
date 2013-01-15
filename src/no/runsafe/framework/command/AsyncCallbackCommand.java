@@ -20,7 +20,12 @@ public abstract class AsyncCallbackCommand<T> extends ExecutableCommand
 		return null;
 	}
 
-	public abstract T OnAsyncExecute(ICommandExecutor executor, HashMap<String, String> parameters, String[] arguments);
+	public T OnAsyncExecute(ICommandExecutor executor, HashMap<String, String> parameters, String[] arguments)
+	{
+		return OnAsyncExecute(executor, parameters);
+	}
+
+	public abstract T OnAsyncExecute(ICommandExecutor executor, HashMap<String, String> parameters);
 
 	public abstract void SyncPostExecute(T result);
 

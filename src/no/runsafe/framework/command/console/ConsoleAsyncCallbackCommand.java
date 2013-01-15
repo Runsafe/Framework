@@ -33,8 +33,18 @@ public abstract class ConsoleAsyncCallbackCommand<T> extends AsyncCallbackComman
 
 	public String OnExecute(HashMap<String, String> parameters, String[] arguments)
 	{
+		return OnExecute(parameters);
+	}
+
+	public String OnExecute(HashMap<String, String> parameters)
+	{
 		return null;
 	}
 
-	public abstract T OnAsyncExecute(HashMap<String, String> parameters, String[] arguments);
+	public T OnAsyncExecute(HashMap<String, String> parameters, String[] arguments)
+	{
+		return OnAsyncExecute(parameters);
+	}
+
+	public abstract T OnAsyncExecute(HashMap<String, String> parameters);
 }

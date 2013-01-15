@@ -32,8 +32,18 @@ public abstract class PlayerAsyncCommand extends AsyncCommand
 
 	public String OnExecute(RunsafePlayer executor, HashMap<String, String> parameters, String[] arguments)
 	{
+		return OnExecute(executor, parameters);
+	}
+
+	public String OnExecute(RunsafePlayer executor, HashMap<String, String> parameters)
+	{
 		return null;
 	}
 
-	public abstract String OnAsyncExecute(RunsafePlayer executor, HashMap<String, String> parameters, String[] arguments);
+	public String OnAsyncExecute(RunsafePlayer executor, HashMap<String, String> parameters, String[] arguments)
+	{
+		return OnAsyncExecute(executor, parameters);
+	}
+
+	public abstract String OnAsyncExecute(RunsafePlayer executor, HashMap<String, String> parameters);
 }
