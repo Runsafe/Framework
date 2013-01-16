@@ -11,6 +11,7 @@ import java.util.logging.Level;
 
 import no.runsafe.framework.output.IOutput;
 
+@Deprecated
 public class DatabaseHelper 
 {
 	public DatabaseHelper(IOutput output)
