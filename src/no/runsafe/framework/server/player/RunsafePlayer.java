@@ -318,6 +318,16 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 		return false;
 	}
 
+	public boolean isPvPFlagged()
+	{
+		if (pvpFlagHooks.isEmpty())
+			return true;
+		for (IPlayerPvPFlag hook : pvpFlagHooks)
+			if (!hook.isFlaggedForPvP(this))
+				return false;
+		return true;
+	}
+
 	public List<String> getGroups()
 	{
 		ArrayList<String> result = new ArrayList<String>();
@@ -332,7 +342,7 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 
 	public boolean canBuildNow()
 	{
-		if(buildPermissionHooks.isEmpty())
+		if (buildPermissionHooks.isEmpty())
 			return true;
 		for (IPlayerBuildPermission check : buildPermissionHooks)
 			if (check.blockPlayerBuilding(this, getLocation()))
@@ -345,6 +355,7 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 	public static final ArrayList<IPlayerPermissions> permissionHooks = new ArrayList<IPlayerPermissions>();
 	public static final ArrayList<IPlayerNameDecorator> decoratorHooks = new ArrayList<IPlayerNameDecorator>();
 	public static final ArrayList<IPlayerBuildPermission> buildPermissionHooks = new ArrayList<IPlayerBuildPermission>();
+	public static final ArrayList<IPlayerPvPFlag> pvpFlagHooks = new ArrayList<IPlayerPvPFlag>();
 	private final Player player;
 	private final OfflinePlayer basePlayer;
 }

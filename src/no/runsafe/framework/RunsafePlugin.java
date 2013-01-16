@@ -92,6 +92,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		addFrameworkHooks(IPlayerLookupService.class, RunsafeServer.lookupHooks);
 		addFrameworkHooks(IPlayerNameDecorator.class, RunsafePlayer.decoratorHooks);
 		addFrameworkHooks(IPlayerBuildPermission.class, RunsafePlayer.buildPermissionHooks);
+		addFrameworkHooks(IPlayerPvPFlag.class, RunsafePlayer.pvpFlagHooks);
 	}
 
 	private <T extends FrameworkHook> void addFrameworkHooks(Class<T> hook, List<T> storage)

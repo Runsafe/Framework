@@ -1,6 +1,8 @@
 package no.runsafe.framework.hook;
 
+import no.runsafe.framework.server.player.RunsafePlayer;
+
 public interface IPlayerPvPFlag extends FrameworkHook
 {
-	boolean isFlaggedForPvP();
+	boolean isFlaggedForPvP(RunsafePlayer player);
 }
