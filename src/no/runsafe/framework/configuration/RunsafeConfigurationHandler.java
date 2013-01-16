@@ -147,7 +147,7 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 		return this.configFile.getStringList(value);
 	}
 
-	@Deprecated
+	@Override
 	public Map<String, String> getConfigValuesAsMap(String path)
 	{
 		if (this.configFile == null)
@@ -159,6 +159,7 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 		return values;
 	}
 
+	@Override
 	public Map<String, Map<String, String>> getConfigSectionsAsMap(String path)
 	{
 		if (this.configFile == null)
@@ -170,6 +171,7 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 		return results;
 	}
 
+	@Override
 	public Map<String, List<String>> getConfigSectionsAsList(String path)
 	{
 		if (this.configFile == null)
@@ -182,6 +184,7 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 	}
 
 	@Override
+	@Deprecated
 	public ConfigurationSection getSection(String path)
 	{
 		return this.configFile.getConfigurationSection(path);
