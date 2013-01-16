@@ -109,6 +109,10 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		List<IPlayerNameDecorator> decoratorHooks = container.getComponents(IPlayerNameDecorator.class);
 		if (decoratorHooks != null)
 			RunsafePlayer.decoratorHooks.addAll(decoratorHooks);
+
+		List<IPlayerBuildPermission> builderHooks = container.getComponents(IPlayerBuildPermission.class);
+		if (builderHooks != null)
+			RunsafePlayer.buildPermissionHooks.addAll(builderHooks);
 	}
 
 	@Override

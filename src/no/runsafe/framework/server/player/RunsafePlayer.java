@@ -1,9 +1,6 @@
 package no.runsafe.framework.server.player;
 
-import no.runsafe.framework.hook.IPlayerDataProvider;
-import no.runsafe.framework.hook.IPlayerNameDecorator;
-import no.runsafe.framework.hook.IPlayerPermissions;
-import no.runsafe.framework.hook.IPlayerVisibility;
+import no.runsafe.framework.hook.*;
 import no.runsafe.framework.output.ChatColour;
 import no.runsafe.framework.server.ICommandExecutor;
 import no.runsafe.framework.server.RunsafeLocation;
@@ -333,10 +330,21 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 		return result;
 	}
 
+	public boolean canBuildNow()
+	{
+		if(buildPermissionHooks.isEmpty())
+			return true;
+		for (IPlayerBuildPermission check : buildPermissionHooks)
+			if (check.blockPlayerBuilding(this, getLocation()))
+				return false;
+		return true;
+	}
+
 	public static final ArrayList<IPlayerDataProvider> dataHooks = new ArrayList<IPlayerDataProvider>();
 	public static final ArrayList<IPlayerVisibility> visibilityHooks = new ArrayList<IPlayerVisibility>();
 	public static final ArrayList<IPlayerPermissions> permissionHooks = new ArrayList<IPlayerPermissions>();
 	public static final ArrayList<IPlayerNameDecorator> decoratorHooks = new ArrayList<IPlayerNameDecorator>();
+	public static final ArrayList<IPlayerBuildPermission> buildPermissionHooks = new ArrayList<IPlayerBuildPermission>();
 	private final Player player;
 	private final OfflinePlayer basePlayer;
 }
