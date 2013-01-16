@@ -3,8 +3,10 @@ package no.runsafe.framework.server.event.player;
 import no.runsafe.framework.IKernel;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.event.player.IPlayerDeathEvent;
+import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.event.IFakeableEvent;
 import no.runsafe.framework.server.event.entity.RunsafeEntityDeathEvent;
+import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
 public class RunsafePlayerDeathEvent extends RunsafeEntityDeathEvent implements IFakeableEvent
@@ -71,6 +73,12 @@ public class RunsafePlayerDeathEvent extends RunsafeEntityDeathEvent implements 
 		for (IKernel plugin : RunsafePlugin.Instances.values())
 			for (IPlayerDeathEvent listener : plugin.getComponents(IPlayerDeathEvent.class))
 				listener.OnPlayerDeathEvent(this);
+	}
+
+	@Override
+	public RunsafePlayer getEntity()
+	{
+		return ObjectWrapper.convert(event.getEntity());
 	}
 
 	@Override
