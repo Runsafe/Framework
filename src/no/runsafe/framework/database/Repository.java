@@ -6,14 +6,14 @@ import java.sql.Timestamp;
 
 public abstract class Repository implements ISchemaChanges
 {
-	protected static final DateTime convert(Timestamp timestamp)
+	protected static DateTime convert(Timestamp timestamp)
 	{
 		if (timestamp == null)
 			return null;
 		return new DateTime(timestamp);
 	}
 
-	protected static final Timestamp convert(DateTime dateTime)
+	protected static Timestamp convert(DateTime dateTime)
 	{
 		if (dateTime == null)
 			return null;
