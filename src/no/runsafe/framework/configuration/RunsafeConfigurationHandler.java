@@ -155,7 +155,7 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 		ConfigurationSection section = this.configFile.getConfigurationSection(path);
 		HashMap<String, String> values = new HashMap<String, String>();
 		for (String key : section.getKeys(false))
-			values.put(key, section.getString("key"));
+			values.put(key, section.getString(key));
 		return values;
 	}
 
