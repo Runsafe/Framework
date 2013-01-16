@@ -4,7 +4,7 @@ import no.runsafe.framework.server.player.RunsafePlayer;
 
 import java.util.List;
 
-public interface IPlayerPermissions
+public interface IPlayerPermissions extends FrameworkHook
 {
 	List<String> getUserGroups(RunsafePlayer player);
 }

@@ -86,33 +86,19 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 
 	private void addFrameworkHooks()
 	{
-		List<IPlayerDataProvider> dataHooks = container.getComponents(IPlayerDataProvider.class);
-		if (dataHooks != null)
-		{
-			output.outputDebugToConsole("Hooking PlayerDataProviders..", Level.FINE);
-			for (IPlayerDataProvider provider : dataHooks)
-				output.outputDebugToConsole(String.format("Provider %s found.", provider.getClass().getCanonicalName()), Level.FINER);
-			RunsafePlayer.dataHooks.addAll(dataHooks);
-		}
-		List<IPlayerVisibility> visibilityHooks = container.getComponents(IPlayerVisibility.class);
-		if (visibilityHooks != null)
-			RunsafePlayer.visibilityHooks.addAll(visibilityHooks);
+		addFrameworkHooks(IPlayerDataProvider.class, RunsafePlayer.dataHooks);
+		addFrameworkHooks(IPlayerVisibility.class, RunsafePlayer.visibilityHooks);
+		addFrameworkHooks(IPlayerPermissions.class, RunsafePlayer.permissionHooks);
+		addFrameworkHooks(IPlayerLookupService.class, RunsafeServer.lookupHooks);
+		addFrameworkHooks(IPlayerNameDecorator.class, RunsafePlayer.decoratorHooks);
+		addFrameworkHooks(IPlayerBuildPermission.class, RunsafePlayer.buildPermissionHooks);
+	}
 
-		List<IPlayerPermissions> permissionHooks = container.getComponents(IPlayerPermissions.class);
-		if (permissionHooks != null)
-			RunsafePlayer.permissionHooks.addAll(permissionHooks);
-
-		List<IPlayerLookupService> lookupHooks = container.getComponents(IPlayerLookupService.class);
-		if (lookupHooks != null)
-			RunsafeServer.lookupHooks.addAll(lookupHooks);
-
-		List<IPlayerNameDecorator> decoratorHooks = container.getComponents(IPlayerNameDecorator.class);
-		if (decoratorHooks != null)
-			RunsafePlayer.decoratorHooks.addAll(decoratorHooks);
-
-		List<IPlayerBuildPermission> builderHooks = container.getComponents(IPlayerBuildPermission.class);
-		if (builderHooks != null)
-			RunsafePlayer.buildPermissionHooks.addAll(builderHooks);
+	private <T extends FrameworkHook> void addFrameworkHooks(Class<T> hook, List<T> storage)
+	{
+		List<T> hooks = getComponents(hook);
+		if (hooks != null)
+			storage.addAll(hooks);
 	}
 
 	@Override
