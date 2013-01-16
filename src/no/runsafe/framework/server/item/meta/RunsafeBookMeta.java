@@ -3,6 +3,7 @@ package no.runsafe.framework.server.item.meta;
 import org.bukkit.inventory.meta.BookMeta;
 
 import java.util.List;
+import java.util.Map;
 
 public class RunsafeBookMeta extends RunsafeItemMeta
 {
@@ -80,6 +81,17 @@ public class RunsafeBookMeta extends RunsafeItemMeta
 	public int getPageCount()
 	{
 		return book.getPageCount();
+	}
+
+	public void update(Map<String, Object> data)
+	{
+		super.update(data);
+		if (data.containsKey("title"))
+			book.setTitle((String) data.get("title"));
+		if (data.containsKey("author"))
+			book.setAuthor((String) data.get("author"));
+		if (data.containsKey("pages"))
+			book.setPages((List<String>) data.get("pages"));
 	}
 
 	private final BookMeta book;

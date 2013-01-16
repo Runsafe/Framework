@@ -25,6 +25,7 @@
       <w>teleport</w>
       <w>unban</w>
       <w>unregister</w>
+      <w>unserialize</w>
       <w>whitelist</w>
       <w>whitelisted</w>
     </words>

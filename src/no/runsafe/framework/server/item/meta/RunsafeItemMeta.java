@@ -1,14 +1,10 @@
 package no.runsafe.framework.server.item.meta;
 
 import no.runsafe.framework.server.ObjectWrapper;
-import no.runsafe.framework.server.Serialization;
 import no.runsafe.framework.server.enchantment.RunsafeEnchantment;
-import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import javax.xml.bind.DatatypeConverter;
-import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -91,41 +87,10 @@ public class RunsafeItemMeta
 		return meta;
 	}
 
-	public String serialize()
+	public void update(Map<String, Object> data)
 	{
-		try
-		{
-			ByteArrayOutputStream bos = new ByteArrayOutputStream();
-			ObjectOutputStream out = new ObjectOutputStream(bos);
-			out.writeObject(Serialization.fixObjects(meta.serialize()));
-			return DatatypeConverter.printBase64Binary(bos.toByteArray());
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-		}
-		return null;
-	}
-
-	public static ItemMeta deserialize(String data)
-	{
-		//De-serialization
-		try
-		{
-			ByteArrayInputStream bis = new ByteArrayInputStream(DatatypeConverter.parseBase64Binary(data));
-			ObjectInputStream in = new ObjectInputStream(bis);
-			Map<String, Object> in_serl = (Map<String, Object>) in.readObject();
-			return (ItemMeta) ConfigurationSerialization.deserializeObject(Serialization.unFixObjects(in_serl));
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-		}
-		catch (ClassNotFoundException e)
-		{
-			e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-		}
-		return null;
+		if (data.containsKey("display-name"))
+			meta.setDisplayName((String) data.get("display-name"));
 	}
 
 	protected Map<RunsafeEnchantment, Integer> convertEnchants(Map<Enchantment, Integer> bukkitEnchants)

@@ -6,14 +6,15 @@ import no.runsafe.framework.server.enchantment.RunsafeEnchantmentWrapper;
 import no.runsafe.framework.server.item.meta.RunsafeItemMeta;
 import no.runsafe.framework.server.material.RunsafeMaterial;
 import no.runsafe.framework.server.material.RunsafeMaterialData;
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.enchantments.EnchantmentWrapper;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.MaterialData;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class RunsafeItemStack
 {
@@ -176,73 +177,6 @@ public class RunsafeItemStack
 	public boolean setItemMeta(RunsafeItemMeta itemMeta)
 	{
 		return itemStack.setItemMeta(itemMeta.getRaw());
-	}
-
-	public String serialize()
-	{
-		return String.format(
-			"%s:%s:%s:%s:%s:%s",
-			itemStack.getTypeId(),
-			itemStack.getAmount(),
-			itemStack.getDurability(),
-			itemStack.getData().getData(),
-			flattenEnchants(itemStack.getEnchantments()),
-			hasItemMeta() ? getItemMeta().serialize() : "0"
-		);
-	}
-
-	public static RunsafeItemStack deserialize(String itemString)
-	{
-		String[] itemData = itemString.split(":");
-		int itemID = Integer.parseInt(itemData[0]);
-		ItemStack itemStack = new ItemStack(itemID);
-		itemStack.setAmount(Integer.parseInt(itemData[1]));
-		itemStack.setDurability(Short.parseShort(itemData[2]));
-		itemStack.setData(new MaterialData(itemID, Byte.parseByte(itemData[3])));
-
-		// Backwards compatibility check
-		if (itemData.length > 4 && !itemData[4].equals("0"))
-			itemStack.addEnchantments(unpackEnchants(itemData[4]));
-
-		if (itemData.length > 5 && !itemData[5].equals("0"))
-			itemStack.setItemMeta(RunsafeItemMeta.deserialize(itemData[5]));
-
-		return new RunsafeItemStack(itemStack);
-	}
-
-	private static String flattenEnchants(Map<Enchantment, Integer> enchants)
-	{
-		if (!enchants.isEmpty())
-		{
-			ArrayList<String> enchantStrings = new ArrayList<String>();
-			Set<Enchantment> enchantKeys = enchants.keySet();
-
-			for (Enchantment theEnchant : enchantKeys)
-			{
-				int enchantData = enchants.get(theEnchant);
-				enchantStrings.add(String.format("%s#%s", theEnchant.getId(), enchantData));
-			}
-
-			return StringUtils.join(enchantStrings, "@");
-		}
-		else
-		{
-			return "0";
-		}
-	}
-
-	private static Map<Enchantment, Integer> unpackEnchants(String enchantString)
-	{
-		Map<Enchantment, Integer> returnEnchants = new HashMap<Enchantment, Integer>();
-		String enchantSplit[] = enchantString.split("@");
-		for (String anEnchantSplit : enchantSplit)
-		{
-			String enchantData[] = anEnchantSplit.split("#");
-			Enchantment enchant = new EnchantmentWrapper(Integer.parseInt(enchantData[0]));
-			returnEnchants.put(enchant, Integer.parseInt(enchantData[1]));
-		}
-
-		return returnEnchants;
 	}
 
 	private final ItemStack itemStack;

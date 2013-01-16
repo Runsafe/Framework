@@ -12,7 +12,7 @@ import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.entity.RunsafeLivingEntity;
 import no.runsafe.framework.server.event.player.RunsafeOperatorEvent;
 import no.runsafe.framework.server.inventory.IInventoryHolder;
-import no.runsafe.framework.server.inventory.RunsafeInventory;
+import no.runsafe.framework.server.inventory.RunsafePlayerInventory;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
@@ -206,10 +206,10 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 		return this.player;
 	}
 
-	public RunsafeInventory getInventory()
+	public RunsafePlayerInventory getInventory()
 	{
 		if (player != null)
-			return new RunsafeInventory(player.getInventory());
+			return new RunsafePlayerInventory(player.getInventory());
 
 		return null;
 	}

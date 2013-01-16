@@ -1,6 +1,7 @@
 package no.runsafe.framework.server.item.meta;
 
 import no.runsafe.framework.server.enchantment.RunsafeEnchantment;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 
 import java.util.Map;
@@ -41,6 +42,17 @@ public class RunsafeEnchantmentStorageMeta extends RunsafeItemMeta
 	public boolean removeStoredEnchant(RunsafeEnchantment ench) throws IllegalArgumentException
 	{
 		return enchantmentStorageMeta.removeStoredEnchant(ench.getRaw());
+	}
+
+	public void update(Map<String, Object> data)
+	{
+		super.update(data);
+		if (data.containsKey("stored-enchants"))
+		{
+			Map<Enchantment, Integer> stored = (Map<Enchantment, Integer>) data.get("stored-enchants");
+			for(Enchantment enchantment : stored.keySet())
+				enchantmentStorageMeta.addStoredEnchant(enchantment, stored.get(enchantment), true);
+		}
 	}
 
 	private final EnchantmentStorageMeta enchantmentStorageMeta;
