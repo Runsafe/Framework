@@ -1,6 +1,7 @@
 package no.runsafe.framework.server.item.meta;
 
 import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.server.Serialization;
 import no.runsafe.framework.server.enchantment.RunsafeEnchantment;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.enchantments.Enchantment;
@@ -96,7 +97,7 @@ public class RunsafeItemMeta
 		{
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			ObjectOutputStream out = new ObjectOutputStream(bos);
-			out.writeObject(meta.serialize());
+			out.writeObject(Serialization.fixObjects(meta.serialize()));
 			return DatatypeConverter.printBase64Binary(bos.toByteArray());
 		}
 		catch (IOException e)
@@ -114,7 +115,7 @@ public class RunsafeItemMeta
 			ByteArrayInputStream bis = new ByteArrayInputStream(DatatypeConverter.parseBase64Binary(data));
 			ObjectInputStream in = new ObjectInputStream(bis);
 			Map<String, Object> in_serl = (Map<String, Object>) in.readObject();
-			return (ItemMeta) ConfigurationSerialization.deserializeObject(in_serl);
+			return (ItemMeta) ConfigurationSerialization.deserializeObject(Serialization.unFixObjects(in_serl));
 		}
 		catch (IOException e)
 		{
