@@ -15,7 +15,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 
 
@@ -143,6 +145,40 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 		if (this.configFile == null)
 			return null;
 		return this.configFile.getStringList(value);
+	}
+
+	@Deprecated
+	public Map<String, String> getConfigValuesAsMap(String path)
+	{
+		if (this.configFile == null)
+			return null;
+		ConfigurationSection section = this.configFile.getConfigurationSection(path);
+		HashMap<String, String> values = new HashMap<String, String>();
+		for (String key : section.getKeys(false))
+			values.put(key, section.getString("key"));
+		return values;
+	}
+
+	public Map<String, Map<String, String>> getConfigSectionsAsMap(String path)
+	{
+		if (this.configFile == null)
+			return null;
+		ConfigurationSection section = this.configFile.getConfigurationSection(path);
+		HashMap<String, Map<String, String>> results = new HashMap<String, Map<String, String>>();
+		for (String key : section.getKeys(false))
+			results.put(key, getConfigValuesAsMap(path + "." + key));
+		return results;
+	}
+
+	public Map<String, List<String>> getConfigSectionsAsList(String path)
+	{
+		if (this.configFile == null)
+			return null;
+		ConfigurationSection section = this.configFile.getConfigurationSection(path);
+		HashMap<String, List<String>> results = new HashMap<String, List<String>>();
+		for (String key : section.getKeys(false))
+			results.put(key, getConfigValueAsList(path + "." + key));
+		return results;
 	}
 
 	@Override
