@@ -263,7 +263,6 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		this.container.addComponent(RunsafeOutputHandler.class);
 		this.container.addComponent(RunsafeDatabaseHandler.class);
 		this.container.addComponent(new Scheduler(this.getServer().getScheduler(), this));
-		this.container.addComponent(DatabaseHelper.class);
 		this.container.addComponent(PlayerStatus.class);
 		this.container.addComponent(new PluginResolver(this.getServer()));
 		this.container.addComponent(SchemaRevisionRepository.class);
