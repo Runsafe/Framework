@@ -327,7 +327,6 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 			{
 				int revision = repository.getRevision(changes.getTableName());
 				HashMap<Integer, List<String>> queries = changes.getSchemaUpdateQueries();
-				boolean success = true;
 				for (Integer rev : queries.keySet())
 				{
 					if (rev > revision)
@@ -344,8 +343,6 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 								query.execute();
 								revision = rev;
 							}
-							if (!success)
-								break;
 							db.commitTransaction(conn);
 						}
 						catch (SQLException e)
