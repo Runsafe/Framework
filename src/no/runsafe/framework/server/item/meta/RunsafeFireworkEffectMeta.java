@@ -32,5 +32,5 @@ public class RunsafeFireworkEffectMeta extends RunsafeItemMeta
 		return new RunsafeFireworkEffectMeta(effectMeta.clone());
 	}
 
-	FireworkEffectMeta effectMeta;
+	final FireworkEffectMeta effectMeta;
 }

@@ -26,7 +26,7 @@ public abstract class ConsoleAsyncCallbackCommand<T> extends AsyncCallbackComman
 	@Override
 	public final String OnExecute(ICommandExecutor executor, HashMap<String, String> parameters)
 	{
-		return null;  //To change body of implemented methods use File | Settings | File Templates.
+		return null;
 	}
 
 	@Override

@@ -44,16 +44,5 @@ public class RunsafeEnchantmentStorageMeta extends RunsafeItemMeta
 		return enchantmentStorageMeta.removeStoredEnchant(ench.getRaw());
 	}
 
-	public void update(Map<String, Object> data)
-	{
-		super.update(data);
-		if (data.containsKey("stored-enchants"))
-		{
-			Map<Enchantment, Integer> stored = (Map<Enchantment, Integer>) data.get("stored-enchants");
-			for(Enchantment enchantment : stored.keySet())
-				enchantmentStorageMeta.addStoredEnchant(enchantment, stored.get(enchantment), true);
-		}
-	}
-
 	private final EnchantmentStorageMeta enchantmentStorageMeta;
 }

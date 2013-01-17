@@ -14,5 +14,5 @@ public class RunsafeFireworkEffect
 		return effect;
 	}
 
-	FireworkEffect effect;
+	final FireworkEffect effect;
 }

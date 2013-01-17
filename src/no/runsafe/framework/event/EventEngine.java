@@ -21,7 +21,7 @@ public class EventEngine
 	static
 	{
 		factories = new HashMap<Class<? extends IRunsafeEvent>, EventRouterFactory>();
-		
+
 		// Block events
 		BlockBreak.Register();
 		BlockBreakListener.Register();

@@ -83,16 +83,5 @@ public class RunsafeBookMeta extends RunsafeItemMeta
 		return book.getPageCount();
 	}
 
-	public void update(Map<String, Object> data)
-	{
-		super.update(data);
-		if (data.containsKey("title"))
-			book.setTitle((String) data.get("title"));
-		if (data.containsKey("author"))
-			book.setAuthor((String) data.get("author"));
-		if (data.containsKey("pages"))
-			book.setPages((List<String>) data.get("pages"));
-	}
-
 	private final BookMeta book;
 }

@@ -87,12 +87,6 @@ public class RunsafeItemMeta
 		return meta;
 	}
 
-	public void update(Map<String, Object> data)
-	{
-		if (data.containsKey("display-name"))
-			meta.setDisplayName((String) data.get("display-name"));
-	}
-
 	protected Map<RunsafeEnchantment, Integer> convertEnchants(Map<Enchantment, Integer> bukkitEnchants)
 	{
 		HashMap<RunsafeEnchantment, Integer> enchants = new HashMap<RunsafeEnchantment, Integer>();
