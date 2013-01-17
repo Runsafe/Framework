@@ -7,7 +7,10 @@ import no.runsafe.framework.command.RunsafeCommandHandler;
 import no.runsafe.framework.configuration.IConfiguration;
 import no.runsafe.framework.configuration.IConfigurationFile;
 import no.runsafe.framework.configuration.RunsafeConfigurationHandler;
-import no.runsafe.framework.database.*;
+import no.runsafe.framework.database.IDatabase;
+import no.runsafe.framework.database.ISchemaChanges;
+import no.runsafe.framework.database.RunsafeDatabaseHandler;
+import no.runsafe.framework.database.SchemaRevisionRepository;
 import no.runsafe.framework.event.*;
 import no.runsafe.framework.hook.*;
 import no.runsafe.framework.messaging.*;
@@ -32,6 +35,7 @@ import org.picocontainer.DefaultPicoContainer;
 import org.picocontainer.behaviors.Caching;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -328,25 +332,38 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 				{
 					if (rev > revision)
 					{
-						output.write(String.format("Updating table %s from revision %d to revision %d", changes.getTableName(), revision, rev));
-						for (String sql : queries.get(rev))
+						String sqlQuery = null;
+						Connection conn = db.beginTransaction();
+						try
 						{
-							try
+							output.write(String.format("Updating table %s from revision %d to revision %d", changes.getTableName(), revision, rev));
+							for (String sql : queries.get(rev))
 							{
-								PreparedStatement query = db.prepare(sql);
+								sqlQuery = sql;
+								PreparedStatement query = conn.prepareStatement(sql);
 								query.execute();
 								revision = rev;
 							}
-							catch (SQLException e)
-							{
-								output.logException(e);
-								output.writeColoured("Failed executing query:\n%s", sql);
-								success = false;
+							if (!success)
 								break;
-							}
+							db.commitTransaction(conn);
 						}
-						if (!success)
+						catch (SQLException e)
+						{
+							output.logException(e);
+							output.writeColoured("Failed executing query:\n%s", sqlQuery);
+							output.writeColoured("&cRolling back transaction..");
+							try
+							{
+								conn.rollback();
+							}
+							catch (SQLException e1)
+							{
+								output.writeColoured("&4Failed rolling back transaction!");
+								output.logException(e1);
+							}
 							break;
+						}
 					}
 				}
 				repository.setRevision(changes.getTableName(), revision);
