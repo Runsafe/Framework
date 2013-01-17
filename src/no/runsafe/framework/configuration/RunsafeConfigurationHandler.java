@@ -161,7 +161,7 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 			return null;
 		ConfigurationSection section = this.configFile.getConfigurationSection(path);
 		HashMap<String, String> values = new HashMap<String, String>();
-		for (String key : section.getKeys(false))
+		for (String key : section.getKeys(true))
 			values.put(key, section.getString(key));
 		return values;
 	}
@@ -185,7 +185,7 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 			return null;
 		ConfigurationSection section = this.configFile.getConfigurationSection(path);
 		HashMap<String, List<String>> results = new HashMap<String, List<String>>();
-		for (String key : section.getKeys(false))
+		for (String key : section.getKeys(true))
 			results.put(key, getConfigValueAsList(path + "." + key));
 		return results;
 	}
@@ -197,7 +197,7 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 			return null;
 		ConfigurationSection section = this.configFile.getConfigurationSection(path);
 		HashMap<String, List<Integer>> results = new HashMap<String, List<Integer>>();
-		for (String key : section.getKeys(false))
+		for (String key : section.getKeys(true))
 			results.put(key, getConfigValueAsIntegerList(path + "." + key));
 		return results;
 	}
