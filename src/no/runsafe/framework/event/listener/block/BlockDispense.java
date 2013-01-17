@@ -1,11 +1,15 @@
 package no.runsafe.framework.event.listener.block;
 
+import no.runsafe.framework.event.EventEngine;
+import no.runsafe.framework.event.IRunsafeEvent;
 import no.runsafe.framework.event.block.IBlockDispense;
 import no.runsafe.framework.event.listener.EventRouter;
+import no.runsafe.framework.event.listener.EventRouterFactory;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockDispenseEvent;
 
 public class BlockDispense extends EventRouter<IBlockDispense, BlockDispenseEvent>
@@ -28,6 +32,19 @@ public class BlockDispense extends EventRouter<IBlockDispense, BlockDispenseEven
 			ObjectWrapper.convert(event.getBlock()),
 			ObjectWrapper.convert(event.getItem())
 		);
+	}
+
+
+	static
+	{
+		EventEngine.Register(IBlockDispense.class, new EventRouterFactory()
+		{
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new BlockDispense(output, scheduler, (IBlockDispense) subscriber);
+			}
+		});
 	}
 }
 

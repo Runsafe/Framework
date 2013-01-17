@@ -1,6 +1,9 @@
 package no.runsafe.framework.event.listener.player;
 
+import no.runsafe.framework.event.EventEngine;
+import no.runsafe.framework.event.IRunsafeEvent;
 import no.runsafe.framework.event.listener.EventRouter;
+import no.runsafe.framework.event.listener.EventRouterFactory;
 import no.runsafe.framework.event.player.IPlayerRightClickAirEvent;
 import no.runsafe.framework.event.player.IPlayerRightClickBlockEvent;
 import no.runsafe.framework.event.player.IPlayerRightClickEvent;
@@ -8,6 +11,7 @@ import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.event.player.RunsafePlayerClickEvent;
 import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
@@ -39,5 +43,17 @@ public class PlayerRightClickListener extends EventRouter<IPlayerRightClickEvent
 			handler.OnPlayerRightClick(new RunsafePlayerClickEvent(event));
 
 		return true;
+	}
+
+	static
+	{
+		EventEngine.Register(IPlayerRightClickEvent.class, new EventRouterFactory()
+		{
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new PlayerRightClickListener(output, scheduler, (IPlayerRightClickEvent) subscriber);
+			}
+		});
 	}
 }

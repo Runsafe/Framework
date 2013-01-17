@@ -14,7 +14,7 @@ import java.util.logging.Level;
 
 public abstract class EventRouter<Wrapper extends IRunsafeEvent, EventType extends Event> implements Listener
 {
-	public EventRouter(IOutput output, IScheduler scheduler, Wrapper handler)
+	protected EventRouter(IOutput output, IScheduler scheduler, Wrapper handler)
 	{
 		this.console = output;
 		this.scheduler = scheduler;

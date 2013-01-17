@@ -1,11 +1,15 @@
 package no.runsafe.framework.event.listener.entity;
 
+import no.runsafe.framework.event.EventEngine;
+import no.runsafe.framework.event.IRunsafeEvent;
 import no.runsafe.framework.event.entity.IEntityDeathEvent;
 import no.runsafe.framework.event.listener.EventRouter;
+import no.runsafe.framework.event.listener.EventRouterFactory;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.event.entity.RunsafeEntityDeathEvent;
 import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 
 public class EntityDeath extends EventRouter<IEntityDeathEvent, EntityDeathEvent>
@@ -26,5 +30,17 @@ public class EntityDeath extends EventRouter<IEntityDeathEvent, EntityDeathEvent
 	{
 		handler.OnEntityDeath(new RunsafeEntityDeathEvent(entityDeathEvent));
 		return true;
+	}
+
+	static
+	{
+		EventEngine.Register(IEntityDeathEvent.class, new EventRouterFactory()
+		{
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new EntityDeath(output, scheduler, (IEntityDeathEvent) subscriber);
+			}
+		});
 	}
 }
