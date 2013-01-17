@@ -1,13 +1,10 @@
 package no.runsafe.framework.database;
 
-import no.runsafe.framework.output.ChatColour;
 import no.runsafe.framework.output.IOutput;
-import org.apache.commons.lang.exception.ExceptionUtils;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
 
 public class SchemaRevisionRepository
 {
@@ -29,14 +26,7 @@ public class SchemaRevisionRepository
 		}
 		catch (SQLException e)
 		{
-			output.writeColoured(
-				"Database failure: %s%s%s\n%s",
-				Level.SEVERE,
-				ChatColour.RED,
-				ExceptionUtils.getMessage(e),
-				ChatColour.RESET,
-				ExceptionUtils.getStackTrace(e)
-			);
+			console.logException(e);
 		}
 	}
 
@@ -55,18 +45,10 @@ public class SchemaRevisionRepository
 			result.close();
 			select.close();
 			return rev;
-
 		}
 		catch (SQLException e)
 		{
-			console.writeColoured(
-				"Database failure: %s%s%s\n%s",
-				Level.SEVERE,
-				ChatColour.RED,
-				ExceptionUtils.getMessage(e),
-				ChatColour.RESET,
-				ExceptionUtils.getStackTrace(e)
-			);
+			console.logException(e);
 		}
 		return -1;
 	}
@@ -83,18 +65,10 @@ public class SchemaRevisionRepository
 			update.setInt(2, revision);
 			update.execute();
 			update.close();
-
 		}
 		catch (SQLException e)
 		{
-			console.writeColoured(
-				"Database failure: %s%s%s\n%s",
-				Level.SEVERE,
-				ChatColour.RED,
-				ExceptionUtils.getMessage(e),
-				ChatColour.RESET,
-				ExceptionUtils.getStackTrace(e)
-			);
+			console.logException(e);
 		}
 	}
 

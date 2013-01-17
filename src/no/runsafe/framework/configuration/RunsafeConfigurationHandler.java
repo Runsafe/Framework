@@ -5,9 +5,7 @@ import no.runsafe.framework.messaging.IMessageBusService;
 import no.runsafe.framework.messaging.Message;
 import no.runsafe.framework.messaging.MessageBusStatus;
 import no.runsafe.framework.messaging.Response;
-import no.runsafe.framework.output.ChatColour;
 import no.runsafe.framework.output.IOutput;
-import org.apache.commons.lang.exception.ExceptionUtils;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -256,14 +254,7 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 				}
 				catch (Exception e)
 				{
-					pluginOutput.writeColoured(
-						"Configuration error: %s%s%s\n%s",
-						Level.SEVERE,
-						ChatColour.RED,
-						ExceptionUtils.getMessage(e),
-						ChatColour.RESET,
-						ExceptionUtils.getStackTrace(e)
-					);
+					pluginOutput.logException(e);
 				}
 			}
 			pluginOutput.outputToConsole(

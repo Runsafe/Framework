@@ -11,6 +11,8 @@ public interface IOutput {
 
 	public void writeColoured(String message, Level level, Object... params);
 
+	public void logException(Exception exception);
+
 	// Sends the supplied string to the console/log the output handler has
 	public void outputToConsole(String message);
 

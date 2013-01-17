@@ -2,15 +2,11 @@ package no.runsafe.framework.event.listener;
 
 import no.runsafe.framework.event.IAsyncEvent;
 import no.runsafe.framework.event.IRunsafeEvent;
-import no.runsafe.framework.output.ChatColour;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.timer.IScheduler;
-import org.apache.commons.lang.exception.ExceptionUtils;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
-
-import java.util.logging.Level;
 
 public abstract class EventRouter<Wrapper extends IRunsafeEvent, EventType extends Event> implements Listener
 {
@@ -59,25 +55,16 @@ public abstract class EventRouter<Wrapper extends IRunsafeEvent, EventType exten
 
 	private void Invoke(EventType event)
 	{
-		boolean result;
 		try
 		{
-			result = OnEvent(event);
+			boolean result = OnEvent(event);
+			if (!result && event instanceof Cancellable)
+				((Cancellable) event).setCancelled(true);
 		}
 		catch (Exception e)
 		{
-			console.writeColoured(
-				"Exception in event handler: %s%s%s\n%s",
-				Level.SEVERE,
-				ChatColour.RED,
-				ExceptionUtils.getMessage(e),
-				ChatColour.RESET,
-				ExceptionUtils.getStackTrace(e)
-			);
-			return;
+			console.logException(e);
 		}
-		if (!result && event instanceof Cancellable)
-			((Cancellable) event).setCancelled(true);
 	}
 
 	protected final IScheduler scheduler;

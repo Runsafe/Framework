@@ -2,6 +2,7 @@ package no.runsafe.framework.output;
 
 import no.runsafe.framework.server.RunsafeServer;
 import no.runsafe.framework.server.item.RunsafeItemStack;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 
 import java.util.Map;
@@ -49,6 +50,17 @@ public class RunsafeOutputHandler implements IOutput
 	public void writeColoured(String message, Level level, Object... params)
 	{
 		outputToConsole(ChatColour.ToConsole(String.format(message, params)), level);
+	}
+
+	@Override
+	public void logException(Exception exception)
+	{
+		writeColoured(
+			"Exception caught: &c%s&r\n%s",
+			Level.SEVERE,
+			ExceptionUtils.getMessage(exception),
+			ExceptionUtils.getStackTrace(exception)
+		);
 	}
 
 	// Sends the supplied string to the console/log the output handler has

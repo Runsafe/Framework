@@ -11,7 +11,6 @@ import no.runsafe.framework.database.*;
 import no.runsafe.framework.event.*;
 import no.runsafe.framework.hook.*;
 import no.runsafe.framework.messaging.*;
-import no.runsafe.framework.output.ChatColour;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.output.RunsafeOutputHandler;
 import no.runsafe.framework.plugin.IPluginUpdate;
@@ -22,7 +21,6 @@ import no.runsafe.framework.server.RunsafeServer;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import no.runsafe.framework.timer.IScheduler;
 import no.runsafe.framework.timer.Scheduler;
-import org.apache.commons.lang.exception.ExceptionUtils;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -355,15 +353,8 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 							}
 							catch (SQLException e)
 							{
-								output.writeColoured(
-									"Failed executing query %s: %s%s%s\n%s",
-									Level.SEVERE,
-									sql,
-									ChatColour.RED,
-									ExceptionUtils.getMessage(e),
-									ChatColour.RESET,
-									ExceptionUtils.getStackTrace(e)
-								);
+								output.logException(e);
+								output.writeColoured("Failed executing query:\n%s", sql);
 								success = false;
 								break;
 							}
@@ -455,6 +446,4 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 
 	protected DefaultPicoContainer container = null;
 	private IOutput output;
-//	private HashMap<String, RunsafeCommandHandler> legacyCommands;
-//	private HashMap<String, Command> commands;
 }

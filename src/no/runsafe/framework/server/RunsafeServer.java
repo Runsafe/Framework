@@ -1,6 +1,7 @@
 package no.runsafe.framework.server;
 
 import no.runsafe.framework.hook.IPlayerLookupService;
+import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.player.RunsafeAmbiguousPlayer;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.OfflinePlayer;
