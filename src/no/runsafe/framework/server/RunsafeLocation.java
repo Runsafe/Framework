@@ -109,12 +109,12 @@ public class RunsafeLocation
 
 	public RunsafeChunk getChunk()
 	{
-		return new RunsafeChunk(this.location.getChunk());
+		return ObjectWrapper.convert(this.location.getChunk());
 	}
 
 	public RunsafeBlock getBlock()
 	{
-		return new RunsafeBlock(this.location.getBlock());
+		return ObjectWrapper.convert(this.location.getBlock());
 	}
 
 	public Vector getDirection()
@@ -124,27 +124,27 @@ public class RunsafeLocation
 
 	public RunsafeLocation add(RunsafeLocation vec)
 	{
-		return new RunsafeLocation(this.location.add(vec.getRaw()));
+		return ObjectWrapper.convert(this.location.add(vec.getRaw()));
 	}
 
 	public RunsafeLocation add(double x, double y, double z)
 	{
-		return new RunsafeLocation(this.location.add(x, y, z));
+		return ObjectWrapper.convert(this.location.add(x, y, z));
 	}
 
 	public RunsafeLocation subtract(RunsafeLocation vec)
 	{
-		return new RunsafeLocation(this.location.subtract(vec.getRaw()));
+		return ObjectWrapper.convert(this.location.subtract(vec.getRaw()));
 	}
 
 	public RunsafeLocation subtract(Vector vec)
 	{
-		return new RunsafeLocation(this.location.subtract(vec));
+		return ObjectWrapper.convert(this.location.subtract(vec));
 	}
 
 	public RunsafeLocation subtract(double x, double y, double z)
 	{
-		return new RunsafeLocation(this.location.subtract(x, y, z));
+		return ObjectWrapper.convert(this.location.subtract(x, y, z));
 	}
 
 	public double length()
@@ -169,12 +169,12 @@ public class RunsafeLocation
 
 	public RunsafeLocation multiply(double m)
 	{
-		return new RunsafeLocation(this.location.multiply(m));
+		return ObjectWrapper.convert(this.location.multiply(m));
 	}
 
 	public RunsafeLocation zero()
 	{
-		return new RunsafeLocation(this.location.zero());
+		return ObjectWrapper.convert(this.location.zero());
 	}
 
 	private final Location location;
