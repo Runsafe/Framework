@@ -20,6 +20,8 @@ public class EventEngine
 	// Call Register on all even listeners here
 	static
 	{
+		factories = new HashMap<Class<? extends IRunsafeEvent>, EventRouterFactory>();
+		
 		// Block events
 		BlockBreak.Register();
 		BlockBreakListener.Register();
@@ -99,7 +101,7 @@ public class EventEngine
 		return routers;
 	}
 
-	private static final Map<Class<? extends IRunsafeEvent>, EventRouterFactory> factories = new HashMap<Class<? extends IRunsafeEvent>, EventRouterFactory>();
+	private static final Map<Class<? extends IRunsafeEvent>, EventRouterFactory> factories;
 
 	private final List<IRunsafeEvent> eventSubscribers;
 	private final IScheduler scheduler;
