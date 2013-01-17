@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SchemaRevisionRepository
+public final class SchemaRevisionRepository
 {
 	public SchemaRevisionRepository(IDatabase db, IOutput output)
 	{

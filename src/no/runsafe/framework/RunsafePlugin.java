@@ -249,7 +249,6 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 
 		RegisterEvents();
 		RegisterCommands();
-		executeSchemaUpdaters();
 		executeSchemaChanges();
 		output.outputDebugToConsole("Initiation complete", Level.FINE);
 	}
@@ -311,18 +310,6 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 				getComponent(IOutput.class).outputDebugToConsole("Pump not found!", Level.FINE);
 		}
 		return pump;
-	}
-
-	private void executeSchemaUpdaters()
-	{
-		List<ISchemaUpdater> updaters = getComponents(ISchemaUpdater.class);
-		if (!updaters.isEmpty())
-		{
-			SchemaRevisionRepository repository = getComponent(SchemaRevisionRepository.class);
-			IDatabase db = getComponent(IDatabase.class);
-			for (ISchemaUpdater impl : updaters)
-				impl.Run(repository, db);
-		}
 	}
 
 	private void executeSchemaChanges()

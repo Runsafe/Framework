@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.logging.Level;
 
-public class RunsafeDatabaseHandler implements IDatabase
+public final class RunsafeDatabaseHandler implements IDatabase
 {
 	private final String databaseURL;
 	private final String databaseUsername;
