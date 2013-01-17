@@ -1,6 +1,9 @@
 package no.runsafe.framework.server;
 
+import no.runsafe.framework.server.block.RunsafeBlock;
+import no.runsafe.framework.server.chunk.RunsafeChunk;
 import org.bukkit.Location;
+import org.bukkit.util.Vector;
 
 public class RunsafeLocation
 {
@@ -102,6 +105,76 @@ public class RunsafeLocation
 	public Location getRaw()
 	{
 		return location;
+	}
+
+	public RunsafeChunk getChunk()
+	{
+		return new RunsafeChunk(this.location.getChunk());
+	}
+
+	public RunsafeBlock getBlock()
+	{
+		return new RunsafeBlock(this.location.getBlock());
+	}
+
+	public Vector getDirection()
+	{
+		return this.location.getDirection();
+	}
+
+	public RunsafeLocation add(RunsafeLocation vec)
+	{
+		return new RunsafeLocation(this.location.add(vec.getRaw()));
+	}
+
+	public RunsafeLocation add(double x, double y, double z)
+	{
+		return new RunsafeLocation(this.location.add(x, y, z));
+	}
+
+	public RunsafeLocation subtract(RunsafeLocation vec)
+	{
+		return new RunsafeLocation(this.location.subtract(vec.getRaw()));
+	}
+
+	public RunsafeLocation subtract(Vector vec)
+	{
+		return new RunsafeLocation(this.location.subtract(vec));
+	}
+
+	public RunsafeLocation subtract(double x, double y, double z)
+	{
+		return new RunsafeLocation(this.location.subtract(x, y, z));
+	}
+
+	public double length()
+	{
+		return this.location.length();
+	}
+
+	public double lengthSquared()
+	{
+		return this.location.lengthSquared();
+	}
+
+	public double distance(RunsafeLocation location)
+	{
+		return this.location.distance(location.getRaw());
+	}
+
+	public double distanceSquared(RunsafeLocation location)
+	{
+		return this.location.distanceSquared(location.getRaw());
+	}
+
+	public RunsafeLocation multiply(double m)
+	{
+		return new RunsafeLocation(this.location.multiply(m));
+	}
+
+	public RunsafeLocation zero()
+	{
+		return new RunsafeLocation(this.location.zero());
 	}
 
 	private final Location location;
