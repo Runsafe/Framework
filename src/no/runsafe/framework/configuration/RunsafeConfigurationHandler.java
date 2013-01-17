@@ -1,6 +1,5 @@
 package no.runsafe.framework.configuration;
 
-import com.google.common.base.Function;
 import no.runsafe.framework.event.IConfigurationChanged;
 import no.runsafe.framework.messaging.IMessageBusService;
 import no.runsafe.framework.messaging.Message;
@@ -163,6 +162,18 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 		HashMap<String, String> values = new HashMap<String, String>();
 		for (String key : section.getKeys(true))
 			values.put(key, section.getString(key));
+		return values;
+	}
+
+	@Override
+	public Map<String, Integer> getConfigValuesAsIntegerMap(String path)
+	{
+		if (this.configFile == null)
+			return null;
+		ConfigurationSection section = this.configFile.getConfigurationSection(path);
+		HashMap<String, Integer> values = new HashMap<String, Integer>();
+		for (String key : section.getKeys(true))
+			values.put(key, section.getInt(key));
 		return values;
 	}
 

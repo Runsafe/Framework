@@ -48,6 +48,8 @@ public interface IConfiguration
 
 	Map<String, String> getConfigValuesAsMap(String path);
 
+	Map<String, Integer> getConfigValuesAsIntegerMap(String path);
+
 	Map<String, Map<String, String>> getConfigSectionsAsMap(String path);
 
 	Map<String, List<String>> getConfigSectionsAsList(String path);
