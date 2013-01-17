@@ -1,5 +1,6 @@
 package no.runsafe.framework.configuration;
 
+import com.google.common.base.Function;
 import no.runsafe.framework.event.IConfigurationChanged;
 import no.runsafe.framework.messaging.IMessageBusService;
 import no.runsafe.framework.messaging.Message;
@@ -146,6 +147,14 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 	}
 
 	@Override
+	public List<Integer> getConfigValueAsIntegerList(String value)
+	{
+		if (this.configFile == null)
+			return null;
+		return this.configFile.getIntegerList(value);
+	}
+
+	@Override
 	public Map<String, String> getConfigValuesAsMap(String path)
 	{
 		if (this.configFile == null)
@@ -178,6 +187,18 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 		HashMap<String, List<String>> results = new HashMap<String, List<String>>();
 		for (String key : section.getKeys(false))
 			results.put(key, getConfigValueAsList(path + "." + key));
+		return results;
+	}
+
+	@Override
+	public Map<String, List<Integer>> getConfigSectionsAsIntegerList(String path)
+	{
+		if (this.configFile == null)
+			return null;
+		ConfigurationSection section = this.configFile.getConfigurationSection(path);
+		HashMap<String, List<Integer>> results = new HashMap<String, List<Integer>>();
+		for (String key : section.getKeys(false))
+			results.put(key, getConfigValueAsIntegerList(path + "." + key));
 		return results;
 	}
 

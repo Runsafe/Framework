@@ -34,6 +34,8 @@ public interface IConfiguration
 
 	List<String> getConfigValueAsList(String value);
 
+	List<Integer> getConfigValueAsIntegerList(String value);
+
 	// Sets a configuration value with the specified key -> value
 	void setConfigValue(String key, Object value);
 
@@ -49,4 +51,6 @@ public interface IConfiguration
 	Map<String, Map<String, String>> getConfigSectionsAsMap(String path);
 
 	Map<String, List<String>> getConfigSectionsAsList(String path);
+
+	Map<String, List<Integer>> getConfigSectionsAsIntegerList(String path);
 }
