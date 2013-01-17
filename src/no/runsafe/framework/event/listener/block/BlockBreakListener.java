@@ -28,13 +28,14 @@ public class BlockBreakListener extends EventRouter<IBlockBreakEvent, BlockBreak
 		super.AcceptEvent(event);
 	}
 
+	@Override
 	public boolean OnEvent(BlockBreakEvent event)
 	{
 		handler.OnBlockBreakEvent(new RunsafeBlockBreakEvent(event));
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IBlockBreakEvent.class, new EventRouterFactory()
 		{

@@ -33,7 +33,7 @@ public class ChunkUnload extends EventRouter<IChunkUnload, ChunkUnloadEvent>
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IChunkUnload.class, new EventRouterFactory()
 		{

@@ -38,6 +38,7 @@ public class PlayerRightClick extends EventRouter<IPlayerRightClick, PlayerInter
 		super.AcceptEvent(event);
 	}
 
+	@Override
 	public boolean OnEvent(PlayerInteractEvent event)
 	{
 		return
@@ -48,7 +49,7 @@ public class PlayerRightClick extends EventRouter<IPlayerRightClick, PlayerInter
 			);
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IPlayerRightClick.class, new EventRouterFactory()
 		{

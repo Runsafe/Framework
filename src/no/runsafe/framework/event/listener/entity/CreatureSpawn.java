@@ -36,7 +36,7 @@ public class CreatureSpawn extends EventRouter<IMobSpawnerPulsed, CreatureSpawnE
 		);
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IMobSpawnerPulsed.class, new EventRouterFactory()
 		{

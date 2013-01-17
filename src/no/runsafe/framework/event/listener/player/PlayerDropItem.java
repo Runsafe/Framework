@@ -26,13 +26,14 @@ public class PlayerDropItem extends EventRouter<IPlayerDropItemEvent, PlayerDrop
 		super.AcceptEvent(event);
 	}
 
+	@Override
 	public boolean OnEvent(PlayerDropItemEvent event)
 	{
 		handler.OnPlayerDropItem(new RunsafePlayerDropItemEvent(event));
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IPlayerDropItemEvent.class, new EventRouterFactory()
 		{

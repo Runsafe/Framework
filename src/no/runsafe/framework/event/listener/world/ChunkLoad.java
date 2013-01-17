@@ -33,7 +33,7 @@ public class ChunkLoad extends EventRouter<IChunkLoad, ChunkLoadEvent>
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IChunkLoad.class, new EventRouterFactory()
 		{

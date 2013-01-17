@@ -34,7 +34,7 @@ public class PlayerJoin extends EventRouter<IPlayerJoinEvent, PlayerJoinEvent>
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IPlayerJoinEvent.class, new EventRouterFactory()
 		{

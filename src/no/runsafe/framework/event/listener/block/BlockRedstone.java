@@ -25,6 +25,7 @@ public class BlockRedstone extends EventRouter<IBlockRedstone, BlockRedstoneEven
 		super.AcceptEvent(event);
 	}
 
+	@Override
 	public boolean OnEvent(BlockRedstoneEvent event)
 	{
 		int current = handler.OnBlockRedstone(event.getOldCurrent(), event.getNewCurrent());
@@ -33,7 +34,7 @@ public class BlockRedstone extends EventRouter<IBlockRedstone, BlockRedstoneEven
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IBlockRedstone.class, new EventRouterFactory()
 		{

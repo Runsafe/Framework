@@ -33,7 +33,7 @@ public class WorldSave extends EventRouter<IWorldSave, WorldSaveEvent>
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IWorldSave.class, new EventRouterFactory()
 		{

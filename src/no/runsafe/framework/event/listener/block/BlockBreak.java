@@ -35,7 +35,7 @@ public class BlockBreak extends EventRouter<IBlockBreak, BlockBreakEvent>
 		);
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IBlockBreak.class, new EventRouterFactory()
 		{

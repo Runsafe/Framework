@@ -26,13 +26,14 @@ public class PlayerLogin extends EventRouter<IPlayerLoginEvent, PlayerLoginEvent
 		super.AcceptEvent(event);
 	}
 
+	@Override
 	public boolean OnEvent(PlayerLoginEvent event)
 	{
 		handler.OnPlayerLogin(new RunsafePlayerLoginEvent(event));
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IPlayerLoginEvent.class, new EventRouterFactory()
 		{

@@ -34,7 +34,7 @@ public class PlayerChat extends EventRouter<IPlayerChatEvent, AsyncPlayerChatEve
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IPlayerChatEvent.class, new EventRouterFactory()
 		{

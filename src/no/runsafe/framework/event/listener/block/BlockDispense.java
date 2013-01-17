@@ -26,6 +26,7 @@ public class BlockDispense extends EventRouter<IBlockDispense, BlockDispenseEven
 		super.AcceptEvent(event);
 	}
 
+	@Override
 	public boolean OnEvent(BlockDispenseEvent event)
 	{
 		return handler.OnBlockDispense(
@@ -35,7 +36,7 @@ public class BlockDispense extends EventRouter<IBlockDispense, BlockDispenseEven
 	}
 
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IBlockDispense.class, new EventRouterFactory()
 		{

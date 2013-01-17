@@ -28,13 +28,14 @@ public class BlockDispenseListener extends EventRouter<IBlockDispenseEvent, Bloc
 		super.AcceptEvent(event);
 	}
 
+	@Override
 	public boolean OnEvent(BlockDispenseEvent event)
 	{
 		handler.OnBlockDispenseEvent(new RunsafeBlockDispenseEvent(event));
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IBlockDispenseEvent.class, new EventRouterFactory()
 		{

@@ -26,14 +26,14 @@ public class PlayerInteract extends EventRouter<IPlayerInteractEvent, PlayerInte
 		super.AcceptEvent(event);
 	}
 
-	@EventHandler
+	@Override
 	public boolean OnEvent(PlayerInteractEvent event)
 	{
 		handler.OnPlayerInteractEvent(new RunsafePlayerInteractEvent(event));
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IPlayerInteractEvent.class, new EventRouterFactory()
 		{

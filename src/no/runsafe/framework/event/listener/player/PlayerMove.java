@@ -26,12 +26,13 @@ public class PlayerMove extends EventRouter<IPlayerMove, PlayerMoveEvent>
 		super.AcceptEvent(event);
 	}
 
+	@Override
 	public boolean OnEvent(PlayerMoveEvent event)
 	{
 		return handler.OnPlayerMove(ObjectWrapper.convert(event.getPlayer()), ObjectWrapper.convert(event.getFrom()), ObjectWrapper.convert(event.getTo()));
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IPlayerMove.class, new EventRouterFactory()
 		{

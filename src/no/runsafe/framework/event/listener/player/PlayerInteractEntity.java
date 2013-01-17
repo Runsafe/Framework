@@ -26,13 +26,14 @@ public class PlayerInteractEntity extends EventRouter<IPlayerInteractEntityEvent
 		super.AcceptEvent(event);
 	}
 
+	@Override
 	public boolean OnEvent(PlayerInteractEntityEvent event)
 	{
 		handler.OnPlayerInteractEntityEvent(new RunsafePlayerInteractEntityEvent(event));
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IPlayerInteractEntityEvent.class, new EventRouterFactory()
 		{

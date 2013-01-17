@@ -26,13 +26,14 @@ public class EntityDeath extends EventRouter<IEntityDeathEvent, EntityDeathEvent
 		super.AcceptEvent(event);
 	}
 
+	@Override
 	public boolean OnEvent(EntityDeathEvent entityDeathEvent)
 	{
 		handler.OnEntityDeath(new RunsafeEntityDeathEvent(entityDeathEvent));
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IEntityDeathEvent.class, new EventRouterFactory()
 		{

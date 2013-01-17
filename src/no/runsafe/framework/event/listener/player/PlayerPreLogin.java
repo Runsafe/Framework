@@ -33,7 +33,7 @@ public class PlayerPreLogin extends EventRouter<IPlayerPreLoginEvent, AsyncPlaye
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IPlayerPreLoginEvent.class, new EventRouterFactory()
 		{

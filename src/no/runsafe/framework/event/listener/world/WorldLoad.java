@@ -33,7 +33,7 @@ public class WorldLoad extends EventRouter<IWorldLoad, WorldLoadEvent>
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IWorldLoad.class, new EventRouterFactory()
 		{

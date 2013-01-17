@@ -33,7 +33,7 @@ public class WorldUnload extends EventRouter<IWorldUnload, WorldUnloadEvent>
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IWorldUnload.class, new EventRouterFactory()
 		{

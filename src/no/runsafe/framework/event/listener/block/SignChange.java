@@ -36,7 +36,7 @@ public class SignChange extends EventRouter<ISignChange, SignChangeEvent>
 		);
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(ISignChange.class, new EventRouterFactory()
 		{

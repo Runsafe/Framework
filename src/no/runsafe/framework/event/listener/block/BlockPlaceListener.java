@@ -28,14 +28,14 @@ public class BlockPlaceListener extends EventRouter<IBlockPlaceEvent, BlockPlace
 		super.AcceptEvent(event);
 	}
 
-	@EventHandler
+	@Override
 	public boolean OnEvent(BlockPlaceEvent event)
 	{
 		handler.OnBlockPlaceEvent(new RunsafeBlockPlaceEvent(event));
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IBlockPlaceEvent.class, new EventRouterFactory()
 		{

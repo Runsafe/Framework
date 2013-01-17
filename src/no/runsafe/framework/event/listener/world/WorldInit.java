@@ -33,7 +33,7 @@ public class WorldInit extends EventRouter<IWorldInit, WorldInitEvent>
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IWorldInit.class, new EventRouterFactory()
 		{

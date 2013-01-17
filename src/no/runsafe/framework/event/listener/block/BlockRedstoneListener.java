@@ -28,13 +28,14 @@ public class BlockRedstoneListener extends EventRouter<IBlockRedstoneEvent, Bloc
 		super.AcceptEvent(event);
 	}
 
+	@Override
 	public boolean OnEvent(BlockRedstoneEvent event)
 	{
 		handler.OnBlockRedstoneEvent(new RunsafeBlockRedstoneEvent(event));
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IBlockRedstoneEvent.class, new EventRouterFactory()
 		{

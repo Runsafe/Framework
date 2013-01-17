@@ -32,6 +32,7 @@ public class PlayerRightClickSign extends EventRouter<IPlayerRightClickSign, Pla
 		super.AcceptEvent(event);
 	}
 
+	@Override
 	public boolean OnEvent(PlayerInteractEvent event)
 	{
 		if (event.getAction() != Action.RIGHT_CLICK_BLOCK)
@@ -57,7 +58,7 @@ public class PlayerRightClickSign extends EventRouter<IPlayerRightClickSign, Pla
 			);
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IPlayerRightClickSign.class, new EventRouterFactory()
 		{

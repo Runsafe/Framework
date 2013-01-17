@@ -36,7 +36,7 @@ public class SpawnEggUsed extends EventRouter<ISpawnEggUsed, CreatureSpawnEvent>
 		);
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(ISpawnEggUsed.class, new EventRouterFactory()
 		{

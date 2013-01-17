@@ -26,7 +26,7 @@ public class BlockPlace extends EventRouter<IBlockPlace, BlockPlaceEvent>
 		super.AcceptEvent(event);
 	}
 
-	@EventHandler
+	@Override
 	public boolean OnEvent(BlockPlaceEvent event)
 	{
 		return handler.OnBlockPlace(
@@ -35,7 +35,7 @@ public class BlockPlace extends EventRouter<IBlockPlace, BlockPlaceEvent>
 		);
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IBlockPlace.class, new EventRouterFactory()
 		{

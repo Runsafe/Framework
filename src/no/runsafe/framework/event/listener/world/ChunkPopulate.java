@@ -33,7 +33,7 @@ public class ChunkPopulate extends EventRouter<IChunkPopulate, ChunkPopulateEven
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IChunkPopulate.class, new EventRouterFactory()
 		{

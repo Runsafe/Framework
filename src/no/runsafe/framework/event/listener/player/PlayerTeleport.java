@@ -33,7 +33,7 @@ public class PlayerTeleport extends EventRouter<IPlayerTeleportEvent, PlayerTele
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IPlayerTeleportEvent.class, new EventRouterFactory()
 		{

@@ -26,13 +26,14 @@ public class EntityDamageByEntity extends EventRouter<IEntityDamageByEntityEvent
 		super.AcceptEvent(event);
 	}
 
+	@Override
 	public boolean OnEvent(EntityDamageByEntityEvent entityDamageByEntityEvent)
 	{
 		handler.OnEntityDamageByEntity(new RunsafeEntityDamageByEntityEvent(entityDamageByEntityEvent));
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IEntityDamageByEntityEvent.class, new EventRouterFactory()
 		{

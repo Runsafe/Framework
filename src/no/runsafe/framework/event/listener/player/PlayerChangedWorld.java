@@ -26,13 +26,14 @@ public class PlayerChangedWorld extends EventRouter<IPlayerChangedWorldEvent, Pl
 		super.AcceptEvent(event);
 	}
 
+	@Override
 	public boolean OnEvent(PlayerChangedWorldEvent event)
 	{
 		handler.OnPlayerChangedWorld(new RunsafePlayerChangedWorldEvent(event));
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IPlayerChangedWorldEvent.class, new EventRouterFactory()
 		{

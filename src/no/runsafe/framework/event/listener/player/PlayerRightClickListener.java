@@ -31,6 +31,7 @@ public class PlayerRightClickListener extends EventRouter<IPlayerRightClickEvent
 			super.AcceptEvent(event);
 	}
 
+	@Override
 	public boolean OnEvent(PlayerInteractEvent event)
 	{
 		if (!(handler instanceof IPlayerRightClickAirEvent || handler instanceof IPlayerRightClickBlockEvent))
@@ -45,7 +46,7 @@ public class PlayerRightClickListener extends EventRouter<IPlayerRightClickEvent
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IPlayerRightClickEvent.class, new EventRouterFactory()
 		{

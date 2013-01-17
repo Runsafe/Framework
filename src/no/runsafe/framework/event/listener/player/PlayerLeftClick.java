@@ -29,6 +29,7 @@ public class PlayerLeftClick extends EventRouter<IPlayerLeftClickEvent, PlayerIn
 		super.AcceptEvent(event);
 	}
 
+	@Override
 	public boolean OnEvent(PlayerInteractEvent event)
 	{
 		if (!(handler instanceof IPlayerLeftClickAirEvent || handler instanceof IPlayerLeftClickBlockEvent))
@@ -43,7 +44,7 @@ public class PlayerLeftClick extends EventRouter<IPlayerLeftClickEvent, PlayerIn
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IPlayerLeftClickEvent.class, new EventRouterFactory()
 		{

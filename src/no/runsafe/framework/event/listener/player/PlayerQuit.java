@@ -26,14 +26,14 @@ public class PlayerQuit extends EventRouter<IPlayerQuitEvent, PlayerQuitEvent>
 		super.AcceptEvent(event);
 	}
 
-	@EventHandler
+	@Override
 	public boolean OnEvent(PlayerQuitEvent event)
 	{
 		handler.OnPlayerQuit(new RunsafePlayerQuitEvent(event));
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IPlayerQuitEvent.class, new EventRouterFactory()
 		{

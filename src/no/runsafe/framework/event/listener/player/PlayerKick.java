@@ -33,7 +33,7 @@ public class PlayerKick extends EventRouter<IPlayerKickEvent, PlayerKickEvent>
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IPlayerKickEvent.class, new EventRouterFactory()
 		{

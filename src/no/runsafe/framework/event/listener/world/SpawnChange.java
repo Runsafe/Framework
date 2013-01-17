@@ -36,7 +36,7 @@ public class SpawnChange extends EventRouter<ISpawnChange, SpawnChangeEvent>
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(ISpawnChange.class, new EventRouterFactory()
 		{

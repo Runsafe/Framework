@@ -26,13 +26,14 @@ public class EntityShootBow extends EventRouter<IEntityShootBowEvent, EntityShoo
 		super.AcceptEvent(event);
 	}
 
+	@Override
 	public boolean OnEvent(EntityShootBowEvent event)
 	{
 		handler.OnEntityShootBowEvent(new RunsafeEntityShootBowEvent(event));
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IEntityShootBowEvent.class, new EventRouterFactory()
 		{

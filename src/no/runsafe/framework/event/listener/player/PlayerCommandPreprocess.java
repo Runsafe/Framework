@@ -27,13 +27,14 @@ public class PlayerCommandPreprocess extends EventRouter<IPlayerCommandPreproces
 		OnEvent(event);
 	}
 
+	@Override
 	public boolean OnEvent(PlayerCommandPreprocessEvent event)
 	{
 		handler.OnBeforePlayerCommand(new RunsafePlayerCommandPreprocessEvent(event));
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IPlayerCommandPreprocessEvent.class, new EventRouterFactory()
 		{

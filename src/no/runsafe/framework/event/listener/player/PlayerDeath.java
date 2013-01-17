@@ -33,7 +33,7 @@ public class PlayerDeath extends EventRouter<IPlayerDeathEvent, PlayerDeathEvent
 		return true;
 	}
 
-	static
+	public static void Register()
 	{
 		EventEngine.Register(IPlayerDeathEvent.class, new EventRouterFactory()
 		{
