@@ -35,13 +35,15 @@ public class WorldLoad extends EventRouterBase<IWorldLoad, WorldLoadEvent>
 
 	public static void Register()
 	{
-		EventEngine.Register(IWorldLoad.class, new EventRouterFactory()
+		EventEngine.Register(IWorldLoad.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new WorldLoad(output, scheduler, (IWorldLoad) subscriber);
-			}
-		});
+			return new WorldLoad(output, scheduler, (IWorldLoad) subscriber);
+		}
 	}
 }

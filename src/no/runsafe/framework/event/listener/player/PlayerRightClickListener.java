@@ -48,13 +48,15 @@ public class PlayerRightClickListener extends EventRouterBase<IPlayerRightClickE
 
 	public static void Register()
 	{
-		EventEngine.Register(IPlayerRightClickEvent.class, new EventRouterFactory()
+		EventEngine.Register(IPlayerRightClickEvent.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new PlayerRightClickListener(output, scheduler, (IPlayerRightClickEvent) subscriber);
-			}
-		});
+			return new PlayerRightClickListener(output, scheduler, (IPlayerRightClickEvent) subscriber);
+		}
 	}
 }

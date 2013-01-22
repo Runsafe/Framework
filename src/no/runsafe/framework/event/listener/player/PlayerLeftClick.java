@@ -46,13 +46,15 @@ public class PlayerLeftClick extends EventRouterBase<IPlayerLeftClickEvent, Play
 
 	public static void Register()
 	{
-		EventEngine.Register(IPlayerLeftClickEvent.class, new EventRouterFactory()
+		EventEngine.Register(IPlayerLeftClickEvent.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new PlayerLeftClick(output, scheduler, (IPlayerLeftClickEvent) subscriber);
-			}
-		});
+			return new PlayerLeftClick(output, scheduler, (IPlayerLeftClickEvent) subscriber);
+		}
 	}
 }

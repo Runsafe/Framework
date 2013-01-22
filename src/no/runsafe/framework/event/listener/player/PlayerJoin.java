@@ -36,13 +36,15 @@ public class PlayerJoin extends EventRouterBase<IPlayerJoinEvent, PlayerJoinEven
 
 	public static void Register()
 	{
-		EventEngine.Register(IPlayerJoinEvent.class, new EventRouterFactory()
+		EventEngine.Register(IPlayerJoinEvent.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new PlayerJoin(output, scheduler, (IPlayerJoinEvent) subscriber);
-			}
-		});
+			return new PlayerJoin(output, scheduler, (IPlayerJoinEvent) subscriber);
+		}
 	}
 }

@@ -35,13 +35,15 @@ public class PlayerDeath extends EventRouterBase<IPlayerDeathEvent, PlayerDeathE
 
 	public static void Register()
 	{
-		EventEngine.Register(IPlayerDeathEvent.class, new EventRouterFactory()
+		EventEngine.Register(IPlayerDeathEvent.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new PlayerDeath(output, scheduler, (IPlayerDeathEvent) subscriber);
-			}
-		});
+			return new PlayerDeath(output, scheduler, (IPlayerDeathEvent) subscriber);
+		}
 	}
 }

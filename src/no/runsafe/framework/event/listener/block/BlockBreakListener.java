@@ -37,13 +37,15 @@ public class BlockBreakListener extends EventRouterBase<IBlockBreakEvent, BlockB
 
 	public static void Register()
 	{
-		EventEngine.Register(IBlockBreakEvent.class, new EventRouterFactory()
+		EventEngine.Register(IBlockBreakEvent.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new BlockBreakListener(output, scheduler, (IBlockBreakEvent) subscriber);
-			}
-		});
+			return new BlockBreakListener(output, scheduler, (IBlockBreakEvent) subscriber);
+		}
 	}
 }

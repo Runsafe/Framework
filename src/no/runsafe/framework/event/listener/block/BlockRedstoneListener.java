@@ -37,13 +37,15 @@ public class BlockRedstoneListener extends EventRouterBase<IBlockRedstoneEvent, 
 
 	public static void Register()
 	{
-		EventEngine.Register(IBlockRedstoneEvent.class, new EventRouterFactory()
+		EventEngine.Register(IBlockRedstoneEvent.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new BlockRedstoneListener(output, scheduler, (IBlockRedstoneEvent) subscriber);
-			}
-		});
+			return new BlockRedstoneListener(output, scheduler, (IBlockRedstoneEvent) subscriber);
+		}
 	}
 }

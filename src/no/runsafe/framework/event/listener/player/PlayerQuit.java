@@ -35,13 +35,15 @@ public class PlayerQuit extends EventRouterBase<IPlayerQuitEvent, PlayerQuitEven
 
 	public static void Register()
 	{
-		EventEngine.Register(IPlayerQuitEvent.class, new EventRouterFactory()
+		EventEngine.Register(IPlayerQuitEvent.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener (IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new PlayerQuit(output, scheduler, (IPlayerQuitEvent) subscriber);
-			}
-		});
+			return new PlayerQuit(output, scheduler, (IPlayerQuitEvent) subscriber);
+		}
 	}
 }

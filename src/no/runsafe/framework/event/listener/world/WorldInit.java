@@ -35,13 +35,15 @@ public class WorldInit extends EventRouterBase<IWorldInit, WorldInitEvent>
 
 	public static void Register()
 	{
-		EventEngine.Register(IWorldInit.class, new EventRouterFactory()
+		EventEngine.Register(IWorldInit.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new WorldInit(output, scheduler, (IWorldInit) subscriber);
-			}
-		});
+			return new WorldInit(output, scheduler, (IWorldInit) subscriber);
+		}
 	}
 }

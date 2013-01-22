@@ -35,13 +35,15 @@ public class EntityDeath extends EventRouterBase<IEntityDeathEvent, EntityDeathE
 
 	public static void Register()
 	{
-		EventEngine.Register(IEntityDeathEvent.class, new EventRouterFactory()
+		EventEngine.Register(IEntityDeathEvent.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new EntityDeath(output, scheduler, (IEntityDeathEvent) subscriber);
-			}
-		});
+			return new EntityDeath(output, scheduler, (IEntityDeathEvent) subscriber);
+		}
 	}
 }

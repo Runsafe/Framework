@@ -38,14 +38,16 @@ public class SignChange extends EventRouterBase<ISignChange, SignChangeEvent>
 
 	public static void Register()
 	{
-		EventEngine.Register(ISignChange.class, new EventRouterFactory()
+		EventEngine.Register(ISignChange.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new SignChange(output, scheduler, (ISignChange) subscriber);
-			}
-		});
+			return new SignChange(output, scheduler, (ISignChange) subscriber);
+		}
 	}
 }
 

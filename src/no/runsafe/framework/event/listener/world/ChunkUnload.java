@@ -35,13 +35,15 @@ public class ChunkUnload extends EventRouterBase<IChunkUnload, ChunkUnloadEvent>
 
 	public static void Register()
 	{
-		EventEngine.Register(IChunkUnload.class, new EventRouterFactory()
+		EventEngine.Register(IChunkUnload.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new ChunkUnload(output, scheduler, (IChunkUnload) subscriber);
-			}
-		});
+			return new ChunkUnload(output, scheduler, (IChunkUnload) subscriber);
+		}
 	}
 }

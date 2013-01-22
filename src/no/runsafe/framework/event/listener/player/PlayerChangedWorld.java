@@ -35,13 +35,15 @@ public class PlayerChangedWorld extends EventRouterBase<IPlayerChangedWorldEvent
 
 	public static void Register()
 	{
-		EventEngine.Register(IPlayerChangedWorldEvent.class, new EventRouterFactory()
+		EventEngine.Register(IPlayerChangedWorldEvent.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new PlayerChangedWorld(output, scheduler, (IPlayerChangedWorldEvent) subscriber);
-			}
-		});
+			return new PlayerChangedWorld(output, scheduler, (IPlayerChangedWorldEvent) subscriber);
+		}
 	}
 }

@@ -34,13 +34,15 @@ public class PlayerMove extends EventRouterBase<IPlayerMove, PlayerMoveEvent>
 
 	public static void Register()
 	{
-		EventEngine.Register(IPlayerMove.class, new EventRouterFactory()
+		EventEngine.Register(IPlayerMove.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new PlayerMove(output, scheduler, (IPlayerMove) subscriber);
-			}
-		});
+			return new PlayerMove(output, scheduler, (IPlayerMove) subscriber);
+		}
 	}
 }

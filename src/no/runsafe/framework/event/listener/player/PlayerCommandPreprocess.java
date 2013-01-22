@@ -36,13 +36,15 @@ public class PlayerCommandPreprocess extends EventRouterBase<IPlayerCommandPrepr
 
 	public static void Register()
 	{
-		EventEngine.Register(IPlayerCommandPreprocessEvent.class, new EventRouterFactory()
+		EventEngine.Register(IPlayerCommandPreprocessEvent.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new PlayerCommandPreprocess(output, scheduler, (IPlayerCommandPreprocessEvent) subscriber);
-			}
-		});
+			return new PlayerCommandPreprocess(output, scheduler, (IPlayerCommandPreprocessEvent) subscriber);
+		}
 	}
 }

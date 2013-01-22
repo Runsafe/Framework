@@ -35,13 +35,15 @@ public class EntityDamageByEntity extends EventRouterBase<IEntityDamageByEntityE
 
 	public static void Register()
 	{
-		EventEngine.Register(IEntityDamageByEntityEvent.class, new EventRouterFactory()
+		EventEngine.Register(IEntityDamageByEntityEvent.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new EntityDamageByEntity(output, scheduler, (IEntityDamageByEntityEvent) subscriber);
-			}
-		});
+			return new EntityDamageByEntity(output, scheduler, (IEntityDamageByEntityEvent) subscriber);
+		}
 	}
 }

@@ -35,13 +35,15 @@ public class WorldSave extends EventRouterBase<IWorldSave, WorldSaveEvent>
 
 	public static void Register()
 	{
-		EventEngine.Register(IWorldSave.class, new EventRouterFactory()
+		EventEngine.Register(IWorldSave.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new WorldSave(output, scheduler, (IWorldSave) subscriber);
-			}
-		});
+			return new WorldSave(output, scheduler, (IWorldSave) subscriber);
+		}
 	}
 }

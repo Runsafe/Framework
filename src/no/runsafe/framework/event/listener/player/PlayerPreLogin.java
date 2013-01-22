@@ -35,13 +35,15 @@ public class PlayerPreLogin extends EventRouterBase<IPlayerPreLoginEvent, AsyncP
 
 	public static void Register()
 	{
-		EventEngine.Register(IPlayerPreLoginEvent.class, new EventRouterFactory()
+		EventEngine.Register(IPlayerPreLoginEvent.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener (IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new PlayerPreLogin(output, scheduler, (IPlayerPreLoginEvent) subscriber);
-			}
-		});
+			return new PlayerPreLogin(output, scheduler, (IPlayerPreLoginEvent) subscriber);
+		}
 	}
 }

@@ -1,10 +1,7 @@
 package no.runsafe.framework.event;
 
 import no.runsafe.framework.event.listener.EventRouterFactory;
-import no.runsafe.framework.event.listener.block.*;
-import no.runsafe.framework.event.listener.entity.*;
-import no.runsafe.framework.event.listener.player.*;
-import no.runsafe.framework.event.listener.world.*;
+import no.runsafe.framework.event.listener.Registration;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.Listener;
@@ -17,58 +14,10 @@ import java.util.Map;
 @SuppressWarnings("deprecation")
 public class EventEngine
 {
-	// Call Register on all even listeners here
 	static
 	{
 		factories = new HashMap<Class<? extends IRunsafeEvent>, EventRouterFactory>();
-
-		// Block events
-		BlockBreak.Register();
-		BlockBreakListener.Register();
-		BlockDispense.Register();
-		BlockDispenseListener.Register();
-		BlockPlace.Register();
-		BlockPlaceListener.Register();
-		BlockRedstone.Register();
-		BlockRedstoneListener.Register();
-		SignChange.Register();
-
-		// Entity events
-		CreatureSpawn.Register();
-		EntityDamageByEntity.Register();
-		EntityDeath.Register();
-		EntityShootBow.Register();
-		SpawnEggUsed.Register();
-
-		// Player events
-		PlayerChangedWorld.Register();
-		PlayerChat.Register();
-		PlayerCommandPreprocess.Register();
-		PlayerDeath.Register();
-		PlayerDropItem.Register();
-		PlayerInteract.Register();
-		PlayerInteractEntity.Register();
-		PlayerJoin.Register();
-		PlayerKick.Register();
-		PlayerLeftClick.Register();
-		PlayerLogin.Register();
-		PlayerMove.Register();
-		PlayerPreLogin.Register();
-		PlayerQuit.Register();
-		PlayerRightClick.Register();
-		PlayerRightClickListener.Register();
-		PlayerRightClickSign.Register();
-		PlayerTeleport.Register();
-
-		// World events
-		ChunkLoad.Register();
-		ChunkPopulate.Register();
-		ChunkUnload.Register();
-		SpawnChange.Register();
-		WorldInit.Register();
-		WorldLoad.Register();
-		WorldSave.Register();
-		WorldUnload.Register();
+		Registration.Run();
 	}
 
 	public EventEngine(IOutput output, IScheduler scheduler, List<IRunsafeEvent> events)

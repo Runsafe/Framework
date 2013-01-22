@@ -35,13 +35,15 @@ public class WorldUnload extends EventRouterBase<IWorldUnload, WorldUnloadEvent>
 
 	public static void Register()
 	{
-		EventEngine.Register(IWorldUnload.class, new EventRouterFactory()
+		EventEngine.Register(IWorldUnload.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new WorldUnload(output, scheduler, (IWorldUnload) subscriber);
-			}
-		});
+			return new WorldUnload(output, scheduler, (IWorldUnload) subscriber);
+		}
 	}
 }

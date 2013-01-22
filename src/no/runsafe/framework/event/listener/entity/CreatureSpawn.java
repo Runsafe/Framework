@@ -38,13 +38,15 @@ public class CreatureSpawn extends EventRouterBase<IMobSpawnerPulsed, CreatureSp
 
 	public static void Register()
 	{
-		EventEngine.Register(IMobSpawnerPulsed.class, new EventRouterFactory()
+		EventEngine.Register(IMobSpawnerPulsed.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new CreatureSpawn(output, scheduler, (IMobSpawnerPulsed) subscriber);
-			}
-		});
+			return new CreatureSpawn(output, scheduler, (IMobSpawnerPulsed) subscriber);
+		}
 	}
 }

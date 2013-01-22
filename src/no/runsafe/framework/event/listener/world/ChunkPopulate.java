@@ -35,13 +35,15 @@ public class ChunkPopulate extends EventRouterBase<IChunkPopulate, ChunkPopulate
 
 	public static void Register()
 	{
-		EventEngine.Register(IChunkPopulate.class, new EventRouterFactory()
+		EventEngine.Register(IChunkPopulate.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new ChunkPopulate(output, scheduler, (IChunkPopulate) subscriber);
-			}
-		});
+			return new ChunkPopulate(output, scheduler, (IChunkPopulate) subscriber);
+		}
 	}
 }

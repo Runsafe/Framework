@@ -35,17 +35,18 @@ public class BlockDispense extends EventRouterBase<IBlockDispense, BlockDispense
 		);
 	}
 
-
 	public static void Register()
 	{
-		EventEngine.Register(IBlockDispense.class, new EventRouterFactory()
+		EventEngine.Register(IBlockDispense.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new BlockDispense(output, scheduler, (IBlockDispense) subscriber);
-			}
-		});
+			return new BlockDispense(output, scheduler, (IBlockDispense) subscriber);
+		}
 	}
 }
 

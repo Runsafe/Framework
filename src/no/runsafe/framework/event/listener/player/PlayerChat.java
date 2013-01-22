@@ -36,13 +36,15 @@ public class PlayerChat extends EventRouterBase<IPlayerChatEvent, AsyncPlayerCha
 
 	public static void Register()
 	{
-		EventEngine.Register(IPlayerChatEvent.class, new EventRouterFactory()
+		EventEngine.Register(IPlayerChatEvent.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new PlayerChat(output, scheduler, (IPlayerChatEvent) subscriber);
-			}
-		});
+			return new PlayerChat(output, scheduler, (IPlayerChatEvent) subscriber);
+		}
 	}
 }

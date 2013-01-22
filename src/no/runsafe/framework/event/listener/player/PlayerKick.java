@@ -35,13 +35,15 @@ public class PlayerKick extends EventRouterBase<IPlayerKickEvent, PlayerKickEven
 
 	public static void Register()
 	{
-		EventEngine.Register(IPlayerKickEvent.class, new EventRouterFactory()
+		EventEngine.Register(IPlayerKickEvent.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new PlayerKick(output, scheduler, (IPlayerKickEvent) subscriber);
-			}
-		});
+			return new PlayerKick(output, scheduler, (IPlayerKickEvent) subscriber);
+		}
 	}
 }

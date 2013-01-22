@@ -35,13 +35,15 @@ public class PlayerInteractEntity extends EventRouterBase<IPlayerInteractEntityE
 
 	public static void Register()
 	{
-		EventEngine.Register(IPlayerInteractEntityEvent.class, new EventRouterFactory()
+		EventEngine.Register(IPlayerInteractEntityEvent.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new PlayerInteractEntity(output, scheduler, (IPlayerInteractEntityEvent) subscriber);
-			}
-		});
+			return new PlayerInteractEntity(output, scheduler, (IPlayerInteractEntityEvent) subscriber);
+		}
 	}
 }

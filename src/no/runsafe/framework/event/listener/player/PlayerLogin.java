@@ -35,13 +35,15 @@ public class PlayerLogin extends EventRouterBase<IPlayerLoginEvent, PlayerLoginE
 
 	public static void Register()
 	{
-		EventEngine.Register(IPlayerLoginEvent.class, new EventRouterFactory()
+		EventEngine.Register(IPlayerLoginEvent.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new PlayerLogin(output, scheduler, (IPlayerLoginEvent) subscriber);
-			}
-		});
+			return new PlayerLogin(output, scheduler, (IPlayerLoginEvent) subscriber);
+		}
 	}
 }

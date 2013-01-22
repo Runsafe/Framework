@@ -38,13 +38,15 @@ public class SpawnChange extends EventRouterBase<ISpawnChange, SpawnChangeEvent>
 
 	public static void Register()
 	{
-		EventEngine.Register(ISpawnChange.class, new EventRouterFactory()
+		EventEngine.Register(ISpawnChange.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new SpawnChange(output, scheduler, (ISpawnChange) subscriber);
-			}
-		});
+			return new SpawnChange(output, scheduler, (ISpawnChange) subscriber);
+		}
 	}
 }

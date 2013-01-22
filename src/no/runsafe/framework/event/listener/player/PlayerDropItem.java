@@ -35,13 +35,15 @@ public class PlayerDropItem extends EventRouterBase<IPlayerDropItemEvent, Player
 
 	public static void Register()
 	{
-		EventEngine.Register(IPlayerDropItemEvent.class, new EventRouterFactory()
+		EventEngine.Register(IPlayerDropItemEvent.class, new Factory());
+	}
+
+	private static class Factory implements EventRouterFactory
+	{
+		@Override
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
-			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-			{
-				return new PlayerDropItem(output, scheduler, (IPlayerDropItemEvent) subscriber);
-			}
-		});
+			return new PlayerDropItem(output, scheduler, (IPlayerDropItemEvent) subscriber);
+		}
 	}
 }
