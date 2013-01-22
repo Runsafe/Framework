@@ -3,7 +3,7 @@ package no.runsafe.framework.event.listener.block;
 import no.runsafe.framework.event.EventEngine;
 import no.runsafe.framework.event.IRunsafeEvent;
 import no.runsafe.framework.event.block.ISignChange;
-import no.runsafe.framework.event.listener.EventRouter;
+import no.runsafe.framework.event.listener.EventRouterBase;
 import no.runsafe.framework.event.listener.EventRouterFactory;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.ObjectWrapper;
@@ -12,7 +12,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.SignChangeEvent;
 
-public class SignChange extends EventRouter<ISignChange, SignChangeEvent>
+public class SignChange extends EventRouterBase<ISignChange, SignChangeEvent>
 {
 	public SignChange(IOutput output, IScheduler scheduler, ISignChange handler)
 	{

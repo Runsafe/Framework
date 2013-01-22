@@ -2,7 +2,7 @@ package no.runsafe.framework.event.listener.player;
 
 import no.runsafe.framework.event.EventEngine;
 import no.runsafe.framework.event.IRunsafeEvent;
-import no.runsafe.framework.event.listener.EventRouter;
+import no.runsafe.framework.event.listener.EventRouterBase;
 import no.runsafe.framework.event.listener.EventRouterFactory;
 import no.runsafe.framework.event.player.IPlayerRightClickAirEvent;
 import no.runsafe.framework.event.player.IPlayerRightClickBlockEvent;
@@ -16,7 +16,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 @Deprecated
-public class PlayerRightClickListener extends EventRouter<IPlayerRightClickEvent, PlayerInteractEvent>
+public class PlayerRightClickListener extends EventRouterBase<IPlayerRightClickEvent, PlayerInteractEvent>
 {
 	public PlayerRightClickListener(IOutput output, IScheduler scheduler, IPlayerRightClickEvent handler)
 	{

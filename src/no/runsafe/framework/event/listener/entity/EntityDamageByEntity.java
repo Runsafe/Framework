@@ -3,7 +3,7 @@ package no.runsafe.framework.event.listener.entity;
 import no.runsafe.framework.event.EventEngine;
 import no.runsafe.framework.event.IRunsafeEvent;
 import no.runsafe.framework.event.entity.IEntityDamageByEntityEvent;
-import no.runsafe.framework.event.listener.EventRouter;
+import no.runsafe.framework.event.listener.EventRouterBase;
 import no.runsafe.framework.event.listener.EventRouterFactory;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.event.entity.RunsafeEntityDamageByEntityEvent;
@@ -12,7 +12,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
-public class EntityDamageByEntity extends EventRouter<IEntityDamageByEntityEvent, EntityDamageByEntityEvent>
+public class EntityDamageByEntity extends EventRouterBase<IEntityDamageByEntityEvent, EntityDamageByEntityEvent>
 {
 	public EntityDamageByEntity(IOutput output, IScheduler scheduler, IEntityDamageByEntityEvent handler)
 	{

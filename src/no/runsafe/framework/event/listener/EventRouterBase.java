@@ -8,9 +8,12 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
 
-public abstract class EventRouter<Wrapper extends IRunsafeEvent, EventType extends Event> implements Listener
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+public abstract class EventRouterBase<Wrapper extends IRunsafeEvent, EventType extends Event> implements Listener
 {
-	protected EventRouter(IOutput output, IScheduler scheduler, Wrapper handler)
+	protected EventRouterBase(IOutput output, IScheduler scheduler, Wrapper handler)
 	{
 		this.console = output;
 		this.scheduler = scheduler;

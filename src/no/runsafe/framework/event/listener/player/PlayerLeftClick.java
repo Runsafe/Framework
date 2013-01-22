@@ -2,7 +2,7 @@ package no.runsafe.framework.event.listener.player;
 
 import no.runsafe.framework.event.EventEngine;
 import no.runsafe.framework.event.IRunsafeEvent;
-import no.runsafe.framework.event.listener.EventRouter;
+import no.runsafe.framework.event.listener.EventRouterBase;
 import no.runsafe.framework.event.listener.EventRouterFactory;
 import no.runsafe.framework.event.player.IPlayerLeftClickAirEvent;
 import no.runsafe.framework.event.player.IPlayerLeftClickBlockEvent;
@@ -15,7 +15,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-public class PlayerLeftClick extends EventRouter<IPlayerLeftClickEvent, PlayerInteractEvent>
+public class PlayerLeftClick extends EventRouterBase<IPlayerLeftClickEvent, PlayerInteractEvent>
 {
 	public PlayerLeftClick(IOutput output, IScheduler scheduler, IPlayerLeftClickEvent handler)
 	{

@@ -2,7 +2,7 @@ package no.runsafe.framework.event.listener.player;
 
 import no.runsafe.framework.event.EventEngine;
 import no.runsafe.framework.event.IRunsafeEvent;
-import no.runsafe.framework.event.listener.EventRouter;
+import no.runsafe.framework.event.listener.EventRouterBase;
 import no.runsafe.framework.event.listener.EventRouterFactory;
 import no.runsafe.framework.event.player.IPlayerRightClickSign;
 import no.runsafe.framework.output.IOutput;
@@ -17,7 +17,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 import java.util.logging.Level;
 
-public class PlayerRightClickSign extends EventRouter<IPlayerRightClickSign, PlayerInteractEvent>
+public class PlayerRightClickSign extends EventRouterBase<IPlayerRightClickSign, PlayerInteractEvent>
 {
 	public PlayerRightClickSign(IOutput output, IScheduler scheduler, IPlayerRightClickSign handler)
 	{

@@ -3,7 +3,7 @@ package no.runsafe.framework.event.listener.block;
 import no.runsafe.framework.event.EventEngine;
 import no.runsafe.framework.event.IRunsafeEvent;
 import no.runsafe.framework.event.block.IBlockPlaceEvent;
-import no.runsafe.framework.event.listener.EventRouter;
+import no.runsafe.framework.event.listener.EventRouterBase;
 import no.runsafe.framework.event.listener.EventRouterFactory;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.event.block.RunsafeBlockPlaceEvent;
@@ -14,7 +14,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 
 @SuppressWarnings("deprecation")
 @Deprecated
-public class BlockPlaceListener extends EventRouter<IBlockPlaceEvent, BlockPlaceEvent>
+public class BlockPlaceListener extends EventRouterBase<IBlockPlaceEvent, BlockPlaceEvent>
 {
 	public BlockPlaceListener(IOutput output, IScheduler scheduler, IBlockPlaceEvent handler)
 	{

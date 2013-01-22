@@ -2,7 +2,7 @@ package no.runsafe.framework.event.listener.player;
 
 import no.runsafe.framework.event.EventEngine;
 import no.runsafe.framework.event.IRunsafeEvent;
-import no.runsafe.framework.event.listener.EventRouter;
+import no.runsafe.framework.event.listener.EventRouterBase;
 import no.runsafe.framework.event.listener.EventRouterFactory;
 import no.runsafe.framework.event.player.IPlayerCommandPreprocessEvent;
 import no.runsafe.framework.output.IOutput;
@@ -12,7 +12,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
-public class PlayerCommandPreprocess extends EventRouter<IPlayerCommandPreprocessEvent, PlayerCommandPreprocessEvent>
+public class PlayerCommandPreprocess extends EventRouterBase<IPlayerCommandPreprocessEvent, PlayerCommandPreprocessEvent>
 {
 	public PlayerCommandPreprocess(IOutput output, IScheduler scheduler, IPlayerCommandPreprocessEvent handler)
 	{

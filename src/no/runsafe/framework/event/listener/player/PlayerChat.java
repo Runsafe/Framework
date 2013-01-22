@@ -2,7 +2,7 @@ package no.runsafe.framework.event.listener.player;
 
 import no.runsafe.framework.event.EventEngine;
 import no.runsafe.framework.event.IRunsafeEvent;
-import no.runsafe.framework.event.listener.EventRouter;
+import no.runsafe.framework.event.listener.EventRouterBase;
 import no.runsafe.framework.event.listener.EventRouterFactory;
 import no.runsafe.framework.event.player.IPlayerChatEvent;
 import no.runsafe.framework.output.IOutput;
@@ -12,7 +12,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-public class PlayerChat extends EventRouter<IPlayerChatEvent, AsyncPlayerChatEvent>
+public class PlayerChat extends EventRouterBase<IPlayerChatEvent, AsyncPlayerChatEvent>
 {
 	public PlayerChat(IOutput output, IScheduler scheduler, IPlayerChatEvent handler)
 	{

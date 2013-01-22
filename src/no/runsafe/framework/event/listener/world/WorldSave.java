@@ -2,7 +2,7 @@ package no.runsafe.framework.event.listener.world;
 
 import no.runsafe.framework.event.EventEngine;
 import no.runsafe.framework.event.IRunsafeEvent;
-import no.runsafe.framework.event.listener.EventRouter;
+import no.runsafe.framework.event.listener.EventRouterBase;
 import no.runsafe.framework.event.listener.EventRouterFactory;
 import no.runsafe.framework.event.world.IWorldSave;
 import no.runsafe.framework.output.IOutput;
@@ -12,7 +12,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldSaveEvent;
 
-public class WorldSave extends EventRouter<IWorldSave, WorldSaveEvent>
+public class WorldSave extends EventRouterBase<IWorldSave, WorldSaveEvent>
 {
 	public WorldSave(IOutput output, IScheduler scheduler, IWorldSave handler)
 	{

@@ -2,7 +2,7 @@ package no.runsafe.framework.event.listener.world;
 
 import no.runsafe.framework.event.EventEngine;
 import no.runsafe.framework.event.IRunsafeEvent;
-import no.runsafe.framework.event.listener.EventRouter;
+import no.runsafe.framework.event.listener.EventRouterBase;
 import no.runsafe.framework.event.listener.EventRouterFactory;
 import no.runsafe.framework.event.world.IChunkLoad;
 import no.runsafe.framework.output.IOutput;
@@ -12,7 +12,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.ChunkLoadEvent;
 
-public class ChunkLoad extends EventRouter<IChunkLoad, ChunkLoadEvent>
+public class ChunkLoad extends EventRouterBase<IChunkLoad, ChunkLoadEvent>
 {
 	public ChunkLoad(IOutput output, IScheduler scheduler, IChunkLoad handler)
 	{

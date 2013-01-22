@@ -2,7 +2,7 @@ package no.runsafe.framework.event.listener.player;
 
 import no.runsafe.framework.event.EventEngine;
 import no.runsafe.framework.event.IRunsafeEvent;
-import no.runsafe.framework.event.listener.EventRouter;
+import no.runsafe.framework.event.listener.EventRouterBase;
 import no.runsafe.framework.event.listener.EventRouterFactory;
 import no.runsafe.framework.event.player.IPlayerInteractEvent;
 import no.runsafe.framework.output.IOutput;
@@ -12,7 +12,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-public class PlayerInteract extends EventRouter<IPlayerInteractEvent, PlayerInteractEvent>
+public class PlayerInteract extends EventRouterBase<IPlayerInteractEvent, PlayerInteractEvent>
 {
 	public PlayerInteract(IOutput output, IScheduler scheduler, IPlayerInteractEvent handler)
 	{
