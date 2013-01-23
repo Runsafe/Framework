@@ -33,13 +33,14 @@ public class PlayerInteract extends EventRouterBase<IPlayerInteractEvent, Player
 		return true;
 	}
 
-	public static void Register()
+	static class Factory implements EventRouterFactory
 	{
-		EventEngine.Register(IPlayerInteractEvent.class, new Factory());
-	}
+		@Override
+		public Class<? extends IRunsafeEvent> getInterface()
+		{
+			return IPlayerInteractEvent.class;
+		}
 
-	private static class Factory implements EventRouterFactory
-	{
 		@Override
 		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{

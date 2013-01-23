@@ -58,13 +58,14 @@ public class PlayerRightClickSign extends EventRouterBase<IPlayerRightClickSign,
 			);
 	}
 
-	public static void Register()
+	static class Factory implements EventRouterFactory
 	{
-		EventEngine.Register(IPlayerRightClickSign.class, new Factory());
-	}
+		@Override
+		public Class<? extends IRunsafeEvent> getInterface()
+		{
+			return IPlayerRightClickSign.class;
+		}
 
-	private static class Factory implements EventRouterFactory
-	{
 		@Override
 		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{

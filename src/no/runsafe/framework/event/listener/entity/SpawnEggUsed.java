@@ -36,13 +36,14 @@ public class SpawnEggUsed extends EventRouterBase<ISpawnEggUsed, CreatureSpawnEv
 		);
 	}
 
-	public static void Register()
+	static class Factory implements EventRouterFactory
 	{
-		EventEngine.Register(ISpawnEggUsed.class, new Factory());
-	}
+		@Override
+		public Class<? extends IRunsafeEvent> getInterface()
+		{
+			return ISpawnEggUsed.class;
+		}
 
-	private static class Factory implements EventRouterFactory
-	{
 		@Override
 		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{

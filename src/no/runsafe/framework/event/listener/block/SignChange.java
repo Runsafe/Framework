@@ -1,6 +1,5 @@
 package no.runsafe.framework.event.listener.block;
 
-import no.runsafe.framework.event.EventEngine;
 import no.runsafe.framework.event.IRunsafeEvent;
 import no.runsafe.framework.event.block.ISignChange;
 import no.runsafe.framework.event.listener.EventRouterBase;
@@ -36,13 +35,14 @@ public class SignChange extends EventRouterBase<ISignChange, SignChangeEvent>
 		);
 	}
 
-	public static void Register()
+	static class Factory implements EventRouterFactory
 	{
-		EventEngine.Register(ISignChange.class, new Factory());
-	}
+		@Override
+		public Class<? extends IRunsafeEvent> getInterface()
+		{
+			return ISignChange.class;
+		}
 
-	private static class Factory implements EventRouterFactory
-	{
 		@Override
 		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{

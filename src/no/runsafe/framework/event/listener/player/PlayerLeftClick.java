@@ -44,13 +44,14 @@ public class PlayerLeftClick extends EventRouterBase<IPlayerLeftClickEvent, Play
 		return true;
 	}
 
-	public static void Register()
+	static class Factory implements EventRouterFactory
 	{
-		EventEngine.Register(IPlayerLeftClickEvent.class, new Factory());
-	}
+		@Override
+		public Class<? extends IRunsafeEvent> getInterface()
+		{
+			return IPlayerLeftClickEvent.class;
+		}
 
-	private static class Factory implements EventRouterFactory
-	{
 		@Override
 		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{

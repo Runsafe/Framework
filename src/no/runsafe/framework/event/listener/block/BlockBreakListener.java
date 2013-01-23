@@ -1,6 +1,5 @@
 package no.runsafe.framework.event.listener.block;
 
-import no.runsafe.framework.event.EventEngine;
 import no.runsafe.framework.event.IRunsafeEvent;
 import no.runsafe.framework.event.block.IBlockBreakEvent;
 import no.runsafe.framework.event.listener.EventRouterBase;
@@ -35,13 +34,14 @@ public class BlockBreakListener extends EventRouterBase<IBlockBreakEvent, BlockB
 		return true;
 	}
 
-	public static void Register()
+	static class Factory implements EventRouterFactory
 	{
-		EventEngine.Register(IBlockBreakEvent.class, new Factory());
-	}
+		@Override
+		public Class<? extends IRunsafeEvent> getInterface()
+		{
+			return IBlockBreakEvent.class;
+		}
 
-	private static class Factory implements EventRouterFactory
-	{
 		@Override
 		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{

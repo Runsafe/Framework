@@ -35,14 +35,14 @@ public class BlockPlace extends EventRouterBase<IBlockPlace, BlockPlaceEvent>
 		);
 	}
 
-
-	public static void Register()
+	static class Factory implements EventRouterFactory
 	{
-		EventEngine.Register(IBlockPlace.class, new Factory());
-	}
+		@Override
+		public Class<? extends IRunsafeEvent> getInterface()
+		{
+			return IBlockPlace.class;
+		}
 
-	private static class Factory implements EventRouterFactory
-	{
 		@Override
 		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{

@@ -35,12 +35,6 @@ public class EventEngine
 		return listeners;
 	}
 
-	public static void Register(Class<? extends IRunsafeEvent> type, EventRouterFactory factory)
-	{
-		if (!factories.containsKey(type))
-			factories.put(type, factory);
-	}
-
 	private List<Listener> getRouters(IRunsafeEvent subscriber)
 	{
 		ArrayList<Listener> routers = new ArrayList<Listener>();
@@ -55,4 +49,17 @@ public class EventEngine
 	private final List<IRunsafeEvent> eventSubscribers;
 	private final IScheduler scheduler;
 	private final IOutput output;
+
+	public static void Register(Class<? extends EventRouterFactory> factoryClass)
+	{
+		try
+		{
+			EventRouterFactory factory = factoryClass.getConstructor().newInstance();
+			if (!factories.containsKey(factory.getInterface()))
+				factories.put(factory.getInterface(), factory);
+		}
+		catch (Exception e)
+		{
+		}
+	}
 }

@@ -1,26 +1,28 @@
 package no.runsafe.framework.event.listener.player;
 
+import no.runsafe.framework.event.EventEngine;
+
 public final class Registration
 {
 	public static void Run()
 	{
-		PlayerChangedWorld.Register();
-		PlayerChat.Register();
-		PlayerCommandPreprocess.Register();
-		PlayerDeath.Register();
-		PlayerDropItem.Register();
-		PlayerInteract.Register();
-		PlayerInteractEntity.Register();
-		PlayerJoin.Register();
-		PlayerKick.Register();
-		PlayerLeftClick.Register();
-		PlayerLogin.Register();
-		PlayerMove.Register();
-		PlayerPreLogin.Register();
-		PlayerQuit.Register();
-		PlayerRightClick.Register();
-		PlayerRightClickListener.Register();
-		PlayerRightClickSign.Register();
-		PlayerTeleport.Register();
+		EventEngine.Register(PlayerChangedWorld.Factory.class);
+		EventEngine.Register(PlayerChat.Factory.class);
+		EventEngine.Register(PlayerCommandPreprocess.Factory.class);
+		EventEngine.Register(PlayerDeath.Factory.class);
+		EventEngine.Register(PlayerDropItem.Factory.class);
+		EventEngine.Register(PlayerInteract.Factory.class);
+		EventEngine.Register(PlayerInteractEntity.Factory.class);
+		EventEngine.Register(PlayerJoin.Factory.class);
+		EventEngine.Register(PlayerKick.Factory.class);
+		EventEngine.Register(PlayerLeftClick.Factory.class);
+		EventEngine.Register(PlayerLogin.Factory.class);
+		EventEngine.Register(PlayerMove.Factory.class);
+		EventEngine.Register(PlayerPreLogin.Factory.class);
+		EventEngine.Register(PlayerQuit.Factory.class);
+		EventEngine.Register(PlayerRightClick.Factory.class);
+		EventEngine.Register(PlayerRightClickListener.Factory.class);
+		EventEngine.Register(PlayerRightClickSign.Factory.class);
+		EventEngine.Register(PlayerTeleport.Factory.class);
 	}
 }

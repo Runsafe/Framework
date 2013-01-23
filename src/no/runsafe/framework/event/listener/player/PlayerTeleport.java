@@ -33,13 +33,14 @@ public class PlayerTeleport extends EventRouterBase<IPlayerTeleportEvent, Player
 		return true;
 	}
 
-	public static void Register()
+	static class Factory implements EventRouterFactory
 	{
-		EventEngine.Register(IPlayerTeleportEvent.class, new Factory());
-	}
+		@Override
+		public Class<? extends IRunsafeEvent> getInterface()
+		{
+			return IPlayerTeleportEvent.class;
+		}
 
-	private static class Factory implements EventRouterFactory
-	{
 		@Override
 		public Listener getListener (IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
