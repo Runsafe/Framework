@@ -66,6 +66,39 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		return null;
 	}
 
+	/**
+	 * Get the first implementation of a given API from any plugin
+	 * @param apiType The interface specification needed
+	 * @return The first available implementation of the interface
+	 */
+	public static Class<?> getFirstPluginAPI(Class<?> apiType)
+	{
+		for (RunsafePlugin plugin : Instances.values())
+		{
+			Class<?> instance = (Class<?>) plugin.getComponent(apiType);
+			if (instance != null)
+				return instance;
+		}
+		return null;
+	}
+
+	/**
+	 * Get all implementations of a given API from all plugins
+	 * @param apiType The interface specification needed
+	 * @return The first available implementation of the interface
+	 */
+	public static List<Class<?>> getPluginAPI(Class<?> apiType)
+	{
+		List results = new ArrayList<Class<?>>();
+		for (RunsafePlugin plugin : Instances.values())
+		{
+			List<?> instance = plugin.getComponents(apiType);
+			if (instance != null)
+				results.addAll(instance);
+		}
+		return results;
+	}
+
 	@Override
 	public void onEnable()
 	{
