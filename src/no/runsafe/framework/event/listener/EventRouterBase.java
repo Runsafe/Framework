@@ -18,8 +18,11 @@ public abstract class EventRouterBase<Wrapper extends IRunsafeEvent, EventType e
 		this.isAsync = (handler instanceof IAsyncEvent);
 	}
 
-	// Sadly, this method must be added to all implementing classes, but all you have to do, is call this one.
-	// Don't forget to add @EventHandler - Java does not support annotations on base classes :(
+	/**
+	 * Sadly, this method must be added to all implementing classes, but all you have to do, is call this one.
+	 * Don't forget to add @EventHandler - Java does not support annotations on base classes :(
+	 * @param event The raw event object coming from bukkit
+	 */
 	public void AcceptEvent(EventType event)
 	{
 		if (isAsync)
