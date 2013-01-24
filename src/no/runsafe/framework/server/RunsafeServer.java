@@ -1,13 +1,13 @@
 package no.runsafe.framework.server;
 
 import no.runsafe.framework.hook.IPlayerLookupService;
-import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.player.RunsafeAmbiguousPlayer;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 
 import java.io.File;
 import java.util.*;
@@ -359,6 +359,14 @@ public class RunsafeServer
 			if (player.hasPermission(permission))
 				results.add(ObjectWrapper.convert(player));
 		return results;
+	}
+
+	public <T extends Plugin> T getPlugin(String pluginName)
+	{
+		Plugin plugin = server.getPluginManager().getPlugin(pluginName);
+		if (plugin == null)
+			return null;
+		return (T) plugin;
 	}
 
 	public static final ArrayList<IPlayerLookupService> lookupHooks = new ArrayList<IPlayerLookupService>();
