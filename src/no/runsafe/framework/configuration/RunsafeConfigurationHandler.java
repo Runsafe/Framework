@@ -1,10 +1,6 @@
 package no.runsafe.framework.configuration;
 
 import no.runsafe.framework.event.IConfigurationChanged;
-import no.runsafe.framework.messaging.IMessageBusService;
-import no.runsafe.framework.messaging.Message;
-import no.runsafe.framework.messaging.MessageBusStatus;
-import no.runsafe.framework.messaging.Response;
 import no.runsafe.framework.output.IOutput;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -19,7 +15,7 @@ import java.util.Map;
 import java.util.logging.Level;
 
 
-public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusService
+public class RunsafeConfigurationHandler implements IConfiguration
 {
 	private String configFilePath;
 	private IConfigurationFile configurationFile;
@@ -241,22 +237,6 @@ public class RunsafeConfigurationHandler implements IConfiguration, IMessageBusS
 		{
 			this.pluginOutput.outputToConsole(message, level);
 		}
-	}
-
-	@Override
-	public String getServiceName()
-	{
-		return "Configuration";
-	}
-
-	@Override
-	public Response processMessage(Message message)
-	{
-		load();
-		return new Response()
-		{{
-				setStatus(MessageBusStatus.OK);
-			}};
 	}
 
 	@Override
