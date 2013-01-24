@@ -3,6 +3,7 @@ package no.runsafe.framework.plugin;
 import org.bukkit.Server;
 import org.bukkit.plugin.Plugin;
 
+@Deprecated
 public class PluginResolver
 {
 	public PluginResolver(Server server)
