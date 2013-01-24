@@ -49,6 +49,7 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 
 	public String getPrettyName()
 	{
+		List<IPlayerNameDecorator> decoratorHooks = HookEngine.hookContainer.getComponents(IPlayerNameDecorator.class);
 		String name = getName();
 		if (!decoratorHooks.isEmpty())
 			for (IPlayerNameDecorator decorator : decoratorHooks)
@@ -232,6 +233,7 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 
 	public HashMap<String, String> getData()
 	{
+		List<IPlayerDataProvider> dataHooks = HookEngine.hookContainer.getComponents(IPlayerDataProvider.class);
 		HashMap<String, String> results = getBasicData();
 		for (IPlayerDataProvider provider : dataHooks)
 		{
@@ -265,6 +267,7 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 
 	public DateTime lastLogout()
 	{
+		List<IPlayerDataProvider> dataHooks = HookEngine.hookContainer.getComponents(IPlayerDataProvider.class);
 		if (this.isOnline() || dataHooks.isEmpty())
 			return null;
 		DateTime logout = null;
@@ -279,6 +282,7 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 
 	public String getBanReason()
 	{
+		List<IPlayerDataProvider> dataHooks = HookEngine.hookContainer.getComponents(IPlayerDataProvider.class);
 		if (!this.isBanned() || dataHooks.isEmpty())
 			return null;
 		for (IPlayerDataProvider provider : dataHooks)
@@ -300,6 +304,7 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 
 	public boolean canSee(RunsafePlayer target)
 	{
+		List<IPlayerVisibility> visibilityHooks = HookEngine.hookContainer.getComponents(IPlayerVisibility.class);
 		if (visibilityHooks.isEmpty())
 			return true;
 		for (IPlayerVisibility check : visibilityHooks)
@@ -310,6 +315,7 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 
 	public boolean isVanished()
 	{
+		List<IPlayerVisibility> visibilityHooks = HookEngine.hookContainer.getComponents(IPlayerVisibility.class);
 		if (visibilityHooks.isEmpty())
 			return false;
 		for (IPlayerVisibility check : visibilityHooks)
@@ -320,6 +326,7 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 
 	public boolean isPvPFlagged()
 	{
+		List<IPlayerPvPFlag> pvpFlagHooks = HookEngine.hookContainer.getComponents(IPlayerPvPFlag.class);
 		if (pvpFlagHooks.isEmpty())
 			return true;
 		for (IPlayerPvPFlag hook : pvpFlagHooks)
@@ -331,7 +338,7 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 	public List<String> getGroups()
 	{
 		ArrayList<String> result = new ArrayList<String>();
-		for (IPlayerPermissions hook : permissionHooks)
+		for (IPlayerPermissions hook : HookEngine.hookContainer.getComponents(IPlayerPermissions.class))
 		{
 			List<String> groups = hook.getUserGroups(this);
 			if (groups != null)
@@ -344,6 +351,8 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 
 	public boolean canBuildNow()
 	{
+		List<IPlayerBuildPermission> buildPermissionHooks =
+			HookEngine.hookContainer.getComponents(IPlayerBuildPermission.class);
 		if (buildPermissionHooks.isEmpty())
 			return true;
 		for (IPlayerBuildPermission check : buildPermissionHooks)
@@ -352,12 +361,6 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 		return true;
 	}
 
-	public static final ArrayList<IPlayerDataProvider> dataHooks = new ArrayList<IPlayerDataProvider>();
-	public static final ArrayList<IPlayerVisibility> visibilityHooks = new ArrayList<IPlayerVisibility>();
-	public static final ArrayList<IPlayerPermissions> permissionHooks = new ArrayList<IPlayerPermissions>();
-	public static final ArrayList<IPlayerNameDecorator> decoratorHooks = new ArrayList<IPlayerNameDecorator>();
-	public static final ArrayList<IPlayerBuildPermission> buildPermissionHooks = new ArrayList<IPlayerBuildPermission>();
-	public static final ArrayList<IPlayerPvPFlag> pvpFlagHooks = new ArrayList<IPlayerPvPFlag>();
 	private final Player player;
 	private final OfflinePlayer basePlayer;
 }

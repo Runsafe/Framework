@@ -23,6 +23,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.picocontainer.DefaultPicoContainer;
 import org.picocontainer.behaviors.Caching;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,6 +32,24 @@ import java.util.logging.Level;
 
 public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 {
+	static
+	{
+		if (new File("runsafe/global.yml").exists())
+		{
+			try
+			{
+				YamlConfiguration global = new YamlConfiguration();
+				global.load("runsafe/global.yml");
+				String debug = (String) global.get("debug");
+				if (debug != null)
+					debugLevel = Level.parse(debug);
+			}
+			catch (Exception e)
+			{
+			}
+		}
+	}
+
 	public static final HashMap<String, RunsafePlugin> Instances = new HashMap<String, RunsafePlugin>();
 
 	public static ICommandHandler getPluginCommand(String name)
@@ -102,24 +121,6 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		console.fine("Plugin version logged.");
 	}
 
-	private void addFrameworkHooks()
-	{
-		addFrameworkHooks(IPlayerDataProvider.class, RunsafePlayer.dataHooks);
-		addFrameworkHooks(IPlayerVisibility.class, RunsafePlayer.visibilityHooks);
-		addFrameworkHooks(IPlayerPermissions.class, RunsafePlayer.permissionHooks);
-		addFrameworkHooks(IPlayerLookupService.class, RunsafeServer.lookupHooks);
-		addFrameworkHooks(IPlayerNameDecorator.class, RunsafePlayer.decoratorHooks);
-		addFrameworkHooks(IPlayerBuildPermission.class, RunsafePlayer.buildPermissionHooks);
-		addFrameworkHooks(IPlayerPvPFlag.class, RunsafePlayer.pvpFlagHooks);
-	}
-
-	private <T extends FrameworkHook> void addFrameworkHooks(Class<T> hook, List<T> storage)
-	{
-		List<T> hooks = getComponents(hook);
-		if (hooks != null)
-			storage.addAll(hooks);
-	}
-
 	@Override
 	public void onDisable()
 	{
@@ -159,6 +160,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 	@Override
 	public <T> List<T> getComponents(Class<T> type)
 	{
+		output.fine("Got request for all instances of %s", type.getCanonicalName());
 		return this.container.getComponents(type);
 	}
 
@@ -219,18 +221,6 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		return handlers;
 	}
 
-//	protected List<BukkitCommandExecutor> GetCommands()
-//	{
-//		ICommandExecutor console = new RunsafeConsole(output);
-//		ArrayList<BukkitCommandExecutor> handlers = new ArrayList<BukkitCommandExecutor>();
-//		for (ICommandHandler command : getComponents(ICommandHandler.class))
-//		{
-//			command.setConsole(getComponent(IOutput.class));
-//			handlers.add(new BukkitCommandExecutor(command, console));
-//		}
-//		return handlers;
-//	}
-
 	protected abstract void PluginSetup();
 
 	private void initializePlugin()
@@ -244,11 +234,10 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		addStandardComponents();
 
 		output = getComponent(IOutput.class);
+		if (debugLevel != null)
+			output.setDebugLevel(debugLevel);
 		output.fine("Standard components added.");
 		output.outputDebugToConsole("Wiring up plugin", Level.FINE);
-
-		addFrameworkHooks();
-		output.fine("Plugin framework hooks added.");
 
 		this.PluginSetup();
 		output.fine("Plugin setup performed.");
@@ -272,6 +261,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		this.container.addComponent(SchemaUpdater.class);
 		this.container.addComponent(EventEngine.class);
 		this.container.addComponent(CommandEngine.class);
+		this.container.addComponent(HookEngine.class);
 	}
 
 	private void logPluginVersion()
@@ -300,20 +290,9 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 				command.setExecutor(handler);
 			}
 		}
-//		for (BukkitCommandExecutor executor : this.GetCommands())
-//		{
-//			PluginCommand command = getCommand(executor.getName());
-//
-//			if (command == null)
-//				output.outputToConsole(String.format("Command not found: %s - does it exist in plugin.yml?", executor.getName()));
-//			else
-//			{
-//				output.fine(String.format("Command handler for %s registered with bukkit.", executor.getName()));
-//				command.setExecutor(executor);
-//			}
-//		}
 	}
 
 	protected DefaultPicoContainer container = null;
 	private IOutput output;
+	private static Level debugLevel = null;
 }

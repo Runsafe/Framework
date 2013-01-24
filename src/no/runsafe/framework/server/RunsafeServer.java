@@ -1,5 +1,6 @@
 package no.runsafe.framework.server;
 
+import no.runsafe.framework.hook.HookEngine;
 import no.runsafe.framework.hook.IPlayerLookupService;
 import no.runsafe.framework.server.player.RunsafeAmbiguousPlayer;
 import no.runsafe.framework.server.player.RunsafePlayer;
@@ -114,7 +115,7 @@ public class RunsafeServer
 	public RunsafePlayer getPlayer(String playerName)
 	{
 		ArrayList<String> hits = new ArrayList<String>();
-		for (IPlayerLookupService lookup : lookupHooks)
+		for (IPlayerLookupService lookup : HookEngine.hookContainer.getComponents(IPlayerLookupService.class))
 			for (String hit : lookup.findPlayer(playerName))
 				if (!hits.contains(hit))
 					hits.add(hit);
@@ -369,7 +370,6 @@ public class RunsafeServer
 		return (T) plugin;
 	}
 
-	public static final ArrayList<IPlayerLookupService> lookupHooks = new ArrayList<IPlayerLookupService>();
 	private final ConcurrentHashMap<String, RunsafePlayer> kickingPlayer = new ConcurrentHashMap<String, RunsafePlayer>();
 	private final Server server;
 }
