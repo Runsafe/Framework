@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Deprecated
 public class PlayerStatus
 {
 	public PlayerStatus(IMessagePump pump)

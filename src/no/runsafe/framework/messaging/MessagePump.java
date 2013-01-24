@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+@Deprecated
 public class MessagePump implements IMessagePump {
 	public static IMessagePump GetPump() {
 		Plugin pump = RunsafePlugin.Instances.get("RunsafeServices");

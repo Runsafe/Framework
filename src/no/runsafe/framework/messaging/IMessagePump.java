@@ -2,6 +2,7 @@ package no.runsafe.framework.messaging;
 
 import java.util.List;
 
+@Deprecated
 public interface IMessagePump
 {
 	public void RegisterService(IMessageBusService service);

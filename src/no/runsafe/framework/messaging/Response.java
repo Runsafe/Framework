@@ -1,5 +1,6 @@
 package no.runsafe.framework.messaging;
 
+@Deprecated
 public class Response
 {
 	public String getSourceService()

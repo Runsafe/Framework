@@ -2,6 +2,7 @@ package no.runsafe.framework.messaging;
 
 import no.runsafe.framework.server.player.RunsafePlayer;
 
+@Deprecated
 public class Message
 {
 	public String getTargetService()

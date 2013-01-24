@@ -1,6 +1,8 @@
 package no.runsafe.framework.messaging;
 
-public interface IMessageBusService {
+@Deprecated
+public interface IMessageBusService
+{
 	String getServiceName();
 
 	Response processMessage(Message message);
