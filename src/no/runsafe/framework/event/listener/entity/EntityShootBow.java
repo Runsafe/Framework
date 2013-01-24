@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
 
-public class EntityShootBow extends EventRouterBase<IEntityShootBowEvent, EntityShootBowEvent>
+public final class EntityShootBow extends EventRouterBase<IEntityShootBowEvent, EntityShootBowEvent>
 {
 	public EntityShootBow(IOutput output, IScheduler scheduler, IEntityShootBowEvent handler)
 	{
@@ -32,7 +32,7 @@ public class EntityShootBow extends EventRouterBase<IEntityShootBowEvent, Entity
 		return true;
 	}
 
-	static class Factory implements EventRouterFactory
+	final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

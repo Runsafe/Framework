@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
-public class PlayerTeleport extends EventRouterBase<IPlayerTeleportEvent, PlayerTeleportEvent>
+public final class PlayerTeleport extends EventRouterBase<IPlayerTeleportEvent, PlayerTeleportEvent>
 {
 	public PlayerTeleport(IOutput output, IScheduler scheduler, IPlayerTeleportEvent handler)
 	{
@@ -32,7 +32,7 @@ public class PlayerTeleport extends EventRouterBase<IPlayerTeleportEvent, Player
 		return true;
 	}
 
-	static class Factory implements EventRouterFactory
+	final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

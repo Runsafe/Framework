@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldInitEvent;
 
-public class WorldInit extends EventRouterBase<IWorldInit, WorldInitEvent>
+public final class WorldInit extends EventRouterBase<IWorldInit, WorldInitEvent>
 {
 	public WorldInit(IOutput output, IScheduler scheduler, IWorldInit handler)
 	{
@@ -32,7 +32,7 @@ public class WorldInit extends EventRouterBase<IWorldInit, WorldInitEvent>
 		return true;
 	}
 
-	static class Factory implements EventRouterFactory
+	final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

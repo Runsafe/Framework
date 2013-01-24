@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-public class PlayerJoin extends EventRouterBase<IPlayerJoinEvent, PlayerJoinEvent>
+public final class PlayerJoin extends EventRouterBase<IPlayerJoinEvent, PlayerJoinEvent>
 {
 	public PlayerJoin(IOutput output, IScheduler scheduler, IPlayerJoinEvent subscriber)
 	{
@@ -33,7 +33,7 @@ public class PlayerJoin extends EventRouterBase<IPlayerJoinEvent, PlayerJoinEven
 		return true;
 	}
 
-	static class Factory implements EventRouterFactory
+	final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

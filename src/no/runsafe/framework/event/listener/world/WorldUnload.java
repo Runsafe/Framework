@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldUnloadEvent;
 
-public class WorldUnload extends EventRouterBase<IWorldUnload, WorldUnloadEvent>
+public final class WorldUnload extends EventRouterBase<IWorldUnload, WorldUnloadEvent>
 {
 	public WorldUnload(IOutput output, IScheduler scheduler, IWorldUnload handler)
 	{
@@ -32,7 +32,7 @@ public class WorldUnload extends EventRouterBase<IWorldUnload, WorldUnloadEvent>
 		return true;
 	}
 
-	static class Factory implements EventRouterFactory
+	final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

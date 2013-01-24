@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockDispenseEvent;
 
-public class BlockDispense extends EventRouterBase<IBlockDispense, BlockDispenseEvent>
+public final class BlockDispense extends EventRouterBase<IBlockDispense, BlockDispenseEvent>
 {
 	public BlockDispense(IOutput output, IScheduler scheduler, IBlockDispense handler)
 	{
@@ -34,7 +34,7 @@ public class BlockDispense extends EventRouterBase<IBlockDispense, BlockDispense
 		);
 	}
 
-	static class Factory implements EventRouterFactory
+	final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

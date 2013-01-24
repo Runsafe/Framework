@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-public class PlayerChat extends EventRouterBase<IPlayerChatEvent, AsyncPlayerChatEvent>
+public final class PlayerChat extends EventRouterBase<IPlayerChatEvent, AsyncPlayerChatEvent>
 {
 	public PlayerChat(IOutput output, IScheduler scheduler, IPlayerChatEvent handler)
 	{
@@ -33,7 +33,7 @@ public class PlayerChat extends EventRouterBase<IPlayerChatEvent, AsyncPlayerCha
 		return true;
 	}
 
-	static class Factory implements EventRouterFactory
+	final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

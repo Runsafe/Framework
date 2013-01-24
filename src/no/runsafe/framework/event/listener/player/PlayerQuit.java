@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-public class PlayerQuit extends EventRouterBase<IPlayerQuitEvent, PlayerQuitEvent>
+public final class PlayerQuit extends EventRouterBase<IPlayerQuitEvent, PlayerQuitEvent>
 {
 	public PlayerQuit(IOutput output, IScheduler scheduler, IPlayerQuitEvent handler)
 	{
@@ -32,7 +32,7 @@ public class PlayerQuit extends EventRouterBase<IPlayerQuitEvent, PlayerQuitEven
 		return true;
 	}
 
-	static class Factory implements EventRouterFactory
+	final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

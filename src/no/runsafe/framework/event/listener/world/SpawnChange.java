@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.SpawnChangeEvent;
 
-public class SpawnChange extends EventRouterBase<ISpawnChange, SpawnChangeEvent>
+public final class SpawnChange extends EventRouterBase<ISpawnChange, SpawnChangeEvent>
 {
 	public SpawnChange(IOutput output, IScheduler scheduler, ISpawnChange handler)
 	{
@@ -35,7 +35,7 @@ public class SpawnChange extends EventRouterBase<ISpawnChange, SpawnChangeEvent>
 		return true;
 	}
 
-	static class Factory implements EventRouterFactory
+	final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

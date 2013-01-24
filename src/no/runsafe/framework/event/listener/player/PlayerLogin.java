@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
 
-public class PlayerLogin extends EventRouterBase<IPlayerLoginEvent, PlayerLoginEvent>
+public final class PlayerLogin extends EventRouterBase<IPlayerLoginEvent, PlayerLoginEvent>
 {
 	public PlayerLogin(IOutput output, IScheduler scheduler, IPlayerLoginEvent handler)
 	{
@@ -32,7 +32,7 @@ public class PlayerLogin extends EventRouterBase<IPlayerLoginEvent, PlayerLoginE
 		return true;
 	}
 
-	static class Factory implements EventRouterFactory
+	final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

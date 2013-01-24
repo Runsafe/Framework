@@ -10,7 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockRedstoneEvent;
 
-public class BlockRedstone extends EventRouterBase<IBlockRedstone, BlockRedstoneEvent>
+public final class BlockRedstone extends EventRouterBase<IBlockRedstone, BlockRedstoneEvent>
 {
 	public BlockRedstone(IOutput output, IScheduler scheduler, IBlockRedstone handler)
 	{
@@ -33,7 +33,7 @@ public class BlockRedstone extends EventRouterBase<IBlockRedstone, BlockRedstone
 		return true;
 	}
 
-	static class Factory implements EventRouterFactory
+	final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

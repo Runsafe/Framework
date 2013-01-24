@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerKickEvent;
 
-public class PlayerKick extends EventRouterBase<IPlayerKickEvent, PlayerKickEvent>
+public final class PlayerKick extends EventRouterBase<IPlayerKickEvent, PlayerKickEvent>
 {
 	public PlayerKick(IOutput output, IScheduler scheduler, IPlayerKickEvent handler)
 	{
@@ -32,7 +32,7 @@ public class PlayerKick extends EventRouterBase<IPlayerKickEvent, PlayerKickEven
 		return true;
 	}
 
-	static class Factory implements EventRouterFactory
+	final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

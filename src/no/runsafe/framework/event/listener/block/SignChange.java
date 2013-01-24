@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.SignChangeEvent;
 
-public class SignChange extends EventRouterBase<ISignChange, SignChangeEvent>
+public final class SignChange extends EventRouterBase<ISignChange, SignChangeEvent>
 {
 	public SignChange(IOutput output, IScheduler scheduler, ISignChange handler)
 	{
@@ -35,7 +35,7 @@ public class SignChange extends EventRouterBase<ISignChange, SignChangeEvent>
 		);
 	}
 
-	static class Factory implements EventRouterFactory
+	final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

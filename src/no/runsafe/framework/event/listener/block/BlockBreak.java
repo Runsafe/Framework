@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
-public class BlockBreak extends EventRouterBase<IBlockBreak, BlockBreakEvent>
+public final class BlockBreak extends EventRouterBase<IBlockBreak, BlockBreakEvent>
 {
 	protected BlockBreak(IOutput output, IScheduler scheduler, IBlockBreak handler)
 	{
@@ -34,7 +34,7 @@ public class BlockBreak extends EventRouterBase<IBlockBreak, BlockBreakEvent>
 		);
 	}
 
-	static class Factory implements EventRouterFactory
+	final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-public class PlayerMove extends EventRouterBase<IPlayerMove, PlayerMoveEvent>
+public final class PlayerMove extends EventRouterBase<IPlayerMove, PlayerMoveEvent>
 {
 	public PlayerMove(IOutput output, IScheduler scheduler, IPlayerMove handler)
 	{
@@ -31,7 +31,7 @@ public class PlayerMove extends EventRouterBase<IPlayerMove, PlayerMoveEvent>
 		return handler.OnPlayerMove(ObjectWrapper.convert(event.getPlayer()), ObjectWrapper.convert(event.getFrom()), ObjectWrapper.convert(event.getTo()));
 	}
 
-	static class Factory implements EventRouterFactory
+	final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

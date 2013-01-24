@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.ChunkPopulateEvent;
 
-public class ChunkPopulate extends EventRouterBase<IChunkPopulate, ChunkPopulateEvent>
+public final class ChunkPopulate extends EventRouterBase<IChunkPopulate, ChunkPopulateEvent>
 {
 	public ChunkPopulate(IOutput output, IScheduler scheduler, IChunkPopulate handler)
 	{
@@ -32,7 +32,7 @@ public class ChunkPopulate extends EventRouterBase<IChunkPopulate, ChunkPopulate
 		return true;
 	}
 
-	static class Factory implements EventRouterFactory
+	final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

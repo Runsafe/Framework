@@ -13,7 +13,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 
 @SuppressWarnings("deprecation")
 @Deprecated
-public class BlockBreakListener extends EventRouterBase<IBlockBreakEvent, BlockBreakEvent>
+public final class BlockBreakListener extends EventRouterBase<IBlockBreakEvent, BlockBreakEvent>
 {
 	public BlockBreakListener(IOutput output, IScheduler scheduler, IBlockBreakEvent handler)
 	{
@@ -34,7 +34,7 @@ public class BlockBreakListener extends EventRouterBase<IBlockBreakEvent, BlockB
 		return true;
 	}
 
-	static class Factory implements EventRouterFactory
+	final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

@@ -16,7 +16,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 import java.util.logging.Level;
 
-public class PlayerRightClickSign extends EventRouterBase<IPlayerRightClickSign, PlayerInteractEvent>
+public final class PlayerRightClickSign extends EventRouterBase<IPlayerRightClickSign, PlayerInteractEvent>
 {
 	public PlayerRightClickSign(IOutput output, IScheduler scheduler, IPlayerRightClickSign handler)
 	{
@@ -57,7 +57,7 @@ public class PlayerRightClickSign extends EventRouterBase<IPlayerRightClickSign,
 			);
 	}
 
-	static class Factory implements EventRouterFactory
+	final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

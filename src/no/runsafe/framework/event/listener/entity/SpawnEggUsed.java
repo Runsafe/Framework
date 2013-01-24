@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 
-public class SpawnEggUsed extends EventRouterBase<ISpawnEggUsed, CreatureSpawnEvent>
+public final class SpawnEggUsed extends EventRouterBase<ISpawnEggUsed, CreatureSpawnEvent>
 {
 	public SpawnEggUsed(IOutput output, IScheduler scheduler, ISpawnEggUsed handler)
 	{
@@ -35,7 +35,7 @@ public class SpawnEggUsed extends EventRouterBase<ISpawnEggUsed, CreatureSpawnEv
 		);
 	}
 
-	static class Factory implements EventRouterFactory
+	final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

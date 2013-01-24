@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
-public class PlayerDeath extends EventRouterBase<IPlayerDeathEvent, PlayerDeathEvent>
+public final class PlayerDeath extends EventRouterBase<IPlayerDeathEvent, PlayerDeathEvent>
 {
 	public PlayerDeath(IOutput output, IScheduler scheduler, IPlayerDeathEvent handler)
 	{
@@ -32,7 +32,7 @@ public class PlayerDeath extends EventRouterBase<IPlayerDeathEvent, PlayerDeathE
 		return true;
 	}
 
-	static class Factory implements EventRouterFactory
+	final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

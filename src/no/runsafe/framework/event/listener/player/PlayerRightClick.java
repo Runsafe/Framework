@@ -14,7 +14,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-public class PlayerRightClick extends EventRouterBase<IPlayerRightClick, PlayerInteractEvent>
+public final class PlayerRightClick extends EventRouterBase<IPlayerRightClick, PlayerInteractEvent>
 {
 	public PlayerRightClick(IOutput output, IScheduler scheduler, IPlayerRightClick handler)
 	{
@@ -48,7 +48,7 @@ public class PlayerRightClick extends EventRouterBase<IPlayerRightClick, PlayerI
 			);
 	}
 
-	static class Factory implements EventRouterFactory
+	final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

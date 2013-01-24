@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
 
-public class PlayerDropItem extends EventRouterBase<IPlayerDropItemEvent, PlayerDropItemEvent>
+public final class PlayerDropItem extends EventRouterBase<IPlayerDropItemEvent, PlayerDropItemEvent>
 {
 	public PlayerDropItem(IOutput output, IScheduler scheduler, IPlayerDropItemEvent handler)
 	{
@@ -32,7 +32,7 @@ public class PlayerDropItem extends EventRouterBase<IPlayerDropItemEvent, Player
 		return true;
 	}
 
-	static class Factory implements EventRouterFactory
+	final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()
