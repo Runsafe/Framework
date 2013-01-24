@@ -21,7 +21,6 @@ public final class Factories
 		EventEngine.Register(PlayerPreLogin.Factory.class);
 		EventEngine.Register(PlayerQuit.Factory.class);
 		EventEngine.Register(PlayerRightClick.Factory.class);
-		EventEngine.Register(PlayerRightClickListener.Factory.class);
 		EventEngine.Register(PlayerRightClickSign.Factory.class);
 		EventEngine.Register(PlayerTeleport.Factory.class);
 	}
