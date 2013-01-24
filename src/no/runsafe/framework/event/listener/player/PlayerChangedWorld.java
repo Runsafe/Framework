@@ -32,18 +32,21 @@ public final class PlayerChangedWorld extends EventRouterBase<IPlayerChangedWorl
 		return true;
 	}
 
-	public static class Factory implements EventRouterFactory
+	public static EventRouterFactory Factory()
 	{
-		@Override
-		public Class<? extends IRunsafeEvent> getInterface()
+		return new EventRouterFactory()
 		{
-			return IPlayerChangedWorldEvent.class;
-		}
+			@Override
+			public Class<? extends IRunsafeEvent> getInterface()
+			{
+				return IPlayerChangedWorldEvent.class;
+			}
 
-		@Override
-		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-		{
-			return new PlayerChangedWorld(output, scheduler, (IPlayerChangedWorldEvent) subscriber);
-		}
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new PlayerChangedWorld(output, scheduler, (IPlayerChangedWorldEvent) subscriber);
+			}
+		};
 	}
 }

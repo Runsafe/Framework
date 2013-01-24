@@ -33,18 +33,21 @@ public final class PlayerCommandPreprocess extends EventRouterBase<IPlayerComman
 		return true;
 	}
 
-	public final class Factory implements EventRouterFactory
+	public static EventRouterFactory Factory()
 	{
-		@Override
-		public Class<? extends IRunsafeEvent> getInterface()
+		return new EventRouterFactory()
 		{
-			return IPlayerCommandPreprocessEvent.class;
-		}
+			@Override
+			public Class<? extends IRunsafeEvent> getInterface()
+			{
+				return IPlayerCommandPreprocessEvent.class;
+			}
 
-		@Override
-		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-		{
-			return new PlayerCommandPreprocess(output, scheduler, (IPlayerCommandPreprocessEvent) subscriber);
-		}
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new PlayerCommandPreprocess(output, scheduler, (IPlayerCommandPreprocessEvent) subscriber);
+			}
+		};
 	}
 }

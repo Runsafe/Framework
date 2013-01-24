@@ -32,18 +32,21 @@ public final class PlayerKick extends EventRouterBase<IPlayerKickEvent, PlayerKi
 		return true;
 	}
 
-	public final class Factory implements EventRouterFactory
+	public static EventRouterFactory Factory()
 	{
-		@Override
-		public Class<? extends IRunsafeEvent> getInterface()
+		return new EventRouterFactory()
 		{
-			return IPlayerKickEvent.class;
-		}
+			@Override
+			public Class<? extends IRunsafeEvent> getInterface()
+			{
+				return IPlayerKickEvent.class;
+			}
 
-		@Override
-		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-		{
-			return new PlayerKick(output, scheduler, (IPlayerKickEvent) subscriber);
-		}
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new PlayerKick(output, scheduler, (IPlayerKickEvent) subscriber);
+			}
+		};
 	}
 }

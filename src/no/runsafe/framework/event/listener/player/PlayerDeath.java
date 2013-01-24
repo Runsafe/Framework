@@ -32,18 +32,21 @@ public final class PlayerDeath extends EventRouterBase<IPlayerDeathEvent, Player
 		return true;
 	}
 
-	public final class Factory implements EventRouterFactory
+	public static EventRouterFactory Factory()
 	{
-		@Override
-		public Class<? extends IRunsafeEvent> getInterface()
+		return new EventRouterFactory()
 		{
-			return IPlayerDeathEvent.class;
-		}
+			@Override
+			public Class<? extends IRunsafeEvent> getInterface()
+			{
+				return IPlayerDeathEvent.class;
+			}
 
-		@Override
-		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-		{
-			return new PlayerDeath(output, scheduler, (IPlayerDeathEvent) subscriber);
-		}
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new PlayerDeath(output, scheduler, (IPlayerDeathEvent) subscriber);
+			}
+		};
 	}
 }

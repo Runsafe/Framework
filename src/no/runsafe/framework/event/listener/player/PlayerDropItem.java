@@ -32,18 +32,21 @@ public final class PlayerDropItem extends EventRouterBase<IPlayerDropItemEvent, 
 		return true;
 	}
 
-	public final class Factory implements EventRouterFactory
+	public static EventRouterFactory Factory()
 	{
-		@Override
-		public Class<? extends IRunsafeEvent> getInterface()
+		return new EventRouterFactory()
 		{
-			return IPlayerDropItemEvent.class;
-		}
+			@Override
+			public Class<? extends IRunsafeEvent> getInterface()
+			{
+				return IPlayerDropItemEvent.class;
+			}
 
-		@Override
-		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-		{
-			return new PlayerDropItem(output, scheduler, (IPlayerDropItemEvent) subscriber);
-		}
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new PlayerDropItem(output, scheduler, (IPlayerDropItemEvent) subscriber);
+			}
+		};
 	}
 }

@@ -32,18 +32,21 @@ public final class PlayerPreLogin extends EventRouterBase<IPlayerPreLoginEvent, 
 		return true;
 	}
 
-	public final class Factory implements EventRouterFactory
+	public static EventRouterFactory Factory()
 	{
-		@Override
-		public Class<? extends IRunsafeEvent> getInterface()
+		return new EventRouterFactory()
 		{
-			return IPlayerPreLoginEvent.class;
-		}
+			@Override
+			public Class<? extends IRunsafeEvent> getInterface()
+			{
+				return IPlayerPreLoginEvent.class;
+			}
 
-		@Override
-		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-		{
-			return new PlayerPreLogin(output, scheduler, (IPlayerPreLoginEvent) subscriber);
-		}
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new PlayerPreLogin(output, scheduler, (IPlayerPreLoginEvent) subscriber);
+			}
+		};
 	}
 }

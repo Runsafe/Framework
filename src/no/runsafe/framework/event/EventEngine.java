@@ -1,7 +1,6 @@
 package no.runsafe.framework.event;
 
 import no.runsafe.framework.event.listener.EventRouterFactory;
-import no.runsafe.framework.event.listener.world.WorldSave;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.Listener;
@@ -33,9 +32,8 @@ public class EventEngine
 		return listeners;
 	}
 
-	public static void Register(Class<? extends EventRouterFactory> factoryClass) throws IllegalAccessException, InstantiationException
+	public static void Register(EventRouterFactory factory)
 	{
-		EventRouterFactory factory = factoryClass.newInstance();
 		if (!factories.containsKey(factory.getInterface()))
 			factories.put(factory.getInterface(), factory);
 	}

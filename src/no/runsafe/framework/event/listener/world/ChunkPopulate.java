@@ -32,18 +32,21 @@ public final class ChunkPopulate extends EventRouterBase<IChunkPopulate, ChunkPo
 		return true;
 	}
 
-	public final class Factory implements EventRouterFactory
+	public static EventRouterFactory Factory()
 	{
-		@Override
-		public Class<? extends IRunsafeEvent> getInterface()
+		return new EventRouterFactory()
 		{
-			return IChunkPopulate.class;
-		}
+			@Override
+			public Class<? extends IRunsafeEvent> getInterface()
+			{
+				return IChunkPopulate.class;
+			}
 
-		@Override
-		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-		{
-			return new ChunkPopulate(output, scheduler, (IChunkPopulate) subscriber);
-		}
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new ChunkPopulate(output, scheduler, (IChunkPopulate) subscriber);
+			}
+		};
 	}
 }

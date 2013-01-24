@@ -32,18 +32,21 @@ public final class WorldSave extends EventRouterBase<IWorldSave, WorldSaveEvent>
 		return true;
 	}
 
-	public final class Factory implements EventRouterFactory
+	public static EventRouterFactory Factory()
 	{
-		@Override
-		public Class<? extends IRunsafeEvent> getInterface()
+		return new EventRouterFactory()
 		{
-			return IWorldSave.class;
-		}
+			@Override
+			public Class<? extends IRunsafeEvent> getInterface()
+			{
+				return IWorldSave.class;
+			}
 
-		@Override
-		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-		{
-			return new WorldSave(output, scheduler, (IWorldSave) subscriber);
-		}
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new WorldSave(output, scheduler, (IWorldSave) subscriber);
+			}
+		};
 	}
 }

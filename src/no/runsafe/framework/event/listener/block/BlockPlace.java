@@ -34,19 +34,22 @@ public final class BlockPlace extends EventRouterBase<IBlockPlace, BlockPlaceEve
 		);
 	}
 
-	public final class Factory implements EventRouterFactory
+	public static EventRouterFactory Factory()
 	{
-		@Override
-		public Class<? extends IRunsafeEvent> getInterface()
+		return new EventRouterFactory()
 		{
-			return IBlockPlace.class;
-		}
+			@Override
+			public Class<? extends IRunsafeEvent> getInterface()
+			{
+				return IBlockPlace.class;
+			}
 
-		@Override
-		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-		{
-			return new BlockPlace(output, scheduler, (IBlockPlace) subscriber);
-		}
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new BlockPlace(output, scheduler, (IBlockPlace) subscriber);
+			}
+		};
 	}
 }
 

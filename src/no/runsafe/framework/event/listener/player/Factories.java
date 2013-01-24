@@ -6,22 +6,22 @@ public final class Factories
 {
 	public static void Register() throws InstantiationException, IllegalAccessException
 	{
-		EventEngine.Register(PlayerChangedWorld.Factory.class);
-		EventEngine.Register(PlayerChat.Factory.class);
-		EventEngine.Register(PlayerCommandPreprocess.Factory.class);
-		EventEngine.Register(PlayerDeath.Factory.class);
-		EventEngine.Register(PlayerDropItem.Factory.class);
-		EventEngine.Register(PlayerInteract.Factory.class);
-		EventEngine.Register(PlayerInteractEntity.Factory.class);
-		EventEngine.Register(PlayerJoin.Factory.class);
-		EventEngine.Register(PlayerKick.Factory.class);
-		EventEngine.Register(PlayerLeftClick.Factory.class);
-		EventEngine.Register(PlayerLogin.Factory.class);
-		EventEngine.Register(PlayerMove.Factory.class);
-		EventEngine.Register(PlayerPreLogin.Factory.class);
-		EventEngine.Register(PlayerQuit.Factory.class);
-		EventEngine.Register(PlayerRightClick.Factory.class);
-		EventEngine.Register(PlayerRightClickSign.Factory.class);
-		EventEngine.Register(PlayerTeleport.Factory.class);
+		EventEngine.Register(PlayerChangedWorld.Factory());
+		EventEngine.Register(PlayerChat.Factory());
+		EventEngine.Register(PlayerCommandPreprocess.Factory());
+		EventEngine.Register(PlayerDeath.Factory());
+		EventEngine.Register(PlayerDropItem.Factory());
+		EventEngine.Register(PlayerInteract.Factory());
+		EventEngine.Register(PlayerInteractEntity.Factory());
+		EventEngine.Register(PlayerJoin.Factory());
+		EventEngine.Register(PlayerKick.Factory());
+		EventEngine.Register(PlayerLeftClick.Factory());
+		EventEngine.Register(PlayerLogin.Factory());
+		EventEngine.Register(PlayerMove.Factory());
+		EventEngine.Register(PlayerPreLogin.Factory());
+		EventEngine.Register(PlayerQuit.Factory());
+		EventEngine.Register(PlayerRightClick.Factory());
+		EventEngine.Register(PlayerRightClickSign.Factory());
+		EventEngine.Register(PlayerTeleport.Factory());
 	}
 }

@@ -57,19 +57,22 @@ public final class PlayerRightClickSign extends EventRouterBase<IPlayerRightClic
 			);
 	}
 
-	public final class Factory implements EventRouterFactory
+	public static EventRouterFactory Factory()
 	{
-		@Override
-		public Class<? extends IRunsafeEvent> getInterface()
+		return new EventRouterFactory()
 		{
-			return IPlayerRightClickSign.class;
-		}
+			@Override
+			public Class<? extends IRunsafeEvent> getInterface()
+			{
+				return IPlayerRightClickSign.class;
+			}
 
-		@Override
-		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-		{
-			return new PlayerRightClickSign(output, scheduler, (IPlayerRightClickSign) subscriber);
-		}
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new PlayerRightClickSign(output, scheduler, (IPlayerRightClickSign) subscriber);
+			}
+		};
 	}
 
 	private final IOutput console;

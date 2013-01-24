@@ -32,18 +32,21 @@ public final class WorldInit extends EventRouterBase<IWorldInit, WorldInitEvent>
 		return true;
 	}
 
-	public final class Factory implements EventRouterFactory
+	public static EventRouterFactory Factory()
 	{
-		@Override
-		public Class<? extends IRunsafeEvent> getInterface()
+		return new EventRouterFactory()
 		{
-			return IWorldInit.class;
-		}
+			@Override
+			public Class<? extends IRunsafeEvent> getInterface()
+			{
+				return IWorldInit.class;
+			}
 
-		@Override
-		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-		{
-			return new WorldInit(output, scheduler, (IWorldInit) subscriber);
-		}
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new WorldInit(output, scheduler, (IWorldInit) subscriber);
+			}
+		};
 	}
 }

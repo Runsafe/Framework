@@ -35,18 +35,21 @@ public final class SpawnChange extends EventRouterBase<ISpawnChange, SpawnChange
 		return true;
 	}
 
-	public final class Factory implements EventRouterFactory
+	public static EventRouterFactory Factory()
 	{
-		@Override
-		public Class<? extends IRunsafeEvent> getInterface()
+		return new EventRouterFactory()
 		{
-			return ISpawnChange.class;
-		}
+			@Override
+			public Class<? extends IRunsafeEvent> getInterface()
+			{
+				return ISpawnChange.class;
+			}
 
-		@Override
-		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-		{
-			return new SpawnChange(output, scheduler, (ISpawnChange) subscriber);
-		}
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new SpawnChange(output, scheduler, (ISpawnChange) subscriber);
+			}
+		};
 	}
 }

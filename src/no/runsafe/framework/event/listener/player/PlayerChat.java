@@ -33,18 +33,21 @@ public final class PlayerChat extends EventRouterBase<IPlayerChatEvent, AsyncPla
 		return true;
 	}
 
-	final class Factory implements EventRouterFactory
+	public static EventRouterFactory Factory()
 	{
-		@Override
-		public Class<? extends IRunsafeEvent> getInterface()
+		return new EventRouterFactory()
 		{
-			return IPlayerChatEvent.class;
-		}
+			@Override
+			public Class<? extends IRunsafeEvent> getInterface()
+			{
+				return IPlayerChatEvent.class;
+			}
 
-		@Override
-		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-		{
-			return new PlayerChat(output, scheduler, (IPlayerChatEvent) subscriber);
-		}
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new PlayerChat(output, scheduler, (IPlayerChatEvent) subscriber);
+			}
+		};
 	}
 }

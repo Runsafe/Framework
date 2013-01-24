@@ -32,18 +32,21 @@ public final class EntityDamageByEntity extends EventRouterBase<IEntityDamageByE
 		return true;
 	}
 
-	public final class Factory implements EventRouterFactory
+	public static EventRouterFactory Factory()
 	{
-		@Override
-		public Class<? extends IRunsafeEvent> getInterface()
+		return new EventRouterFactory()
 		{
-			return IEntityDamageByEntityEvent.class;
-		}
+			@Override
+			public Class<? extends IRunsafeEvent> getInterface()
+			{
+				return IEntityDamageByEntityEvent.class;
+			}
 
-		@Override
-		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-		{
-			return new EntityDamageByEntity(output, scheduler, (IEntityDamageByEntityEvent) subscriber);
-		}
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new EntityDamageByEntity(output, scheduler, (IEntityDamageByEntityEvent) subscriber);
+			}
+		};
 	}
 }

@@ -34,18 +34,21 @@ public final class BlockBreak extends EventRouterBase<IBlockBreak, BlockBreakEve
 		);
 	}
 
-	public final class Factory implements EventRouterFactory
+	public static EventRouterFactory Factory()
 	{
-		@Override
-		public Class<? extends IRunsafeEvent> getInterface()
+		return new EventRouterFactory()
 		{
-			return IBlockBreak.class;
-		}
+			@Override
+			public Class<? extends IRunsafeEvent> getInterface()
+			{
+				return IBlockBreak.class;
+			}
 
-		@Override
-		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-		{
-			return new BlockBreak(output, scheduler, (IBlockBreak) subscriber);
-		}
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new BlockBreak(output, scheduler, (IBlockBreak) subscriber);
+			}
+		};
 	}
 }

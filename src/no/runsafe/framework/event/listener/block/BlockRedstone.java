@@ -33,19 +33,22 @@ public final class BlockRedstone extends EventRouterBase<IBlockRedstone, BlockRe
 		return true;
 	}
 
-	public final class Factory implements EventRouterFactory
+	public static EventRouterFactory Factory()
 	{
-		@Override
-		public Class<? extends IRunsafeEvent> getInterface()
+		return new EventRouterFactory()
 		{
-			return IBlockRedstone.class;
-		}
+			@Override
+			public Class<? extends IRunsafeEvent> getInterface()
+			{
+				return IBlockRedstone.class;
+			}
 
-		@Override
-		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-		{
-			return new BlockRedstone(output, scheduler, (IBlockRedstone) subscriber);
-		}
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new BlockRedstone(output, scheduler, (IBlockRedstone) subscriber);
+			}
+		};
 	}
 }
 

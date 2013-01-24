@@ -32,18 +32,21 @@ public final class PlayerInteractEntity extends EventRouterBase<IPlayerInteractE
 		return true;
 	}
 
-	public final class Factory implements EventRouterFactory
+	public static EventRouterFactory Factory()
 	{
-		@Override
-		public Class<? extends IRunsafeEvent> getInterface()
+		return new EventRouterFactory()
 		{
-			return IPlayerInteractEntityEvent.class;
-		}
+			@Override
+			public Class<? extends IRunsafeEvent> getInterface()
+			{
+				return IPlayerInteractEntityEvent.class;
+			}
 
-		@Override
-		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-		{
-			return new PlayerInteractEntity(output, scheduler, (IPlayerInteractEntityEvent) subscriber);
-		}
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new PlayerInteractEntity(output, scheduler, (IPlayerInteractEntityEvent) subscriber);
+			}
+		};
 	}
 }

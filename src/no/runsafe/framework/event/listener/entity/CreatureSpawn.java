@@ -35,18 +35,21 @@ public final class CreatureSpawn extends EventRouterBase<IMobSpawnerPulsed, Crea
 		);
 	}
 
-	public final class Factory implements EventRouterFactory
+	public static EventRouterFactory Factory()
 	{
-		@Override
-		public Class<? extends IRunsafeEvent> getInterface()
+		return new EventRouterFactory()
 		{
-			return IMobSpawnerPulsed.class;
-		}
+			@Override
+			public Class<? extends IRunsafeEvent> getInterface()
+			{
+				return IMobSpawnerPulsed.class;
+			}
 
-		@Override
-		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-		{
-			return new CreatureSpawn(output, scheduler, (IMobSpawnerPulsed) subscriber);
-		}
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new CreatureSpawn(output, scheduler, (IMobSpawnerPulsed) subscriber);
+			}
+		};
 	}
 }

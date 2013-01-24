@@ -32,18 +32,21 @@ public final class EntityDeath extends EventRouterBase<IEntityDeathEvent, Entity
 		return true;
 	}
 
-	public final class Factory implements EventRouterFactory
+	public static EventRouterFactory Factory()
 	{
-		@Override
-		public Class<? extends IRunsafeEvent> getInterface()
+		return new EventRouterFactory()
 		{
-			return IEntityDeathEvent.class;
-		}
+			@Override
+			public Class<? extends IRunsafeEvent> getInterface()
+			{
+				return IEntityDeathEvent.class;
+			}
 
-		@Override
-		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-		{
-			return new EntityDeath(output, scheduler, (IEntityDeathEvent) subscriber);
-		}
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new EntityDeath(output, scheduler, (IEntityDeathEvent) subscriber);
+			}
+		};
 	}
 }

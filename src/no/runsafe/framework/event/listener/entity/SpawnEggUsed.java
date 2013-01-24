@@ -35,18 +35,21 @@ public final class SpawnEggUsed extends EventRouterBase<ISpawnEggUsed, CreatureS
 		);
 	}
 
-	public final class Factory implements EventRouterFactory
+	public static EventRouterFactory Factory()
 	{
-		@Override
-		public Class<? extends IRunsafeEvent> getInterface()
+		return new EventRouterFactory()
 		{
-			return ISpawnEggUsed.class;
-		}
+			@Override
+			public Class<? extends IRunsafeEvent> getInterface()
+			{
+				return ISpawnEggUsed.class;
+			}
 
-		@Override
-		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-		{
-			return new SpawnEggUsed(output, scheduler, (ISpawnEggUsed) subscriber);
-		}
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new SpawnEggUsed(output, scheduler, (ISpawnEggUsed) subscriber);
+			}
+		};
 	}
 }

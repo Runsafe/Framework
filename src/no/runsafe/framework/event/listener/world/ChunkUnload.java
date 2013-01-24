@@ -32,18 +32,21 @@ public final class ChunkUnload extends EventRouterBase<IChunkUnload, ChunkUnload
 		return true;
 	}
 
-	public final class Factory implements EventRouterFactory
+	public static EventRouterFactory Factory()
 	{
-		@Override
-		public Class<? extends IRunsafeEvent> getInterface()
+		return new EventRouterFactory()
 		{
-			return IChunkUnload.class;
-		}
+			@Override
+			public Class<? extends IRunsafeEvent> getInterface()
+			{
+				return IChunkUnload.class;
+			}
 
-		@Override
-		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-		{
-			return new ChunkUnload(output, scheduler, (IChunkUnload) subscriber);
-		}
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new ChunkUnload(output, scheduler, (IChunkUnload) subscriber);
+			}
+		};
 	}
 }

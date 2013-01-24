@@ -43,18 +43,21 @@ public final class PlayerLeftClick extends EventRouterBase<IPlayerLeftClickEvent
 		return true;
 	}
 
-	public final class Factory implements EventRouterFactory
+	public static EventRouterFactory Factory()
 	{
-		@Override
-		public Class<? extends IRunsafeEvent> getInterface()
+		return new EventRouterFactory()
 		{
-			return IPlayerLeftClickEvent.class;
-		}
+			@Override
+			public Class<? extends IRunsafeEvent> getInterface()
+			{
+				return IPlayerLeftClickEvent.class;
+			}
 
-		@Override
-		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-		{
-			return new PlayerLeftClick(output, scheduler, (IPlayerLeftClickEvent) subscriber);
-		}
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new PlayerLeftClick(output, scheduler, (IPlayerLeftClickEvent) subscriber);
+			}
+		};
 	}
 }

@@ -32,18 +32,21 @@ public final class EntityShootBow extends EventRouterBase<IEntityShootBowEvent, 
 		return true;
 	}
 
-	public final class Factory implements EventRouterFactory
+	public static EventRouterFactory Factory()
 	{
-		@Override
-		public Class<? extends IRunsafeEvent> getInterface()
+		return new EventRouterFactory()
 		{
-			return IEntityShootBowEvent.class;
-		}
+			@Override
+			public Class<? extends IRunsafeEvent> getInterface()
+			{
+				return IEntityShootBowEvent.class;
+			}
 
-		@Override
-		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-		{
-			return new EntityShootBow(output, scheduler, (IEntityShootBowEvent) subscriber);
-		}
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new EntityShootBow(output, scheduler, (IEntityShootBowEvent) subscriber);
+			}
+		};
 	}
 }

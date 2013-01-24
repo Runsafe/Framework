@@ -32,18 +32,21 @@ public final class WorldLoad extends EventRouterBase<IWorldLoad, WorldLoadEvent>
 		return true;
 	}
 
-	public final class Factory implements EventRouterFactory
+	public static EventRouterFactory Factory()
 	{
-		@Override
-		public Class<? extends IRunsafeEvent> getInterface()
+		return new EventRouterFactory()
 		{
-			return IWorldLoad.class;
-		}
+			@Override
+			public Class<? extends IRunsafeEvent> getInterface()
+			{
+				return IWorldLoad.class;
+			}
 
-		@Override
-		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
-		{
-			return new WorldLoad(output, scheduler, (IWorldLoad) subscriber);
-		}
+			@Override
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			{
+				return new WorldLoad(output, scheduler, (IWorldLoad) subscriber);
+			}
+		};
 	}
 }
