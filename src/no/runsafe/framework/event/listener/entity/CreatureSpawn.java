@@ -35,7 +35,7 @@ public final class CreatureSpawn extends EventRouterBase<IMobSpawnerPulsed, Crea
 		);
 	}
 
-	public final static class Factory implements EventRouterFactory
+	public final class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

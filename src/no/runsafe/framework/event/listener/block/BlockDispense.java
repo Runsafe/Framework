@@ -34,7 +34,7 @@ public final class BlockDispense extends EventRouterBase<IBlockDispense, BlockDi
 		);
 	}
 
-	public final static class Factory implements EventRouterFactory
+	public final class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

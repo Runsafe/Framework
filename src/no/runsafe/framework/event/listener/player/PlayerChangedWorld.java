@@ -32,7 +32,7 @@ public final class PlayerChangedWorld extends EventRouterBase<IPlayerChangedWorl
 		return true;
 	}
 
-	public final static class Factory implements EventRouterFactory
+	public static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

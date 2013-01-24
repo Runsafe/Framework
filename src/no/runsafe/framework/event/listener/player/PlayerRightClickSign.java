@@ -57,7 +57,7 @@ public final class PlayerRightClickSign extends EventRouterBase<IPlayerRightClic
 			);
 	}
 
-	public final static class Factory implements EventRouterFactory
+	public final class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

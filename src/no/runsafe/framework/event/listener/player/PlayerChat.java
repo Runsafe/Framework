@@ -33,7 +33,7 @@ public final class PlayerChat extends EventRouterBase<IPlayerChatEvent, AsyncPla
 		return true;
 	}
 
-	final static class Factory implements EventRouterFactory
+	final class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

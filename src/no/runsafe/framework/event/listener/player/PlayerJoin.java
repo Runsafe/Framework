@@ -33,7 +33,7 @@ public final class PlayerJoin extends EventRouterBase<IPlayerJoinEvent, PlayerJo
 		return true;
 	}
 
-	public final static class Factory implements EventRouterFactory
+	public final class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

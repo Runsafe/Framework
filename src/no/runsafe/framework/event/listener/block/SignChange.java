@@ -35,7 +35,7 @@ public final class SignChange extends EventRouterBase<ISignChange, SignChangeEve
 		);
 	}
 
-	public final static class Factory implements EventRouterFactory
+	public final class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()
