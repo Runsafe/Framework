@@ -1,6 +1,5 @@
 package no.runsafe.framework.event.listener.block;
 
-import no.runsafe.framework.event.EventEngine;
 import no.runsafe.framework.event.IRunsafeEvent;
 import no.runsafe.framework.event.block.IBlockBreak;
 import no.runsafe.framework.event.listener.EventRouterBase;

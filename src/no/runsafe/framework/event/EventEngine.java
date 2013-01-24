@@ -1,7 +1,7 @@
 package no.runsafe.framework.event;
 
 import no.runsafe.framework.event.listener.EventRouterFactory;
-import no.runsafe.framework.event.listener.Registration;
+import no.runsafe.framework.event.listener.Factories;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.Listener;
@@ -17,7 +17,7 @@ public class EventEngine
 	static
 	{
 		factories = new HashMap<Class<? extends IRunsafeEvent>, EventRouterFactory>();
-		Registration.Run();
+		Factories.Register();
 	}
 
 	public EventEngine(IOutput output, IScheduler scheduler, List<IRunsafeEvent> events)
@@ -35,21 +35,6 @@ public class EventEngine
 		return listeners;
 	}
 
-	private List<Listener> getRouters(IRunsafeEvent subscriber)
-	{
-		ArrayList<Listener> routers = new ArrayList<Listener>();
-		for (Class<? extends IRunsafeEvent> type : factories.keySet())
-			if (type.isAssignableFrom(subscriber.getClass()))
-				routers.add(factories.get(type).getListener(output, scheduler, subscriber));
-		return routers;
-	}
-
-	private static final Map<Class<? extends IRunsafeEvent>, EventRouterFactory> factories;
-
-	private final List<IRunsafeEvent> eventSubscribers;
-	private final IScheduler scheduler;
-	private final IOutput output;
-
 	public static void Register(Class<? extends EventRouterFactory> factoryClass)
 	{
 		try
@@ -62,4 +47,18 @@ public class EventEngine
 		{
 		}
 	}
+
+	private List<Listener> getRouters(IRunsafeEvent subscriber)
+	{
+		ArrayList<Listener> routers = new ArrayList<Listener>();
+		for (Class<? extends IRunsafeEvent> type : factories.keySet())
+			if (type.isAssignableFrom(subscriber.getClass()))
+				routers.add(factories.get(type).getListener(output, scheduler, subscriber));
+		return routers;
+	}
+
+	private static final Map<Class<? extends IRunsafeEvent>, EventRouterFactory> factories;
+	private final List<IRunsafeEvent> eventSubscribers;
+	private final IScheduler scheduler;
+	private final IOutput output;
 }

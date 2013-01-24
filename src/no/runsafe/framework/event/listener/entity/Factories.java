@@ -2,9 +2,9 @@ package no.runsafe.framework.event.listener.entity;
 
 import no.runsafe.framework.event.EventEngine;
 
-public final class Registration
+public final class Factories
 {
-	public static void Run()
+	public static void Register()
 	{
 		EventEngine.Register(CreatureSpawn.Factory.class);
 		EventEngine.Register(EntityDamageByEntity.Factory.class);

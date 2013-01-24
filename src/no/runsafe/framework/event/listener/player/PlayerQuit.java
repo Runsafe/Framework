@@ -1,6 +1,5 @@
 package no.runsafe.framework.event.listener.player;
 
-import no.runsafe.framework.event.EventEngine;
 import no.runsafe.framework.event.IRunsafeEvent;
 import no.runsafe.framework.event.listener.EventRouterBase;
 import no.runsafe.framework.event.listener.EventRouterFactory;
@@ -42,7 +41,7 @@ public class PlayerQuit extends EventRouterBase<IPlayerQuitEvent, PlayerQuitEven
 		}
 
 		@Override
-		public Listener getListener (IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+		public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 		{
 			return new PlayerQuit(output, scheduler, (IPlayerQuitEvent) subscriber);
 		}

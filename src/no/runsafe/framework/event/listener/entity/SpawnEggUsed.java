@@ -1,6 +1,5 @@
 package no.runsafe.framework.event.listener.entity;
 
-import no.runsafe.framework.event.EventEngine;
 import no.runsafe.framework.event.IRunsafeEvent;
 import no.runsafe.framework.event.entity.ISpawnEggUsed;
 import no.runsafe.framework.event.listener.EventRouterBase;

@@ -1,6 +1,5 @@
 package no.runsafe.framework.event.listener.block;
 
-import no.runsafe.framework.event.EventEngine;
 import no.runsafe.framework.event.IRunsafeEvent;
 import no.runsafe.framework.event.block.IBlockPlaceEvent;
 import no.runsafe.framework.event.listener.EventRouterBase;
@@ -48,4 +47,5 @@ public class BlockPlaceListener extends EventRouterBase<IBlockPlaceEvent, BlockP
 		{
 			return new BlockPlaceListener(output, scheduler, (IBlockPlaceEvent) subscriber);
 		}
-	}}
+	}
+}
