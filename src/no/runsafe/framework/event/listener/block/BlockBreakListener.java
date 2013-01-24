@@ -11,8 +11,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
-@SuppressWarnings("deprecation")
-@Deprecated
 public final class BlockBreakListener extends EventRouterBase<IBlockBreakEvent, BlockBreakEvent>
 {
 	public BlockBreakListener(IOutput output, IScheduler scheduler, IBlockBreakEvent handler)
