@@ -12,7 +12,12 @@ import java.util.List;
 
 public class CommandEngine implements Startable
 {
-	public CommandEngine(IOutput output, List<ICommandHandler> commands, RunsafePlugin plugin)
+	public CommandEngine(IOutput output, RunsafePlugin plugin)
+	{
+		this(output, null, plugin);
+	}
+
+	public CommandEngine(IOutput output, ICommandHandler[] commands, RunsafePlugin plugin)
 	{
 		this.commands = commands;
 		this.plugin = plugin;
@@ -23,8 +28,9 @@ public class CommandEngine implements Startable
 	@Override
 	public void start()
 	{
-		for (BukkitCommandExecutor executor : this.GetCommands())
-			HookCommand(plugin.getCommand(executor.getName()), executor);
+		if (commands != null)
+			for (BukkitCommandExecutor executor : this.GetCommands())
+				HookCommand(plugin.getCommand(executor.getName()), executor);
 	}
 
 	@Override
@@ -56,6 +62,6 @@ public class CommandEngine implements Startable
 
 	private final ICommandExecutor console;
 	private final IOutput output;
-	private final List<ICommandHandler> commands;
+	private final ICommandHandler[] commands;
 	private final RunsafePlugin plugin;
 }
