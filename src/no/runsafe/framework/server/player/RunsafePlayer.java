@@ -337,6 +337,8 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 			if (groups != null)
 				result.addAll(groups);
 		}
+		if (result.size() == 0)
+			result.add("unknown");
 		return result;
 	}
 
