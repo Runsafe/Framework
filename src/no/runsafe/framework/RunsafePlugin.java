@@ -14,11 +14,9 @@ import no.runsafe.framework.database.SchemaRevisionRepository;
 import no.runsafe.framework.event.*;
 import no.runsafe.framework.event.listener.Factories;
 import no.runsafe.framework.hook.*;
-import no.runsafe.framework.messaging.*;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.output.RunsafeOutputHandler;
 import no.runsafe.framework.plugin.IPluginUpdate;
-import no.runsafe.framework.plugin.PluginResolver;
 import no.runsafe.framework.server.ICommandExecutor;
 import no.runsafe.framework.server.RunsafeConsole;
 import no.runsafe.framework.server.RunsafeServer;
@@ -109,8 +107,6 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		IOutput console = getComponent(IOutput.class);
 		console.fine("Plugin initialized.");
 
-		registerServices();
-		console.fine("Plugin services registered.");
 		addFrameworkHooks();
 		console.fine("Plugin framework hooks added.");
 
@@ -144,13 +140,8 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 	public void onDisable()
 	{
 		output.outputDebugToConsole(String.format("Disabling plugin %s", this.getName()), Level.FINE);
-
-		unregisterServices();
-
 		for (IPluginDisabled impl : getComponents(IPluginDisabled.class))
-		{
 			impl.OnPluginDisabled();
-		}
 	}
 
 	@Override
@@ -290,10 +281,6 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 			getComponent(IConfiguration.class).setConfigFileProvider((IConfigurationFile) this);
 		}
 
-		// Initiate pump before plugin setup is done
-		output.outputDebugToConsole("Initiating message pump", Level.FINE);
-		getMessagePump();
-
 		this.PluginSetup();
 
 		RegisterEvents();
@@ -311,21 +298,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		this.container.addComponent(RunsafeOutputHandler.class);
 		this.container.addComponent(RunsafeDatabaseHandler.class);
 		this.container.addComponent(new Scheduler(this.getServer().getScheduler(), this));
-		this.container.addComponent(PlayerStatus.class);
-		this.container.addComponent(new PluginResolver(this.getServer()));
 		this.container.addComponent(SchemaRevisionRepository.class);
-	}
-
-	private void registerServices()
-	{
-		IMessagePump pump = getMessagePump();
-		List<IMessageBusService> services = getComponents(IMessageBusService.class);
-		if (services != null)
-			for (IMessageBusService svc : services)
-			{
-				output.outputDebugToConsole(String.format("Registering %s message bus service in %s", svc.getServiceName(), svc.getClass().getName()), Level.INFO);
-				pump.RegisterService(svc);
-			}
 	}
 
 	private void logPluginVersion()
@@ -337,28 +310,6 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 			if (updater == null || updater.UpdateFrom(lastVersion))
 				saveCurrentVersion();
 		}
-	}
-
-	private IMessagePump getMessagePump()
-	{
-		IMessagePump pump;
-		if (this instanceof IPumpProvider)
-		{
-			getComponent(IOutput.class).outputDebugToConsole("We are the pump..", Level.FINE);
-			return ((IPumpProvider) this).getInstance();
-		}
-
-		pump = getComponent(IMessagePump.class);
-		if (pump == null)
-		{
-			getComponent(IOutput.class).outputDebugToConsole("Looking for the pump..", Level.FINE);
-			pump = MessagePump.GetPump();
-			if (pump != null)
-				addComponent(pump);
-			else
-				getComponent(IOutput.class).outputDebugToConsole("Pump not found!", Level.FINE);
-		}
-		return pump;
 	}
 
 	private void executeSchemaChanges()
@@ -410,21 +361,6 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 				}
 				repository.setRevision(changes.getTableName(), revision);
 			}
-		}
-	}
-
-	private void unregisterServices()
-	{
-		IMessagePump pump = MessagePump.GetPump();
-		if (pump != null)
-		{
-			List<IMessageBusService> services = getComponents(IMessageBusService.class);
-			if (services != null)
-				for (IMessageBusService svc : services)
-				{
-					output.outputDebugToConsole(String.format("UnRegistering %s message bus service in %s", svc.getServiceName(), svc.getClass().getName()), Level.INFO);
-					pump.UnregisterService(svc);
-				}
 		}
 	}
 
