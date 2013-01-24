@@ -147,6 +147,8 @@ public class ObjectWrapper
 	{
 		if (toWrap == null)
 			return null;
+		if (toWrap.getState() != null && toWrap.getState() instanceof CreatureSpawner)
+			return new RunsafeSpawner(toWrap);
 		return new RunsafeBlock(toWrap);
 	}
 

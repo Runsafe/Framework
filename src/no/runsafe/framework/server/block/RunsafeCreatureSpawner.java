@@ -12,15 +12,6 @@ public class RunsafeCreatureSpawner extends RunsafeBlockState
 		spawner = toWrap;
 	}
 
-//	public EntityType getSpawnedType()
-//	{
-//	}
-
-//	public void setSpawnedType(EntityType entityType)
-//	{
-//		spawner.setSpawnedType(entityType);
-//	}
-
 	public void setCreatureTypeByName(String s)
 	{
 		spawner.setCreatureTypeByName(s);
