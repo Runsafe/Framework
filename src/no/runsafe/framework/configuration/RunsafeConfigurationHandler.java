@@ -21,7 +21,7 @@ public class RunsafeConfigurationHandler implements IConfiguration, Startable
 {
 	public RunsafeConfigurationHandler(
 		IOutput pluginOutput,
-		List<IConfigurationChanged> subscribers,
+		IConfigurationChanged[] subscribers,
 		RunsafePlugin plugin
 	)
 	{
@@ -269,7 +269,7 @@ public class RunsafeConfigurationHandler implements IConfiguration, Startable
 				}
 			}
 			pluginOutput.outputToConsole(
-				String.format("Configuration change notifications sent to %d modules.", subscribers.size())
+				String.format("Configuration change notifications sent to %d modules.", subscribers.length)
 			);
 		}
 	}
@@ -278,5 +278,5 @@ public class RunsafeConfigurationHandler implements IConfiguration, Startable
 	private IConfigurationFile configurationFile;
 	private final IOutput pluginOutput;
 	private FileConfiguration configFile;
-	private final List<IConfigurationChanged> subscribers;
+	private final IConfigurationChanged[] subscribers;
 }

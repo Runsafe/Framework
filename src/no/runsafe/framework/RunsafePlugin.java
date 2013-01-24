@@ -3,7 +3,7 @@ package no.runsafe.framework;
 import no.runsafe.framework.command.*;
 import no.runsafe.framework.configuration.RunsafeConfigurationHandler;
 import no.runsafe.framework.database.RunsafeDatabaseHandler;
-import no.runsafe.framework.database.SchemaRevisionRepository;
+import no.runsafe.framework.database.SchemaUpdater;
 import no.runsafe.framework.event.EventEngine;
 import no.runsafe.framework.event.IPluginDisabled;
 import no.runsafe.framework.event.IPluginEnabled;
@@ -266,7 +266,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		this.container.addComponent(RunsafeOutputHandler.class);
 		this.container.addComponent(RunsafeDatabaseHandler.class);
 		this.container.addComponent(new Scheduler(this.getServer().getScheduler(), this));
-		this.container.addComponent(SchemaRevisionRepository.class);
+		this.container.addComponent(SchemaUpdater.class);
 		this.container.addComponent(EventEngine.class);
 		this.container.addComponent(CommandEngine.class);
 	}
