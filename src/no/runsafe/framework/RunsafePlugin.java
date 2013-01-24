@@ -1,39 +1,27 @@
 package no.runsafe.framework;
 
-import no.runsafe.framework.command.*;
-import no.runsafe.framework.configuration.ConfigurationEngine;
-import no.runsafe.framework.configuration.RunsafeConfigurationHandler;
-import no.runsafe.framework.database.RunsafeDatabaseHandler;
-import no.runsafe.framework.database.SchemaUpdater;
-import no.runsafe.framework.event.EventEngine;
+import no.runsafe.framework.command.BukkitCommandExecutor;
+import no.runsafe.framework.command.ICommand;
+import no.runsafe.framework.command.ICommandHandler;
+import no.runsafe.framework.command.RunsafeCommandHandler;
 import no.runsafe.framework.event.IPluginDisabled;
 import no.runsafe.framework.event.IPluginEnabled;
-import no.runsafe.framework.hook.*;
 import no.runsafe.framework.output.IOutput;
-import no.runsafe.framework.output.RunsafeOutputHandler;
-import no.runsafe.framework.plugin.IPluginUpdate;
-import no.runsafe.framework.server.RunsafeServer;
-import no.runsafe.framework.server.player.RunsafePlayer;
-import no.runsafe.framework.timer.Scheduler;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
-import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.java.JavaPlugin;
-import org.picocontainer.DefaultPicoContainer;
-import org.picocontainer.behaviors.Caching;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 
-public abstract class RunsafePlugin extends JavaPlugin implements IKernel
+public abstract class RunsafePlugin extends InjectionPlugin
 {
 	static
 	{
+		Level consoleDebug = null;
 		if (new File("runsafe/global.yml").exists())
 		{
 			try
@@ -42,15 +30,16 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 				global.load("runsafe/global.yml");
 				String debug = (String) global.get("debug");
 				if (debug != null)
-					debugLevel = Level.parse(debug);
+					consoleDebug = Level.parse(debug);
 			}
 			catch (Exception e)
 			{
 			}
 		}
+		debugLevel = consoleDebug;
 	}
 
-	public static final HashMap<String, RunsafePlugin> Instances = new HashMap<String, RunsafePlugin>();
+//	public static final HashMap<String, RunsafePlugin> Instances = new HashMap<String, RunsafePlugin>();
 
 	public static ICommandHandler getPluginCommand(String name)
 	{
@@ -70,144 +59,28 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		return null;
 	}
 
-	/**
-	 * Get the first implementation of a given API from any plugin
-	 *
-	 * @param apiType The interface specification needed
-	 * @return The first available implementation of the interface
-	 */
-	public static <T> T getFirstPluginAPI(Class<T> apiType)
-	{
-		for (RunsafePlugin plugin : Instances.values())
-		{
-			T instance = plugin.getComponent(apiType);
-			if (instance != null)
-				return instance;
-		}
-		return null;
-	}
-
-	/**
-	 * Get all implementations of a given API from all plugins
-	 *
-	 * @param apiType The interface specification needed
-	 * @return The first available implementation of the interface
-	 */
-	public static <T> List<T> getPluginAPI(Class<T> apiType)
-	{
-		List<T> results = new ArrayList<T>();
-		for (RunsafePlugin plugin : Instances.values())
-		{
-			List<T> instance = plugin.getComponents(apiType);
-			if (instance != null)
-				results.addAll(instance);
-		}
-		return results;
-	}
-
 	@Override
-	public void onEnable()
+	public final void onEnable()
 	{
 		if (container == null)
 			initializePlugin();
-		IOutput console = getComponent(IOutput.class);
-		console.fine("Plugin initialized.");
+		super.onEnable();
+		output.fine("Plugin initialized.");
 
 		for (IPluginEnabled impl : getComponents(IPluginEnabled.class))
 			impl.OnPluginEnabled();
-		console.fine("Plugin enabled event executed.");
-
-		logPluginVersion();
-		console.fine("Plugin version logged.");
+		output.fine("Plugin enabled event executed.");
 	}
 
 	@Override
-	public void onDisable()
+	public final void onDisable()
 	{
 		output.outputDebugToConsole(String.format("Disabling plugin %s", this.getName()), Level.FINE);
 		for (IPluginDisabled impl : getComponents(IPluginDisabled.class))
 			impl.OnPluginDisabled();
 	}
 
-	@Override
-	public void addComponent(Object implOrInstance)
-	{
-		output.outputDebugToConsole(
-			String.format("Plugin %s added component %s",
-				this.getName(),
-				implOrInstance instanceof Class ? ((Class) implOrInstance).getCanonicalName() : implOrInstance.getClass().getCanonicalName()
-			),
-			Level.FINE
-		);
-		container.addComponent(implOrInstance);
-	}
-
-	@Override
-	public <T> T getComponent(Class<T> type)
-	{
-		return this.container.getComponent(type);
-	}
-
-	@Override
-	public <T> T getInstance(Class<T> type)
-	{
-		container.addComponent(type);
-		T instance = container.getComponent(type);
-		container.removeComponent(type);
-		return instance;
-	}
-
-	@Override
-	public <T> List<T> getComponents(Class<T> type)
-	{
-		output.fine("Got request for all instances of %s", type.getCanonicalName());
-		return this.container.getComponents(type);
-	}
-
-	public String getLastVersion()
-	{
-		YamlConfiguration config = new YamlConfiguration();
-		try
-		{
-			config.load("runsafe/plugins.yml");
-		}
-		catch (IOException e)
-		{
-			return null;
-		}
-		catch (InvalidConfigurationException e)
-		{
-			output.outputToConsole(String.format("Invalid yml in runsafe/plugins.yml! - %s", e.getMessage()), Level.WARNING);
-			return null;
-		}
-		return config.getString(this.getName());
-	}
-
-	public void saveCurrentVersion()
-	{
-		YamlConfiguration config = new YamlConfiguration();
-		try
-		{
-			config.load("runsafe/plugins.yml");
-		}
-		catch (IOException e)
-		{
-			output.outputToConsole(String.format("Problem loading runsafe/plugins.yml! - %s", e.getMessage()), Level.WARNING);
-		}
-		catch (InvalidConfigurationException e)
-		{
-			output.outputToConsole(String.format("Invalid yml in runsafe/plugins.yml! - %s", e.getMessage()), Level.WARNING);
-		}
-		config.set(getName(), getDescription().getVersion());
-		try
-		{
-			config.save("runsafe/plugins.yml");
-		}
-		catch (IOException e)
-		{
-			output.outputToConsole(String.format("Unable to save runsafe/plugins.yml! - %s", e.getMessage()), Level.SEVERE);
-		}
-	}
+	protected abstract void PluginSetup();
 
 	@Deprecated
 	protected List<RunsafeCommandHandler> GetLegacyCommands()
@@ -221,58 +94,22 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		return handlers;
 	}
 
-	protected abstract void PluginSetup();
-
-	private void initializePlugin()
+	@Override
+	protected void initializePlugin()
 	{
-		if (RunsafeServer.Instance == null)
-			RunsafeServer.Instance = new RunsafeServer(this.getServer());
 		Instances.put(getName(), this);
-
-		container = new DefaultPicoContainer(new Caching());
-
-		addStandardComponents();
+		super.initializePlugin();
 
 		output = getComponent(IOutput.class);
 		if (debugLevel != null)
 			output.setDebugLevel(debugLevel);
 		output.fine("Standard components added.");
-		output.outputDebugToConsole("Wiring up plugin", Level.FINE);
 
 		this.PluginSetup();
 		output.fine("Plugin setup performed.");
 
 		RegisterCommands();
-		this.container.start();
 		output.outputDebugToConsole("Initiation complete", Level.FINE);
-	}
-
-	private void addStandardComponents()
-	{
-		this.container.addComponent(this);
-		this.container.addComponent(ConfigurationEngine.class);
-		this.container.addComponent(this.getServer().getPluginManager());
-		this.container.addComponent(new RunsafeServer(this.getServer()));
-		this.container.addComponent(this.getLogger());
-		this.container.addComponent(RunsafeConfigurationHandler.class);
-		this.container.addComponent(RunsafeOutputHandler.class);
-		this.container.addComponent(RunsafeDatabaseHandler.class);
-		this.container.addComponent(new Scheduler(this.getServer().getScheduler(), this));
-		this.container.addComponent(SchemaUpdater.class);
-		this.container.addComponent(EventEngine.class);
-		this.container.addComponent(CommandEngine.class);
-		this.container.addComponent(HookEngine.class);
-	}
-
-	private void logPluginVersion()
-	{
-		String lastVersion = getLastVersion();
-		if (!getDescription().getVersion().equals(lastVersion))
-		{
-			IPluginUpdate updater = getComponent(IPluginUpdate.class);
-			if (updater == null || updater.UpdateFrom(lastVersion))
-				saveCurrentVersion();
-		}
 	}
 
 	@Deprecated
@@ -292,7 +129,5 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		}
 	}
 
-	protected DefaultPicoContainer container = null;
-	private IOutput output;
-	private static Level debugLevel = null;
+	private static final Level debugLevel;
 }

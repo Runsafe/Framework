@@ -1,11 +1,11 @@
 package no.runsafe.framework.timer;
 
-import no.runsafe.framework.RunsafePlugin;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
 public class Scheduler implements IScheduler
 {
-	public Scheduler(BukkitScheduler scheduler, RunsafePlugin plugin)
+	public Scheduler(BukkitScheduler scheduler, JavaPlugin plugin)
 	{
 		this.scheduler = scheduler;
 		this.plugin = plugin;
@@ -118,6 +118,6 @@ public class Scheduler implements IScheduler
 		return this.scheduler.scheduleAsyncRepeatingTask(this.plugin, func, delay, period);
 	}
 
-	private final RunsafePlugin plugin;
+	private final JavaPlugin plugin;
 	private final BukkitScheduler scheduler;
 }
