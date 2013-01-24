@@ -15,8 +15,6 @@ public class HookEngine implements Startable
 	{
 		for (FrameworkHook hook : hooks)
 		{
-			// Do this to avoid exceptions..
-			hookContainer.removeComponent(hook);
 			hookContainer.addComponent(hook);
 		}
 	}
