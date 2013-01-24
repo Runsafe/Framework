@@ -1,6 +1,7 @@
 package no.runsafe.framework;
 
 import no.runsafe.framework.command.*;
+import no.runsafe.framework.configuration.ConfigurationEngine;
 import no.runsafe.framework.configuration.RunsafeConfigurationHandler;
 import no.runsafe.framework.database.RunsafeDatabaseHandler;
 import no.runsafe.framework.database.SchemaUpdater;
@@ -260,6 +261,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 	private void addStandardComponents()
 	{
 		this.container.addComponent(this);
+		this.container.addComponent(ConfigurationEngine.class);
 		this.container.addComponent(this.getServer().getPluginManager());
 		this.container.addComponent(new RunsafeServer(this.getServer()));
 		this.container.addComponent(this.getLogger());

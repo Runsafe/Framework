@@ -1,92 +1,15 @@
 package no.runsafe.framework.configuration;
 
-import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.event.IConfigurationChanged;
-import no.runsafe.framework.output.IOutput;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.picocontainer.Startable;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
 
 
-public class RunsafeConfigurationHandler implements IConfiguration, Startable
+public class RunsafeConfigurationHandler implements IConfiguration
 {
-	public RunsafeConfigurationHandler(IOutput pluginOutput, RunsafePlugin plugin)
-	{
-		this(pluginOutput, null, plugin);
-	}
-
-	public RunsafeConfigurationHandler(IOutput pluginOutput, IConfigurationChanged[] subscribers, RunsafePlugin plugin)
-	{
-		this.pluginOutput = pluginOutput;
-		this.subscribers = subscribers;
-		if (plugin instanceof IConfigurationFile)
-		{
-			IConfigurationFile provider = (IConfigurationFile) plugin;
-			this.configFilePath = provider.getConfigurationPath();
-			this.configurationFile = provider;
-		}
-	}
-
-	@Override
-	public void load()
-	{
-		if (this.configFilePath == null)
-			return;
-
-		File configFile = new File(this.configFilePath);
-
-		this.configFile = YamlConfiguration.loadConfiguration(configFile);
-		InputStream defaults = this.configurationFile.getDefaultConfiguration();
-		if (defaults != null)
-		{
-			this.configFile.setDefaults(YamlConfiguration.loadConfiguration(defaults));
-			this.configFile.options().copyDefaults(true);
-		}
-		this.save();
-		notifySubscribers();
-	}
-
-	// Replaces the current configuration values with the supplied defaults
-	@Override
-	public boolean restoreToDefaults()
-	{
-		if (this.configFile.getDefaults() != null)
-		{
-			this.configFile.options().copyDefaults(true);
-			this.save();
-			this.output("Configuration restored to defaults.");
-			return true;
-		}
-		return false;
-	}
-
-	// Saves the current configuration file to disk
-	@Override
-	public void save()
-	{
-		if (this.configFile != null)
-		{
-			try
-			{
-				this.configFile.save(new File(this.configFilePath));
-			}
-			catch (IOException ex)
-			{
-				this.output(String.format("Unable to save to configuration file: %s", this.configFilePath), Level.SEVERE);
-			}
-		}
-	}
-
-	// Returns a configuration value as a string
 	@Override
 	public String getConfigValueAsString(String value)
 	{
@@ -95,7 +18,6 @@ public class RunsafeConfigurationHandler implements IConfiguration, Startable
 		return this.configFile.getString(value);
 	}
 
-	// Returns a configuration value as a boolean
 	@Override
 	public boolean getConfigValueAsBoolean(String key)
 	{
@@ -103,7 +25,6 @@ public class RunsafeConfigurationHandler implements IConfiguration, Startable
 		return value != null && Boolean.parseBoolean(value);
 	}
 
-	// Returns a configuration value as an integer
 	@Override
 	public int getConfigValueAsInt(String key)
 	{
@@ -113,7 +34,6 @@ public class RunsafeConfigurationHandler implements IConfiguration, Startable
 		return Integer.parseInt(value);
 	}
 
-	// Returns a configuration value as a double
 	@Override
 	public double getConfigValueAsDouble(String key)
 	{
@@ -123,7 +43,6 @@ public class RunsafeConfigurationHandler implements IConfiguration, Startable
 		return Double.parseDouble(value);
 	}
 
-	// Returns a configuration value as a float
 	@Override
 	public float getConfigValueAsFloat(String key)
 	{
@@ -216,68 +135,11 @@ public class RunsafeConfigurationHandler implements IConfiguration, Startable
 		return this.configFile.getConfigurationSection(path);
 	}
 
-	// Sets a configuration value with the specified key -> value
 	@Override
 	public void setConfigValue(String key, Object value)
 	{
 		this.configFile.set(key, value);
 	}
 
-	@Override
-	public void start()
-	{
-		load();
-	}
-
-	@Override
-	public void stop()
-	{
-	}
-
-	private void output(String message)
-	{
-		if (this.pluginOutput != null)
-		{
-			this.pluginOutput.outputToConsole(message);
-		}
-	}
-
-	private void output(String message, Level level)
-	{
-		if (this.pluginOutput != null)
-		{
-			this.pluginOutput.outputToConsole(message, level);
-		}
-	}
-
-	private void notifySubscribers()
-	{
-		if (subscribers != null)
-		{
-			for (IConfigurationChanged sub : subscribers)
-			{
-				try
-				{
-					pluginOutput.fine(
-						"Notifying subscriber %s about updated configuration.",
-						sub.getClass().getCanonicalName()
-					);
-					sub.OnConfigurationChanged(this);
-				}
-				catch (Exception e)
-				{
-					pluginOutput.logException(e);
-				}
-			}
-			pluginOutput.outputToConsole(
-				String.format("Configuration change notifications sent to %d modules.", subscribers.length)
-			);
-		}
-	}
-
-	private String configFilePath;
-	private IConfigurationFile configurationFile;
-	private final IOutput pluginOutput;
-	private FileConfiguration configFile;
-	private final IConfigurationChanged[] subscribers;
+	FileConfiguration configFile;
 }

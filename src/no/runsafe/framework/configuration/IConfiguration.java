@@ -7,15 +7,6 @@ import java.util.Map;
 
 public interface IConfiguration
 {
-	// Loads the configuration from disk. Prepares defaults if available.
-	void load();
-
-	// Replaces the current configuration values with the supplied defaults
-	boolean restoreToDefaults();
-
-	// Saves the current configuration file to disk
-	void save();
-
 	// Returns a configuration value as a string
 	String getConfigValueAsString(String value);
 
