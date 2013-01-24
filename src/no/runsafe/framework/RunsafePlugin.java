@@ -12,6 +12,7 @@ import no.runsafe.framework.database.ISchemaChanges;
 import no.runsafe.framework.database.RunsafeDatabaseHandler;
 import no.runsafe.framework.database.SchemaRevisionRepository;
 import no.runsafe.framework.event.*;
+import no.runsafe.framework.event.listener.Factories;
 import no.runsafe.framework.hook.*;
 import no.runsafe.framework.messaging.*;
 import no.runsafe.framework.output.IOutput;
@@ -198,7 +199,16 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 
 	protected List<Listener> GetEvents()
 	{
-		return getComponents(Listener.class);
+		try
+		{
+			Factories.Register();
+			return getComponents(Listener.class);
+		}
+		catch (Exception e)
+		{
+			output.logException(e);
+			return null;
+		}
 	}
 
 	protected List<RunsafeCommandHandler> GetLegacyCommands()

@@ -1,7 +1,6 @@
 package no.runsafe.framework.event;
 
 import no.runsafe.framework.event.listener.EventRouterFactory;
-import no.runsafe.framework.event.listener.Factories;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.Listener;
@@ -11,13 +10,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings("deprecation")
 public class EventEngine
 {
 	static
 	{
 		factories = new HashMap<Class<? extends IRunsafeEvent>, EventRouterFactory>();
-		Factories.Register();
 	}
 
 	public EventEngine(IOutput output, IScheduler scheduler, List<IRunsafeEvent> events)
@@ -35,17 +32,11 @@ public class EventEngine
 		return listeners;
 	}
 
-	public static void Register(Class<? extends EventRouterFactory> factoryClass)
+	public static void Register(Class<? extends EventRouterFactory> factoryClass) throws IllegalAccessException, InstantiationException
 	{
-		try
-		{
-			EventRouterFactory factory = factoryClass.getConstructor().newInstance();
-			if (!factories.containsKey(factory.getInterface()))
-				factories.put(factory.getInterface(), factory);
-		}
-		catch (Exception e)
-		{
-		}
+		EventRouterFactory factory = factoryClass.newInstance();
+		if (!factories.containsKey(factory.getInterface()))
+			factories.put(factory.getInterface(), factory);
 	}
 
 	private List<Listener> getRouters(IRunsafeEvent subscriber)

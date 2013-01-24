@@ -1,5 +1,6 @@
 package no.runsafe.framework.timer;
 
+@SuppressWarnings("EmptyMethod")
 public abstract class TimerFactory<T>
 {
 	public TimerFactory(IScheduler scheduler)

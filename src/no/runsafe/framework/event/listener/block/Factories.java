@@ -4,7 +4,7 @@ import no.runsafe.framework.event.EventEngine;
 
 public final class Factories
 {
-	public static void Register()
+	public static void Register() throws InstantiationException, IllegalAccessException
 	{
 		EventEngine.Register(BlockBreak.Factory.class);
 		EventEngine.Register(BlockBreakListener.Factory.class);

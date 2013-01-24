@@ -4,7 +4,7 @@ import no.runsafe.framework.event.EventEngine;
 
 public final class Factories
 {
-	public static void Register()
+	public static void Register() throws InstantiationException, IllegalAccessException
 	{
 		EventEngine.Register(ChunkLoad.Factory.class);
 		EventEngine.Register(ChunkPopulate.Factory.class);
