@@ -2,8 +2,6 @@ package no.runsafe.framework.server.block;
 
 import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.material.RunsafeMaterial;
-import org.bukkit.Material;
-import org.bukkit.block.BlockState;
 import org.bukkit.block.Jukebox;
 
 public class RunsafeJukebox extends RunsafeBlockState
@@ -32,6 +30,12 @@ public class RunsafeJukebox extends RunsafeBlockState
 	public boolean eject()
 	{
 		return jukebox.eject();
+	}
+
+	@Override
+	public Jukebox getRaw()
+	{
+		return jukebox;
 	}
 
 	private final Jukebox jukebox;

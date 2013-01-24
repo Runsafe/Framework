@@ -32,5 +32,11 @@ public class RunsafeCreatureSpawner extends RunsafeBlockState
 		spawner.setDelay(i);
 	}
 
+	@Override
+	public CreatureSpawner getRaw()
+	{
+		return spawner;
+	}
+
 	private final CreatureSpawner spawner;
 }

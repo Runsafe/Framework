@@ -63,5 +63,10 @@ public class RunsafeDoubleChest implements IInventoryHolder
 		return chest.getZ();
 	}
 
+	public DoubleChest getRaw()
+	{
+		return chest;
+	}
+
 	private final DoubleChest chest;
 }

@@ -23,5 +23,11 @@ public class RunsafeChest extends RunsafeBlockState implements IInventoryHolder
 		return getInventory();
 	}
 
+	@Override
+	public Chest getRaw()
+	{
+		return chest;
+	}
+
 	private final Chest chest;
 }

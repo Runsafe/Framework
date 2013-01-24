@@ -25,5 +25,11 @@ public class RunsafeSign extends RunsafeBlockState
 		sign.setLine(i, s);
 	}
 
+	@Override
+	public Sign getRaw()
+	{
+		return sign;
+	}
+
 	private final Sign sign;
 }

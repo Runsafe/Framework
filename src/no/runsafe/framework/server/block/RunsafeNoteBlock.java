@@ -1,8 +1,5 @@
 package no.runsafe.framework.server.block;
 
-import org.bukkit.Instrument;
-import org.bukkit.Note;
-import org.bukkit.block.BlockState;
 import org.bukkit.block.NoteBlock;
 
 public class RunsafeNoteBlock extends RunsafeBlockState
@@ -40,13 +37,19 @@ public class RunsafeNoteBlock extends RunsafeBlockState
 
 	public boolean play(byte b, byte b1)
 	{
-		return noteBlock.play(b,b1);
+		return noteBlock.play(b, b1);
 	}
 
 //	public boolean play(Instrument instrument, Note note)
 //	{
 //		return noteBlock.play(instrument, note);
 //	}
+
+	@Override
+	public NoteBlock getRaw()
+	{
+		return noteBlock;
+	}
 
 	private final NoteBlock noteBlock;
 }

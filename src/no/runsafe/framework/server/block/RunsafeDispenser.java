@@ -24,5 +24,11 @@ public class RunsafeDispenser extends RunsafeBlockState implements IInventoryHol
 		return ObjectWrapper.convert(dispenser.getInventory());
 	}
 
+	@Override
+	public Dispenser getRaw()
+	{
+		return dispenser;
+	}
+
 	private final Dispenser dispenser;
 }

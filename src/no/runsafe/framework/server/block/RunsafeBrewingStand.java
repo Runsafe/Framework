@@ -28,5 +28,11 @@ public class RunsafeBrewingStand extends RunsafeBlockState implements IInventory
 		return ObjectWrapper.convert(stand.getInventory());
 	}
 
+	@Override
+	public BrewingStand getRaw()
+	{
+		return stand;    //To change body of overridden methods use File | Settings | File Templates.
+	}
+
 	private final BrewingStand stand;
 }

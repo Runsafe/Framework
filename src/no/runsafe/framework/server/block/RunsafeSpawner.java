@@ -22,7 +22,7 @@ public class RunsafeSpawner extends RunsafeBlock
 
 	public int getCreatureId()
 	{
-		return getBlockState().getRaw().getTypeId();
+		return getBlockState().getRaw().getSpawnedType().getTypeId();
 	}
 
 	public void setCreatureType(String type)
