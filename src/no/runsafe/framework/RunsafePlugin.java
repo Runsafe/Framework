@@ -1,42 +1,28 @@
 package no.runsafe.framework;
 
-import no.runsafe.framework.command.BukkitCommandExecutor;
-import no.runsafe.framework.command.ICommand;
-import no.runsafe.framework.command.ICommandHandler;
-import no.runsafe.framework.command.RunsafeCommandHandler;
-import no.runsafe.framework.configuration.IConfiguration;
-import no.runsafe.framework.configuration.IConfigurationFile;
+import no.runsafe.framework.command.*;
 import no.runsafe.framework.configuration.RunsafeConfigurationHandler;
-import no.runsafe.framework.database.IDatabase;
-import no.runsafe.framework.database.ISchemaChanges;
 import no.runsafe.framework.database.RunsafeDatabaseHandler;
 import no.runsafe.framework.database.SchemaRevisionRepository;
-import no.runsafe.framework.event.*;
-import no.runsafe.framework.event.listener.Factories;
+import no.runsafe.framework.event.EventEngine;
+import no.runsafe.framework.event.IPluginDisabled;
+import no.runsafe.framework.event.IPluginEnabled;
 import no.runsafe.framework.hook.*;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.output.RunsafeOutputHandler;
 import no.runsafe.framework.plugin.IPluginUpdate;
-import no.runsafe.framework.server.ICommandExecutor;
-import no.runsafe.framework.server.RunsafeConsole;
 import no.runsafe.framework.server.RunsafeServer;
 import no.runsafe.framework.server.player.RunsafePlayer;
-import no.runsafe.framework.timer.IScheduler;
 import no.runsafe.framework.timer.Scheduler;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.event.Listener;
-import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.picocontainer.DefaultPicoContainer;
 import org.picocontainer.behaviors.Caching;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -106,9 +92,6 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 			initializePlugin();
 		IOutput console = getComponent(IOutput.class);
 		console.fine("Plugin initialized.");
-
-		addFrameworkHooks();
-		console.fine("Plugin framework hooks added.");
 
 		for (IPluginEnabled impl : getComponents(IPluginEnabled.class))
 			impl.OnPluginEnabled();
@@ -223,20 +206,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		}
 	}
 
-	protected List<Listener> GetEvents()
-	{
-		try
-		{
-			Factories.Register();
-			return getComponents(Listener.class);
-		}
-		catch (Exception e)
-		{
-			output.logException(e);
-			return null;
-		}
-	}
-
+	@Deprecated
 	protected List<RunsafeCommandHandler> GetLegacyCommands()
 	{
 		ArrayList<RunsafeCommandHandler> handlers = new ArrayList<RunsafeCommandHandler>();
@@ -248,17 +218,17 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		return handlers;
 	}
 
-	protected List<BukkitCommandExecutor> GetCommands()
-	{
-		ICommandExecutor console = new RunsafeConsole(output);
-		ArrayList<BukkitCommandExecutor> handlers = new ArrayList<BukkitCommandExecutor>();
-		for (ICommandHandler command : getComponents(ICommandHandler.class))
-		{
-			command.setConsole(getComponent(IOutput.class));
-			handlers.add(new BukkitCommandExecutor(command, console));
-		}
-		return handlers;
-	}
+//	protected List<BukkitCommandExecutor> GetCommands()
+//	{
+//		ICommandExecutor console = new RunsafeConsole(output);
+//		ArrayList<BukkitCommandExecutor> handlers = new ArrayList<BukkitCommandExecutor>();
+//		for (ICommandHandler command : getComponents(ICommandHandler.class))
+//		{
+//			command.setConsole(getComponent(IOutput.class));
+//			handlers.add(new BukkitCommandExecutor(command, console));
+//		}
+//		return handlers;
+//	}
 
 	protected abstract void PluginSetup();
 
@@ -269,23 +239,21 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		Instances.put(getName(), this);
 
 		container = new DefaultPicoContainer(new Caching());
+
 		addStandardComponents();
 
 		output = getComponent(IOutput.class);
+		output.fine("Standard components added.");
 		output.outputDebugToConsole("Wiring up plugin", Level.FINE);
 
-		// When the plugin has configuration, get it.
-		if (this instanceof IConfigurationFile)
-		{
-			output.outputDebugToConsole("Loading configuration for plugin..", Level.FINE);
-			getComponent(IConfiguration.class).setConfigFileProvider((IConfigurationFile) this);
-		}
+		addFrameworkHooks();
+		output.fine("Plugin framework hooks added.");
 
 		this.PluginSetup();
+		output.fine("Plugin setup performed.");
 
-		RegisterEvents();
 		RegisterCommands();
-		executeSchemaChanges();
+		this.container.start();
 		output.outputDebugToConsole("Initiation complete", Level.FINE);
 	}
 
@@ -299,6 +267,8 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		this.container.addComponent(RunsafeDatabaseHandler.class);
 		this.container.addComponent(new Scheduler(this.getServer().getScheduler(), this));
 		this.container.addComponent(SchemaRevisionRepository.class);
+		this.container.addComponent(EventEngine.class);
+		this.container.addComponent(CommandEngine.class);
 	}
 
 	private void logPluginVersion()
@@ -312,91 +282,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 		}
 	}
 
-	private void executeSchemaChanges()
-	{
-		List<ISchemaChanges> changeSets = getComponents(ISchemaChanges.class);
-		if (!changeSets.isEmpty())
-		{
-			SchemaRevisionRepository repository = getComponent(SchemaRevisionRepository.class);
-			IDatabase db = getComponent(IDatabase.class);
-			for (ISchemaChanges changes : changeSets)
-			{
-				int revision = repository.getRevision(changes.getTableName());
-				HashMap<Integer, List<String>> queries = changes.getSchemaUpdateQueries();
-				for (Integer rev : queries.keySet())
-				{
-					if (rev > revision)
-					{
-						String sqlQuery = null;
-						Connection conn = db.beginTransaction();
-						try
-						{
-							output.write(String.format("Updating table %s from revision %d to revision %d", changes.getTableName(), revision, rev));
-							for (String sql : queries.get(rev))
-							{
-								sqlQuery = sql;
-								PreparedStatement query = conn.prepareStatement(sql);
-								query.execute();
-								revision = rev;
-							}
-							db.commitTransaction(conn);
-						}
-						catch (SQLException e)
-						{
-							output.logException(e);
-							output.writeColoured("Failed executing query:\n%s", sqlQuery);
-							output.writeColoured("&cRolling back transaction..");
-							try
-							{
-								conn.rollback();
-							}
-							catch (SQLException e1)
-							{
-								output.writeColoured("&4Failed rolling back transaction!");
-								output.logException(e1);
-							}
-							break;
-						}
-					}
-				}
-				repository.setRevision(changes.getTableName(), revision);
-			}
-		}
-	}
-
-	private void RegisterEvents()
-	{
-		PluginManager pluginManager = this.getServer().getPluginManager();
-
-		EventEngine engine = new EventEngine(
-			container.getComponent(IOutput.class),
-			container.getComponent(IScheduler.class),
-			container.getComponents(IRunsafeEvent.class)
-		);
-		for (Listener listener : engine.getListeners())
-		{
-			pluginManager.registerEvents(listener, this);
-			output.outputDebugToConsole(String.format("Registered event listener %s", listener.getClass().getName()), Level.FINER);
-		}
-
-		List<Listener> eventListeners = GetEvents();
-		if (eventListeners != null && !eventListeners.isEmpty())
-		{
-			for (Listener listener : eventListeners)
-			{
-				pluginManager.registerEvents(listener, this);
-				output.outputDebugToConsole(String.format("Registered event listener %s", listener.getClass().getName()), Level.FINER);
-			}
-		}
-
-		List<IConfigurationChanged> configListeners = getComponents(IConfigurationChanged.class);
-		if (configListeners != null && configListeners.size() > 0)
-			getComponent(IConfiguration.class).setListeners(configListeners);
-
-		if (eventListeners != null)
-			output.outputDebugToConsole(String.format("Registered %d event listeners", eventListeners.size()), Level.FINE);
-	}
-
+	@Deprecated
 	private void RegisterCommands()
 	{
 		for (RunsafeCommandHandler handler : this.GetLegacyCommands())
@@ -411,18 +297,18 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 				command.setExecutor(handler);
 			}
 		}
-		for (BukkitCommandExecutor executor : this.GetCommands())
-		{
-			PluginCommand command = getCommand(executor.getName());
-
-			if (command == null)
-				output.outputToConsole(String.format("Command not found: %s - does it exist in plugin.yml?", executor.getName()));
-			else
-			{
-				output.fine(String.format("Command handler for %s registered with bukkit.", executor.getName()));
-				command.setExecutor(executor);
-			}
-		}
+//		for (BukkitCommandExecutor executor : this.GetCommands())
+//		{
+//			PluginCommand command = getCommand(executor.getName());
+//
+//			if (command == null)
+//				output.outputToConsole(String.format("Command not found: %s - does it exist in plugin.yml?", executor.getName()));
+//			else
+//			{
+//				output.fine(String.format("Command handler for %s registered with bukkit.", executor.getName()));
+//				command.setExecutor(executor);
+//			}
+//		}
 	}
 
 	protected DefaultPicoContainer container = null;

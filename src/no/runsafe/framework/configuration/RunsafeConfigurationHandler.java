@@ -1,10 +1,12 @@
 package no.runsafe.framework.configuration;
 
+import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.event.IConfigurationChanged;
 import no.runsafe.framework.output.IOutput;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.picocontainer.Startable;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,25 +17,22 @@ import java.util.Map;
 import java.util.logging.Level;
 
 
-public class RunsafeConfigurationHandler implements IConfiguration
+public class RunsafeConfigurationHandler implements IConfiguration, Startable
 {
-	private String configFilePath;
-	private IConfigurationFile configurationFile;
-	private final IOutput pluginOutput;
-	private FileConfiguration configFile;
-	private List<IConfigurationChanged> subscribers;
-
-	public RunsafeConfigurationHandler(IOutput pluginOutput)
+	public RunsafeConfigurationHandler(
+		IOutput pluginOutput,
+		List<IConfigurationChanged> subscribers,
+		RunsafePlugin plugin
+	)
 	{
 		this.pluginOutput = pluginOutput;
-	}
-
-	@Override
-	public void setConfigFileProvider(IConfigurationFile provider)
-	{
-		this.configFilePath = provider.getConfigurationPath();
-		this.configurationFile = provider;
-		this.load();
+		this.subscribers = subscribers;
+		if (plugin instanceof IConfigurationFile)
+		{
+			IConfigurationFile provider = (IConfigurationFile) plugin;
+			this.configFilePath = provider.getConfigurationPath();
+			this.configurationFile = provider;
+		}
 	}
 
 	@Override
@@ -223,6 +222,17 @@ public class RunsafeConfigurationHandler implements IConfiguration
 		this.configFile.set(key, value);
 	}
 
+	@Override
+	public void start()
+	{
+		load();
+	}
+
+	@Override
+	public void stop()
+	{
+	}
+
 	private void output(String message)
 	{
 		if (this.pluginOutput != null)
@@ -239,14 +249,6 @@ public class RunsafeConfigurationHandler implements IConfiguration
 		}
 	}
 
-	@Override
-	public void setListeners(List<IConfigurationChanged> subscribers)
-	{
-		this.subscribers = subscribers;
-		if (this.configFile != null)
-			notifySubscribers();
-	}
-
 	private void notifySubscribers()
 	{
 		if (subscribers != null)
@@ -255,12 +257,9 @@ public class RunsafeConfigurationHandler implements IConfiguration
 			{
 				try
 				{
-					pluginOutput.outputDebugToConsole(
-						String.format(
-							"Notifying subscriber %s about updated configuration.",
-							sub.getClass().getCanonicalName()
-						),
-						Level.FINE
+					pluginOutput.fine(
+						"Notifying subscriber %s about updated configuration.",
+						sub.getClass().getCanonicalName()
 					);
 					sub.OnConfigurationChanged(this);
 				}
@@ -274,4 +273,10 @@ public class RunsafeConfigurationHandler implements IConfiguration
 			);
 		}
 	}
+
+	private String configFilePath;
+	private IConfigurationFile configurationFile;
+	private final IOutput pluginOutput;
+	private FileConfiguration configFile;
+	private final List<IConfigurationChanged> subscribers;
 }

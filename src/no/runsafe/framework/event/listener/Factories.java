@@ -2,7 +2,7 @@ package no.runsafe.framework.event.listener;
 
 public final class Factories
 {
-	public static void Register() throws IllegalAccessException, InstantiationException
+	public static void Register()
 	{
 		if (isRegistered)
 			return;

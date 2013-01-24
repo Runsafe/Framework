@@ -4,6 +4,7 @@ import no.runsafe.framework.output.ConsoleColors;
 import no.runsafe.framework.output.IOutput;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.picocontainer.Startable;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -12,17 +13,23 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 
-public final class RunsafeDatabaseHandler implements IDatabase
+public final class RunsafeDatabaseHandler implements IDatabase, Startable
 {
 	private final String databaseURL;
 	private final String databaseUsername;
 	private final String databasePassword;
 
 	private final IOutput output;
+	private final List<ISchemaChanges> schemaUpdaters;
+	private final SchemaRevisionRepository revisionRepository;
 
-	public RunsafeDatabaseHandler(IOutput output)
+	public RunsafeDatabaseHandler(
+		IOutput output, List<ISchemaChanges> schemaUpdaters, SchemaRevisionRepository revisionRepository
+	)
 	{
 		YamlConfiguration config = new YamlConfiguration();
 		try
@@ -64,6 +71,8 @@ public final class RunsafeDatabaseHandler implements IDatabase
 		this.databaseUsername = config.getString("database.username");
 		this.databasePassword = config.getString("database.password");
 		this.output = output;
+		this.schemaUpdaters = schemaUpdaters;
+		this.revisionRepository = revisionRepository;
 	}
 
 	@Override
@@ -127,6 +136,18 @@ public final class RunsafeDatabaseHandler implements IDatabase
 		}
 	}
 
+	@Override
+	public void start()
+	{
+		if (schemaUpdaters != null && !schemaUpdaters.isEmpty())
+			executeSchemaChanges();
+	}
+
+	@Override
+	public void stop()
+	{
+	}
+
 	protected Connection getConnection()
 	{
 		try
@@ -147,6 +168,61 @@ public final class RunsafeDatabaseHandler implements IDatabase
 			this.output.write(e.getMessage());
 			return null;
 		}
+	}
+
+	private void executeSchemaChanges()
+	{
+		for (ISchemaChanges changes : schemaUpdaters)
+		{
+			int revision = revisionRepository.getRevision(changes.getTableName());
+			HashMap<Integer, List<String>> queries = changes.getSchemaUpdateQueries();
+			for (Integer rev : queries.keySet())
+			{
+				if (rev > revision)
+				{
+					revision = executeSchemaChanges(changes.getTableName(), revision, rev, queries.get(rev));
+
+					// Update failed, abort now
+					if (revision < rev)
+						break;
+				}
+			}
+			revisionRepository.setRevision(changes.getTableName(), revision);
+		}
+	}
+
+	private int executeSchemaChanges(String tableName, int oldRevision, int newRevision, List<String> queries)
+	{
+		String sqlQuery = null;
+		Connection transaction = beginTransaction();
+		try
+		{
+			output.write(String.format("Updating table %s from revision %d to revision %d", tableName, oldRevision, newRevision));
+			for (String sql : queries)
+			{
+				sqlQuery = sql;
+				PreparedStatement query = transaction.prepareStatement(sql);
+				query.execute();
+			}
+			commitTransaction(transaction);
+			return newRevision;
+		}
+		catch (SQLException e)
+		{
+			output.logException(e);
+			output.writeColoured("Failed executing query:\n%s", sqlQuery);
+			output.writeColoured("&cRolling back transaction..");
+			try
+			{
+				transaction.rollback();
+			}
+			catch (SQLException e1)
+			{
+				output.writeColoured("&4Failed rolling back transaction!");
+				output.logException(e1);
+			}
+		}
+		return oldRevision;
 	}
 
 	private Connection conn;

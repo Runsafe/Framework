@@ -4,7 +4,7 @@ import no.runsafe.framework.event.EventEngine;
 
 public final class Factories
 {
-	public static void Register() throws InstantiationException, IllegalAccessException
+	public static void Register()
 	{
 		EventEngine.Register(PlayerChangedWorld.Factory());
 		EventEngine.Register(PlayerChat.Factory());

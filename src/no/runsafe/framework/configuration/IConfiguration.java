@@ -1,6 +1,5 @@
 package no.runsafe.framework.configuration;
 
-import no.runsafe.framework.event.IConfigurationChanged;
 import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.List;
@@ -41,10 +40,6 @@ public interface IConfiguration
 
 	@Deprecated
 	ConfigurationSection getSection(String path);
-
-	void setListeners(List<IConfigurationChanged> subscribers);
-
-	void setConfigFileProvider(IConfigurationFile provider);
 
 	Map<String, String> getConfigValuesAsMap(String path);
 
