@@ -35,7 +35,7 @@ public final class SpawnEggUsed extends EventRouterBase<ISpawnEggUsed, CreatureS
 		);
 	}
 
-	final static class Factory implements EventRouterFactory
+	public final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

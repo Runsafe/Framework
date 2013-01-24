@@ -34,7 +34,7 @@ public final class BlockPlace extends EventRouterBase<IBlockPlace, BlockPlaceEve
 		);
 	}
 
-	final static class Factory implements EventRouterFactory
+	public final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

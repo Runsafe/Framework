@@ -32,7 +32,7 @@ public final class EntityDamageByEntity extends EventRouterBase<IEntityDamageByE
 		return true;
 	}
 
-	final static class Factory implements EventRouterFactory
+	public final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()

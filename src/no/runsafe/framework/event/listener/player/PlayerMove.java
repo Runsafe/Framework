@@ -31,7 +31,7 @@ public final class PlayerMove extends EventRouterBase<IPlayerMove, PlayerMoveEve
 		return handler.OnPlayerMove(ObjectWrapper.convert(event.getPlayer()), ObjectWrapper.convert(event.getFrom()), ObjectWrapper.convert(event.getTo()));
 	}
 
-	final static class Factory implements EventRouterFactory
+	public final static class Factory implements EventRouterFactory
 	{
 		@Override
 		public Class<? extends IRunsafeEvent> getInterface()
