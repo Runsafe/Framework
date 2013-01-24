@@ -1,8 +1,11 @@
 package no.runsafe.framework.configuration;
 
+import no.runsafe.framework.output.IOutput;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +13,11 @@ import java.util.Map;
 
 public class RunsafeConfigurationHandler implements IConfiguration
 {
+	public RunsafeConfigurationHandler(IOutput console)
+	{
+		this.console = console;
+	}
+
 	@Override
 	public String getConfigValueAsString(String value)
 	{
@@ -141,5 +149,24 @@ public class RunsafeConfigurationHandler implements IConfiguration
 		this.configFile.set(key, value);
 	}
 
+	@Override
+	public void save()
+	{
+		if (this.configFile != null)
+		{
+			try
+			{
+				this.configFile.save(new File(this.configFilePath));
+			}
+			catch (IOException ex)
+			{
+				this.console.writeColoured("Unable to save to configuration file: %s", this.configFilePath);
+				this.console.logException(ex);
+			}
+		}
+	}
+
 	FileConfiguration configFile;
+	String configFilePath;
+	private final IOutput console;
 }

@@ -7,7 +7,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.picocontainer.Startable;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 
 public class ConfigurationEngine implements Startable
@@ -41,6 +40,7 @@ public class ConfigurationEngine implements Startable
 	@Override
 	public void start()
 	{
+		load();
 	}
 
 	@Override
@@ -56,13 +56,14 @@ public class ConfigurationEngine implements Startable
 		File configFile = new File(this.configFilePath);
 
 		this.configuration.configFile = YamlConfiguration.loadConfiguration(configFile);
+		this.configuration.configFilePath = this.configFilePath;
 		InputStream defaults = this.configurationFile.getDefaultConfiguration();
 		if (defaults != null)
 		{
 			this.configuration.configFile.setDefaults(YamlConfiguration.loadConfiguration(defaults));
 			this.configuration.configFile.options().copyDefaults(true);
 		}
-		this.save();
+		this.configuration.save();
 		notifySubscribers();
 	}
 
@@ -71,26 +72,11 @@ public class ConfigurationEngine implements Startable
 		if (this.configuration.configFile.getDefaults() != null)
 		{
 			this.configuration.configFile.options().copyDefaults(true);
-			this.save();
+			this.configuration.save();
 			this.console.write("Configuration restored to defaults.");
 			return true;
 		}
 		return false;
-	}
-
-	public void save()
-	{
-		if (this.configuration.configFile != null)
-		{
-			try
-			{
-				this.configuration.configFile.save(new File(this.configFilePath));
-			}
-			catch (IOException ex)
-			{
-				this.console.writeColoured("Unable to save to configuration file: %s", this.configFilePath);
-			}
-		}
 	}
 
 	private void notifySubscribers()

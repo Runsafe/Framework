@@ -41,4 +41,6 @@ public interface IConfiguration
 	Map<String, List<String>> getConfigSectionsAsList(String path);
 
 	Map<String, List<Integer>> getConfigSectionsAsIntegerList(String path);
+
+	void save();
 }
