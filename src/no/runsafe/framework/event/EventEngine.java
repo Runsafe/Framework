@@ -4,7 +4,6 @@ import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.event.listener.EventRouterFactory;
 import no.runsafe.framework.event.listener.Factories;
 import no.runsafe.framework.output.IOutput;
-import no.runsafe.framework.server.RunsafeServer;
 import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
@@ -14,7 +13,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
 
 public class EventEngine implements Startable
 {
@@ -23,8 +21,13 @@ public class EventEngine implements Startable
 		factories = new HashMap<Class<? extends IRunsafeEvent>, EventRouterFactory>();
 	}
 
+	public EventEngine(IOutput output, IScheduler scheduler, PluginManager manager, RunsafePlugin plugin)
+	{
+		this(output, scheduler, null, manager, plugin);
+	}
+
 	public EventEngine(
-		IOutput output, IScheduler scheduler, List<IRunsafeEvent> events, PluginManager manager, RunsafePlugin plugin)
+		IOutput output, IScheduler scheduler, IRunsafeEvent[] events, PluginManager manager, RunsafePlugin plugin)
 	{
 		eventSubscribers = events;
 		this.scheduler = scheduler;
@@ -36,13 +39,15 @@ public class EventEngine implements Startable
 	@Override
 	public void start()
 	{
-		Factories.Register();
-		for (Listener listener : getListeners())
+		if (eventSubscribers != null)
 		{
-			pluginManager.registerEvents(listener, plugin);
-			output.finer("Registered event listener %s", listener.getClass().getName());
+			Factories.Register();
+			for (Listener listener : getListeners())
+			{
+				pluginManager.registerEvents(listener, plugin);
+				output.finer("Registered event listener %s", listener.getClass().getName());
+			}
 		}
-
 //		List<IConfigurationChanged> configListeners = getComponents(IConfigurationChanged.class);
 //		if (configListeners != null && configListeners.size() > 0)
 //			getComponent(IConfiguration.class).setListeners(configListeners);
@@ -81,7 +86,7 @@ public class EventEngine implements Startable
 	}
 
 	private static final Map<Class<? extends IRunsafeEvent>, EventRouterFactory> factories;
-	private final List<IRunsafeEvent> eventSubscribers;
+	private final IRunsafeEvent[] eventSubscribers;
 	private final IScheduler scheduler;
 	private final IOutput output;
 	private final PluginManager pluginManager;
