@@ -260,6 +260,7 @@ public abstract class RunsafePlugin extends JavaPlugin implements IKernel
 	private void addStandardComponents()
 	{
 		this.container.addComponent(this);
+		this.container.addComponent(this.getServer().getPluginManager());
 		this.container.addComponent(new RunsafeServer(this.getServer()));
 		this.container.addComponent(this.getLogger());
 		this.container.addComponent(RunsafeConfigurationHandler.class);

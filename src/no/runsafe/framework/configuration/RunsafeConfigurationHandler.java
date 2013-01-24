@@ -19,11 +19,12 @@ import java.util.logging.Level;
 
 public class RunsafeConfigurationHandler implements IConfiguration, Startable
 {
-	public RunsafeConfigurationHandler(
-		IOutput pluginOutput,
-		IConfigurationChanged[] subscribers,
-		RunsafePlugin plugin
-	)
+	public RunsafeConfigurationHandler(IOutput pluginOutput, RunsafePlugin plugin)
+	{
+		this(pluginOutput, null, plugin);
+	}
+
+	public RunsafeConfigurationHandler(IOutput pluginOutput, IConfigurationChanged[] subscribers, RunsafePlugin plugin)
 	{
 		this.pluginOutput = pluginOutput;
 		this.subscribers = subscribers;
