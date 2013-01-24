@@ -12,6 +12,11 @@ import java.util.List;
 
 public final class SchemaUpdater implements Startable
 {
+	public SchemaUpdater(IDatabase db, IOutput output)
+	{
+		this(db, output, null);
+	}
+
 	public SchemaUpdater(IDatabase db, IOutput output, ISchemaChanges[] schemaUpdaters)
 	{
 		this.schemaUpdaters = schemaUpdaters;
