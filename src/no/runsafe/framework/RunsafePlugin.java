@@ -13,7 +13,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -38,8 +37,6 @@ public abstract class RunsafePlugin extends InjectionPlugin
 		}
 		debugLevel = consoleDebug;
 	}
-
-//	public static final HashMap<String, RunsafePlugin> Instances = new HashMap<String, RunsafePlugin>();
 
 	public static ICommandHandler getPluginCommand(String name)
 	{
