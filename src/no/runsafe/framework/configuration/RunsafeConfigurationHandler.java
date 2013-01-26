@@ -97,8 +97,9 @@ public class RunsafeConfigurationHandler implements IConfiguration
 			return null;
 		ConfigurationSection section = this.configFile.getConfigurationSection(path);
 		HashMap<String, Integer> values = new HashMap<String, Integer>();
-		for (String key : section.getKeys(true))
-			values.put(key, section.getInt(key));
+		if (section != null)
+			for (String key : section.getKeys(true))
+				values.put(key, section.getInt(key));
 		return values;
 	}
 
