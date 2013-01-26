@@ -6,6 +6,9 @@ import no.runsafe.framework.server.ICommandExecutor;
 import no.runsafe.framework.server.ObjectWrapper;
 import org.bukkit.entity.Player;
 
+/**
+ * This class sits between bukkit and the command objects, routing the commands through to the framework objects.
+ */
 public final class BukkitCommandExecutor implements org.bukkit.command.CommandExecutor
 {
 	public BukkitCommandExecutor(ICommandHandler command, ICommandExecutor console)

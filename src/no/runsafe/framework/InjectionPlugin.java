@@ -6,6 +6,8 @@ import no.runsafe.framework.configuration.RunsafeConfigurationHandler;
 import no.runsafe.framework.database.RunsafeDatabaseHandler;
 import no.runsafe.framework.database.SchemaUpdater;
 import no.runsafe.framework.event.EventEngine;
+import no.runsafe.framework.event.IPluginDisabled;
+import no.runsafe.framework.event.IPluginEnabled;
 import no.runsafe.framework.hook.HookEngine;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.output.RunsafeOutputHandler;
@@ -21,7 +23,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 
-public class InjectionPlugin extends JavaPlugin implements IKernel
+/**
+ * Base plugin class containing all the injection handling code
+ */
+public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 {
 	public static final HashMap<String, InjectionPlugin> Instances = new HashMap<String, InjectionPlugin>();
 
@@ -96,9 +101,24 @@ public class InjectionPlugin extends JavaPlugin implements IKernel
 	}
 
 	@Override
-	public void onEnable()
+	public final void onEnable()
 	{
+		if (container == null)
+			initializePlugin();
 		this.container.start();
+		output.fine("Plugin initialized.");
+
+		for (IPluginEnabled impl : getComponents(IPluginEnabled.class))
+			impl.OnPluginEnabled();
+		output.fine("Plugin enabled event executed.");
+	}
+
+	@Override
+	public final void onDisable()
+	{
+		output.outputDebugToConsole(String.format("Disabling plugin %s", this.getName()), Level.FINE);
+		for (IPluginDisabled impl : getComponents(IPluginDisabled.class))
+			impl.OnPluginDisabled();
 	}
 
 	protected void initializePlugin()
@@ -130,5 +150,5 @@ public class InjectionPlugin extends JavaPlugin implements IKernel
 	}
 
 	protected DefaultPicoContainer container = null;
-	IOutput output;
+	protected IOutput output;
 }

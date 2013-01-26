@@ -9,13 +9,29 @@ import org.picocontainer.Startable;
 import java.io.File;
 import java.io.InputStream;
 
-public class ConfigurationEngine implements Startable
+/**
+ * This class handles basic configuration features of the plugin
+ */
+public final class ConfigurationEngine implements Startable
 {
+	/**
+	 * This constructor must be here for plugins that don't provide any configuration listeners
+	 *
+	 * @param plugin        The plugin
+	 * @param configuration The configuration handler class
+	 * @param output        Console to write messages to
+	 */
 	public ConfigurationEngine(RunsafePlugin plugin, RunsafeConfigurationHandler configuration, IOutput output)
 	{
 		this(plugin, configuration, output, null);
 	}
 
+	/**
+	 * @param plugin        The plugin
+	 * @param configuration The configuration handler class
+	 * @param output        Console to write messages to
+	 * @param subscribers   Plugin components subscribing to configuration change events
+	 */
 	public ConfigurationEngine(
 		RunsafePlugin plugin,
 		RunsafeConfigurationHandler configuration,
@@ -37,6 +53,9 @@ public class ConfigurationEngine implements Startable
 		}
 	}
 
+	/**
+	 * Loads configuration on plugin startup
+	 */
 	@Override
 	public void start()
 	{
@@ -48,6 +67,9 @@ public class ConfigurationEngine implements Startable
 	{
 	}
 
+	/**
+	 * Loads configuration for the plugin from disk
+	 */
 	public void load()
 	{
 		if (this.configFilePath == null)
@@ -67,6 +89,10 @@ public class ConfigurationEngine implements Startable
 		notifySubscribers();
 	}
 
+	/**
+	 * Restore plugin configuration to the defaults
+	 * @return Success
+	 */
 	public boolean restoreToDefaults()
 	{
 		if (this.configuration.configFile.getDefaults() != null)

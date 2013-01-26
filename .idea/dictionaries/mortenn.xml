@@ -2,6 +2,7 @@
   <dictionary name="mortenn">
     <words>
       <w>async</w>
+      <w>autocomplete</w>
       <w>bukkit</w>
       <w>chestplate</w>
       <w>commandsender</w>
@@ -12,6 +13,7 @@
       <w>laytonsmith</w>
       <w>minecraft</w>
       <w>minecraftuser</w>
+      <w>pico</w>
       <w>picocontainer</w>
       <w>preprocess</w>
       <w>rawtypes</w>
@@ -19,6 +21,7 @@
       <w>runsafe</w>
       <w>scommand</w>
       <w>spawner</w>
+      <w>startable</w>
       <w>strikethrough</w>
       <w>subcommand</w>
       <w>subcommands</w>

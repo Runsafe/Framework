@@ -4,8 +4,6 @@ import no.runsafe.framework.command.BukkitCommandExecutor;
 import no.runsafe.framework.command.ICommand;
 import no.runsafe.framework.command.ICommandHandler;
 import no.runsafe.framework.command.RunsafeCommandHandler;
-import no.runsafe.framework.event.IPluginDisabled;
-import no.runsafe.framework.event.IPluginEnabled;
 import no.runsafe.framework.output.IOutput;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
@@ -57,42 +55,7 @@ public abstract class RunsafePlugin extends InjectionPlugin
 	}
 
 	@Override
-	public final void onEnable()
-	{
-		if (container == null)
-			initializePlugin();
-		super.onEnable();
-		output.fine("Plugin initialized.");
-
-		for (IPluginEnabled impl : getComponents(IPluginEnabled.class))
-			impl.OnPluginEnabled();
-		output.fine("Plugin enabled event executed.");
-	}
-
-	@Override
-	public final void onDisable()
-	{
-		output.outputDebugToConsole(String.format("Disabling plugin %s", this.getName()), Level.FINE);
-		for (IPluginDisabled impl : getComponents(IPluginDisabled.class))
-			impl.OnPluginDisabled();
-	}
-
-	protected abstract void PluginSetup();
-
-	@Deprecated
-	protected List<RunsafeCommandHandler> GetLegacyCommands()
-	{
-		ArrayList<RunsafeCommandHandler> handlers = new ArrayList<RunsafeCommandHandler>();
-		for (ICommand command : getComponents(ICommand.class))
-		{
-			command.setConsole(output);
-			handlers.add(new RunsafeCommandHandler(command, output));
-		}
-		return handlers;
-	}
-
-	@Override
-	protected void initializePlugin()
+	protected final void initializePlugin()
 	{
 		Instances.put(getName(), this);
 		super.initializePlugin();
@@ -107,6 +70,20 @@ public abstract class RunsafePlugin extends InjectionPlugin
 
 		RegisterCommands();
 		output.outputDebugToConsole("Initiation complete", Level.FINE);
+	}
+
+	protected abstract void PluginSetup();
+
+	@Deprecated
+	protected List<RunsafeCommandHandler> GetLegacyCommands()
+	{
+		ArrayList<RunsafeCommandHandler> handlers = new ArrayList<RunsafeCommandHandler>();
+		for (ICommand command : getComponents(ICommand.class))
+		{
+			command.setConsole(output);
+			handlers.add(new RunsafeCommandHandler(command, output));
+		}
+		return handlers;
 	}
 
 	@Deprecated

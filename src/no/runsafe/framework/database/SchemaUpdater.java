@@ -10,13 +10,27 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * This class handles database schema updates
+ */
 public final class SchemaUpdater implements Startable
 {
+	/**
+	 * This constructor is required for plugins that do not provide any ISchemaChanges objects
+	 *
+	 * @param db     The database handler
+	 * @param output The console to log information to
+	 */
 	public SchemaUpdater(IDatabase db, IOutput output)
 	{
 		this(db, output, null);
 	}
 
+	/**
+	 * @param db             The database handler
+	 * @param output         The console to log information to
+	 * @param schemaUpdaters Schema updaters
+	 */
 	public SchemaUpdater(IDatabase db, IOutput output, ISchemaChanges[] schemaUpdaters)
 	{
 		this.schemaUpdaters = schemaUpdaters;

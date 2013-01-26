@@ -14,8 +14,20 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Stack;
 
+/**
+ * The base command class of the framework
+ * Create instances of this object for commands that only contain subcommands
+ */
 public class Command implements ICommandHandler
 {
+	/**
+	 * Defines the command
+	 *
+	 * @param commandName The name of the command. For top level commands, this must be as defined in plugin.yml
+	 * @param description A short descriptive text of what the command does
+	 * @param permission  A permission string that a player must have to run the command or null to allow anyone to run it
+	 * @param arguments   Optional list of required command parameters
+	 */
 	public Command(String commandName, String description, String permission, String... arguments)
 	{
 		this.name = commandName;
@@ -27,6 +39,11 @@ public class Command implements ICommandHandler
 			this.argumentList = ImmutableList.copyOf(arguments);
 	}
 
+	/**
+	 * Builds the usage message when an incomplete command is issued.
+	 *
+	 * @return A String to display to the player or console user
+	 */
 	public String getUsage()
 	{
 		HashMap<String, String> available = new HashMap<String, String>();
@@ -60,6 +77,12 @@ public class Command implements ICommandHandler
 		);
 	}
 
+	/**
+	 * The command arguments listed in usage is built by this.
+	 * Override this if you have optional arguments
+	 *
+	 * @return List of arguments for inclusion in the command usage
+	 */
 	public String getUsageCommandParams()
 	{
 		String part = ChatColour.BLUE + name + ChatColour.RESET;
@@ -72,16 +95,30 @@ public class Command implements ICommandHandler
 		return part;
 	}
 
+	/**
+	 * @return The permission required to execute this command
+	 */
 	public final String getPermission()
 	{
 		return permission;
 	}
 
+	/**
+	 * Adds a subcommand to this command
+	 *
+	 * @param subCommand The subcommand to add to this command
+	 */
 	public final void addSubCommand(Command subCommand)
 	{
 		subCommands.put(subCommand.getName(), subCommand);
 	}
 
+	/**
+	 * Resolve a subcommand
+	 *
+	 * @param name The partial or full subcommand name
+	 * @return The selected subcommand or null if no matches
+	 */
 	public final Command getSubCommand(String name)
 	{
 		if (subCommands.isEmpty())
@@ -97,16 +134,30 @@ public class Command implements ICommandHandler
 		return null;
 	}
 
+	/**
+	 * @return The name of this command
+	 */
 	public final String getName()
 	{
 		return name;
 	}
 
+	/**
+	 * Call this method in your constructor if the final parameter should grab all tailing arguments
+	 * i.e. if you want to support spaces without "" for input to a command
+	 */
 	protected final void captureTail()
 	{
 		captureTail = true;
 	}
 
+	/**
+	 * Parses user input and returns a prepared command, ready to be executed
+	 *
+	 * @param executor
+	 * @param args
+	 * @return
+	 */
 	@Override
 	public final IPreparedCommand prepare(ICommandExecutor executor, String[] args)
 	{
@@ -117,6 +168,11 @@ public class Command implements ICommandHandler
 		return prepare(executor, new HashMap<String, String>(), args, new Stack<Command>());
 	}
 
+	/**
+	 * Called by the framework to register a console object for debug output
+	 *
+	 * @param console The console to print debug information to
+	 */
 	@Override
 	public void setConsole(IOutput console)
 	{

@@ -8,6 +8,10 @@ import no.runsafe.framework.timer.IScheduler;
 
 import java.util.HashMap;
 
+/**
+ * Base class representing a command that can only be executed by the console and has an implementation that can be executed asynchronously with a return value
+ * WARNING: Do not call bukkit APIs from the background thread!
+ */
 public abstract class ConsoleAsyncCallbackCommand<T> extends AsyncCallbackCommand<T>
 {
 	public ConsoleAsyncCallbackCommand(String name, String description, IScheduler scheduler, String... args)
@@ -45,20 +49,48 @@ public abstract class ConsoleAsyncCallbackCommand<T> extends AsyncCallbackComman
 		return null;
 	}
 
+	/**
+	 * This method is called on the main thread before {@link ConsoleAsyncCallbackCommand#OnAsyncExecute(java.util.HashMap)}
+	 * Override this method if you use optional arguments
+	 *
+	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
+	 * @param arguments  Tailing arguments not asked for in the command definition
+	 * @return Message to show in the console
+	 */
 	public String OnExecute(HashMap<String, String> parameters, String[] arguments)
 	{
 		return OnExecute(parameters);
 	}
 
+	/**
+	 * This method is called on the main thread before {@link ConsoleAsyncCallbackCommand#OnAsyncExecute(java.util.HashMap)}
+	 * Override this method if you don't use optional arguments
+	 *
+	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
+	 * @return Message to show in the console
+	 */
 	public String OnExecute(HashMap<String, String> parameters)
 	{
 		return null;
 	}
 
+	/**
+	 * If you use optional arguments, override this method
+	 *
+	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
+	 * @param arguments  Tailing arguments not asked for in the command definition
+	 * @return
+	 */
 	public T OnAsyncExecute(HashMap<String, String> parameters, String[] arguments)
 	{
 		return OnAsyncExecute(parameters);
 	}
 
+	/**
+	 * If you use optional arguments, you still need to override this but you can leave it empty.
+	 *
+	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
+	 * @return
+	 */
 	public abstract T OnAsyncExecute(HashMap<String, String> parameters);
 }

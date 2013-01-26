@@ -10,13 +10,27 @@ import org.picocontainer.Startable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CommandEngine implements Startable
+/**
+ * This class handles the registration of command objects with bukkit.
+ */
+public final class CommandEngine implements Startable
 {
-	public CommandEngine(IOutput output, RunsafePlugin plugin)
+	/**
+	 * This constructor in order for plugins without commands to start without exceptions
+	 */
+	public CommandEngine()
 	{
-		this(output, null, plugin);
+		this.commands = null;
+		this.plugin = null;
+		this.console = null;
+		this.output = null;
 	}
 
+	/**
+	 * @param output   The console to output debug information to
+	 * @param commands The commands provided by the plugin
+	 * @param plugin   The plugin
+	 */
 	public CommandEngine(IOutput output, ICommandHandler[] commands, RunsafePlugin plugin)
 	{
 		this.commands = commands;
@@ -25,14 +39,20 @@ public class CommandEngine implements Startable
 		this.output = output;
 	}
 
+	/**
+	 * Hooks the commands into bukkit when plugin starts
+	 */
 	@Override
 	public void start()
 	{
 		if (commands != null)
-			for (BukkitCommandExecutor executor : this.GetCommands())
+			for (BukkitCommandExecutor executor : GetCommands())
 				HookCommand(plugin.getCommand(executor.getName()), executor);
 	}
 
+	/**
+	 * Not used
+	 */
 	@Override
 	public void stop()
 	{
@@ -49,7 +69,7 @@ public class CommandEngine implements Startable
 		}
 	}
 
-	protected List<BukkitCommandExecutor> GetCommands()
+	private List<BukkitCommandExecutor> GetCommands()
 	{
 		ArrayList<BukkitCommandExecutor> handlers = new ArrayList<BukkitCommandExecutor>();
 		for (ICommandHandler command : commands)

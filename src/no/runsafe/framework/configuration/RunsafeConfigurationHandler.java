@@ -10,7 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * This class handles configuration file access
+ */
 public class RunsafeConfigurationHandler implements IConfiguration
 {
 	public RunsafeConfigurationHandler(IOutput console)

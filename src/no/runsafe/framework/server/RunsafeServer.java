@@ -362,6 +362,7 @@ public class RunsafeServer
 		return results;
 	}
 
+	@SuppressWarnings("unchecked")
 	public <T extends Plugin> T getPlugin(String pluginName)
 	{
 		Plugin plugin = server.getPluginManager().getPlugin(pluginName);
