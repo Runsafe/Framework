@@ -1,9 +1,7 @@
 package no.runsafe.framework;
 
 import no.runsafe.framework.command.BukkitCommandExecutor;
-import no.runsafe.framework.command.ICommand;
 import no.runsafe.framework.command.ICommandHandler;
-import no.runsafe.framework.command.RunsafeCommandHandler;
 import no.runsafe.framework.output.IOutput;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
@@ -68,40 +66,10 @@ public abstract class RunsafePlugin extends InjectionPlugin
 		this.PluginSetup();
 		output.fine("Plugin setup performed.");
 
-		RegisterCommands();
 		output.outputDebugToConsole("Initiation complete", Level.FINE);
 	}
 
 	protected abstract void PluginSetup();
-
-	@Deprecated
-	protected List<RunsafeCommandHandler> GetLegacyCommands()
-	{
-		ArrayList<RunsafeCommandHandler> handlers = new ArrayList<RunsafeCommandHandler>();
-		for (ICommand command : getComponents(ICommand.class))
-		{
-			command.setConsole(output);
-			handlers.add(new RunsafeCommandHandler(command, output));
-		}
-		return handlers;
-	}
-
-	@Deprecated
-	private void RegisterCommands()
-	{
-		for (RunsafeCommandHandler handler : this.GetLegacyCommands())
-		{
-			PluginCommand command = getCommand(handler.getName());
-
-			if (command == null)
-				output.outputToConsole(String.format("Command not found: %s - does it exist in plugin.yml?", handler.getName()));
-			else
-			{
-				output.fine(String.format("Command handler for %s registered with bukkit.", handler.getName()));
-				command.setExecutor(handler);
-			}
-		}
-	}
 
 	private static final Level debugLevel;
 }
