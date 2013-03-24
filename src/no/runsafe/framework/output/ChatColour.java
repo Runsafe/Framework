@@ -2,6 +2,7 @@ package no.runsafe.framework.output;
 
 import org.bukkit.ChatColor;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum ChatColour
@@ -108,8 +109,13 @@ public enum ChatColour
 
 	public static String Strip(String message)
 	{
-		while(CODE_ANY.matcher(message).matches())
-			message = CODE_ANY.matcher(message).replaceAll("");
+		while (true)
+		{
+			Matcher matcher = CODE_ANY.matcher(message);
+			if (!matcher.matches())
+				break;
+			message = matcher.replaceAll("");
+		}
 		return message;
 	}
 
