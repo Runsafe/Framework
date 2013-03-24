@@ -2,6 +2,7 @@ package no.runsafe.framework.server;
 
 import no.runsafe.framework.hook.HookEngine;
 import no.runsafe.framework.hook.IPlayerLookupService;
+import no.runsafe.framework.output.ChatColour;
 import no.runsafe.framework.server.player.RunsafeAmbiguousPlayer;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.OfflinePlayer;
@@ -31,12 +32,12 @@ public class RunsafeServer
 
 	public int broadcastMessage(String message, String permission)
 	{
-		return this.server.broadcast(message, permission);
+		return this.server.broadcast(ChatColour.ToMinecraft(message), permission);
 	}
 
 	public int broadcastMessage(String message)
 	{
-		return this.server.broadcastMessage(message);
+		return this.server.broadcastMessage(ChatColour.ToMinecraft(message));
 	}
 
 	public void clearRecipes()
