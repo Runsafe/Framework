@@ -112,7 +112,7 @@ public enum ChatColour
 		while (true)
 		{
 			Matcher matcher = CODE_ANY.matcher(message);
-			if (!matcher.matches())
+			if (!matcher.find())
 				break;
 			message = matcher.replaceAll("");
 		}
@@ -123,7 +123,7 @@ public enum ChatColour
 	private final String bukkitCode;
 	private final String consoleCode;
 
-	private static final Pattern CODE_ANY = Pattern.compile("&[0-9a-fk-r]");
+	private static final Pattern CODE_ANY = Pattern.compile("&[0-9a-fk-or]");
 	private static final Pattern CODE_BLACK = Pattern.compile(ChatColour.BLACK.toString());
 	private static final Pattern CODE_DARK_GREEN = Pattern.compile(ChatColour.DARK_GREEN.toString());
 	private static final Pattern CODE_DARK_BLUE = Pattern.compile(ChatColour.DARK_BLUE.toString());
