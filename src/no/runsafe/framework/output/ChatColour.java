@@ -108,28 +108,8 @@ public enum ChatColour
 
 	public static String Strip(String message)
 	{
-		message = CODE_DARK_GREEN.matcher(message).replaceAll("");
-		message = CODE_DARK_BLUE.matcher(message).replaceAll("");
-		message = CODE_BLACK.matcher(message).replaceAll("");
-		message = CODE_DARK_AQUA.matcher(message).replaceAll("");
-		message = CODE_DARK_RED.matcher(message).replaceAll("");
-		message = CODE_DARK_PURPLE.matcher(message).replaceAll("");
-		message = CODE_GOLD.matcher(message).replaceAll("");
-		message = CODE_GRAY.matcher(message).replaceAll("");
-		message = CODE_DARK_GRAY.matcher(message).replaceAll("");
-		message = CODE_BLUE.matcher(message).replaceAll("");
-		message = CODE_GREEN.matcher(message).replaceAll("");
-		message = CODE_AQUA.matcher(message).replaceAll("");
-		message = CODE_RED.matcher(message).replaceAll("");
-		message = CODE_LIGHT_PURPLE.matcher(message).replaceAll("");
-		message = CODE_YELLOW.matcher(message).replaceAll("");
-		message = CODE_WHITE.matcher(message).replaceAll("");
-		message = CODE_MAGIC.matcher(message).replaceAll("");
-		message = CODE_BOLD.matcher(message).replaceAll("");
-		message = CODE_STRIKETHROUGH.matcher(message).replaceAll("");
-		message = CODE_UNDERLINE.matcher(message).replaceAll("");
-		message = CODE_ITALIC.matcher(message).replaceAll("");
-		message = CODE_RESET.matcher(message).replaceAll("");
+		while(CODE_ANY.matcher(message).matches())
+			message = CODE_ANY.matcher(message).replaceAll("");
 		return message;
 	}
 
@@ -137,6 +117,7 @@ public enum ChatColour
 	private final String bukkitCode;
 	private final String consoleCode;
 
+	private static final Pattern CODE_ANY = Pattern.compile("&[0-9a-fk-r]");
 	private static final Pattern CODE_BLACK = Pattern.compile(ChatColour.BLACK.toString());
 	private static final Pattern CODE_DARK_GREEN = Pattern.compile(ChatColour.DARK_GREEN.toString());
 	private static final Pattern CODE_DARK_BLUE = Pattern.compile(ChatColour.DARK_BLUE.toString());
