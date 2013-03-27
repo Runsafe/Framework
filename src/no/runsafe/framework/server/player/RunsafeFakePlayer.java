@@ -23,6 +23,8 @@ public class RunsafeFakePlayer extends RunsafePlayer
 		{
 			for (String group : groups)
 			{
+				if (group == null)
+					continue;
 				List<String> permissions = hook.getGroupPermissions(group);
 				if (permissions != null && permissions.contains(permission))
 					return true;
