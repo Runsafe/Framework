@@ -12,4 +12,6 @@ public interface IPlayerPermissions extends FrameworkHook
 	List<String> getUserGroups(RunsafePlayer player);
 
 	List<String> getGroupPermissions(String groupName);
+
+	List<String> getPlayerPermissions(RunsafePlayer player);
 }
