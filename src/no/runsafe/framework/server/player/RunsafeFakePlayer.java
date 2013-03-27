@@ -1,5 +1,7 @@
 package no.runsafe.framework.server.player;
 
+import no.runsafe.framework.hook.HookEngine;
+import no.runsafe.framework.hook.IPlayerPermissions;
 import no.runsafe.framework.server.RunsafeWorld;
 
 import java.util.ArrayList;
@@ -11,6 +13,22 @@ public class RunsafeFakePlayer extends RunsafePlayer
 	{
 		super(null);
 		name = playerName;
+	}
+
+	@Override
+	public boolean hasPermission(String permission)
+	{
+		List<String> groups = getGroups();
+		for (IPlayerPermissions hook : HookEngine.hookContainer.getComponents(IPlayerPermissions.class))
+		{
+			for (String group : groups)
+			{
+				List<String> permissions = hook.getGroupPermissions(group);
+				if (permissions != null && permissions.contains(permission))
+					return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
