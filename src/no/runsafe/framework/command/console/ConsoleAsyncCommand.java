@@ -30,7 +30,7 @@ public abstract class ConsoleAsyncCommand extends AsyncCommand
 	public final String OnAsyncExecute(ICommandExecutor executor, HashMap<String, String> parameters, String[] arguments)
 	{
 		if (executor instanceof RunsafeConsole)
-			return OnAsyncExecute((RunsafeConsole) executor, parameters, arguments);
+			return OnAsyncExecute(executor, parameters, arguments);
 		return "This command must be used from the console.";
 	}
 
@@ -38,7 +38,7 @@ public abstract class ConsoleAsyncCommand extends AsyncCommand
 	public final String OnAsyncExecute(ICommandExecutor executor, HashMap<String, String> parameters)
 	{
 		if (executor instanceof RunsafeConsole)
-			return OnAsyncExecute((RunsafeConsole) executor, parameters);
+			return OnAsyncExecute(executor, parameters);
 		return "This command must be used from the console.";
 	}
 

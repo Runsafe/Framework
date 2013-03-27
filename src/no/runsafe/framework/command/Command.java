@@ -154,9 +154,9 @@ public class Command implements ICommandHandler
 	/**
 	 * Parses user input and returns a prepared command, ready to be executed
 	 *
-	 * @param executor
-	 * @param args
-	 * @return
+	 * @param executor The user or console executing the command
+	 * @param args The passed argument list
+	 * @return A prepared command, ready to be executed
 	 */
 	@Override
 	public final IPreparedCommand prepare(ICommandExecutor executor, String[] args)

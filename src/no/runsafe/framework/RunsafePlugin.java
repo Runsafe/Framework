@@ -8,8 +8,6 @@ import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 
 public abstract class RunsafePlugin extends InjectionPlugin
@@ -29,6 +27,7 @@ public abstract class RunsafePlugin extends InjectionPlugin
 			}
 			catch (Exception e)
 			{
+				consoleDebug = Level.OFF;
 			}
 		}
 		debugLevel = consoleDebug;

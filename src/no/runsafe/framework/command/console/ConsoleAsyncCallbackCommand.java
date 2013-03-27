@@ -79,7 +79,7 @@ public abstract class ConsoleAsyncCallbackCommand<T> extends AsyncCallbackComman
 	 *
 	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
 	 * @param arguments  Tailing arguments not asked for in the command definition
-	 * @return
+	 * @return A value to return to the post-processing method
 	 */
 	public T OnAsyncExecute(HashMap<String, String> parameters, String[] arguments)
 	{
@@ -90,7 +90,7 @@ public abstract class ConsoleAsyncCallbackCommand<T> extends AsyncCallbackComman
 	 * If you use optional arguments, you still need to override this but you can leave it empty.
 	 *
 	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
-	 * @return
+	 * @return A value to return to the post-processing method
 	 */
 	public abstract T OnAsyncExecute(HashMap<String, String> parameters);
 }
