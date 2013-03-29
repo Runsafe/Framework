@@ -77,6 +77,16 @@ public class RunsafeBlock extends RunsafeMetadata
 		return this.getTypeId() == Material.AIR.getId();
 	}
 
+	public boolean isWater()
+	{
+		return this.getTypeId() == Material.STATIONARY_WATER.getId() || getTypeId() == Material.WATER.getId();
+	}
+
+	public boolean isLava()
+	{
+		return getTypeId() == Material.LAVA.getId() || getTypeId() == Material.STATIONARY_LAVA.getId();
+	}
+
 	private static final ArrayList<Integer> passableBlocks = new ArrayList<Integer>();
 
 	static
