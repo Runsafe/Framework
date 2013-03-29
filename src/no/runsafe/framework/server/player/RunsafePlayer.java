@@ -69,6 +69,8 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 
 	public void setPlayerListName(String playerName)
 	{
+		if (player == null)
+			return;
 		if (playerName.length() > 16)
 			this.player.setPlayerListName(playerName.substring(0, 16));
 		else
@@ -94,17 +96,17 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 
 	public boolean isSurvivalist()
 	{
-		return player.getGameMode().equals(GameMode.SURVIVAL);
+		return player != null && player.getGameMode().equals(GameMode.SURVIVAL);
 	}
 
 	public boolean isCreative()
 	{
-		return player.getGameMode().equals(GameMode.CREATIVE);
+		return player != null && player.getGameMode().equals(GameMode.CREATIVE);
 	}
 
 	public boolean isAdventurer()
 	{
-		return player.getGameMode().equals(GameMode.ADVENTURE);
+		return player != null && player.getGameMode().equals(GameMode.ADVENTURE);
 	}
 
 	public boolean isWhitelisted()
@@ -124,7 +126,8 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 
 	public void kick(String reason)
 	{
-		player.kickPlayer(reason);
+		if (player != null)
+			player.kickPlayer(reason);
 	}
 
 	public float getXP()
@@ -173,10 +176,10 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 
 	public RunsafeItemStack getItemInHand()
 	{
-		if (player != null)
-			return new RunsafeItemStack(player.getItemInHand());
+		if (player == null)
+			return null;
 
-		return null;
+		return new RunsafeItemStack(player.getItemInHand());
 	}
 
 	@Override
@@ -206,10 +209,10 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 
 	public RunsafePlayerInventory getInventory()
 	{
-		if (player != null)
-			return new RunsafePlayerInventory(player.getInventory());
+		if (player == null)
+			return null;
 
-		return null;
+		return new RunsafePlayerInventory(player.getInventory());
 	}
 
 	@SuppressWarnings("deprecation")
@@ -221,8 +224,9 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 
 	public void removeBuffs()
 	{
-		for (PotionEffect effect : player.getActivePotionEffects())
-			player.removePotionEffect(effect.getType());
+		if (player != null)
+			for (PotionEffect effect : player.getActivePotionEffects())
+				player.removePotionEffect(effect.getType());
 	}
 
 	@Override
