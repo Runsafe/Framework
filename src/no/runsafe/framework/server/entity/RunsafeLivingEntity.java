@@ -4,8 +4,14 @@ import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.player.RunsafePlayer;
+import org.bukkit.Material;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Projectile;
+import org.bukkit.util.Vector;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -52,24 +58,36 @@ public class RunsafeLivingEntity extends RunsafeEntity
 		return ObjectWrapper.convert(entity.getEyeLocation());
 	}
 
-	public List<RunsafeBlock> getLineOfSight(HashSet<Byte> bytes, int i)
+	public RunsafeBlock getTarget()
 	{
-		return ObjectWrapper.convert(entity.getLineOfSight(bytes, i));
+		HashSet<Byte> transparent = new HashSet<Byte>();
+		for(Material material : Material.values())
+			if(material.isTransparent())
+				transparent.add((byte) material.getId());
+		return getTargetBlock(transparent, 300);
 	}
 
-	public RunsafeBlock getTargetBlock(HashSet<Byte> bytes, int i)
+	public void Fire(String projectileType)
 	{
-		return ObjectWrapper.convert(entity.getTargetBlock(bytes, i));
+		Class<? extends Entity> projectile = EntityType.fromName(projectileType).getEntityClass();
+		if(Projectile.class.isAssignableFrom(projectile))
+			entity.launchProjectile(projectile.asSubclass(Projectile.class));
 	}
 
-	public List<RunsafeBlock> getLastTwoTargetBlocks(HashSet<Byte> bytes, int i)
+	public List<RunsafeBlock> getLineOfSight(HashSet<Byte> transparent, int maxDistance)
 	{
-		return ObjectWrapper.convert(entity.getLastTwoTargetBlocks(bytes, i));
+		return ObjectWrapper.convert(entity.getLineOfSight(transparent, maxDistance));
 	}
 
-	//public <T extends Projectile> T launchProjectile(Class<? extends T> aClass)
-	//{
-	//}
+	public RunsafeBlock getTargetBlock(HashSet<Byte> transparent, int maxDistance)
+	{
+		return ObjectWrapper.convert(entity.getTargetBlock(transparent, maxDistance));
+	}
+
+	public List<RunsafeBlock> getLastTwoTargetBlocks(HashSet<Byte> transparent, int maxDistance)
+	{
+		return ObjectWrapper.convert(entity.getLastTwoTargetBlocks(transparent, maxDistance));
+	}
 
 	public int getRemainingAir()
 	{

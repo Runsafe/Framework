@@ -2,6 +2,7 @@ package no.runsafe.framework.server.entity;
 
 import no.runsafe.framework.server.ObjectWrapper;
 import org.bukkit.entity.Projectile;
+import org.bukkit.util.Vector;
 
 public class RunsafeProjectile extends RunsafeEntity
 {
@@ -19,6 +20,11 @@ public class RunsafeProjectile extends RunsafeEntity
 	public void setShooter(RunsafeLivingEntity livingEntity)
 	{
 		projectile.setShooter(livingEntity.getRaw());
+	}
+
+	public void setVelocity(Vector velocity)
+	{
+		projectile.setVelocity(velocity);
 	}
 
 	public boolean getBounce()
