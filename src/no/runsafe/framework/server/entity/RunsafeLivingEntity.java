@@ -11,7 +11,6 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Projectile;
 import org.bukkit.util.Vector;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -61,8 +60,8 @@ public class RunsafeLivingEntity extends RunsafeEntity
 	public RunsafeBlock getTarget()
 	{
 		HashSet<Byte> transparent = new HashSet<Byte>();
-		for(Material material : Material.values())
-			if(material.isTransparent())
+		for (Material material : Material.values())
+			if (material.isTransparent())
 				transparent.add((byte) material.getId());
 		return getTargetBlock(transparent, 300);
 	}
@@ -70,8 +69,17 @@ public class RunsafeLivingEntity extends RunsafeEntity
 	public void Fire(String projectileType)
 	{
 		Class<? extends Entity> projectile = EntityType.fromName(projectileType).getEntityClass();
-		if(Projectile.class.isAssignableFrom(projectile))
+		if (Projectile.class.isAssignableFrom(projectile))
 			entity.launchProjectile(projectile.asSubclass(Projectile.class));
+	}
+
+	public RunsafeEntity Launch(String entityType)
+	{
+		Class<? extends Entity> launch = EntityType.fromName(entityType).getEntityClass();
+		Vector velocity = entity.getEyeLocation().getDirection().multiply(2);
+		Entity launched = entity.getWorld().spawn(entity.getEyeLocation().add(velocity), launch);
+		launched.setVelocity(velocity);
+		return ObjectWrapper.convert(launched);
 	}
 
 	public List<RunsafeBlock> getLineOfSight(HashSet<Byte> transparent, int maxDistance)
