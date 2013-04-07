@@ -7,11 +7,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.Arrays;
+import java.lang.reflect.TypeVariable;
+import java.sql.*;
+import java.util.*;
 import java.util.logging.Level;
 
 /**
@@ -121,6 +119,75 @@ public final class RunsafeDatabaseHandler implements IDatabase
 		{
 			this.output.outputToConsole(e.getMessage() + Arrays.toString(e.getStackTrace()), Level.SEVERE);
 			return null;
+		}
+	}
+
+	@Override
+	public List<Map<String, Object>> Query(String query, Object... params)
+	{
+		try
+		{
+			Connection conn = getConnection();
+			PreparedStatement statement = conn.prepareStatement(query);
+			for (int i = 0; i < params.length; i++)
+				statement.setObject(i + 1, params[i]);
+			ResultSet result = statement.executeQuery();
+			if (!result.first())
+				return null;
+			ResultSetMetaData meta = result.getMetaData();
+			int cols = meta.getColumnCount();
+			if (cols == 0)
+				return null;
+			ArrayList<Map<String, Object>> results = new ArrayList<Map<String, Object>>();
+			while (!result.isAfterLast())
+			{
+				HashMap<String, Object> row = new HashMap<String, Object>();
+				for (int i = 0; i < cols; ++i)
+					row.put(meta.getColumnName(i + 1), result.getObject(i + 1));
+				results.add(row);
+			}
+			return results;
+		}
+		catch (SQLException e)
+		{
+			output.logException(e);
+			return null;
+		}
+	}
+
+	@Override
+	public boolean Execute(String query, Object... params)
+	{
+		try
+		{
+			Connection conn = getConnection();
+			PreparedStatement statement = conn.prepareStatement(query);
+			for (int i = 0; i < params.length; i++)
+				statement.setObject(i + 1, params[i]);
+			return statement.execute();
+		}
+		catch (SQLException e)
+		{
+			output.logException(e);
+			return false;
+		}
+	}
+
+	@Override
+	public int Update(String query, Object... params)
+	{
+		try
+		{
+			Connection conn = getConnection();
+			PreparedStatement statement = conn.prepareStatement(query);
+			for (int i = 0; i < params.length; i++)
+				statement.setObject(i + 1, params[i]);
+			return statement.executeUpdate();
+		}
+		catch (SQLException e)
+		{
+			output.logException(e);
+			return 0;
 		}
 	}
 

@@ -2,6 +2,8 @@ package no.runsafe.framework.database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Database access wrapper
@@ -36,4 +38,10 @@ public interface IDatabase
 	 * @return The transaction connection
 	 */
 	Connection beginTransaction();
+
+	List<Map<String, Object>> Query(String query, Object... params);
+
+	boolean Execute(String query, Object... params);
+
+	int Update(String query, Object... params);
 }
