@@ -44,4 +44,8 @@ public interface IDatabase
 	boolean Execute(String query, Object... params);
 
 	int Update(String query, Object... params);
+
+	Map<String, Object> QueryRow(String query, Object... params);
+
+	List<Object> QueryColumn(String query, Object... params);
 }
