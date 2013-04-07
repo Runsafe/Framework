@@ -15,7 +15,7 @@ public abstract class Repository implements ISchemaChanges
 	 * @param timestamp The SQL timestamp object
 	 * @return A joda time DateTime
 	 */
-	protected static DateTime convert(Timestamp timestamp)
+	protected static DateTime convert(Object timestamp)
 	{
 		if (timestamp == null)
 			return null;
@@ -23,7 +23,7 @@ public abstract class Repository implements ISchemaChanges
 	}
 
 	/**
-	 * Converts an SQL {@link Timestamp} into a joda time {@link DateTime}
+	 * Converts joda time {@link DateTime} into an SQL {@link Timestamp}
 	 *
 	 * @param dateTime A joda time DateTime
 	 * @return The SQL timestamp object
