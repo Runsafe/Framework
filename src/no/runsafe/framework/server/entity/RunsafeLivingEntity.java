@@ -66,20 +66,26 @@ public class RunsafeLivingEntity extends RunsafeEntity
 		return getTargetBlock(transparent, 300);
 	}
 
-	public void Fire(String projectileType)
+	@Deprecated
+	public RunsafeEntity Fire(String projectileType)
 	{
-		Class<? extends Entity> projectile = EntityType.fromName(projectileType).getEntityClass();
-		if (Projectile.class.isAssignableFrom(projectile))
-			entity.launchProjectile(projectile.asSubclass(Projectile.class));
+		return Fire(EntityType.fromName(projectileType).getEntityClass());
 	}
 
+	public RunsafeEntity Fire(ProjectileEntity projectileType)
+	{
+		return Fire(projectileType.getEntityType());
+	}
+
+	@Deprecated
 	public RunsafeEntity Launch(String entityType)
 	{
-		Class<? extends Entity> launch = EntityType.fromName(entityType).getEntityClass();
-		Vector velocity = entity.getEyeLocation().getDirection().multiply(2);
-		Entity launched = entity.getWorld().spawn(entity.getEyeLocation().add(velocity), launch);
-		launched.setVelocity(velocity);
-		return ObjectWrapper.convert(launched);
+		return Launch(EntityType.fromName(entityType).getEntityClass());
+	}
+
+	public RunsafeEntity Launch(RunsafeEntityType entityType)
+	{
+		return Launch(entityType.getEntityType());
 	}
 
 	public List<RunsafeBlock> getLineOfSight(HashSet<Byte> transparent, int maxDistance)
@@ -162,29 +168,20 @@ public class RunsafeLivingEntity extends RunsafeEntity
 		return ObjectWrapper.convert(entity.getKiller());
 	}
 
-	//	public boolean addPotionEffect(PotionEffect potionEffect)
-	//	{
-	//	}
-	//
-	//	public boolean addPotionEffect(PotionEffect potionEffect, boolean b)
-	//	{
-	//	}
-	//
-	//	public boolean addPotionEffects(Collection<PotionEffect> potionEffects)
-	//	{
-	//	}
-	//
-	//	public boolean hasPotionEffect(PotionEffectType potionEffectType)
-	//	{
-	//	}
-	//
-	//	public void removePotionEffect(PotionEffectType potionEffectType)
-	//	{
-	//	}
-	//
-	//	public Collection<PotionEffect> getActivePotionEffects()
-	//	{
-	//	}
+	private RunsafeEntity Fire(Class<? extends Entity> projectile)
+	{
+		if (!Projectile.class.isAssignableFrom(projectile))
+			return null;
+		return ObjectWrapper.convert(entity.launchProjectile(projectile.asSubclass(Projectile.class)));
+	}
+
+	private RunsafeEntity Launch(Class<? extends Entity> launch)
+	{
+		Vector velocity = entity.getEyeLocation().getDirection().multiply(2);
+		Entity launched = entity.getWorld().spawn(entity.getEyeLocation().add(velocity), launch);
+		launched.setVelocity(velocity);
+		return ObjectWrapper.convert(launched);
+	}
 
 	private final LivingEntity entity;
 }
