@@ -66,7 +66,6 @@ public class RunsafeLivingEntity extends RunsafeEntity
 		return getTargetBlock(transparent, 300);
 	}
 
-	@Deprecated
 	public RunsafeEntity Fire(String projectileType)
 	{
 		return Fire(EntityType.fromName(projectileType).getEntityClass());
@@ -77,7 +76,6 @@ public class RunsafeLivingEntity extends RunsafeEntity
 		return Fire(projectileType.getEntityType());
 	}
 
-	@Deprecated
 	public RunsafeEntity Launch(String entityType)
 	{
 		return Launch(EntityType.fromName(entityType).getEntityClass());
