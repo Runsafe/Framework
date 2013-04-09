@@ -11,6 +11,7 @@ public final class Factories
 		EventEngine.Register(BlockDispense.Factory());
 		EventEngine.Register(BlockPlace.Factory());
 		EventEngine.Register(BlockRedstone.Factory());
+		EventEngine.Register(ChestBreak.Factory());
 		EventEngine.Register(SignChange.Factory());
 	}
 }
