@@ -3,10 +3,8 @@ package no.runsafe.framework.server;
 import no.runsafe.framework.server.block.*;
 import no.runsafe.framework.server.chunk.RunsafeChunk;
 import no.runsafe.framework.server.enchantment.RunsafeEnchantment;
-import no.runsafe.framework.server.entity.RunsafeEntity;
-import no.runsafe.framework.server.entity.RunsafeLivingEntity;
-import no.runsafe.framework.server.entity.RunsafePainting;
-import no.runsafe.framework.server.entity.RunsafeProjectile;
+import no.runsafe.framework.server.entity.*;
+import no.runsafe.framework.server.inventory.IInventoryHolder;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
 import no.runsafe.framework.server.item.RunsafeItem;
 import no.runsafe.framework.server.item.RunsafeItemStack;
@@ -20,7 +18,9 @@ import org.bukkit.*;
 import org.bukkit.block.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.*;
 import org.bukkit.material.MaterialData;
@@ -196,6 +196,13 @@ public class ObjectWrapper
 		if (toWrap == null)
 			return null;
 		return new RunsafeChest(toWrap);
+	}
+
+	public static RunsafeDoubleChest convert(DoubleChest toWrap)
+	{
+		if (toWrap == null)
+			return null;
+		return new RunsafeDoubleChest(toWrap);
 	}
 
 	public static RunsafeCreatureSpawner convert(CreatureSpawner toWrap)
@@ -416,5 +423,33 @@ public class ObjectWrapper
 		if (toWrap == null)
 			return null;
 		return new RunsafeSkullMeta(toWrap);
+	}
+
+	public static RunsafeStorageMinecart convert(StorageMinecart toWrap)
+	{
+		if (toWrap == null)
+			return null;
+		return new RunsafeStorageMinecart(toWrap);
+	}
+
+	public static IInventoryHolder convert(InventoryHolder toWrap)
+	{
+		if (toWrap == null)
+			return null;
+		if (toWrap instanceof BrewingStand)
+			return convert((BrewingStand) toWrap);
+		if (toWrap instanceof Chest)
+			return convert((Chest) toWrap);
+		if (toWrap instanceof Dispenser)
+			return convert((Dispenser) toWrap);
+		if (toWrap instanceof Furnace)
+			return convert((Furnace) toWrap);
+		if (toWrap instanceof DoubleChest)
+			return convert((DoubleChest) toWrap);
+		if (toWrap instanceof Player)
+			return convert((Player) toWrap);
+		if (toWrap instanceof StorageMinecart)
+			return convert((StorageMinecart) toWrap);
+		return null;
 	}
 }
