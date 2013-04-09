@@ -7,5 +7,6 @@ public class Factories
 	public static void Register()
 	{
 		EventEngine.Register(InventoryClose.Factory());
+		EventEngine.Register(InventoryOpen.Factory());
 	}
 }
