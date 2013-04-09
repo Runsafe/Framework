@@ -274,6 +274,13 @@ public class ObjectWrapper
 		return new RunsafePlayer(toWrap);
 	}
 
+	public static RunsafePlayer convert(HumanEntity toWrap)
+	{
+		if (toWrap == null)
+			return null;
+		return new RunsafePlayer((Player) toWrap);
+	}
+
 	public static RunsafePainting convert(Painting toWrap)
 	{
 		if (toWrap == null)
