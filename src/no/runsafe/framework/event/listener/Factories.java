@@ -10,6 +10,7 @@ public final class Factories
 		no.runsafe.framework.event.listener.entity.Factories.Register();
 		no.runsafe.framework.event.listener.player.Factories.Register();
 		no.runsafe.framework.event.listener.world.Factories.Register();
+		no.runsafe.framework.event.listener.inventory.Factories.Register();
 		isRegistered = true;
 	}
 
