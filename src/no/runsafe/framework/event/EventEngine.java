@@ -48,13 +48,6 @@ public class EventEngine implements Startable
 				output.finer("Registered event listener %s", listener.getClass().getName());
 			}
 		}
-//		List<IConfigurationChanged> configListeners = getComponents(IConfigurationChanged.class);
-//		if (configListeners != null && configListeners.size() > 0)
-//			getComponent(IConfiguration.class).setListeners(configListeners);
-
-//		if (eventListeners != null)
-//			output.outputDebugToConsole(String.format("Registered %d event listeners", eventListeners.size()), Level.FINE);
-
 	}
 
 	@Override
