@@ -1,11 +1,13 @@
 package no.runsafe.framework.event.listener.player;
 
+import no.runsafe.framework.event.IAsyncEvent;
 import no.runsafe.framework.event.IRunsafeEvent;
 import no.runsafe.framework.event.listener.EventRouterBase;
 import no.runsafe.framework.event.listener.EventRouterFactory;
 import no.runsafe.framework.event.player.IPlayerRespawn;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -29,7 +31,14 @@ public class PlayerRespawn extends EventRouterBase<IPlayerRespawn, PlayerRespawn
 	@Override
 	public boolean OnEvent(PlayerRespawnEvent event)
 	{
-		handler.OnPlayerRespawn(ObjectWrapper.convert(event.getPlayer()));
+		RunsafeLocation redirect = handler.OnPlayerRespawn(
+			ObjectWrapper.convert(event.getPlayer()),
+			ObjectWrapper.convert(event.getRespawnLocation()),
+			event.isBedSpawn()
+		);
+		if (redirect != null && !(handler instanceof IAsyncEvent))
+			event.setRespawnLocation(redirect.getRaw());
+
 		return true;
 	}
 
