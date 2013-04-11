@@ -20,6 +20,7 @@ public final class Factories
 		EventEngine.Register(PlayerMove.Factory());
 		EventEngine.Register(PlayerPreLogin.Factory());
 		EventEngine.Register(PlayerQuit.Factory());
+		EventEngine.Register(PlayerRespawn.Factory());
 		EventEngine.Register(PlayerRightClick.Factory());
 		EventEngine.Register(PlayerRightClickSign.Factory());
 		EventEngine.Register(PlayerTeleport.Factory());
