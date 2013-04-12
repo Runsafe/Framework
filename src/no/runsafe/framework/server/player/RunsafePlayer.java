@@ -14,6 +14,7 @@ import no.runsafe.framework.server.item.RunsafeItemStack;
 import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.joda.time.DateTime;
 
@@ -363,6 +364,16 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 			if (check.blockPlayerBuilding(this, getLocation()))
 				return false;
 		return true;
+	}
+
+	public void give(RunsafeItemStack... items)
+	{
+		if (items == null || items.length < 1)
+			return;
+		ItemStack[] itemStacks = new ItemStack[items.length];
+		for (int i = 0; i < items.length; ++i)
+			itemStacks[i] = items[i].getRaw();
+		player.getInventory().addItem(itemStacks);
 	}
 
 	private final Player player;
