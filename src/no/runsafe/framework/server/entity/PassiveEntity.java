@@ -24,7 +24,6 @@ public enum PassiveEntity implements RunsafeEntityType
 	PassiveEntity(EntityType bukkitType)
 	{
 		type = bukkitType;
-		no.runsafe.framework.server.entity.EntityType.types.put(bukkitType, this);
 	}
 
 	public Class<? extends Entity> getEntityType()

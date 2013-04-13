@@ -21,7 +21,6 @@ public enum ProjectileEntity implements RunsafeEntityType
 	ProjectileEntity(EntityType bukkitType)
 	{
 		type = bukkitType;
-		no.runsafe.framework.server.entity.EntityType.types.put(bukkitType, this);
 	}
 
 	@Override

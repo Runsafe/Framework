@@ -38,7 +38,6 @@ public enum LivingEntity implements RunsafeEntityType
 	LivingEntity(EntityType bukkitType)
 	{
 		type = bukkitType;
-		no.runsafe.framework.server.entity.EntityType.types.put(bukkitType, this);
 	}
 
 	@Override
