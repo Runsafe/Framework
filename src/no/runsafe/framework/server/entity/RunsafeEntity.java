@@ -8,6 +8,7 @@ import no.runsafe.framework.server.event.entity.RunsafeEntityDamageEvent;
 import no.runsafe.framework.server.metadata.RunsafeMetadata;
 import org.bukkit.Chunk;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 
 import java.util.List;
 import java.util.UUID;
@@ -183,6 +184,11 @@ public class RunsafeEntity extends RunsafeMetadata
 			setFire,
 			breakBlocks
 		);
+	}
+
+	public RunsafeEntityType getEntityType()
+	{
+		return no.runsafe.framework.server.entity.EntityType.convert(entity.getType());
 	}
 
 	private final Entity entity;

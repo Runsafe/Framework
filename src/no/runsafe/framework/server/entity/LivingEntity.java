@@ -38,33 +38,40 @@ public enum LivingEntity implements RunsafeEntityType
 	LivingEntity(EntityType bukkitType)
 	{
 		type = bukkitType;
+		no.runsafe.framework.server.entity.EntityType.types.put(bukkitType, this);
 	}
 
+	@Override
 	public Class<? extends Entity> getEntityType()
 	{
 		return type.getEntityClass();
 	}
 
+	@Override
 	public String getName()
 	{
 		return type.getName();
 	}
 
+	@Override
 	public int getId()
 	{
 		return type.getTypeId();
 	}
 
+	@Override
 	public boolean isAlive()
 	{
 		return type.isAlive();
 	}
 
+	@Override
 	public boolean isSpawnable()
 	{
 		return type.isSpawnable();
 	}
 
+	@Override
 	public EntityType getRaw()
 	{
 		return type;

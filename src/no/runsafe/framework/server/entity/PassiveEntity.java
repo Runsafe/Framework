@@ -3,6 +3,9 @@ package no.runsafe.framework.server.entity;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum PassiveEntity implements RunsafeEntityType
 {
 	Boat(EntityType.BOAT),
@@ -21,6 +24,7 @@ public enum PassiveEntity implements RunsafeEntityType
 	PassiveEntity(EntityType bukkitType)
 	{
 		type = bukkitType;
+		no.runsafe.framework.server.entity.EntityType.types.put(bukkitType, this);
 	}
 
 	public Class<? extends Entity> getEntityType()
@@ -28,26 +32,31 @@ public enum PassiveEntity implements RunsafeEntityType
 		return type.getEntityClass();
 	}
 
+	@Override
 	public String getName()
 	{
 		return type.getName();
 	}
 
+	@Override
 	public int getId()
 	{
 		return type.getTypeId();
 	}
 
+	@Override
 	public boolean isAlive()
 	{
 		return type.isAlive();
 	}
 
+	@Override
 	public boolean isSpawnable()
 	{
 		return type.isSpawnable();
 	}
 
+	@Override
 	public EntityType getRaw()
 	{
 		return type;
