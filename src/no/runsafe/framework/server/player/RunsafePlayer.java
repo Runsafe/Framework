@@ -58,6 +58,15 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 		return name;
 	}
 
+	public String getLastSeen(RunsafePlayer checker)
+	{
+		List<IPlayerSeen> seenHooks = HookEngine.hookContainer.getComponents(IPlayerSeen.class);
+		if (!seenHooks.isEmpty())
+			return seenHooks.get(0).GetLastSeen(this, checker);
+
+		return null;
+	}
+
 	public boolean hasPlayedBefore()
 	{
 		return basePlayer.hasPlayedBefore();
