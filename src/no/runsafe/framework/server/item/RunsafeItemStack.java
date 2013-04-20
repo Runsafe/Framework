@@ -34,6 +34,11 @@ public class RunsafeItemStack
 		itemStack = new ItemStack(material.getRaw());
 	}
 
+	public RunsafeItemStack(RunsafeMaterial material, int amount)
+	{
+		itemStack = new ItemStack(material.getRaw(), amount);
+	}
+
 	public RunsafeItemStack(int materialId, int amount, short durability)
 	{
 		itemStack = new ItemStack(materialId, amount, durability);
