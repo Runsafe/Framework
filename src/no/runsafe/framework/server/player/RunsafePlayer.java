@@ -385,6 +385,16 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 		player.getInventory().addItem(itemStacks);
 	}
 
+	public GameMode getGameMode()
+	{
+		return this.player.getGameMode();
+	}
+
+	public void setGameMode(GameMode gameMode)
+	{
+		this.player.setGameMode(gameMode);
+	}
+
 	private final Player player;
 	private final OfflinePlayer basePlayer;
 }
