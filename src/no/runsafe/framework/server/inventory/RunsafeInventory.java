@@ -40,5 +40,10 @@ public class RunsafeInventory
 		inventory.clear();
 	}
 
+	public Inventory getRaw()
+	{
+		return this.inventory;
+	}
+
 	private final Inventory inventory;
 }

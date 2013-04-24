@@ -3,12 +3,15 @@ package no.runsafe.framework.server;
 import no.runsafe.framework.hook.HookEngine;
 import no.runsafe.framework.hook.IPlayerLookupService;
 import no.runsafe.framework.output.ChatColour;
+import no.runsafe.framework.server.inventory.RunsafeInventory;
+import no.runsafe.framework.server.inventory.RunsafeInventoryHolder;
 import no.runsafe.framework.server.player.RunsafeAmbiguousPlayer;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.plugin.Plugin;
 
 import java.io.File;
@@ -370,6 +373,11 @@ public class RunsafeServer
 		if (plugin == null)
 			return null;
 		return (T) plugin;
+	}
+
+	public RunsafeInventory createInventory(RunsafeInventoryHolder holder, int size, String name)
+	{
+		return ObjectWrapper.convert(this.server.createInventory(holder.getRaw(), size, name));
 	}
 
 	private final ConcurrentHashMap<String, RunsafePlayer> kickingPlayer = new ConcurrentHashMap<String, RunsafePlayer>();
