@@ -11,6 +11,7 @@ public final class Factories
 		no.runsafe.framework.event.listener.player.Factories.Register();
 		no.runsafe.framework.event.listener.world.Factories.Register();
 		no.runsafe.framework.event.listener.inventory.Factories.Register();
+		no.runsafe.framework.event.listener.enchantment.Factories.Register();
 		isRegistered = true;
 	}
 
