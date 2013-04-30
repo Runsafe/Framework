@@ -3,6 +3,7 @@ package no.runsafe.framework.server.event.inventory;
 import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.event.CancellableEvent;
 import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 
@@ -22,6 +23,11 @@ public class RunsafeInventoryClickEvent extends RunsafeInventoryEvent implements
 	public RunsafeItemStack getCursor()
 	{
 		return ObjectWrapper.convert(this.event.getCursor());
+	}
+
+	public RunsafePlayer getWhoClick()
+	{
+		return ObjectWrapper.convert(this.event.getWhoClicked());
 	}
 
 	public RunsafeItemStack getCurrentItem()
