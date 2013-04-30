@@ -11,5 +11,6 @@ public class Factories
 		EventEngine.Register(InventoryClose.Factory());
 		EventEngine.Register(InventoryOpen.Factory());
 		EventEngine.Register(Inventory.Factory());
+		EventEngine.Register(InventoryClick.Factory());
 	}
 }
