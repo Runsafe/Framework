@@ -5,6 +5,7 @@ import no.runsafe.framework.event.block.IBlockRedstone;
 import no.runsafe.framework.event.listener.EventRouterBase;
 import no.runsafe.framework.event.listener.EventRouterFactory;
 import no.runsafe.framework.output.IOutput;
+import no.runsafe.framework.server.event.block.RunsafeBlockRedstoneEvent;
 import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,9 +28,7 @@ public final class BlockRedstone extends EventRouterBase<IBlockRedstone, BlockRe
 	@Override
 	public boolean OnEvent(BlockRedstoneEvent event)
 	{
-		int current = handler.OnBlockRedstone(event.getOldCurrent(), event.getNewCurrent());
-		if (current >= 0)
-			event.setNewCurrent(current);
+		handler.OnBlockRedstoneEvent(new RunsafeBlockRedstoneEvent(event));
 		return true;
 	}
 
