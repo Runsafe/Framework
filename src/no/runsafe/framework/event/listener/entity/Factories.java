@@ -12,5 +12,6 @@ public final class Factories
 		EventEngine.Register(EntityShootBow.Factory());
 		EventEngine.Register(SpawnEggUsed.Factory());
 		EventEngine.Register(NaturalSpawn.Factory());
+		EventEngine.Register(EntityChangeBlock.Factory());
 	}
 }
