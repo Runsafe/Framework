@@ -25,7 +25,7 @@ public class RunsafeInventoryClickEvent extends RunsafeInventoryEvent implements
 		return ObjectWrapper.convert(this.event.getCursor());
 	}
 
-	public RunsafePlayer getWhoClick()
+	public RunsafePlayer getWhoClicked()
 	{
 		return ObjectWrapper.convert(this.event.getWhoClicked());
 	}
