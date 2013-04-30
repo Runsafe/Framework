@@ -377,6 +377,9 @@ public class RunsafeServer
 
 	public RunsafeInventory createInventory(RunsafeInventoryHolder holder, int size, String name)
 	{
+		if (holder == null)
+			return ObjectWrapper.convert(this.server.createInventory(null, size, name));
+
 		return ObjectWrapper.convert(this.server.createInventory(holder.getRaw(), size, name));
 	}
 
