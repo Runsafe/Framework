@@ -177,5 +177,35 @@ public class RunsafeLocation
 		return ObjectWrapper.convert(this.location.zero());
 	}
 
+	public void incrementX(double x)
+	{
+		this.setX(this.getX() + x);
+	}
+
+	public void incrementY(double y)
+	{
+		this.setY(this.getY() + y);
+	}
+
+	public void incrementZ(double z)
+	{
+		this.setZ(this.getZ() + z);
+	}
+
+	public void decrementX(double x)
+	{
+		this.setX(this.getX() - x);
+	}
+
+	public void decrementY(double y)
+	{
+		this.setY(this.getY() - y);
+	}
+
+	public void decrementZ(double z)
+	{
+		this.setZ(this.getZ() - z);
+	}
+
 	private final Location location;
 }
