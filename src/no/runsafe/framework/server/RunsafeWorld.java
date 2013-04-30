@@ -7,6 +7,7 @@ import no.runsafe.framework.server.item.RunsafeItem;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.server.metadata.RunsafeMetadata;
 import no.runsafe.framework.server.player.RunsafePlayer;
+import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
@@ -119,6 +120,11 @@ public class RunsafeWorld extends RunsafeMetadata
 	public <T extends Entity> T spawn(RunsafeLocation location, Class<T> mob)
 	{
 		return this.world.spawn(location.getRaw(), mob);
+	}
+
+	public void playEffect(RunsafeLocation location, Effect effect, int data)
+	{
+		this.world.playEffect(location.getRaw(), effect, data);
 	}
 
 	private final World world;
