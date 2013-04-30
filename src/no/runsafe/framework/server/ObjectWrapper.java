@@ -233,6 +233,14 @@ public class ObjectWrapper
 		return new RunsafeJukebox(toWrap);
 	}
 
+	public static RunsafeFallingBlock convert(FallingBlock toWrap)
+	{
+		if (toWrap == null)
+			return null;
+
+		return new RunsafeFallingBlock(toWrap);
+	}
+
 	public static RunsafeNoteBlock convert(NoteBlock toWrap)
 	{
 		if (toWrap == null)

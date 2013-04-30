@@ -2,13 +2,16 @@ package no.runsafe.framework.server;
 
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.entity.RunsafeEntity;
+import no.runsafe.framework.server.entity.RunsafeFallingBlock;
 import no.runsafe.framework.server.item.RunsafeItem;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.server.metadata.RunsafeMetadata;
 import no.runsafe.framework.server.player.RunsafePlayer;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -65,6 +68,11 @@ public class RunsafeWorld extends RunsafeMetadata
 	public void createExplosion(RunsafeLocation location, float power, boolean setFire)
 	{
 		world.createExplosion(location.getRaw(), power, setFire);
+	}
+
+	public RunsafeFallingBlock spawnFallingBlock(RunsafeLocation location, Material material, Byte blockData)
+	{
+		return ObjectWrapper.convert(world.spawnFallingBlock(location.getRaw(), material, blockData));
 	}
 
 	public World getRaw()
