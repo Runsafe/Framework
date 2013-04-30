@@ -7,6 +7,7 @@ import no.runsafe.framework.server.entity.*;
 import no.runsafe.framework.server.inventory.IInventoryHolder;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
 import no.runsafe.framework.server.inventory.RunsafeInventoryView;
+import no.runsafe.framework.server.inventory.RunsafePlayerInventory;
 import no.runsafe.framework.server.item.RunsafeItem;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.server.item.meta.*;
@@ -20,10 +21,7 @@ import org.bukkit.block.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryHolder;
-import org.bukkit.inventory.InventoryView;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.*;
 import org.bukkit.material.MaterialData;
 import org.bukkit.metadata.Metadatable;
@@ -219,6 +217,13 @@ public class ObjectWrapper
 		if (toWrap == null)
 			return null;
 		return new RunsafeDispenser(toWrap);
+	}
+
+	public static RunsafePlayerInventory convert(PlayerInventory toWrap)
+	{
+		if (toWrap == null)
+			return null;
+		return new RunsafePlayerInventory(toWrap);
 	}
 
 	public static RunsafeFurnace convert(Furnace toWrap)

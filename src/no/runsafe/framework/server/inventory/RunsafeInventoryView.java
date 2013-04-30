@@ -1,7 +1,9 @@
 package no.runsafe.framework.server.inventory;
 
 import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.server.entity.RunsafeHumanEntity;
 import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.inventory.InventoryView;
 
 public class RunsafeInventoryView
@@ -9,6 +11,11 @@ public class RunsafeInventoryView
 	public RunsafeInventoryView(InventoryView toWrap)
 	{
 		this.inventoryView = toWrap;
+	}
+
+	public RunsafePlayer getPlayer()
+	{
+		return ObjectWrapper.convert(this.inventoryView.getPlayer());
 	}
 
 	public void setItem(int slot, RunsafeItemStack item)
@@ -49,6 +56,11 @@ public class RunsafeInventoryView
 	public String getTitle()
 	{
 		return this.inventoryView.getTitle();
+	}
+
+	public InventoryView getRaw()
+	{
+		return this.inventoryView;
 	}
 
 	private InventoryView inventoryView;

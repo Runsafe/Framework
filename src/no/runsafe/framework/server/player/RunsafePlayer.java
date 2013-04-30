@@ -6,6 +6,7 @@ import no.runsafe.framework.server.ICommandExecutor;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.block.RunsafeBlock;
+import no.runsafe.framework.server.entity.RunsafeHumanEntity;
 import no.runsafe.framework.server.entity.RunsafeLivingEntity;
 import no.runsafe.framework.server.event.player.RunsafeOperatorEvent;
 import no.runsafe.framework.server.inventory.IInventoryHolder;
