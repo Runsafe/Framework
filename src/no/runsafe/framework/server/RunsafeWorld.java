@@ -116,5 +116,10 @@ public class RunsafeWorld extends RunsafeMetadata
 		return null;
 	}
 
+	public <T extends Entity> T spawn(RunsafeLocation location, Class<T> mob)
+	{
+		return this.world.spawn(location.getRaw(), mob);
+	}
+
 	private final World world;
 }
