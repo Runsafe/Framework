@@ -209,9 +209,9 @@ public class RunsafeLocation
 
 	public void offset(double x, double y, double z)
 	{
-		this.incrementX(x);
-		this.incrementY(y);
-		this.incrementZ(z);
+		if (x > 0) this.incrementX(x); else this.decrementX(x);
+		if (y > 0) this.incrementX(y); else this.decrementX(y);
+		if (z > 0) this.incrementX(z); else this.decrementX(z);
 	}
 
 	private final Location location;
