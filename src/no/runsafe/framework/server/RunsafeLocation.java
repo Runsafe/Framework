@@ -207,5 +207,12 @@ public class RunsafeLocation
 		this.setZ(this.getZ() - z);
 	}
 
+	public void offset(double x, double y, double z)
+	{
+		this.incrementX(x);
+		this.incrementY(y);
+		this.incrementZ(z);
+	}
+
 	private final Location location;
 }
