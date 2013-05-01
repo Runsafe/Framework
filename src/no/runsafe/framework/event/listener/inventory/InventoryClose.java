@@ -6,6 +6,7 @@ import no.runsafe.framework.event.listener.EventRouterBase;
 import no.runsafe.framework.event.listener.EventRouterFactory;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.server.event.inventory.RunsafeInventoryCloseEvent;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.EventHandler;
@@ -29,10 +30,7 @@ public class InventoryClose extends EventRouterBase<IInventoryClosed, InventoryC
 	@Override
 	public boolean OnEvent(InventoryCloseEvent event)
 	{
-		handler.OnInventoryClosed(
-			(RunsafePlayer) ObjectWrapper.convert(event.getPlayer()),
-			ObjectWrapper.convert(event.getInventory())
-		);
+		handler.OnInventoryClosed(new RunsafeInventoryCloseEvent(event));
 		return true;
 	}
 
