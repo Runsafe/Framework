@@ -1,4 +1,4 @@
-package no.runsafe.framework.server.event.inventory;
+package no.runsafe.framework.server.inventory;
 
 public enum RunsafeInventoryType
 {

@@ -4,10 +4,7 @@ import no.runsafe.framework.server.block.*;
 import no.runsafe.framework.server.chunk.RunsafeChunk;
 import no.runsafe.framework.server.enchantment.RunsafeEnchantment;
 import no.runsafe.framework.server.entity.*;
-import no.runsafe.framework.server.inventory.IInventoryHolder;
-import no.runsafe.framework.server.inventory.RunsafeInventory;
-import no.runsafe.framework.server.inventory.RunsafeInventoryView;
-import no.runsafe.framework.server.inventory.RunsafePlayerInventory;
+import no.runsafe.framework.server.inventory.*;
 import no.runsafe.framework.server.item.RunsafeItem;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.server.item.meta.*;
@@ -21,6 +18,7 @@ import org.bukkit.block.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.*;
 import org.bukkit.material.MaterialData;
@@ -357,6 +355,11 @@ public class ObjectWrapper
 		if (toWrap == null)
 			return null;
 		return new RunsafeFireworkEffect(toWrap);
+	}
+
+	public static RunsafeInventoryType convert(InventoryType toWrap)
+	{
+		return RunsafeInventoryType.valueOf(toWrap.name());
 	}
 
 	public static RunsafeItemMeta convert(ItemMeta toWrap)
