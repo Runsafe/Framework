@@ -7,6 +7,7 @@ import no.runsafe.framework.server.item.meta.RunsafeItemMeta;
 import no.runsafe.framework.server.material.RunsafeMaterial;
 import no.runsafe.framework.server.material.RunsafeMaterialData;
 import org.bukkit.Material;
+import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.MaterialData;
@@ -17,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
-public class RunsafeItemStack
+public class RunsafeItemStack implements ConfigurationSerializable
 {
 	public RunsafeItemStack(ItemStack stack)
 	{
@@ -183,6 +184,17 @@ public class RunsafeItemStack
 	public boolean setItemMeta(RunsafeItemMeta itemMeta)
 	{
 		return itemStack.setItemMeta(itemMeta.getRaw());
+	}
+
+	@Override
+	public Map<String, Object> serialize()
+	{
+		return this.itemStack.serialize();
+	}
+
+	public static RunsafeItemStack deserialize(Map<String, Object> args)
+	{
+		return ObjectWrapper.convert(ItemStack.deserialize(args));
 	}
 
 	private final ItemStack itemStack;
