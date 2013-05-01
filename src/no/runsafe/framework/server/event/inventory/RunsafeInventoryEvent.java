@@ -3,7 +3,13 @@ package no.runsafe.framework.server.event.inventory;
 import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.event.RunsafeEvent;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
+import no.runsafe.framework.server.inventory.RunsafeInventoryView;
+import no.runsafe.framework.server.player.RunsafePlayer;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.inventory.InventoryEvent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RunsafeInventoryEvent extends RunsafeEvent
 {
@@ -18,8 +24,19 @@ public class RunsafeInventoryEvent extends RunsafeEvent
 		return ObjectWrapper.convert(this.event.getInventory());
 	}
 
-	// TODO: Implement getViewers();
-	// TODO: Implement geView();
+	public List<RunsafePlayer> getViewers()
+	{
+		List<RunsafePlayer> runsafeHumanEntities = new ArrayList<RunsafePlayer>();
+		for (HumanEntity humanEntity : this.event.getViewers())
+			runsafeHumanEntities.add(ObjectWrapper.convert(humanEntity));
+
+		return runsafeHumanEntities;
+	}
+
+	public RunsafeInventoryView getView()
+	{
+		return ObjectWrapper.convert(this.event.getView());
+	}
 
 	private InventoryEvent event;
 }
