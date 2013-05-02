@@ -19,6 +19,14 @@ public class RunsafeEntityDeathEvent extends RunsafeEntityEvent
 		return ObjectWrapper.convert(event.getDrops());
 	}
 
+	public void setDrops(List<RunsafeItemStack> items)
+	{
+		this.event.getDrops().clear();
+
+		for (RunsafeItemStack itemStack : items)
+			this.event.getDrops().add(itemStack.getRaw());
+	}
+
 	public int getDroppedXP()
 	{
 		return event.getDroppedExp();
