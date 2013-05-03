@@ -429,6 +429,13 @@ public class ObjectWrapper
 		return new RunsafeFireworkMeta(toWrap);
 	}
 
+	public static RunsafeTravelAgent convert(TravelAgent toWrap)
+	{
+		if (toWrap == null)
+			return null;
+		return new RunsafeTravelAgent(toWrap);
+	}
+
 	public static RunsafeLeatherArmorMeta convert(LeatherArmorMeta toWrap)
 	{
 		if (toWrap == null)
