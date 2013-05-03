@@ -70,6 +70,11 @@ public class RunsafeWorld extends RunsafeMetadata
 		world.createExplosion(location.getRaw(), power, setFire);
 	}
 
+	public void createExplosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks)
+	{
+		world.createExplosion(x, y, z, power, setFire, breakBlocks);
+	}
+
 	public RunsafeFallingBlock spawnFallingBlock(RunsafeLocation location, Material material, Byte blockData)
 	{
 		return ObjectWrapper.convert(world.spawnFallingBlock(location.getRaw(), material, blockData));
