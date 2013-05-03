@@ -100,6 +100,11 @@ public class RunsafeWorld extends RunsafeMetadata
 		return ObjectWrapper.convert(world.spawnEntity(location.getRaw(), EntityType.fromId(id)));
 	}
 
+	public void strikeLightningEffect(RunsafeLocation location)
+	{
+		world.strikeLightningEffect(location.getRaw());
+	}
+
 	public List<RunsafePlayer> getPlayers()
 	{
 		ArrayList<RunsafePlayer> result = new ArrayList<RunsafePlayer>();
