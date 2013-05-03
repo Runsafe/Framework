@@ -190,7 +190,7 @@ public class RunsafeLivingEntity extends RunsafeEntity
 			this.entity.addPotionEffect(effect.getRaw());
 	}
 
-	public boolean hashPotionEffect(RunsafePotionEffect effect)
+	public boolean hasPotionEffect(RunsafePotionEffect effect)
 	{
 		return this.entity.hasPotionEffect(effect.getRaw().getType());
 	}
