@@ -5,7 +5,7 @@ import no.runsafe.framework.server.RunsafeTravelAgent;
 import no.runsafe.framework.server.event.CancellableEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
 
-public class RunsafePlayerPortalEvent extends RunsafePlayerEvent implements CancellableEvent
+public class RunsafePlayerPortalEvent extends RunsafePlayerTeleportEvent implements CancellableEvent
 {
 	public RunsafePlayerPortalEvent(PlayerPortalEvent toWrap)
 	{
