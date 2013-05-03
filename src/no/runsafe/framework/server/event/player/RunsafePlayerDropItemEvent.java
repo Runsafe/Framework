@@ -2,7 +2,7 @@ package no.runsafe.framework.server.event.player;
 
 import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.event.CancellableEvent;
-import no.runsafe.framework.server.item.RunsafeItem;
+import no.runsafe.framework.server.entity.RunsafeItem;
 import org.bukkit.event.player.PlayerDropItemEvent;
 
 public class RunsafePlayerDropItemEvent extends RunsafePlayerEvent implements CancellableEvent

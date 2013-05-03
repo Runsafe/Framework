@@ -5,7 +5,7 @@ import no.runsafe.framework.server.chunk.RunsafeChunk;
 import no.runsafe.framework.server.enchantment.RunsafeEnchantment;
 import no.runsafe.framework.server.entity.*;
 import no.runsafe.framework.server.inventory.*;
-import no.runsafe.framework.server.item.RunsafeItem;
+import no.runsafe.framework.server.entity.RunsafeItem;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.server.item.meta.*;
 import no.runsafe.framework.server.material.RunsafeMaterial;
