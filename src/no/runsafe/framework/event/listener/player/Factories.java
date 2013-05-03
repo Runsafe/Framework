@@ -25,5 +25,6 @@ public final class Factories
 		EventEngine.Register(PlayerRightClickSign.Factory());
 		EventEngine.Register(PlayerTeleport.Factory());
 		EventEngine.Register(PlayerPortal.Factory());
+		EventEngine.Register(PlayerPickupItem.Factory());
 	}
 }
