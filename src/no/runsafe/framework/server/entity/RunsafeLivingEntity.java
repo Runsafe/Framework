@@ -4,6 +4,7 @@ import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.player.RunsafePlayer;
+import no.runsafe.framework.server.potion.RunsafePotionEffect;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -171,6 +172,32 @@ public class RunsafeLivingEntity extends RunsafeEntity
 		if (!Projectile.class.isAssignableFrom(projectile))
 			return null;
 		return ObjectWrapper.convert(entity.launchProjectile(projectile.asSubclass(Projectile.class)));
+	}
+
+	public boolean addPotionEffect(RunsafePotionEffect effect)
+	{
+		return this.entity.addPotionEffect(effect.getRaw());
+	}
+
+	public boolean addPotionEffect(RunsafePotionEffect effect, boolean force)
+	{
+		return this.entity.addPotionEffect(effect.getRaw(), force);
+	}
+
+	public void addPotionEffects(List<RunsafePotionEffect> effects)
+	{
+		for (RunsafePotionEffect effect : effects)
+			this.entity.addPotionEffect(effect.getRaw());
+	}
+
+	public boolean hashPotionEffect(RunsafePotionEffect effect)
+	{
+		return this.entity.hasPotionEffect(effect.getRaw().getType());
+	}
+
+	public void removePotionEffect(RunsafePotionEffect effect)
+	{
+		this.entity.removePotionEffect(effect.getRaw().getType());
 	}
 
 	private RunsafeEntity Launch(Class<? extends Entity> launch)

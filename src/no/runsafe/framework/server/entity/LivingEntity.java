@@ -1,5 +1,6 @@
 package no.runsafe.framework.server.entity;
 
+import no.runsafe.framework.server.potion.RunsafePotionEffect;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 
