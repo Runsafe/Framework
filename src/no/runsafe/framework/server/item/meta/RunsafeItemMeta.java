@@ -46,6 +46,13 @@ public class RunsafeItemMeta
 		meta.setLore(lore);
 	}
 
+	public void setLore(String lore)
+	{
+		List<String> currentLore = this.getLore();
+		currentLore.add(lore);
+		meta.setLore(currentLore);
+	}
+
 	public boolean hasEnchants()
 	{
 		return meta.hasEnchants();
