@@ -46,6 +46,11 @@ public class RunsafeInventory
 		inventory.clear();
 	}
 
+	public void clear(int slot)
+	{
+		inventory.clear(slot);
+	}
+
 	public Inventory getRaw()
 	{
 		return this.inventory;
