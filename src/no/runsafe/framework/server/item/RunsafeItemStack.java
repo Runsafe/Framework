@@ -30,6 +30,11 @@ public class RunsafeItemStack implements ConfigurationSerializable
 		itemStack = new ItemStack(itemId);
 	}
 
+	public RunsafeItemStack(int itemId, int amount)
+	{
+		itemStack = new ItemStack(itemId, amount);
+	}
+
 	public RunsafeItemStack(RunsafeMaterial material)
 	{
 		itemStack = new ItemStack(material.getRaw());
