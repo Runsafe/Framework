@@ -4,6 +4,7 @@ import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.event.CancellableEvent;
+import no.runsafe.framework.server.material.RunsafeMaterial;
 import org.bukkit.block.BlockFace;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -20,6 +21,26 @@ public class RunsafePlayerInteractEvent extends RunsafePlayerEvent implements Ca
 	public Action getAction()
 	{
 		return event.getAction();
+	}
+
+	public boolean hasItem()
+	{
+		return this.event.hasItem();
+	}
+
+	public RunsafeMaterial getMaterial()
+	{
+		return ObjectWrapper.convert(this.event.getMaterial());
+	}
+
+	public boolean hasBlock()
+	{
+		return this.event.hasBlock();
+	}
+
+	public boolean isBlockInHand()
+	{
+		return this.event.isBlockInHand();
 	}
 
 	public RunsafeBlock getBlock()
