@@ -4,11 +4,11 @@ import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.event.CancellableEvent;
+import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.server.material.RunsafeMaterial;
 import org.bukkit.block.BlockFace;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.ItemStack;
 
 public class RunsafePlayerInteractEvent extends RunsafePlayerEvent implements CancellableEvent
 {
@@ -48,9 +48,9 @@ public class RunsafePlayerInteractEvent extends RunsafePlayerEvent implements Ca
 		return ObjectWrapper.convert(event.getClickedBlock());
 	}
 
-	public ItemStack getItemStack()
+	public RunsafeItemStack getItemStack()
 	{
-		return event.getItem();
+		return ObjectWrapper.convert(event.getItem());
 	}
 
 	public void removeItemStack()
