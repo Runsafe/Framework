@@ -121,12 +121,9 @@ public class RunsafeServer
 		ArrayList<String> hits = new ArrayList<String>();
 		for (IPlayerLookupService lookup : HookEngine.hookContainer.getComponents(IPlayerLookupService.class))
 		{
-			List<String> lookupList = lookup.findPlayer(playerName);
-
-			if (lookupList != null)
-				for (String hit : lookupList)
-					if (!hits.contains(hit))
-						hits.add(hit);
+			for (String hit : lookup.findPlayer(playerName))
+				if (!hits.contains(hit))
+					hits.add(hit);
 		}
 
 		if (hits.size() == 0)
