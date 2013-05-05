@@ -5,6 +5,7 @@ import no.runsafe.framework.server.enchantment.RunsafeEnchantment;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +50,8 @@ public class RunsafeItemMeta
 	public void addLore(String lore)
 	{
 		List<String> currentLore = this.getLore();
+		if (currentLore == null) currentLore = new ArrayList<String>();
+
 		currentLore.add(lore);
 		meta.setLore(currentLore);
 	}
