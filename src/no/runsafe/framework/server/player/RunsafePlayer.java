@@ -6,7 +6,6 @@ import no.runsafe.framework.server.ICommandExecutor;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.block.RunsafeBlock;
-import no.runsafe.framework.server.entity.RunsafeHumanEntity;
 import no.runsafe.framework.server.entity.RunsafeLivingEntity;
 import no.runsafe.framework.server.event.player.RunsafeOperatorEvent;
 import no.runsafe.framework.server.inventory.IInventoryHolder;
@@ -400,6 +399,16 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 	public void openInventory(RunsafeInventory inventory)
 	{
 		this.player.openInventory(inventory.getRaw());
+	}
+
+	public void setFoodLevel(int level)
+	{
+		player.setFoodLevel(level);
+	}
+
+	public void setSaturation(float saturation)
+	{
+		player.setSaturation(saturation);
 	}
 
 	private final Player player;
