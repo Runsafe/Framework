@@ -68,6 +68,11 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 		return null;
 	}
 
+	public void closeInventory()
+	{
+		this.player.closeInventory();
+	}
+
 	public boolean hasPlayedBefore()
 	{
 		return basePlayer.hasPlayedBefore();
