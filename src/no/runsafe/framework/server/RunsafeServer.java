@@ -11,7 +11,6 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.plugin.Plugin;
 
 import java.io.File;
@@ -121,9 +120,11 @@ public class RunsafeServer
 		ArrayList<String> hits = new ArrayList<String>();
 		for (IPlayerLookupService lookup : HookEngine.hookContainer.getComponents(IPlayerLookupService.class))
 		{
-			for (String hit : lookup.findPlayer(playerName))
-				if (!hits.contains(hit))
-					hits.add(hit);
+			List<String> data = lookup.findPlayer(playerName);
+			if (data != null)
+				for (String hit : data)
+					if (!hits.contains(hit))
+						hits.add(hit);
 		}
 
 		if (hits.size() == 0)
