@@ -75,15 +75,11 @@ public class ObjectWrapper
 	{
 		if (toWrap == null)
 			return null;
+
+		if (toWrap instanceof AnvilInventory)
+			return new RunsafeAnvilInventory((AnvilInventory) toWrap);
+
 		return new RunsafeInventory(toWrap);
-	}
-
-	public static RunsafeAnvilInventory convert(AnvilInventory toWrap)
-	{
-		if (toWrap == null)
-			return null;
-
-		return new RunsafeAnvilInventory(toWrap);
 	}
 
 	public static RunsafeMaterial convert(Material toWrap)
