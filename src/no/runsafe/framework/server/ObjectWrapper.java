@@ -82,6 +82,14 @@ public class ObjectWrapper
 		return new RunsafeInventory(toWrap);
 	}
 
+	public static RunsafeEntityEquipment convert(EntityEquipment toWrap)
+	{
+		if (toWrap == null)
+			return null;
+
+		return new RunsafeEntityEquipment(toWrap);
+	}
+
 	public static RunsafeMaterial convert(Material toWrap)
 	{
 		if (toWrap == null)
