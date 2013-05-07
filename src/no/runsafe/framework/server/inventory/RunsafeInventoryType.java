@@ -1,5 +1,7 @@
 package no.runsafe.framework.server.inventory;
 
+import org.bukkit.event.inventory.InventoryType;
+
 public enum RunsafeInventoryType
 {
 	CHEST(27, "Chest"),
@@ -33,6 +35,11 @@ public enum RunsafeInventoryType
 	public String getDefaultTitle()
 	{
 		return this.title;
+	}
+
+	public InventoryType getRaw()
+	{
+		return InventoryType.valueOf(this.name());
 	}
 
 	public enum SlotType
