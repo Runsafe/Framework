@@ -12,7 +12,7 @@ public class RunsafeEnchantment
 
 	public RunsafeEnchantment(RunsafeEnchantmentType enchantType)
 	{
-		this.enchantment = Enchantment.getById(enchantType.getID());
+		this.enchantment = Enchantment.getById(enchantType.ordinal());
 	}
 
 	public RunsafeEnchantment(int id)
