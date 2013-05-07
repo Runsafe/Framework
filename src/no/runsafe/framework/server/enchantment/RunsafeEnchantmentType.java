@@ -1,5 +1,8 @@
 package no.runsafe.framework.server.enchantment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RunsafeEnchantmentType
 {
 	public static final RunsafeEnchantmentType PROTECTION_ENVIRONMENTAL = new RunsafeEnchantmentType(0);
@@ -28,6 +31,7 @@ public class RunsafeEnchantmentType
 	public RunsafeEnchantmentType(int enchantID)
 	{
 		this.enchantID = enchantID;
+		RunsafeEnchantmentType.enchants.add(enchantID);
 	}
 
 	public int getID()
@@ -36,4 +40,5 @@ public class RunsafeEnchantmentType
 	}
 
 	private int enchantID;
+	public static List<Integer> enchants = new ArrayList<Integer>();
 }
