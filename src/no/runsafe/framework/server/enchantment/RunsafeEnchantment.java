@@ -10,6 +10,11 @@ public class RunsafeEnchantment
 		enchantment = toWrap;
 	}
 
+	public RunsafeEnchantment(RunsafeEnchantmentType enchantType)
+	{
+		this.enchantment = Enchantment.getById(enchantType.getID());
+	}
+
 	public RunsafeEnchantment(int id)
 	{
 		this.enchantment = Enchantment.getById(id);
