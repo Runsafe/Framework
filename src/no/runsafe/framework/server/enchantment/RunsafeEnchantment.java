@@ -2,22 +2,28 @@ package no.runsafe.framework.server.enchantment;
 
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.enchantments.EnchantmentWrapper;
 
 public class RunsafeEnchantment
 {
-	public RunsafeEnchantment(Enchantment toWrap)
+	public RunsafeEnchantment(EnchantmentWrapper toWrap)
 	{
-		enchantment = toWrap;
+		this.enchantment = toWrap;
+	}
+
+	public RunsafeEnchantment(Enchantment enchantment)
+	{
+		this.enchantment = new EnchantmentWrapper(enchantment.getId());
 	}
 
 	public RunsafeEnchantment(RunsafeEnchantmentType enchantType)
 	{
-		this.enchantment = Enchantment.getById(enchantType.ordinal());
+		this.enchantment = new EnchantmentWrapper(enchantType.ordinal());
 	}
 
 	public RunsafeEnchantment(int id)
 	{
-		this.enchantment = Enchantment.getById(id);
+		this.enchantment = new EnchantmentWrapper(id);
 	}
 
 	public int getId()
@@ -47,13 +53,13 @@ public class RunsafeEnchantment
 
 	public boolean canEnchantItem(RunsafeItemStack itemStack)
 	{
-		return enchantment.canEnchantItem(itemStack.getRaw());
+		return this.enchantment.canEnchantItem(itemStack.getRaw());
 	}
 
 	public Enchantment getRaw()
 	{
-		return enchantment;
+		return this.enchantment;
 	}
 
-	private final Enchantment enchantment;
+	private final EnchantmentWrapper enchantment;
 }
