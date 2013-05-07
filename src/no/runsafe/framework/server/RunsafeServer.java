@@ -128,7 +128,7 @@ public class RunsafeServer
 		}
 
 		if (hits.size() == 0)
-			return new RunsafePlayer(server.getOfflinePlayer(playerName));
+			return new RunsafePlayer(server.getOfflinePlayer(playerName), true);
 
 		if (hits.size() == 1)
 			return new RunsafePlayer(server.getOfflinePlayer(hits.get(0)));

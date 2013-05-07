@@ -44,6 +44,12 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 		basePlayer = toWrap;
 	}
 
+	public RunsafePlayer(OfflinePlayer toWrap, boolean isNew)
+	{
+		this(toWrap);
+		this.isNew = isNew;
+	}
+
 	@Override
 	public String getName()
 	{
@@ -67,6 +73,11 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 			return seenHooks.get(0).GetLastSeen(this, checker);
 
 		return null;
+	}
+
+	public boolean isNew()
+	{
+		return this.isNew;
 	}
 
 	public void closeInventory()
@@ -425,4 +436,5 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 
 	private final Player player;
 	private final OfflinePlayer basePlayer;
+	private boolean isNew = false;
 }
