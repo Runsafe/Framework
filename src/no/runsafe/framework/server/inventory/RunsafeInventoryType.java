@@ -7,6 +7,7 @@ public enum RunsafeInventoryType
 	CHEST(27, "Chest"),
 	DISPENSER(9, "Dispenser"),
 	FURNACE(3, "Furnace"),
+	HOPPER(5, "Hopper"),
 	WORKBENCH(10, "Crafting"),
 	CRAFTING(5, "Crafting"),
 	ENCHANTING(1, "Enchanting"),
@@ -50,6 +51,6 @@ public enum RunsafeInventoryType
 		CONTAINER,
 		QUICKBAR,
 		OUTSIDE,
-		FUEL;
+		FUEL
 	}
 }
