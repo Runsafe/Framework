@@ -476,13 +476,6 @@ public class ObjectWrapper
 		return new RunsafeSkullMeta(toWrap);
 	}
 
-	public static RunsafeStorageMinecart convert(StorageMinecart toWrap)
-	{
-		if (toWrap == null)
-			return null;
-		return new RunsafeStorageMinecart(toWrap);
-	}
-
 	public static IInventoryHolder convert(InventoryHolder toWrap)
 	{
 		if (toWrap == null)
@@ -499,8 +492,6 @@ public class ObjectWrapper
 			return convert((DoubleChest) toWrap);
 		if (toWrap instanceof Player)
 			return convert((Player) toWrap);
-		if (toWrap instanceof StorageMinecart)
-			return convert((StorageMinecart) toWrap);
 		return null;
 	}
 }
