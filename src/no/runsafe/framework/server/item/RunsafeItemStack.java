@@ -55,6 +55,21 @@ public class RunsafeItemStack implements ConfigurationSerializable
 		itemStack.setData(new MaterialData(Material.getMaterial(materialId), data));
 	}
 
+	public Material getType()
+	{
+		return this.itemStack.getType();
+	}
+
+	public void setType(Material type)
+	{
+		this.itemStack.setType(type);
+	}
+
+	public String getNormalName()
+	{
+		return this.getType().name().replace("_", " ").toLowerCase();
+	}
+
 	public int getItemId()
 	{
 		return itemStack.getTypeId();
