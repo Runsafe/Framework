@@ -476,6 +476,14 @@ public class ObjectWrapper
 		return new RunsafeSkullMeta(toWrap);
 	}
 
+	public static RunsafeHopper convert(Hopper toWrap)
+	{
+		if (toWrap == null)
+			return null;
+
+		return new RunsafeHopper(toWrap);
+	}
+
 	public static IInventoryHolder convert(InventoryHolder toWrap)
 	{
 		if (toWrap == null)
