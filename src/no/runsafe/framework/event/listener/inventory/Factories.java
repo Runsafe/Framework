@@ -13,5 +13,6 @@ public class Factories
 		EventEngine.Register(Inventory.Factory());
 		EventEngine.Register(InventoryClick.Factory());
 		EventEngine.Register(InventoryMoveItem.Factory());
+		EventEngine.Register(InventoryPickupItem.Factory());
 	}
 }
