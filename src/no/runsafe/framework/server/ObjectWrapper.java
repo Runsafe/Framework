@@ -488,6 +488,8 @@ public class ObjectWrapper
 	{
 		if (toWrap == null)
 			return null;
+		if (toWrap instanceof Hopper)
+			return convert((Hopper) toWrap);
 		if (toWrap instanceof BrewingStand)
 			return convert((BrewingStand) toWrap);
 		if (toWrap instanceof Chest)
