@@ -75,7 +75,19 @@ public class ObjectWrapper
 	{
 		if (toWrap == null)
 			return null;
+
+		if (toWrap instanceof AnvilInventory)
+			return new RunsafeAnvilInventory((AnvilInventory) toWrap);
+
 		return new RunsafeInventory(toWrap);
+	}
+
+	public static RunsafeEntityEquipment convert(EntityEquipment toWrap)
+	{
+		if (toWrap == null)
+			return null;
+
+		return new RunsafeEntityEquipment(toWrap);
 	}
 
 	public static RunsafeMaterial convert(Material toWrap)
@@ -464,17 +476,20 @@ public class ObjectWrapper
 		return new RunsafeSkullMeta(toWrap);
 	}
 
-	public static RunsafeStorageMinecart convert(StorageMinecart toWrap)
+	public static RunsafeHopper convert(Hopper toWrap)
 	{
 		if (toWrap == null)
 			return null;
-		return new RunsafeStorageMinecart(toWrap);
+
+		return new RunsafeHopper(toWrap);
 	}
 
 	public static IInventoryHolder convert(InventoryHolder toWrap)
 	{
 		if (toWrap == null)
 			return null;
+		if (toWrap instanceof Hopper)
+			return convert((Hopper) toWrap);
 		if (toWrap instanceof BrewingStand)
 			return convert((BrewingStand) toWrap);
 		if (toWrap instanceof Chest)
@@ -487,8 +502,6 @@ public class ObjectWrapper
 			return convert((DoubleChest) toWrap);
 		if (toWrap instanceof Player)
 			return convert((Player) toWrap);
-		if (toWrap instanceof StorageMinecart)
-			return convert((StorageMinecart) toWrap);
 		return null;
 	}
 }

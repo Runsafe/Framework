@@ -5,6 +5,7 @@ import no.runsafe.framework.hook.IPlayerLookupService;
 import no.runsafe.framework.output.ChatColour;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
 import no.runsafe.framework.server.inventory.RunsafeInventoryHolder;
+import no.runsafe.framework.server.inventory.RunsafeInventoryType;
 import no.runsafe.framework.server.player.RunsafeAmbiguousPlayer;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.OfflinePlayer;
@@ -128,7 +129,7 @@ public class RunsafeServer
 		}
 
 		if (hits.size() == 0)
-			return new RunsafePlayer(server.getOfflinePlayer(playerName));
+			return new RunsafePlayer(server.getOfflinePlayer(playerName), true);
 
 		if (hits.size() == 1)
 			return new RunsafePlayer(server.getOfflinePlayer(hits.get(0)));
@@ -384,6 +385,22 @@ public class RunsafeServer
 			return ObjectWrapper.convert(this.server.createInventory(null, size, name));
 
 		return ObjectWrapper.convert(this.server.createInventory(holder.getRaw(), size, name));
+	}
+
+	public RunsafeInventory createInventory(RunsafeInventoryHolder holder, int size)
+	{
+		if (holder == null)
+			return ObjectWrapper.convert(this.server.createInventory(null, size));
+
+		return ObjectWrapper.convert(this.server.createInventory(holder.getRaw(), size));
+	}
+
+	public RunsafeInventory createInventory(RunsafeInventoryHolder holder, RunsafeInventoryType type)
+	{
+		if (holder == null)
+			return ObjectWrapper.convert(this.server.createInventory(null, type.getRaw()));
+
+		return ObjectWrapper.convert(this.server.createInventory(holder.getRaw(), type.getRaw()));
 	}
 
 	private final ConcurrentHashMap<String, RunsafePlayer> kickingPlayer = new ConcurrentHashMap<String, RunsafePlayer>();

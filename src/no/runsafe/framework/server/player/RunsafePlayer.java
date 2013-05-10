@@ -9,6 +9,7 @@ import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.entity.RunsafeLivingEntity;
 import no.runsafe.framework.server.event.player.RunsafeOperatorEvent;
 import no.runsafe.framework.server.inventory.IInventoryHolder;
+import no.runsafe.framework.server.inventory.RunsafeAnvilInventory;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
 import no.runsafe.framework.server.inventory.RunsafePlayerInventory;
 import no.runsafe.framework.server.item.RunsafeItemStack;
@@ -43,6 +44,12 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 		basePlayer = toWrap;
 	}
 
+	public RunsafePlayer(OfflinePlayer toWrap, boolean isNew)
+	{
+		this(toWrap);
+		this.isNew = isNew;
+	}
+
 	@Override
 	public String getName()
 	{
@@ -68,6 +75,11 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 		return null;
 	}
 
+	public boolean isNew()
+	{
+		return this.isNew;
+	}
+
 	public void closeInventory()
 	{
 		this.player.closeInventory();
@@ -76,6 +88,12 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 	public boolean hasPlayedBefore()
 	{
 		return basePlayer.hasPlayedBefore();
+	}
+
+	public boolean isViewingAnvil()
+	{
+		RunsafeInventory inventory = this.getInventory();
+		return (inventory instanceof RunsafeAnvilInventory);
 	}
 
 	public boolean isOnline()
@@ -418,4 +436,5 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 
 	private final Player player;
 	private final OfflinePlayer basePlayer;
+	private boolean isNew = false;
 }

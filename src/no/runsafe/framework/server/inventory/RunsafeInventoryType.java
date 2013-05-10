@@ -1,10 +1,13 @@
 package no.runsafe.framework.server.inventory;
 
+import org.bukkit.event.inventory.InventoryType;
+
 public enum RunsafeInventoryType
 {
 	CHEST(27, "Chest"),
 	DISPENSER(9, "Dispenser"),
 	FURNACE(3, "Furnace"),
+	HOPPER(5, "Hopper"),
 	WORKBENCH(10, "Crafting"),
 	CRAFTING(5, "Crafting"),
 	ENCHANTING(1, "Enchanting"),
@@ -35,6 +38,11 @@ public enum RunsafeInventoryType
 		return this.title;
 	}
 
+	public InventoryType getRaw()
+	{
+		return InventoryType.valueOf(this.name());
+	}
+
 	public enum SlotType
 	{
 		RESULT,
@@ -43,6 +51,6 @@ public enum RunsafeInventoryType
 		CONTAINER,
 		QUICKBAR,
 		OUTSIDE,
-		FUEL;
+		FUEL
 	}
 }

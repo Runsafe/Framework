@@ -10,6 +10,21 @@ public class RunsafeEnchantment
 		enchantment = toWrap;
 	}
 
+	public RunsafeEnchantment(RunsafeEnchantmentType enchantType)
+	{
+		this.enchantment = Enchantment.getById(enchantType.getEnchantId());
+	}
+
+	public RunsafeEnchantment(int id)
+	{
+		this.enchantment = Enchantment.getById(id);
+	}
+
+	public int getId()
+	{
+		return this.enchantment.getId();
+	}
+
 	public String getName()
 	{
 		return enchantment.getName();
@@ -25,11 +40,6 @@ public class RunsafeEnchantment
 		return enchantment.getStartLevel();
 	}
 
-//	public RunsafeEnchantmentTarget getItemTarget()
-//	{
-//		return ObjectWrapper.convert(enchantment.getItemTarget());
-//	}
-
 	public boolean conflictsWith(RunsafeEnchantment enchantment)
 	{
 		return this.enchantment.conflictsWith(enchantment.getRaw());
@@ -37,12 +47,12 @@ public class RunsafeEnchantment
 
 	public boolean canEnchantItem(RunsafeItemStack itemStack)
 	{
-		return enchantment.canEnchantItem(itemStack.getRaw());
+		return this.enchantment.canEnchantItem(itemStack.getRaw());
 	}
 
 	public Enchantment getRaw()
 	{
-		return enchantment;
+		return this.enchantment;
 	}
 
 	private final Enchantment enchantment;

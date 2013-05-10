@@ -1,6 +1,7 @@
 package no.runsafe.framework.server.entity;
 
 import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.server.RunsafeEntityEquipment;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.player.RunsafePlayer;
@@ -36,6 +37,11 @@ public class RunsafeLivingEntity extends RunsafeEntity
 	public void setHealth(int i)
 	{
 		entity.setHealth(i);
+	}
+
+	public RunsafeEntityEquipment getEquipment()
+	{
+		return ObjectWrapper.convert(this.entity.getEquipment());
 	}
 
 	public int getMaxHealth()
