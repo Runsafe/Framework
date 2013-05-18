@@ -5,6 +5,7 @@ import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeServer;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.server.material.RunsafeMaterial;
+import no.runsafe.framework.server.player.RunsafePlayer;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -170,6 +171,11 @@ public class RunsafeInventory
 	public void setMaxStackSize(int size)
 	{
 		this.inventory.setMaxStackSize(size);
+	}
+
+	public List<RunsafePlayer> getViewers()
+	{
+		return ObjectWrapper.convert(this.inventory.getViewers());
 	}
 
 	public String serialize()
