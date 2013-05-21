@@ -403,6 +403,14 @@ public class RunsafeServer
 		return ObjectWrapper.convert(this.server.createInventory(holder.getRaw(), type.getRaw()));
 	}
 
+	public RunsafeInventory createInventory(RunsafeInventoryHolder holder, RunsafeInventoryType type, String title)
+	{
+		if (holder == null)
+			return ObjectWrapper.convert(this.server.createInventory(null, type.ordinal(), title));
+
+		return ObjectWrapper.convert(this.server.createInventory(holder.getRaw(), type.ordinal(), title));
+	}
+
 	private final ConcurrentHashMap<String, RunsafePlayer> kickingPlayer = new ConcurrentHashMap<String, RunsafePlayer>();
 	private final Server server;
 }
