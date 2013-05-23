@@ -118,6 +118,9 @@ public class RunsafeServer
 
 	public RunsafePlayer getPlayer(String playerName)
 	{
+		if (playerName == null)
+			return null;
+
 		ArrayList<String> hits = new ArrayList<String>();
 		for (IPlayerLookupService lookup : HookEngine.hookContainer.getComponents(IPlayerLookupService.class))
 		{
@@ -144,6 +147,9 @@ public class RunsafeServer
 
 	public RunsafePlayer getOnlinePlayer(RunsafePlayer context, String playerName)
 	{
+		if (playerName == null)
+			return null;
+
 		ArrayList<String> hits = new ArrayList<String>();
 		for (RunsafePlayer player : getOnlinePlayers())
 			if (player != null && player.getName().toLowerCase().contains(playerName.toLowerCase())
@@ -176,6 +182,9 @@ public class RunsafeServer
 
 	public RunsafePlayer getPlayerExact(String playerName)
 	{
+		if (playerName == null)
+			return null;
+
 		return new RunsafePlayer(this.server.getPlayerExact(playerName));
 	}
 
