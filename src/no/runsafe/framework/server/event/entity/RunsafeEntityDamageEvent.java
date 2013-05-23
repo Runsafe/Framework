@@ -30,10 +30,8 @@ public class RunsafeEntityDamageEvent extends RunsafeEntityEvent implements Canc
 
 	public RunsafeDamageCause getCause()
 	{
-		EntityDamageEvent.DamageCause cause = this.event.getCause();
-
-		if (cause == null)
-			return null;
+		if (this.event == null)
+			return RunsafeDamageCause.CUSTOM;
 
 		return RunsafeDamageCause.valueOf(this.event.getCause().name());
 	}
