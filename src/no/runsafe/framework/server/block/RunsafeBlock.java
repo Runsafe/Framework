@@ -65,11 +65,18 @@ public class RunsafeBlock extends RunsafeMetadata
 
 	public boolean isHazardous()
 	{
-		int blockType = this.getTypeId();
-
-		return blockType == Material.LAVA.getId() ||
-			blockType == Material.STATIONARY_LAVA.getId() ||
-			blockType == Material.FIRE.getId();
+		switch (block.getType())
+		{
+			case LAVA:
+			case STATIONARY_LAVA:
+			case FIRE:
+			case TRIPWIRE:
+			case WOOD_PLATE:
+			case STONE_PLATE:
+				return true;
+			default:
+				return false;
+		}
 	}
 
 	public boolean isAir()
@@ -85,6 +92,19 @@ public class RunsafeBlock extends RunsafeMetadata
 	public boolean isLava()
 	{
 		return getTypeId() == Material.LAVA.getId() || getTypeId() == Material.STATIONARY_LAVA.getId();
+	}
+
+	public boolean isAbleToFall()
+	{
+		switch (block.getType())
+		{
+			case SAND:
+			case GRAVEL:
+			case ANVIL:
+				return true;
+			default:
+				return false;
+		}
 	}
 
 	private static final ArrayList<Integer> passableBlocks = new ArrayList<Integer>();
