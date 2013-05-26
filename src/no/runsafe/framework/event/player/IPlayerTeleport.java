@@ -6,5 +6,5 @@ import no.runsafe.framework.server.player.RunsafePlayer;
 
 public interface IPlayerTeleport extends IRunsafeEvent
 {
-	public void OnPlayerTeleport(RunsafePlayer player, RunsafeLocation from, RunsafeLocation to);
+	public boolean OnPlayerTeleport(RunsafePlayer player, RunsafeLocation from, RunsafeLocation to);
 }

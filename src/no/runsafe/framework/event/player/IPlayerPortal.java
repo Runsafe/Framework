@@ -6,5 +6,5 @@ import no.runsafe.framework.server.player.RunsafePlayer;
 
 public interface IPlayerPortal extends IRunsafeEvent
 {
-	public void OnPlayerPortal(RunsafePlayer player, RunsafeLocation from, RunsafeLocation to);
+	public boolean OnPlayerPortal(RunsafePlayer player, RunsafeLocation from, RunsafeLocation to);
 }
