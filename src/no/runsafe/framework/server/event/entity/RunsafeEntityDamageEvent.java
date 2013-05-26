@@ -28,6 +28,14 @@ public class RunsafeEntityDamageEvent extends RunsafeEntityEvent implements Canc
 		return ObjectWrapper.convert(event.getEntity());
 	}
 
+	public RunsafeDamageCause getCause()
+	{
+		if (this.event == null)
+			return RunsafeDamageCause.CUSTOM;
+
+		return RunsafeDamageCause.valueOf(this.event.getCause().name());
+	}
+
 	@Override
 	public boolean getCancelled()
 	{
@@ -43,6 +51,31 @@ public class RunsafeEntityDamageEvent extends RunsafeEntityEvent implements Canc
 	public EntityDamageEvent getRaw()
 	{
 		return event;
+	}
+
+	public enum RunsafeDamageCause
+	{
+		CONTACT,
+		ENTITY_ATTACK,
+		PROJECTILE,
+		SUFFOCATION,
+		FALL,
+		FIRE,
+		FIRE_TICK,
+		MELTING,
+		LAVA,
+		DROWNING,
+		BLOCK_EXPLOSION,
+		ENTITY_EXPLOSION,
+		VOID,
+		LIGHTNING,
+		SUICIDE,
+		STARVATION,
+		POISON,
+		MAGIC,
+		WITHER,
+		FALLING_BLOCK,
+		CUSTOM
 	}
 
 	private final EntityDamageEvent event;
