@@ -207,6 +207,12 @@ public class RunsafeLocation
 		this.setZ(this.getZ() - z);
 	}
 
+	@Override
+	public String toString()
+	{
+		return String.format("world: %s X: %s Y: %s Z: %s", this.getWorld().getName(), this.getX(), this.getY(),  this.getZ());
+	}
+
 	public void offset(double x, double y, double z)
 	{
 		if (x > 0) this.incrementX(x); else this.decrementX(x);
