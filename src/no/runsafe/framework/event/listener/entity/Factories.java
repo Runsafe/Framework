@@ -13,5 +13,6 @@ public final class Factories
 		EventEngine.Register(SpawnEggUsed.Factory());
 		EventEngine.Register(NaturalSpawn.Factory());
 		EventEngine.Register(EntityChangeBlock.Factory());
+		EventEngine.Register(EntityPortalEnter.Factory());
 	}
 }
