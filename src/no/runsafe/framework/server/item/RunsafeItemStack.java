@@ -2,6 +2,7 @@ package no.runsafe.framework.server.item;
 
 import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.enchantment.RunsafeEnchantment;
+import no.runsafe.framework.server.enchantment.RunsafeEnchantmentType;
 import no.runsafe.framework.server.item.meta.RunsafeItemMeta;
 import no.runsafe.framework.server.material.RunsafeMaterial;
 import no.runsafe.framework.server.material.RunsafeMaterialData;
@@ -154,6 +155,11 @@ public class RunsafeItemStack implements ConfigurationSerializable
 	public boolean containsEnchantment(RunsafeEnchantment ench)
 	{
 		return itemStack.containsEnchantment(ench.getRaw());
+	}
+
+	public boolean containsEnchantment(RunsafeEnchantmentType type)
+	{
+		return itemStack.containsEnchantment(Enchantment.getById(type.getEnchantId()));
 	}
 
 	public int getEnchantmentLevel(RunsafeEnchantment ench)
