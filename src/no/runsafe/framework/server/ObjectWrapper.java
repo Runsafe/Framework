@@ -289,6 +289,9 @@ public class ObjectWrapper
 		if (toWrap instanceof Projectile)
 			return convert((Projectile) toWrap);
 
+		if (toWrap instanceof Item)
+			return convert((Item) toWrap);
+
 		return new RunsafeEntity(toWrap);
 	}
 
