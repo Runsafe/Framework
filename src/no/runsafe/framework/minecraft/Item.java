@@ -688,7 +688,10 @@ public class Item implements IEnchantable
 	@Override
 	public IEnchantable enchant(IEnchant enchant)
 	{
-		if (root || material.isBlock() || item == null)
+		if (material.isBlock())
+			return this;
+
+		if (root || item == null)
 			return convertToItem().enchant(enchant);
 
 		item.enchant(enchant);
@@ -698,7 +701,10 @@ public class Item implements IEnchantable
 	@Override
 	public IEnchantable disenchant()
 	{
-		if (root || material.isBlock() || item == null)
+		if (material.isBlock())
+			return this;
+
+		if (root || item == null)
 			return convertToItem().disenchant();
 
 		item.disenchant();
@@ -708,7 +714,10 @@ public class Item implements IEnchantable
 	@Override
 	public IEnchantable disenchant(IEnchant enchant)
 	{
-		if (root || material.isBlock() || item == null)
+		if (material.isBlock())
+			return this;
+
+		if (root || item == null)
 			return convertToItem().disenchant(enchant);
 
 		item.disenchant(enchant);
