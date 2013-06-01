@@ -4,6 +4,9 @@ import no.runsafe.framework.server.enchantment.RunsafeEnchantment;
 import no.runsafe.framework.server.enchantment.RunsafeEnchantmentType;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Enchant implements IEnchant
 {
 	public static IEnchant EnvironmentalProtection = new Enchant(RunsafeEnchantmentType.PROTECTION_ENVIRONMENTAL, true);
@@ -28,6 +31,24 @@ public class Enchant implements IEnchant
 	public static IEnchant KnockbackArrow = new Enchant(RunsafeEnchantmentType.ARROW_KNOCKBACK, true);
 	public static IEnchant FlameArrow = new Enchant(RunsafeEnchantmentType.ARROW_FIRE, true);
 	public static IEnchant InfiniteArrows = new Enchant(RunsafeEnchantmentType.ARROW_INFINITE, true);
+	public static List<IEnchant> All = new ArrayList<IEnchant>();
+
+	public static IEnchant getByName(String name)
+	{
+		for (RunsafeEnchantmentType enchantType : RunsafeEnchantmentType.values())
+			if (enchantType.name().equalsIgnoreCase(name))
+				return new Enchant(enchantType, false);
+		return null;
+	}
+
+	public static List<IEnchant> getByTarget(IEnchantable target)
+	{
+		ArrayList<IEnchant> enchants = new ArrayList<IEnchant>();
+		for (IEnchant enchant : All)
+			if (enchant.canEnchant(target))
+				enchants.add(enchant);
+		return enchants;
+	}
 
 	@Override
 	public RunsafeEnchantmentType getType()
@@ -40,7 +61,7 @@ public class Enchant implements IEnchant
 	{
 		if (root)
 			return copy().power(power);
-		this.power = Math.max(getMaxLevel(), power);
+		this.power = power;
 		return this;
 	}
 
@@ -99,7 +120,7 @@ public class Enchant implements IEnchant
 	@Override
 	public int power()
 	{
-		return power;
+		return Math.max(getStartLevel(), Math.min(getMaxLevel(), power));
 	}
 
 	@Override
@@ -113,6 +134,8 @@ public class Enchant implements IEnchant
 		this.enchant = new RunsafeEnchantment(type);
 		this.type = type;
 		this.root = root;
+		if (root)
+			All.add(this);
 	}
 
 	private IEnchant copy()

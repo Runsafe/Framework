@@ -1,6 +1,5 @@
 package no.runsafe.framework.server.item;
 
-import no.runsafe.framework.enchant.Enchant;
 import no.runsafe.framework.enchant.IEnchant;
 import no.runsafe.framework.enchant.IEnchantable;
 import no.runsafe.framework.server.ObjectWrapper;
@@ -237,14 +236,15 @@ public class RunsafeItemStack implements ConfigurationSerializable, IEnchantable
 	@Override
 	public IEnchantable enchant(IEnchant enchant)
 	{
-		itemStack.addEnchantment(enchant.getEnchant().getRaw(), enchant.power());
+		if (enchant.canEnchant(this))
+			itemStack.addEnchantment(enchant.getEnchant().getRaw(), enchant.power());
 		return this;
 	}
 
 	@Override
 	public IEnchantable disenchant()
 	{
-		for(Enchantment enchant : itemStack.getEnchantments().keySet())
+		for (Enchantment enchant : itemStack.getEnchantments().keySet())
 			itemStack.removeEnchantment(enchant);
 		return this;
 	}
@@ -252,7 +252,8 @@ public class RunsafeItemStack implements ConfigurationSerializable, IEnchantable
 	@Override
 	public IEnchantable disenchant(IEnchant enchant)
 	{
-		itemStack.removeEnchantment(enchant.getEnchant().getRaw());
+		if (itemStack.containsEnchantment(enchant.getEnchant().getRaw()))
+			itemStack.removeEnchantment(enchant.getEnchant().getRaw());
 		return this;
 	}
 }
