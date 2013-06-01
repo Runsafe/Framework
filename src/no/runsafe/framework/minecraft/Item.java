@@ -5,7 +5,9 @@ import no.runsafe.framework.enchant.IEnchantable;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
-import org.bukkit.inventory.ItemStack;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Item implements IEnchantable
 {
@@ -667,6 +669,26 @@ public class Item implements IEnchantable
 		}
 	}
 
+	public static Item get(String type)
+	{
+		Material material = Material.getMaterial(type);
+		if (material == null)
+			return null;
+		if (items.containsKey(material))
+			return items.get(material);
+		return new Item(material, true);
+	}
+
+	public static Item get(int type)
+	{
+		Material material = Material.getMaterial(type);
+		if (material == null)
+			return null;
+		if (items.containsKey(material))
+			return items.get(material);
+		return new Item(material, true);
+	}
+
 	public Material getType()
 	{
 		return material;
@@ -750,11 +772,7 @@ public class Item implements IEnchantable
 
 	private Item(Material material, boolean root)
 	{
-		new ItemStack(material).getTypeId();
-		this.material = material;
-		this.root = root;
-		this.damage = 0;
-		item = root ? null : new RunsafeItemStack(material.getId());
+		this(material, root, 0);
 	}
 
 	private Item(Material material, boolean root, int damage)
@@ -763,6 +781,8 @@ public class Item implements IEnchantable
 		this.root = root;
 		this.damage = damage;
 		item = root ? null : new RunsafeItemStack(material.getId());
+		if (root)
+			items.put(material, this);
 	}
 
 	private Item convertToItem()
@@ -770,6 +790,7 @@ public class Item implements IEnchantable
 		return new Item(material, false, damage);
 	}
 
+	private static final Map<Material, Item> items = new HashMap<Material, Item>();
 	private final Material material;
 	private final boolean root;
 	private final RunsafeItemStack item;
