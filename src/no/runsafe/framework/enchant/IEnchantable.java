@@ -2,6 +2,8 @@ package no.runsafe.framework.enchant;
 
 import no.runsafe.framework.server.item.RunsafeItemStack;
 
+import java.util.List;
+
 public interface IEnchantable
 {
 	boolean enchanted();
@@ -15,5 +17,7 @@ public interface IEnchantable
 	IEnchantable disenchant(IEnchant enchant);
 
 	RunsafeItemStack getItem();
+
+	IEnchantable enchant(Iterable<IEnchant> enchants);
 }
 

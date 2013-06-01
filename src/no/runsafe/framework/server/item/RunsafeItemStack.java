@@ -242,6 +242,14 @@ public class RunsafeItemStack implements ConfigurationSerializable, IEnchantable
 	}
 
 	@Override
+	public IEnchantable enchant(Iterable<IEnchant> enchants)
+	{
+		for (IEnchant enchant : enchants)
+			enchant(enchant);
+		return this;
+	}
+
+	@Override
 	public IEnchantable disenchant()
 	{
 		for (Enchantment enchant : itemStack.getEnchantments().keySet())

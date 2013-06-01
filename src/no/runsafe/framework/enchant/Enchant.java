@@ -134,6 +134,7 @@ public class Enchant implements IEnchant
 		this.enchant = new RunsafeEnchantment(type);
 		this.type = type;
 		this.root = root;
+		this.power = getMaxLevel();
 		if (root)
 			All.add(this);
 	}

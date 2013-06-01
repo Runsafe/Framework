@@ -699,6 +699,19 @@ public class Item implements IEnchantable
 	}
 
 	@Override
+	public IEnchantable enchant(Iterable<IEnchant> enchants)
+	{
+		if (material.isBlock())
+			return this;
+
+		if (root || item == null)
+			return convertToItem().enchant(enchants);
+
+		item.enchant(enchants);
+		return this;
+	}
+
+	@Override
 	public IEnchantable disenchant()
 	{
 		if (material.isBlock())
