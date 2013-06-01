@@ -5,7 +5,6 @@ import no.runsafe.framework.server.chunk.RunsafeChunk;
 import no.runsafe.framework.server.enchantment.RunsafeEnchantment;
 import no.runsafe.framework.server.entity.*;
 import no.runsafe.framework.server.inventory.*;
-import no.runsafe.framework.server.entity.RunsafeItem;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.server.item.meta.*;
 import no.runsafe.framework.server.material.RunsafeMaterial;
@@ -283,6 +282,9 @@ public class ObjectWrapper
 		if (toWrap instanceof Painting)
 			return convert((Painting) toWrap);
 
+		if (toWrap instanceof ItemFrame)
+			return convert((ItemFrame) toWrap);
+
 		if (toWrap instanceof LivingEntity)
 			return convert((LivingEntity) toWrap);
 
@@ -314,6 +316,13 @@ public class ObjectWrapper
 		if (toWrap == null)
 			return null;
 		return new RunsafePainting(toWrap);
+	}
+
+	public static RunsafeItemFrame convert(ItemFrame toWrap)
+	{
+		if (toWrap == null)
+			return null;
+		return new RunsafeItemFrame(toWrap);
 	}
 
 	public static RunsafeLivingEntity convert(LivingEntity toWrap)

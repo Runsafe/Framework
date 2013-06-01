@@ -8,6 +8,7 @@ public final class Factories
 			return;
 		no.runsafe.framework.event.listener.block.Factories.Register();
 		no.runsafe.framework.event.listener.entity.Factories.Register();
+		no.runsafe.framework.event.listener.hanging.Factories.Register();
 		no.runsafe.framework.event.listener.player.Factories.Register();
 		no.runsafe.framework.event.listener.world.Factories.Register();
 		no.runsafe.framework.event.listener.inventory.Factories.Register();
