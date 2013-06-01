@@ -35,6 +35,11 @@ public class RunsafeWorld extends RunsafeMetadata
 		return world.getName();
 	}
 
+	public boolean equals(RunsafeWorld world)
+	{
+		return getName().equals(world.getName());
+	}
+
 	public RunsafeBlock getBlockAt(RunsafeLocation location)
 	{
 		return new RunsafeBlock(world.getBlockAt(location.getRaw()));
