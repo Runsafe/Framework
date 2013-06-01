@@ -667,6 +667,11 @@ public class Item implements IEnchantable
 		}
 	}
 
+	public Material getType()
+	{
+		return material;
+	}
+
 	@Override
 	public boolean enchanted()
 	{

@@ -2,6 +2,7 @@ package no.runsafe.framework.server.item;
 
 import no.runsafe.framework.enchant.IEnchant;
 import no.runsafe.framework.enchant.IEnchantable;
+import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.enchantment.RunsafeEnchantment;
 import no.runsafe.framework.server.enchantment.RunsafeEnchantmentType;
@@ -217,6 +218,11 @@ public class RunsafeItemStack implements ConfigurationSerializable, IEnchantable
 	public static RunsafeItemStack deserialize(Map<String, Object> args)
 	{
 		return ObjectWrapper.convert(ItemStack.deserialize(args));
+	}
+
+	public boolean is(Item type)
+	{
+		return itemStack.getType() == type.getType();
 	}
 
 	private final ItemStack itemStack;
