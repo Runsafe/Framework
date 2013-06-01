@@ -4,6 +4,7 @@
       <w>async</w>
       <w>autocomplete</w>
       <w>bukkit</w>
+      <w>chainmail</w>
       <w>chestplate</w>
       <w>commandsender</w>
       <w>deserialize</w>
@@ -11,13 +12,20 @@
       <w>enchantable</w>
       <w>ender</w>
       <w>fakeable</w>
+      <w>glowstone</w>
       <w>jdbc</w>
       <w>knockback</w>
+      <w>lapis</w>
       <w>laytonsmith</w>
       <w>maxdistance</w>
+      <w>mellohi</w>
       <w>minecart</w>
       <w>minecraft</w>
       <w>minecraftuser</w>
+      <w>mooshroom</w>
+      <w>mycelium</w>
+      <w>netherrack</w>
+      <w>pickaxe</w>
       <w>pico</w>
       <w>picocontainer</w>
       <w>preprocess</w>
@@ -26,9 +34,13 @@
       <w>respawn</w>
       <w>runsafe</w>
       <w>scommand</w>
+      <w>slimeball</w>
+      <w>soulsand</w>
       <w>spawnable</w>
       <w>spawner</w>
+      <w>stal</w>
       <w>startable</w>
+      <w>strad</w>
       <w>strikethrough</w>
       <w>subcommand</w>
       <w>subcommands</w>

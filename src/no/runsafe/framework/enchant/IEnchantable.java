@@ -1,5 +1,7 @@
 package no.runsafe.framework.enchant;
 
+import no.runsafe.framework.server.item.RunsafeItemStack;
+
 public interface IEnchantable
 {
 	boolean enchanted();
@@ -11,5 +13,7 @@ public interface IEnchantable
 	IEnchantable disenchant();
 
 	IEnchantable disenchant(IEnchant enchant);
+
+	RunsafeItemStack getItem();
 }
 

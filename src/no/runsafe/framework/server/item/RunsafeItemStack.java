@@ -256,4 +256,10 @@ public class RunsafeItemStack implements ConfigurationSerializable, IEnchantable
 			itemStack.removeEnchantment(enchant.getEnchant().getRaw());
 		return this;
 	}
+
+	@Override
+	public RunsafeItemStack getItem()
+	{
+		return this;
+	}
 }
