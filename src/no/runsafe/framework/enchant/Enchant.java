@@ -40,7 +40,7 @@ public class Enchant implements IEnchant
 	{
 		if (root)
 			return copy().power(power);
-		this.power = power;
+		this.power = Math.max(getMaxLevel(), power);
 		return this;
 	}
 
@@ -49,7 +49,8 @@ public class Enchant implements IEnchant
 	{
 		if (root)
 			return copy().max();
-		return power(getMaxLevel());
+		this.power = getMaxLevel();
+		return this;
 	}
 
 	@Override
