@@ -1,5 +1,7 @@
 package no.runsafe.framework.server.enchantment;
 
+import no.runsafe.framework.enchant.IEnchant;
+
 public enum RunsafeEnchantmentType
 {
 	PROTECTION_ENVIRONMENTAL(0),

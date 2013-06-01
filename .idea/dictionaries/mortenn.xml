@@ -6,10 +6,13 @@
       <w>bukkit</w>
       <w>chestplate</w>
       <w>commandsender</w>
+      <w>deserialize</w>
       <w>ench</w>
+      <w>enchantable</w>
       <w>ender</w>
       <w>fakeable</w>
       <w>jdbc</w>
+      <w>knockback</w>
       <w>laytonsmith</w>
       <w>maxdistance</w>
       <w>minecart</w>

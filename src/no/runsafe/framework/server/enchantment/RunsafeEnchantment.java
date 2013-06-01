@@ -1,5 +1,6 @@
 package no.runsafe.framework.server.enchantment;
 
+import no.runsafe.framework.enchant.IEnchant;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import org.bukkit.enchantments.Enchantment;
 
@@ -40,14 +41,14 @@ public class RunsafeEnchantment
 		return enchantment.getStartLevel();
 	}
 
-	public boolean conflictsWith(RunsafeEnchantment enchantment)
+	public boolean conflictsWith(IEnchant enchantment)
 	{
-		return this.enchantment.conflictsWith(enchantment.getRaw());
+		return this.enchantment.conflictsWith(enchantment.getEnchant().getRaw());
 	}
 
-	public boolean canEnchantItem(RunsafeItemStack itemStack)
+	public boolean canEnchantItem(RunsafeItemStack target)
 	{
-		return this.enchantment.canEnchantItem(itemStack.getRaw());
+		return this.enchantment.canEnchantItem(target.getRaw());
 	}
 
 	public Enchantment getRaw()

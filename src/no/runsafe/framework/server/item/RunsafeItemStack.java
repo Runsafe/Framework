@@ -1,5 +1,8 @@
 package no.runsafe.framework.server.item;
 
+import no.runsafe.framework.enchant.Enchant;
+import no.runsafe.framework.enchant.IEnchant;
+import no.runsafe.framework.enchant.IEnchantable;
 import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.enchantment.RunsafeEnchantment;
 import no.runsafe.framework.server.enchantment.RunsafeEnchantmentType;
@@ -18,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
-public class RunsafeItemStack implements ConfigurationSerializable
+public class RunsafeItemStack implements ConfigurationSerializable, IEnchantable
 {
 	public RunsafeItemStack(ItemStack stack)
 	{
@@ -218,4 +221,38 @@ public class RunsafeItemStack implements ConfigurationSerializable
 	}
 
 	private final ItemStack itemStack;
+
+	@Override
+	public boolean enchanted()
+	{
+		return itemStack.getEnchantments() != null && !itemStack.getEnchantments().isEmpty();
+	}
+
+	@Override
+	public boolean enchanted(IEnchant enchant)
+	{
+		return itemStack.containsEnchantment(enchant.getEnchant().getRaw());
+	}
+
+	@Override
+	public IEnchantable enchant(IEnchant enchant)
+	{
+		itemStack.addEnchantment(enchant.getEnchant().getRaw(), enchant.power());
+		return this;
+	}
+
+	@Override
+	public IEnchantable disenchant()
+	{
+		for(Enchantment enchant : itemStack.getEnchantments().keySet())
+			itemStack.removeEnchantment(enchant);
+		return this;
+	}
+
+	@Override
+	public IEnchantable disenchant(IEnchant enchant)
+	{
+		itemStack.removeEnchantment(enchant.getEnchant().getRaw());
+		return this;
+	}
 }
