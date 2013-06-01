@@ -20,9 +20,10 @@ public class RunsafeEntityEquipment
 		return ObjectWrapper.convert(this.entityEquipment.getItemInHand());
 	}
 
-	public void setItemInHand(RunsafeItemStack itemStack)
+	public RunsafeEntityEquipment setItemInHand(RunsafeItemStack itemStack)
 	{
 		this.entityEquipment.setItemInHand(itemStack.getRaw());
+		return this;
 	}
 
 	public RunsafeItemStack getHelmet()
@@ -30,9 +31,10 @@ public class RunsafeEntityEquipment
 		return ObjectWrapper.convert(this.entityEquipment.getHelmet());
 	}
 
-	public void setHelmet(RunsafeItemStack itemStack)
+	public RunsafeEntityEquipment setHelmet(RunsafeItemStack itemStack)
 	{
 		this.entityEquipment.setHelmet(itemStack.getRaw());
+		return this;
 	}
 
 	public RunsafeItemStack getChestplate()
@@ -40,9 +42,10 @@ public class RunsafeEntityEquipment
 		return ObjectWrapper.convert(this.entityEquipment.getChestplate());
 	}
 
-	public void setChestplate(RunsafeItemStack itemStack)
+	public RunsafeEntityEquipment setChestplate(RunsafeItemStack itemStack)
 	{
 		this.entityEquipment.setChestplate(itemStack.getRaw());
+		return this;
 	}
 
 	public RunsafeItemStack getLeggings()
@@ -50,9 +53,10 @@ public class RunsafeEntityEquipment
 		return ObjectWrapper.convert(this.entityEquipment.getLeggings());
 	}
 
-	public void setLeggings(RunsafeItemStack itemStack)
+	public RunsafeEntityEquipment setLeggings(RunsafeItemStack itemStack)
 	{
 		this.entityEquipment.setLeggings(itemStack.getRaw());
+		return this;
 	}
 
 	public RunsafeItemStack getBoots()
@@ -60,9 +64,10 @@ public class RunsafeEntityEquipment
 		return ObjectWrapper.convert(this.entityEquipment.getBoots());
 	}
 
-	public void setBoots(RunsafeItemStack itemStack)
+	public RunsafeEntityEquipment setBoots(RunsafeItemStack itemStack)
 	{
 		this.entityEquipment.setBoots(itemStack.getRaw());
+		return this;
 	}
 
 	public List<RunsafeItemStack> getArmorContents()
@@ -74,7 +79,7 @@ public class RunsafeEntityEquipment
 		return itemStacks;
 	}
 
-	public void setArmorContents(List<RunsafeItemStack> itemStacks)
+	public RunsafeEntityEquipment setArmorContents(List<RunsafeItemStack> itemStacks)
 	{
 		List<ItemStack> bukkitItemStacks = new ArrayList<ItemStack>();
 
@@ -82,6 +87,7 @@ public class RunsafeEntityEquipment
 			bukkitItemStacks.add(itemStack.getRaw());
 
 		this.entityEquipment.setArmorContents((ItemStack[]) bukkitItemStacks.toArray());
+		return this;
 	}
 
 	public float getItemInHandDropChance()
@@ -89,9 +95,10 @@ public class RunsafeEntityEquipment
 		return this.entityEquipment.getItemInHandDropChance();
 	}
 
-	public void setItemInHandDropChance(float chance)
+	public RunsafeEntityEquipment setItemInHandDropChance(float chance)
 	{
 		this.entityEquipment.setItemInHandDropChance(chance);
+		return this;
 	}
 
 	public float getHelmetDropChance()
@@ -99,9 +106,10 @@ public class RunsafeEntityEquipment
 		return this.entityEquipment.getHelmetDropChance();
 	}
 
-	public void setHelmetDropChance(float chance)
+	public RunsafeEntityEquipment setHelmetDropChance(float chance)
 	{
 		this.entityEquipment.setHelmetDropChance(chance);
+		return this;
 	}
 
 	public float getChestplateDropChance()
@@ -109,9 +117,10 @@ public class RunsafeEntityEquipment
 		return this.entityEquipment.getChestplateDropChance();
 	}
 
-	public void setChestplateDropChance(float chance)
+	public RunsafeEntityEquipment setChestplateDropChance(float chance)
 	{
 		this.entityEquipment.setChestplateDropChance(chance);
+		return this;
 	}
 
 	public float getLeggingsDropChance()
@@ -119,9 +128,10 @@ public class RunsafeEntityEquipment
 		return this.entityEquipment.getLeggingsDropChance();
 	}
 
-	public void setLeggingsDropChance(float chance)
+	public RunsafeEntityEquipment setLeggingsDropChance(float chance)
 	{
 		this.entityEquipment.setLeggingsDropChance(chance);
+		return this;
 	}
 
 	public float getBootsDropChance()
@@ -129,9 +139,10 @@ public class RunsafeEntityEquipment
 		return this.entityEquipment.getBootsDropChance();
 	}
 
-	public void setBootsDropChance(float chance)
+	public RunsafeEntityEquipment setBootsDropChance(float chance)
 	{
 		this.entityEquipment.setBootsDropChance(chance);
+		return this;
 	}
 
 	public void clear()
