@@ -46,6 +46,7 @@ public class Item implements IEnchantable
 
 		public static class Wood
 		{
+			public static Item Any = new Item(Material.LOG, true);
 			public static Item Oak = new Item(Material.LOG, true, 0);
 			public static Item Spruce = new Item(Material.LOG, true, 1);
 			public static Item Birch = new Item(Material.LOG, true, 2);
@@ -53,6 +54,7 @@ public class Item implements IEnchantable
 
 			public static class Plank
 			{
+				public static Item Any = new Item(Material.WOOD, true);
 				public static Item Oak = new Item(Material.WOOD, true, 0);
 				public static Item Spruce = new Item(Material.WOOD, true, 1);
 				public static Item Birch = new Item(Material.WOOD, true, 2);
@@ -62,6 +64,7 @@ public class Item implements IEnchantable
 
 		public static class Sandstone
 		{
+			public static Item Any = new Item(Material.SANDSTONE, true);
 			public static Item Normal = new Item(Material.SANDSTONE, true, 0);
 			public static Item Chiseled = new Item(Material.SANDSTONE, true, 1);
 			public static Item Smooth = new Item(Material.SANDSTONE, true, 2);
@@ -69,6 +72,7 @@ public class Item implements IEnchantable
 
 		public static class Wool
 		{
+			public static Item Any = new Item(Material.WOOL, true);
 			public static Item White = new Item(Material.WOOL, true, 0);
 			public static Item Orange = new Item(Material.WOOL, true, 1);
 			public static Item Magenta = new Item(Material.WOOL, true, 2);
@@ -89,10 +93,12 @@ public class Item implements IEnchantable
 
 		public static class Slab
 		{
+			public static Item AnyWood = new Item(Material.WOOD_STEP, true);
 			public static Item Oak = new Item(Material.WOOD_STEP, true, 0);
-			public static Item Spruce = new Item(Material.WOOD_STEP, true, 0);
-			public static Item Birch = new Item(Material.WOOD_STEP, true, 0);
-			public static Item Jungle = new Item(Material.WOOD_STEP, true, 0);
+			public static Item Spruce = new Item(Material.WOOD_STEP, true, 1);
+			public static Item Birch = new Item(Material.WOOD_STEP, true, 2);
+			public static Item Jungle = new Item(Material.WOOD_STEP, true, 3);
+			public static Item AnyStone = new Item(Material.STEP, true);
 			public static Item Stone = new Item(Material.STEP, true, 0);
 			public static Item Sandstone = new Item(Material.STEP, true, 1);
 			public static Item Cobblestone = new Item(Material.STEP, true, 2);
@@ -118,6 +124,7 @@ public class Item implements IEnchantable
 
 		public static class StoneBrick
 		{
+			public static Item Any = new Item(Material.SMOOTH_BRICK, true);
 			public static Item Normal = new Item(Material.SMOOTH_BRICK, true, 0);
 			public static Item Mossy = new Item(Material.SMOOTH_BRICK, true, 1);
 			public static Item Cracked = new Item(Material.SMOOTH_BRICK, true, 2);
@@ -126,12 +133,14 @@ public class Item implements IEnchantable
 
 		public static class CobbleWall
 		{
+			public static Item Any = new Item(Material.COBBLE_WALL, true);
 			public static Item Normal = new Item(Material.COBBLE_WALL, true, 0);
 			public static Item Mossy = new Item(Material.COBBLE_WALL, true, 1);
 		}
 
 		public static class Quartz
 		{
+			public static Item Any = new Item(Material.QUARTZ_BLOCK, true);
 			public static Item Normal = new Item(Material.QUARTZ_BLOCK, true, 0);
 			public static Item Chiseled = new Item(Material.QUARTZ_BLOCK, true, 1);
 			public static Item Pillar = new Item(Material.QUARTZ_BLOCK, true, 2);
@@ -183,6 +192,7 @@ public class Item implements IEnchantable
 
 		public static class Sapling
 		{
+			public static Item Any = new Item(Material.SAPLING, true);
 			public static Item Oak = new Item(Material.SAPLING, true, 0);
 			public static Item Spruce = new Item(Material.SAPLING, true, 1);
 			public static Item Birch = new Item(Material.SAPLING, true, 2);
@@ -207,6 +217,7 @@ public class Item implements IEnchantable
 
 		public static class MonsterEgg
 		{
+			public static Item Any = new Item(Material.MONSTER_EGGS, true);
 			public static Item Stone = new Item(Material.MONSTER_EGGS, true, 0);
 			public static Item Cobblestone = new Item(Material.MONSTER_EGGS, true, 1);
 			public static Item StoneBrick = new Item(Material.MONSTER_EGGS, true, 2);
@@ -214,6 +225,7 @@ public class Item implements IEnchantable
 
 		public static class Anvil
 		{
+			public static Item Any = new Item(Material.ANVIL, true);
 			public static Item Normal = new Item(Material.ANVIL, true, 0);
 			public static Item SlightlyDamaged = new Item(Material.ANVIL, true, 1);
 			public static Item VeryDamaged = new Item(Material.ANVIL, true, 2);
@@ -221,6 +233,7 @@ public class Item implements IEnchantable
 
 		public static class Head
 		{
+			public static Item Any = new Item(Material.SKULL_ITEM, true);
 			public static Item Skeleton = new Item(Material.SKULL_ITEM, true, 0);
 			public static Item WitherSkeleton = new Item(Material.SKULL_ITEM, true, 1);
 			public static Item Zombie = new Item(Material.SKULL_ITEM, true, 2);
@@ -334,6 +347,7 @@ public class Item implements IEnchantable
 
 		public static class MonsterEgg
 		{
+			public static Item Any = new Item(Material.MONSTER_EGG, true);
 			public static Item Creeper = new Item(Material.MONSTER_EGG, true, EntityType.CREEPER.getTypeId());
 			public static Item Skeleton = new Item(Material.MONSTER_EGG, true, EntityType.SKELETON.getTypeId());
 			public static Item Spider = new Item(Material.MONSTER_EGG, true, EntityType.SPIDER.getTypeId());
@@ -565,6 +579,7 @@ public class Item implements IEnchantable
 
 		public static class Dye
 		{
+			public static Item Any = new Item(Material.INK_SACK, true);
 			public static Item Black = Materials.InkSack;
 			public static Item Red = new Item(Material.INK_SACK, true, 1);
 			public static Item Green = new Item(Material.INK_SACK, true, 2);
@@ -641,10 +656,12 @@ public class Item implements IEnchantable
 
 		public static class DoubleSlab
 		{
+			public static Item AnyWood = new Item(Material.WOOD_DOUBLE_STEP, true);
 			public static Item Oak = new Item(Material.WOOD_DOUBLE_STEP, true, 0);
 			public static Item Spruce = new Item(Material.WOOD_DOUBLE_STEP, true, 1);
 			public static Item Birch = new Item(Material.WOOD_DOUBLE_STEP, true, 2);
 			public static Item Jungle = new Item(Material.WOOD_DOUBLE_STEP, true, 3);
+			public static Item AnyStone = new Item(Material.DOUBLE_STEP, true);
 			public static Item Stone = new Item(Material.DOUBLE_STEP, true, 0);
 			public static Item Sandstone = new Item(Material.DOUBLE_STEP, true, 1);
 			public static Item Plank = new Item(Material.DOUBLE_STEP, true, 2);
@@ -674,9 +691,15 @@ public class Item implements IEnchantable
 		Material material = Material.getMaterial(type);
 		if (material == null)
 			return null;
-		if (items.containsKey(material))
-			return items.get(material);
-		return new Item(material, true);
+		return getItem(material, -1);
+	}
+
+	public static Item get(String type, int damage)
+	{
+		Material material = Material.getMaterial(type);
+		if (material == null)
+			return null;
+		return getItem(material, damage);
 	}
 
 	public static Item get(int type)
@@ -684,9 +707,22 @@ public class Item implements IEnchantable
 		Material material = Material.getMaterial(type);
 		if (material == null)
 			return null;
-		if (items.containsKey(material))
-			return items.get(material);
-		return new Item(material, true);
+		return getItem(material, -1);
+	}
+
+	public static Item get(int type, int damage)
+	{
+		Material material = Material.getMaterial(type);
+		if (material == null)
+			return null;
+		return getItem(material, damage);
+	}
+
+	public static Item get(Material material, int damage)
+	{
+		if (material == null)
+			return null;
+		return getItem(material, damage);
 	}
 
 	public int getStackSize()
@@ -704,22 +740,22 @@ public class Item implements IEnchantable
 		return material;
 	}
 
+	public int getDamage()
+	{
+		return damage;
+	}
+
 	@Override
 	public boolean enchanted()
 	{
-		if (root || material.isBlock() || item == null)
-			return false;
+		return !(root || material.isBlock() || item == null) && item.enchanted();
 
-		return item.enchanted();
 	}
 
 	@Override
 	public boolean enchanted(IEnchant enchant)
 	{
-		if (root || material.isBlock() || item == null)
-			return false;
-
-		return item.enchanted(enchant);
+		return !(root || material.isBlock() || item == null) && item.enchanted(enchant);
 	}
 
 	@Override
@@ -782,7 +818,7 @@ public class Item implements IEnchantable
 
 	private Item(Material material, boolean root)
 	{
-		this(material, root, 0);
+		this(material, root, -1);
 	}
 
 	private Item(Material material, boolean root, int damage)
@@ -792,7 +828,7 @@ public class Item implements IEnchantable
 		this.damage = damage;
 		item = root ? null : new RunsafeItemStack(material.getId());
 		if (root)
-			items.put(material, this);
+			addItem(this);
 	}
 
 	private Item convertToItem()
@@ -800,7 +836,22 @@ public class Item implements IEnchantable
 		return new Item(material, false, damage);
 	}
 
-	private static final Map<Material, Item> items = new HashMap<Material, Item>();
+	private static Item getItem(Material material, int damage)
+	{
+		String key = String.format("%s_%d", material, damage);
+		if (!items.containsKey(key))
+			return new Item(material, true, damage);
+		return items.get(key);
+	}
+
+	private static void addItem(Item item)
+	{
+		String key = String.format("%s_%d", item.material.name(), item.damage);
+		if (!items.containsKey(key))
+			items.put(key, item);
+	}
+
+	private static final Map<String, Item> items = new HashMap<String, Item>();
 	private final Material material;
 	private final boolean root;
 	private final RunsafeItemStack item;
