@@ -1,6 +1,5 @@
 package no.runsafe.framework.server.block;
 
-import net.minecraft.server.v1_5_R3.ItemNetherStar;
 import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeLocation;
