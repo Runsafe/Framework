@@ -1,6 +1,7 @@
 package no.runsafe.framework.server.player;
 
 import no.runsafe.framework.hook.*;
+import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.output.ChatColour;
 import no.runsafe.framework.server.ICommandExecutor;
 import no.runsafe.framework.server.RunsafeLocation;
@@ -412,6 +413,17 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 		for (int i = 0; i < items.length; ++i)
 			itemStacks[i] = items[i].getRaw();
 		player.getInventory().addItem(itemStacks);
+	}
+
+	public void removeItem(Item itemType, int amount)
+	{
+		this.getInventory().remove(itemType.getTypeID(), amount);
+		this.updateInventory();
+	}
+
+	public void removeItem(Item itemType)
+	{
+		this.removeItem(itemType, itemType.getStackSize());
 	}
 
 	public GameMode getGameMode()

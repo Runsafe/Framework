@@ -689,6 +689,16 @@ public class Item implements IEnchantable
 		return new Item(material, true);
 	}
 
+	public int getStackSize()
+	{
+		return this.material.getMaxStackSize();
+	}
+
+	public int getTypeID()
+	{
+		return this.material.getId();
+	}
+
 	public Material getType()
 	{
 		return material;
