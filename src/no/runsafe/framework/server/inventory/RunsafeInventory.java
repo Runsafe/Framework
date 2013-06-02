@@ -1,6 +1,7 @@
 package no.runsafe.framework.server.inventory;
 
 import com.google.common.collect.Lists;
+import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeServer;
 import no.runsafe.framework.server.item.RunsafeItemStack;
@@ -81,6 +82,7 @@ public class RunsafeInventory
 	{
 		return this.inventory.contains(material.getRaw());
 	}
+
 	public boolean contains(RunsafeMaterial material, int amount)
 	{
 		return this.inventory.contains(material.getRaw(), amount);
@@ -126,6 +128,7 @@ public class RunsafeInventory
 		return this.inventory.getSize();
 	}
 
+	@Deprecated
 	public void remove(int material)
 	{
 		this.inventory.remove(material);
@@ -136,11 +139,13 @@ public class RunsafeInventory
 		this.inventory.remove(itemStack.getRaw());
 	}
 
+	@Deprecated
 	public void remove(RunsafeMaterial material)
 	{
 		this.inventory.remove(material.getRaw());
 	}
 
+	@Deprecated
 	public void remove(int materialID, int amount)
 	{
 		int needed = amount;
@@ -152,6 +157,27 @@ public class RunsafeInventory
 				if (itemStack.getAmount() <= needed)
 				{
 					this.remove(itemStack);
+					needed -= itemStack.getAmount();
+				}
+				else
+				{
+					itemStack.setAmount(itemStack.getAmount() - needed);
+					break;
+				}
+			}
+		}
+	}
+
+	public void remove(Item item, int amount)
+	{
+		int needed = amount;
+		for (ItemStack itemStack : inventory.getContents())
+		{
+			if (itemStack.getType() == item.getType())
+			{
+				if (itemStack.getAmount() <= needed)
+				{
+					inventory.remove(itemStack);
 					needed -= itemStack.getAmount();
 				}
 				else
