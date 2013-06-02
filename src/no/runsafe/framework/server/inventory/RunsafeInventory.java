@@ -185,13 +185,13 @@ public class RunsafeInventory
 	public void remove(Item item, int amount)
 	{
 		int needed = amount;
-		for (ItemStack itemStack : inventory.getContents())
+		for (RunsafeItemStack itemStack : this.getContents())
 		{
-			if (itemStack.getType() == item.getType())
+			if (itemStack.is(item))
 			{
 				if (itemStack.getAmount() <= needed)
 				{
-					inventory.remove(itemStack);
+					inventory.remove(itemStack.getRaw());
 					needed -= itemStack.getAmount();
 				}
 				else
