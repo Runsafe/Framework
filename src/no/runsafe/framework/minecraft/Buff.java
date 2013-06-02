@@ -74,6 +74,7 @@ public class Buff
 
 	public Buff duration(int value)
 	{
+		value = value * 20; // Ticks to seconds.
 		if (root)
 			return convertToBuff().duration(value);
 		duration = value;
