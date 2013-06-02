@@ -1,5 +1,6 @@
 package no.runsafe.framework.server.block;
 
+import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeWorld;
@@ -16,6 +17,11 @@ public class RunsafeBlock extends RunsafeMetadata
 	{
 		super(toWrap);
 		block = toWrap;
+	}
+
+	public int getData()
+	{
+		return this.block.getData();
 	}
 
 	public int getTypeId()
