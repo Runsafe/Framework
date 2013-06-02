@@ -36,6 +36,11 @@ public class RunsafeBlock extends RunsafeMetadata
 		return RunsafeBlock.interfaceBlocks.contains(this.getTypeId());
 	}
 
+	public boolean isInteractBlock()
+	{
+		return RunsafeBlock.interactBlocks.contains(this.getTypeId());
+	}
+
 	public int getTypeId()
 	{
 		return block.getTypeId();
@@ -183,6 +188,24 @@ public class RunsafeBlock extends RunsafeMetadata
 		interfaceBlocks.add(Item.Redstone.Device.Hopper.getTypeID());
 		interfaceBlocks.add(Item.Redstone.Device.Dropper.getTypeID());
 		interfaceBlocks.add(Item.Decoration.Chest.getTypeID());
+		interfaceBlocks.add(Item.Redstone.Device.Dispenser.getTypeID());
+	}
+
+	private static final ArrayList<Integer> interactBlocks = new ArrayList<Integer>();
+
+	static
+	{
+		interactBlocks.add(Item.Redstone.Comparator.getTypeID());
+		interactBlocks.add(Item.Redstone.Diode.getTypeID());
+		interactBlocks.add(Item.Redstone.Lever.getTypeID());
+		interactBlocks.add(Item.Redstone.Button.Stone.getTypeID());
+		interactBlocks.add(Item.Redstone.Button.Wood.getTypeID());
+		interactBlocks.add(Item.Redstone.Device.NoteBlock.getTypeID());
+		interactBlocks.add(Item.Redstone.Door.Gate.getTypeID());
+		interactBlocks.add(Item.Redstone.Door.Iron.getTypeID());
+		interactBlocks.add(Item.Redstone.Door.Trap.getTypeID());
+		interactBlocks.add(Item.Redstone.Door.Gate.getTypeID());
+		interactBlocks.add(Item.Redstone.Door.Wood.getTypeID());
 	}
 
 	private final Block block;
