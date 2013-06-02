@@ -73,10 +73,10 @@ public class Buff
 
 	public Buff duration(int value)
 	{
-		value = value * 20; // Ticks to seconds.
 		if (root)
 			return convertToBuff().duration(value);
-		duration = value;
+
+		duration = value * 20;
 		return this;
 	}
 
@@ -84,6 +84,7 @@ public class Buff
 	{
 		if (root)
 			return convertToBuff().amplification(value);
+
 		amplification = value;
 		return this;
 	}
@@ -92,6 +93,7 @@ public class Buff
 	{
 		if (root)
 			return convertToBuff().ambient(value);
+
 		ambient = value;
 		return this;
 	}
