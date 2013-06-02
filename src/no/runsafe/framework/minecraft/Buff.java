@@ -62,9 +62,8 @@ public class Buff
 	{
 		if (root)
 			return convertToBuff().getEffect();
-		if (ambient)
-			return new PotionEffect(type, duration, amplification, ambient);
-		return type.createEffect(duration, amplification);
+
+		return new PotionEffect(type, duration, amplification, ambient);
 	}
 
 	public PotionEffectType getType()
