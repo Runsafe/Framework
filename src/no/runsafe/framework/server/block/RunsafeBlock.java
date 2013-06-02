@@ -26,7 +26,7 @@ public class RunsafeBlock extends RunsafeMetadata
 
 	public boolean is(Item type)
 	{
-		return this.getMaterialType().getRaw() == type.getType()
+		return this.block.getType() == type.getType()
 				&& (this.getData() < 0 || this.getData() == type.getDamage());
 	}
 
