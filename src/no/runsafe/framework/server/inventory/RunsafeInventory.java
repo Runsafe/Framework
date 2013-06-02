@@ -58,11 +58,13 @@ public class RunsafeInventory
 		return this.inventory;
 	}
 
+	@Deprecated
 	public boolean contains(int material)
 	{
 		return this.inventory.contains(material);
 	}
 
+	@Deprecated
 	public boolean contains(int material, int amount)
 	{
 		return this.inventory.contains(material, amount);
@@ -78,14 +80,26 @@ public class RunsafeInventory
 		return this.inventory.contains(itemStack.getRaw(), amount);
 	}
 
+	@Deprecated
 	public boolean contains(RunsafeMaterial material)
 	{
 		return this.inventory.contains(material.getRaw());
 	}
 
+	@Deprecated
 	public boolean contains(RunsafeMaterial material, int amount)
 	{
 		return this.inventory.contains(material.getRaw(), amount);
+	}
+
+	public boolean contains(Item item)
+	{
+		return inventory.contains(item.getType());
+	}
+
+	public boolean contains(Item item, int amount)
+	{
+		return inventory.contains(item.getType(), amount);
 	}
 
 	public int first(int material)
