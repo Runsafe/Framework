@@ -1,5 +1,6 @@
 package no.runsafe.framework.server.entity;
 
+import no.runsafe.framework.minecraft.Buff;
 import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeEntityEquipment;
 import no.runsafe.framework.server.RunsafeLocation;
@@ -11,6 +12,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Projectile;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.Vector;
 
 import java.util.HashSet;
@@ -180,30 +182,54 @@ public class RunsafeLivingEntity extends RunsafeEntity
 		return ObjectWrapper.convert(entity.launchProjectile(projectile.asSubclass(Projectile.class)));
 	}
 
+	@Deprecated
 	public boolean addPotionEffect(RunsafePotionEffect effect)
 	{
 		return this.entity.addPotionEffect(effect.getRaw());
 	}
 
+	@Deprecated
 	public boolean addPotionEffect(RunsafePotionEffect effect, boolean force)
 	{
 		return this.entity.addPotionEffect(effect.getRaw(), force);
 	}
 
+	@Deprecated
 	public void addPotionEffects(List<RunsafePotionEffect> effects)
 	{
 		for (RunsafePotionEffect effect : effects)
 			this.entity.addPotionEffect(effect.getRaw());
 	}
 
+	@Deprecated
 	public boolean hasPotionEffect(RunsafePotionEffect effect)
 	{
 		return this.entity.hasPotionEffect(effect.getRaw().getType());
 	}
 
+	@Deprecated
 	public void removePotionEffect(RunsafePotionEffect effect)
 	{
 		this.entity.removePotionEffect(effect.getRaw().getType());
+	}
+
+	public void addBuff(Buff buff)
+	{
+		if (entity != null)
+			entity.addPotionEffect(buff.getEffect());
+	}
+
+	public void removeBuff(Buff buff)
+	{
+		if (entity != null)
+			entity.removePotionEffect(buff.getType());
+	}
+
+	public void removeBuffs()
+	{
+		if (entity != null)
+			for (PotionEffect effect : entity.getActivePotionEffects())
+				entity.removePotionEffect(effect.getType());
 	}
 
 	private RunsafeEntity Launch(Class<? extends Entity> launch)

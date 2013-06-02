@@ -262,13 +262,6 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 			player.updateInventory();
 	}
 
-	public void removeBuffs()
-	{
-		if (player != null)
-			for (PotionEffect effect : player.getActivePotionEffects())
-				player.removePotionEffect(effect.getType());
-	}
-
 	@Override
 	public boolean hasPermission(String permission)
 	{
