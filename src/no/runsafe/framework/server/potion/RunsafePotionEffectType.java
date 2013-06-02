@@ -1,5 +1,6 @@
 package no.runsafe.framework.server.potion;
 
+@Deprecated
 public class RunsafePotionEffectType
 {
 	public static final int SPEED = 1;

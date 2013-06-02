@@ -3,6 +3,7 @@ package no.runsafe.framework.server.potion;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+@Deprecated
 public class RunsafePotionEffect
 {
 	public RunsafePotionEffect(PotionEffect effect)
