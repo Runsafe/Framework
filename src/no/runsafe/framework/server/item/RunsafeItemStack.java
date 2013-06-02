@@ -160,11 +160,6 @@ public class RunsafeItemStack implements ConfigurationSerializable, IEnchantable
 		return itemStack.containsEnchantment(ench.getRaw());
 	}
 
-	public boolean containsEnchantment(RunsafeEnchantmentType type)
-	{
-		return itemStack.containsEnchantment(Enchantment.getById(type.getEnchantId()));
-	}
-
 	public int getEnchantmentLevel(RunsafeEnchantment ench)
 	{
 		return itemStack.getEnchantmentLevel(ench.getRaw());
