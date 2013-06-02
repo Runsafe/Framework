@@ -1,5 +1,6 @@
 package no.runsafe.framework.server.block;
 
+import net.minecraft.server.v1_5_R3.ItemNetherStar;
 import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.server.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeLocation;
@@ -28,6 +29,11 @@ public class RunsafeBlock extends RunsafeMetadata
 	{
 		return this.getMaterialType().getRaw() == type.getType()
 				&& (this.getData() < 0 || this.getData() == type.getDamage());
+	}
+
+	public boolean hasInterface()
+	{
+		return RunsafeBlock.interfaceBlocks.contains(this.getTypeId());
 	}
 
 	public int getTypeId()
@@ -161,6 +167,22 @@ public class RunsafeBlock extends RunsafeMetadata
 		passableBlocks.add(Material.WEB.getId());
 		passableBlocks.add(Material.WOOD_PLATE.getId());
 		passableBlocks.add(Material.YELLOW_FLOWER.getId());
+	}
+
+	private static final ArrayList<Integer> interfaceBlocks = new ArrayList<Integer>();
+
+	static
+	{
+		interfaceBlocks.add(Item.Decoration.Workbench.getTypeID());
+		interfaceBlocks.add(Item.Decoration.TrappedChest.getTypeID());
+		interfaceBlocks.add(Item.Decoration.Furnace.getTypeID());
+		interfaceBlocks.add(Item.Decoration.EnderChest.getTypeID());
+		interfaceBlocks.add(Item.Decoration.EnchantmentTable.getTypeID());
+		interfaceBlocks.add(Item.Decoration.Anvil.Any.getTypeID());
+		interfaceBlocks.add(Item.Brewing.BrewingStand.getTypeID());
+		interfaceBlocks.add(Item.Redstone.Device.Hopper.getTypeID());
+		interfaceBlocks.add(Item.Redstone.Device.Dropper.getTypeID());
+		interfaceBlocks.add(Item.Decoration.Chest.getTypeID());
 	}
 
 	private final Block block;
