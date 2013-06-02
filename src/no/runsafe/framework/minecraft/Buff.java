@@ -62,6 +62,8 @@ public class Buff
 	{
 		if (root)
 			return convertToBuff().getEffect();
+		if (ambient)
+			return new PotionEffect(type, duration, amplification, ambient);
 		return type.createEffect(duration, amplification);
 	}
 
@@ -72,42 +74,50 @@ public class Buff
 
 	public Buff duration(int value)
 	{
+		if (root)
+			return convertToBuff().duration(value);
 		duration = value;
 		return this;
 	}
 
 	public Buff amplification(int value)
 	{
+		if (root)
+			return convertToBuff().amplification(value);
 		amplification = value;
+		return this;
+	}
+
+	public Buff ambient(boolean value)
+	{
+		if (root)
+			return convertToBuff().ambient(value);
+		ambient = value;
 		return this;
 	}
 
 	public Buff applyTo(RunsafeLivingEntity entity)
 	{
-		entity.getRaw().addPotionEffect(getEffect());
+		getEffect().apply(entity.getRaw());
 		return this;
 	}
 
 	private Buff(PotionEffectType type, boolean root)
 	{
-		this(type, root, 0, 0);
-	}
-
-	private Buff(PotionEffectType type, boolean root, int duration, int amplification)
-	{
 		this.type = type;
 		this.root = root;
-		this.duration = duration;
-		this.amplification = amplification;
+		this.duration = 1;
+		this.amplification = 1;
 	}
 
 	private Buff convertToBuff()
 	{
-		return new Buff(type, false, 1, 1);
+		return new Buff(type, false);
 	}
 
 	private final PotionEffectType type;
 	private final boolean root;
 	private int duration;
 	private int amplification;
+	private boolean ambient;
 }
