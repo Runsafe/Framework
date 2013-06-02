@@ -21,6 +21,11 @@ public class RunsafeLeatherArmorMeta extends RunsafeItemMeta
 		leatherArmor.setColor(Color.fromRGB(color));
 	}
 
+	public void setColor(int r, int g, int b)
+	{
+		leatherArmor.setColor(Color.fromRGB(r, g, b));
+	}
+
 	public RunsafeLeatherArmorMeta clone()
 	{
 		return new RunsafeLeatherArmorMeta(leatherArmor.clone());
