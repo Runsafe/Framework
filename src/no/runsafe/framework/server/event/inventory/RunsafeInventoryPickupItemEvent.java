@@ -35,5 +35,5 @@ public class RunsafeInventoryPickupItemEvent implements CancellableEvent
 		this.event.setCancelled(cancel);
 	}
 
-	private InventoryPickupItemEvent event;
+	private final InventoryPickupItemEvent event;
 }

@@ -35,5 +35,5 @@ public class RunsafePlayerPickupItemEvent extends RunsafePlayerEvent implements 
 		this.event.setCancelled(cancel);
 	}
 
-	private PlayerPickupItemEvent event;
+	private final PlayerPickupItemEvent event;
 }

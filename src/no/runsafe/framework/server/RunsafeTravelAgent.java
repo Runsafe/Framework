@@ -56,5 +56,5 @@ public class RunsafeTravelAgent
 		return this.travelAgent;
 	}
 
-	private TravelAgent travelAgent;
+	private final TravelAgent travelAgent;
 }

@@ -155,5 +155,5 @@ public class RunsafeEntityEquipment
 		return ObjectWrapper.convert(this.entityEquipment.getHolder());
 	}
 
-	EntityEquipment entityEquipment;
+	final EntityEquipment entityEquipment;
 }

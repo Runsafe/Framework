@@ -68,5 +68,5 @@ public class RunsafeInventoryView
 		return ObjectWrapper.convert(this.inventoryView.getType());
 	}
 
-	private InventoryView inventoryView;
+	private final InventoryView inventoryView;
 }

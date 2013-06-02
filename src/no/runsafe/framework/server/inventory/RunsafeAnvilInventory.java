@@ -15,5 +15,5 @@ public class RunsafeAnvilInventory extends RunsafeInventory
 		return this.inventory;
 	}
 
-	private AnvilInventory inventory;
+	private final AnvilInventory inventory;
 }

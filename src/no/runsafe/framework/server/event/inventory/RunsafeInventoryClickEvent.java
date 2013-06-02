@@ -82,5 +82,5 @@ public class RunsafeInventoryClickEvent extends RunsafeInventoryEvent implements
 		this.event.setCancelled(cancel);
 	}
 
-	private InventoryClickEvent event;
+	private final InventoryClickEvent event;
 }

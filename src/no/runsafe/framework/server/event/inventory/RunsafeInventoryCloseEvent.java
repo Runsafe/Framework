@@ -17,5 +17,5 @@ public class RunsafeInventoryCloseEvent extends RunsafeInventoryEvent
 		return ObjectWrapper.convert(this.event.getPlayer());
 	}
 
-	private InventoryCloseEvent event;
+	private final InventoryCloseEvent event;
 }

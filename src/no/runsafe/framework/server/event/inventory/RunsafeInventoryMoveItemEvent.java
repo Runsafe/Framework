@@ -50,5 +50,5 @@ public class RunsafeInventoryMoveItemEvent implements CancellableEvent
 		this.event.setCancelled(cancel);
 	}
 
-	private InventoryMoveItemEvent event;
+	private final InventoryMoveItemEvent event;
 }

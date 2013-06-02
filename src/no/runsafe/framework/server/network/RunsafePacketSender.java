@@ -25,5 +25,5 @@ public class RunsafePacketSender
 		this.playerConnection.sendPacket(new Packet20NamedEntitySpawn((EntityHuman) rawEntity));
 	}
 
-	private PlayerConnection playerConnection;
+	private final PlayerConnection playerConnection;
 }

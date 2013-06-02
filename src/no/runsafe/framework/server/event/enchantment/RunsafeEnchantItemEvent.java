@@ -73,5 +73,5 @@ public class RunsafeEnchantItemEvent extends RunsafeInventoryEvent implements Ca
 		this.event.setCancelled(cancel);
 	}
 
-	private EnchantItemEvent event;
+	private final EnchantItemEvent event;
 }

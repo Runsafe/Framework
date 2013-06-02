@@ -417,7 +417,7 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 
 	public void removeItem(Item itemType, int amount)
 	{
-		this.getInventory().remove(itemType.getTypeID(), amount);
+		this.getInventory().remove(itemType, amount);
 		this.updateInventory();
 	}
 

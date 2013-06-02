@@ -53,5 +53,5 @@ public class RunsafePrepareItemEnchantEvent extends RunsafeInventoryEvent implem
 		this.event.setCancelled(cancel);
 	}
 
-	private PrepareItemEnchantEvent event;
+	private final PrepareItemEnchantEvent event;
 }

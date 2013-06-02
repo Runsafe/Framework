@@ -112,5 +112,5 @@ public class RunsafeHumanEntity extends RunsafeLivingEntity
 		return this.humanEntity.getExpToLevel();
 	}
 
-	private HumanEntity humanEntity;
+	private final HumanEntity humanEntity;
 }

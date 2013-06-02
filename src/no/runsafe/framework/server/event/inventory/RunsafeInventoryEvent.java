@@ -38,5 +38,5 @@ public class RunsafeInventoryEvent extends RunsafeEvent
 		return ObjectWrapper.convert(this.event.getView());
 	}
 
-	private InventoryEvent event;
+	private final InventoryEvent event;
 }

@@ -24,5 +24,5 @@ public class RunsafeHopper extends RunsafeBlockState implements IInventoryHolder
 		return ObjectWrapper.convert(this.hopper.getInventory());
 	}
 
-	private Hopper hopper;
+	private final Hopper hopper;
 }

@@ -23,5 +23,5 @@ public class RunsafeEntityPortalEnterEvent extends RunsafeEntityEvent
 		return this.getLocation().getBlock();
 	}
 
-	private EntityPortalEnterEvent event;
+	private final EntityPortalEnterEvent event;
 }

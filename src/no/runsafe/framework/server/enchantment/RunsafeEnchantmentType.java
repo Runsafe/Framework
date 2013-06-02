@@ -1,7 +1,6 @@
 package no.runsafe.framework.server.enchantment;
 
-import no.runsafe.framework.enchant.IEnchant;
-
+@Deprecated
 public enum RunsafeEnchantmentType
 {
 	PROTECTION_ENVIRONMENTAL(0),
@@ -27,7 +26,7 @@ public enum RunsafeEnchantmentType
 	ARROW_FIRE(50),
 	ARROW_INFINITE(51);
 
-	private int id;
+	private final int id;
 
 	private RunsafeEnchantmentType(int id)
 	{

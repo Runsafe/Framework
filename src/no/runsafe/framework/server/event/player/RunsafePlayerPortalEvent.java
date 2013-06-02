@@ -45,5 +45,5 @@ public class RunsafePlayerPortalEvent extends RunsafePlayerTeleportEvent impleme
 		this.event.setCancelled(cancel);
 	}
 
-	private PlayerPortalEvent event;
+	private final PlayerPortalEvent event;
 }

@@ -23,5 +23,5 @@ public class RunsafeEntityCreatePortalEvent extends RunsafeEntityEvent implement
 		this.event.setCancelled(cancel);
 	}
 
-	EntityCreatePortalEvent event;
+	final EntityCreatePortalEvent event;
 }
