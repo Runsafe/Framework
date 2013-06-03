@@ -218,7 +218,7 @@ public class RunsafeItemStack implements ConfigurationSerializable, IEnchantable
 	public boolean is(Item type)
 	{
 		return itemStack.getType() == type.getType()
-			&& (type.getDataByte() < 0 || itemStack.getData().getData() == type.getDataByte());
+			&& (type.getData() == (byte) -1 || itemStack.getData().getData() == type.getData());
 	}
 
 	@Override

@@ -741,14 +741,9 @@ public class Item implements IEnchantable
 		return material;
 	}
 
-	public RunsafeMaterialData getData()
+	public byte getData()
 	{
 		return this.data;
-	}
-
-	public byte getDataByte()
-	{
-		return this.data.getData();
 	}
 
 	@Override
@@ -831,8 +826,8 @@ public class Item implements IEnchantable
 	{
 		this.material = material;
 		this.root = root;
-		this.data = new RunsafeMaterialData(material.getId(), dataByte);
-		item = root ? null : data.toItemStack(material.getMaxStackSize());
+		this.data = dataByte;
+		item = root ? null : new RunsafeMaterialData(material.getId(), dataByte).toItemStack(material.getMaxStackSize());
 
 		if (root)
 			addItem(this);
@@ -840,7 +835,7 @@ public class Item implements IEnchantable
 
 	private Item convertToItem()
 	{
-		return new Item(material, false, data.getData());
+		return new Item(material, false, data);
 	}
 
 	private static Item getItem(Material material, byte dataByte)
@@ -854,7 +849,7 @@ public class Item implements IEnchantable
 
 	private static void addItem(Item item)
 	{
-		String key = String.format("%s_%d", item.material.name(), item.data.getData());
+		String key = String.format("%s_%d", item.material.name(), item.getData());
 		if (!items.containsKey(key))
 			items.put(key, item);
 	}
@@ -863,5 +858,5 @@ public class Item implements IEnchantable
 	private final Material material;
 	private final boolean root;
 	private final RunsafeItemStack item;
-	private final RunsafeMaterialData data;
+	private final byte data;
 }
