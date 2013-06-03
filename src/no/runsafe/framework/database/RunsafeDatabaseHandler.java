@@ -46,7 +46,7 @@ public final class RunsafeDatabaseHandler implements IDatabase
 				"================================================================" +
 				ConsoleColors.RESET
 			);
-			RunsafeServer.Instance.stop();
+			System.exit(1);
 		}
 		catch (IOException e)
 		{
@@ -59,7 +59,9 @@ public final class RunsafeDatabaseHandler implements IDatabase
 				"=====================================================" +
 				ConsoleColors.RESET
 			);
-			RunsafeServer.Instance.stop();	}
+			RunsafeServer.Instance.stop();
+			System.exit(1);
+		}
 		catch (InvalidConfigurationException e)
 		{
 			output.logException(e);
@@ -71,7 +73,8 @@ public final class RunsafeDatabaseHandler implements IDatabase
 				"=================================================================" +
 				ConsoleColors.RESET
 			);
-			RunsafeServer.Instance.stop();	}
+			System.exit(1);
+		}
 		this.databaseURL = config.getString("database.url");
 		this.databaseUsername = config.getString("database.username");
 		this.databasePassword = config.getString("database.password");
