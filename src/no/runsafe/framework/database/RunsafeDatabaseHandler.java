@@ -2,6 +2,7 @@ package no.runsafe.framework.database;
 
 import no.runsafe.framework.output.ConsoleColors;
 import no.runsafe.framework.output.IOutput;
+import no.runsafe.framework.server.RunsafeServer;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -45,6 +46,7 @@ public final class RunsafeDatabaseHandler implements IDatabase
 				"================================================================" +
 				ConsoleColors.RESET
 			);
+			RunsafeServer.Instance.stop();
 		}
 		catch (IOException e)
 		{

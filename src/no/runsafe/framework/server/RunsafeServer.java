@@ -424,6 +424,11 @@ public class RunsafeServer
 		return ObjectWrapper.convert(this.server.createInventory(holder.getRaw(), type.getRaw()));
 	}
 
+	public void stop()
+	{
+		server.shutdown();
+	}
+
 	private final ConcurrentHashMap<String, RunsafePlayer> kickingPlayer = new ConcurrentHashMap<String, RunsafePlayer>();
 	private final Server server;
 }
