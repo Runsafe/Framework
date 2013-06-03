@@ -51,11 +51,27 @@ public final class RunsafeDatabaseHandler implements IDatabase
 		catch (IOException e)
 		{
 			output.logException(e);
-		}
+			output.write("\n" +
+				"\n" +
+				ConsoleColors.RED +
+				"=====================================================\n" +
+				"Unable to read runsafe/db.yml - you need to fix this!\n" +
+				"=====================================================" +
+				ConsoleColors.RESET
+			);
+			RunsafeServer.Instance.stop();	}
 		catch (InvalidConfigurationException e)
 		{
 			output.logException(e);
-		}
+			output.write("\n" +
+				"\n" +
+				ConsoleColors.RED +
+				"=================================================================\n" +
+				"Invalid configuration file runsafe/db.yml - you need to fix this!\n" +
+				"=================================================================" +
+				ConsoleColors.RESET
+			);
+			RunsafeServer.Instance.stop();	}
 		this.databaseURL = config.getString("database.url");
 		this.databaseUsername = config.getString("database.username");
 		this.databasePassword = config.getString("database.password");
