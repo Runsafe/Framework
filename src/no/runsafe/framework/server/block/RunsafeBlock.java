@@ -27,7 +27,7 @@ public class RunsafeBlock extends RunsafeMetadata
 	public boolean is(Item type)
 	{
 		return this.block.getType() == type.getType()
-				&& (type.getData() < (byte) -1 || this.getData() == type.getData());
+				&& (type.getData() == (byte) -1 || this.getData() == type.getData());
 	}
 
 	public boolean hasInterface()
