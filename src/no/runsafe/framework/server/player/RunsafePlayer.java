@@ -19,7 +19,6 @@ import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffect;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
@@ -55,6 +54,8 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 	@Override
 	public String getName()
 	{
+		if (basePlayer == null)
+			return null;
 		return basePlayer.getName();
 	}
 

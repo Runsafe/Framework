@@ -121,15 +121,7 @@ public class RunsafeServer
 		if (playerName == null)
 			return null;
 
-		ArrayList<String> hits = new ArrayList<String>();
-		for (IPlayerLookupService lookup : HookEngine.hookContainer.getComponents(IPlayerLookupService.class))
-		{
-			List<String> data = lookup.findPlayer(playerName);
-			if (data != null)
-				for (String hit : data)
-					if (!hits.contains(hit))
-						hits.add(hit);
-		}
+		List<String> hits = findPlayer(playerName);
 
 		if (hits.size() == 0)
 			return new RunsafePlayer(server.getOfflinePlayer(playerName), true);
@@ -165,6 +157,20 @@ public class RunsafeServer
 		return new RunsafeAmbiguousPlayer(server.getPlayerExact(hits.get(0)), hits);
 	}
 
+	public List<String> findPlayer(String playerName)
+	{
+		ArrayList<String> hits = new ArrayList<String>();
+		for (IPlayerLookupService lookup : HookEngine.hookContainer.getComponents(IPlayerLookupService.class))
+		{
+			List<String> data = lookup.findPlayer(playerName);
+			if (data != null)
+				for (String hit : data)
+					if (!hits.contains(hit))
+						hits.add(hit);
+		}
+		return hits;
+	}
+
 	public boolean getOnlineMode()
 	{
 		return this.server.getOnlineMode();
@@ -185,7 +191,13 @@ public class RunsafeServer
 		if (playerName == null)
 			return null;
 
-		return new RunsafePlayer(this.server.getPlayerExact(playerName));
+		Player player = this.server.getPlayerExact(playerName);
+		if (player == null)
+		{
+			List<String> players = findPlayer(playerName);
+			return players.contains(playerName) ? new RunsafePlayer(server.getOfflinePlayer(playerName)) : null;
+		}
+		return new RunsafePlayer(player);
 	}
 
 	public int getPort()
