@@ -3,6 +3,7 @@ package no.runsafe.framework.minecraft;
 import no.runsafe.framework.enchant.IEnchant;
 import no.runsafe.framework.enchant.IEnchantable;
 import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.material.RunsafeMaterialData;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 
@@ -47,65 +48,65 @@ public class Item implements IEnchantable
 		public static class Wood
 		{
 			public static final Item Any = new Item(Material.LOG, true);
-			public static final Item Oak = new Item(Material.LOG, true, 0);
-			public static final Item Spruce = new Item(Material.LOG, true, 1);
-			public static final Item Birch = new Item(Material.LOG, true, 2);
-			public static final Item Jungle = new Item(Material.LOG, true, 3);
+			public static final Item Oak = new Item(Material.LOG, true, (byte) 0);
+			public static final Item Spruce = new Item(Material.LOG, true, (byte) 1);
+			public static final Item Birch = new Item(Material.LOG, true, (byte) 2);
+			public static final Item Jungle = new Item(Material.LOG, true, (byte) 3);
 
 			public static class Plank
 			{
 				public static final Item Any = new Item(Material.WOOD, true);
-				public static final Item Oak = new Item(Material.WOOD, true, 0);
-				public static final Item Spruce = new Item(Material.WOOD, true, 1);
-				public static final Item Birch = new Item(Material.WOOD, true, 2);
-				public static final Item Jungle = new Item(Material.WOOD, true, 3);
+				public static final Item Oak = new Item(Material.WOOD, true, (byte) 0);
+				public static final Item Spruce = new Item(Material.WOOD, true, (byte) 1);
+				public static final Item Birch = new Item(Material.WOOD, true, (byte) 2);
+				public static final Item Jungle = new Item(Material.WOOD, true, (byte) 3);
 			}
 		}
 
 		public static class Sandstone
 		{
 			public static final Item Any = new Item(Material.SANDSTONE, true);
-			public static final Item Normal = new Item(Material.SANDSTONE, true, 0);
-			public static final Item Chiseled = new Item(Material.SANDSTONE, true, 1);
-			public static final Item Smooth = new Item(Material.SANDSTONE, true, 2);
+			public static final Item Normal = new Item(Material.SANDSTONE, true, (byte) 0);
+			public static final Item Chiseled = new Item(Material.SANDSTONE, true, (byte) 1);
+			public static final Item Smooth = new Item(Material.SANDSTONE, true, (byte) 2);
 		}
 
 		public static class Wool
 		{
 			public static final Item Any = new Item(Material.WOOL, true);
-			public static final Item White = new Item(Material.WOOL, true, 0);
-			public static final Item Orange = new Item(Material.WOOL, true, 1);
-			public static final Item Magenta = new Item(Material.WOOL, true, 2);
-			public static final Item LightBlue = new Item(Material.WOOL, true, 3);
-			public static final Item Yellow = new Item(Material.WOOL, true, 4);
-			public static final Item Lime = new Item(Material.WOOL, true, 5);
-			public static final Item Pink = new Item(Material.WOOL, true, 6);
-			public static final Item Gray = new Item(Material.WOOL, true, 7);
-			public static final Item LightGray = new Item(Material.WOOL, true, 8);
-			public static final Item Cyan = new Item(Material.WOOL, true, 9);
-			public static final Item Purple = new Item(Material.WOOL, true, 10);
-			public static final Item Blue = new Item(Material.WOOL, true, 11);
-			public static final Item Brown = new Item(Material.WOOL, true, 12);
-			public static final Item Green = new Item(Material.WOOL, true, 13);
-			public static final Item Red = new Item(Material.WOOL, true, 14);
-			public static final Item Black = new Item(Material.WOOL, true, 15);
+			public static final Item White = new Item(Material.WOOL, true, (byte) 0);
+			public static final Item Orange = new Item(Material.WOOL, true, (byte) 1);
+			public static final Item Magenta = new Item(Material.WOOL, true, (byte) 2);
+			public static final Item LightBlue = new Item(Material.WOOL, true, (byte) 3);
+			public static final Item Yellow = new Item(Material.WOOL, true, (byte) 4);
+			public static final Item Lime = new Item(Material.WOOL, true, (byte) 5);
+			public static final Item Pink = new Item(Material.WOOL, true, (byte) 6);
+			public static final Item Gray = new Item(Material.WOOL, true, (byte) 7);
+			public static final Item LightGray = new Item(Material.WOOL, true, (byte) 8);
+			public static final Item Cyan = new Item(Material.WOOL, true, (byte) 9);
+			public static final Item Purple = new Item(Material.WOOL, true, (byte) 10);
+			public static final Item Blue = new Item(Material.WOOL, true, (byte) 11);
+			public static final Item Brown = new Item(Material.WOOL, true, (byte) 12);
+			public static final Item Green = new Item(Material.WOOL, true, (byte) 13);
+			public static final Item Red = new Item(Material.WOOL, true, (byte) 14);
+			public static final Item Black = new Item(Material.WOOL, true, (byte) 15);
 		}
 
 		public static class Slab
 		{
 			public static final Item AnyWood = new Item(Material.WOOD_STEP, true);
-			public static final Item Oak = new Item(Material.WOOD_STEP, true, 0);
-			public static final Item Spruce = new Item(Material.WOOD_STEP, true, 1);
-			public static final Item Birch = new Item(Material.WOOD_STEP, true, 2);
-			public static final Item Jungle = new Item(Material.WOOD_STEP, true, 3);
+			public static final Item Oak = new Item(Material.WOOD_STEP, true, (byte) 0);
+			public static final Item Spruce = new Item(Material.WOOD_STEP, true, (byte) 1);
+			public static final Item Birch = new Item(Material.WOOD_STEP, true, (byte) 2);
+			public static final Item Jungle = new Item(Material.WOOD_STEP, true, (byte) 3);
 			public static final Item AnyStone = new Item(Material.STEP, true);
-			public static final Item Stone = new Item(Material.STEP, true, 0);
-			public static final Item Sandstone = new Item(Material.STEP, true, 1);
-			public static final Item Cobblestone = new Item(Material.STEP, true, 2);
-			public static final Item Brick = new Item(Material.STEP, true, 3);
-			public static final Item StoneBrick = new Item(Material.STEP, true, 4);
-			public static final Item NetherRack = new Item(Material.STEP, true, 5);
-			public static final Item Quartz = new Item(Material.STEP, true, 6);
+			public static final Item Stone = new Item(Material.STEP, true, (byte) 0);
+			public static final Item Sandstone = new Item(Material.STEP, true, (byte) 1);
+			public static final Item Cobblestone = new Item(Material.STEP, true, (byte) 2);
+			public static final Item Brick = new Item(Material.STEP, true, (byte) 3);
+			public static final Item StoneBrick = new Item(Material.STEP, true, (byte) 4);
+			public static final Item NetherRack = new Item(Material.STEP, true, (byte) 5);
+			public static final Item Quartz = new Item(Material.STEP, true, (byte) 6);
 		}
 
 		public static class Stairs
@@ -125,25 +126,25 @@ public class Item implements IEnchantable
 		public static class StoneBrick
 		{
 			public static final Item Any = new Item(Material.SMOOTH_BRICK, true);
-			public static final Item Normal = new Item(Material.SMOOTH_BRICK, true, 0);
-			public static final Item Mossy = new Item(Material.SMOOTH_BRICK, true, 1);
-			public static final Item Cracked = new Item(Material.SMOOTH_BRICK, true, 2);
-			public static final Item Chiseled = new Item(Material.SMOOTH_BRICK, true, 3);
+			public static final Item Normal = new Item(Material.SMOOTH_BRICK, true, (byte) 0);
+			public static final Item Mossy = new Item(Material.SMOOTH_BRICK, true, (byte) 1);
+			public static final Item Cracked = new Item(Material.SMOOTH_BRICK, true, (byte) 2);
+			public static final Item Chiseled = new Item(Material.SMOOTH_BRICK, true, (byte) 3);
 		}
 
 		public static class CobbleWall
 		{
 			public static final Item Any = new Item(Material.COBBLE_WALL, true);
-			public static final Item Normal = new Item(Material.COBBLE_WALL, true, 0);
-			public static final Item Mossy = new Item(Material.COBBLE_WALL, true, 1);
+			public static final Item Normal = new Item(Material.COBBLE_WALL, true, (byte) 0);
+			public static final Item Mossy = new Item(Material.COBBLE_WALL, true, (byte) 1);
 		}
 
 		public static class Quartz
 		{
 			public static final Item Any = new Item(Material.QUARTZ_BLOCK, true);
-			public static final Item Normal = new Item(Material.QUARTZ_BLOCK, true, 0);
-			public static final Item Chiseled = new Item(Material.QUARTZ_BLOCK, true, 1);
-			public static final Item Pillar = new Item(Material.QUARTZ_BLOCK, true, 2);
+			public static final Item Normal = new Item(Material.QUARTZ_BLOCK, true, (byte) 0);
+			public static final Item Chiseled = new Item(Material.QUARTZ_BLOCK, true, (byte) 1);
+			public static final Item Pillar = new Item(Material.QUARTZ_BLOCK, true, (byte) 2);
 		}
 	}
 
@@ -193,10 +194,10 @@ public class Item implements IEnchantable
 		public static class Sapling
 		{
 			public static final Item Any = new Item(Material.SAPLING, true);
-			public static final Item Oak = new Item(Material.SAPLING, true, 0);
-			public static final Item Spruce = new Item(Material.SAPLING, true, 1);
-			public static final Item Birch = new Item(Material.SAPLING, true, 2);
-			public static final Item Jungle = new Item(Material.SAPLING, true, 3);
+			public static final Item Oak = new Item(Material.SAPLING, true, (byte) 0);
+			public static final Item Spruce = new Item(Material.SAPLING, true, (byte) 1);
+			public static final Item Birch = new Item(Material.SAPLING, true, (byte) 2);
+			public static final Item Jungle = new Item(Material.SAPLING, true, (byte) 3);
 		}
 
 		public static class Leaves
@@ -218,27 +219,27 @@ public class Item implements IEnchantable
 		public static class MonsterEgg
 		{
 			public static final Item Any = new Item(Material.MONSTER_EGGS, true);
-			public static final Item Stone = new Item(Material.MONSTER_EGGS, true, 0);
-			public static final Item Cobblestone = new Item(Material.MONSTER_EGGS, true, 1);
-			public static final Item StoneBrick = new Item(Material.MONSTER_EGGS, true, 2);
+			public static final Item Stone = new Item(Material.MONSTER_EGGS, true, (byte) 0);
+			public static final Item Cobblestone = new Item(Material.MONSTER_EGGS, true, (byte) 1);
+			public static final Item StoneBrick = new Item(Material.MONSTER_EGGS, true, (byte) 2);
 		}
 
 		public static class Anvil
 		{
 			public static final Item Any = new Item(Material.ANVIL, true);
-			public static final Item Normal = new Item(Material.ANVIL, true, 0);
-			public static final Item SlightlyDamaged = new Item(Material.ANVIL, true, 1);
-			public static final Item VeryDamaged = new Item(Material.ANVIL, true, 2);
+			public static final Item Normal = new Item(Material.ANVIL, true, (byte) 0);
+			public static final Item SlightlyDamaged = new Item(Material.ANVIL, true, (byte) 1);
+			public static final Item VeryDamaged = new Item(Material.ANVIL, true, (byte) 2);
 		}
 
 		public static class Head
 		{
 			public static final Item Any = new Item(Material.SKULL_ITEM, true);
-			public static final Item Skeleton = new Item(Material.SKULL_ITEM, true, 0);
-			public static final Item WitherSkeleton = new Item(Material.SKULL_ITEM, true, 1);
-			public static final Item Zombie = new Item(Material.SKULL_ITEM, true, 2);
-			public static final Item Human = new Item(Material.SKULL_ITEM, true, 3);
-			public static final Item Creeper = new Item(Material.SKULL_ITEM, true, 4);
+			public static final Item Skeleton = new Item(Material.SKULL_ITEM, true, (byte) 0);
+			public static final Item WitherSkeleton = new Item(Material.SKULL_ITEM, true, (byte) 1);
+			public static final Item Zombie = new Item(Material.SKULL_ITEM, true, (byte) 2);
+			public static final Item Human = new Item(Material.SKULL_ITEM, true, (byte) 3);
+			public static final Item Creeper = new Item(Material.SKULL_ITEM, true, (byte) 4);
 		}
 	}
 
@@ -348,29 +349,29 @@ public class Item implements IEnchantable
 		public static class MonsterEgg
 		{
 			public static final Item Any = new Item(Material.MONSTER_EGG, true);
-			public static final Item Creeper = new Item(Material.MONSTER_EGG, true, EntityType.CREEPER.getTypeId());
-			public static final Item Skeleton = new Item(Material.MONSTER_EGG, true, EntityType.SKELETON.getTypeId());
-			public static final Item Spider = new Item(Material.MONSTER_EGG, true, EntityType.SPIDER.getTypeId());
-			public static final Item Zombie = new Item(Material.MONSTER_EGG, true, EntityType.ZOMBIE.getTypeId());
-			public static final Item Slime = new Item(Material.MONSTER_EGG, true, EntityType.SLIME.getTypeId());
-			public static final Item Ghast = new Item(Material.MONSTER_EGG, true, EntityType.GHAST.getTypeId());
-			public static final Item ZombiePigman = new Item(Material.MONSTER_EGG, true, EntityType.PIG_ZOMBIE.getTypeId());
-			public static final Item Enderman = new Item(Material.MONSTER_EGG, true, EntityType.ENDERMAN.getTypeId());
-			public static final Item CaveSpider = new Item(Material.MONSTER_EGG, true, EntityType.CAVE_SPIDER.getTypeId());
-			public static final Item Silverfish = new Item(Material.MONSTER_EGG, true, EntityType.SILVERFISH.getTypeId());
-			public static final Item Blaze = new Item(Material.MONSTER_EGG, true, EntityType.BLAZE.getTypeId());
-			public static final Item MagmaCube = new Item(Material.MONSTER_EGG, true, EntityType.MAGMA_CUBE.getTypeId());
-			public static final Item Bat = new Item(Material.MONSTER_EGG, true, EntityType.BAT.getTypeId());
-			public static final Item Witch = new Item(Material.MONSTER_EGG, true, EntityType.WITCH.getTypeId());
-			public static final Item Pig = new Item(Material.MONSTER_EGG, true, EntityType.PIG.getTypeId());
-			public static final Item Sheep = new Item(Material.MONSTER_EGG, true, EntityType.SHEEP.getTypeId());
-			public static final Item Cow = new Item(Material.MONSTER_EGG, true, EntityType.COW.getTypeId());
-			public static final Item Chicken = new Item(Material.MONSTER_EGG, true, EntityType.CHICKEN.getTypeId());
-			public static final Item Squid = new Item(Material.MONSTER_EGG, true, EntityType.SQUID.getTypeId());
-			public static final Item Wolf = new Item(Material.MONSTER_EGG, true, EntityType.WOLF.getTypeId());
-			public static final Item Mooshroom = new Item(Material.MONSTER_EGG, true, EntityType.MUSHROOM_COW.getTypeId());
-			public static final Item Ocelot = new Item(Material.MONSTER_EGG, true, EntityType.OCELOT.getTypeId());
-			public static final Item Villager = new Item(Material.MONSTER_EGG, true, EntityType.VILLAGER.getTypeId());
+			public static final Item Creeper = new Item(Material.MONSTER_EGG, true, (byte) EntityType.CREEPER.getTypeId());
+			public static final Item Skeleton = new Item(Material.MONSTER_EGG, true, (byte) EntityType.SKELETON.getTypeId());
+			public static final Item Spider = new Item(Material.MONSTER_EGG, true, (byte) EntityType.SPIDER.getTypeId());
+			public static final Item Zombie = new Item(Material.MONSTER_EGG, true, (byte) EntityType.ZOMBIE.getTypeId());
+			public static final Item Slime = new Item(Material.MONSTER_EGG, true, (byte) EntityType.SLIME.getTypeId());
+			public static final Item Ghast = new Item(Material.MONSTER_EGG, true, (byte) EntityType.GHAST.getTypeId());
+			public static final Item ZombiePigman = new Item(Material.MONSTER_EGG, true, (byte) EntityType.PIG_ZOMBIE.getTypeId());
+			public static final Item Enderman = new Item(Material.MONSTER_EGG, true, (byte) EntityType.ENDERMAN.getTypeId());
+			public static final Item CaveSpider = new Item(Material.MONSTER_EGG, true, (byte) EntityType.CAVE_SPIDER.getTypeId());
+			public static final Item Silverfish = new Item(Material.MONSTER_EGG, true, (byte) EntityType.SILVERFISH.getTypeId());
+			public static final Item Blaze = new Item(Material.MONSTER_EGG, true, (byte) EntityType.BLAZE.getTypeId());
+			public static final Item MagmaCube = new Item(Material.MONSTER_EGG, true, (byte) EntityType.MAGMA_CUBE.getTypeId());
+			public static final Item Bat = new Item(Material.MONSTER_EGG, true, (byte) EntityType.BAT.getTypeId());
+			public static final Item Witch = new Item(Material.MONSTER_EGG, true, (byte) EntityType.WITCH.getTypeId());
+			public static final Item Pig = new Item(Material.MONSTER_EGG, true, (byte) EntityType.PIG.getTypeId());
+			public static final Item Sheep = new Item(Material.MONSTER_EGG, true, (byte) EntityType.SHEEP.getTypeId());
+			public static final Item Cow = new Item(Material.MONSTER_EGG, true, (byte) EntityType.COW.getTypeId());
+			public static final Item Chicken = new Item(Material.MONSTER_EGG, true, (byte) EntityType.CHICKEN.getTypeId());
+			public static final Item Squid = new Item(Material.MONSTER_EGG, true, (byte) EntityType.SQUID.getTypeId());
+			public static final Item Wolf = new Item(Material.MONSTER_EGG, true, (byte) EntityType.WOLF.getTypeId());
+			public static final Item Mooshroom = new Item(Material.MONSTER_EGG, true, (byte) EntityType.MUSHROOM_COW.getTypeId());
+			public static final Item Ocelot = new Item(Material.MONSTER_EGG, true, (byte) EntityType.OCELOT.getTypeId());
+			public static final Item Villager = new Item(Material.MONSTER_EGG, true, (byte) EntityType.VILLAGER.getTypeId());
 		}
 
 		public static class Record
@@ -548,8 +549,8 @@ public class Item implements IEnchantable
 
 	public static class Materials
 	{
-		public static final Item Coal = new Item(Material.COAL, true, 0);
-		public static final Item CharCoal = new Item(Material.COAL, true, 1);
+		public static final Item Coal = new Item(Material.COAL, true, (byte) 0);
+		public static final Item CharCoal = new Item(Material.COAL, true, (byte) 1);
 		public static final Item Diamond = new Item(Material.DIAMOND, true);
 		public static final Item IronIngot = new Item(Material.IRON_INGOT, true);
 		public static final Item GoldIngot = new Item(Material.GOLD_INGOT, true);
@@ -566,8 +567,8 @@ public class Item implements IEnchantable
 		public static final Item Sugarcane = new Item(Material.SUGAR_CANE, true);
 		public static final Item Egg = new Item(Material.EGG, true);
 		public static final Item GlowstoneDust = new Item(Material.GLOWSTONE_DUST, true);
-		public static final Item InkSack = new Item(Material.INK_SACK, true, 0);
-		public static final Item Cocoa = new Item(Material.INK_SACK, true, 3);
+		public static final Item InkSack = new Item(Material.INK_SACK, true, (byte) 0);
+		public static final Item Cocoa = new Item(Material.INK_SACK, true, (byte) 3);
 		public static final Item Sugar = new Item(Material.SUGAR, true);
 		public static final Item BlazeRod = new Item(Material.BLAZE_ROD, true);
 		public static final Item GoldNugget = new Item(Material.GOLD_NUGGET, true);
@@ -575,26 +576,26 @@ public class Item implements IEnchantable
 		public static final Item NetherStar = new Item(Material.NETHER_STAR, true);
 		public static final Item NetherBrick = new Item(Material.NETHER_BRICK_ITEM, true);
 		public static final Item Quartz = new Item(Material.QUARTZ, true);
-		public static final Item BoneMeal = new Item(Material.INK_SACK, true, 15);
+		public static final Item BoneMeal = new Item(Material.INK_SACK, true, (byte) 15);
 
 		public static class Dye
 		{
 			public static final Item Any = new Item(Material.INK_SACK, true);
 			public static final Item Black = Materials.InkSack;
-			public static final Item Red = new Item(Material.INK_SACK, true, 1);
-			public static final Item Green = new Item(Material.INK_SACK, true, 2);
+			public static final Item Red = new Item(Material.INK_SACK, true, (byte) 1);
+			public static final Item Green = new Item(Material.INK_SACK, true, (byte) 2);
 			public static final Item Brown = Materials.Cocoa;
-			public static final Item Blue = new Item(Material.INK_SACK, true, 4);
-			public static final Item Purple = new Item(Material.INK_SACK, true, 5);
-			public static final Item Cyan = new Item(Material.INK_SACK, true, 6);
-			public static final Item LightGray = new Item(Material.INK_SACK, true, 7);
-			public static final Item Gray = new Item(Material.INK_SACK, true, 8);
-			public static final Item Pink = new Item(Material.INK_SACK, true, 9);
-			public static final Item Lime = new Item(Material.INK_SACK, true, 10);
-			public static final Item Yellow = new Item(Material.INK_SACK, true, 11);
-			public static final Item LightBlue = new Item(Material.INK_SACK, true, 12);
-			public static final Item Magenta = new Item(Material.INK_SACK, true, 13);
-			public static final Item Orange = new Item(Material.INK_SACK, true, 14);
+			public static final Item Blue = new Item(Material.INK_SACK, true, (byte) 4);
+			public static final Item Purple = new Item(Material.INK_SACK, true, (byte) 5);
+			public static final Item Cyan = new Item(Material.INK_SACK, true, (byte) 6);
+			public static final Item LightGray = new Item(Material.INK_SACK, true, (byte) 7);
+			public static final Item Gray = new Item(Material.INK_SACK, true, (byte) 8);
+			public static final Item Pink = new Item(Material.INK_SACK, true, (byte) 9);
+			public static final Item Lime = new Item(Material.INK_SACK, true, (byte) 10);
+			public static final Item Yellow = new Item(Material.INK_SACK, true, (byte) 11);
+			public static final Item LightBlue = new Item(Material.INK_SACK, true, (byte) 12);
+			public static final Item Magenta = new Item(Material.INK_SACK, true, (byte) 13);
+			public static final Item Orange = new Item(Material.INK_SACK, true, (byte) 14);
 			public static final Item White = Materials.BoneMeal;
 		}
 
@@ -657,19 +658,19 @@ public class Item implements IEnchantable
 		public static class DoubleSlab
 		{
 			public static final Item AnyWood = new Item(Material.WOOD_DOUBLE_STEP, true);
-			public static final Item Oak = new Item(Material.WOOD_DOUBLE_STEP, true, 0);
-			public static final Item Spruce = new Item(Material.WOOD_DOUBLE_STEP, true, 1);
-			public static final Item Birch = new Item(Material.WOOD_DOUBLE_STEP, true, 2);
-			public static final Item Jungle = new Item(Material.WOOD_DOUBLE_STEP, true, 3);
+			public static final Item Oak = new Item(Material.WOOD_DOUBLE_STEP, true, (byte) 0);
+			public static final Item Spruce = new Item(Material.WOOD_DOUBLE_STEP, true, (byte) 1);
+			public static final Item Birch = new Item(Material.WOOD_DOUBLE_STEP, true, (byte) 2);
+			public static final Item Jungle = new Item(Material.WOOD_DOUBLE_STEP, true, (byte) 3);
 			public static final Item AnyStone = new Item(Material.DOUBLE_STEP, true);
-			public static final Item Stone = new Item(Material.DOUBLE_STEP, true, 0);
-			public static final Item Sandstone = new Item(Material.DOUBLE_STEP, true, 1);
-			public static final Item Plank = new Item(Material.DOUBLE_STEP, true, 2);
-			public static final Item Cobblestone = new Item(Material.DOUBLE_STEP, true, 3);
-			public static final Item Brick = new Item(Material.DOUBLE_STEP, true, 4);
-			public static final Item StoneBrick = new Item(Material.DOUBLE_STEP, true, 5);
-			public static final Item NetherBrick = new Item(Material.DOUBLE_STEP, true, 6);
-			public static final Item Quartz = new Item(Material.DOUBLE_STEP, true, 7);
+			public static final Item Stone = new Item(Material.DOUBLE_STEP, true, (byte) 0);
+			public static final Item Sandstone = new Item(Material.DOUBLE_STEP, true, (byte) 1);
+			public static final Item Plank = new Item(Material.DOUBLE_STEP, true, (byte) 2);
+			public static final Item Cobblestone = new Item(Material.DOUBLE_STEP, true, (byte) 3);
+			public static final Item Brick = new Item(Material.DOUBLE_STEP, true, (byte) 4);
+			public static final Item StoneBrick = new Item(Material.DOUBLE_STEP, true, (byte) 5);
+			public static final Item NetherBrick = new Item(Material.DOUBLE_STEP, true, (byte) 6);
+			public static final Item Quartz = new Item(Material.DOUBLE_STEP, true, (byte) 7);
 		}
 	}
 
@@ -691,10 +692,10 @@ public class Item implements IEnchantable
 		Material material = Material.getMaterial(type);
 		if (material == null)
 			return null;
-		return getItem(material, -1);
+		return getItem(material, (byte) 0);
 	}
 
-	public static final Item get(String type, int damage)
+	public static final Item get(String type, byte damage)
 	{
 		Material material = Material.getMaterial(type);
 		if (material == null)
@@ -707,10 +708,10 @@ public class Item implements IEnchantable
 		Material material = Material.getMaterial(type);
 		if (material == null)
 			return null;
-		return getItem(material, -1);
+		return getItem(material, (byte) 0);
 	}
 
-	public static final Item get(int type, int damage)
+	public static final Item get(int type, byte damage)
 	{
 		Material material = Material.getMaterial(type);
 		if (material == null)
@@ -718,7 +719,7 @@ public class Item implements IEnchantable
 		return getItem(material, damage);
 	}
 
-	public static final Item get(Material material, int damage)
+	public static final Item get(Material material, byte damage)
 	{
 		if (material == null)
 			return null;
@@ -740,9 +741,14 @@ public class Item implements IEnchantable
 		return material;
 	}
 
-	public int getDamage()
+	public RunsafeMaterialData getData()
 	{
-		return damage;
+		return this.data;
+	}
+
+	public byte getDataByte()
+	{
+		return this.data.getData();
 	}
 
 	@Override
@@ -818,35 +824,37 @@ public class Item implements IEnchantable
 
 	private Item(Material material, boolean root)
 	{
-		this(material, root, -1);
+		this(material, root, (byte) 0);
 	}
 
-	private Item(Material material, boolean root, int damage)
+	private Item(Material material, boolean root, byte dataByte)
 	{
 		this.material = material;
 		this.root = root;
-		this.damage = damage;
-		item = root ? null : new RunsafeItemStack(material.getId(), material.getMaxStackSize(), damage < 0 ? 0 : (short) damage);
+		this.data = new RunsafeMaterialData(material.getId(), dataByte);
+		item = root ? null : data.toItemStack(material.getMaxStackSize());
+
 		if (root)
 			addItem(this);
 	}
 
 	private Item convertToItem()
 	{
-		return new Item(material, false, damage);
+		return new Item(material, false, data.getData());
 	}
 
-	private static Item getItem(Material material, int damage)
+	private static Item getItem(Material material, byte dataByte)
 	{
-		String key = String.format("%s_%d", material, damage);
+		String key = String.format("%s_%d", material, dataByte);
+
 		if (!items.containsKey(key))
-			return new Item(material, true, damage);
+			return new Item(material, true, dataByte);
 		return items.get(key);
 	}
 
 	private static void addItem(Item item)
 	{
-		String key = String.format("%s_%d", item.material.name(), item.damage);
+		String key = String.format("%s_%d", item.material.name(), item.data.getData());
 		if (!items.containsKey(key))
 			items.put(key, item);
 	}
@@ -855,5 +863,5 @@ public class Item implements IEnchantable
 	private final Material material;
 	private final boolean root;
 	private final RunsafeItemStack item;
-	private final int damage;
+	private final RunsafeMaterialData data;
 }
