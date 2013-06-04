@@ -24,6 +24,11 @@ public class RunsafeBlock extends RunsafeMetadata
 		return this.block.getData();
 	}
 
+	public void setData(byte data)
+	{
+		this.block.setData(data);
+	}
+
 	public boolean is(Item type)
 	{
 		return this.block.getType() == type.getType()
