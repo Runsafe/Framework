@@ -20,9 +20,9 @@ public enum LivingEntity implements RunsafeEntityType
 	IronGolem(EntityType.IRON_GOLEM),
 	LavaSlime(EntityType.MAGMA_CUBE),
 	MushroomCow(EntityType.MUSHROOM_COW),
-	Ocelot(EntityType.OCELOT),
+	Ocelot(EntityType.OCELOT, "Ocelot"),
 	Pig(EntityType.PIG),
-	PigZombie(EntityType.PIG_ZOMBIE),
+	PigZombie(EntityType.PIG_ZOMBIE, "PigZombie"),
 	Player(EntityType.PLAYER),
 	Sheep(EntityType.SHEEP),
 	Silverfish(EntityType.SILVERFISH),
@@ -37,9 +37,16 @@ public enum LivingEntity implements RunsafeEntityType
 	Wolf(EntityType.WOLF),
 	Zombie(EntityType.ZOMBIE);
 
+	LivingEntity(EntityType bukkitType, String name)
+	{
+		type = bukkitType;
+		nameOverride = name;
+	}
+
 	LivingEntity(EntityType bukkitType)
 	{
 		type = bukkitType;
+		nameOverride = null;
 	}
 
 	@Override
@@ -51,7 +58,7 @@ public enum LivingEntity implements RunsafeEntityType
 	@Override
 	public String getName()
 	{
-		return type.getName();
+		return nameOverride == null ? type.getName() : nameOverride;
 	}
 
 	@Override
@@ -85,4 +92,5 @@ public enum LivingEntity implements RunsafeEntityType
 	}
 
 	private final EntityType type;
+	private final String nameOverride;
 }
