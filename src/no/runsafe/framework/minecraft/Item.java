@@ -767,7 +767,14 @@ public class Item implements IEnchantable
 
 	public RunsafeItem Drop(RunsafeLocation location)
 	{
-		return location.getWorld().dropItem(location, getItem());
+		return Drop(location, getStackSize());
+	}
+
+	public RunsafeItem Drop(RunsafeLocation location, int amount)
+	{
+		RunsafeItemStack stack = getItem();
+		stack.setAmount(amount);
+		return location.getWorld().dropItem(location, stack);
 	}
 
 	public RunsafeBlock Place(RunsafeLocation location)
