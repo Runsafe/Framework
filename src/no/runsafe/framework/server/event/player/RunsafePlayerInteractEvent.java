@@ -18,9 +18,20 @@ public class RunsafePlayerInteractEvent extends RunsafePlayerEvent implements Ca
 		event = toWrap;
 	}
 
+	@Deprecated
 	public Action getAction()
 	{
 		return event.getAction();
+	}
+
+	public boolean isRightClick()
+	{
+		return event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR;
+	}
+
+	public boolean isLeftClick()
+	{
+		return event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_AIR;
 	}
 
 	public boolean hasItem()
