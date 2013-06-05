@@ -16,6 +16,7 @@ import org.bukkit.*;
 import org.bukkit.block.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.*;
@@ -49,6 +50,7 @@ public class ObjectWrapper
 		return results;
 	}
 
+	@Deprecated
 	private static RunsafePotionEffect convert(PotionEffect item)
 	{
 		if (item == null)
@@ -515,5 +517,12 @@ public class ObjectWrapper
 		if (toWrap instanceof Player)
 			return convert((Player) toWrap);
 		return null;
+	}
+
+	public static RunsafeEntityType convert(EntityType type)
+	{
+		if (type == null)
+			return null;
+		return no.runsafe.framework.server.entity.EntityType.convert(type);
 	}
 }

@@ -2,6 +2,10 @@ package no.runsafe.framework.minecraft;
 
 import no.runsafe.framework.enchant.IEnchant;
 import no.runsafe.framework.enchant.IEnchantable;
+import no.runsafe.framework.server.RunsafeLocation;
+import no.runsafe.framework.server.block.RunsafeBlock;
+import no.runsafe.framework.server.entity.RunsafeEntityType;
+import no.runsafe.framework.server.entity.RunsafeItem;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.server.material.RunsafeMaterialData;
 import org.bukkit.Material;
@@ -12,6 +16,16 @@ import java.util.Map;
 
 public class Item implements IEnchantable
 {
+	public static Item Get(RunsafeItemStack itemStack)
+	{
+		return new Item(itemStack.getType(), false, itemStack.getRaw().getData().getData());
+	}
+
+	public static Item Get(RunsafeBlock block)
+	{
+		return new Item(block.getMaterialType().getRaw(), false, (byte) block.getData());
+	}
+
 	public static class BuildingBlock
 	{
 		public static final Item Stone = new Item(Material.STONE, true);
@@ -348,6 +362,11 @@ public class Item implements IEnchantable
 
 		public static class MonsterEgg
 		{
+			public static Item Get(RunsafeEntityType type)
+			{
+				return new Item(Material.MONSTER_EGG, false, (byte) type.getId());
+			}
+
 			public static final Item Any = new Item(Material.MONSTER_EGG, true, (byte) -1);
 			public static final Item Creeper = new Item(Material.MONSTER_EGG, true, (byte) EntityType.CREEPER.getTypeId());
 			public static final Item Skeleton = new Item(Material.MONSTER_EGG, true, (byte) EntityType.SKELETON.getTypeId());
@@ -744,6 +763,17 @@ public class Item implements IEnchantable
 	public byte getData()
 	{
 		return this.data;
+	}
+
+	public RunsafeItem Drop(RunsafeLocation location)
+	{
+		return location.getWorld().dropItem(location, getItem());
+	}
+
+	public RunsafeBlock Place(RunsafeLocation location)
+	{
+		location.getBlock().setTypeId(getTypeID());
+		return location.getBlock();
 	}
 
 	@Override

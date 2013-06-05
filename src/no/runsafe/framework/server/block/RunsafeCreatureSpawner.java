@@ -1,8 +1,7 @@
 package no.runsafe.framework.server.block;
 
-import org.bukkit.block.BlockState;
+import no.runsafe.framework.server.entity.RunsafeEntityType;
 import org.bukkit.block.CreatureSpawner;
-import org.bukkit.entity.EntityType;
 
 public class RunsafeCreatureSpawner extends RunsafeBlockState
 {
@@ -12,11 +11,13 @@ public class RunsafeCreatureSpawner extends RunsafeBlockState
 		spawner = toWrap;
 	}
 
+	@Deprecated
 	public void setCreatureTypeByName(String s)
 	{
 		spawner.setCreatureTypeByName(s);
 	}
 
+	@Deprecated
 	public String getCreatureTypeName()
 	{
 		return spawner.getCreatureTypeName();
@@ -30,6 +31,16 @@ public class RunsafeCreatureSpawner extends RunsafeBlockState
 	public void setDelay(int i)
 	{
 		spawner.setDelay(i);
+	}
+
+	public void SetCreature(RunsafeEntityType type)
+	{
+		spawner.setSpawnedType(type.getRaw());
+	}
+
+	public RunsafeEntityType GetCreature()
+	{
+		return no.runsafe.framework.server.entity.EntityType.convert(spawner.getSpawnedType());
 	}
 
 	@Override

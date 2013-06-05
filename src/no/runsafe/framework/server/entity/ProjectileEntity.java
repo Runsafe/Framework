@@ -1,5 +1,7 @@
 package no.runsafe.framework.server.entity;
 
+import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.server.RunsafeLocation;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 
@@ -57,6 +59,12 @@ public enum ProjectileEntity implements RunsafeEntityType
 	public EntityType getRaw()
 	{
 		return type;
+	}
+
+	@Override
+	public RunsafeEntity spawn(RunsafeLocation location)
+	{
+		return ObjectWrapper.convert(location.getWorld().spawn(location, type.getEntityClass()));
 	}
 
 	private final EntityType type;

@@ -1,6 +1,7 @@
 package no.runsafe.framework.server.entity;
 
-import no.runsafe.framework.server.potion.RunsafePotionEffect;
+import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.server.RunsafeLocation;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 
@@ -75,6 +76,12 @@ public enum LivingEntity implements RunsafeEntityType
 	public EntityType getRaw()
 	{
 		return type;
+	}
+
+	@Override
+	public RunsafeEntity spawn(RunsafeLocation location)
+	{
+		return ObjectWrapper.convert(location.getWorld().spawn(location, this.getEntityType()));
 	}
 
 	private final EntityType type;

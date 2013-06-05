@@ -1,5 +1,8 @@
 package no.runsafe.framework.server.entity;
 
+import no.runsafe.framework.minecraft.Item;
+import org.bukkit.Material;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +22,19 @@ public class EntityType
 		if (!types.containsKey(entityType))
 			return null;
 		return types.get(entityType);
+	}
+
+	public static RunsafeEntityType Get(Item item)
+	{
+		if (item.getType() != Material.MONSTER_EGG)
+			return null;
+
+		return Get(item.getData());
+	}
+
+	public static RunsafeEntityType Get(int id)
+	{
+		return convert(org.bukkit.entity.EntityType.fromId(id));
 	}
 
 	private final static Map<org.bukkit.entity.EntityType, RunsafeEntityType> types = new HashMap<org.bukkit.entity.EntityType, RunsafeEntityType>();

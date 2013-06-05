@@ -35,6 +35,11 @@ public class RunsafeBlock extends RunsafeMetadata
 				&& (type.getData() == (byte) -1 || this.getData() == type.getData());
 	}
 
+	public void set(Item type)
+	{
+		block.setType(type.getType());
+	}
+
 	public boolean hasInterface()
 	{
 		return RunsafeBlock.interfaceBlocks.contains(this.getTypeId());
