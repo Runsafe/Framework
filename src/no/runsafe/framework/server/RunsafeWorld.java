@@ -1,5 +1,6 @@
 package no.runsafe.framework.server;
 
+import no.runsafe.framework.minecraft.Sound;
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.entity.RunsafeEntity;
 import no.runsafe.framework.server.entity.RunsafeFallingBlock;
@@ -9,7 +10,6 @@ import no.runsafe.framework.server.metadata.RunsafeMetadata;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.Effect;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -149,7 +149,7 @@ public class RunsafeWorld extends RunsafeMetadata
 
 	public void playSound(RunsafeLocation location, Sound sound, float volume, float pitch)
 	{
-		this.world.playSound(location.getRaw(), sound, volume, pitch);
+		this.world.playSound(location.getRaw(), org.bukkit.Sound.valueOf(sound.name()), volume, pitch);
 	}
 
 	private final World world;
