@@ -151,6 +151,7 @@ public final class RunsafeDatabaseHandler implements IDatabase
 			PreparedStatement statement = conn.prepareStatement(query);
 			for (int i = 0; i < params.length; i++)
 				statement.setObject(i + 1, params[i]);
+			output.fine("Running SQL: %s", statement);
 			ResultSet result = statement.executeQuery();
 			if (!result.first())
 				return null;
@@ -185,6 +186,7 @@ public final class RunsafeDatabaseHandler implements IDatabase
 			PreparedStatement statement = conn.prepareStatement(query);
 			for (int i = 0; i < params.length; i++)
 				statement.setObject(i + 1, params[i]);
+			output.fine("Running SQL: %s", statement);
 			ResultSet result = statement.executeQuery();
 			if (!result.first())
 				return null;
@@ -213,6 +215,7 @@ public final class RunsafeDatabaseHandler implements IDatabase
 			PreparedStatement statement = conn.prepareStatement(query);
 			for (int i = 0; i < params.length; i++)
 				statement.setObject(i + 1, params[i]);
+			output.fine("Running SQL: %s", statement);
 			ResultSet result = statement.executeQuery();
 			if (!result.first())
 				return null;
@@ -244,6 +247,7 @@ public final class RunsafeDatabaseHandler implements IDatabase
 			PreparedStatement statement = conn.prepareStatement(query);
 			for (int i = 0; i < params.length; i++)
 				statement.setObject(i + 1, params[i]);
+			output.fine("Running SQL: %s", statement);
 			return statement.execute();
 		}
 		catch (SQLException e)
@@ -262,6 +266,7 @@ public final class RunsafeDatabaseHandler implements IDatabase
 			PreparedStatement statement = conn.prepareStatement(query);
 			for (int i = 0; i < params.length; i++)
 				statement.setObject(i + 1, params[i]);
+			output.fine("Running SQL: %s", statement);
 			return statement.executeUpdate();
 		}
 		catch (SQLException e)
