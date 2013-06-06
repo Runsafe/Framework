@@ -1,5 +1,6 @@
 package no.runsafe.framework.server;
 
+import no.runsafe.framework.minecraft.Sound;
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.chunk.RunsafeChunk;
 import org.bukkit.Location;
@@ -205,6 +206,16 @@ public class RunsafeLocation
 	public void decrementZ(double z)
 	{
 		this.setZ(this.getZ() - z);
+	}
+
+	public void Play(Sound sound)
+	{
+		Play(sound, 1, 1);
+	}
+
+	public void Play(Sound sound, float volume, float pitch)
+	{
+		location.getWorld().playSound(location, sound.getSound(), volume, pitch);
 	}
 
 	@Override
