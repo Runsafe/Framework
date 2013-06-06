@@ -9,6 +9,7 @@ import no.runsafe.framework.server.metadata.RunsafeMetadata;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.Effect;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -144,6 +145,11 @@ public class RunsafeWorld extends RunsafeMetadata
 	public void playEffect(RunsafeLocation location, Effect effect, int data)
 	{
 		this.world.playEffect(location.getRaw(), effect, data);
+	}
+
+	public void playSound(RunsafeLocation location, Sound sound, float volume, float pitch)
+	{
+		this.world.playSound(location.getRaw(), sound, volume, pitch);
 	}
 
 	private final World world;
