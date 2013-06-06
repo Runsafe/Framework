@@ -14,7 +14,7 @@ public class RunsafePainting extends RunsafeEntity
 	public void NextArt()
 	{
 		int oldId = painting.getArt().getId();
-		int newId = oldId + 1;
+		int newId = (oldId + 1) % Art.values().length;
 		while (!painting.setArt(Art.getById(newId)) && newId != oldId)
 			newId = (newId + 1) % Art.values().length;
 	}
