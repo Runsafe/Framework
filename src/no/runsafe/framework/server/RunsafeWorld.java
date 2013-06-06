@@ -149,7 +149,7 @@ public class RunsafeWorld extends RunsafeMetadata
 
 	public void playSound(RunsafeLocation location, Sound sound, float volume, float pitch)
 	{
-		this.world.playSound(location.getRaw(), org.bukkit.Sound.valueOf(sound.name()), volume, pitch);
+		this.world.playSound(location.getRaw(), sound.getSound(), volume, pitch);
 	}
 
 	private final World world;
