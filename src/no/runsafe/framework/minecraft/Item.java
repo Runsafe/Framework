@@ -706,7 +706,7 @@ public class Item implements IEnchantable
 		}
 	}
 
-	public static final Item get(String type)
+	public static Item get(String type)
 	{
 		Material material = Material.getMaterial(type);
 		if (material == null)
@@ -714,7 +714,7 @@ public class Item implements IEnchantable
 		return getItem(material, (byte) 0);
 	}
 
-	public static final Item get(String type, byte damage)
+	public static Item get(String type, byte damage)
 	{
 		Material material = Material.getMaterial(type);
 		if (material == null)
@@ -722,7 +722,7 @@ public class Item implements IEnchantable
 		return getItem(material, damage);
 	}
 
-	public static final Item get(int type)
+	public static Item get(int type)
 	{
 		Material material = Material.getMaterial(type);
 		if (material == null)
@@ -730,7 +730,7 @@ public class Item implements IEnchantable
 		return getItem(material, (byte) 0);
 	}
 
-	public static final Item get(int type, byte damage)
+	public static Item get(int type, byte damage)
 	{
 		Material material = Material.getMaterial(type);
 		if (material == null)
@@ -738,7 +738,7 @@ public class Item implements IEnchantable
 		return getItem(material, damage);
 	}
 
-	public static final Item get(Material material, byte damage)
+	public static Item get(Material material, byte damage)
 	{
 		if (material == null)
 			return null;

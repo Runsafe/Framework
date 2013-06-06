@@ -11,7 +11,6 @@ import no.runsafe.framework.server.chunk.RunsafeChunk;
 import no.runsafe.framework.server.entity.RunsafeLivingEntity;
 import no.runsafe.framework.server.event.player.RunsafeOperatorEvent;
 import no.runsafe.framework.server.inventory.IInventoryHolder;
-import no.runsafe.framework.server.inventory.RunsafeAnvilInventory;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
 import no.runsafe.framework.server.inventory.RunsafePlayerInventory;
 import no.runsafe.framework.server.item.RunsafeItemStack;
@@ -91,12 +90,6 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 	public boolean hasPlayedBefore()
 	{
 		return basePlayer.hasPlayedBefore();
-	}
-
-	public boolean isViewingAnvil()
-	{
-		RunsafeInventory inventory = this.getInventory();
-		return (inventory instanceof RunsafeAnvilInventory);
 	}
 
 	public boolean isOnline()

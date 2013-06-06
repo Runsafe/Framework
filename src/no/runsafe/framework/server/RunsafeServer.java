@@ -145,7 +145,7 @@ public class RunsafeServer
 		ArrayList<String> hits = new ArrayList<String>();
 		for (RunsafePlayer player : getOnlinePlayers())
 			if (player != null && player.getName().toLowerCase().contains(playerName.toLowerCase())
-				&& (context == null || (context != null && context.canSee(player))))
+				&& (context == null || context.canSee(player)))
 				hits.add(player.getName());
 
 		if (hits.size() == 0)

@@ -3,6 +3,7 @@
     <words>
       <w>async</w>
       <w>autocomplete</w>
+      <w>biome</w>
       <w>bukkit</w>
       <w>chainmail</w>
       <w>chestplate</w>
@@ -28,8 +29,10 @@
       <w>pickaxe</w>
       <w>pico</w>
       <w>picocontainer</w>
+      <w>pling</w>
       <w>preprocess</w>
       <w>purreow</w>
+      <w>quickbar</w>
       <w>rawtypes</w>
       <w>redstone</w>
       <w>respawn</w>

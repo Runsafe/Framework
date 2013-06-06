@@ -181,7 +181,7 @@ public class FireworkBuilder
 	}
 
 	private FireworkEffect.Builder builder;
-	private List<FireworkEffect> effects = new ArrayList<FireworkEffect>();
+	private final List<FireworkEffect> effects = new ArrayList<FireworkEffect>();
 	private int power = 0;
 	private String name;
 	private List<String> lore;

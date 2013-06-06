@@ -30,7 +30,7 @@ public class InventoryOpen extends EventRouterBase<IInventoryOpen, InventoryOpen
 	public boolean OnEvent(InventoryOpenEvent event)
 	{
 		return handler.OnInventoryOpen(
-			(RunsafePlayer) ObjectWrapper.convert(event.getPlayer()),
+			ObjectWrapper.convert(event.getPlayer()),
 			ObjectWrapper.convert(event.getInventory())
 		);
 	}

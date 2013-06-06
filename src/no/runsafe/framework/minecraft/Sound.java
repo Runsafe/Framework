@@ -11,8 +11,8 @@ public class Sound
 	public static Sound Get(String name)
 	{
 		org.bukkit.Sound raw = org.bukkit.Sound.valueOf(name);
-		if (soundboard.containsKey(raw))
-			return soundboard.get(raw);
+		if (soundboard.containsKey(raw.name()))
+			return soundboard.get(raw.name());
 		return new Sound(raw);
 	}
 
