@@ -78,6 +78,18 @@ public final class RunsafeDatabaseHandler implements IDatabase
 		this.databaseURL = config.getString("database.url");
 		this.databaseUsername = config.getString("database.username");
 		this.databasePassword = config.getString("database.password");
+		if(getConnection() == null)
+		{
+			output.write("\n" +
+				"\n" +
+				ConsoleColors.RED +
+				"====================================================================\n" +
+				"Unable to connect to MySQL - Edit configuration file runsafe/db.yml!\n" +
+				"====================================================================" +
+				ConsoleColors.RESET
+			);
+			System.exit(1);
+		}
 		this.output = output;
 	}
 
