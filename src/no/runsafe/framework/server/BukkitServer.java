@@ -187,6 +187,11 @@ public class BukkitServer
 		return ObjectWrapper.convert(this.server.getWorld(uid));
 	}
 
+	public List<RunsafeWorld> getWorlds()
+	{
+		return ObjectWrapper.convert(server.getWorlds());
+	}
+
 	public File getWorldContainer()
 	{
 		return this.server.getWorldContainer();
@@ -348,7 +353,6 @@ public class BukkitServer
 //	public ConsoleCommandSender getConsoleSender()
 //	public PluginManager getPluginManager()
 //	public ServicesManager getServicesManager()
-//	public List<World> getWorlds()
 //	public World createWorld(WorldCreator worldCreator)
 //	public File getUpdateFolderFile()
 //	public MapView getMap(short i)

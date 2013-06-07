@@ -58,17 +58,28 @@ public class RunsafeServer extends BukkitServer
 		return new RunsafeAmbiguousPlayer(online);
 	}
 
-	public List<RunsafePlayer> filterPlayers(RunsafePlayer context, List<RunsafePlayer> players)
+	public List<RunsafePlayer> getOnlinePlayers(String playerName)
 	{
-		if (context == null || players == null)
-			return players;
+		playerName = playerName.toLowerCase();
+		List<OfflinePlayer> players = new ArrayList<OfflinePlayer>();
+		for (OfflinePlayer player : server.getOnlinePlayers())
+			if (player.getName().toLowerCase().startsWith(playerName))
+				players.add(player);
+		return ObjectWrapper.convert(players);
+	}
 
-		List<RunsafePlayer> filtered = new ArrayList<RunsafePlayer>();
-		for (RunsafePlayer player : players)
-			if (!context.canSee(player))
-				filtered.add(player);
-		filtered.removeAll(filtered);
-		return filtered;
+	public RunsafePlayer getPlayerExact(String playerName)
+	{
+		if (playerName == null)
+			return null;
+
+		Player player = this.server.getPlayerExact(playerName);
+		if (player == null)
+		{
+			List<String> players = findPlayer(playerName);
+			return players.contains(playerName) ? new RunsafePlayer(server.getOfflinePlayer(playerName)) : null;
+		}
+		return new RunsafePlayer(player);
 	}
 
 	public List<String> findPlayer(String playerName)
@@ -95,40 +106,17 @@ public class RunsafeServer extends BukkitServer
 		return hits;
 	}
 
-	public List<RunsafePlayer> getOnlinePlayers(String playerName)
+	public List<RunsafePlayer> filterPlayers(RunsafePlayer context, List<RunsafePlayer> players)
 	{
-		playerName = playerName.toLowerCase();
-		List<OfflinePlayer> players = new ArrayList<OfflinePlayer>();
-		for (OfflinePlayer player : server.getOnlinePlayers())
-			if (player.getName().toLowerCase().startsWith(playerName))
-				players.add(player);
-		return ObjectWrapper.convert(players);
-	}
+		if (context == null || players == null)
+			return players;
 
-	public RunsafePlayer getPlayerExact(String playerName)
-	{
-		if (playerName == null)
-			return null;
-
-		Player player = this.server.getPlayerExact(playerName);
-		if (player == null)
-		{
-			List<String> players = findPlayer(playerName);
-			return players.contains(playerName) ? new RunsafePlayer(server.getOfflinePlayer(playerName)) : null;
-		}
-		return new RunsafePlayer(player);
-	}
-
-	public List<RunsafeWorld> getWorlds()
-	{
-		List<RunsafeWorld> returnList = new ArrayList<RunsafeWorld>();
-
-		for (World world : this.server.getWorlds())
-		{
-			returnList.add(new RunsafeWorld(world));
-		}
-
-		return returnList;
+		List<RunsafePlayer> filtered = new ArrayList<RunsafePlayer>();
+		for (RunsafePlayer player : players)
+			if (!context.canSee(player))
+				filtered.add(player);
+		filtered.removeAll(filtered);
+		return filtered;
 	}
 
 	public void banPlayer(RunsafePlayer banner, RunsafePlayer player, String reason)
