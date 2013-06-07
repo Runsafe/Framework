@@ -2,6 +2,7 @@ package no.runsafe.framework.server.material;
 
 import org.bukkit.Material;
 
+@Deprecated
 public class RunsafeMaterial
 {
 	public RunsafeMaterial(Material toWrap)

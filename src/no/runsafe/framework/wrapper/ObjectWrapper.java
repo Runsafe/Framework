@@ -10,9 +10,10 @@ import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.server.item.meta.*;
 import no.runsafe.framework.server.material.RunsafeMaterial;
 import no.runsafe.framework.server.material.RunsafeMaterialData;
-import no.runsafe.framework.wrapper.metadata.RunsafeMetadata;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import no.runsafe.framework.server.potion.RunsafePotionEffect;
+import no.runsafe.framework.wrapper.item.BukkitItemStack;
+import no.runsafe.framework.wrapper.metadata.RunsafeMetadata;
 import org.bukkit.*;
 import org.bukkit.block.*;
 import org.bukkit.enchantments.Enchantment;
@@ -67,9 +68,19 @@ public class ObjectWrapper
 
 		ArrayList<Wrapper> results = new ArrayList<Wrapper>();
 		for (Raw item : toWrap)
-		{
 			results.add((Wrapper) convert(item));
-		}
+		return results;
+	}
+
+	@SuppressWarnings("unchecked")
+	public static <Wrapper extends BukkitItemStack, Raw extends ItemStack> List<Wrapper> convert(Raw[] toWrap)
+	{
+		if (toWrap == null)
+			return null;
+
+		ArrayList<Wrapper> results = new ArrayList<Wrapper>();
+		for (Raw item : toWrap)
+			results.add((Wrapper) convert(item));
 		return results;
 	}
 

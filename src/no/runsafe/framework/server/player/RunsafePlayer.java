@@ -6,14 +6,10 @@ import no.runsafe.framework.output.ChatColour;
 import no.runsafe.framework.server.ICommandExecutor;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeWorld;
-import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.chunk.RunsafeChunk;
-import no.runsafe.framework.server.entity.RunsafeLivingEntity;
 import no.runsafe.framework.server.event.player.RunsafeOperatorEvent;
-import no.runsafe.framework.server.inventory.IInventoryHolder;
-import no.runsafe.framework.server.inventory.RunsafeInventory;
-import no.runsafe.framework.server.inventory.RunsafePlayerInventory;
 import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.wrapper.player.BukkitPlayer;
 import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -25,37 +21,22 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHolder, ICommandExecutor
+public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 {
 	public RunsafePlayer(Player toWrap)
 	{
 		super(toWrap);
-		player = toWrap;
-		basePlayer = toWrap;
 	}
 
 	public RunsafePlayer(OfflinePlayer toWrap)
 	{
-		super((toWrap instanceof Player) ? (Player) toWrap : null);
-		if (toWrap instanceof Player)
-			player = (Player) toWrap;
-		else
-			player = null;
-		basePlayer = toWrap;
+		super(toWrap);
 	}
 
 	public RunsafePlayer(OfflinePlayer toWrap, boolean isNew)
 	{
-		this(toWrap);
+		super(toWrap);
 		this.isNew = isNew;
-	}
-
-	@Override
-	public String getName()
-	{
-		if (basePlayer == null)
-			return null;
-		return basePlayer.getName();
 	}
 
 	public String getPrettyName()
@@ -80,36 +61,6 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 	public boolean isNew()
 	{
 		return this.isNew;
-	}
-
-	public void closeInventory()
-	{
-		this.player.closeInventory();
-	}
-
-	public boolean hasPlayedBefore()
-	{
-		return basePlayer.hasPlayedBefore();
-	}
-
-	public boolean isOnline()
-	{
-		return basePlayer.isOnline();
-	}
-
-	public void setPlayerListName(String playerName)
-	{
-		if (player == null)
-			return;
-		if (playerName.length() > 16)
-			this.player.setPlayerListName(playerName.substring(0, 16));
-		else
-			this.player.setPlayerListName(playerName);
-	}
-
-	public boolean isOP()
-	{
-		return basePlayer.isOp();
 	}
 
 	public void OP()
@@ -139,66 +90,6 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 		return player != null && player.getGameMode().equals(GameMode.ADVENTURE);
 	}
 
-	public boolean isWhitelisted()
-	{
-		return basePlayer.isWhitelisted();
-	}
-
-	public boolean isBanned()
-	{
-		return basePlayer.isBanned();
-	}
-
-	public void setBanned(boolean banned)
-	{
-		basePlayer.setBanned(banned);
-	}
-
-	public void kick(String reason)
-	{
-		if (player != null)
-			player.kickPlayer(reason);
-	}
-
-	public float getXP()
-	{
-		if (player == null)
-			return 0;
-
-		return player.getExp();
-	}
-
-	public void setXP(float points)
-	{
-		if (player != null)
-			player.setExp(points);
-	}
-
-	public int getLevel()
-	{
-		if (player == null)
-			return 0;
-
-		return player.getLevel();
-	}
-
-	public void setLevel(int level)
-	{
-		if (player != null)
-			player.setLevel(level);
-	}
-
-	public void sendBlockChange(RunsafeBlock block, byte data)
-	{
-		sendBlockChange(block.getLocation(), block.getTypeId(), data);
-	}
-
-	public void sendBlockChange(RunsafeLocation location, int itemId, byte data)
-	{
-		if (player != null)
-			player.sendBlockChange(location.getRaw(), itemId, data);
-	}
-
 	public void teleport(RunsafeWorld world, double x, double y, double z)
 	{
 		RunsafeLocation target = new RunsafeLocation(world, x, y, z);
@@ -206,60 +97,6 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 		if (!chunk.isLoaded())
 			chunk.load();
 		teleport(target);
-	}
-
-	public RunsafeItemStack getItemInHand()
-	{
-		if (player == null)
-			return null;
-
-		return new RunsafeItemStack(player.getItemInHand());
-	}
-
-	@Override
-	public void sendMessage(String message)
-	{
-		if (player != null)
-			player.sendMessage(message);
-	}
-
-	@Override
-	public void sendColouredMessage(String message)
-	{
-		if (message != null)
-			sendMessage(ChatColour.ToMinecraft(message));
-	}
-
-	@Override
-	public void sendColouredMessage(String format, Object... params)
-	{
-		sendColouredMessage(String.format(format, params));
-	}
-
-	public Player getRawPlayer()
-	{
-		return this.player;
-	}
-
-	public RunsafePlayerInventory getInventory()
-	{
-		if (player == null)
-			return null;
-
-		return new RunsafePlayerInventory(player.getInventory());
-	}
-
-	@SuppressWarnings("deprecation")
-	public void updateInventory()
-	{
-		if (player != null)
-			player.updateInventory();
-	}
-
-	@Override
-	public boolean hasPermission(String permission)
-	{
-		return player != null && player.hasPermission(permission);
 	}
 
 	public HashMap<String, String> getData()
@@ -413,32 +250,18 @@ public class RunsafePlayer extends RunsafeLivingEntity implements IInventoryHold
 		this.removeItem(itemType, itemType.getStackSize());
 	}
 
-	public GameMode getGameMode()
+	@Override
+	public void sendColouredMessage(String message)
 	{
-		return this.player.getGameMode();
+		if (message != null)
+			sendMessage(ChatColour.ToMinecraft(message));
 	}
 
-	public void setGameMode(GameMode gameMode)
+	@Override
+	public void sendColouredMessage(String format, Object... params)
 	{
-		this.player.setGameMode(gameMode);
+		sendColouredMessage(String.format(format, params));
 	}
 
-	public void openInventory(RunsafeInventory inventory)
-	{
-		this.player.openInventory(inventory.getRaw());
-	}
-
-	public void setFoodLevel(int level)
-	{
-		player.setFoodLevel(level);
-	}
-
-	public void setSaturation(float saturation)
-	{
-		player.setSaturation(saturation);
-	}
-
-	private final Player player;
-	private final OfflinePlayer basePlayer;
 	private boolean isNew = false;
 }
