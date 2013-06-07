@@ -1,5 +1,6 @@
 package no.runsafe.framework.server.block;
 
+@Deprecated
 public enum RunsafeBiome
 {
 	SWAMPLAND,

@@ -10,7 +10,7 @@ import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.server.item.meta.*;
 import no.runsafe.framework.server.material.RunsafeMaterial;
 import no.runsafe.framework.server.material.RunsafeMaterialData;
-import no.runsafe.framework.server.metadata.RunsafeMetadata;
+import no.runsafe.framework.wrapper.metadata.RunsafeMetadata;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import no.runsafe.framework.server.potion.RunsafePotionEffect;
 import org.bukkit.*;

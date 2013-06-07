@@ -1,4 +1,4 @@
-package no.runsafe.framework.server.metadata;
+package no.runsafe.framework.wrapper.metadata;
 
 import org.bukkit.metadata.Metadatable;
 import org.bukkit.plugin.Plugin;

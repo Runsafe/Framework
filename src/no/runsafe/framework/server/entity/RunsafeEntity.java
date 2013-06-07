@@ -5,7 +5,7 @@ import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeServer;
 import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.event.entity.RunsafeEntityDamageEvent;
-import no.runsafe.framework.server.metadata.RunsafeMetadata;
+import no.runsafe.framework.wrapper.metadata.RunsafeMetadata;
 import org.bukkit.Chunk;
 import org.bukkit.entity.Entity;
 

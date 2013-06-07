@@ -1,42 +1,12 @@
 package no.runsafe.framework.server.block;
 
-import no.runsafe.framework.wrapper.ObjectWrapper;
-import no.runsafe.framework.server.material.RunsafeMaterial;
+import no.runsafe.framework.wrapper.block.BukkitJukebox;
 import org.bukkit.block.Jukebox;
 
-public class RunsafeJukebox extends RunsafeBlockState
+public class RunsafeJukebox extends BukkitJukebox
 {
 	public RunsafeJukebox(Jukebox toWrap)
 	{
 		super(toWrap);
-		jukebox = toWrap;
 	}
-
-	public RunsafeMaterial getPlaying()
-	{
-		return ObjectWrapper.convert(jukebox.getPlaying());
-	}
-
-	public void setPlaying(RunsafeMaterial material)
-	{
-		jukebox.setPlaying(material.getRaw());
-	}
-
-	public boolean isPlaying()
-	{
-		return jukebox.isPlaying();
-	}
-
-	public boolean eject()
-	{
-		return jukebox.eject();
-	}
-
-	@Override
-	public Jukebox getRaw()
-	{
-		return jukebox;
-	}
-
-	private final Jukebox jukebox;
 }

@@ -1,38 +1,12 @@
 package no.runsafe.framework.server.block;
 
-import no.runsafe.framework.wrapper.ObjectWrapper;
-import no.runsafe.framework.server.inventory.IInventoryHolder;
-import no.runsafe.framework.server.inventory.RunsafeInventory;
+import no.runsafe.framework.wrapper.block.BukkitBrewingStand;
 import org.bukkit.block.BrewingStand;
 
-public class RunsafeBrewingStand extends RunsafeBlockState implements IInventoryHolder
+public class RunsafeBrewingStand extends BukkitBrewingStand
 {
 	public RunsafeBrewingStand(BrewingStand toWrap)
 	{
 		super(toWrap);
-		stand = toWrap;
 	}
-
-	public int getBrewingTime()
-	{
-		return stand.getBrewingTime();
-	}
-
-	public void setBrewingTime(int i)
-	{
-		stand.setBrewingTime(i);
-	}
-
-	public RunsafeInventory getInventory()
-	{
-		return ObjectWrapper.convert(stand.getInventory());
-	}
-
-	@Override
-	public BrewingStand getRaw()
-	{
-		return stand;    //To change body of overridden methods use File | Settings | File Templates.
-	}
-
-	private final BrewingStand stand;
 }

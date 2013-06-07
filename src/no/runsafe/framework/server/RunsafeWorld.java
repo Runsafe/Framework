@@ -6,7 +6,7 @@ import no.runsafe.framework.server.entity.RunsafeEntity;
 import no.runsafe.framework.server.entity.RunsafeFallingBlock;
 import no.runsafe.framework.server.entity.RunsafeItem;
 import no.runsafe.framework.server.item.RunsafeItemStack;
-import no.runsafe.framework.server.metadata.RunsafeMetadata;
+import no.runsafe.framework.wrapper.metadata.RunsafeMetadata;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.Effect;

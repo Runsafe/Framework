@@ -1,43 +1,23 @@
 package no.runsafe.framework.server.block;
 
 import no.runsafe.framework.minecraft.Item;
-import no.runsafe.framework.wrapper.ObjectWrapper;
-import no.runsafe.framework.server.RunsafeLocation;
-import no.runsafe.framework.server.RunsafeWorld;
-import no.runsafe.framework.server.material.RunsafeMaterial;
-import no.runsafe.framework.server.metadata.RunsafeMetadata;
+import no.runsafe.framework.wrapper.block.BukkitBlock;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 
 import java.util.ArrayList;
 
-public class RunsafeBlock extends RunsafeMetadata
+public class RunsafeBlock extends BukkitBlock
 {
 	public RunsafeBlock(Block toWrap)
 	{
 		super(toWrap);
-		block = toWrap;
-	}
-
-	public int getData()
-	{
-		return this.block.getData();
-	}
-
-	public void setData(byte data)
-	{
-		this.block.setData(data);
 	}
 
 	public boolean is(Item type)
 	{
 		return this.block.getType() == type.getType()
-				&& (type.getData() == (byte) -1 || this.getData() == type.getData());
-	}
-
-	public void set(Item type)
-	{
-		block.setType(type.getType());
+			&& (type.getData() == (byte) -1 || this.getData() == type.getData());
 	}
 
 	public boolean hasInterface()
@@ -50,49 +30,9 @@ public class RunsafeBlock extends RunsafeMetadata
 		return RunsafeBlock.interactBlocks.contains(this.getTypeId());
 	}
 
-	public int getTypeId()
-	{
-		return block.getTypeId();
-	}
-
 	public boolean canPassThrough()
 	{
 		return passableBlocks.contains(this.getTypeId());
-	}
-
-	public void setTypeId(int materialID)
-	{
-		this.block.setTypeId(materialID);
-	}
-
-	public RunsafeWorld getWorld()
-	{
-		return ObjectWrapper.convert(block.getWorld());
-	}
-
-	public RunsafeBlockState getBlockState()
-	{
-		return ObjectWrapper.convert(block.getState());
-	}
-
-	public RunsafeLocation getLocation()
-	{
-		return ObjectWrapper.convert(block.getLocation());
-	}
-
-	public Block getRaw()
-	{
-		return block;
-	}
-
-	public RunsafeMaterial getMaterialType()
-	{
-		return ObjectWrapper.convert(block.getType());
-	}
-
-	public void breakNaturally()
-	{
-		block.breakNaturally();
 	}
 
 	public boolean isHazardous()
@@ -113,17 +53,19 @@ public class RunsafeBlock extends RunsafeMetadata
 
 	public boolean isAir()
 	{
-		return this.getTypeId() == Material.AIR.getId();
+		return block.getType() == Item.Unavailable.Air.getType();
 	}
 
 	public boolean isWater()
 	{
-		return this.getTypeId() == Material.STATIONARY_WATER.getId() || getTypeId() == Material.WATER.getId();
+		return block.getType() == Item.Unavailable.Water.getType()
+			|| block.getType() == Item.Unavailable.StationaryWater.getType();
 	}
 
 	public boolean isLava()
 	{
-		return getTypeId() == Material.LAVA.getId() || getTypeId() == Material.STATIONARY_LAVA.getId();
+		return block.getType() == Item.Unavailable.Lava.getType()
+			|| block.getType() == Item.Unavailable.StationaryLava.getType();
 	}
 
 	public boolean isAbleToFall()
@@ -140,6 +82,8 @@ public class RunsafeBlock extends RunsafeMetadata
 	}
 
 	private static final ArrayList<Integer> passableBlocks = new ArrayList<Integer>();
+	private static final ArrayList<Integer> interfaceBlocks = new ArrayList<Integer>();
+	private static final ArrayList<Integer> interactBlocks = new ArrayList<Integer>();
 
 	static
 	{
@@ -181,12 +125,7 @@ public class RunsafeBlock extends RunsafeMetadata
 		passableBlocks.add(Material.WEB.getId());
 		passableBlocks.add(Material.WOOD_PLATE.getId());
 		passableBlocks.add(Material.YELLOW_FLOWER.getId());
-	}
 
-	private static final ArrayList<Integer> interfaceBlocks = new ArrayList<Integer>();
-
-	static
-	{
 		interfaceBlocks.add(Item.Decoration.Workbench.getTypeID());
 		interfaceBlocks.add(Item.Decoration.TrappedChest.getTypeID());
 		interfaceBlocks.add(Item.Decoration.Furnace.getTypeID());
@@ -198,12 +137,7 @@ public class RunsafeBlock extends RunsafeMetadata
 		interfaceBlocks.add(Item.Redstone.Device.Dropper.getTypeID());
 		interfaceBlocks.add(Item.Decoration.Chest.getTypeID());
 		interfaceBlocks.add(Item.Redstone.Device.Dispenser.getTypeID());
-	}
 
-	private static final ArrayList<Integer> interactBlocks = new ArrayList<Integer>();
-
-	static
-	{
 		interactBlocks.add(Item.Redstone.Comparator.getTypeID());
 		interactBlocks.add(Item.Redstone.Diode.getTypeID());
 		interactBlocks.add(Item.Redstone.Lever.getTypeID());
@@ -216,6 +150,4 @@ public class RunsafeBlock extends RunsafeMetadata
 		interactBlocks.add(Item.Redstone.Door.Gate.getTypeID());
 		interactBlocks.add(Item.Redstone.Door.Wood.getTypeID());
 	}
-
-	private final Block block;
 }
