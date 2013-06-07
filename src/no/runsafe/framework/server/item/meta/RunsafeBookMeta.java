@@ -3,7 +3,6 @@ package no.runsafe.framework.server.item.meta;
 import org.bukkit.inventory.meta.BookMeta;
 
 import java.util.List;
-import java.util.Map;
 
 public class RunsafeBookMeta extends RunsafeItemMeta
 {

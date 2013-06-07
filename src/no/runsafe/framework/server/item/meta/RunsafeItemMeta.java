@@ -2,6 +2,7 @@ package no.runsafe.framework.server.item.meta;
 
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.enchantment.RunsafeEnchantment;
+import no.runsafe.framework.wrapper.item.meta.BukkitItemMeta;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -10,41 +11,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RunsafeItemMeta
+public class RunsafeItemMeta extends BukkitItemMeta
 {
 	public RunsafeItemMeta(ItemMeta meta)
 	{
-		this.meta = meta;
+		super(meta);
 	}
 
-	public boolean hasDisplayName()
+	public RunsafeItemMeta clone()
 	{
-		return meta.hasDisplayName();
-	}
-
-	public String getDisplayName()
-	{
-		return meta.getDisplayName();
-	}
-
-	public void setDisplayName(String name)
-	{
-		meta.setDisplayName(name);
-	}
-
-	public boolean hasLore()
-	{
-		return meta.hasLore();
-	}
-
-	public List<String> getLore()
-	{
-		return meta.getLore();
-	}
-
-	public void setLore(List<String> lore)
-	{
-		meta.setLore(lore);
+		return new RunsafeItemMeta(meta.clone());
 	}
 
 	public void addLore(String lore)
@@ -56,45 +32,9 @@ public class RunsafeItemMeta
 		meta.setLore(currentLore);
 	}
 
-	public boolean hasEnchants()
-	{
-		return meta.hasEnchants();
-	}
-
-
-	public boolean hasEnchant(RunsafeEnchantment ench)
-	{
-		return meta.hasEnchant(ench.getRaw());
-	}
-
-	public int getEnchantLevel(RunsafeEnchantment ench)
-	{
-		return meta.getEnchantLevel(ench.getRaw());
-	}
-
 	public Map<RunsafeEnchantment, Integer> getEnchants()
 	{
 		return convertEnchants(meta.getEnchants());
-	}
-
-	public boolean addEnchant(RunsafeEnchantment ench, int level, boolean ignoreLevelRestriction)
-	{
-		return meta.addEnchant(ench.getRaw(), level, ignoreLevelRestriction);
-	}
-
-	public boolean removeEnchant(RunsafeEnchantment ench)
-	{
-		return meta.removeEnchant(ench.getRaw());
-	}
-
-	public RunsafeItemMeta clone()
-	{
-		return new RunsafeItemMeta(meta.clone());
-	}
-
-	public ItemMeta getRaw()
-	{
-		return meta;
 	}
 
 	protected Map<RunsafeEnchantment, Integer> convertEnchants(Map<Enchantment, Integer> bukkitEnchants)
@@ -104,6 +44,4 @@ public class RunsafeItemMeta
 			enchants.put(ObjectWrapper.convert(ench), bukkitEnchants.get(ench));
 		return enchants;
 	}
-
-	private final ItemMeta meta;
 }

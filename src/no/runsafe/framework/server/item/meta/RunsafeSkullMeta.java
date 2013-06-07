@@ -1,34 +1,17 @@
 package no.runsafe.framework.server.item.meta;
 
+import no.runsafe.framework.wrapper.item.meta.BukkitSkullMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
-public class RunsafeSkullMeta extends RunsafeItemMeta
+public class RunsafeSkullMeta extends BukkitSkullMeta
 {
 	public RunsafeSkullMeta(SkullMeta toWrap)
 	{
 		super(toWrap);
-		skull = toWrap;
-	}
-
-	public String getOwner()
-	{
-		return skull.getOwner();
-	}
-
-	public boolean hasOwner()
-	{
-		return skull.hasOwner();
-	}
-
-	public boolean setOwner(String owner)
-	{
-		return skull.setOwner(owner);
 	}
 
 	public RunsafeSkullMeta clone()
 	{
 		return new RunsafeSkullMeta(skull.clone());
 	}
-
-	private final SkullMeta skull;
 }
