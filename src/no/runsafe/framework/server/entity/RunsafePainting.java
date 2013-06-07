@@ -1,14 +1,14 @@
 package no.runsafe.framework.server.entity;
 
+import no.runsafe.framework.wrapper.entity.BukkitPainting;
 import org.bukkit.Art;
 import org.bukkit.entity.Painting;
 
-public class RunsafePainting extends RunsafeEntity
+public class RunsafePainting extends BukkitPainting
 {
 	public RunsafePainting(Painting toWrap)
 	{
 		super(toWrap);
-		painting = toWrap;
 	}
 
 	public void NextArt()
@@ -32,21 +32,4 @@ public class RunsafePainting extends RunsafeEntity
 				newId = Art.values().length;
 		}
 	}
-
-	public String getArt()
-	{
-		return painting.getArt().name();
-	}
-
-	public void setArt(String name)
-	{
-		painting.setArt(Art.getByName(name));
-	}
-
-	public void setArt(int id)
-	{
-		painting.setArt(Art.getById(id));
-	}
-
-	private final Painting painting;
 }
