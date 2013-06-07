@@ -1,24 +1,12 @@
 package no.runsafe.framework.server.inventory;
 
-import no.runsafe.framework.wrapper.ObjectWrapper;
+import no.runsafe.framework.wrapper.inventory.BukkitInventoryHolder;
 import org.bukkit.inventory.InventoryHolder;
 
-public class RunsafeInventoryHolder
+public class RunsafeInventoryHolder extends BukkitInventoryHolder
 {
 	public RunsafeInventoryHolder(InventoryHolder toWrap)
 	{
-		this.inventoryHolder = toWrap;
+		super(toWrap);
 	}
-
-	public RunsafeInventory getInventory()
-	{
-		return ObjectWrapper.convert(inventoryHolder.getInventory());
-	}
-
-	public InventoryHolder getRaw()
-	{
-		return this.inventoryHolder;
-	}
-
-	private final InventoryHolder inventoryHolder;
 }

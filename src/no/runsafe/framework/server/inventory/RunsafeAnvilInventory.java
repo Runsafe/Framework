@@ -1,19 +1,12 @@
 package no.runsafe.framework.server.inventory;
 
+import no.runsafe.framework.wrapper.inventory.BukkitAnvilInventory;
 import org.bukkit.inventory.AnvilInventory;
 
-public class RunsafeAnvilInventory extends RunsafeInventory
+public class RunsafeAnvilInventory extends BukkitAnvilInventory
 {
 	public RunsafeAnvilInventory(AnvilInventory inventory)
 	{
 		super(inventory);
-		this.inventory = inventory;
 	}
-
-	public AnvilInventory getRaw()
-	{
-		return this.inventory;
-	}
-
-	private final AnvilInventory inventory;
 }

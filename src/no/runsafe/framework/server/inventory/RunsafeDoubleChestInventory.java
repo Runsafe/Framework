@@ -1,30 +1,12 @@
 package no.runsafe.framework.server.inventory;
 
-import no.runsafe.framework.wrapper.ObjectWrapper;
-import no.runsafe.framework.server.block.RunsafeDoubleChest;
+import no.runsafe.framework.wrapper.inventory.BukkitDoubleChestInventory;
 import org.bukkit.inventory.DoubleChestInventory;
 
-public class RunsafeDoubleChestInventory
+public class RunsafeDoubleChestInventory extends BukkitDoubleChestInventory
 {
 	public RunsafeDoubleChestInventory(DoubleChestInventory toWrap)
 	{
-		this.doubleChestInventory = toWrap;
+		super(toWrap);
 	}
-
-	public RunsafeInventory getLeftSide()
-	{
-		return ObjectWrapper.convert(this.doubleChestInventory.getLeftSide());
-	}
-
-	public RunsafeInventory getRightSide()
-	{
-		return ObjectWrapper.convert(this.doubleChestInventory.getRightSide());
-	}
-
-	public RunsafeDoubleChest getHolder()
-	{
-		return ObjectWrapper.convert(this.doubleChestInventory.getHolder());
-	}
-
-	private final DoubleChestInventory doubleChestInventory;
 }
