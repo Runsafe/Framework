@@ -5,16 +5,14 @@ import no.runsafe.framework.event.listener.EventRouterBase;
 import no.runsafe.framework.event.listener.EventRouterFactory;
 import no.runsafe.framework.event.player.IPlayerRightClickSign;
 import no.runsafe.framework.output.IOutput;
-import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.block.RunsafeSign;
 import no.runsafe.framework.timer.IScheduler;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.block.Sign;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-
-import java.util.logging.Level;
 
 public final class PlayerRightClickSign extends EventRouterBase<IPlayerRightClickSign, PlayerInteractEvent>
 {
@@ -34,27 +32,15 @@ public final class PlayerRightClickSign extends EventRouterBase<IPlayerRightClic
 	@Override
 	public boolean OnEvent(PlayerInteractEvent event)
 	{
-		if (event.getAction() != Action.RIGHT_CLICK_BLOCK)
-			return true;
+		return (event.getAction() != Action.RIGHT_CLICK_BLOCK)
+			|| event.getClickedBlock() == null
+			|| !(event.getClickedBlock().getState() instanceof Sign)
+			|| handler.OnPlayerRightClickSign(
+					ObjectWrapper.convert(event.getPlayer()),
+					ObjectWrapper.convert(event.getItem()),
+					(RunsafeSign)ObjectWrapper.convert(event.getClickedBlock().getState())
+				);
 
-		if (event.getClickedBlock() == null || !(event.getClickedBlock().getState() instanceof Sign))
-		{
-			console.outputDebugToConsole(String.format(
-				"%s right clicked something that was not a sign.",
-				event.getPlayer().getName()
-			), Level.FINER);
-			return true;
-		}
-		console.outputDebugToConsole(String.format(
-			"%s right clicked a sign.",
-			event.getPlayer().getName()
-		), Level.FINE);
-		return
-			handler.OnPlayerRightClickSign(
-				ObjectWrapper.convert(event.getPlayer()),
-				ObjectWrapper.convert(event.getItem()),
-				(RunsafeSign) ObjectWrapper.convert(event.getClickedBlock().getState())
-			);
 	}
 
 	public static EventRouterFactory Factory()
