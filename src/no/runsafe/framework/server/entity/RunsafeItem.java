@@ -1,10 +1,11 @@
 package no.runsafe.framework.server.entity;
 
-import org.bukkit.entity.Entity;
+import no.runsafe.framework.wrapper.entity.BukkitItem;
+import org.bukkit.entity.Item;
 
-public class RunsafeItem extends RunsafeEntity
+public class RunsafeItem extends BukkitItem
 {
-	public RunsafeItem(Entity toWrap)
+	public RunsafeItem(Item toWrap)
 	{
 		super(toWrap);
 	}
