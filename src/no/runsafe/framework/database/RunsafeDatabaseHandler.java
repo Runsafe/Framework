@@ -125,6 +125,7 @@ public final class RunsafeDatabaseHandler implements IDatabase
 		}
 	}
 
+	@Deprecated
 	@Override
 	public PreparedStatement prepare(String sql)
 	{
