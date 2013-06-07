@@ -1,6 +1,6 @@
 package no.runsafe.framework.server.entity;
 
-import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
 import no.runsafe.framework.server.inventory.RunsafeInventoryView;

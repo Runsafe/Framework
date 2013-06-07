@@ -1,6 +1,6 @@
 package no.runsafe.framework.server.event.entity;
 
-import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.entity.RunsafeEntity;
 import org.bukkit.event.entity.EntityShootBowEvent;
 

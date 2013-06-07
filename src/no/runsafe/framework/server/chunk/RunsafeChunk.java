@@ -1,13 +1,12 @@
 package no.runsafe.framework.server.chunk;
 
-import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.block.RunsafeBlockState;
 import no.runsafe.framework.server.entity.RunsafeEntity;
 import org.bukkit.Chunk;
 
-import java.io.Console;
 import java.util.List;
 
 public class RunsafeChunk

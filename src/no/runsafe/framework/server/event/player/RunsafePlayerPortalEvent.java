@@ -1,6 +1,6 @@
 package no.runsafe.framework.server.event.player;
 
-import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeTravelAgent;
 import no.runsafe.framework.server.event.CancellableEvent;
 import org.bukkit.event.player.PlayerPortalEvent;

@@ -1,6 +1,6 @@
 package no.runsafe.framework.server.inventory;
 
-import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.inventory.InventoryHolder;
 
 public class RunsafeInventoryHolder

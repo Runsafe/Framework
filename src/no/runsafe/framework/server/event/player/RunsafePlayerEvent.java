@@ -1,6 +1,6 @@
 package no.runsafe.framework.server.event.player;
 
-import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.event.RunsafeEvent;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.event.player.PlayerEvent;

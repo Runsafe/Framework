@@ -1,5 +1,6 @@
-package no.runsafe.framework.server;
+package no.runsafe.framework.wrapper;
 
+import no.runsafe.framework.server.*;
 import no.runsafe.framework.server.block.*;
 import no.runsafe.framework.server.chunk.RunsafeChunk;
 import no.runsafe.framework.server.enchantment.RunsafeEnchantment;

@@ -1,5 +1,6 @@
 package no.runsafe.framework.server;
 
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.TravelAgent;
 
 public class RunsafeTravelAgent

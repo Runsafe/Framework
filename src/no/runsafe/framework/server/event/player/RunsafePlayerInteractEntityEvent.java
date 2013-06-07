@@ -1,11 +1,9 @@
 package no.runsafe.framework.server.event.player;
 
-import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.entity.RunsafeEntity;
 import no.runsafe.framework.server.event.CancellableEvent;
 import no.runsafe.framework.server.player.RunsafePlayer;
-import org.bukkit.entity.Player;
-import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 
 public class RunsafePlayerInteractEntityEvent extends RunsafePlayerEvent implements CancellableEvent

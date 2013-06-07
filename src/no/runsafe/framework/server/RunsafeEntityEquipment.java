@@ -2,6 +2,7 @@ package no.runsafe.framework.server;
 
 import no.runsafe.framework.server.entity.RunsafeEntity;
 import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
 

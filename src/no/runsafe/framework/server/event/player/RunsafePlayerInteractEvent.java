@@ -1,6 +1,6 @@
 package no.runsafe.framework.server.event.player;
 
-import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.event.CancellableEvent;

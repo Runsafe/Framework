@@ -1,6 +1,7 @@
-package no.runsafe.framework.server;
+package no.runsafe.framework.wrapper;
 
 import no.runsafe.framework.output.ChatColour;
+import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
 import no.runsafe.framework.server.inventory.RunsafeInventoryHolder;
 import no.runsafe.framework.server.inventory.RunsafeInventoryType;

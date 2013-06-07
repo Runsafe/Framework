@@ -1,7 +1,7 @@
 package no.runsafe.framework.server.entity;
 
 import no.runsafe.framework.minecraft.Buff;
-import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeEntityEquipment;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.block.RunsafeBlock;

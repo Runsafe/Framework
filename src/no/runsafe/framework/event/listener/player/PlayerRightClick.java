@@ -7,7 +7,7 @@ import no.runsafe.framework.event.player.IPlayerRightClick;
 import no.runsafe.framework.event.player.IPlayerRightClickAir;
 import no.runsafe.framework.event.player.IPlayerRightClickBlock;
 import no.runsafe.framework.output.IOutput;
-import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

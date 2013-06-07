@@ -3,7 +3,7 @@ package no.runsafe.framework.command;
 import no.runsafe.framework.command.prepared.IPreparedCommand;
 import no.runsafe.framework.output.ChatColour;
 import no.runsafe.framework.server.ICommandExecutor;
-import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.entity.Player;
 
 /**

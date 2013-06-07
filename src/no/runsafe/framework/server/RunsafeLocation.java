@@ -3,6 +3,7 @@ package no.runsafe.framework.server;
 import no.runsafe.framework.minecraft.Sound;
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.chunk.RunsafeChunk;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
 

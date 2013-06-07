@@ -1,6 +1,6 @@
 package no.runsafe.framework.server.item.meta;
 
-import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.enchantment.RunsafeEnchantment;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.meta.ItemMeta;

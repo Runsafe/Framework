@@ -1,7 +1,6 @@
 package no.runsafe.framework.server.inventory;
 
-import no.runsafe.framework.server.ObjectWrapper;
-import no.runsafe.framework.server.entity.RunsafeHumanEntity;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.inventory.InventoryView;

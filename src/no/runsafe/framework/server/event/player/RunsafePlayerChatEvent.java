@@ -3,7 +3,7 @@ package no.runsafe.framework.server.event.player;
 import no.runsafe.framework.IKernel;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.event.player.IPlayerChatEvent;
-import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.event.CancellableEvent;
 import no.runsafe.framework.server.event.IFakeableEvent;
 import no.runsafe.framework.server.player.RunsafePlayer;

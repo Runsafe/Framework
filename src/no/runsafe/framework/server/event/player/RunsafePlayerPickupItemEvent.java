@@ -1,6 +1,6 @@
 package no.runsafe.framework.server.event.player;
 
-import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.entity.RunsafeItem;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.player.PlayerPickupItemEvent;

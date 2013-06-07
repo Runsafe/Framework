@@ -4,9 +4,10 @@ import no.runsafe.framework.hook.HookEngine;
 import no.runsafe.framework.hook.IPlayerLookupService;
 import no.runsafe.framework.server.player.RunsafeAmbiguousPlayer;
 import no.runsafe.framework.server.player.RunsafePlayer;
+import no.runsafe.framework.wrapper.BukkitServer;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
-import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 

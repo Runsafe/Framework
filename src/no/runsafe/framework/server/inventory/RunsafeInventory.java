@@ -2,7 +2,7 @@ package no.runsafe.framework.server.inventory;
 
 import com.google.common.collect.Lists;
 import no.runsafe.framework.minecraft.Item;
-import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeServer;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.server.material.RunsafeMaterial;

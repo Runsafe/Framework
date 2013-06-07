@@ -5,7 +5,7 @@ import no.runsafe.framework.event.hanging.IPaintingPlaced;
 import no.runsafe.framework.event.listener.EventRouterBase;
 import no.runsafe.framework.event.listener.EventRouterFactory;
 import no.runsafe.framework.output.IOutput;
-import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.timer.IScheduler;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Painting;

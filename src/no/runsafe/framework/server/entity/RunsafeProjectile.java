@@ -1,6 +1,6 @@
 package no.runsafe.framework.server.entity;
 
-import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.entity.Projectile;
 import org.bukkit.util.Vector;
 

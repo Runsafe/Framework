@@ -1,7 +1,7 @@
 package no.runsafe.framework.server.block;
 
 import no.runsafe.framework.minecraft.Item;
-import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.material.RunsafeMaterial;

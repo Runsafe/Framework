@@ -1,6 +1,6 @@
 package no.runsafe.framework.server.event.enchantment;
 
-import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.enchantment.RunsafeEnchantment;
 import no.runsafe.framework.server.event.CancellableEvent;

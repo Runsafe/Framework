@@ -1,6 +1,6 @@
 package no.runsafe.framework.server.event.inventory;
 
-import no.runsafe.framework.server.ObjectWrapper;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.entity.RunsafeItem;
 import no.runsafe.framework.server.event.CancellableEvent;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
