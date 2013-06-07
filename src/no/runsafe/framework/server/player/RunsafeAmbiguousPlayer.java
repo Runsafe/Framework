@@ -3,6 +3,7 @@ package no.runsafe.framework.server.player;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.OfflinePlayer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RunsafeAmbiguousPlayer extends RunsafePlayer
@@ -11,6 +12,14 @@ public class RunsafeAmbiguousPlayer extends RunsafePlayer
 	{
 		super(toWrap);
 		ambiguity = ambiguous;
+	}
+
+	public RunsafeAmbiguousPlayer(List<RunsafePlayer> online)
+	{
+		super(online.get(0).getRawPlayer());
+		ambiguity = new ArrayList<String>();
+		for (RunsafePlayer player : online)
+			ambiguity.add(player.getName());
 	}
 
 	public List<String> getAmbiguity()

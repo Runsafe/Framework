@@ -2,10 +2,6 @@ package no.runsafe.framework.server;
 
 import no.runsafe.framework.hook.HookEngine;
 import no.runsafe.framework.hook.IPlayerLookupService;
-import no.runsafe.framework.output.ChatColour;
-import no.runsafe.framework.server.inventory.RunsafeInventory;
-import no.runsafe.framework.server.inventory.RunsafeInventoryHolder;
-import no.runsafe.framework.server.inventory.RunsafeInventoryType;
 import no.runsafe.framework.server.player.RunsafeAmbiguousPlayer;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.OfflinePlayer;
@@ -14,106 +10,17 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
-import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.logging.Logger;
 
-public class RunsafeServer
+public class RunsafeServer extends BukkitServer
 {
 	public static RunsafeServer Instance = null;
 
 	public RunsafeServer(Server toWrap)
 	{
-		this.server = toWrap;
-	}
-
-	public void banIP(String address)
-	{
-		this.server.banIP(address);
-	}
-
-	public int broadcastMessage(String message, String permission)
-	{
-		return this.server.broadcast(ChatColour.ToMinecraft(message), permission);
-	}
-
-	public int broadcastMessage(String message)
-	{
-		return this.server.broadcastMessage(ChatColour.ToMinecraft(message));
-	}
-
-	public void clearRecipes()
-	{
-		this.server.clearRecipes();
-	}
-
-	public boolean getAllowEnd()
-	{
-		return this.server.getAllowEnd();
-	}
-
-	public boolean getAllowFlight()
-	{
-		return this.server.getAllowFlight();
-	}
-
-	public boolean getAllowNether()
-	{
-		return this.server.getAllowNether();
-	}
-
-	public List<RunsafePlayer> getBannedPlayers()
-	{
-		ArrayList<RunsafePlayer> result = new ArrayList<RunsafePlayer>();
-		for (OfflinePlayer banned : this.server.getBannedPlayers())
-			result.add(new RunsafePlayer(banned));
-		return result;
-	}
-
-	public String getBukkitVersion()
-	{
-		return this.server.getBukkitVersion();
-	}
-
-	public Map<String, String[]> getCommandAliases()
-	{
-		return this.server.getCommandAliases();
-	}
-
-	public long getConnectionThrottle()
-	{
-		return this.server.getConnectionThrottle();
-	}
-
-	public boolean getGenerateStructures()
-	{
-		return this.server.getGenerateStructures();
-	}
-
-	public String getIp()
-	{
-		return this.server.getIp();
-	}
-
-	public Set<String> getIpBans()
-	{
-		return this.server.getIPBans();
-	}
-
-	public Logger getLogger()
-	{
-		return this.server.getLogger();
-	}
-
-	public int getMaxPlayers()
-	{
-		return this.server.getMaxPlayers();
-	}
-
-	public String getName()
-	{
-		return this.server.getName();
+		super(toWrap);
 	}
 
 	public RunsafePlayer getPlayer(String playerName)
@@ -132,29 +39,36 @@ public class RunsafeServer
 		return new RunsafeAmbiguousPlayer(server.getOfflinePlayer(hits.get(0)), hits);
 	}
 
-	public List<RunsafePlayer> getOfflinePlayers()
-	{
-		return ObjectWrapper.convert(server.getOfflinePlayers());
-	}
-
 	public RunsafePlayer getOnlinePlayer(RunsafePlayer context, String playerName)
 	{
 		if (playerName == null)
 			return null;
 
-		ArrayList<String> hits = new ArrayList<String>();
-		for (RunsafePlayer player : getOnlinePlayers())
-			if (player != null && player.getName().toLowerCase().contains(playerName.toLowerCase())
-				&& (context == null || context.canSee(player)))
-				hits.add(player.getName());
+		Player exact = server.getPlayerExact(playerName);
+		if (exact != null && exact.isOnline())
+			return new RunsafePlayer(exact);
 
-		if (hits.size() == 0)
+		List<RunsafePlayer> online = filterPlayers(context, getOnlinePlayers(playerName));
+		if (online == null || online.isEmpty())
 			return null;
 
-		if (hits.size() == 1)
-			return new RunsafePlayer(server.getPlayerExact(hits.get(0)));
+		if (online.size() == 1)
+			return online.get(0);
 
-		return new RunsafeAmbiguousPlayer(server.getPlayerExact(hits.get(0)), hits);
+		return new RunsafeAmbiguousPlayer(online);
+	}
+
+	public List<RunsafePlayer> filterPlayers(RunsafePlayer context, List<RunsafePlayer> players)
+	{
+		if (context == null || players == null)
+			return players;
+
+		List<RunsafePlayer> filtered = new ArrayList<RunsafePlayer>();
+		for (RunsafePlayer player : players)
+			if (!context.canSee(player))
+				filtered.add(player);
+		filtered.removeAll(filtered);
+		return filtered;
 	}
 
 	public List<String> findPlayer(String playerName)
@@ -164,26 +78,31 @@ public class RunsafeServer
 		{
 			List<String> data = lookup.findPlayer(playerName);
 			if (data != null)
+			{
+				// Exact match, prefer this to anything else
+				if (data.contains(playerName))
+				{
+					hits.clear();
+					hits.add(playerName);
+					break;
+				}
+				// Add hits to result list
 				for (String hit : data)
 					if (!hits.contains(hit))
 						hits.add(hit);
+			}
 		}
 		return hits;
 	}
 
-	public boolean getOnlineMode()
+	public List<RunsafePlayer> getOnlinePlayers(String playerName)
 	{
-		return this.server.getOnlineMode();
-	}
-
-	public List<RunsafePlayer> getOnlinePlayers()
-	{
-		return ObjectWrapper.convert((OfflinePlayer[]) server.getOnlinePlayers());
-	}
-
-	public List<RunsafePlayer> getOperators()
-	{
-		return ObjectWrapper.convert(server.getOperators()); // RunsafePlayer.convert(server.getOperators());
+		playerName = playerName.toLowerCase();
+		List<OfflinePlayer> players = new ArrayList<OfflinePlayer>();
+		for (OfflinePlayer player : server.getOnlinePlayers())
+			if (player.getName().toLowerCase().startsWith(playerName))
+				players.add(player);
+		return ObjectWrapper.convert(players);
 	}
 
 	public RunsafePlayer getPlayerExact(String playerName)
@@ -200,66 +119,6 @@ public class RunsafeServer
 		return new RunsafePlayer(player);
 	}
 
-	public int getPort()
-	{
-		return this.server.getPort();
-	}
-
-	public String getServerId()
-	{
-		return this.server.getServerId();
-	}
-
-	public String getServerName()
-	{
-		return this.server.getServerName();
-	}
-
-	public int getSpawnRadius()
-	{
-		return this.server.getSpawnRadius();
-	}
-
-	public int getTicksPerAnimalSpawns()
-	{
-		return this.server.getTicksPerAnimalSpawns();
-	}
-
-	public int getTicksPerMonsterSpawns()
-	{
-		return this.server.getTicksPerMonsterSpawns();
-	}
-
-	public String getUpdateFolder()
-	{
-		return this.server.getUpdateFolder();
-	}
-
-	public int getViewDistance()
-	{
-		return this.server.getViewDistance();
-	}
-
-	public List<RunsafePlayer> getWhitelistedPlayers()
-	{
-		return ObjectWrapper.convert(server.getWhitelistedPlayers()); // RunsafePlayer.convert(this.server.getWhitelistedPlayers());
-	}
-
-	public RunsafeWorld getWorld(String worldName)
-	{
-		return ObjectWrapper.convert(this.server.getWorld(worldName));
-	}
-
-	public RunsafeWorld getWorld(UUID uid)
-	{
-		return ObjectWrapper.convert(this.server.getWorld(uid));
-	}
-
-	public File getWorldContainer()
-	{
-		return this.server.getWorldContainer();
-	}
-
 	public List<RunsafeWorld> getWorlds()
 	{
 		List<RunsafeWorld> returnList = new ArrayList<RunsafeWorld>();
@@ -270,83 +129,6 @@ public class RunsafeServer
 		}
 
 		return returnList;
-	}
-
-	public String getWorldType()
-	{
-		return this.server.getWorldType();
-	}
-
-	public boolean hasWhitelist()
-	{
-		return this.server.hasWhitelist();
-	}
-
-	public List<RunsafePlayer> matchPlayer(String playerName)
-	{
-		List<RunsafePlayer> returnList = new ArrayList<RunsafePlayer>();
-
-		for (Player player : this.server.matchPlayer(playerName))
-		{
-			returnList.add(new RunsafePlayer(player));
-		}
-
-		return returnList;
-	}
-
-	public void reload()
-	{
-		this.server.reload();
-	}
-
-	public void reloadWhitelist()
-	{
-		this.server.reloadWhitelist();
-	}
-
-	public void resetRecipes()
-	{
-		this.server.resetRecipes();
-	}
-
-	public void savePlayers()
-	{
-		this.server.savePlayers();
-	}
-
-	public void setSpawnRadius(int radius)
-	{
-		this.server.setSpawnRadius(radius);
-	}
-
-	public void setWhitelist(boolean value)
-	{
-		this.server.setWhitelist(value);
-	}
-
-	public void shutdown()
-	{
-		this.server.shutdown();
-	}
-
-	public void unbanIp(String address)
-	{
-		this.server.unbanIP(address);
-	}
-
-	public boolean unloadWorld(String worldName, boolean save)
-	{
-		return this.server.unloadWorld(worldName, save);
-	}
-
-	public boolean unloadWorld(RunsafeWorld world, boolean save)
-	{
-		return this.unloadWorld(world.getName(), save);
-	}
-
-	public boolean useExactLoginLocation()
-	{
-		return this.server.useExactLoginLocation();
 	}
 
 	public void banPlayer(RunsafePlayer banner, RunsafePlayer player, String reason)
@@ -400,35 +182,5 @@ public class RunsafeServer
 		return (T) plugin;
 	}
 
-	public RunsafeInventory createInventory(RunsafeInventoryHolder holder, int size, String name)
-	{
-		if (holder == null)
-			return ObjectWrapper.convert(this.server.createInventory(null, size, name));
-
-		return ObjectWrapper.convert(this.server.createInventory(holder.getRaw(), size, name));
-	}
-
-	public RunsafeInventory createInventory(RunsafeInventoryHolder holder, int size)
-	{
-		if (holder == null)
-			return ObjectWrapper.convert(this.server.createInventory(null, size));
-
-		return ObjectWrapper.convert(this.server.createInventory(holder.getRaw(), size));
-	}
-
-	public RunsafeInventory createInventory(RunsafeInventoryHolder holder, RunsafeInventoryType type)
-	{
-		if (holder == null)
-			return ObjectWrapper.convert(this.server.createInventory(null, type.getRaw()));
-
-		return ObjectWrapper.convert(this.server.createInventory(holder.getRaw(), type.getRaw()));
-	}
-
-	public void stop()
-	{
-		server.shutdown();
-	}
-
 	private final ConcurrentHashMap<String, RunsafePlayer> kickingPlayer = new ConcurrentHashMap<String, RunsafePlayer>();
-	private final Server server;
 }
