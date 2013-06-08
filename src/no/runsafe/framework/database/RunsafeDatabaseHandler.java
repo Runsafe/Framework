@@ -304,8 +304,6 @@ public final class RunsafeDatabaseHandler implements IDatabase
 				conn = DriverManager.getConnection(this.databaseURL, this.databaseUsername, this.databasePassword);
 				output.fine(String.format("Opening connection to %s by %s", databaseURL, databaseUsername));
 			}
-			else
-				output.fine(String.format("Reusing connection to %s", databaseURL));
 			if (conn == null)
 				output.fine("Connection is null");
 			return conn;
