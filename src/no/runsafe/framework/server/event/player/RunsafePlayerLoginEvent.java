@@ -3,7 +3,6 @@ package no.runsafe.framework.server.event.player;
 import no.runsafe.framework.IKernel;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.event.player.IPlayerLoginEvent;
-import no.runsafe.framework.event.player.IPlayerQuitEvent;
 import no.runsafe.framework.server.event.IFakeableEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 

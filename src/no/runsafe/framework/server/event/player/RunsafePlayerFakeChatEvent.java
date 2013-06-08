@@ -2,7 +2,6 @@ package no.runsafe.framework.server.event.player;
 
 import no.runsafe.framework.server.player.RunsafePlayer;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RunsafePlayerFakeChatEvent extends RunsafePlayerChatEvent
