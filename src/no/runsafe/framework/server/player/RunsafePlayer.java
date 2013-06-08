@@ -33,12 +33,6 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		super(toWrap);
 	}
 
-	public RunsafePlayer(OfflinePlayer toWrap, boolean isNew)
-	{
-		super(toWrap);
-		this.isNew = isNew;
-	}
-
 	public String getPrettyName()
 	{
 		List<IPlayerNameDecorator> decoratorHooks = HookEngine.hookContainer.getComponents(IPlayerNameDecorator.class);
@@ -60,7 +54,15 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 
 	public boolean isNew()
 	{
-		return this.isNew;
+		List<IPlayerSessionDataProvider> dataHooks = HookEngine.hookContainer.getComponents(IPlayerSessionDataProvider.class);
+		if (this.isOnline() || dataHooks.isEmpty())
+			return false;
+
+		for (IPlayerSessionDataProvider provider : dataHooks)
+			if (provider.IsFirstSession(this))
+				return true;
+
+		return false;
 	}
 
 	public void OP()
@@ -135,11 +137,11 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 
 	public DateTime lastLogout()
 	{
-		List<IPlayerDataProvider> dataHooks = HookEngine.hookContainer.getComponents(IPlayerDataProvider.class);
+		List<IPlayerSessionDataProvider> dataHooks = HookEngine.hookContainer.getComponents(IPlayerSessionDataProvider.class);
 		if (this.isOnline() || dataHooks.isEmpty())
 			return null;
 		DateTime logout = null;
-		for (IPlayerDataProvider provider : dataHooks)
+		for (IPlayerSessionDataProvider provider : dataHooks)
 		{
 			DateTime value = provider.GetPlayerLogout(this);
 			if (value != null && (logout == null || value.isAfter(logout)))
@@ -150,10 +152,10 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 
 	public String getBanReason()
 	{
-		List<IPlayerDataProvider> dataHooks = HookEngine.hookContainer.getComponents(IPlayerDataProvider.class);
+		List<IPlayerSessionDataProvider> dataHooks = HookEngine.hookContainer.getComponents(IPlayerSessionDataProvider.class);
 		if (!this.isBanned() || dataHooks.isEmpty())
 			return null;
-		for (IPlayerDataProvider provider : dataHooks)
+		for (IPlayerSessionDataProvider provider : dataHooks)
 		{
 			String reason = provider.GetPlayerBanReason(this);
 			if (reason != null)
@@ -262,6 +264,4 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 	{
 		sendColouredMessage(String.format(format, params));
 	}
-
-	private boolean isNew = false;
 }
