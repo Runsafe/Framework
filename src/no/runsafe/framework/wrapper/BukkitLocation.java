@@ -140,6 +140,9 @@ public class BukkitLocation
 
 	public double distance(BukkitLocation location)
 	{
+		if (!location.getWorld().getName().equals(location.getRaw().getWorld().getName()))
+			return Double.NaN;
+
 		return this.location.distance(location.getRaw());
 	}
 
