@@ -10,6 +10,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -151,12 +152,34 @@ public abstract class BukkitItemStack implements ConfigurationSerializable
 		return itemStack.setItemMeta(itemMeta.getRaw());
 	}
 
+	public List<String> getLore()
+	{
+		return itemStack.getItemMeta().getLore();
+	}
+
+	public BukkitItemStack addLore(String lore)
+	{
+		ItemMeta meta = itemStack.getItemMeta();
+		List<String> currentLore = meta.getLore();
+		if (currentLore == null)
+			currentLore = new ArrayList<String>();
+		currentLore.add(lore);
+		meta.setLore(currentLore);
+		itemStack.setItemMeta(meta);
+		return this;
+	}
+
 	public BukkitItemStack setLore(List<String> lore)
 	{
 		ItemMeta meta = itemStack.getItemMeta();
 		meta.setLore(lore);
 		itemStack.setItemMeta(meta);
 		return this;
+	}
+
+	public String getDisplayName()
+	{
+		return itemStack.getItemMeta().getDisplayName();
 	}
 
 	public BukkitItemStack setDisplayName(String name)
