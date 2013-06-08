@@ -28,7 +28,7 @@ public class TimedCache<Key, Value>
 		return cache.putIfAbsent(key, value);
 	}
 
-	private void RefreshTimer(Key key)
+	private void RefreshTimer(final Key key)
 	{
 		if (timers.containsKey(key))
 			scheduler.cancelTask(timers.get(key));
@@ -39,7 +39,7 @@ public class TimedCache<Key, Value>
 				@Override
 				public void run()
 				{
-					cache.clear();
+					Invalidate(key);
 				}
 			},
 			300
