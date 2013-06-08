@@ -2,9 +2,12 @@ package no.runsafe.framework.output;
 
 import no.runsafe.framework.server.RunsafeServer;
 import no.runsafe.framework.server.item.RunsafeItemStack;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -92,20 +95,7 @@ public class RunsafeOutputHandler implements IOutput
 	public void outputDebugToConsole(String message, Level messageLevel, Object... params)
 	{
 		if (debugLevel != null && messageLevel.intValue() >= debugLevel.intValue())
-			outputToConsole(
-				String.format(
-					"[%s%s%s] %s",
-					ConsoleColors.DARK_GREEN,
-					messageLevel.getName(),
-					ConsoleColors.RESET,
-					String.format(message, params)
-				),
-				Level.INFO
-			);
-
-		if(debugLevel != null && messageLevel.intValue() >= Level.FINEST.intValue())
-			for(StackTraceElement element : Thread.currentThread().getStackTrace())
-				outputToConsole(element.toString(), Level.INFO);
+			outputToConsole(formatDebugMessage(message, messageLevel, params), Level.INFO);
 	}
 
 	// Broadcasts the supplied string to all players on the event the output handler has
@@ -199,6 +189,37 @@ public class RunsafeOutputHandler implements IOutput
 			if (raw instanceof RunsafeItemStack)
 				dumpData(((RunsafeItemStack) raw).getRaw());
 	}
+
+	private String formatDebugMessage(String message, Level messageLevel, Object... params)
+	{
+		String formatted = String.format(
+			"[%s%s%s] %s",
+			ConsoleColors.DARK_GREEN,
+			messageLevel.getName(),
+			ConsoleColors.RESET,
+			String.format(message, params)
+		);
+
+		if (messageLevel.intValue() >= Level.FINEST.intValue())
+			formatted = String.format("%s\nat %s", formatted, getStackTrace());
+
+		return formatted;
+	}
+
+	private String getStackTrace()
+	{
+		int skip = 3;
+		List<String> stack = new ArrayList<String>();
+		for (StackTraceElement element : Thread.currentThread().getStackTrace())
+		{
+			if (skip < 1)
+				stack.add(element.toString());
+			else
+				skip--;
+		}
+		return StringUtils.join(stack, "\n\t");
+	}
+
 
 	private void dumpData(ConfigurationSerializable raw)
 	{
