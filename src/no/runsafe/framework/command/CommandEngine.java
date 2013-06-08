@@ -75,7 +75,7 @@ public final class CommandEngine implements Startable
 		for (ICommandHandler command : commands)
 		{
 			command.setConsole(output);
-			handlers.add(new BukkitCommandExecutor(command, console));
+			handlers.add(new BukkitCommandExecutor(command, console, output));
 		}
 		return handlers;
 	}
