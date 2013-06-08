@@ -24,9 +24,10 @@ public abstract class BukkitBook extends RunsafeItemStack
 		return book.getTitle();
 	}
 
-	public boolean setTitle(String title)
+	public void setTitle(String title)
 	{
-		return book.setTitle(title);
+		book.setTitle(title);
+		itemStack.setItemMeta(book);
 	}
 
 	public boolean hasAuthor()
@@ -42,6 +43,7 @@ public abstract class BukkitBook extends RunsafeItemStack
 	public void setAuthor(String author)
 	{
 		book.setAuthor(author);
+		itemStack.setItemMeta(book);
 	}
 
 	public boolean hasPages()
@@ -57,6 +59,7 @@ public abstract class BukkitBook extends RunsafeItemStack
 	public void setPage(int page, String data)
 	{
 		book.setPage(page, data);
+		itemStack.setItemMeta(book);
 	}
 
 	public List<String> getPages()
@@ -67,11 +70,13 @@ public abstract class BukkitBook extends RunsafeItemStack
 	public void setPages(List<String> pages)
 	{
 		book.setPages(pages);
+		itemStack.setItemMeta(book);
 	}
 
 	public void setPages(String... pages)
 	{
 		book.setPages(pages);
+		itemStack.setItemMeta(book);
 	}
 
 	public void addPage(String... pages)
@@ -82,13 +87,6 @@ public abstract class BukkitBook extends RunsafeItemStack
 	public int getPageCount()
 	{
 		return book.getPageCount();
-	}
-
-	@Override
-	public ItemStack getRaw()
-	{
-		itemStack.setItemMeta(book);
-		return itemStack;
 	}
 
 	protected final BookMeta book;
