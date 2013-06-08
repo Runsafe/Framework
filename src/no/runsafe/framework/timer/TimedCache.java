@@ -15,6 +15,14 @@ public class TimedCache<Key, Value>
 			cache.remove(key);
 	}
 
+	public void Purge()
+	{
+		for (int timer : timers.values())
+			scheduler.cancelTask(timer);
+		cache.clear();
+		timers.clear();
+	}
+
 	public Value Cache(Key key)
 	{
 		return key != null && cache.containsKey(key) ? cache.get(key) : null;
