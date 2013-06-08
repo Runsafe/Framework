@@ -46,7 +46,7 @@ public class TimedCache<Key, Value>
 			300
 		);
 		Integer activeTask = timers.putIfAbsent(key, task);
-		if (activeTask != task)
+		if (activeTask != null)
 			scheduler.cancelTask(task);
 	}
 
