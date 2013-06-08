@@ -9,6 +9,11 @@ public class TimedCache<Key, Value>
 		this.scheduler = scheduler;
 	}
 
+	public Value Cache(Key key)
+	{
+		return cache.containsKey(key) ? cache.get(key) : null;
+	}
+
 	public Value Cache(Key key, Value value)
 	{
 		RefreshTimer();
