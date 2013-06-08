@@ -29,7 +29,14 @@ public class RunsafeServer extends BukkitServer
 		if (playerName == null)
 			return null;
 
+		Player rawPlayer = server.getPlayerExact(playerName);
+		if (rawPlayer != null && rawPlayer.isOnline())
+			return ObjectWrapper.convert(rawPlayer);
+
 		List<String> hits = findPlayer(playerName);
+
+		if (hits.size() == 0)
+			return null;
 
 		if (hits.size() == 1)
 			return new RunsafePlayer(server.getOfflinePlayer(hits.get(0)));
