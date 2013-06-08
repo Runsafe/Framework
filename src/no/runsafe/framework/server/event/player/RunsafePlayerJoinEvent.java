@@ -3,9 +3,7 @@ package no.runsafe.framework.server.event.player;
 import no.runsafe.framework.IKernel;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.event.player.IPlayerJoinEvent;
-import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.event.IFakeableEvent;
-import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 public class RunsafePlayerJoinEvent extends RunsafePlayerEvent implements IFakeableEvent
@@ -14,11 +12,6 @@ public class RunsafePlayerJoinEvent extends RunsafePlayerEvent implements IFakea
 	{
 		super(toWrap);
 		event = toWrap;
-	}
-
-	public RunsafePlayer getPlayer()
-	{
-		return ObjectWrapper.convert(event.getPlayer());
 	}
 
 	public String getJoinMessage()
