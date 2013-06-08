@@ -102,6 +102,10 @@ public class RunsafeOutputHandler implements IOutput
 				),
 				Level.INFO
 			);
+
+		if(debugLevel != null && messageLevel.intValue() >= Level.FINEST.intValue())
+			for(StackTraceElement element : Thread.currentThread().getStackTrace())
+				outputToConsole(element.toString(), Level.INFO);
 	}
 
 	// Broadcasts the supplied string to all players on the event the output handler has
