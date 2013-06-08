@@ -6,7 +6,7 @@ import no.runsafe.framework.server.inventory.RunsafeInventory;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.block.Dispenser;
 
-public class BukkitDispenser extends RunsafeBlockState implements IInventoryHolder
+public abstract class BukkitDispenser extends RunsafeBlockState implements IInventoryHolder
 {
 	public BukkitDispenser(Dispenser toWrap)
 	{

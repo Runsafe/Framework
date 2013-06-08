@@ -4,7 +4,7 @@ import no.runsafe.framework.enchant.IEnchant;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import org.bukkit.enchantments.Enchantment;
 
-public class BukkitEnchantment
+public abstract class BukkitEnchantment
 {
 	public BukkitEnchantment(Enchantment toWrap)
 	{

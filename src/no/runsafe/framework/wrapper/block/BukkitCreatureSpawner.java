@@ -4,7 +4,7 @@ import no.runsafe.framework.server.block.RunsafeBlockState;
 import no.runsafe.framework.server.entity.RunsafeEntityType;
 import org.bukkit.block.CreatureSpawner;
 
-public class BukkitCreatureSpawner extends RunsafeBlockState
+public abstract class BukkitCreatureSpawner extends RunsafeBlockState
 {
 	public BukkitCreatureSpawner(CreatureSpawner toWrap)
 	{

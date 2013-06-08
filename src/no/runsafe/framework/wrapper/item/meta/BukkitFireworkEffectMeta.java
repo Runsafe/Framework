@@ -4,9 +4,10 @@ import no.runsafe.framework.server.RunsafeFireworkEffect;
 import no.runsafe.framework.server.item.meta.RunsafeItemMeta;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.inventory.meta.FireworkEffectMeta;
+import org.bukkit.inventory.meta.ItemMeta;
 
 @SuppressWarnings("deprecation")
-public class BukkitFireworkEffectMeta extends RunsafeItemMeta
+public abstract class BukkitFireworkEffectMeta extends RunsafeItemMeta
 {
 	public BukkitFireworkEffectMeta(FireworkEffectMeta meta)
 	{
@@ -29,6 +30,12 @@ public class BukkitFireworkEffectMeta extends RunsafeItemMeta
 	public RunsafeFireworkEffect getEffect()
 	{
 		return ObjectWrapper.convert(effectMeta.getEffect());
+	}
+
+	@Override
+	public FireworkEffectMeta getRaw()
+	{
+		return effectMeta;
 	}
 
 	protected final FireworkEffectMeta effectMeta;

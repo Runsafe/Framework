@@ -17,7 +17,7 @@ import org.bukkit.entity.EntityType;
 
 import java.util.List;
 
-public class BukkitWorld extends RunsafeMetadata
+public abstract class BukkitWorld extends RunsafeMetadata
 {
 
 	public BukkitWorld(World toWrap)
@@ -81,6 +81,7 @@ public class BukkitWorld extends RunsafeMetadata
 		return ObjectWrapper.convert(world.spawnFallingBlock(location.getRaw(), material, blockData));
 	}
 
+	@Override
 	public World getRaw()
 	{
 		return this.world;

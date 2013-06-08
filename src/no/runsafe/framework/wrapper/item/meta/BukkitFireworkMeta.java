@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("deprecation")
-public class BukkitFireworkMeta extends RunsafeItemMeta
+public abstract class BukkitFireworkMeta extends RunsafeItemMeta
 {
 	public BukkitFireworkMeta(FireworkMeta toWrap)
 	{

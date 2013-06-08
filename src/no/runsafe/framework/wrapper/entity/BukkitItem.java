@@ -5,7 +5,7 @@ import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.entity.Item;
 
-public class BukkitItem extends RunsafeEntity
+public abstract class BukkitItem extends RunsafeEntity
 {
 	public BukkitItem(Item toWrap)
 	{

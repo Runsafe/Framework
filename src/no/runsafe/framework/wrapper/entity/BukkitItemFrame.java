@@ -5,7 +5,7 @@ import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.entity.ItemFrame;
 
-public class BukkitItemFrame extends RunsafeHanging
+public abstract class BukkitItemFrame extends RunsafeHanging
 {
 	public BukkitItemFrame(ItemFrame toWrap)
 	{
@@ -21,6 +21,12 @@ public class BukkitItemFrame extends RunsafeHanging
 	public void setItem(RunsafeItemStack item)
 	{
 		itemFrame.setItem(item.getRaw());
+	}
+
+	@Override
+	public ItemFrame getRaw()
+	{
+		return itemFrame;
 	}
 
 	protected final ItemFrame itemFrame;

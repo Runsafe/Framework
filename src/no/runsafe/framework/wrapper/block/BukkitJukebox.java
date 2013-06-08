@@ -6,7 +6,7 @@ import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.block.Jukebox;
 
 @SuppressWarnings("deprecation")
-public class BukkitJukebox extends RunsafeBlockState
+public abstract class BukkitJukebox extends RunsafeBlockState
 {
 	public BukkitJukebox(Jukebox toWrap)
 	{

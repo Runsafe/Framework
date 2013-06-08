@@ -3,7 +3,7 @@ package no.runsafe.framework.wrapper.block;
 import no.runsafe.framework.server.block.RunsafeBlockState;
 import org.bukkit.block.Sign;
 
-public class BukkitSign extends RunsafeBlockState
+public abstract class BukkitSign extends RunsafeBlockState
 {
 	public BukkitSign(Sign toWrap)
 	{

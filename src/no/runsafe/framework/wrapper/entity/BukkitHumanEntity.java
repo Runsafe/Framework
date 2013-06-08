@@ -8,9 +8,10 @@ import no.runsafe.framework.server.inventory.RunsafePlayerInventory;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.GameMode;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.HumanEntity;
 
-public class BukkitHumanEntity extends RunsafeEntity
+public abstract class BukkitHumanEntity extends RunsafeEntity
 {
 	public BukkitHumanEntity(HumanEntity toWrap)
 	{
@@ -111,6 +112,12 @@ public class BukkitHumanEntity extends RunsafeEntity
 	public int getExpToLevel()
 	{
 		return this.humanEntity.getExpToLevel();
+	}
+
+	@Override
+	public HumanEntity getRaw()
+	{
+		return humanEntity;
 	}
 
 	protected final HumanEntity humanEntity;

@@ -4,8 +4,9 @@ import no.runsafe.framework.server.block.RunsafeDoubleChest;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.inventory.DoubleChestInventory;
+import org.bukkit.inventory.Inventory;
 
-public class BukkitDoubleChestInventory extends RunsafeInventory
+public abstract class BukkitDoubleChestInventory extends RunsafeInventory
 {
 	public BukkitDoubleChestInventory(DoubleChestInventory toWrap)
 	{
@@ -26,6 +27,12 @@ public class BukkitDoubleChestInventory extends RunsafeInventory
 	public RunsafeDoubleChest getHolder()
 	{
 		return ObjectWrapper.convert(this.doubleChestInventory.getHolder());
+	}
+
+	@Override
+	public DoubleChestInventory getRaw()
+	{
+		return doubleChestInventory;
 	}
 
 	protected final DoubleChestInventory doubleChestInventory;

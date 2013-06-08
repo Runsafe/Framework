@@ -13,7 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.List;
 
 @SuppressWarnings("deprecation")
-public class BukkitInventory
+public abstract class BukkitInventory
 {
 	public BukkitInventory(Inventory toWrap)
 	{

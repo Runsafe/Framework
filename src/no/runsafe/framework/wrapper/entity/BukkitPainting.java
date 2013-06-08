@@ -4,13 +4,14 @@ import no.runsafe.framework.server.entity.RunsafeHanging;
 import org.bukkit.Art;
 import org.bukkit.entity.Painting;
 
-public class BukkitPainting extends RunsafeHanging
+public abstract class BukkitPainting extends RunsafeHanging
 {
 	public BukkitPainting(Painting toWrap)
 	{
 		super(toWrap);
 		painting = toWrap;
 	}
+
 	public String getArt()
 	{
 		return painting.getArt().name();
@@ -24,6 +25,12 @@ public class BukkitPainting extends RunsafeHanging
 	public void setArt(int id)
 	{
 		painting.setArt(Art.getById(id));
+	}
+
+	@Override
+	public Painting getRaw()
+	{
+		return painting;
 	}
 
 	protected final Painting painting;

@@ -1,9 +1,10 @@
 package no.runsafe.framework.wrapper.entity;
 
 import no.runsafe.framework.server.entity.RunsafeEntity;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.FallingBlock;
 
-public class BukkitFallingBlock extends RunsafeEntity
+public abstract class BukkitFallingBlock extends RunsafeEntity
 {
 	public BukkitFallingBlock(FallingBlock toWrap)
 	{
@@ -29,6 +30,12 @@ public class BukkitFallingBlock extends RunsafeEntity
 	public void setDropItem(boolean drop)
 	{
 		this.block.setDropItem(drop);
+	}
+
+	@Override
+	public FallingBlock getRaw()
+	{
+		return block;
 	}
 
 	protected final FallingBlock block;

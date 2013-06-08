@@ -14,7 +14,7 @@ import org.bukkit.entity.Entity;
 import java.util.List;
 import java.util.UUID;
 
-public class BukkitEntity extends RunsafeMetadata
+public abstract class BukkitEntity extends RunsafeMetadata
 {
 	public BukkitEntity(Entity toWrap)
 	{

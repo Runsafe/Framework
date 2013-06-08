@@ -7,7 +7,7 @@ import org.bukkit.inventory.PlayerInventory;
 
 import java.util.List;
 
-public class BukkitPlayerInventory extends RunsafeInventory
+public abstract class BukkitPlayerInventory extends RunsafeInventory
 {
 	public BukkitPlayerInventory(PlayerInventory toWrap)
 	{
@@ -87,6 +87,11 @@ public class BukkitPlayerInventory extends RunsafeInventory
 	{
 		super.clear();
 		inventory.setArmorContents(new ItemStack[4]);
+	}
+
+	public PlayerInventory getRaw()
+	{
+		return inventory;
 	}
 
 	protected final PlayerInventory inventory;

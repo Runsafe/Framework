@@ -4,7 +4,7 @@ import no.runsafe.framework.server.inventory.RunsafeInventory;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.inventory.InventoryHolder;
 
-public class BukkitInventoryHolder
+public abstract class BukkitInventoryHolder
 {
 	public BukkitInventoryHolder(InventoryHolder toWrap)
 	{

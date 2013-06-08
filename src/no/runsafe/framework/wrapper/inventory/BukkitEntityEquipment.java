@@ -7,7 +7,7 @@ import org.bukkit.inventory.EntityEquipment;
 
 import java.util.List;
 
-public class BukkitEntityEquipment
+public abstract class BukkitEntityEquipment
 {
 	public BukkitEntityEquipment(EntityEquipment toWrap)
 	{
@@ -77,6 +77,11 @@ public class BukkitEntityEquipment
 	public RunsafeEntity getHolder()
 	{
 		return ObjectWrapper.convert(this.entityEquipment.getHolder());
+	}
+
+	public EntityEquipment getRaw()
+	{
+		return entityEquipment;
 	}
 
 	protected final EntityEquipment entityEquipment;

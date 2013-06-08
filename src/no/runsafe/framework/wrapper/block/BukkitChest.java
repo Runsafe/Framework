@@ -6,7 +6,7 @@ import no.runsafe.framework.server.inventory.RunsafeInventory;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.block.Chest;
 
-public class BukkitChest extends RunsafeBlockState implements IInventoryHolder
+public abstract class BukkitChest extends RunsafeBlockState implements IInventoryHolder
 {
 	public BukkitChest(Chest toWrap)
 	{

@@ -6,7 +6,7 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 
 import java.util.Map;
 
-public class BukkitEnchantmentStorageMeta extends RunsafeItemMeta
+public abstract class BukkitEnchantmentStorageMeta extends RunsafeItemMeta
 {
 	public BukkitEnchantmentStorageMeta(EnchantmentStorageMeta meta)
 	{
@@ -42,6 +42,12 @@ public class BukkitEnchantmentStorageMeta extends RunsafeItemMeta
 	public boolean removeStoredEnchant(RunsafeEnchantment ench) throws IllegalArgumentException
 	{
 		return enchantmentStorageMeta.removeStoredEnchant(ench.getRaw());
+	}
+
+	@Override
+	public EnchantmentStorageMeta getRaw()
+	{
+		return enchantmentStorageMeta;
 	}
 
 	protected final EnchantmentStorageMeta enchantmentStorageMeta;

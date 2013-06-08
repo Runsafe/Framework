@@ -6,7 +6,7 @@ import no.runsafe.framework.server.player.RunsafePlayer;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.inventory.InventoryView;
 
-public class BukkitInventoryView
+public abstract class BukkitInventoryView
 {
 	public BukkitInventoryView(InventoryView toWrap)
 	{

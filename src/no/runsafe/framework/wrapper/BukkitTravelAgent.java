@@ -3,7 +3,7 @@ package no.runsafe.framework.wrapper;
 import no.runsafe.framework.server.RunsafeLocation;
 import org.bukkit.TravelAgent;
 
-public class BukkitTravelAgent
+public abstract class BukkitTravelAgent
 {
 	public BukkitTravelAgent(TravelAgent travelAgent)
 	{

@@ -16,7 +16,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Logger;
 
-public class BukkitServer
+public abstract class BukkitServer
 {
 	public BukkitServer(Server toWrap)
 	{

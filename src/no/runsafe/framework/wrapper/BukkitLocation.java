@@ -6,7 +6,7 @@ import no.runsafe.framework.server.chunk.RunsafeChunk;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
 
-public class BukkitLocation
+public abstract class BukkitLocation
 {
 	public BukkitLocation(Location toWrap)
 	{

@@ -9,7 +9,7 @@ import org.bukkit.Chunk;
 
 import java.util.List;
 
-public class BukkitChunk
+public abstract class BukkitChunk
 {
 	public BukkitChunk(Chunk toWrap)
 	{
@@ -85,6 +85,11 @@ public class BukkitChunk
 	public boolean unload()
 	{
 		return chunk.unload();
+	}
+
+	public Chunk getRaw()
+	{
+		return chunk;
 	}
 
 	protected final Chunk chunk;

@@ -6,7 +6,7 @@ import no.runsafe.framework.server.inventory.RunsafeInventory;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.block.DoubleChest;
 
-public class BukkitDoubleChest implements IInventoryHolder
+public abstract class BukkitDoubleChest implements IInventoryHolder
 {
 	public BukkitDoubleChest(DoubleChest toWrap)
 	{

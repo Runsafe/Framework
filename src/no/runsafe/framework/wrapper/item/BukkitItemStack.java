@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BukkitItemStack implements ConfigurationSerializable
+public abstract class BukkitItemStack implements ConfigurationSerializable
 {
 	public BukkitItemStack(ItemStack stack)
 	{

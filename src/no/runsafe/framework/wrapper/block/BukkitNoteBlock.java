@@ -3,7 +3,7 @@ package no.runsafe.framework.wrapper.block;
 import no.runsafe.framework.server.block.RunsafeBlockState;
 import org.bukkit.block.NoteBlock;
 
-public class BukkitNoteBlock extends RunsafeBlockState
+public abstract class BukkitNoteBlock extends RunsafeBlockState
 {
 	public BukkitNoteBlock(NoteBlock toWrap)
 	{

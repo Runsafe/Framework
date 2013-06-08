@@ -6,7 +6,7 @@ import no.runsafe.framework.server.inventory.RunsafeInventory;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.block.BrewingStand;
 
-public class BukkitBrewingStand extends RunsafeBlockState implements IInventoryHolder
+public abstract class BukkitBrewingStand extends RunsafeBlockState implements IInventoryHolder
 {
 	public BukkitBrewingStand(BrewingStand toWrap)
 	{

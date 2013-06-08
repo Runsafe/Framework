@@ -7,7 +7,7 @@ import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Furnace;
 
-public class BukkitFurnace extends RunsafeBlockState implements IInventoryHolder
+public abstract class BukkitFurnace extends RunsafeBlockState implements IInventoryHolder
 {
 	public BukkitFurnace(Furnace toWrap)
 	{
@@ -41,7 +41,7 @@ public class BukkitFurnace extends RunsafeBlockState implements IInventoryHolder
 	}
 
 	@Override
-	public BlockState getRaw()
+	public Furnace getRaw()
 	{
 		return furnace;
 	}

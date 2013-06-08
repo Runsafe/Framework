@@ -9,7 +9,7 @@ import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.wrapper.metadata.RunsafeMetadata;
 import org.bukkit.block.Block;
 
-public class BukkitBlock extends RunsafeMetadata
+public abstract class BukkitBlock extends RunsafeMetadata
 {
 	public BukkitBlock(Block toWrap)
 	{

@@ -13,7 +13,7 @@ import org.bukkit.entity.LivingEntity;
 import java.util.HashSet;
 import java.util.List;
 
-public class BukkitLivingEntity extends RunsafeEntity
+public abstract class BukkitLivingEntity extends RunsafeEntity
 {
 	public BukkitLivingEntity(LivingEntity toWrap)
 	{
@@ -21,6 +21,7 @@ public class BukkitLivingEntity extends RunsafeEntity
 		this.entity = toWrap;
 	}
 
+	@Override
 	public LivingEntity getRaw()
 	{
 		return entity;

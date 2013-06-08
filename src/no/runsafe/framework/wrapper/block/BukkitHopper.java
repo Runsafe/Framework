@@ -6,7 +6,7 @@ import no.runsafe.framework.server.inventory.RunsafeInventory;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.block.Hopper;
 
-public class BukkitHopper extends RunsafeBlockState implements IInventoryHolder
+public abstract class BukkitHopper extends RunsafeBlockState implements IInventoryHolder
 {
 	public BukkitHopper(Hopper toWrap)
 	{
@@ -14,6 +14,7 @@ public class BukkitHopper extends RunsafeBlockState implements IInventoryHolder
 		this.hopper = toWrap;
 	}
 
+	@Override
 	public Hopper getRaw()
 	{
 		return this.hopper;
