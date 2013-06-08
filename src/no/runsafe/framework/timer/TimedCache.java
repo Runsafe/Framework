@@ -11,16 +11,19 @@ public class TimedCache<Key, Value>
 
 	public void Invalidate(Key key)
 	{
-		cache.remove(key);
+		if (key != null)
+			cache.remove(key);
 	}
 
 	public Value Cache(Key key)
 	{
-		return cache.containsKey(key) ? cache.get(key) : null;
+		return key != null && cache.containsKey(key) ? cache.get(key) : null;
 	}
 
 	public Value Cache(Key key, Value value)
 	{
+		if (key == null)
+			return value;
 		RefreshTimer(key);
 		return cache.putIfAbsent(key, value);
 	}
