@@ -375,14 +375,6 @@ public class ObjectWrapper
 		return new RunsafeEnchantment(toWrap);
 	}
 
-	@Deprecated
-	public static RunsafeFireworkEffect convert(FireworkEffect toWrap)
-	{
-		if (toWrap == null)
-			return null;
-		return new RunsafeFireworkEffect(toWrap);
-	}
-
 	public static RunsafeInventoryType convert(InventoryType toWrap)
 	{
 		return RunsafeInventoryType.valueOf(toWrap.name());
@@ -432,14 +424,6 @@ public class ObjectWrapper
 		if (toWrap == null)
 			return null;
 		return new RunsafeEnchantmentStorageMeta(toWrap);
-	}
-
-	@Deprecated
-	public static RunsafeFireworkEffectMeta convert(FireworkEffectMeta toWrap)
-	{
-		if (toWrap == null)
-			return null;
-		return new RunsafeFireworkEffectMeta(toWrap);
 	}
 
 	public static RunsafeInventoryView convert(InventoryView toWrap)

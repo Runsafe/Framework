@@ -3,6 +3,7 @@ package no.runsafe.framework.server.item.meta;
 import no.runsafe.framework.wrapper.item.meta.BukkitFireworkMeta;
 import org.bukkit.inventory.meta.FireworkMeta;
 
+@Deprecated
 public class RunsafeFireworkMeta extends BukkitFireworkMeta
 {
 
