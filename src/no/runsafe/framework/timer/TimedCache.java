@@ -25,7 +25,8 @@ public class TimedCache<Key, Value>
 		if (key == null)
 			return value;
 		RefreshTimer(key);
-		return cache.putIfAbsent(key, value);
+		Value cached = cache.putIfAbsent(key, value);
+		return cached == null ? value : cached;
 	}
 
 	private void RefreshTimer(final Key key)
@@ -44,7 +45,7 @@ public class TimedCache<Key, Value>
 			},
 			300
 		);
-		int activeTask = timers.putIfAbsent(key, task);
+		Integer activeTask = timers.putIfAbsent(key, task);
 		if (activeTask != task)
 			scheduler.cancelTask(task);
 	}
