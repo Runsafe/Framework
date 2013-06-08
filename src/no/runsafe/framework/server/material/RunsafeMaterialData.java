@@ -16,20 +16,8 @@ public class RunsafeMaterialData extends BukkitMaterialData
 		super(new MaterialData(type));
 	}
 
-	@Deprecated
-	public RunsafeMaterialData(RunsafeMaterial material)
-	{
-		super(new MaterialData(material.getRaw()));
-	}
-
 	public RunsafeMaterialData(int type, byte data)
 	{
 		super(new MaterialData(type, data));
-	}
-
-	@Deprecated
-	public RunsafeMaterialData(RunsafeMaterial material, byte data)
-	{
-		super(new MaterialData(material.getRaw(), data));
 	}
 }

@@ -3,7 +3,6 @@ package no.runsafe.framework.server.item;
 import no.runsafe.framework.enchant.IEnchant;
 import no.runsafe.framework.enchant.IEnchantable;
 import no.runsafe.framework.minecraft.Item;
-import no.runsafe.framework.server.material.RunsafeMaterial;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.wrapper.item.BukkitItemStack;
 import org.bukkit.Material;
@@ -36,20 +35,6 @@ public class RunsafeItemStack extends BukkitItemStack implements IEnchantable
 	public RunsafeItemStack(int itemId, int amount)
 	{
 		super(new ItemStack(itemId, amount));
-	}
-
-	@SuppressWarnings("deprecation")
-	@Deprecated
-	public RunsafeItemStack(RunsafeMaterial material)
-	{
-		super(new ItemStack(material.getRaw()));
-	}
-
-	@SuppressWarnings("deprecation")
-	@Deprecated
-	public RunsafeItemStack(RunsafeMaterial material, int amount)
-	{
-		super(new ItemStack(material.getRaw(), amount));
 	}
 
 	public RunsafeItemStack(int materialId, int amount, short durability)

@@ -1,7 +1,7 @@
 package no.runsafe.framework.wrapper.material;
 
+import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.server.item.RunsafeItemStack;
-import no.runsafe.framework.server.material.RunsafeMaterial;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.material.MaterialData;
 
@@ -18,6 +18,11 @@ public abstract class BukkitMaterialData
 		return materialData;
 	}
 
+	public Item getMaterial()
+	{
+		return Item.get(materialData);
+	}
+
 	public byte getData()
 	{
 		return this.materialData.getData();
@@ -29,11 +34,6 @@ public abstract class BukkitMaterialData
 	}
 
 	@Deprecated
-	public RunsafeMaterial getItemType()
-	{
-		return ObjectWrapper.convert(this.materialData.getItemType());
-	}
-
 	public int getItemTypeId()
 	{
 		return this.materialData.getItemTypeId();

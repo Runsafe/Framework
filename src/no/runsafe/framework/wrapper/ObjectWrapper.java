@@ -8,10 +8,8 @@ import no.runsafe.framework.server.entity.*;
 import no.runsafe.framework.server.inventory.*;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.server.item.meta.*;
-import no.runsafe.framework.server.material.RunsafeMaterial;
 import no.runsafe.framework.server.material.RunsafeMaterialData;
 import no.runsafe.framework.server.player.RunsafePlayer;
-import no.runsafe.framework.server.potion.RunsafePotionEffect;
 import no.runsafe.framework.wrapper.item.BukkitItemStack;
 import no.runsafe.framework.wrapper.metadata.RunsafeMetadata;
 import org.bukkit.*;
@@ -25,13 +23,11 @@ import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.*;
 import org.bukkit.material.MaterialData;
 import org.bukkit.metadata.Metadatable;
-import org.bukkit.potion.PotionEffect;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-@SuppressWarnings("deprecation")
 public class ObjectWrapper
 {
 	@SuppressWarnings("unchecked")
@@ -47,18 +43,8 @@ public class ObjectWrapper
 				results.add((Wrapper) convert((Metadatable) item));
 			else if (item instanceof ItemStack)
 				results.add((Wrapper) convert((ItemStack) item));
-			else if (item instanceof PotionEffect)
-				results.add((Wrapper) convert((PotionEffect) item));
 		}
 		return results;
-	}
-
-	@Deprecated
-	private static RunsafePotionEffect convert(PotionEffect item)
-	{
-		if (item == null)
-			return null;
-		return new RunsafePotionEffect(item);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -104,12 +90,11 @@ public class ObjectWrapper
 		return new RunsafeEntityEquipment(toWrap);
 	}
 
-	@Deprecated
-	public static RunsafeMaterial convert(Material toWrap)
+	public static no.runsafe.framework.minecraft.Item convert(Material toWrap)
 	{
 		if (toWrap == null)
 			return null;
-		return new RunsafeMaterial(toWrap);
+		return no.runsafe.framework.minecraft.Item.get(toWrap, (byte) 0);
 	}
 
 	public static RunsafeChunk convert(Chunk toWrap)
@@ -449,6 +434,7 @@ public class ObjectWrapper
 		return new RunsafeEnchantmentStorageMeta(toWrap);
 	}
 
+	@Deprecated
 	public static RunsafeFireworkEffectMeta convert(FireworkEffectMeta toWrap)
 	{
 		if (toWrap == null)

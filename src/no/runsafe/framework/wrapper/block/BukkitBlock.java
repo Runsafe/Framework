@@ -4,10 +4,8 @@ import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.block.RunsafeBlockState;
-import no.runsafe.framework.server.material.RunsafeMaterial;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.wrapper.metadata.RunsafeMetadata;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 
 public abstract class BukkitBlock extends RunsafeMetadata
@@ -72,13 +70,6 @@ public abstract class BukkitBlock extends RunsafeMetadata
 	{
 		block.setType(material.getType());
 		block.setData(material.getData());
-	}
-
-	@SuppressWarnings("deprecation")
-	@Deprecated
-	public RunsafeMaterial getMaterialType()
-	{
-		return ObjectWrapper.convert(block.getType());
 	}
 
 	public void breakNaturally()

@@ -1,9 +1,9 @@
 package no.runsafe.framework.server.event.entity;
 
-import no.runsafe.framework.wrapper.ObjectWrapper;
+import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.event.CancellableEvent;
-import no.runsafe.framework.server.material.RunsafeMaterial;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 
 public class RunsafeEntityChangeBlockEvent extends RunsafeEntityEvent implements CancellableEvent
@@ -19,11 +19,9 @@ public class RunsafeEntityChangeBlockEvent extends RunsafeEntityEvent implements
 		return ObjectWrapper.convert(this.event.getBlock());
 	}
 
-	@SuppressWarnings("deprecation")
-	@Deprecated
-	public RunsafeMaterial getTo()
+	public Item getTo()
 	{
-		return ObjectWrapper.convert(this.event.getTo());
+		return Item.get(this.event.getTo(), (byte) 0);
 	}
 
 	public byte getData()

@@ -1,9 +1,9 @@
 package no.runsafe.framework.wrapper.block;
 
+import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.chunk.RunsafeChunk;
-import no.runsafe.framework.server.material.RunsafeMaterial;
 import no.runsafe.framework.server.material.RunsafeMaterialData;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.wrapper.metadata.RunsafeMetadata;
@@ -38,10 +38,14 @@ public abstract class BukkitBlockState extends RunsafeMetadata
 		return ObjectWrapper.convert(blockState.getLocation());
 	}
 
-	@Deprecated
-	public RunsafeMaterial getMaterial()
+	public Item getMaterial()
 	{
-		return ObjectWrapper.convert(blockState.getType());
+		return Item.get(blockState.getType(), (byte) 0);
+	}
+
+	public void setMaterial(Item material)
+	{
+		blockState.setType(material.getType());
 	}
 
 	public int getMaterialID()
@@ -72,12 +76,6 @@ public abstract class BukkitBlockState extends RunsafeMetadata
 	public void setMaterialData(RunsafeMaterialData materialData)
 	{
 		blockState.setData(materialData.getRaw());
-	}
-
-	@Deprecated
-	public void setMaterial(RunsafeMaterial material)
-	{
-		blockState.setType(material.getRaw());
 	}
 
 	public void setMaterialId(int materialId)

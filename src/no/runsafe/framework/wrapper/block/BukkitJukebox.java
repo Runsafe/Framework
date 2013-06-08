@@ -1,11 +1,9 @@
 package no.runsafe.framework.wrapper.block;
 
+import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.server.block.RunsafeBlockState;
-import no.runsafe.framework.server.material.RunsafeMaterial;
-import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.block.Jukebox;
 
-@SuppressWarnings("deprecation")
 public abstract class BukkitJukebox extends RunsafeBlockState
 {
 	public BukkitJukebox(Jukebox toWrap)
@@ -14,16 +12,14 @@ public abstract class BukkitJukebox extends RunsafeBlockState
 		jukebox = toWrap;
 	}
 
-	@Deprecated
-	public RunsafeMaterial getPlaying()
+	public Item getPlaying()
 	{
-		return ObjectWrapper.convert(jukebox.getPlaying());
+		return Item.get(jukebox.getPlaying(), (byte) 0);
 	}
 
-	@Deprecated
-	public void setPlaying(RunsafeMaterial material)
+	public void setPlaying(Item material)
 	{
-		jukebox.setPlaying(material.getRaw());
+		jukebox.setPlaying(material.getType());
 	}
 
 	public boolean isPlaying()

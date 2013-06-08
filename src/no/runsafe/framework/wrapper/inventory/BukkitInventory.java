@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.server.inventory.IInventoryHolder;
 import no.runsafe.framework.server.item.RunsafeItemStack;
-import no.runsafe.framework.server.material.RunsafeMaterial;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.inventory.Inventory;
@@ -55,18 +54,6 @@ public abstract class BukkitInventory
 		return this.inventory;
 	}
 
-	@Deprecated
-	public boolean contains(int material)
-	{
-		return this.inventory.contains(material);
-	}
-
-	@Deprecated
-	public boolean contains(int material, int amount)
-	{
-		return this.inventory.contains(material, amount);
-	}
-
 	public boolean contains(RunsafeItemStack itemStack)
 	{
 		return this.inventory.contains(itemStack.getRaw());
@@ -75,18 +62,6 @@ public abstract class BukkitInventory
 	public boolean contains(RunsafeItemStack itemStack, int amount)
 	{
 		return this.inventory.contains(itemStack.getRaw(), amount);
-	}
-
-	@Deprecated
-	public boolean contains(RunsafeMaterial material)
-	{
-		return this.inventory.contains(material.getRaw());
-	}
-
-	@Deprecated
-	public boolean contains(RunsafeMaterial material, int amount)
-	{
-		return this.inventory.contains(material.getRaw(), amount);
 	}
 
 	public boolean contains(Item item)
@@ -99,6 +74,7 @@ public abstract class BukkitInventory
 		return inventory.contains(item.getType(), amount);
 	}
 
+	@Deprecated
 	public int first(int material)
 	{
 		return this.inventory.first(material);
@@ -109,10 +85,9 @@ public abstract class BukkitInventory
 		return this.inventory.first(itemStack.getRaw());
 	}
 
-	@Deprecated
-	public int first(RunsafeMaterial material)
+	public int first(Item material)
 	{
-		return this.inventory.first(material.getRaw());
+		return this.inventory.first(material.getType());
 	}
 
 	public int firstEmpty()
@@ -151,10 +126,9 @@ public abstract class BukkitInventory
 		this.inventory.remove(itemStack.getRaw());
 	}
 
-	@Deprecated
-	public void remove(RunsafeMaterial material)
+	public void remove(Item material)
 	{
-		this.inventory.remove(material.getRaw());
+		this.inventory.remove(material.getType());
 	}
 
 	public void setItem(int index, RunsafeItemStack itemStack)

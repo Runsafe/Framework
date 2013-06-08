@@ -31,7 +31,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	public static final HashMap<String, InjectionPlugin> Instances = new HashMap<String, InjectionPlugin>();
 
 	/**
-	 * Get the first implementation of a given API from any plugin
+	 * get the first implementation of a given API from any plugin
 	 *
 	 * @param apiType The interface specification needed
 	 * @return The first available implementation of the interface
@@ -48,7 +48,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	}
 
 	/**
-	 * Get all implementations of a given API from all plugins
+	 * get all implementations of a given API from all plugins
 	 *
 	 * @param apiType The interface specification needed
 	 * @return The first available implementation of the interface

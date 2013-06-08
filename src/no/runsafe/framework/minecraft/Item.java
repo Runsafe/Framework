@@ -10,20 +10,65 @@ import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.server.material.RunsafeMaterialData;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
+import org.bukkit.material.MaterialData;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Item implements IEnchantable
 {
-	public static Item Get(RunsafeItemStack itemStack)
+	public static Item get(RunsafeItemStack itemStack)
 	{
-		return new Item(itemStack.getType(), false, itemStack.getRaw().getData().getData());
+		return itemStack == null ? null : itemStack.getItemType();
 	}
 
-	public static Item Get(RunsafeBlock block)
+	public static Item get(RunsafeBlock block)
 	{
-		return new Item(block.getRaw().getType(), false, (byte) block.getData());
+		return block == null ? null : block.getMaterial();
+	}
+
+	public static Item get(MaterialData material)
+	{
+		return material == null ? null : getItem(material.getItemType(), material.getData());
+	}
+
+	public static Item get(Material material, byte damage)
+	{
+		if (material == null)
+			return null;
+		return getItem(material, damage);
+	}
+
+	public static Item get(String type)
+	{
+		Material material = Material.getMaterial(type);
+		if (material == null)
+			return null;
+		return getItem(material, (byte) 0);
+	}
+
+	public static Item get(String type, byte damage)
+	{
+		Material material = Material.getMaterial(type);
+		if (material == null)
+			return null;
+		return getItem(material, damage);
+	}
+
+	public static Item get(int type)
+	{
+		Material material = Material.getMaterial(type);
+		if (material == null)
+			return null;
+		return getItem(material, (byte) 0);
+	}
+
+	public static Item get(int type, byte damage)
+	{
+		Material material = Material.getMaterial(type);
+		if (material == null)
+			return null;
+		return getItem(material, damage);
 	}
 
 	public static class BuildingBlock
@@ -704,45 +749,6 @@ public class Item implements IEnchantable
 			public static final Item Firework = new Item(Material.FIREWORK, true);
 			public static final Item EnchantedBook = new Item(Material.ENCHANTED_BOOK, true);
 		}
-	}
-
-	public static Item get(String type)
-	{
-		Material material = Material.getMaterial(type);
-		if (material == null)
-			return null;
-		return getItem(material, (byte) 0);
-	}
-
-	public static Item get(String type, byte damage)
-	{
-		Material material = Material.getMaterial(type);
-		if (material == null)
-			return null;
-		return getItem(material, damage);
-	}
-
-	public static Item get(int type)
-	{
-		Material material = Material.getMaterial(type);
-		if (material == null)
-			return null;
-		return getItem(material, (byte) 0);
-	}
-
-	public static Item get(int type, byte damage)
-	{
-		Material material = Material.getMaterial(type);
-		if (material == null)
-			return null;
-		return getItem(material, damage);
-	}
-
-	public static Item get(Material material, byte damage)
-	{
-		if (material == null)
-			return null;
-		return getItem(material, damage);
 	}
 
 	public int getStackSize()
