@@ -9,6 +9,11 @@ public class TimedCache<Key, Value>
 		this.scheduler = scheduler;
 	}
 
+	public void Invalidate(Key key)
+	{
+		cache.remove(key);
+	}
+
 	public Value Cache(Key key)
 	{
 		return cache.containsKey(key) ? cache.get(key) : null;
