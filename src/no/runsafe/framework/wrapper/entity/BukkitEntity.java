@@ -10,7 +10,6 @@ import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.wrapper.metadata.RunsafeMetadata;
 import org.bukkit.Chunk;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.Projectile;
 
 import java.util.List;
 import java.util.UUID;

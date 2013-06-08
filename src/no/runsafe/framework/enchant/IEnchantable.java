@@ -2,8 +2,6 @@ package no.runsafe.framework.enchant;
 
 import no.runsafe.framework.server.item.RunsafeItemStack;
 
-import java.util.List;
-
 public interface IEnchantable
 {
 	boolean enchanted();

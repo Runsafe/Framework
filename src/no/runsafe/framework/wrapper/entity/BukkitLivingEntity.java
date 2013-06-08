@@ -8,9 +8,7 @@ import no.runsafe.framework.server.entity.RunsafeEntity;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import no.runsafe.framework.server.potion.RunsafePotionEffect;
 import no.runsafe.framework.wrapper.ObjectWrapper;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Projectile;
 
 import java.util.HashSet;
 import java.util.List;

@@ -1,7 +1,6 @@
 package no.runsafe.framework.wrapper.item.meta;
 
 import no.runsafe.framework.server.RunsafeFireworkEffect;
-import no.runsafe.framework.server.item.meta.RunsafeFireworkMeta;
 import no.runsafe.framework.server.item.meta.RunsafeItemMeta;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.FireworkEffect;

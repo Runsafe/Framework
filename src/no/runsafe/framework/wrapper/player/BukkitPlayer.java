@@ -1,6 +1,5 @@
 package no.runsafe.framework.wrapper.player;
 
-import no.runsafe.framework.output.ChatColour;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.entity.RunsafeLivingEntity;

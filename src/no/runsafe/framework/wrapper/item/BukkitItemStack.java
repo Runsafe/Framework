@@ -89,7 +89,13 @@ public class BukkitItemStack implements ConfigurationSerializable
 
 	public boolean equals(Object obj)
 	{
-		return itemStack.equals(obj);
+		if (obj instanceof BukkitItemStack)
+			return itemStack.equals(((BukkitItemStack) obj).getRaw());
+
+		if (obj instanceof ItemStack)
+			return itemStack.equals(obj);
+
+		return false;
 	}
 
 	public final int hashCode()

@@ -4,7 +4,6 @@ import no.runsafe.framework.server.enchantment.RunsafeEnchantment;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
-import java.util.Map;
 
 public class BukkitItemMeta
 {
