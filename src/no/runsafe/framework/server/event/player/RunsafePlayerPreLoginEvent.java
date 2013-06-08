@@ -18,7 +18,7 @@ public class RunsafePlayerPreLoginEvent extends RunsafeEvent
 
 	public RunsafePlayer getPlayer()
 	{
-		return RunsafeServer.Instance.getPlayer(event.getName());
+		return RunsafeServer.Instance.getOfflinePlayerExact(event.getName());
 	}
 
 	public String getName()

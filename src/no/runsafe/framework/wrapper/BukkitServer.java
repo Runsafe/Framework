@@ -108,6 +108,11 @@ public class BukkitServer
 		return this.server.getName();
 	}
 
+	public RunsafePlayer getOfflinePlayerExact(String playerName)
+	{
+		return new RunsafePlayer(server.getOfflinePlayer(playerName));
+	}
+
 	public List<RunsafePlayer> getOfflinePlayers()
 	{
 		return ObjectWrapper.convert(server.getOfflinePlayers());
