@@ -80,7 +80,12 @@ public final class RunsafeDatabaseHandler implements IDatabase
 		this.databaseUsername = config.getString("database.username");
 		this.databasePassword = config.getString("database.password");
 
-		if(QueryRow("SELECT VERSION()") == null)
+		try
+		{
+			if (QueryRow("SELECT VERSION()") == null)
+				throw new Exception("No database!");
+		}
+		catch (Exception e)
 		{
 			output.write("\n" +
 				"\n" +
