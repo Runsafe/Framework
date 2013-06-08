@@ -21,16 +21,16 @@ public class TimedCache<Key, Value>
 
 	public Value Cache(Key key, Value value)
 	{
-		RefreshTimer();
+		RefreshTimer(key);
 		return cache.putIfAbsent(key, value);
 	}
 
-	private void RefreshTimer()
+	private void RefreshTimer(Key key)
 	{
-		if (task > 0)
-			scheduler.cancelTask(task);
+		if (timers.containsKey(key))
+			scheduler.cancelTask(timers.get(key));
 
-		task = scheduler.startAsyncTask(
+		int task = scheduler.startAsyncTask(
 			new Runnable()
 			{
 				@Override
@@ -41,9 +41,12 @@ public class TimedCache<Key, Value>
 			},
 			300
 		);
+		int activeTask = timers.putIfAbsent(key, task);
+		if (activeTask != task)
+			scheduler.cancelTask(task);
 	}
 
 	private final ConcurrentHashMap<Key, Value> cache = new ConcurrentHashMap<Key, Value>();
+	private final ConcurrentHashMap<Key, Integer> timers = new ConcurrentHashMap<Key, Integer>();
 	private final IScheduler scheduler;
-	private int task;
 }
