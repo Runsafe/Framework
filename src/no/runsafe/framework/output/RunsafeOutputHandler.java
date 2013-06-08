@@ -208,7 +208,7 @@ public class RunsafeOutputHandler implements IOutput
 
 	private String getStackTrace()
 	{
-		int skip = 3;
+		int skip = 5;
 		List<String> stack = new ArrayList<String>();
 		for (StackTraceElement element : Thread.currentThread().getStackTrace())
 		{
