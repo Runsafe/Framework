@@ -2,6 +2,7 @@ package no.runsafe.framework.command;
 
 import no.runsafe.framework.command.prepared.IPreparedCommand;
 import no.runsafe.framework.output.ChatColour;
+import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.ICommandExecutor;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.entity.Player;
@@ -11,10 +12,11 @@ import org.bukkit.entity.Player;
  */
 public final class BukkitCommandExecutor implements org.bukkit.command.CommandExecutor
 {
-	public BukkitCommandExecutor(ICommandHandler command, ICommandExecutor console)
+	public BukkitCommandExecutor(ICommandHandler command, ICommandExecutor console, IOutput logger)
 	{
 		this.command = command;
 		this.console = console;
+		this.logger = logger;
 	}
 
 	public String getName()
@@ -30,9 +32,24 @@ public final class BukkitCommandExecutor implements org.bukkit.command.CommandEx
 	@Override
 	public boolean onCommand(org.bukkit.command.CommandSender sender, org.bukkit.command.Command command, String label, String[] args)
 	{
-		IPreparedCommand preparedCommand;
 		if (args == null)
 			args = new String[0];
+		try
+		{
+			executeCommand(sender, args);
+		}
+		catch (Exception e)
+		{
+			logger.logException(e);
+			if (sender != null)
+				sender.sendMessage(ChatColour.ToMinecraft("&cCommand threw an exception!"));
+		}
+		return true;
+	}
+
+	private void executeCommand(org.bukkit.command.CommandSender sender, String[] args)
+	{
+		IPreparedCommand preparedCommand;
 		if (sender instanceof Player)
 			preparedCommand = this.command.prepare(ObjectWrapper.convert((Player) sender), args);
 		else
@@ -53,9 +70,9 @@ public final class BukkitCommandExecutor implements org.bukkit.command.CommandEx
 				)
 			);
 		}
-		return true;
 	}
 
 	private final ICommandHandler command;
 	private final ICommandExecutor console;
+	private final IOutput logger;
 }
