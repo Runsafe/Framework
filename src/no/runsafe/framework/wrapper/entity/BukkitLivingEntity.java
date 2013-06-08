@@ -141,18 +141,21 @@ public class BukkitLivingEntity extends RunsafeEntity
 		return ObjectWrapper.convert(entity.getKiller());
 	}
 
+	@SuppressWarnings("deprecation")
 	@Deprecated
 	public boolean addPotionEffect(RunsafePotionEffect effect)
 	{
 		return this.entity.addPotionEffect(effect.getRaw());
 	}
 
+	@SuppressWarnings("deprecation")
 	@Deprecated
 	public boolean addPotionEffect(RunsafePotionEffect effect, boolean force)
 	{
 		return this.entity.addPotionEffect(effect.getRaw(), force);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Deprecated
 	public void addPotionEffects(List<RunsafePotionEffect> effects)
 	{
@@ -160,12 +163,14 @@ public class BukkitLivingEntity extends RunsafeEntity
 			this.entity.addPotionEffect(effect.getRaw());
 	}
 
+	@SuppressWarnings("deprecation")
 	@Deprecated
 	public boolean hasPotionEffect(RunsafePotionEffect effect)
 	{
 		return this.entity.hasPotionEffect(effect.getRaw().getType());
 	}
 
+	@SuppressWarnings("deprecation")
 	@Deprecated
 	public void removePotionEffect(RunsafePotionEffect effect)
 	{

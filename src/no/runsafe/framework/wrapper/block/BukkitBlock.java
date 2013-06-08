@@ -62,6 +62,7 @@ public class BukkitBlock extends RunsafeMetadata
 		return block;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Deprecated
 	public RunsafeMaterial getMaterialType()
 	{

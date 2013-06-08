@@ -3,6 +3,7 @@ package no.runsafe.framework.server.material;
 import no.runsafe.framework.wrapper.material.BukkitMaterialData;
 import org.bukkit.material.MaterialData;
 
+@SuppressWarnings("deprecation")
 public class RunsafeMaterialData extends BukkitMaterialData
 {
 	public RunsafeMaterialData(MaterialData toWrap)

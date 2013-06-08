@@ -39,6 +39,7 @@ public class RunsafePlayerInteractEvent extends RunsafePlayerEvent implements Ca
 		return this.event.hasItem();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Deprecated
 	public RunsafeMaterial getMaterial()
 	{

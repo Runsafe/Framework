@@ -9,6 +9,7 @@ import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.wrapper.metadata.RunsafeMetadata;
 import org.bukkit.block.BlockState;
 
+@SuppressWarnings("deprecation")
 public class BukkitBlockState extends RunsafeMetadata
 {
 	public BukkitBlockState(BlockState blockState)

@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+@SuppressWarnings("deprecation")
 public class ObjectWrapper
 {
 	@SuppressWarnings("unchecked")
@@ -387,6 +388,7 @@ public class ObjectWrapper
 		return new RunsafeEnchantment(toWrap);
 	}
 
+	@Deprecated
 	public static RunsafeFireworkEffect convert(FireworkEffect toWrap)
 	{
 		if (toWrap == null)

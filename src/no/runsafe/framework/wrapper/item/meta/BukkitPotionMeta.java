@@ -7,6 +7,7 @@ import org.bukkit.inventory.meta.PotionMeta;
 
 import java.util.List;
 
+@SuppressWarnings("deprecation")
 public class BukkitPotionMeta extends RunsafeItemMeta
 {
 	public BukkitPotionMeta(PotionMeta toWrap)
@@ -20,11 +21,13 @@ public class BukkitPotionMeta extends RunsafeItemMeta
 		return potion.hasCustomEffects();
 	}
 
+	@Deprecated
 	public List<RunsafePotionEffect> getCustomEffects()
 	{
 		return ObjectWrapper.convert(potion.getCustomEffects());
 	}
 
+	@Deprecated
 	public boolean addCustomEffect(RunsafePotionEffect effect, boolean overwrite)
 	{
 		return potion.addCustomEffect(effect.getRaw(), overwrite);

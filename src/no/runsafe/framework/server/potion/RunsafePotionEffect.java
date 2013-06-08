@@ -11,6 +11,7 @@ public class RunsafePotionEffect
 		this.effect = effect;
 	}
 
+	@SuppressWarnings("deprecation")
 	public static RunsafePotionEffect create(int id, int duration, int amplifier)
 	{
 		return new RunsafePotionEffect(new PotionEffect(PotionEffectType.getById(id), duration, amplifier));

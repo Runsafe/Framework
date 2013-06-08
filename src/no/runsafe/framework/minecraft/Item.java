@@ -23,7 +23,7 @@ public class Item implements IEnchantable
 
 	public static Item Get(RunsafeBlock block)
 	{
-		return new Item(block.getMaterialType().getRaw(), false, (byte) block.getData());
+		return new Item(block.getRaw().getType(), false, (byte) block.getData());
 	}
 
 	public static class BuildingBlock

@@ -18,6 +18,7 @@ public class RunsafeSpawner extends RunsafeBlock
 		return (RunsafeCreatureSpawner) super.getBlockState();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Deprecated
 	public String getCreatureType()
 	{
@@ -30,6 +31,7 @@ public class RunsafeSpawner extends RunsafeBlock
 		return getBlockState().getRaw().getSpawnedType().getTypeId();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Deprecated
 	public void setCreatureType(String type)
 	{

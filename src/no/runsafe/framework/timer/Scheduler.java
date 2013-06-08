@@ -90,6 +90,7 @@ public class Scheduler implements IScheduler
 			this.scheduler.cancelTask(eventId);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	@Deprecated
 	public int startAsyncTask(Runnable func, Long ticks)
@@ -97,6 +98,7 @@ public class Scheduler implements IScheduler
 		return this.scheduler.scheduleAsyncDelayedTask(this.plugin, func, ticks);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	@Deprecated
 	public int startAsyncTask(Runnable func, int seconds)
@@ -104,6 +106,7 @@ public class Scheduler implements IScheduler
 		return this.startAsyncTask(func, (long) seconds * 20);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	@Deprecated
 	public int startAsyncRepeatingTask(Runnable func, int delay, int period)
@@ -111,6 +114,7 @@ public class Scheduler implements IScheduler
 		return this.startAsyncRepeatingTask(func, (long) delay * 20, (long) period * 20);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	@Deprecated
 	public int startAsyncRepeatingTask(Runnable func, long delay, long period)

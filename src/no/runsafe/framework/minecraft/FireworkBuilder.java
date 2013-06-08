@@ -156,7 +156,7 @@ public class FireworkBuilder
 			meta.setDisplayName(name);
 		if (lore != null)
 			meta.setLore(lore);
-		meta.addEffect(ObjectWrapper.convert(builder.build()));
+		meta.getRaw().addEffect(builder.build());
 		return item;
 	}
 

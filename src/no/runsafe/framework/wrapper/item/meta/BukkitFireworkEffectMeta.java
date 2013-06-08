@@ -5,6 +5,7 @@ import no.runsafe.framework.server.item.meta.RunsafeItemMeta;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.inventory.meta.FireworkEffectMeta;
 
+@SuppressWarnings("deprecation")
 public class BukkitFireworkEffectMeta extends RunsafeItemMeta
 {
 	public BukkitFireworkEffectMeta(FireworkEffectMeta meta)
@@ -13,6 +14,7 @@ public class BukkitFireworkEffectMeta extends RunsafeItemMeta
 		effectMeta = meta;
 	}
 
+	@Deprecated
 	public void setEffect(RunsafeFireworkEffect effect)
 	{
 		effectMeta.setEffect(effect.getRaw());
@@ -23,6 +25,7 @@ public class BukkitFireworkEffectMeta extends RunsafeItemMeta
 		return effectMeta.hasEffect();
 	}
 
+	@Deprecated
 	public RunsafeFireworkEffect getEffect()
 	{
 		return ObjectWrapper.convert(effectMeta.getEffect());

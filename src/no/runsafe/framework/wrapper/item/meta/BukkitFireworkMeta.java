@@ -5,10 +5,12 @@ import no.runsafe.framework.server.item.meta.RunsafeItemMeta;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.FireworkEffect;
 import org.bukkit.inventory.meta.FireworkMeta;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("deprecation")
 public class BukkitFireworkMeta extends RunsafeItemMeta
 {
 	public BukkitFireworkMeta(FireworkMeta toWrap)
@@ -17,11 +19,13 @@ public class BukkitFireworkMeta extends RunsafeItemMeta
 		fireworkMeta = toWrap;
 	}
 
+	@Deprecated
 	public void addEffect(RunsafeFireworkEffect effect) throws IllegalArgumentException
 	{
 		fireworkMeta.addEffect(effect.getRaw());
 	}
 
+	@Deprecated
 	public List<RunsafeFireworkEffect> getEffects()
 	{
 		ArrayList<RunsafeFireworkEffect> effects = new ArrayList<RunsafeFireworkEffect>();
@@ -58,6 +62,12 @@ public class BukkitFireworkMeta extends RunsafeItemMeta
 	public void setPower(int power) throws IllegalArgumentException
 	{
 		fireworkMeta.setPower(power);
+	}
+
+	@Override
+	public FireworkMeta getRaw()
+	{
+		return fireworkMeta;
 	}
 
 	protected final FireworkMeta fireworkMeta;

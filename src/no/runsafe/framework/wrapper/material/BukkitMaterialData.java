@@ -5,6 +5,7 @@ import no.runsafe.framework.server.material.RunsafeMaterial;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.material.MaterialData;
 
+@SuppressWarnings("deprecation")
 public class BukkitMaterialData
 {
 	public BukkitMaterialData(MaterialData toWrap)
