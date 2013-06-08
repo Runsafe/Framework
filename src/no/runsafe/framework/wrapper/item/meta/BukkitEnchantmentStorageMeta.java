@@ -6,6 +6,7 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 
 import java.util.Map;
 
+@Deprecated
 public abstract class BukkitEnchantmentStorageMeta extends RunsafeItemMeta
 {
 	public BukkitEnchantmentStorageMeta(EnchantmentStorageMeta meta)

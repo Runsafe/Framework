@@ -3,6 +3,7 @@ package no.runsafe.framework.server.item.meta;
 import no.runsafe.framework.wrapper.item.meta.BukkitSkullMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
+@Deprecated
 public class RunsafeSkullMeta extends BukkitSkullMeta
 {
 	public RunsafeSkullMeta(SkullMeta toWrap)

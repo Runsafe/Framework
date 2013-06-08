@@ -1,12 +1,12 @@
 package no.runsafe.framework.minecraft;
 
-import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeLocation;
+import no.runsafe.framework.server.item.RunsafeFirework;
 import no.runsafe.framework.server.item.RunsafeItemStack;
-import no.runsafe.framework.server.item.meta.RunsafeFireworkMeta;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
+import org.bukkit.inventory.meta.FireworkMeta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -135,28 +135,11 @@ public class FireworkBuilder
 		return this;
 	}
 
-	public FireworkBuilder Name(String name)
-	{
-		this.name = name;
-		return this;
-	}
-
-	public FireworkBuilder Lore(List<String> lore)
-	{
-		this.lore = lore;
-		return this;
-	}
-
 	public RunsafeItemStack Create()
 	{
-		RunsafeItemStack item = Item.Special.Crafted.Firework.getItem();
-		RunsafeFireworkMeta meta = (RunsafeFireworkMeta) item.getItemMeta();
-		meta.setPower(power);
-		if (name != null)
-			meta.setDisplayName(name);
-		if (lore != null)
-			meta.setLore(lore);
-		meta.getRaw().addEffect(builder.build());
+		RunsafeFirework item = (RunsafeFirework) Item.Special.Crafted.Firework.getItem();
+		item.setPower(power);
+		((FireworkMeta) item.getRaw().getItemMeta()).addEffect(builder.build());
 		return item;
 	}
 
@@ -183,8 +166,6 @@ public class FireworkBuilder
 	private FireworkEffect.Builder builder;
 	private final List<FireworkEffect> effects = new ArrayList<FireworkEffect>();
 	private int power = 0;
-	private String name;
-	private List<String> lore;
 
 	private static final Random rng = new Random();
 }

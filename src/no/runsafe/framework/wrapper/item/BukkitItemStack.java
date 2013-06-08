@@ -8,8 +8,10 @@ import org.bukkit.Material;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public abstract class BukkitItemStack implements ConfigurationSerializable
@@ -147,6 +149,22 @@ public abstract class BukkitItemStack implements ConfigurationSerializable
 	public boolean setItemMeta(RunsafeItemMeta itemMeta)
 	{
 		return itemStack.setItemMeta(itemMeta.getRaw());
+	}
+
+	public BukkitItemStack setLore(List<String> lore)
+	{
+		ItemMeta meta = itemStack.getItemMeta();
+		meta.setLore(lore);
+		itemStack.setItemMeta(meta);
+		return this;
+	}
+
+	public BukkitItemStack setDisplayName(String name)
+	{
+		ItemMeta meta = itemStack.getItemMeta();
+		meta.setDisplayName(name);
+		itemStack.setItemMeta(meta);
+		return this;
 	}
 
 	@Override

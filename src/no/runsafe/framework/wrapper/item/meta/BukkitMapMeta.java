@@ -4,6 +4,7 @@ import no.runsafe.framework.server.item.meta.RunsafeItemMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.MapMeta;
 
+@Deprecated
 public abstract class BukkitMapMeta extends RunsafeItemMeta
 {
 	public BukkitMapMeta(MapMeta toWrap)

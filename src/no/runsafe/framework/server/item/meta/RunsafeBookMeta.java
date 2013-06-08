@@ -4,6 +4,7 @@ import org.bukkit.inventory.meta.BookMeta;
 
 import java.util.List;
 
+@Deprecated
 public class RunsafeBookMeta extends RunsafeItemMeta
 {
 	public RunsafeBookMeta(BookMeta meta)

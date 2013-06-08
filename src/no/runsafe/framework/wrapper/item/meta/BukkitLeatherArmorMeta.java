@@ -5,6 +5,7 @@ import org.bukkit.Color;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
+@Deprecated
 public abstract class BukkitLeatherArmorMeta extends RunsafeItemMeta
 {
 	public BukkitLeatherArmorMeta(LeatherArmorMeta toWrap)

@@ -3,6 +3,7 @@ package no.runsafe.framework.server.item.meta;
 import no.runsafe.framework.wrapper.item.meta.BukkitLeatherArmorMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
+@Deprecated
 public class RunsafeLeatherArmorMeta extends BukkitLeatherArmorMeta
 {
 	public RunsafeLeatherArmorMeta(LeatherArmorMeta toWrap)

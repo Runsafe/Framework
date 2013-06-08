@@ -1,11 +1,15 @@
 package no.runsafe.framework.wrapper;
 
-import no.runsafe.framework.server.*;
+import no.runsafe.framework.server.RunsafeEntityEquipment;
+import no.runsafe.framework.server.RunsafeLocation;
+import no.runsafe.framework.server.RunsafeTravelAgent;
+import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.block.*;
 import no.runsafe.framework.server.chunk.RunsafeChunk;
 import no.runsafe.framework.server.enchantment.RunsafeEnchantment;
 import no.runsafe.framework.server.entity.*;
 import no.runsafe.framework.server.inventory.*;
+import no.runsafe.framework.server.item.RunsafeFirework;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.server.item.meta.*;
 import no.runsafe.framework.server.material.RunsafeMaterialData;
@@ -365,6 +369,8 @@ public class ObjectWrapper
 	{
 		if (toWrap == null)
 			return null;
+		if (toWrap.getItemMeta() instanceof FireworkMeta)
+			return new RunsafeFirework(toWrap);
 		return new RunsafeItemStack(toWrap);
 	}
 
@@ -431,13 +437,6 @@ public class ObjectWrapper
 		if (toWrap == null)
 			return null;
 		return new RunsafeInventoryView(toWrap);
-	}
-
-	public static RunsafeFireworkMeta convert(FireworkMeta toWrap)
-	{
-		if (toWrap == null)
-			return null;
-		return new RunsafeFireworkMeta(toWrap);
 	}
 
 	public static RunsafeTravelAgent convert(TravelAgent toWrap)

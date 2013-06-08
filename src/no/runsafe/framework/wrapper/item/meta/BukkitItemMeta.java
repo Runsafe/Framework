@@ -5,6 +5,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
+@Deprecated
 public abstract class BukkitItemMeta
 {
 	public BukkitItemMeta(ItemMeta meta)
