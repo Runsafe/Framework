@@ -19,6 +19,7 @@ public final class RunsafeDatabaseHandler implements IDatabase
 {
 	public RunsafeDatabaseHandler(IOutput output)
 	{
+		this.output = output;
 		YamlConfiguration config = new YamlConfiguration();
 		try
 		{
@@ -91,7 +92,6 @@ public final class RunsafeDatabaseHandler implements IDatabase
 			);
 			System.exit(1);
 		}
-		this.output = output;
 	}
 
 	@Override
