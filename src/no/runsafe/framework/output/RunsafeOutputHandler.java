@@ -200,7 +200,7 @@ public class RunsafeOutputHandler implements IOutput
 			String.format(message, params)
 		);
 
-		if (messageLevel.intValue() >= Level.FINEST.intValue())
+		if (messageLevel.intValue() <= Level.FINEST.intValue())
 			formatted = String.format("%s\nat %s", formatted, getStackTrace());
 
 		return formatted;
