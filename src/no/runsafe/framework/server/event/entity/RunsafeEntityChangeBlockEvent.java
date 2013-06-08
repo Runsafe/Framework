@@ -19,6 +19,7 @@ public class RunsafeEntityChangeBlockEvent extends RunsafeEntityEvent implements
 		return ObjectWrapper.convert(this.event.getBlock());
 	}
 
+	@Deprecated
 	public RunsafeMaterial getTo()
 	{
 		return ObjectWrapper.convert(this.event.getTo());

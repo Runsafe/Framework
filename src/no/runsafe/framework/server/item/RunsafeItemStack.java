@@ -38,11 +38,13 @@ public class RunsafeItemStack extends BukkitItemStack implements IEnchantable
 		super(new ItemStack(itemId, amount));
 	}
 
+	@Deprecated
 	public RunsafeItemStack(RunsafeMaterial material)
 	{
 		super(new ItemStack(material.getRaw()));
 	}
 
+	@Deprecated
 	public RunsafeItemStack(RunsafeMaterial material, int amount)
 	{
 		super(new ItemStack(material.getRaw(), amount));

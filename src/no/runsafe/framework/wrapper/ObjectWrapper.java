@@ -103,6 +103,7 @@ public class ObjectWrapper
 		return new RunsafeEntityEquipment(toWrap);
 	}
 
+	@Deprecated
 	public static RunsafeMaterial convert(Material toWrap)
 	{
 		if (toWrap == null)

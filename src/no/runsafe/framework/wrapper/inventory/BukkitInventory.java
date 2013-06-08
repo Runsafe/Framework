@@ -108,6 +108,7 @@ public class BukkitInventory
 		return this.inventory.first(itemStack.getRaw());
 	}
 
+	@Deprecated
 	public int first(RunsafeMaterial material)
 	{
 		return this.inventory.first(material.getRaw());

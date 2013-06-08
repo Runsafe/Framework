@@ -37,6 +37,7 @@ public class BukkitBlockState extends RunsafeMetadata
 		return ObjectWrapper.convert(blockState.getLocation());
 	}
 
+	@Deprecated
 	public RunsafeMaterial getMaterial()
 	{
 		return ObjectWrapper.convert(blockState.getType());
@@ -72,6 +73,7 @@ public class BukkitBlockState extends RunsafeMetadata
 		blockState.setData(materialData.getRaw());
 	}
 
+	@Deprecated
 	public void setMaterial(RunsafeMaterial material)
 	{
 		blockState.setType(material.getRaw());

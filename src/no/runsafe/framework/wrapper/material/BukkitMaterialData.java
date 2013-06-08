@@ -27,6 +27,7 @@ public class BukkitMaterialData
 		this.materialData.setData(data);
 	}
 
+	@Deprecated
 	public RunsafeMaterial getItemType()
 	{
 		return ObjectWrapper.convert(this.materialData.getItemType());
