@@ -193,6 +193,9 @@ public class ObjectWrapper
 		if (toWrap instanceof Sign)
 			return convert((Sign) toWrap);
 
+		if (toWrap instanceof Dropper)
+			return convert((Dropper) toWrap);
+
 		return new RunsafeBlockState(toWrap);
 	}
 
