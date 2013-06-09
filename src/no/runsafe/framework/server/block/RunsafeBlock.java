@@ -1,6 +1,7 @@
 package no.runsafe.framework.server.block;
 
 import no.runsafe.framework.minecraft.Item;
+import no.runsafe.framework.server.RunsafeServer;
 import no.runsafe.framework.wrapper.block.BukkitBlock;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -16,6 +17,13 @@ public class RunsafeBlock extends BukkitBlock
 
 	public boolean is(Item type)
 	{
+		RunsafeServer.Instance.getLogger().info(
+			String.format(
+				"ItemStack(%s,%d) is Item(%s,%d)?",
+				block.getType().name(), block.getData(),
+				type.getType().name(), type.getData()
+			)
+		);
 		return this.block.getType() == type.getType()
 			&& (type.getData() == (byte) -1 || this.getData() == type.getData());
 	}
