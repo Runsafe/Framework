@@ -3,6 +3,7 @@ package no.runsafe.framework.server.item;
 import no.runsafe.framework.enchant.IEnchant;
 import no.runsafe.framework.enchant.IEnchantable;
 import no.runsafe.framework.minecraft.Item;
+import no.runsafe.framework.server.RunsafeServer;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.wrapper.item.BukkitItemStack;
 import org.bukkit.Material;
@@ -27,21 +28,25 @@ public class RunsafeItemStack extends BukkitItemStack implements IEnchantable
 		super(stack);
 	}
 
+	@Deprecated
 	public RunsafeItemStack(int itemId)
 	{
 		super(new ItemStack(itemId));
 	}
 
+	@Deprecated
 	public RunsafeItemStack(int itemId, int amount)
 	{
 		super(new ItemStack(itemId, amount));
 	}
 
+	@Deprecated
 	public RunsafeItemStack(int materialId, int amount, short durability)
 	{
 		super(new ItemStack(materialId, amount, durability));
 	}
 
+	@Deprecated
 	public RunsafeItemStack(int materialId, int amount, short durability, Byte data)
 	{
 		super(new ItemStack(materialId, amount, durability));
@@ -53,16 +58,23 @@ public class RunsafeItemStack extends BukkitItemStack implements IEnchantable
 		return this.getType().name().replace("_", " ").toLowerCase();
 	}
 
-	public static List<RunsafeItemStack> convert(ItemStack[] armorContents)
+	public static List<RunsafeItemStack> convert(ItemStack[] items)
 	{
 		ArrayList<RunsafeItemStack> result = new ArrayList<RunsafeItemStack>();
-		for (ItemStack item : armorContents)
-			result.add(new RunsafeItemStack(item));
+		for (ItemStack item : items)
+			result.add(ObjectWrapper.convert(item));
 		return result;
 	}
 
 	public boolean is(Item type)
 	{
+		RunsafeServer.Instance.getLogger().info(
+			String.format(
+				"ItemStack(%s,%d) is Item(%s,%d)?",
+				itemStack.getType().name(), itemStack.getData().getData(),
+				type.getType().name(), type.getData()
+			)
+		);
 		return itemStack.getType() == type.getType()
 			&& (type.getData() == (byte) -1 || itemStack.getData().getData() == type.getData());
 	}
@@ -124,6 +136,6 @@ public class RunsafeItemStack extends BukkitItemStack implements IEnchantable
 
 	public RunsafeItemStack clone()
 	{
-		return new RunsafeItemStack(itemStack.clone());
+		return ObjectWrapper.convert(itemStack.clone());
 	}
 }

@@ -2,6 +2,7 @@ package no.runsafe.framework.wrapper.inventory;
 
 import no.runsafe.framework.server.inventory.RunsafeInventory;
 import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
@@ -22,22 +23,22 @@ public abstract class BukkitPlayerInventory extends RunsafeInventory
 
 	public RunsafeItemStack getHelmet()
 	{
-		return new RunsafeItemStack(inventory.getHelmet());
+		return ObjectWrapper.convert(inventory.getHelmet());
 	}
 
 	public RunsafeItemStack getChestplate()
 	{
-		return new RunsafeItemStack(inventory.getChestplate());
+		return ObjectWrapper.convert(inventory.getChestplate());
 	}
 
 	public RunsafeItemStack getLeggings()
 	{
-		return new RunsafeItemStack(inventory.getLeggings());
+		return ObjectWrapper.convert(inventory.getLeggings());
 	}
 
 	public RunsafeItemStack getBoots()
 	{
-		return new RunsafeItemStack(inventory.getBoots());
+		return ObjectWrapper.convert(inventory.getBoots());
 	}
 
 	public void setArmorContents(List<RunsafeItemStack> itemStacks)
@@ -70,7 +71,7 @@ public abstract class BukkitPlayerInventory extends RunsafeInventory
 
 	public RunsafeItemStack getItemInHand()
 	{
-		return new RunsafeItemStack(inventory.getItemInHand());
+		return ObjectWrapper.convert(inventory.getItemInHand());
 	}
 
 	public void setItemInHand(RunsafeItemStack itemStack)

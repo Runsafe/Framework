@@ -6,7 +6,6 @@ import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.entity.RunsafeEntityType;
 import no.runsafe.framework.server.entity.RunsafeItem;
-import no.runsafe.framework.server.item.RunsafeFirework;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.server.material.RunsafeMaterialData;
 import org.bukkit.Material;

@@ -9,7 +9,6 @@ import no.runsafe.framework.server.chunk.RunsafeChunk;
 import no.runsafe.framework.server.enchantment.RunsafeEnchantment;
 import no.runsafe.framework.server.entity.*;
 import no.runsafe.framework.server.inventory.*;
-import no.runsafe.framework.server.item.RunsafeFirework;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.server.item.meta.*;
 import no.runsafe.framework.server.material.RunsafeMaterialData;
@@ -369,8 +368,23 @@ public class ObjectWrapper
 	{
 		if (toWrap == null)
 			return null;
-		if (toWrap.getItemMeta() instanceof FireworkMeta)
-			return new RunsafeFirework(toWrap);
+		if (toWrap.hasItemMeta())
+		{
+			ItemMeta meta = toWrap.getItemMeta();
+			if (meta instanceof EnchantmentStorageMeta)
+				return new RunsafeEnchantmentStorage(toWrap);
+			if (meta instanceof FireworkMeta)
+				return new RunsafeFirework(toWrap);
+			if (meta instanceof LeatherArmorMeta)
+				return new RunsafeLeatherArmor(toWrap);
+			if (meta instanceof MapMeta)
+				return new RunsafeMap(toWrap);
+			if (meta instanceof PotionMeta)
+				return new RunsafePotion(toWrap);
+			if (meta instanceof SkullMeta)
+				return new RunsafeSkull(toWrap);
+			return new RunsafeMeta(toWrap);
+		}
 		return new RunsafeItemStack(toWrap);
 	}
 
@@ -386,6 +400,7 @@ public class ObjectWrapper
 		return RunsafeInventoryType.valueOf(toWrap.name());
 	}
 
+	@Deprecated
 	public static RunsafeItemMeta convert(ItemMeta toWrap)
 	{
 		if (toWrap == null)
@@ -418,6 +433,7 @@ public class ObjectWrapper
 		return new RunsafeItemMeta(toWrap);
 	}
 
+	@Deprecated
 	public static RunsafeBookMeta convert(BookMeta toWrap)
 	{
 		if (toWrap == null)
@@ -425,6 +441,7 @@ public class ObjectWrapper
 		return new RunsafeBookMeta(toWrap);
 	}
 
+	@Deprecated
 	public static RunsafeEnchantmentStorageMeta convert(EnchantmentStorageMeta toWrap)
 	{
 		if (toWrap == null)
@@ -446,6 +463,7 @@ public class ObjectWrapper
 		return new RunsafeTravelAgent(toWrap);
 	}
 
+	@Deprecated
 	public static RunsafeLeatherArmorMeta convert(LeatherArmorMeta toWrap)
 	{
 		if (toWrap == null)
@@ -453,6 +471,7 @@ public class ObjectWrapper
 		return new RunsafeLeatherArmorMeta(toWrap);
 	}
 
+	@Deprecated
 	public static RunsafeMapMeta convert(MapMeta toWrap)
 	{
 		if (toWrap == null)
@@ -460,6 +479,7 @@ public class ObjectWrapper
 		return new RunsafeMapMeta(toWrap);
 	}
 
+	@Deprecated
 	public static RunsafePotionMeta convert(PotionMeta toWrap)
 	{
 		if (toWrap == null)
@@ -467,6 +487,7 @@ public class ObjectWrapper
 		return new RunsafePotionMeta(toWrap);
 	}
 
+	@Deprecated
 	public static RunsafeSkullMeta convert(SkullMeta toWrap)
 	{
 		if (toWrap == null)

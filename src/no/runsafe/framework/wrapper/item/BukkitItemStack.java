@@ -137,6 +137,7 @@ public abstract class BukkitItemStack implements ConfigurationSerializable
 		return itemStack.removeEnchantment(ench.getRaw());
 	}
 
+	@Deprecated
 	public RunsafeItemMeta getItemMeta()
 	{
 		return ObjectWrapper.convert(itemStack.getItemMeta());
@@ -147,47 +148,10 @@ public abstract class BukkitItemStack implements ConfigurationSerializable
 		return itemStack.hasItemMeta();
 	}
 
+	@Deprecated
 	public boolean setItemMeta(RunsafeItemMeta itemMeta)
 	{
 		return itemStack.setItemMeta(itemMeta.getRaw());
-	}
-
-	public List<String> getLore()
-	{
-		return itemStack.getItemMeta().getLore();
-	}
-
-	public BukkitItemStack addLore(String lore)
-	{
-		ItemMeta meta = itemStack.getItemMeta();
-		List<String> currentLore = meta.getLore();
-		if (currentLore == null)
-			currentLore = new ArrayList<String>();
-		currentLore.add(lore);
-		meta.setLore(currentLore);
-		itemStack.setItemMeta(meta);
-		return this;
-	}
-
-	public BukkitItemStack setLore(List<String> lore)
-	{
-		ItemMeta meta = itemStack.getItemMeta();
-		meta.setLore(lore);
-		itemStack.setItemMeta(meta);
-		return this;
-	}
-
-	public String getDisplayName()
-	{
-		return itemStack.getItemMeta().getDisplayName();
-	}
-
-	public BukkitItemStack setDisplayName(String name)
-	{
-		ItemMeta meta = itemStack.getItemMeta();
-		meta.setDisplayName(name);
-		itemStack.setItemMeta(meta);
-		return this;
 	}
 
 	@Override
