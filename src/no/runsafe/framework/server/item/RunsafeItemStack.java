@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
-public class RunsafeItemStack extends BukkitItemStack implements IEnchantable
+public abstract class RunsafeItemStack extends BukkitItemStack implements IEnchantable
 {
 	public static RunsafeItemStack deserialize(Map<String, Object> args)
 	{
@@ -26,31 +26,6 @@ public class RunsafeItemStack extends BukkitItemStack implements IEnchantable
 	public RunsafeItemStack(ItemStack stack)
 	{
 		super(stack);
-	}
-
-	@Deprecated
-	public RunsafeItemStack(int itemId)
-	{
-		super(new ItemStack(itemId));
-	}
-
-	@Deprecated
-	public RunsafeItemStack(int itemId, int amount)
-	{
-		super(new ItemStack(itemId, amount));
-	}
-
-	@Deprecated
-	public RunsafeItemStack(int materialId, int amount, short durability)
-	{
-		super(new ItemStack(materialId, amount, durability));
-	}
-
-	@Deprecated
-	public RunsafeItemStack(int materialId, int amount, short durability, Byte data)
-	{
-		super(new ItemStack(materialId, amount, durability));
-		itemStack.setData(new MaterialData(Material.getMaterial(materialId), data));
 	}
 
 	public String getNormalName()
