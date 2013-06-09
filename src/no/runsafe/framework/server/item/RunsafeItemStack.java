@@ -42,13 +42,6 @@ public abstract class RunsafeItemStack extends BukkitItemStack implements IEncha
 
 	public boolean is(Item type)
 	{
-		RunsafeServer.Instance.getLogger().info(
-			String.format(
-				"ItemStack(%s,%d) is Item(%s,%d)?",
-				itemStack.getType().name(), itemStack.getData().getData(),
-				type.getType().name(), type.getData()
-			)
-		);
 		return itemStack.getType() == type.getType()
 			&& (type.getData() == (byte) -1 || itemStack.getData().getData() == type.getData());
 	}
