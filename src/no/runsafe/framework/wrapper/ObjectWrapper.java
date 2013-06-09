@@ -371,6 +371,8 @@ public class ObjectWrapper
 		if (toWrap.hasItemMeta())
 		{
 			ItemMeta meta = toWrap.getItemMeta();
+			if (meta instanceof BookMeta)
+				return new RunsafeBook(toWrap);
 			if (meta instanceof EnchantmentStorageMeta)
 				return new RunsafeEnchantmentStorage(toWrap);
 			if (meta instanceof FireworkMeta)
