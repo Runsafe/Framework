@@ -19,7 +19,6 @@ public final class PlayerRightClickSign extends EventRouterBase<IPlayerRightClic
 	public PlayerRightClickSign(IOutput output, IScheduler scheduler, IPlayerRightClickSign handler)
 	{
 		super(output, scheduler, handler);
-		console = output;
 	}
 
 	@EventHandler
@@ -60,6 +59,4 @@ public final class PlayerRightClickSign extends EventRouterBase<IPlayerRightClic
 			}
 		};
 	}
-
-	private final IOutput console;
 }

@@ -4,7 +4,6 @@ import no.runsafe.framework.server.block.RunsafeBlockState;
 import no.runsafe.framework.server.inventory.IInventoryHolder;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
 import no.runsafe.framework.wrapper.ObjectWrapper;
-import org.bukkit.block.BlockState;
 import org.bukkit.block.Furnace;
 
 public abstract class BukkitFurnace extends RunsafeBlockState implements IInventoryHolder

@@ -1,7 +1,6 @@
 package no.runsafe.framework.wrapper.entity;
 
 import no.runsafe.framework.server.entity.RunsafeEntity;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.FallingBlock;
 
 public abstract class BukkitFallingBlock extends RunsafeEntity

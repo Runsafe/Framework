@@ -9,7 +9,6 @@ import no.runsafe.framework.server.chunk.RunsafeChunk;
 import no.runsafe.framework.server.enchantment.RunsafeEnchantment;
 import no.runsafe.framework.server.entity.*;
 import no.runsafe.framework.server.inventory.*;
-import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.server.item.meta.*;
 import no.runsafe.framework.server.material.RunsafeMaterialData;
 import no.runsafe.framework.server.player.RunsafePlayer;
@@ -364,16 +363,10 @@ public class ObjectWrapper
 		return new RunsafeItem(toWrap);
 	}
 
-	public static RunsafeItemStack convert(ItemStack toWrap)
+	public static RunsafeMeta convert(ItemStack toWrap)
 	{
 		if (toWrap == null)
 			return null;
-		return convertWithMeta(toWrap);
-//		return new RunsafeItemStack(toWrap);
-	}
-
-	public static RunsafeMeta convertWithMeta(ItemStack toWrap)
-	{
 		ItemMeta meta = toWrap.getItemMeta();
 		if (meta instanceof BookMeta)
 			return new RunsafeBook(toWrap);
@@ -404,55 +397,6 @@ public class ObjectWrapper
 		return RunsafeInventoryType.valueOf(toWrap.name());
 	}
 
-	@Deprecated
-	public static RunsafeItemMeta convert(ItemMeta toWrap)
-	{
-		if (toWrap == null)
-			return null;
-
-		if (toWrap instanceof BookMeta)
-			return convert((BookMeta) toWrap);
-
-		if (toWrap instanceof EnchantmentStorageMeta)
-			return convert(((EnchantmentStorageMeta) toWrap));
-
-		if (toWrap instanceof FireworkEffectMeta)
-			return convert((FireworkEffectMeta) toWrap);
-
-		if (toWrap instanceof FireworkMeta)
-			return convert((FireworkMeta) toWrap);
-
-		if (toWrap instanceof LeatherArmorMeta)
-			return convert((LeatherArmorMeta) toWrap);
-
-		if (toWrap instanceof MapMeta)
-			return convert((MapMeta) toWrap);
-
-		if (toWrap instanceof PotionMeta)
-			return convert((PotionMeta) toWrap);
-
-		if (toWrap instanceof SkullMeta)
-			return convert((SkullMeta) toWrap);
-
-		return new RunsafeItemMeta(toWrap);
-	}
-
-	@Deprecated
-	public static RunsafeBookMeta convert(BookMeta toWrap)
-	{
-		if (toWrap == null)
-			return null;
-		return new RunsafeBookMeta(toWrap);
-	}
-
-	@Deprecated
-	public static RunsafeEnchantmentStorageMeta convert(EnchantmentStorageMeta toWrap)
-	{
-		if (toWrap == null)
-			return null;
-		return new RunsafeEnchantmentStorageMeta(toWrap);
-	}
-
 	public static RunsafeInventoryView convert(InventoryView toWrap)
 	{
 		if (toWrap == null)
@@ -465,38 +409,6 @@ public class ObjectWrapper
 		if (toWrap == null)
 			return null;
 		return new RunsafeTravelAgent(toWrap);
-	}
-
-	@Deprecated
-	public static RunsafeLeatherArmorMeta convert(LeatherArmorMeta toWrap)
-	{
-		if (toWrap == null)
-			return null;
-		return new RunsafeLeatherArmorMeta(toWrap);
-	}
-
-	@Deprecated
-	public static RunsafeMapMeta convert(MapMeta toWrap)
-	{
-		if (toWrap == null)
-			return null;
-		return new RunsafeMapMeta(toWrap);
-	}
-
-	@Deprecated
-	public static RunsafePotionMeta convert(PotionMeta toWrap)
-	{
-		if (toWrap == null)
-			return null;
-		return new RunsafePotionMeta(toWrap);
-	}
-
-	@Deprecated
-	public static RunsafeSkullMeta convert(SkullMeta toWrap)
-	{
-		if (toWrap == null)
-			return null;
-		return new RunsafeSkullMeta(toWrap);
 	}
 
 	public static RunsafeHopper convert(Hopper toWrap)

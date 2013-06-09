@@ -8,7 +8,6 @@ import no.runsafe.framework.server.inventory.RunsafePlayerInventory;
 import no.runsafe.framework.server.item.RunsafeItemStack;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.GameMode;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.HumanEntity;
 
 public abstract class BukkitHumanEntity extends RunsafeEntity

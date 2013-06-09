@@ -1,7 +1,6 @@
 package no.runsafe.framework.wrapper.item;
 
 import no.runsafe.framework.server.enchantment.RunsafeEnchantment;
-import no.runsafe.framework.server.item.meta.RunsafeItemMeta;
 import no.runsafe.framework.server.material.RunsafeMaterialData;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.Material;
@@ -134,21 +133,9 @@ public abstract class BukkitItemStack implements ConfigurationSerializable
 		return itemStack.removeEnchantment(ench.getRaw());
 	}
 
-	@Deprecated
-	public RunsafeItemMeta getItemMeta()
-	{
-		return ObjectWrapper.convert(itemStack.getItemMeta());
-	}
-
 	public boolean hasItemMeta()
 	{
 		return itemStack.hasItemMeta();
-	}
-
-	@Deprecated
-	public boolean setItemMeta(RunsafeItemMeta itemMeta)
-	{
-		return itemStack.setItemMeta(itemMeta.getRaw());
 	}
 
 	@Override

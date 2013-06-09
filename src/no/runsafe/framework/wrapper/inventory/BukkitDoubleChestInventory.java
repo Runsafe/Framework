@@ -4,7 +4,6 @@ import no.runsafe.framework.server.block.RunsafeDoubleChest;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.inventory.DoubleChestInventory;
-import org.bukkit.inventory.Inventory;
 
 public abstract class BukkitDoubleChestInventory extends RunsafeInventory
 {
