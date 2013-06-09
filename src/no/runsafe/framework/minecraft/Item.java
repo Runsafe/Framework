@@ -13,6 +13,7 @@ import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.MaterialData;
 
 import java.util.HashMap;
@@ -863,14 +864,12 @@ public class Item implements IEnchantable
 		return item == null ? convertToItem().getItem() : item;
 	}
 
-	public RunsafeMeta getMeta()
-	{
-		if (item == null)
-			return convertToItem().getMeta();
-		ItemStack stack = item.getRaw();
-		stack.setItemMeta(stack.getItemMeta());
-		return stack.hasItemMeta() ? (RunsafeMeta) ObjectWrapper.convert(stack) : null;
-	}
+//	public RunsafeMeta getMeta()
+//	{
+//		if (item == null)
+//			return convertToItem().getMeta();
+//		return ObjectWrapper.convert(item.getRaw(), true);
+//	}
 
 	private Item(Material material, boolean root)
 	{

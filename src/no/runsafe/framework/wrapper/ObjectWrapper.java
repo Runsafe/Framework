@@ -368,26 +368,28 @@ public class ObjectWrapper
 	{
 		if (toWrap == null)
 			return null;
-		if (toWrap.hasItemMeta())
-		{
-			ItemMeta meta = toWrap.getItemMeta();
-			if (meta instanceof BookMeta)
-				return new RunsafeBook(toWrap);
-			if (meta instanceof EnchantmentStorageMeta)
-				return new RunsafeEnchantmentStorage(toWrap);
-			if (meta instanceof FireworkMeta)
-				return new RunsafeFirework(toWrap);
-			if (meta instanceof LeatherArmorMeta)
-				return new RunsafeLeatherArmor(toWrap);
-			if (meta instanceof MapMeta)
-				return new RunsafeMap(toWrap);
-			if (meta instanceof PotionMeta)
-				return new RunsafePotion(toWrap);
-			if (meta instanceof SkullMeta)
-				return new RunsafeSkull(toWrap);
-			return new RunsafeMeta(toWrap);
-		}
-		return new RunsafeItemStack(toWrap);
+		return convertWithMeta(toWrap);
+//		return new RunsafeItemStack(toWrap);
+	}
+
+	public static RunsafeMeta convertWithMeta(ItemStack toWrap)
+	{
+		ItemMeta meta = toWrap.getItemMeta();
+		if (meta instanceof BookMeta)
+			return new RunsafeBook(toWrap);
+		if (meta instanceof EnchantmentStorageMeta)
+			return new RunsafeEnchantmentStorage(toWrap);
+		if (meta instanceof FireworkMeta)
+			return new RunsafeFirework(toWrap);
+		if (meta instanceof LeatherArmorMeta)
+			return new RunsafeLeatherArmor(toWrap);
+		if (meta instanceof MapMeta)
+			return new RunsafeMap(toWrap);
+		if (meta instanceof PotionMeta)
+			return new RunsafePotion(toWrap);
+		if (meta instanceof SkullMeta)
+			return new RunsafeSkull(toWrap);
+		return new RunsafeMeta(toWrap);
 	}
 
 	public static RunsafeEnchantment convert(Enchantment toWrap)
