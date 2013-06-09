@@ -1,7 +1,7 @@
 package no.runsafe.framework.wrapper.entity;
 
 import no.runsafe.framework.server.entity.RunsafeEntity;
-import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.entity.Item;
 
@@ -13,7 +13,7 @@ public abstract class BukkitItem extends RunsafeEntity
 		item = toWrap;
 	}
 
-	public RunsafeItemStack getItemStack()
+	public RunsafeMeta getItemStack()
 	{
 		return ObjectWrapper.convert(this.item.getItemStack());
 	}
@@ -23,7 +23,7 @@ public abstract class BukkitItem extends RunsafeEntity
 		return this.item.getPickupDelay();
 	}
 
-	public void setItemStack(RunsafeItemStack stack)
+	public void setItemStack(RunsafeMeta stack)
 	{
 		this.item.setItemStack(stack.getRaw());
 	}

@@ -1,7 +1,7 @@
 package no.runsafe.framework.wrapper.inventory;
 
 import no.runsafe.framework.server.inventory.RunsafeInventoryType;
-import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.inventory.InventoryView;
@@ -18,22 +18,22 @@ public abstract class BukkitInventoryView
 		return ObjectWrapper.convert(this.inventoryView.getPlayer());
 	}
 
-	public void setItem(int slot, RunsafeItemStack item)
+	public void setItem(int slot, RunsafeMeta item)
 	{
 		this.inventoryView.setItem(slot, item.getRaw());
 	}
 
-	public RunsafeItemStack getItem(int slot)
+	public RunsafeMeta getItem(int slot)
 	{
 		return ObjectWrapper.convert(this.inventoryView.getItem(slot));
 	}
 
-	public void setCursor(RunsafeItemStack item)
+	public void setCursor(RunsafeMeta item)
 	{
 		this.inventoryView.setCursor(item.getRaw());
 	}
 
-	public RunsafeItemStack getCursor()
+	public RunsafeMeta getCursor()
 	{
 		return ObjectWrapper.convert(this.inventoryView.getCursor());
 	}

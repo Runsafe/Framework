@@ -8,7 +8,7 @@ import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.chunk.RunsafeChunk;
 import no.runsafe.framework.server.event.player.RunsafeOperatorEvent;
-import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
 import no.runsafe.framework.wrapper.player.BukkitPlayer;
 import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
@@ -231,7 +231,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		return true;
 	}
 
-	public void give(RunsafeItemStack... items)
+	public void give(RunsafeMeta... items)
 	{
 		if (items == null || items.length < 1)
 			return;

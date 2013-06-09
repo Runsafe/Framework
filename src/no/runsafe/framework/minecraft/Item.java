@@ -6,7 +6,7 @@ import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.entity.RunsafeEntityType;
 import no.runsafe.framework.server.entity.RunsafeItem;
-import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
 import no.runsafe.framework.server.material.RunsafeMaterialData;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class Item implements IEnchantable
 {
-	public static Item get(RunsafeItemStack itemStack)
+	public static Item get(RunsafeMeta itemStack)
 	{
 		return itemStack == null ? null : itemStack.getItemType();
 	}
@@ -778,7 +778,7 @@ public class Item implements IEnchantable
 
 	public RunsafeItem Drop(RunsafeLocation location, int amount)
 	{
-		RunsafeItemStack stack = getItem();
+		RunsafeMeta stack = getItem();
 		stack.setAmount(amount);
 		return location.getWorld().dropItem(location, stack);
 	}
@@ -855,7 +855,7 @@ public class Item implements IEnchantable
 	}
 
 	@Override
-	public RunsafeItemStack getItem()
+	public RunsafeMeta getItem()
 	{
 		return item == null ? convertToItem().getItem() : item;
 	}
@@ -900,6 +900,6 @@ public class Item implements IEnchantable
 	private static final Map<String, Item> items = new HashMap<String, Item>();
 	private final Material material;
 	private final boolean root;
-	private final RunsafeItemStack item;
+	private final RunsafeMeta item;
 	private final byte data;
 }

@@ -1,6 +1,6 @@
 package no.runsafe.framework.enchant;
 
-import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
 
 public interface IEnchantable
 {
@@ -14,7 +14,7 @@ public interface IEnchantable
 
 	IEnchantable disenchant(IEnchant enchant);
 
-	RunsafeItemStack getItem();
+	RunsafeMeta getItem();
 
 	IEnchantable enchant(Iterable<IEnchant> enchants);
 }

@@ -1,7 +1,7 @@
 package no.runsafe.framework.wrapper.enchantment;
 
 import no.runsafe.framework.enchant.IEnchant;
-import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
 import org.bukkit.enchantments.Enchantment;
 
 public abstract class BukkitEnchantment
@@ -41,7 +41,7 @@ public abstract class BukkitEnchantment
 		return this.enchantment.conflictsWith(enchantment.getEnchant().getRaw());
 	}
 
-	public boolean canEnchantItem(RunsafeItemStack target)
+	public boolean canEnchantItem(RunsafeMeta target)
 	{
 		return this.enchantment.canEnchantItem(target.getRaw());
 	}

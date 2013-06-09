@@ -1,7 +1,7 @@
 package no.runsafe.framework.wrapper.material;
 
 import no.runsafe.framework.minecraft.Item;
-import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.material.MaterialData;
 
@@ -39,12 +39,12 @@ public abstract class BukkitMaterialData
 		return this.materialData.getItemTypeId();
 	}
 
-	public RunsafeItemStack toItemStack()
+	public RunsafeMeta toItemStack()
 	{
 		return ObjectWrapper.convert(this.materialData.toItemStack());
 	}
 
-	public RunsafeItemStack toItemStack(int amount)
+	public RunsafeMeta toItemStack(int amount)
 	{
 		return ObjectWrapper.convert(this.materialData.toItemStack(amount));
 	}

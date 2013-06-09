@@ -1,7 +1,7 @@
 package no.runsafe.framework.wrapper.inventory;
 
 import no.runsafe.framework.server.inventory.RunsafeInventory;
-import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -16,32 +16,32 @@ public abstract class BukkitPlayerInventory extends RunsafeInventory
 		inventory = toWrap;
 	}
 
-	public List<RunsafeItemStack> getArmorContents()
+	public List<RunsafeMeta> getArmorContents()
 	{
-		return RunsafeItemStack.convert(inventory.getArmorContents());
+		return ObjectWrapper.convert(inventory.getArmorContents());
 	}
 
-	public RunsafeItemStack getHelmet()
+	public RunsafeMeta getHelmet()
 	{
 		return ObjectWrapper.convert(inventory.getHelmet());
 	}
 
-	public RunsafeItemStack getChestplate()
+	public RunsafeMeta getChestplate()
 	{
 		return ObjectWrapper.convert(inventory.getChestplate());
 	}
 
-	public RunsafeItemStack getLeggings()
+	public RunsafeMeta getLeggings()
 	{
 		return ObjectWrapper.convert(inventory.getLeggings());
 	}
 
-	public RunsafeItemStack getBoots()
+	public RunsafeMeta getBoots()
 	{
 		return ObjectWrapper.convert(inventory.getBoots());
 	}
 
-	public void setArmorContents(List<RunsafeItemStack> itemStacks)
+	public void setArmorContents(List<RunsafeMeta> itemStacks)
 	{
 		ItemStack[] stacks = new ItemStack[itemStacks.size()];
 		for (int i = 0; i < itemStacks.size(); ++i)
@@ -49,32 +49,32 @@ public abstract class BukkitPlayerInventory extends RunsafeInventory
 		inventory.setArmorContents(stacks);
 	}
 
-	public void setHelmet(RunsafeItemStack itemStack)
+	public void setHelmet(RunsafeMeta itemStack)
 	{
 		inventory.setHelmet(itemStack.getRaw());
 	}
 
-	public void setChestplate(RunsafeItemStack itemStack)
+	public void setChestplate(RunsafeMeta itemStack)
 	{
 		inventory.setChestplate(itemStack.getRaw());
 	}
 
-	public void setLeggings(RunsafeItemStack itemStack)
+	public void setLeggings(RunsafeMeta itemStack)
 	{
 		inventory.setLeggings(itemStack.getRaw());
 	}
 
-	public void setBoots(RunsafeItemStack itemStack)
+	public void setBoots(RunsafeMeta itemStack)
 	{
 		inventory.setBoots(itemStack.getRaw());
 	}
 
-	public RunsafeItemStack getItemInHand()
+	public RunsafeMeta getItemInHand()
 	{
 		return ObjectWrapper.convert(inventory.getItemInHand());
 	}
 
-	public void setItemInHand(RunsafeItemStack itemStack)
+	public void setItemInHand(RunsafeMeta itemStack)
 	{
 		inventory.setItemInHand(itemStack.getRaw());
 	}

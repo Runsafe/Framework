@@ -1,9 +1,9 @@
 package no.runsafe.framework.server.event.player;
 
-import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.event.CancellableEvent;
-import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class RunsafePlayerClickEvent extends RunsafePlayerEvent implements CancellableEvent
@@ -19,7 +19,7 @@ public class RunsafePlayerClickEvent extends RunsafePlayerEvent implements Cance
 		return ObjectWrapper.convert(event.getClickedBlock());
 	}
 
-	public RunsafeItemStack getItemStack()
+	public RunsafeMeta getItemStack()
 	{
 		return ObjectWrapper.convert(event.getItem());
 	}

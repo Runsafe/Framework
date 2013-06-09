@@ -2,7 +2,7 @@ package no.runsafe.framework.minecraft;
 
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.item.meta.RunsafeFirework;
-import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
@@ -135,7 +135,7 @@ public class FireworkBuilder
 		return this;
 	}
 
-	public RunsafeItemStack Create()
+	public RunsafeMeta Create()
 	{
 		RunsafeFirework item = (RunsafeFirework) Item.Special.Crafted.Firework.getItem();
 		item.setPower(power);

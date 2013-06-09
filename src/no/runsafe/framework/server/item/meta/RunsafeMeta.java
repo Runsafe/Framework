@@ -9,4 +9,10 @@ public class RunsafeMeta extends BukkitMeta
 	{
 		super(stack);
 	}
+
+	@Override
+	public RunsafeMeta getItem()
+	{
+		return this;
+	}
 }

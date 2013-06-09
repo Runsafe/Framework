@@ -1,11 +1,11 @@
 package no.runsafe.framework.server.event.player;
 
 import no.runsafe.framework.minecraft.Item;
-import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.event.CancellableEvent;
-import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.block.BlockFace;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -59,7 +59,7 @@ public class RunsafePlayerInteractEvent extends RunsafePlayerEvent implements Ca
 		return ObjectWrapper.convert(event.getClickedBlock());
 	}
 
-	public RunsafeItemStack getItemStack()
+	public RunsafeMeta getItemStack()
 	{
 		return ObjectWrapper.convert(event.getItem());
 	}

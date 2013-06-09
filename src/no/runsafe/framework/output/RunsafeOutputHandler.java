@@ -1,7 +1,7 @@
 package no.runsafe.framework.output;
 
 import no.runsafe.framework.server.RunsafeServer;
-import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
@@ -186,8 +186,8 @@ public class RunsafeOutputHandler implements IOutput
 	public void dumpData(Object raw, Level messageLevel)
 	{
 		if (debugLevel != null && messageLevel.intValue() >= debugLevel.intValue())
-			if (raw instanceof RunsafeItemStack)
-				dumpData(((RunsafeItemStack) raw).getRaw());
+			if (raw instanceof RunsafeMeta)
+				dumpData(((RunsafeMeta) raw).getRaw());
 	}
 
 	private String formatDebugMessage(String message, Level messageLevel, Object... params)

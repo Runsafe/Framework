@@ -1,9 +1,9 @@
 package no.runsafe.framework.server.event.inventory;
 
-import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.event.CancellableEvent;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
-import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.event.inventory.InventoryMoveItemEvent;
 
 public class RunsafeInventoryMoveItemEvent implements CancellableEvent
@@ -23,12 +23,12 @@ public class RunsafeInventoryMoveItemEvent implements CancellableEvent
 		return ObjectWrapper.convert(this.event.getDestination());
 	}
 
-	public RunsafeItemStack getItem()
+	public RunsafeMeta getItem()
 	{
 		return ObjectWrapper.convert(this.event.getItem());
 	}
 
-	public void setItem(RunsafeItemStack item)
+	public void setItem(RunsafeMeta item)
 	{
 		this.event.setItem(item.getRaw());
 	}

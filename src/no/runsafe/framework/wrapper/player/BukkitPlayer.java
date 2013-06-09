@@ -6,7 +6,7 @@ import no.runsafe.framework.server.entity.RunsafeLivingEntity;
 import no.runsafe.framework.server.inventory.IInventoryHolder;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
 import no.runsafe.framework.server.inventory.RunsafePlayerInventory;
-import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
@@ -119,7 +119,7 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 			player.sendBlockChange(location.getRaw(), itemId, data);
 	}
 
-	public RunsafeItemStack getItemInHand()
+	public RunsafeMeta getItemInHand()
 	{
 		if (player == null)
 			return null;

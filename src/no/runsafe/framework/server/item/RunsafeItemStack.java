@@ -4,6 +4,7 @@ import no.runsafe.framework.enchant.IEnchant;
 import no.runsafe.framework.enchant.IEnchantable;
 import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.server.RunsafeServer;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.wrapper.item.BukkitItemStack;
 import org.bukkit.enchantments.Enchantment;
@@ -16,7 +17,7 @@ import java.util.Map;
 @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
 public abstract class RunsafeItemStack extends BukkitItemStack implements IEnchantable
 {
-	public static RunsafeItemStack deserialize(Map<String, Object> args)
+	public static RunsafeMeta deserialize(Map<String, Object> args)
 	{
 		return ObjectWrapper.convert(ItemStack.deserialize(args));
 	}
@@ -31,9 +32,9 @@ public abstract class RunsafeItemStack extends BukkitItemStack implements IEncha
 		return this.getType().name().replace("_", " ").toLowerCase();
 	}
 
-	public static List<RunsafeItemStack> convert(ItemStack[] items)
+	public static List<RunsafeMeta> convert(ItemStack[] items)
 	{
-		ArrayList<RunsafeItemStack> result = new ArrayList<RunsafeItemStack>();
+		ArrayList<RunsafeMeta> result = new ArrayList<RunsafeMeta>();
 		for (ItemStack item : items)
 			result.add(ObjectWrapper.convert(item));
 		return result;
@@ -96,18 +97,12 @@ public abstract class RunsafeItemStack extends BukkitItemStack implements IEncha
 		return this;
 	}
 
-	@Override
-	public RunsafeItemStack getItem()
-	{
-		return this;
-	}
-
 	public Item getItemType()
 	{
 		return Item.get(itemStack.getType(), itemStack.getData().getData());
 	}
 
-	public RunsafeItemStack clone()
+	public RunsafeMeta clone()
 	{
 		return ObjectWrapper.convert(itemStack.clone());
 	}

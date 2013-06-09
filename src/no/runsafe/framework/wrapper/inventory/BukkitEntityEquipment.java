@@ -1,7 +1,7 @@
 package no.runsafe.framework.wrapper.inventory;
 
 import no.runsafe.framework.server.entity.RunsafeEntity;
-import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.inventory.EntityEquipment;
 
@@ -14,32 +14,32 @@ public abstract class BukkitEntityEquipment
 		entityEquipment = toWrap;
 	}
 
-	public RunsafeItemStack getItemInHand()
+	public RunsafeMeta getItemInHand()
 	{
 		return ObjectWrapper.convert(this.entityEquipment.getItemInHand());
 	}
 
-	public RunsafeItemStack getHelmet()
+	public RunsafeMeta getHelmet()
 	{
 		return ObjectWrapper.convert(this.entityEquipment.getHelmet());
 	}
 
-	public RunsafeItemStack getChestplate()
+	public RunsafeMeta getChestplate()
 	{
 		return ObjectWrapper.convert(this.entityEquipment.getChestplate());
 	}
 
-	public RunsafeItemStack getLeggings()
+	public RunsafeMeta getLeggings()
 	{
 		return ObjectWrapper.convert(this.entityEquipment.getLeggings());
 	}
 
-	public RunsafeItemStack getBoots()
+	public RunsafeMeta getBoots()
 	{
 		return ObjectWrapper.convert(this.entityEquipment.getBoots());
 	}
 
-	public List<RunsafeItemStack> getArmorContents()
+	public List<RunsafeMeta> getArmorContents()
 	{
 		return ObjectWrapper.convert(entityEquipment.getArmorContents());
 	}

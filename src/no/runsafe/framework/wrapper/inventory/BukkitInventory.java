@@ -3,7 +3,7 @@ package no.runsafe.framework.wrapper.inventory;
 import com.google.common.collect.Lists;
 import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.server.inventory.IInventoryHolder;
-import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.inventory.Inventory;
@@ -24,12 +24,12 @@ public abstract class BukkitInventory
 		return ObjectWrapper.convert(inventory.getHolder());
 	}
 
-	public List<RunsafeItemStack> getContents()
+	public List<RunsafeMeta> getContents()
 	{
 		return ObjectWrapper.convert(Lists.newArrayList(inventory.getContents()));
 	}
 
-	public void addItems(RunsafeItemStack... items)
+	public void addItems(RunsafeMeta... items)
 	{
 		if (items == null || items.length < 1)
 			return;
@@ -54,12 +54,12 @@ public abstract class BukkitInventory
 		return this.inventory;
 	}
 
-	public boolean contains(RunsafeItemStack itemStack)
+	public boolean contains(RunsafeMeta itemStack)
 	{
 		return this.inventory.contains(itemStack.getRaw());
 	}
 
-	public boolean contains(RunsafeItemStack itemStack, int amount)
+	public boolean contains(RunsafeMeta itemStack, int amount)
 	{
 		return this.inventory.contains(itemStack.getRaw(), amount);
 	}
@@ -80,7 +80,7 @@ public abstract class BukkitInventory
 		return this.inventory.first(material);
 	}
 
-	public int first(RunsafeItemStack itemStack)
+	public int first(RunsafeMeta itemStack)
 	{
 		return this.inventory.first(itemStack.getRaw());
 	}
@@ -121,7 +121,7 @@ public abstract class BukkitInventory
 		this.inventory.remove(material);
 	}
 
-	public void remove(RunsafeItemStack itemStack)
+	public void remove(RunsafeMeta itemStack)
 	{
 		this.inventory.remove(itemStack.getRaw());
 	}
@@ -131,7 +131,7 @@ public abstract class BukkitInventory
 		this.inventory.remove(material.getType());
 	}
 
-	public void setItem(int index, RunsafeItemStack itemStack)
+	public void setItem(int index, RunsafeMeta itemStack)
 	{
 		this.inventory.setItem(index, itemStack.getRaw());
 	}

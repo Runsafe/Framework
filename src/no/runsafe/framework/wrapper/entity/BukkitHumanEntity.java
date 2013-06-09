@@ -5,7 +5,7 @@ import no.runsafe.framework.server.entity.RunsafeEntity;
 import no.runsafe.framework.server.inventory.RunsafeInventory;
 import no.runsafe.framework.server.inventory.RunsafeInventoryView;
 import no.runsafe.framework.server.inventory.RunsafePlayerInventory;
-import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.GameMode;
 import org.bukkit.entity.HumanEntity;
@@ -63,22 +63,22 @@ public abstract class BukkitHumanEntity extends RunsafeEntity
 		this.humanEntity.closeInventory();
 	}
 
-	public RunsafeItemStack getItemInHand()
+	public RunsafeMeta getItemInHand()
 	{
 		return ObjectWrapper.convert(this.humanEntity.getItemInHand());
 	}
 
-	public void setItemInHand(RunsafeItemStack item)
+	public void setItemInHand(RunsafeMeta item)
 	{
 		this.humanEntity.setItemInHand(item.getRaw());
 	}
 
-	public RunsafeItemStack getItemOnCursor()
+	public RunsafeMeta getItemOnCursor()
 	{
 		return ObjectWrapper.convert(this.humanEntity.getItemOnCursor());
 	}
 
-	public void setItemOnCursor(RunsafeItemStack item)
+	public void setItemOnCursor(RunsafeMeta item)
 	{
 		this.humanEntity.setItemOnCursor(item.getRaw());
 	}

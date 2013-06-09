@@ -1,7 +1,7 @@
 package no.runsafe.framework.enchant;
 
 import no.runsafe.framework.server.enchantment.RunsafeEnchantment;
-import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
 import org.bukkit.enchantments.Enchantment;
 
 import java.util.ArrayList;
@@ -101,7 +101,7 @@ public class Enchant implements IEnchant
 	@Override
 	public boolean canEnchant(IEnchantable target)
 	{
-		return target instanceof RunsafeItemStack && enchant.canEnchantItem((RunsafeItemStack) target);
+		return target instanceof RunsafeMeta && enchant.canEnchantItem((RunsafeMeta) target);
 	}
 
 	@Override

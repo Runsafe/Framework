@@ -6,7 +6,7 @@ import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.entity.RunsafeEntity;
 import no.runsafe.framework.server.entity.RunsafeFallingBlock;
 import no.runsafe.framework.server.entity.RunsafeItem;
-import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import no.runsafe.framework.wrapper.metadata.RunsafeMetadata;
 import org.bukkit.Effect;
@@ -51,7 +51,7 @@ public abstract class BukkitWorld extends RunsafeMetadata
 		return world.getBlockTypeIdAt(x, y, z);
 	}
 
-	public RunsafeItem dropItem(RunsafeLocation location, RunsafeItemStack itemStack)
+	public RunsafeItem dropItem(RunsafeLocation location, RunsafeMeta itemStack)
 	{
 		return new RunsafeItem((world.dropItem(location.getRaw(), itemStack.getRaw())));
 	}

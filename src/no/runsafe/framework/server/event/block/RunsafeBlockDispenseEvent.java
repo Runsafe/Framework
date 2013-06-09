@@ -1,8 +1,8 @@
 package no.runsafe.framework.server.event.block;
 
-import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.event.CancellableEvent;
-import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.util.Vector;
 
@@ -14,12 +14,12 @@ public class RunsafeBlockDispenseEvent extends RunsafeBlockEvent implements Canc
 		this.event = toWrap;
 	}
 
-	public RunsafeItemStack getItem()
+	public RunsafeMeta getItem()
 	{
 		return ObjectWrapper.convert(event.getItem());
 	}
 
-	public void setItem(RunsafeItemStack itemStack)
+	public void setItem(RunsafeMeta itemStack)
 	{
 		event.setItem(itemStack.getRaw());
 	}

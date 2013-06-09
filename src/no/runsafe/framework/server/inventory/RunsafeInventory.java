@@ -2,7 +2,7 @@ package no.runsafe.framework.server.inventory;
 
 import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.server.RunsafeServer;
-import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
 import no.runsafe.framework.wrapper.inventory.BukkitInventory;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.bukkit.configuration.ConfigurationSection;
@@ -23,7 +23,7 @@ public class RunsafeInventory extends BukkitInventory
 	{
 		int needed = amount;
 
-		for (RunsafeItemStack itemStack : this.getContents())
+		for (RunsafeMeta itemStack : this.getContents())
 		{
 			if (itemStack.getItemId() == materialID)
 			{
@@ -44,7 +44,7 @@ public class RunsafeInventory extends BukkitInventory
 	public void remove(Item item, int amount)
 	{
 		int needed = amount;
-		for (RunsafeItemStack itemStack : this.getContents())
+		for (RunsafeMeta itemStack : this.getContents())
 		{
 			if (itemStack.is(item))
 			{

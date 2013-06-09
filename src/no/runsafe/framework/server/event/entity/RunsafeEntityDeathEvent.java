@@ -1,7 +1,7 @@
 package no.runsafe.framework.server.event.entity;
 
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
 import no.runsafe.framework.wrapper.ObjectWrapper;
-import no.runsafe.framework.server.item.RunsafeItemStack;
 import org.bukkit.event.entity.EntityDeathEvent;
 
 import java.util.List;
@@ -14,16 +14,16 @@ public class RunsafeEntityDeathEvent extends RunsafeEntityEvent
 		event = toWrap;
 	}
 
-	public List<RunsafeItemStack> getDrops()
+	public List<RunsafeMeta> getDrops()
 	{
 		return ObjectWrapper.convert(event.getDrops());
 	}
 
-	public void setDrops(List<RunsafeItemStack> items)
+	public void setDrops(List<RunsafeMeta> items)
 	{
 		this.event.getDrops().clear();
 
-		for (RunsafeItemStack itemStack : items)
+		for (RunsafeMeta itemStack : items)
 			this.event.getDrops().add(itemStack.getRaw());
 	}
 

@@ -1,12 +1,12 @@
 package no.runsafe.framework.server.event.enchantment;
 
-import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.enchantment.RunsafeEnchantment;
 import no.runsafe.framework.server.event.CancellableEvent;
 import no.runsafe.framework.server.event.inventory.RunsafeInventoryEvent;
-import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
 import no.runsafe.framework.server.player.RunsafePlayer;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.enchantment.EnchantItemEvent;
 
@@ -31,7 +31,7 @@ public class RunsafeEnchantItemEvent extends RunsafeInventoryEvent implements Ca
 		return ObjectWrapper.convert(this.event.getEnchantBlock());
 	}
 
-	public RunsafeItemStack getItem()
+	public RunsafeMeta getItem()
 	{
 		return ObjectWrapper.convert(this.event.getItem());
 	}

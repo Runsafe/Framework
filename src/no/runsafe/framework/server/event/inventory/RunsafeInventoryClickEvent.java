@@ -1,9 +1,9 @@
 package no.runsafe.framework.server.event.inventory;
 
-import no.runsafe.framework.wrapper.ObjectWrapper;
 import no.runsafe.framework.server.event.CancellableEvent;
-import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
 import no.runsafe.framework.server.player.RunsafePlayer;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 
@@ -20,7 +20,7 @@ public class RunsafeInventoryClickEvent extends RunsafeInventoryEvent implements
 		return this.event.getSlotType();
 	}
 
-	public RunsafeItemStack getCursor()
+	public RunsafeMeta getCursor()
 	{
 		return ObjectWrapper.convert(this.event.getCursor());
 	}
@@ -30,7 +30,7 @@ public class RunsafeInventoryClickEvent extends RunsafeInventoryEvent implements
 		return ObjectWrapper.convert(this.event.getWhoClicked());
 	}
 
-	public RunsafeItemStack getCurrentItem()
+	public RunsafeMeta getCurrentItem()
 	{
 		return ObjectWrapper.convert(this.event.getCurrentItem());
 	}
@@ -50,12 +50,12 @@ public class RunsafeInventoryClickEvent extends RunsafeInventoryEvent implements
 		return this.event.isShiftClick();
 	}
 
-	public void setCursor(RunsafeItemStack what)
+	public void setCursor(RunsafeMeta what)
 	{
 		this.event.setCursor(what.getRaw());
 	}
 
-	public void setCurrentItem(RunsafeItemStack what)
+	public void setCurrentItem(RunsafeMeta what)
 	{
 		this.event.setCurrentItem(what.getRaw());
 	}
