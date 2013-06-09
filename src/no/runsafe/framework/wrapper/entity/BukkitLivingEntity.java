@@ -6,7 +6,6 @@ import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.entity.RunsafeEntity;
 import no.runsafe.framework.server.player.RunsafePlayer;
-import no.runsafe.framework.server.potion.RunsafePotionEffect;
 import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.entity.LivingEntity;
 
@@ -140,42 +139,6 @@ public abstract class BukkitLivingEntity extends RunsafeEntity
 	public RunsafePlayer getKiller()
 	{
 		return ObjectWrapper.convert(entity.getKiller());
-	}
-
-	@SuppressWarnings("deprecation")
-	@Deprecated
-	public boolean addPotionEffect(RunsafePotionEffect effect)
-	{
-		return this.entity.addPotionEffect(effect.getRaw());
-	}
-
-	@SuppressWarnings("deprecation")
-	@Deprecated
-	public boolean addPotionEffect(RunsafePotionEffect effect, boolean force)
-	{
-		return this.entity.addPotionEffect(effect.getRaw(), force);
-	}
-
-	@SuppressWarnings("deprecation")
-	@Deprecated
-	public void addPotionEffects(List<RunsafePotionEffect> effects)
-	{
-		for (RunsafePotionEffect effect : effects)
-			this.entity.addPotionEffect(effect.getRaw());
-	}
-
-	@SuppressWarnings("deprecation")
-	@Deprecated
-	public boolean hasPotionEffect(RunsafePotionEffect effect)
-	{
-		return this.entity.hasPotionEffect(effect.getRaw().getType());
-	}
-
-	@SuppressWarnings("deprecation")
-	@Deprecated
-	public void removePotionEffect(RunsafePotionEffect effect)
-	{
-		this.entity.removePotionEffect(effect.getRaw().getType());
 	}
 
 	public void addBuff(Buff buff)
