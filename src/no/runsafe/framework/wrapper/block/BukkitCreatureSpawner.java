@@ -12,18 +12,6 @@ public abstract class BukkitCreatureSpawner extends RunsafeBlockState
 		spawner = toWrap;
 	}
 
-	@Deprecated
-	public void setCreatureTypeByName(String s)
-	{
-		spawner.setCreatureTypeByName(s);
-	}
-
-	@Deprecated
-	public String getCreatureTypeName()
-	{
-		return spawner.getCreatureTypeName();
-	}
-
 	public int getDelay()
 	{
 		return spawner.getDelay();

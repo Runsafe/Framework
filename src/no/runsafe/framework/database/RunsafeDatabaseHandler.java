@@ -143,24 +143,6 @@ public final class RunsafeDatabaseHandler implements IDatabase
 		}
 	}
 
-	@Deprecated
-	@Override
-	public PreparedStatement prepare(String sql)
-	{
-		try
-		{
-			Connection conn = getConnection();
-			if (conn == null)
-				return null;
-			return conn.prepareStatement(sql);
-		}
-		catch (SQLException e)
-		{
-			this.output.outputToConsole(e.getMessage() + Arrays.toString(e.getStackTrace()), Level.SEVERE);
-			return null;
-		}
-	}
-
 	@Override
 	public List<Map<String, Object>> Query(String query, Object... params)
 	{

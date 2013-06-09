@@ -144,13 +144,6 @@ public class RunsafeConfigurationHandler implements IConfiguration
 	}
 
 	@Override
-	@Deprecated
-	public ConfigurationSection getSection(String path)
-	{
-		return this.configFile.getConfigurationSection(path);
-	}
-
-	@Override
 	public void setConfigValue(String key, Object value)
 	{
 		this.configFile.set(key, value);

@@ -19,10 +19,6 @@ public interface IDebug
 	// Sends the supplied string with the supplied logging level to the console/log the output handler has
 	public void outputToConsole(String message, Level level);
 
-	// Translates ChatColors to TerminalColors and outputs string to server console
-	@Deprecated
-	public void outputColoredToConsole(String message, Level level);
-
 	// Sends the supplied string to the console/log the output handler has if the debug level is high enough
 	public void outputDebugToConsole(String message, Level messageLevel, Object... params);
 

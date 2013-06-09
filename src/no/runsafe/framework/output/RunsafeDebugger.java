@@ -44,13 +44,6 @@ public class RunsafeDebugger implements IDebug
 	}
 
 	@Override
-	@Deprecated
-	public void outputColoredToConsole(String message, Level level)
-	{
-		outputToConsole(ConsoleColors.FromMinecraft(message), level);
-	}
-
-	@Override
 	public void write(String message)
 	{
 		outputToConsole(message);

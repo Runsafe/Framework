@@ -10,13 +10,6 @@ import java.util.Map;
  */
 public interface IDatabase
 {
-	/**
-	 * Prepares an SQL statement for execution
-	 *
-	 * @param sql The SQL statement to be prepared for execution
-	 * @return The prepared SQL statement
-	 */
-	PreparedStatement prepare(String sql);
 
 	/**
 	 * Rolls back a failed transaction

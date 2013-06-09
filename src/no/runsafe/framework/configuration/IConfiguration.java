@@ -55,9 +55,6 @@ public interface IConfiguration
 	 */
 	void setConfigValue(String key, Object value);
 
-	@Deprecated
-	ConfigurationSection getSection(String path);
-
 	/**
 	 * @param path The configuration key
 	 * @return The section as a string map

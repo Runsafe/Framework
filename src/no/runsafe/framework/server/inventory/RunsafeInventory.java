@@ -18,29 +18,6 @@ public class RunsafeInventory extends BukkitInventory
 		super(toWrap);
 	}
 
-	@Deprecated
-	public void remove(int materialID, int amount)
-	{
-		int needed = amount;
-
-		for (RunsafeMeta itemStack : this.getContents())
-		{
-			if (itemStack.getItemId() == materialID)
-			{
-				if (itemStack.getAmount() <= needed)
-				{
-					this.remove(itemStack);
-					needed -= itemStack.getAmount();
-				}
-				else
-				{
-					itemStack.setAmount(itemStack.getAmount() - needed);
-					break;
-				}
-			}
-		}
-	}
-
 	public void remove(Item item, int amount)
 	{
 		int needed = amount;

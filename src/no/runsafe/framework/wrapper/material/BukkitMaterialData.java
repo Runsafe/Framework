@@ -33,12 +33,6 @@ public abstract class BukkitMaterialData
 		this.materialData.setData(data);
 	}
 
-	@Deprecated
-	public int getItemTypeId()
-	{
-		return this.materialData.getItemTypeId();
-	}
-
 	public RunsafeMeta toItemStack()
 	{
 		return ObjectWrapper.convert(this.materialData.toItemStack());

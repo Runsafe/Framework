@@ -69,16 +69,6 @@ public interface IScheduler
 	int startAsyncRepeatingTask(Runnable func, long delay, long period);
 
 	/**
-	 * Don't use this method, use createSyncTimer.
-	 *
-	 * @param func   Code to be executed
-	 * @param delay  Delay before executing in seconds
-	 * @param period Delay between each execution in seconds
-	 * @return Timer ID
-	 */
-	int startAsyncRepeatingTask(Runnable func, int delay, int period);
-
-	/**
 	 * Create a timer that will run on the main thread periodically
 	 *
 	 * @param func   Code to be executed

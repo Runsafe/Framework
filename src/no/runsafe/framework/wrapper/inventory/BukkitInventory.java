@@ -74,12 +74,6 @@ public abstract class BukkitInventory
 		return inventory.contains(item.getType(), amount);
 	}
 
-	@Deprecated
-	public int first(int material)
-	{
-		return this.inventory.first(material);
-	}
-
 	public int first(RunsafeMeta itemStack)
 	{
 		return this.inventory.first(itemStack.getRaw());
@@ -113,12 +107,6 @@ public abstract class BukkitInventory
 	public int getSize()
 	{
 		return this.inventory.getSize();
-	}
-
-	@Deprecated
-	public void remove(int material)
-	{
-		this.inventory.remove(material);
 	}
 
 	public void remove(RunsafeMeta itemStack)
