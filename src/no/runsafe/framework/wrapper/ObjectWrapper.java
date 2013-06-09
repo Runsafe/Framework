@@ -419,6 +419,14 @@ public class ObjectWrapper
 		return new RunsafeHopper(toWrap);
 	}
 
+	public static RunsafeDropper convert(Dropper toWrap)
+	{
+		if (toWrap == null)
+			return null;
+
+		return new RunsafeDropper(toWrap);
+	}
+
 	public static IInventoryHolder convert(InventoryHolder toWrap)
 	{
 		if (toWrap == null)
@@ -437,6 +445,8 @@ public class ObjectWrapper
 			return convert((DoubleChest) toWrap);
 		if (toWrap instanceof Player)
 			return convert((Player) toWrap);
+		if (toWrap instanceof Dropper)
+			return convert((Dropper) toWrap);
 		return null;
 	}
 
