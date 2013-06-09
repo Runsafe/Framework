@@ -2,6 +2,9 @@ package no.runsafe.framework.server;
 
 import no.runsafe.framework.hook.HookEngine;
 import no.runsafe.framework.hook.IPlayerLookupService;
+import no.runsafe.framework.output.IDebug;
+import no.runsafe.framework.output.IOutput;
+import no.runsafe.framework.output.RunsafeDebugger;
 import no.runsafe.framework.server.player.RunsafeAmbiguousPlayer;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import no.runsafe.framework.wrapper.BukkitServer;
@@ -22,6 +25,12 @@ public class RunsafeServer extends BukkitServer
 	public RunsafeServer(Server toWrap)
 	{
 		super(toWrap);
+		debugger = new RunsafeDebugger(toWrap.getLogger());
+	}
+
+	public IDebug getDebugger()
+	{
+		return debugger;
 	}
 
 	public RunsafePlayer getPlayer(String playerName)
@@ -176,4 +185,5 @@ public class RunsafeServer extends BukkitServer
 	}
 
 	private final ConcurrentHashMap<String, RunsafePlayer> kickingPlayer = new ConcurrentHashMap<String, RunsafePlayer>();
+	private final RunsafeDebugger debugger;
 }
