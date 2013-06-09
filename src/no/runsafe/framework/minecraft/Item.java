@@ -872,7 +872,7 @@ public class Item implements IEnchantable
 		this.material = material;
 		this.root = root;
 		this.data = dataByte;
-		item = root ? null : new RunsafeMaterialData(material.getId(), dataByte).toItemStack(material.getMaxStackSize());
+		item = root ? null : new RunsafeMaterialData(material.getId(), dataByte).toItemStack(1);
 
 		if (root)
 			addItem(this);

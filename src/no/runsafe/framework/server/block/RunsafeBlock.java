@@ -17,13 +17,6 @@ public class RunsafeBlock extends BukkitBlock
 
 	public boolean is(Item type)
 	{
-		RunsafeServer.Instance.getDebugger().fine(
-			String.format(
-				"ItemStack(%s,%d) is Item(%s,%d)?",
-				block.getType().name(), block.getData(),
-				type.getType().name(), type.getData()
-			)
-		);
 		return this.block.getType() == type.getType()
 			&& (type.getData() == (byte) -1 || this.getData() == type.getData());
 	}
