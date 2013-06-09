@@ -7,9 +7,12 @@ import no.runsafe.framework.server.block.RunsafeBlock;
 import no.runsafe.framework.server.entity.RunsafeEntityType;
 import no.runsafe.framework.server.entity.RunsafeItem;
 import no.runsafe.framework.server.item.RunsafeItemStack;
+import no.runsafe.framework.server.item.meta.RunsafeMeta;
 import no.runsafe.framework.server.material.RunsafeMaterialData;
+import no.runsafe.framework.wrapper.ObjectWrapper;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.MaterialData;
 
 import java.util.HashMap;
@@ -858,6 +861,15 @@ public class Item implements IEnchantable
 	public RunsafeItemStack getItem()
 	{
 		return item == null ? convertToItem().getItem() : item;
+	}
+
+	public RunsafeMeta getMeta()
+	{
+		if (item == null)
+			return convertToItem().getMeta();
+		ItemStack stack = item.getRaw();
+		stack.setItemMeta(stack.getItemMeta());
+		return stack.hasItemMeta() ? (RunsafeMeta) ObjectWrapper.convert(stack) : null;
 	}
 
 	private Item(Material material, boolean root)
