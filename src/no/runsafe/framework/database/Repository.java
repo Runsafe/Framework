@@ -4,6 +4,7 @@ import org.joda.time.DateTime;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.Map;
 
 /**
  * Base class for database repositories, providing methods for converting SQL Timestamp to and from Joda DateTime
@@ -56,6 +57,56 @@ public abstract class Repository implements ISchemaChanges
 
 		if (value instanceof Integer)
 			return Long.valueOf((Integer) value);
+
+		return null;
+	}
+
+	protected static Double getDoubleValue(Map<String, Object> row, String key)
+	{
+		if(row == null || row.isEmpty() || !row.containsKey(key))
+			return null;
+
+		Object value = row.get(key);
+
+		if(value instanceof Float)
+			return ((Float) value).doubleValue();
+
+		if(value instanceof Double)
+			return (Double) value;
+
+		if(value instanceof String)
+			return Double.valueOf((String) value);
+
+		if(value instanceof Long)
+			return ((Long) value).doubleValue();
+
+		if(value instanceof Integer)
+			return ((Integer) value).doubleValue();
+
+		return null;
+	}
+
+	protected static Float getFloatValue(Map<String, Object> row, String key)
+	{
+		if(row == null || row.isEmpty() || !row.containsKey(key))
+			return null;
+
+		Object value = row.get(key);
+
+		if(value instanceof Float)
+			return (Float)value;
+
+		if(value instanceof Double)
+			return ((Double) value).floatValue();
+
+		if(value instanceof String)
+			return Float.valueOf((String) value);
+
+		if(value instanceof Long)
+			return ((Long) value).floatValue();
+
+		if(value instanceof Integer)
+			return ((Integer) value).floatValue();
 
 		return null;
 	}
