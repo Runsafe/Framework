@@ -47,10 +47,10 @@ public final class SchemaUpdater implements Startable
 
 	public int getRevision(String table)
 	{
-		Map<String, Object> row = database.QueryRow("SELECT `revision` FROM runsafe_schema WHERE `table`=?", table);
-		if (row == null || row.isEmpty())
+		Row row = database.QueryRow("SELECT `revision` FROM runsafe_schema WHERE `table`=?", table);
+		if (row == null)
 			return 0;
-		return (Integer) row.get("revision");
+		return row.Integer("revision");
 	}
 
 	public void setRevision(String table, int revision)
