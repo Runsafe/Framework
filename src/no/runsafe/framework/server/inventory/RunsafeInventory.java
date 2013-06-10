@@ -21,14 +21,14 @@ public class RunsafeInventory extends BukkitInventory
 	public boolean contains(Item item, int amount)
 	{
 		int currentAmount = 0;
-
 		for (RunsafeMeta itemStack : this.getContents())
 		{
 			if (itemStack.is(item))
+			{
 				currentAmount += itemStack.getAmount();
-
-			if (currentAmount >= amount)
-				return true;
+				if (currentAmount >= amount)
+					return true;
+			}
 		}
 		return false;
 	}
