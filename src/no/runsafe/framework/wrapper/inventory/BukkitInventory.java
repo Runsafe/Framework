@@ -64,6 +64,16 @@ public abstract class BukkitInventory
 		return this.inventory.contains(itemStack.getRaw(), amount);
 	}
 
+	public boolean contains(Item item)
+	{
+		return inventory.contains(item.getType());
+	}
+
+	public boolean contains(Item item, int amount)
+	{
+		return inventory.contains(item.getType(), amount);
+	}
+
 	public int first(RunsafeMeta itemStack)
 	{
 		return this.inventory.first(itemStack.getRaw());
