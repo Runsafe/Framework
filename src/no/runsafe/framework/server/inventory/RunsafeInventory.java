@@ -18,6 +18,31 @@ public class RunsafeInventory extends BukkitInventory
 		super(toWrap);
 	}
 
+	public boolean contains(Item item, int amount)
+	{
+		int currentAmount = 0;
+
+		for (RunsafeMeta itemStack : this.getContents())
+		{
+			if (itemStack.is(item))
+				currentAmount += itemStack.getAmount();
+
+			if (currentAmount >= amount)
+				return true;
+		}
+		return false;
+	}
+
+	public boolean contains(Item item)
+	{
+		for (RunsafeMeta itemStack : this.getContents())
+		{
+			if (itemStack.is(item))
+				return true;
+		}
+		return false;
+	}
+
 	public void remove(Item item, int amount)
 	{
 		int needed = amount;
