@@ -32,13 +32,13 @@ public interface IDatabase
 	 */
 	Connection beginTransaction();
 
-	List<Map<String, Object>> Query(String query, Object... params);
+	Set Query(String query, Object... params);
 
 	boolean Execute(String query, Object... params);
 
 	int Update(String query, Object... params);
 
-	Map<String, Object> QueryRow(String query, Object... params);
+	Row QueryRow(String query, Object... params);
 
-	List<Object> QueryColumn(String query, Object... params);
+	List<Value> QueryColumn(String query, Object... params);
 }

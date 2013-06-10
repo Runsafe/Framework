@@ -9,7 +9,10 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 
 /**
@@ -144,7 +147,7 @@ public final class RunsafeDatabaseHandler implements IDatabase
 	}
 
 	@Override
-	public List<Map<String, Object>> Query(String query, Object... params)
+	public Set Query(String query, Object... params)
 	{
 		try
 		{
@@ -160,16 +163,16 @@ public final class RunsafeDatabaseHandler implements IDatabase
 			int cols = meta.getColumnCount();
 			if (cols == 0)
 				return null;
-			ArrayList<Map<String, Object>> results = new ArrayList<Map<String, Object>>();
+			ArrayList<Row> results = new ArrayList<Row>();
 			while (!result.isAfterLast())
 			{
 				HashMap<String, Object> row = new HashMap<String, Object>();
 				for (int i = 0; i < cols; ++i)
 					row.put(meta.getColumnName(i + 1), result.getObject(i + 1));
-				results.add(row);
+				results.add(new Row(row));
 				result.next();
 			}
-			return results;
+			return new Set(results);
 		}
 		catch (SQLException e)
 		{
@@ -179,7 +182,7 @@ public final class RunsafeDatabaseHandler implements IDatabase
 	}
 
 	@Override
-	public Map<String, Object> QueryRow(String query, Object... params)
+	public Row QueryRow(String query, Object... params)
 	{
 		try
 		{
@@ -198,7 +201,7 @@ public final class RunsafeDatabaseHandler implements IDatabase
 			HashMap<String, Object> row = new HashMap<String, Object>();
 			for (int i = 0; i < cols; ++i)
 				row.put(meta.getColumnName(i + 1), result.getObject(i + 1));
-			return row;
+			return new Row(row);
 		}
 		catch (SQLException e)
 		{
@@ -208,7 +211,7 @@ public final class RunsafeDatabaseHandler implements IDatabase
 	}
 
 	@Override
-	public List<Object> QueryColumn(String query, Object... params)
+	public List<Value> QueryColumn(String query, Object... params)
 	{
 		try
 		{
@@ -224,10 +227,10 @@ public final class RunsafeDatabaseHandler implements IDatabase
 			int cols = meta.getColumnCount();
 			if (cols == 0)
 				return null;
-			ArrayList<Object> results = new ArrayList<Object>();
+			ArrayList<Value> results = new ArrayList<Value>();
 			while (!result.isAfterLast())
 			{
-				results.add(result.getObject(1));
+				results.add(new Value(result.getObject(1)));
 				result.next();
 			}
 			return results;
