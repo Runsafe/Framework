@@ -25,6 +25,7 @@ public class RunsafeInventory extends BukkitInventory
 		{
 			if (itemStack.is(item))
 			{
+				RunsafeServer.Instance.broadcastMessage("Checking for item did match");
 				currentAmount += itemStack.getAmount();
 				if (currentAmount >= amount)
 					return true;
