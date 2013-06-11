@@ -1,8 +1,11 @@
 package no.runsafe.framework.database;
 
+import no.runsafe.framework.server.RunsafeLocation;
+import no.runsafe.framework.server.RunsafeServer;
+import no.runsafe.framework.server.RunsafeWorld;
+import no.runsafe.framework.server.player.RunsafePlayer;
 import org.joda.time.DateTime;
 
-import java.math.BigDecimal;
 import java.util.Map;
 
 public class Row extends DataConverter
@@ -40,6 +43,32 @@ public class Row extends DataConverter
 	public DateTime DateTime(String column)
 	{
 		return super.DateTime(get(column));
+	}
+
+	public RunsafeLocation Location()
+	{
+		return Location("world", "x", "y", "z", "yaw", "pitch");
+	}
+
+	public RunsafeLocation Location(String world, String x, String y, String z)
+	{
+		return Location(world, x, y, z, "yaw", "pitch");
+	}
+
+	public RunsafeLocation Location(String world, String x, String y, String z, String yaw, String pitch)
+	{
+		return super.Location(get(world), get(x), get(y), get(z), get(yaw), get(pitch));
+	}
+
+	public RunsafeWorld World(String column)
+	{
+		return super.World(get(column));
+	}
+
+	public RunsafePlayer Player(String column)
+	{
+		Object value = get(column);
+		return value == null ? null : RunsafeServer.Instance.getOfflinePlayerExact(value.toString());
 	}
 
 	private Object get(String column)

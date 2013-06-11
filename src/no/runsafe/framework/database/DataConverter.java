@@ -1,5 +1,8 @@
 package no.runsafe.framework.database;
 
+import no.runsafe.framework.server.RunsafeLocation;
+import no.runsafe.framework.server.RunsafeServer;
+import no.runsafe.framework.server.RunsafeWorld;
 import org.joda.time.DateTime;
 
 import java.math.BigDecimal;
@@ -118,5 +121,24 @@ public abstract class DataConverter
 		if (value == null)
 			return null;
 		return new DateTime(value);
+	}
+
+	public RunsafeLocation Location(Object world, Object x, Object y, Object z, Object yaw, Object pitch)
+	{
+		RunsafeWorld targetWorld = World(world);
+		if (targetWorld == null)
+			return null;
+
+		if (yaw != null && pitch != null)
+			return new RunsafeLocation(targetWorld, Double(x), Double(y), Double(z), Float(yaw), Float(pitch));
+
+		return new RunsafeLocation(targetWorld, Double(x), Double(y), Double(z));
+	}
+
+	public RunsafeWorld World(Object value)
+	{
+		if (value == null)
+			return null;
+		return RunsafeServer.Instance.getWorld(value.toString());
 	}
 }
