@@ -1,6 +1,6 @@
 package no.runsafe.framework.minecraft;
 
-import no.runsafe.framework.server.entity.RunsafeLivingEntity;
+import no.runsafe.framework.minecraft.entity.RunsafeLivingEntity;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 

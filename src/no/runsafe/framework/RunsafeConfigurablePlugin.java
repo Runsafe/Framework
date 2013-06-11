@@ -1,6 +1,6 @@
 package no.runsafe.framework;
 
-import no.runsafe.framework.configuration.IConfigurationFile;
+import no.runsafe.framework.api.IConfigurationFile;
 
 import java.io.InputStream;
 

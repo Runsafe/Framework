@@ -1,5 +1,8 @@
 package no.runsafe.framework.timer;
 
+import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.api.ITimer;
+
 @SuppressWarnings("EmptyMethod")
 public abstract class TimerFactory<T>
 {

@@ -1,9 +1,8 @@
 package no.runsafe.framework.minecraft;
 
-import no.runsafe.framework.server.RunsafeLocation;
-import no.runsafe.framework.server.item.meta.RunsafeFirework;
-import no.runsafe.framework.server.item.meta.RunsafeMeta;
-import no.runsafe.framework.server.player.RunsafePlayer;
+import no.runsafe.framework.minecraft.item.meta.RunsafeFirework;
+import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
+import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.inventory.meta.FireworkMeta;

@@ -1,8 +1,9 @@
 package no.runsafe.framework;
 
-import no.runsafe.framework.command.BukkitCommandExecutor;
-import no.runsafe.framework.command.ICommandHandler;
-import no.runsafe.framework.output.IOutput;
+import no.runsafe.framework.internal.command.BukkitCommandExecutor;
+import no.runsafe.framework.api.command.ICommandHandler;
+import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.internal.InjectionPlugin;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.YamlConfiguration;

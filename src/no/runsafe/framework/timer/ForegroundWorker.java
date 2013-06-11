@@ -1,5 +1,8 @@
 package no.runsafe.framework.timer;
 
+import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.api.ITimer;
+
 import java.util.Stack;
 import java.util.concurrent.ConcurrentHashMap;
 

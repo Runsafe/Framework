@@ -1,5 +1,7 @@
 package no.runsafe.framework.timer;
 
+import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.api.ITimer;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 

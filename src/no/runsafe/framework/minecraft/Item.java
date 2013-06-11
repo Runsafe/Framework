@@ -1,13 +1,12 @@
 package no.runsafe.framework.minecraft;
 
-import no.runsafe.framework.enchant.IEnchant;
-import no.runsafe.framework.enchant.IEnchantable;
-import no.runsafe.framework.server.RunsafeLocation;
-import no.runsafe.framework.server.block.RunsafeBlock;
-import no.runsafe.framework.server.entity.RunsafeEntityType;
-import no.runsafe.framework.server.entity.RunsafeItem;
-import no.runsafe.framework.server.item.meta.RunsafeMeta;
-import no.runsafe.framework.server.material.RunsafeMaterialData;
+import no.runsafe.framework.api.minecraft.IEnchant;
+import no.runsafe.framework.api.minecraft.IEnchantable;
+import no.runsafe.framework.minecraft.block.RunsafeBlock;
+import no.runsafe.framework.api.minecraft.RunsafeEntityType;
+import no.runsafe.framework.minecraft.entity.RunsafeItem;
+import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
+import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.material.MaterialData;

@@ -1,5 +1,7 @@
 package no.runsafe.framework.timer;
 
+import no.runsafe.framework.api.IScheduler;
+
 import java.util.concurrent.ConcurrentHashMap;
 
 public class TimedCache<Key, Value>

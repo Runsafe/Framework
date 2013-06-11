@@ -1,6 +1,5 @@
 package no.runsafe.framework.minecraft;
 
-import no.runsafe.framework.server.RunsafeLocation;
 import org.bukkit.Location;
 
 import java.util.HashMap;

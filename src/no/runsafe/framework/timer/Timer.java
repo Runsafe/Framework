@@ -1,5 +1,8 @@
 package no.runsafe.framework.timer;
 
+import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.api.ITimer;
+
 public abstract class Timer implements ITimer, Runnable
 {
 	public Timer(IScheduler scheduler, boolean async)
