@@ -17,6 +17,7 @@ public abstract class Repository implements ISchemaChanges
 	 * @param timestamp The SQL timestamp object
 	 * @return A joda time DateTime
 	 */
+	@Deprecated
 	protected static DateTime convert(Object timestamp)
 	{
 		if (timestamp == null)
@@ -44,6 +45,7 @@ public abstract class Repository implements ISchemaChanges
 	 * @param value A value fetched from the database
 	 * @return A long value or NULL if the value is unsupported
 	 */
+	@Deprecated
 	protected static Long getLongValue(Object value)
 	{
 		if (value instanceof BigDecimal)
@@ -61,6 +63,7 @@ public abstract class Repository implements ISchemaChanges
 		return null;
 	}
 
+	@Deprecated
 	protected static Double getDoubleValue(Map<String, Object> row, String key)
 	{
 		if(row == null || row.isEmpty() || !row.containsKey(key))
@@ -86,6 +89,7 @@ public abstract class Repository implements ISchemaChanges
 		return null;
 	}
 
+	@Deprecated
 	protected static Float getFloatValue(Map<String, Object> row, String key)
 	{
 		if(row == null || row.isEmpty() || !row.containsKey(key))

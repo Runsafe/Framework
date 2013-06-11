@@ -1,14 +1,11 @@
 package no.runsafe.framework.database;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Database access wrapper
  */
-public interface IDatabase
+public interface IDatabase extends IQueryExecutor
 {
 
 	/**
@@ -16,6 +13,7 @@ public interface IDatabase
 	 *
 	 * @param conn The transaction connection
 	 */
+	@Deprecated
 	void rollbackTransaction(Connection conn);
 
 	/**
@@ -23,6 +21,7 @@ public interface IDatabase
 	 *
 	 * @param conn The transaction connection
 	 */
+	@Deprecated
 	void commitTransaction(Connection conn);
 
 	/**
@@ -30,15 +29,8 @@ public interface IDatabase
 	 *
 	 * @return The transaction connection
 	 */
+	@Deprecated
 	Connection beginTransaction();
 
-	Set Query(String query, Object... params);
-
-	boolean Execute(String query, Object... params);
-
-	int Update(String query, Object... params);
-
-	Row QueryRow(String query, Object... params);
-
-	List<Value> QueryColumn(String query, Object... params);
+	RunsafeTransaction Isolate();
 }

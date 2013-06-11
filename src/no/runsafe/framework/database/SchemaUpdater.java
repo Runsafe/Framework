@@ -3,12 +3,8 @@ package no.runsafe.framework.database;
 import no.runsafe.framework.output.IOutput;
 import org.picocontainer.Startable;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * This class handles database schema updates
@@ -98,35 +94,20 @@ public final class SchemaUpdater implements Startable
 	private int executeSchemaChanges(String tableName, int oldRevision, int newRevision, List<String> queries)
 	{
 		String sqlQuery = null;
-		Connection transaction = database.beginTransaction();
-		try
+		RunsafeTransaction transaction = database.Isolate();
+		console.write(String.format("Updating table %s from revision %d to revision %d", tableName, oldRevision, newRevision));
+		for (String sql : queries)
 		{
-			console.write(String.format("Updating table %s from revision %d to revision %d", tableName, oldRevision, newRevision));
-			for (String sql : queries)
+			if (!transaction.Execute(sql))
 			{
-				sqlQuery = sql;
-				PreparedStatement query = transaction.prepareStatement(sql);
-				query.execute();
-			}
-			database.commitTransaction(transaction);
-			return newRevision;
-		}
-		catch (SQLException e)
-		{
-			console.logException(e);
-			console.writeColoured("Failed executing query:\n%s", sqlQuery);
-			console.writeColoured("&cRolling back transaction..");
-			try
-			{
-				transaction.rollback();
-			}
-			catch (SQLException e1)
-			{
-				console.writeColoured("&4Failed rolling back transaction!");
-				console.logException(e1);
+				console.writeColoured("Failed executing query:\n%s", sqlQuery);
+				console.writeColoured("&cRolling back transaction..");
+				transaction.Rollback();
+				return oldRevision;
 			}
 		}
-		return oldRevision;
+		transaction.Commit();
+		return newRevision;
 	}
 
 
