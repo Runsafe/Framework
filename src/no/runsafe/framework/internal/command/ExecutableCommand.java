@@ -1,4 +1,4 @@
-package no.runsafe.framework.internal.command.prepared;
+package no.runsafe.framework.internal.command;
 
 @Deprecated
 public abstract class ExecutableCommand extends no.runsafe.framework.api.command.ExecutableCommand

@@ -1,4 +1,4 @@
-package no.runsafe.framework.internal.command.prepared;
+package no.runsafe.framework.internal.command;
 
 import no.runsafe.framework.api.IScheduler;
 
