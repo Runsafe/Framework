@@ -94,7 +94,7 @@ public final class SchemaUpdater implements Startable
 	private int executeSchemaChanges(String tableName, int oldRevision, int newRevision, List<String> queries)
 	{
 		String sqlQuery = null;
-		RunsafeTransaction transaction = database.Isolate();
+		ITransaction transaction = database.Isolate();
 		console.write(String.format("Updating table %s from revision %d to revision %d", tableName, oldRevision, newRevision));
 		for (String sql : queries)
 		{

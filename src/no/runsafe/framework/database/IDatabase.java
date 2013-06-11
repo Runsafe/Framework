@@ -32,5 +32,5 @@ public interface IDatabase extends IQueryExecutor
 	@Deprecated
 	Connection beginTransaction();
 
-	RunsafeTransaction Isolate();
+	ITransaction Isolate();
 }

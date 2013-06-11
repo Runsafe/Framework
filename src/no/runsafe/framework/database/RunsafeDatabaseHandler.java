@@ -163,7 +163,7 @@ public class RunsafeDatabaseHandler implements IDatabase
 	}
 
 	@Override
-	public RunsafeTransaction Isolate()
+	public ITransaction Isolate()
 	{
 		try
 		{
