@@ -1,7 +1,7 @@
 package no.runsafe.framework.database;
 
-import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeWorld;
+import no.runsafe.framework.server.player.RunsafePlayer;
 import org.joda.time.DateTime;
 
 public class Value extends DataConverter
@@ -39,6 +39,11 @@ public class Value extends DataConverter
 	public DateTime DateTime()
 	{
 		return super.DateTime(raw);
+	}
+
+	public RunsafePlayer Player()
+	{
+		return super.Player(raw);
 	}
 
 	public RunsafeWorld World()

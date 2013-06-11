@@ -3,6 +3,7 @@ package no.runsafe.framework.database;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeServer;
 import no.runsafe.framework.server.RunsafeWorld;
+import no.runsafe.framework.server.player.RunsafePlayer;
 import org.joda.time.DateTime;
 
 import java.math.BigDecimal;
@@ -10,7 +11,7 @@ import java.math.BigInteger;
 
 public abstract class DataConverter
 {
-	public String String(Object value)
+	protected String String(Object value)
 	{
 		if (value == null)
 			return null;
@@ -18,7 +19,7 @@ public abstract class DataConverter
 		return value.toString();
 	}
 
-	public Integer Integer(Object value)
+	protected Integer Integer(Object value)
 	{
 		if (value == null)
 			return null;
@@ -41,7 +42,7 @@ public abstract class DataConverter
 		return null;
 	}
 
-	public Long Long(Object value)
+	protected Long Long(Object value)
 	{
 		if (value == null)
 			return null;
@@ -64,7 +65,7 @@ public abstract class DataConverter
 		return null;
 	}
 
-	public Double Double(Object value)
+	protected Double Double(Object value)
 	{
 		if (value == null)
 			return null;
@@ -90,7 +91,7 @@ public abstract class DataConverter
 		return null;
 	}
 
-	public Float Float(Object value)
+	protected Float Float(Object value)
 	{
 		if (value == null)
 			return null;
@@ -116,14 +117,14 @@ public abstract class DataConverter
 		return null;
 	}
 
-	public DateTime DateTime(Object value)
+	protected DateTime DateTime(Object value)
 	{
 		if (value == null)
 			return null;
 		return new DateTime(value);
 	}
 
-	public RunsafeLocation Location(Object world, Object x, Object y, Object z, Object yaw, Object pitch)
+	protected RunsafeLocation Location(Object world, Object x, Object y, Object z, Object yaw, Object pitch)
 	{
 		RunsafeWorld targetWorld = World(world);
 		if (targetWorld == null)
@@ -135,10 +136,15 @@ public abstract class DataConverter
 		return new RunsafeLocation(targetWorld, Double(x), Double(y), Double(z));
 	}
 
-	public RunsafeWorld World(Object value)
+	protected RunsafeWorld World(Object value)
 	{
 		if (value == null)
 			return null;
 		return RunsafeServer.Instance.getWorld(value.toString());
+	}
+
+	protected RunsafePlayer Player(Object value)
+	{
+		return value == null ? null : RunsafeServer.Instance.getOfflinePlayerExact(value.toString());
 	}
 }

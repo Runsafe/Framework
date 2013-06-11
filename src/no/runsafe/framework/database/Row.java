@@ -67,8 +67,7 @@ public class Row extends DataConverter
 
 	public RunsafePlayer Player(String column)
 	{
-		Object value = get(column);
-		return value == null ? null : RunsafeServer.Instance.getOfflinePlayerExact(value.toString());
+		return super.Player(get(column));
 	}
 
 	private Object get(String column)
