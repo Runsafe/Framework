@@ -3,7 +3,7 @@ package no.runsafe.framework;
 import no.runsafe.framework.command.CommandEngine;
 import no.runsafe.framework.configuration.ConfigurationEngine;
 import no.runsafe.framework.configuration.RunsafeConfigurationHandler;
-import no.runsafe.framework.database.RunsafeDatabaseHandler;
+import no.runsafe.framework.database.jdbc.Database;
 import no.runsafe.framework.database.SchemaUpdater;
 import no.runsafe.framework.event.EventEngine;
 import no.runsafe.framework.event.IPluginDisabled;
@@ -140,7 +140,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		this.container.addComponent(this.getLogger());
 		this.container.addComponent(RunsafeConfigurationHandler.class);
 		this.container.addComponent(RunsafeOutputHandler.class);
-		this.container.addComponent(RunsafeDatabaseHandler.class);
+		this.container.addComponent(Database.class);
 		this.container.addComponent(new Scheduler(this.getServer().getScheduler(), this));
 		this.container.addComponent(SchemaUpdater.class);
 		this.container.addComponent(EventEngine.class);

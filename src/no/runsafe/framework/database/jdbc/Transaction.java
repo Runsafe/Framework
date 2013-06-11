@@ -1,5 +1,6 @@
-package no.runsafe.framework.database;
+package no.runsafe.framework.database.jdbc;
 
+import no.runsafe.framework.database.ITransaction;
 import no.runsafe.framework.output.IOutput;
 
 import java.sql.Connection;
@@ -7,11 +8,11 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.logging.Level;
 
-public final class RunsafeTransaction extends RunsafeDatabaseHandler implements ITransaction
+public final class Transaction extends QueryExecutor implements ITransaction
 {
-	RunsafeTransaction(IOutput output, Connection conn)
+	Transaction(IOutput output, Connection conn)
 	{
-		super(output, false);
+		super(output);
 		this.conn = conn;
 	}
 
@@ -42,4 +43,12 @@ public final class RunsafeTransaction extends RunsafeDatabaseHandler implements 
 			this.output.outputToConsole(e.getMessage() + Arrays.toString(e.getStackTrace()), Level.SEVERE);
 		}
 	}
+
+	@Override
+	protected Connection getConnection()
+	{
+		return conn;
+	}
+
+	private final Connection conn;
 }
