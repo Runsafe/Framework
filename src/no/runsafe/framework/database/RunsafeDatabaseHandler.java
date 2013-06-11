@@ -11,7 +11,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
@@ -112,53 +111,6 @@ public class RunsafeDatabaseHandler implements IDatabase
 				ConsoleColors.RESET
 			);
 			System.exit(1);
-		}
-	}
-
-	@Override
-	@Deprecated
-	public Connection beginTransaction()
-	{
-		try
-		{
-			Connection conn = getConnection();
-			conn.setAutoCommit(false);
-			return conn;
-		}
-		catch (SQLException e)
-		{
-			this.output.outputToConsole(e.getMessage(), Level.SEVERE);
-			return null;
-		}
-	}
-
-	@Override
-	@Deprecated
-	public void commitTransaction(Connection conn)
-	{
-		try
-		{
-			conn.commit();
-			conn.close();
-		}
-		catch (SQLException e)
-		{
-			this.output.outputToConsole(e.getMessage() + Arrays.toString(e.getStackTrace()), Level.SEVERE);
-		}
-	}
-
-	@Override
-	@Deprecated
-	public void rollbackTransaction(Connection conn)
-	{
-		try
-		{
-			conn.rollback();
-			conn.close();
-		}
-		catch (SQLException e)
-		{
-			this.output.outputToConsole(e.getMessage() + Arrays.toString(e.getStackTrace()), Level.SEVERE);
 		}
 	}
 
