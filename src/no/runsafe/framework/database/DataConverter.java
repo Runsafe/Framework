@@ -3,6 +3,7 @@ package no.runsafe.framework.database;
 import org.joda.time.DateTime;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 public abstract class DataConverter
 {
@@ -31,6 +32,9 @@ public abstract class DataConverter
 		if (value instanceof Long)
 			return ((Long) value).intValue();
 
+		if (value instanceof BigInteger)
+			return ((BigInteger) value).intValue();
+
 		return null;
 	}
 
@@ -50,6 +54,9 @@ public abstract class DataConverter
 
 		if (value instanceof Integer)
 			return Long.valueOf((Integer) value);
+
+		if (value instanceof BigInteger)
+			return ((BigInteger) value).longValue();
 
 		return null;
 	}
@@ -74,6 +81,9 @@ public abstract class DataConverter
 		if (value instanceof Integer)
 			return ((Integer) value).doubleValue();
 
+		if (value instanceof BigInteger)
+			return ((BigInteger) value).doubleValue();
+
 		return null;
 	}
 
@@ -96,6 +106,9 @@ public abstract class DataConverter
 
 		if (value instanceof Integer)
 			return ((Integer) value).floatValue();
+
+		if (value instanceof BigInteger)
+			return ((BigInteger) value).floatValue();
 
 		return null;
 	}
