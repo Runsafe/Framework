@@ -9,7 +9,7 @@ import org.joda.time.DateTime;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-public abstract class DataConverter
+abstract class DataConverter
 {
 	protected String String(Object value)
 	{

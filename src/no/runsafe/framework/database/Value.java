@@ -4,7 +4,7 @@ import no.runsafe.framework.server.RunsafeWorld;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import org.joda.time.DateTime;
 
-public class Value extends DataConverter
+public final class Value extends DataConverter
 {
 	public Value(Object data)
 	{

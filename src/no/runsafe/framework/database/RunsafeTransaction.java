@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.logging.Level;
 
-public class RunsafeTransaction extends RunsafeDatabaseHandler implements ITransaction
+public final class RunsafeTransaction extends RunsafeDatabaseHandler implements ITransaction
 {
 	RunsafeTransaction(IOutput output, Connection conn)
 	{

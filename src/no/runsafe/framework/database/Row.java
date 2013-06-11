@@ -8,7 +8,7 @@ import org.joda.time.DateTime;
 
 import java.util.Map;
 
-public class Row extends DataConverter
+public final class Row extends DataConverter
 {
 	public Row(Map<String, Object> data)
 	{
