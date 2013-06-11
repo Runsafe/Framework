@@ -1,8 +1,8 @@
 package no.runsafe.framework.internal.command.prepared;
 
-import no.runsafe.framework.internal.command.AsyncCommand;
+import no.runsafe.framework.api.command.AsyncCommand;
 import no.runsafe.framework.api.command.Command;
-import no.runsafe.framework.internal.command.ExecutableCommand;
+import no.runsafe.framework.api.command.ExecutableCommand;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.IScheduler;
 

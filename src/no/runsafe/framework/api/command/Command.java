@@ -4,8 +4,6 @@ import com.google.common.collect.ImmutableList;
 import no.runsafe.framework.internal.command.prepared.PreparedAsynchronousCallbackCommand;
 import no.runsafe.framework.internal.command.prepared.PreparedAsynchronousCommand;
 import no.runsafe.framework.internal.command.prepared.PreparedSynchronousCommand;
-import no.runsafe.framework.internal.command.AsyncCallbackCommand;
-import no.runsafe.framework.internal.command.AsyncCommand;
 import no.runsafe.framework.text.ChatColour;
 import no.runsafe.framework.api.IOutput;
 import org.apache.commons.lang.StringUtils;

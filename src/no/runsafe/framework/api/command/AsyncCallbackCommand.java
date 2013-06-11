@@ -1,7 +1,6 @@
-package no.runsafe.framework.internal.command;
+package no.runsafe.framework.api.command;
 
 import no.runsafe.framework.internal.command.prepared.PreparedAsynchronousCallbackCommand;
-import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.IScheduler;
 
 import java.util.HashMap;

@@ -1,6 +1,6 @@
 package no.runsafe.framework.api.command.console;
 
-import no.runsafe.framework.internal.command.AsyncCommand;
+import no.runsafe.framework.api.command.AsyncCommand;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.minecraft.RunsafeConsole;
 import no.runsafe.framework.api.IScheduler;

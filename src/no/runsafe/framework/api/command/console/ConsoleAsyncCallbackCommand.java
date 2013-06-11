@@ -1,6 +1,6 @@
 package no.runsafe.framework.api.command.console;
 
-import no.runsafe.framework.internal.command.AsyncCallbackCommand;
+import no.runsafe.framework.api.command.AsyncCallbackCommand;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.minecraft.RunsafeConsole;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
