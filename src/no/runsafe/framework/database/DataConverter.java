@@ -1,5 +1,6 @@
 package no.runsafe.framework.database;
 
+import no.runsafe.framework.server.RunsafeServer;
 import org.joda.time.DateTime;
 
 import java.math.BigDecimal;
@@ -19,6 +20,8 @@ public abstract class DataConverter
 	{
 		if (value == null)
 			return null;
+
+		RunsafeServer.Instance.getLogger().info(value.getClass().getName());
 
 		if (value instanceof BigDecimal)
 			return ((BigDecimal) value).intValue();
