@@ -20,7 +20,7 @@ import java.util.logging.Level;
  */
 public final class Database extends QueryExecutor implements IDatabase
 {
-	protected Database(IOutput output)
+	public Database(IOutput output)
 	{
 		super(output);
 		YamlConfiguration config = new YamlConfiguration();
