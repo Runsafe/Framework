@@ -1,10 +1,13 @@
 package no.runsafe.framework.internal.database.jdbc;
 
+import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.database.IQueryExecutor;
+import no.runsafe.framework.api.database.IRow;
+import no.runsafe.framework.api.database.ISet;
+import no.runsafe.framework.api.database.IValue;
 import no.runsafe.framework.internal.database.Row;
 import no.runsafe.framework.internal.database.Set;
 import no.runsafe.framework.internal.database.Value;
-import no.runsafe.framework.api.IOutput;
 import org.joda.time.DateTime;
 
 import java.sql.*;
@@ -20,7 +23,7 @@ abstract class QueryExecutor implements IQueryExecutor
 	}
 
 	@Override
-	public Set Query(String query, Object... params)
+	public ISet Query(String query, Object... params)
 	{
 		try
 		{
@@ -38,7 +41,7 @@ abstract class QueryExecutor implements IQueryExecutor
 	}
 
 	@Override
-	public Row QueryRow(String query, Object... params)
+	public IRow QueryRow(String query, Object... params)
 	{
 		try
 		{
@@ -59,7 +62,7 @@ abstract class QueryExecutor implements IQueryExecutor
 	}
 
 	@Override
-	public List<Value> QueryColumn(String query, Object... params)
+	public List<IValue> QueryColumn(String query, Object... params)
 	{
 		try
 		{
@@ -131,7 +134,7 @@ abstract class QueryExecutor implements IQueryExecutor
 		return new Set(results);
 	}
 
-	protected ArrayList<Value> getValues(PreparedStatement statement) throws SQLException
+	protected ArrayList<IValue> getValues(PreparedStatement statement) throws SQLException
 	{
 		output.finer("Running SQL: %s", statement);
 		ResultSet result = statement.executeQuery();
@@ -141,7 +144,7 @@ abstract class QueryExecutor implements IQueryExecutor
 		int cols = meta.getColumnCount();
 		if (cols == 0)
 			return null;
-		ArrayList<Value> results = new ArrayList<Value>();
+		ArrayList<IValue> results = new ArrayList<IValue>();
 		while (!result.isAfterLast())
 		{
 			results.add(new Value(result.getObject(1)));
