@@ -2,7 +2,7 @@ package no.runsafe.framework.internal.database.jdbc;
 
 import no.runsafe.framework.api.database.IDatabase;
 import no.runsafe.framework.api.database.ITransaction;
-import no.runsafe.framework.text.ConsoleColors;
+import no.runsafe.framework.text.ConsoleColour;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -44,11 +44,11 @@ public final class Database extends QueryExecutor implements IDatabase
 			}
 			output.write("\n" +
 				"\n" +
-				ConsoleColors.RED +
+				ConsoleColour.RED +
 				"================================================================\n" +
 				"Created new default runsafe/db.yml - you should change this now!\n" +
 				"================================================================" +
-				ConsoleColors.RESET
+				ConsoleColour.RESET
 			);
 			System.exit(1);
 		}
@@ -57,11 +57,11 @@ public final class Database extends QueryExecutor implements IDatabase
 			output.logException(e);
 			output.write("\n" +
 				"\n" +
-				ConsoleColors.RED +
+				ConsoleColour.RED +
 				"=====================================================\n" +
 				"Unable to read runsafe/db.yml - you need to fix this!\n" +
 				"=====================================================" +
-				ConsoleColors.RESET
+				ConsoleColour.RESET
 			);
 			RunsafeServer.Instance.stop();
 			System.exit(1);
@@ -71,11 +71,11 @@ public final class Database extends QueryExecutor implements IDatabase
 			output.logException(e);
 			output.write("\n" +
 				"\n" +
-				ConsoleColors.RED +
+				ConsoleColour.RED +
 				"=================================================================\n" +
 				"Invalid configuration file runsafe/db.yml - you need to fix this!\n" +
 				"=================================================================" +
-				ConsoleColors.RESET
+				ConsoleColour.RESET
 			);
 			System.exit(1);
 		}
@@ -92,11 +92,11 @@ public final class Database extends QueryExecutor implements IDatabase
 		{
 			output.write("\n" +
 				"\n" +
-				ConsoleColors.RED +
+				ConsoleColour.RED +
 				"====================================================================\n" +
 				"Unable to connect to MySQL - Edit configuration file runsafe/db.yml!\n" +
 				"====================================================================" +
-				ConsoleColors.RESET
+				ConsoleColour.RESET
 			);
 			System.exit(1);
 		}

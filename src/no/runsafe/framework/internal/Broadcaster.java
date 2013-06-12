@@ -7,9 +7,9 @@ import no.runsafe.framework.text.ChatColour;
 import java.util.logging.Logger;
 
 
-public class RunsafeOutputHandler extends RunsafeDebugger implements IOutput
+public final class Broadcaster extends Output implements IOutput
 {
-	public RunsafeOutputHandler(RunsafeServer server, Logger logger)
+	public Broadcaster(RunsafeServer server, Logger logger)
 	{
 		super(logger);
 		this.serverOutput = server;

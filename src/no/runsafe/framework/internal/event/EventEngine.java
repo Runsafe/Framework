@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EventEngine implements Startable
+public final class EventEngine implements Startable
 {
 	static
 	{

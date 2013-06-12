@@ -22,7 +22,7 @@ public final class ConfigurationEngine implements Startable
 	 * @param configuration The configuration handler class
 	 * @param output        Console to write messages to
 	 */
-	public ConfigurationEngine(RunsafePlugin plugin, RunsafeConfigurationHandler configuration, IOutput output)
+	public ConfigurationEngine(RunsafePlugin plugin, Configuration configuration, IOutput output)
 	{
 		this(plugin, configuration, output, null);
 	}
@@ -35,7 +35,7 @@ public final class ConfigurationEngine implements Startable
 	 */
 	public ConfigurationEngine(
 		RunsafePlugin plugin,
-		RunsafeConfigurationHandler configuration,
+		Configuration configuration,
 		IOutput output, IConfigurationChanged[] subscribers)
 	{
 		this.console = output;
@@ -133,7 +133,7 @@ public final class ConfigurationEngine implements Startable
 
 	private final IConfigurationChanged[] subscribers;
 	private final IOutput console;
-	private final RunsafeConfigurationHandler configuration;
+	private final Configuration configuration;
 	private final String configFilePath;
 	private final IConfigurationFile configurationFile;
 }

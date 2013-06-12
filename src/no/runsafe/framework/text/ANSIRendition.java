@@ -1,68 +1,68 @@
 package no.runsafe.framework.text;
 
-public class Rendition
+public class ANSIRendition
 {
-	public static Rendition Modify()
+	public static ANSIRendition Modify()
 	{
-		return new Rendition();
+		return new ANSIRendition();
 	}
 
-	public static Rendition Clear()
+	public static ANSIRendition Clear()
 	{
-		return new Rendition().Reset();
+		return new ANSIRendition().Reset();
 	}
 
-	public Rendition Reset()
+	public ANSIRendition Reset()
 	{
 		reset = true;
 		return this;
 	}
 
-	public Rendition Bright()
+	public ANSIRendition Bright()
 	{
 		bright = true;
 		faint = false;
 		return this;
 	}
 
-	public Rendition Faint()
+	public ANSIRendition Faint()
 	{
 		faint = true;
 		bright = false;
 		return this;
 	}
 
-	public Rendition Italic()
+	public ANSIRendition Italic()
 	{
 		italic = true;
 		return this;
 	}
 
-	public Rendition Underline()
+	public ANSIRendition Underline()
 	{
 		underline = true;
 		return this;
 	}
 
-	public Rendition Reverse()
+	public ANSIRendition Reverse()
 	{
 		reverse = true;
 		return this;
 	}
 
-	public Rendition CrossedOut()
+	public ANSIRendition CrossedOut()
 	{
 		crossed = true;
 		return this;
 	}
 
-	public Rendition Foreground(Colour colour)
+	public ANSIRendition Foreground(ANSIColour colour)
 	{
 		foreground = colour.Foreground();
 		return this;
 	}
 
-	public Rendition Background(Colour colour)
+	public ANSIRendition Background(ANSIColour colour)
 	{
 		background = colour.Background();
 		return this;

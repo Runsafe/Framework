@@ -7,7 +7,7 @@ import org.picocontainer.Startable;
 /**
  * This class handles hooks plugins provide to the framework
  */
-public class HookEngine implements Startable
+public final class HookEngine implements Startable
 {
 	public static final DefaultPicoContainer hookContainer = new DefaultPicoContainer();
 

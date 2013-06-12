@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class ObjectWrapper
+public final class ObjectWrapper
 {
 	@SuppressWarnings("unchecked")
 	public static <Wrapper> List<Wrapper> convert(List<?> toWrap)

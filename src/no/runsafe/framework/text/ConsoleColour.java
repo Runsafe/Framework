@@ -4,7 +4,7 @@ import org.bukkit.ChatColor;
 
 import java.util.regex.Pattern;
 
-public class ConsoleColors
+public class ConsoleColour
 {
 	public static String FromMinecraft(String message)
 	{
@@ -55,26 +55,26 @@ public class ConsoleColors
 	private static final Pattern BUKKIT_UNDERLINE = Pattern.compile(ChatColor.UNDERLINE.toString());
 	private static final Pattern BUKKIT_ITALIC = Pattern.compile(ChatColor.ITALIC.toString());
 	private static final Pattern BUKKIT_RESET = Pattern.compile(ChatColor.RESET.toString());
-	public static final String DARK_GREEN = Rendition.Clear().Faint().Foreground(Colour.Green).toString();
-	public static final String DARK_BLUE = Rendition.Clear().Faint().Foreground(Colour.Blue).toString();
-	public static final String BLACK = Rendition.Clear().Foreground(Colour.Black).toString();
-	public static final String DARK_AQUA = Rendition.Clear().Faint().Foreground(Colour.Cyan).toString();
-	public static final String DARK_RED = Rendition.Clear().Faint().Foreground(Colour.Red).toString();
-	public static final String DARK_PURPLE = Rendition.Clear().Faint().Foreground(Colour.Magenta).toString();
-	public static final String GOLD = Rendition.Clear().Faint().Foreground(Colour.Yellow).toString();
-	public static final String GRAY = Rendition.Clear().Foreground(Colour.White).toString();
-	public static final String DARK_GRAY = Rendition.Clear().Faint().Foreground(Colour.White).Faint().toString();
-	public static final String BLUE = Rendition.Clear().Foreground(Colour.Blue).Bright().toString();
-	public static final String GREEN = Rendition.Clear().Foreground(Colour.Green).Bright().toString();
-	public static final String AQUA = Rendition.Clear().Foreground(Colour.Cyan).Bright().toString();
-	public static final String RED = Rendition.Clear().Foreground(Colour.Red).Bright().toString();
-	public static final String LIGHT_PURPLE = Rendition.Clear().Foreground(Colour.Magenta).Bright().toString();
-	public static final String YELLOW = Rendition.Clear().Foreground(Colour.Yellow).Bright().toString();
-	public static final String WHITE = Rendition.Clear().Bright().Foreground(Colour.White).toString();
-	public static final String MAGIC = Rendition.Clear().Foreground(Colour.Black).Background(Colour.White).Bright().Reverse().toString();
-	public static final String BOLD = Rendition.Clear().Bright().toString();
-	public static final String STRIKETHROUGH = Rendition.Clear().CrossedOut().toString();
-	public static final String UNDERLINE = Rendition.Clear().Underline().toString();
-	public static final String ITALIC = Rendition.Clear().Italic().toString();
-	public static final String RESET = Rendition.Clear().toString();
+	public static final String DARK_GREEN = ANSIRendition.Clear().Faint().Foreground(ANSIColour.Green).toString();
+	public static final String DARK_BLUE = ANSIRendition.Clear().Faint().Foreground(ANSIColour.Blue).toString();
+	public static final String BLACK = ANSIRendition.Clear().Foreground(ANSIColour.Black).toString();
+	public static final String DARK_AQUA = ANSIRendition.Clear().Faint().Foreground(ANSIColour.Cyan).toString();
+	public static final String DARK_RED = ANSIRendition.Clear().Faint().Foreground(ANSIColour.Red).toString();
+	public static final String DARK_PURPLE = ANSIRendition.Clear().Faint().Foreground(ANSIColour.Magenta).toString();
+	public static final String GOLD = ANSIRendition.Clear().Faint().Foreground(ANSIColour.Yellow).toString();
+	public static final String GRAY = ANSIRendition.Clear().Foreground(ANSIColour.White).toString();
+	public static final String DARK_GRAY = ANSIRendition.Clear().Faint().Foreground(ANSIColour.White).Faint().toString();
+	public static final String BLUE = ANSIRendition.Clear().Foreground(ANSIColour.Blue).Bright().toString();
+	public static final String GREEN = ANSIRendition.Clear().Foreground(ANSIColour.Green).Bright().toString();
+	public static final String AQUA = ANSIRendition.Clear().Foreground(ANSIColour.Cyan).Bright().toString();
+	public static final String RED = ANSIRendition.Clear().Foreground(ANSIColour.Red).Bright().toString();
+	public static final String LIGHT_PURPLE = ANSIRendition.Clear().Foreground(ANSIColour.Magenta).Bright().toString();
+	public static final String YELLOW = ANSIRendition.Clear().Foreground(ANSIColour.Yellow).Bright().toString();
+	public static final String WHITE = ANSIRendition.Clear().Bright().Foreground(ANSIColour.White).toString();
+	public static final String MAGIC = ANSIRendition.Clear().Foreground(ANSIColour.Black).Background(ANSIColour.White).Bright().Reverse().toString();
+	public static final String BOLD = ANSIRendition.Clear().Bright().toString();
+	public static final String STRIKETHROUGH = ANSIRendition.Clear().CrossedOut().toString();
+	public static final String UNDERLINE = ANSIRendition.Clear().Underline().toString();
+	public static final String ITALIC = ANSIRendition.Clear().Italic().toString();
+	public static final String RESET = ANSIRendition.Clear().toString();
 }

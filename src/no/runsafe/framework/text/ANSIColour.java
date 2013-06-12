@@ -1,6 +1,6 @@
 package no.runsafe.framework.text;
 
-public enum Colour
+public enum ANSIColour
 {
 	Black(0),
 	Red(1),
@@ -11,7 +11,7 @@ public enum Colour
 	Cyan(6),
 	White(7);
 
-	private Colour(int code)
+	private ANSIColour(int code)
 	{
 		this.code = code;
 	}

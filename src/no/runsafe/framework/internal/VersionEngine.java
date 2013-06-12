@@ -10,7 +10,7 @@ import org.picocontainer.Startable;
 import java.io.IOException;
 import java.util.logging.Level;
 
-public class VersionEngine implements Startable
+public final class VersionEngine implements Startable
 {
 	public VersionEngine(RunsafePlugin plugin, IOutput output)
 	{

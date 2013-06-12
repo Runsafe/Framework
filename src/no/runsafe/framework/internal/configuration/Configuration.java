@@ -14,9 +14,9 @@ import java.util.Map;
 /**
  * This class handles configuration file access
  */
-public class RunsafeConfigurationHandler implements IConfiguration
+public final class Configuration implements IConfiguration
 {
-	public RunsafeConfigurationHandler(IOutput console)
+	public Configuration(IOutput console)
 	{
 		this.console = console;
 	}

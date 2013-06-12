@@ -1,9 +1,9 @@
 package no.runsafe.framework.internal;
 
-import no.runsafe.framework.text.ChatColour;
-import no.runsafe.framework.text.ConsoleColors;
 import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
+import no.runsafe.framework.text.ChatColour;
+import no.runsafe.framework.text.ConsoleColour;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
@@ -14,9 +14,9 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class RunsafeDebugger implements IDebug
+public abstract class Output implements IDebug
 {
-	public RunsafeDebugger(Logger consoleLog)
+	public Output(Logger consoleLog)
 	{
 		this.consoleLog = consoleLog;
 	}
@@ -146,9 +146,9 @@ public class RunsafeDebugger implements IDebug
 	{
 		String formatted = String.format(
 			"[%s%s%s] %s",
-			ConsoleColors.DARK_GREEN,
+			ConsoleColour.DARK_GREEN,
 			messageLevel.getName(),
-			ConsoleColors.RESET,
+			ConsoleColour.RESET,
 			String.format(message, params)
 		);
 

@@ -1,9 +1,9 @@
 package no.runsafe.framework.minecraft;
 
+import no.runsafe.framework.internal.Debugger;
 import no.runsafe.framework.internal.HookEngine;
 import no.runsafe.framework.api.hook.IPlayerLookupService;
 import no.runsafe.framework.api.IDebug;
-import no.runsafe.framework.internal.RunsafeDebugger;
 import no.runsafe.framework.minecraft.player.RunsafeAmbiguousPlayer;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import no.runsafe.framework.internal.wrapper.BukkitServer;
@@ -24,7 +24,7 @@ public class RunsafeServer extends BukkitServer
 	public RunsafeServer(Server toWrap)
 	{
 		super(toWrap);
-		debugger = new RunsafeDebugger(toWrap.getLogger());
+		debugger = new Debugger(toWrap.getLogger());
 	}
 
 	public IDebug getDebugger()
@@ -184,5 +184,5 @@ public class RunsafeServer extends BukkitServer
 	}
 
 	private final ConcurrentHashMap<String, RunsafePlayer> kickingPlayer = new ConcurrentHashMap<String, RunsafePlayer>();
-	private final RunsafeDebugger debugger;
+	private final Debugger debugger;
 }
