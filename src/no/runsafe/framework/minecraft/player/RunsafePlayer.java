@@ -1,16 +1,16 @@
 package no.runsafe.framework.minecraft.player;
 
-import no.runsafe.framework.internal.HookEngine;
-import no.runsafe.framework.api.hook.*;
-import no.runsafe.framework.minecraft.Item;
-import no.runsafe.framework.text.ChatColour;
 import no.runsafe.framework.api.command.ICommandExecutor;
+import no.runsafe.framework.api.hook.*;
+import no.runsafe.framework.internal.HookEngine;
+import no.runsafe.framework.internal.wrapper.player.BukkitPlayer;
+import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.event.player.RunsafeOperatorEvent;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
-import no.runsafe.framework.internal.wrapper.player.BukkitPlayer;
+import no.runsafe.framework.text.ChatColour;
 import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -218,6 +218,16 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		if (result.size() == 0)
 			result.add("unknown");
 		return result;
+	}
+
+	public boolean setGroup(String group)
+	{
+		for (IPlayerPermissions hook : HookEngine.hookContainer.getComponents(IPlayerPermissions.class))
+		{
+			if (hook.setUserGroup(this, group))
+				return true;
+		}
+		return false;
 	}
 
 	public boolean canBuildNow()
