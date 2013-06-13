@@ -1,10 +1,11 @@
 package no.runsafe.framework.internal.command.prepared;
 
+import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.command.AsyncCallbackCommand;
 import no.runsafe.framework.api.command.Command;
 import no.runsafe.framework.api.command.ExecutableCommand;
 import no.runsafe.framework.api.command.ICommandExecutor;
-import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.minecraft.RunsafeServer;
 
 import java.util.HashMap;
 import java.util.Stack;
@@ -39,18 +40,33 @@ public final class PreparedAsynchronousCallbackCommand extends PreparedCommand
 				@Override
 				public void run()
 				{
-					final Object result = target.OnAsyncExecute(executor, parameters, arguments);
-					scheduler.startSyncTask(
-						new Runnable()
-						{
-							@SuppressWarnings("unchecked")
-							@Override
-							public void run()
+					try
+					{
+						final Object result = target.OnAsyncExecute(executor, parameters, arguments);
+						scheduler.startSyncTask(
+							new Runnable()
 							{
-								target.SyncPostExecute(result);
-							}
-						}, 1L
-					);
+								@SuppressWarnings("unchecked")
+								@Override
+								public void run()
+								{
+									try
+									{
+										target.SyncPostExecute(result);
+									}
+									catch (Exception e)
+									{
+										RunsafeServer.Instance.getDebugger().logException(e);
+									}
+
+								}
+							}, 1L
+						);
+					}
+					catch (Exception e)
+					{
+						RunsafeServer.Instance.getDebugger().logException(e);
+					}
 				}
 			},
 			1L
