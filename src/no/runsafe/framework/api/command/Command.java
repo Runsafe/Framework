@@ -236,11 +236,11 @@ public class Command implements ICommandHandler
 		return parameters;
 	}
 
+	protected IOutput console;
 	private final ImmutableList<String> argumentList;
 	private final HashMap<String, Command> subCommands = new HashMap<String, Command>();
 	private final String name;
 	private final String permission;
 	private final String description;
-	private IOutput console;
 	private boolean captureTail;
 }
