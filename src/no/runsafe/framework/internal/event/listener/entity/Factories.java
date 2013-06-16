@@ -15,5 +15,6 @@ public final class Factories
 		EventEngine.Register(EntityChangeBlock.Factory());
 		EventEngine.Register(EntityPortalEnter.Factory());
 		EventEngine.Register(EntityCreatePortal.Factory());
+		EventEngine.Register(EntityDamage.Factory());
 	}
 }
