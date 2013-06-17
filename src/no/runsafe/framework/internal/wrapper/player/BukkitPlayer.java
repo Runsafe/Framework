@@ -1,13 +1,13 @@
 package no.runsafe.framework.internal.wrapper.player;
 
+import no.runsafe.framework.api.minecraft.IInventoryHolder;
+import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import no.runsafe.framework.minecraft.entity.RunsafeLivingEntity;
-import no.runsafe.framework.api.minecraft.IInventoryHolder;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
 import no.runsafe.framework.minecraft.inventory.RunsafePlayerInventory;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
-import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -172,9 +172,19 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 		this.player.openInventory(inventory.getRaw());
 	}
 
+	public int getFoodLevel()
+	{
+		return player.getFoodLevel();
+	}
+
 	public void setFoodLevel(int level)
 	{
 		player.setFoodLevel(level);
+	}
+
+	public float getSaturation()
+	{
+		return player.getSaturation();
 	}
 
 	public void setSaturation(float saturation)
