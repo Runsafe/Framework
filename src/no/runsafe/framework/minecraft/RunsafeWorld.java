@@ -35,6 +35,11 @@ public class RunsafeWorld extends BukkitWorld
 		return null;
 	}
 
+	public boolean IsUniverse(String name)
+	{
+		return GetUniverse().GetName().equalsIgnoreCase(name);
+	}
+
 	public Universe GetUniverse()
 	{
 		if (universe != null)
