@@ -13,7 +13,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 
 public final class BlockBreak extends EventRouterBase<IBlockBreak, BlockBreakEvent>
 {
-	protected BlockBreak(IOutput output, IScheduler scheduler, IBlockBreak handler)
+	private BlockBreak(IOutput output, IScheduler scheduler, IBlockBreak handler)
 	{
 		super(output, scheduler, handler);
 	}

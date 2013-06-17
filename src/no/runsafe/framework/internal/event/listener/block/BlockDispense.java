@@ -13,7 +13,7 @@ import org.bukkit.event.block.BlockDispenseEvent;
 
 public final class BlockDispense extends EventRouterBase<IBlockDispense, BlockDispenseEvent>
 {
-	public BlockDispense(IOutput output, IScheduler scheduler, IBlockDispense handler)
+	private BlockDispense(IOutput output, IScheduler scheduler, IBlockDispense handler)
 	{
 		super(output, scheduler, handler);
 	}
