@@ -49,7 +49,7 @@ public class Command implements ICommandHandler
 		{
 			for (Command sub : subCommands.values())
 			{
-				if (executor.hasPermission(sub.permission))
+				if (sub.permission == null || executor.hasPermission(sub.permission))
 				{
 					if (sub.description == null)
 						available.put(sub.getName(), "");
