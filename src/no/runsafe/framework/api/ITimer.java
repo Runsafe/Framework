@@ -2,11 +2,11 @@ package no.runsafe.framework.api;
 
 public interface ITimer
 {
-	void Cancel();
+	void cancel();
 
-	void ResetSeconds(int seconds);
+	void resetSeconds(int seconds);
 
-	void ResetTicks(Long ticks);
+	void resetTicks(Long ticks);
 
 	void stop();
 

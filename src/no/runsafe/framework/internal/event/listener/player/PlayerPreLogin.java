@@ -20,13 +20,13 @@ public final class PlayerPreLogin extends EventRouterBase<IPlayerPreLoginEvent, 
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(AsyncPlayerPreLoginEvent event)
+	public void acceptEvent(AsyncPlayerPreLoginEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(AsyncPlayerPreLoginEvent event)
+	public boolean onEvent(AsyncPlayerPreLoginEvent event)
 	{
 		handler.OnBeforePlayerLogin(new RunsafePlayerPreLoginEvent(event));
 		return true;

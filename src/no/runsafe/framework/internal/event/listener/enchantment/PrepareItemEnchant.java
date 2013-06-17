@@ -20,13 +20,13 @@ public final class PrepareItemEnchant extends EventRouterBase<IPrepareItemEnchan
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(PrepareItemEnchantEvent event)
+	public void acceptEvent(PrepareItemEnchantEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(PrepareItemEnchantEvent event)
+	public boolean onEvent(PrepareItemEnchantEvent event)
 	{
 		handler.OnPrepareItemEnchantEvent(new RunsafePrepareItemEnchantEvent(event));
 		return true;

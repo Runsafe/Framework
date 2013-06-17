@@ -20,13 +20,13 @@ public final class BlockDispense extends EventRouterBase<IBlockDispense, BlockDi
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(BlockDispenseEvent event)
+	public void acceptEvent(BlockDispenseEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(BlockDispenseEvent event)
+	public boolean onEvent(BlockDispenseEvent event)
 	{
 		return handler.OnBlockDispense(
 			ObjectWrapper.convert(event.getBlock()),

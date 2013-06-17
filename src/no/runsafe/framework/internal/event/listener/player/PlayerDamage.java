@@ -22,13 +22,13 @@ public final class PlayerDamage extends EventRouterBase<IPlayerDamageEvent, Enti
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(EntityDamageEvent event)
+	public void acceptEvent(EntityDamageEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(EntityDamageEvent event)
+	public boolean onEvent(EntityDamageEvent event)
 	{
 		if (event.getEntity() instanceof Player)
 		{

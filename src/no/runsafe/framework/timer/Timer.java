@@ -12,19 +12,19 @@ public abstract class Timer implements ITimer, Runnable
 	}
 
 	@Override
-	public void Cancel()
+	public void cancel()
 	{
 		systemScheduler.cancelTask(timerId);
 	}
 
 	@Override
-	public void ResetSeconds(int seconds)
+	public void resetSeconds(int seconds)
 	{
-		ResetTicks((long) seconds * 20);
+		resetTicks((long) seconds * 20);
 	}
 
 	@Override
-	public void ResetTicks(Long ticks)
+	public void resetTicks(Long ticks)
 	{
 		delay = ticks;
 		stop();

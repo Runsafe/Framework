@@ -20,13 +20,13 @@ public final class EntityChangeBlock extends EventRouterBase<IEntityChangeBlockE
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(EntityChangeBlockEvent event)
+	public void acceptEvent(EntityChangeBlockEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(EntityChangeBlockEvent entityChangeBlockEvent)
+	public boolean onEvent(EntityChangeBlockEvent entityChangeBlockEvent)
 	{
 		handler.OnEntityChangeBlockEvent(new RunsafeEntityChangeBlockEvent(entityChangeBlockEvent));
 		return true;

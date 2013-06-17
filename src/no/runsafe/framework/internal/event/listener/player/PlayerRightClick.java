@@ -23,7 +23,7 @@ public final class PlayerRightClick extends EventRouterBase<IPlayerRightClick, P
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(PlayerInteractEvent event)
+	public void acceptEvent(PlayerInteractEvent event)
 	{
 		if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)
 			return;
@@ -34,11 +34,11 @@ public final class PlayerRightClick extends EventRouterBase<IPlayerRightClick, P
 		if (handler instanceof IPlayerRightClickBlock && event.getAction() != Action.RIGHT_CLICK_BLOCK)
 			return;
 
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(PlayerInteractEvent event)
+	public boolean onEvent(PlayerInteractEvent event)
 	{
 		return
 			handler.OnPlayerRightClick(

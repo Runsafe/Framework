@@ -16,12 +16,12 @@ public enum ANSIColour
 		this.code = code;
 	}
 
-	public int Foreground()
+	public int foreground()
 	{
 		return code + 30;
 	}
 
-	public int Background()
+	public int background()
 	{
 		return code + 40;
 	}

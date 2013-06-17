@@ -21,14 +21,14 @@ public final class ChestClose extends EventRouterBase<IChestClosed, InventoryClo
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(InventoryCloseEvent event)
+	public void acceptEvent(InventoryCloseEvent event)
 	{
 		if (event.getInventory().getHolder() instanceof Chest)
-			super.AcceptEvent(event);
+			super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(InventoryCloseEvent event)
+	public boolean onEvent(InventoryCloseEvent event)
 	{
 		handler.OnChestClosed(
 			ObjectWrapper.convert(event.getPlayer()),

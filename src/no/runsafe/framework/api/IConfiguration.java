@@ -9,7 +9,7 @@ public interface IConfiguration
 {
 	/**
 	 * @param value The configuration key
-	 * @return The value as a string
+	 * @return The value as a String
 	 */
 	String getConfigValueAsString(String value);
 
@@ -21,7 +21,7 @@ public interface IConfiguration
 
 	/**
 	 * @param value The configuration key
-	 * @return The value as an integer
+	 * @return The value as an Integer
 	 */
 	int getConfigValueAsInt(String value);
 
@@ -57,31 +57,31 @@ public interface IConfiguration
 
 	/**
 	 * @param path The configuration key
-	 * @return The section as a string map
+	 * @return The section as a String map
 	 */
 	Map<String, String> getConfigValuesAsMap(String path);
 
 	/**
 	 * @param path The configuration key
-	 * @return The section as a integer map
+	 * @return The section as a Integer map
 	 */
 	Map<String, Integer> getConfigValuesAsIntegerMap(String path);
 
 	/**
 	 * @param path The configuration key
-	 * @return The section as a map of string maps
+	 * @return The section as a map of String maps
 	 */
 	Map<String, Map<String, String>> getConfigSectionsAsMap(String path);
 
 	/**
 	 * @param path The configuration key
-	 * @return The section as a map of string lists
+	 * @return The section as a map of String lists
 	 */
 	Map<String, List<String>> getConfigSectionsAsList(String path);
 
 	/**
 	 * @param path The configuration key
-	 * @return The section as a map of integer lists
+	 * @return The section as a map of Integer lists
 	 */
 	Map<String, List<Integer>> getConfigSectionsAsIntegerList(String path);
 

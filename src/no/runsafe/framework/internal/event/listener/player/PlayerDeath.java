@@ -20,13 +20,13 @@ public final class PlayerDeath extends EventRouterBase<IPlayerDeathEvent, Player
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(PlayerDeathEvent event)
+	public void acceptEvent(PlayerDeathEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(PlayerDeathEvent event)
+	public boolean onEvent(PlayerDeathEvent event)
 	{
 		handler.OnPlayerDeathEvent(new RunsafePlayerDeathEvent(event));
 		return true;

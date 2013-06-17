@@ -20,13 +20,13 @@ public final class PlayerTeleport extends EventRouterBase<IPlayerTeleportEvent, 
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(PlayerTeleportEvent event)
+	public void acceptEvent(PlayerTeleportEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(PlayerTeleportEvent event)
+	public boolean onEvent(PlayerTeleportEvent event)
 	{
 		handler.OnPlayerTeleport(new RunsafePlayerTeleportEvent(event));
 		return true;

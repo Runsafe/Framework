@@ -19,13 +19,13 @@ public final class PlayerTeleportEvent extends EventRouterBase<IPlayerTeleport, 
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(org.bukkit.event.player.PlayerTeleportEvent event)
+	public void acceptEvent(org.bukkit.event.player.PlayerTeleportEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(org.bukkit.event.player.PlayerTeleportEvent event)
+	public boolean onEvent(org.bukkit.event.player.PlayerTeleportEvent event)
 	{
 		return handler.OnPlayerTeleport(
 			ObjectWrapper.convert(event.getPlayer()),

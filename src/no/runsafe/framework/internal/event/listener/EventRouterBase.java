@@ -23,12 +23,12 @@ public abstract class EventRouterBase<Wrapper extends IRunsafeEvent, EventType e
 	 * Don't forget to add @EventHandler - Java does not support annotations on base classes :(
 	 * @param event The raw event object coming from bukkit
 	 */
-	public void AcceptEvent(EventType event)
+	public void acceptEvent(EventType event)
 	{
 		if (isAsync)
-			InvokeAsync(event);
+			invokeAsync(event);
 		else
-			Invoke(event);
+			invoke(event);
 	}
 
 	/**
@@ -39,9 +39,9 @@ public abstract class EventRouterBase<Wrapper extends IRunsafeEvent, EventType e
 	 * @param event The raw event object from bukkit
 	 * @return false to cancel a cancellable event
 	 */
-	public abstract boolean OnEvent(EventType event);
+	public abstract boolean onEvent(EventType event);
 
-	private void InvokeAsync(final EventType event)
+	private void invokeAsync(final EventType event)
 	{
 		scheduler.startAsyncTask(
 			new Runnable()
@@ -49,18 +49,18 @@ public abstract class EventRouterBase<Wrapper extends IRunsafeEvent, EventType e
 				@Override
 				public void run()
 				{
-					Invoke(event);
+					invoke(event);
 				}
 			},
 			0
 		);
 	}
 
-	private void Invoke(EventType event)
+	private void invoke(EventType event)
 	{
 		try
 		{
-			boolean result = OnEvent(event);
+			boolean result = onEvent(event);
 			if (!result && event instanceof Cancellable)
 				((Cancellable) event).setCancelled(true);
 		}

@@ -20,13 +20,13 @@ public final class PlayerChangedWorld extends EventRouterBase<IPlayerChangedWorl
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(PlayerChangedWorldEvent event)
+	public void acceptEvent(PlayerChangedWorldEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(PlayerChangedWorldEvent event)
+	public boolean onEvent(PlayerChangedWorldEvent event)
 	{
 		handler.OnPlayerChangedWorld(new RunsafePlayerChangedWorldEvent(event));
 		return true;

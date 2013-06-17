@@ -20,13 +20,13 @@ public final class WorldLoad extends EventRouterBase<IWorldLoad, WorldLoadEvent>
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(WorldLoadEvent event)
+	public void acceptEvent(WorldLoadEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(WorldLoadEvent event)
+	public boolean onEvent(WorldLoadEvent event)
 	{
 		handler.OnWorldLoad(ObjectWrapper.convert(event.getWorld()));
 		return true;

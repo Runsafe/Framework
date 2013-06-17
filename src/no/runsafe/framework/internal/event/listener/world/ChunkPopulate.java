@@ -20,13 +20,13 @@ public final class ChunkPopulate extends EventRouterBase<IChunkPopulate, ChunkPo
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(ChunkPopulateEvent event)
+	public void acceptEvent(ChunkPopulateEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(ChunkPopulateEvent event)
+	public boolean onEvent(ChunkPopulateEvent event)
 	{
 		handler.OnChunkPopulate(ObjectWrapper.convert(event.getChunk()));
 		return true;

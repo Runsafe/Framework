@@ -38,7 +38,7 @@ public final class PreparedAsynchronousCommand extends PreparedCommand
 		return target.OnAsyncExecute(executor, parameters, arguments);
 	}
 
-	public void Schedule(final IScheduler scheduler)
+	public void schedule(final IScheduler scheduler)
 	{
 		final AsyncCommand target = (AsyncCommand) command.peek();
 		scheduler.startAsyncTask(

@@ -21,13 +21,13 @@ public final class PlayerJoin extends EventRouterBase<IPlayerJoinEvent, PlayerJo
 	// We have to put this here to get the annotation onto the method.
 	@EventHandler
 	@Override
-	public void AcceptEvent(PlayerJoinEvent event)
+	public void acceptEvent(PlayerJoinEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(PlayerJoinEvent event)
+	public boolean onEvent(PlayerJoinEvent event)
 	{
 		handler.OnPlayerJoinEvent(new RunsafePlayerJoinEvent(event));
 		return true;

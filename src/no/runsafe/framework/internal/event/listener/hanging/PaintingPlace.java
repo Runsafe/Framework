@@ -22,14 +22,14 @@ public final class PaintingPlace extends EventRouterBase<IPaintingPlaced, Hangin
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(HangingPlaceEvent event)
+	public void acceptEvent(HangingPlaceEvent event)
 	{
 		if (event.getEntity().getType() == EntityType.PAINTING)
-			super.AcceptEvent(event);
+			super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(HangingPlaceEvent event)
+	public boolean onEvent(HangingPlaceEvent event)
 	{
 		return handler.OnPaintingPlaced(
 			ObjectWrapper.convert(event.getPlayer()),

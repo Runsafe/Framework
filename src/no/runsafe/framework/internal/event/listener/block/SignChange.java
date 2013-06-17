@@ -20,13 +20,13 @@ public final class SignChange extends EventRouterBase<ISignChange, SignChangeEve
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(SignChangeEvent event)
+	public void acceptEvent(SignChangeEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(SignChangeEvent event)
+	public boolean onEvent(SignChangeEvent event)
 	{
 		return handler.OnSignChange(
 			ObjectWrapper.convert(event.getPlayer()),

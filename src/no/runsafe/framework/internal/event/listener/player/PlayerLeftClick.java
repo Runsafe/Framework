@@ -23,13 +23,13 @@ public final class PlayerLeftClick extends EventRouterBase<IPlayerLeftClickEvent
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(PlayerInteractEvent event)
+	public void acceptEvent(PlayerInteractEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(PlayerInteractEvent event)
+	public boolean onEvent(PlayerInteractEvent event)
 	{
 		if (!(handler instanceof IPlayerLeftClickAirEvent || handler instanceof IPlayerLeftClickBlockEvent))
 			handler.OnPlayerLeftClick(new RunsafePlayerClickEvent(event));

@@ -39,7 +39,7 @@ public abstract class Output implements IDebug
 		outputToConsole(ChatColour.ToConsole(String.format(message, params)), level);
 	}
 
-	// Sends the supplied string to the console/log the output handler has
+	// Sends the supplied String to the console/log the output handler has
 	@Override
 	public void outputToConsole(String message)
 	{
@@ -63,14 +63,14 @@ public abstract class Output implements IDebug
 		);
 	}
 
-	// Sends the supplied string with the supplied logging level to the console/log the output handler has
+	// Sends the supplied String with the supplied logging level to the console/log the output handler has
 	@Override
 	public void outputToConsole(String message, Level level)
 	{
 		this.consoleLog.log(level, message);
 	}
 
-	// Sends the supplied string to the console/log the output handler has if the debug level is high enough
+	// Sends the supplied String to the console/log the output handler has if the debug level is high enough
 	@Override
 	public void outputDebugToConsole(String message, Level messageLevel, Object... params)
 	{

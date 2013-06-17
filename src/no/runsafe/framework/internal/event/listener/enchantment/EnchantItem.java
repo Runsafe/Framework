@@ -20,13 +20,13 @@ public final class EnchantItem extends EventRouterBase<IEnchantItemEvent, Enchan
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(EnchantItemEvent event)
+	public void acceptEvent(EnchantItemEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(EnchantItemEvent event)
+	public boolean onEvent(EnchantItemEvent event)
 	{
 		handler.OnEnchantItemEvent(new RunsafeEnchantItemEvent(event));
 		return true;

@@ -52,7 +52,7 @@ public abstract class AsyncCommand extends ExecutableCommand
 	 */
 	public final void Schedule(PreparedAsynchronousCommand target)
 	{
-		target.Schedule(scheduler);
+		target.schedule(scheduler);
 	}
 
 	private final IScheduler scheduler;

@@ -20,13 +20,13 @@ public final class WorldInit extends EventRouterBase<IWorldInit, WorldInitEvent>
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(WorldInitEvent event)
+	public void acceptEvent(WorldInitEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(WorldInitEvent event)
+	public boolean onEvent(WorldInitEvent event)
 	{
 		handler.OnWorldInit(ObjectWrapper.convert(event.getWorld()));
 		return true;

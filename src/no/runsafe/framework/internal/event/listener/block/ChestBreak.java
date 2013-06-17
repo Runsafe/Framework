@@ -21,14 +21,14 @@ public final class ChestBreak extends EventRouterBase<IChestBreak, BlockBreakEve
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(BlockBreakEvent event)
+	public void acceptEvent(BlockBreakEvent event)
 	{
 		if (event.getBlock() instanceof Chest)
-			super.AcceptEvent(event);
+			super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(BlockBreakEvent event)
+	public boolean onEvent(BlockBreakEvent event)
 	{
 		return handler.OnChestBreak(
 			ObjectWrapper.convert(event.getPlayer()),

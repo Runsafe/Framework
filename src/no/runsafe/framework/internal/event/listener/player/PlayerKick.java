@@ -20,13 +20,13 @@ public final class PlayerKick extends EventRouterBase<IPlayerKickEvent, PlayerKi
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(PlayerKickEvent event)
+	public void acceptEvent(PlayerKickEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(PlayerKickEvent event)
+	public boolean onEvent(PlayerKickEvent event)
 	{
 		handler.OnPlayerKick(new RunsafePlayerKickEvent(event));
 		return true;

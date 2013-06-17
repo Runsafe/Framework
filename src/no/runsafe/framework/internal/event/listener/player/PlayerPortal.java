@@ -20,13 +20,13 @@ public final class PlayerPortal extends EventRouterBase<IPlayerPortalEvent, Play
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(PlayerPortalEvent event)
+	public void acceptEvent(PlayerPortalEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(PlayerPortalEvent event)
+	public boolean onEvent(PlayerPortalEvent event)
 	{
 		handler.OnPlayerPortalEvent(new RunsafePlayerPortalEvent(event));
 		return true;

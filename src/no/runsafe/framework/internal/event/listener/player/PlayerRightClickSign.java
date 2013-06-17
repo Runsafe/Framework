@@ -23,13 +23,13 @@ public final class PlayerRightClickSign extends EventRouterBase<IPlayerRightClic
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(PlayerInteractEvent event)
+	public void acceptEvent(PlayerInteractEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(PlayerInteractEvent event)
+	public boolean onEvent(PlayerInteractEvent event)
 	{
 		return (event.getAction() != Action.RIGHT_CLICK_BLOCK)
 			|| event.getClickedBlock() == null

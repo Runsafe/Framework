@@ -20,13 +20,13 @@ public final class EntityPortalEnter extends EventRouterBase<IEntityPortalEnterE
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(EntityPortalEnterEvent event)
+	public void acceptEvent(EntityPortalEnterEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(EntityPortalEnterEvent event)
+	public boolean onEvent(EntityPortalEnterEvent event)
 	{
 		handler.OnEntityPortalEnter(new RunsafeEntityPortalEnterEvent(event));
 		return true;

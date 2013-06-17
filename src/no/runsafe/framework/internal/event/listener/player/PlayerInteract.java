@@ -20,13 +20,13 @@ public final class PlayerInteract extends EventRouterBase<IPlayerInteractEvent, 
 
 	@Override
 	@EventHandler
-	public void AcceptEvent(PlayerInteractEvent event)
+	public void acceptEvent(PlayerInteractEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(PlayerInteractEvent event)
+	public boolean onEvent(PlayerInteractEvent event)
 	{
 		handler.OnPlayerInteractEvent(new RunsafePlayerInteractEvent(event));
 		return true;

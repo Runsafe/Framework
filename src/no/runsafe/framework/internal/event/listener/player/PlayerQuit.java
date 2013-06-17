@@ -20,13 +20,13 @@ public final class PlayerQuit extends EventRouterBase<IPlayerQuitEvent, PlayerQu
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(PlayerQuitEvent event)
+	public void acceptEvent(PlayerQuitEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(PlayerQuitEvent event)
+	public boolean onEvent(PlayerQuitEvent event)
 	{
 		handler.OnPlayerQuit(new RunsafePlayerQuitEvent(event));
 		return true;

@@ -20,13 +20,13 @@ public final class BlockPlace extends EventRouterBase<IBlockPlace, BlockPlaceEve
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(BlockPlaceEvent event)
+	public void acceptEvent(BlockPlaceEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(BlockPlaceEvent event)
+	public boolean onEvent(BlockPlaceEvent event)
 	{
 		return handler.OnBlockPlace(
 			ObjectWrapper.convert(event.getPlayer()),

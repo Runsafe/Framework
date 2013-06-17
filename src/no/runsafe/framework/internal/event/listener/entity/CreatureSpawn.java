@@ -20,14 +20,14 @@ public final class CreatureSpawn extends EventRouterBase<IMobSpawnerPulsed, Crea
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(CreatureSpawnEvent event)
+	public void acceptEvent(CreatureSpawnEvent event)
 	{
 		if (event.getSpawnReason().equals(CreatureSpawnEvent.SpawnReason.SPAWNER))
-			super.AcceptEvent(event);
+			super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(CreatureSpawnEvent event)
+	public boolean onEvent(CreatureSpawnEvent event)
 	{
 		return handler.OnMobSpawnerPulsed(
 			ObjectWrapper.convert(event.getEntity()),

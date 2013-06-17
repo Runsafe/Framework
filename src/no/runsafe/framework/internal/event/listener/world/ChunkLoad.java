@@ -20,13 +20,13 @@ public final class ChunkLoad extends EventRouterBase<IChunkLoad, ChunkLoadEvent>
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(ChunkLoadEvent event)
+	public void acceptEvent(ChunkLoadEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(ChunkLoadEvent event)
+	public boolean onEvent(ChunkLoadEvent event)
 	{
 		handler.OnChunkLoad(ObjectWrapper.convert(event.getChunk()));
 		return true;

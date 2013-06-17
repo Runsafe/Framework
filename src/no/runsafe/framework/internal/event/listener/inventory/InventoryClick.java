@@ -20,13 +20,13 @@ public final class InventoryClick extends EventRouterBase<IInventoryClick, Inven
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(InventoryClickEvent event)
+	public void acceptEvent(InventoryClickEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(InventoryClickEvent event)
+	public boolean onEvent(InventoryClickEvent event)
 	{
 		handler.OnInventoryClickEvent(new RunsafeInventoryClickEvent(event));
 		return true;

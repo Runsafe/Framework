@@ -20,13 +20,13 @@ public final class PlayerMove extends EventRouterBase<IPlayerMove, PlayerMoveEve
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(PlayerMoveEvent event)
+	public void acceptEvent(PlayerMoveEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(PlayerMoveEvent event)
+	public boolean onEvent(PlayerMoveEvent event)
 	{
 		return handler.OnPlayerMove(ObjectWrapper.convert(event.getPlayer()), ObjectWrapper.convert(event.getFrom()), ObjectWrapper.convert(event.getTo()));
 	}

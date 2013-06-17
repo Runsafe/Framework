@@ -20,13 +20,13 @@ public final class InventoryPickupItem extends EventRouterBase<IInventoryPickupI
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(InventoryPickupItemEvent event)
+	public void acceptEvent(InventoryPickupItemEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(InventoryPickupItemEvent event)
+	public boolean onEvent(InventoryPickupItemEvent event)
 	{
 		this.handler.OnInventoryPickupItemEvent(new RunsafeInventoryPickupItemEvent(event));
 		return true;

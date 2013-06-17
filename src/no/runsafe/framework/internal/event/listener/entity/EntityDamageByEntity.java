@@ -20,13 +20,13 @@ public final class EntityDamageByEntity extends EventRouterBase<IEntityDamageByE
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(EntityDamageByEntityEvent event)
+	public void acceptEvent(EntityDamageByEntityEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(EntityDamageByEntityEvent entityDamageByEntityEvent)
+	public boolean onEvent(EntityDamageByEntityEvent entityDamageByEntityEvent)
 	{
 		handler.OnEntityDamageByEntity(new RunsafeEntityDamageByEntityEvent(entityDamageByEntityEvent));
 		return true;

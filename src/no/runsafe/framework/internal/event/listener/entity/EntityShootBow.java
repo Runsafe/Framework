@@ -20,13 +20,13 @@ public final class EntityShootBow extends EventRouterBase<IEntityShootBowEvent, 
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(EntityShootBowEvent event)
+	public void acceptEvent(EntityShootBowEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(EntityShootBowEvent event)
+	public boolean onEvent(EntityShootBowEvent event)
 	{
 		handler.OnEntityShootBowEvent(new RunsafeEntityShootBowEvent(event));
 		return true;

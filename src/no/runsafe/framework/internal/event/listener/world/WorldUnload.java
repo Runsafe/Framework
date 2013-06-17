@@ -20,13 +20,13 @@ public final class WorldUnload extends EventRouterBase<IWorldUnload, WorldUnload
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(WorldUnloadEvent event)
+	public void acceptEvent(WorldUnloadEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(WorldUnloadEvent event)
+	public boolean onEvent(WorldUnloadEvent event)
 	{
 		handler.OnWorldUnload(ObjectWrapper.convert(event.getWorld()));
 		return true;

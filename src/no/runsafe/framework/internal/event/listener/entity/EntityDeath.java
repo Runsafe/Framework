@@ -20,13 +20,13 @@ public final class EntityDeath extends EventRouterBase<IEntityDeathEvent, Entity
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(EntityDeathEvent event)
+	public void acceptEvent(EntityDeathEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(EntityDeathEvent entityDeathEvent)
+	public boolean onEvent(EntityDeathEvent entityDeathEvent)
 	{
 		handler.OnEntityDeath(new RunsafeEntityDeathEvent(entityDeathEvent));
 		return true;

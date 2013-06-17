@@ -20,13 +20,13 @@ public final class BlockBreakListener extends EventRouterBase<IBlockBreakEvent, 
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(BlockBreakEvent event)
+	public void acceptEvent(BlockBreakEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(BlockBreakEvent event)
+	public boolean onEvent(BlockBreakEvent event)
 	{
 		handler.OnBlockBreakEvent(new RunsafeBlockBreakEvent(event));
 		return true;

@@ -20,13 +20,13 @@ public final class BlockRedstone extends EventRouterBase<IBlockRedstone, BlockRe
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(BlockRedstoneEvent event)
+	public void acceptEvent(BlockRedstoneEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(BlockRedstoneEvent event)
+	public boolean onEvent(BlockRedstoneEvent event)
 	{
 		handler.OnBlockRedstoneEvent(new RunsafeBlockRedstoneEvent(event));
 		return true;

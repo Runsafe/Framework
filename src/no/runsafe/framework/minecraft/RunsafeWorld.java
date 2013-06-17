@@ -35,12 +35,12 @@ public class RunsafeWorld extends BukkitWorld
 		return null;
 	}
 
-	public boolean IsUniverse(String name)
+	public boolean isUniverse(String name)
 	{
-		return GetUniverse().GetName().equalsIgnoreCase(name);
+		return getUniverse().getName().equalsIgnoreCase(name);
 	}
 
-	public Universe GetUniverse()
+	public Universe getUniverse()
 	{
 		if (universe != null)
 			return universe;
@@ -59,7 +59,7 @@ public class RunsafeWorld extends BukkitWorld
 
 	public boolean IsConnected(RunsafeWorld world)
 	{
-		return GetUniverse().GetName().equals(world.GetUniverse().GetName());
+		return getUniverse().getName().equals(world.getUniverse().getName());
 	}
 
 	private Universe universe = null;

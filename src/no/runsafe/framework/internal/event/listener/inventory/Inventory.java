@@ -20,13 +20,13 @@ public final class Inventory extends EventRouterBase<IInventory, InventoryEvent>
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(InventoryEvent event)
+	public void acceptEvent(InventoryEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(InventoryEvent event)
+	public boolean onEvent(InventoryEvent event)
 	{
 		handler.OnInventoryEvent(new RunsafeInventoryEvent(event));
 		return true;

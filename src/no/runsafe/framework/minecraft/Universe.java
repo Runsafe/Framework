@@ -15,12 +15,12 @@ public class Universe
 		this.name = name;
 	}
 
-	public String GetName()
+	public String getName()
 	{
 		return name;
 	}
 
-	public List<RunsafeWorld> GetWorlds()
+	public List<RunsafeWorld> getWorlds()
 	{
 		List<IUniverseMapper> dataHooks = HookEngine.hookContainer.getComponents(IUniverseMapper.class);
 		Map<String, RunsafeWorld> worlds = new HashMap<String, RunsafeWorld>();

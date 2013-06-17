@@ -4,7 +4,7 @@ import java.util.logging.Level;
 
 public interface IDebug
 {
-	// Sends the supplied string to the console with &-codes replaced with ANSI sequences
+	// Sends the supplied String to the console with &-codes replaced with ANSI sequences
 	public void writeColoured(String message);
 
 	public void writeColoured(String message, Object... params);
@@ -13,13 +13,13 @@ public interface IDebug
 
 	public void logException(Exception exception);
 
-	// Sends the supplied string to the console/log the output handler has
+	// Sends the supplied String to the console/log the output handler has
 	public void outputToConsole(String message);
 
-	// Sends the supplied string with the supplied logging level to the console/log the output handler has
+	// Sends the supplied String with the supplied logging level to the console/log the output handler has
 	public void outputToConsole(String message, Level level);
 
-	// Sends the supplied string to the console/log the output handler has if the debug level is high enough
+	// Sends the supplied String to the console/log the output handler has if the debug level is high enough
 	public void outputDebugToConsole(String message, Level messageLevel, Object... params);
 
 	// Gets the current debug output level

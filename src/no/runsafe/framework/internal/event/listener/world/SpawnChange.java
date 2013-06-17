@@ -20,13 +20,13 @@ public final class SpawnChange extends EventRouterBase<ISpawnChange, SpawnChange
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(SpawnChangeEvent event)
+	public void acceptEvent(SpawnChangeEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(SpawnChangeEvent event)
+	public boolean onEvent(SpawnChangeEvent event)
 	{
 		handler.OnSpawnChange(
 			ObjectWrapper.convert(event.getWorld()),

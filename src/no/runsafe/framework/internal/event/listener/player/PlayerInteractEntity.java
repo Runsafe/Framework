@@ -20,13 +20,13 @@ public final class PlayerInteractEntity extends EventRouterBase<IPlayerInteractE
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(PlayerInteractEntityEvent event)
+	public void acceptEvent(PlayerInteractEntityEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(PlayerInteractEntityEvent event)
+	public boolean onEvent(PlayerInteractEntityEvent event)
 	{
 		handler.OnPlayerInteractEntityEvent(new RunsafePlayerInteractEntityEvent(event));
 		return true;

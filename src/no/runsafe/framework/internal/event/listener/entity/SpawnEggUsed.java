@@ -20,14 +20,14 @@ public final class SpawnEggUsed extends EventRouterBase<ISpawnEggUsed, CreatureS
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(CreatureSpawnEvent event)
+	public void acceptEvent(CreatureSpawnEvent event)
 	{
 		if (event.getSpawnReason().equals(CreatureSpawnEvent.SpawnReason.SPAWNER_EGG))
-			super.AcceptEvent(event);
+			super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(CreatureSpawnEvent event)
+	public boolean onEvent(CreatureSpawnEvent event)
 	{
 		return handler.OnSpawnEggUsed(
 			ObjectWrapper.convert(event.getEntity()),

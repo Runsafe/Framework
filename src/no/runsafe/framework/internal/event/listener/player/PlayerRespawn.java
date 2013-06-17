@@ -23,13 +23,13 @@ public final class PlayerRespawn extends EventRouterBase<IPlayerRespawn, PlayerR
 	// We have to put this here to get the annotation onto the method.
 	@EventHandler
 	@Override
-	public void AcceptEvent(PlayerRespawnEvent event)
+	public void acceptEvent(PlayerRespawnEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(PlayerRespawnEvent event)
+	public boolean onEvent(PlayerRespawnEvent event)
 	{
 		RunsafeLocation redirect = handler.OnPlayerRespawn(
 			ObjectWrapper.convert(event.getPlayer()),

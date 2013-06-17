@@ -9,62 +9,62 @@ public class ANSIRendition
 
 	public static ANSIRendition Clear()
 	{
-		return new ANSIRendition().Reset();
+		return new ANSIRendition().reset();
 	}
 
-	public ANSIRendition Reset()
+	public ANSIRendition reset()
 	{
 		reset = true;
 		return this;
 	}
 
-	public ANSIRendition Bright()
+	public ANSIRendition bright()
 	{
 		bright = true;
 		faint = false;
 		return this;
 	}
 
-	public ANSIRendition Faint()
+	public ANSIRendition faint()
 	{
 		faint = true;
 		bright = false;
 		return this;
 	}
 
-	public ANSIRendition Italic()
+	public ANSIRendition italic()
 	{
 		italic = true;
 		return this;
 	}
 
-	public ANSIRendition Underline()
+	public ANSIRendition underline()
 	{
 		underline = true;
 		return this;
 	}
 
-	public ANSIRendition Reverse()
+	public ANSIRendition reverse()
 	{
 		reverse = true;
 		return this;
 	}
 
-	public ANSIRendition CrossedOut()
+	public ANSIRendition crossedOut()
 	{
 		crossed = true;
 		return this;
 	}
 
-	public ANSIRendition Foreground(ANSIColour colour)
+	public ANSIRendition foreground(ANSIColour colour)
 	{
-		foreground = colour.Foreground();
+		foreground = colour.foreground();
 		return this;
 	}
 
-	public ANSIRendition Background(ANSIColour colour)
+	public ANSIRendition background(ANSIColour colour)
 	{
-		background = colour.Background();
+		background = colour.background();
 		return this;
 	}
 

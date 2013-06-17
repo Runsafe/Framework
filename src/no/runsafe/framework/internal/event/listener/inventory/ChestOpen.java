@@ -21,14 +21,14 @@ public final class ChestOpen extends EventRouterBase<IChestOpen, InventoryOpenEv
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(InventoryOpenEvent event)
+	public void acceptEvent(InventoryOpenEvent event)
 	{
 		if (event.getInventory().getHolder() instanceof Chest)
-			super.AcceptEvent(event);
+			super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(InventoryOpenEvent event)
+	public boolean onEvent(InventoryOpenEvent event)
 	{
 		return handler.OnChestOpen(
 			ObjectWrapper.convert(event.getPlayer()),

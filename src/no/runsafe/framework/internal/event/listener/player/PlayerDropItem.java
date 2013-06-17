@@ -20,13 +20,13 @@ public final class PlayerDropItem extends EventRouterBase<IPlayerDropItemEvent, 
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(PlayerDropItemEvent event)
+	public void acceptEvent(PlayerDropItemEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(PlayerDropItemEvent event)
+	public boolean onEvent(PlayerDropItemEvent event)
 	{
 		handler.OnPlayerDropItem(new RunsafePlayerDropItemEvent(event));
 		return true;

@@ -20,13 +20,13 @@ public final class InventoryClose extends EventRouterBase<IInventoryClosed, Inve
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(InventoryCloseEvent event)
+	public void acceptEvent(InventoryCloseEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(InventoryCloseEvent event)
+	public boolean onEvent(InventoryCloseEvent event)
 	{
 		handler.OnInventoryClosed(new RunsafeInventoryCloseEvent(event));
 		return true;

@@ -22,12 +22,12 @@ public abstract class BukkitCreatureSpawner extends RunsafeBlockState
 		spawner.setDelay(i);
 	}
 
-	public void SetCreature(RunsafeEntityType type)
+	public void setCreature(RunsafeEntityType type)
 	{
 		spawner.setSpawnedType(type.getRaw());
 	}
 
-	public RunsafeEntityType GetCreature()
+	public RunsafeEntityType getCreature()
 	{
 		return no.runsafe.framework.minecraft.entity.EntityType.convert(spawner.getSpawnedType());
 	}

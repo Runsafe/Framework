@@ -20,13 +20,13 @@ public final class PlayerLogin extends EventRouterBase<IPlayerLoginEvent, Player
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(PlayerLoginEvent event)
+	public void acceptEvent(PlayerLoginEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(PlayerLoginEvent event)
+	public boolean onEvent(PlayerLoginEvent event)
 	{
 		handler.OnPlayerLogin(new RunsafePlayerLoginEvent(event));
 		return true;

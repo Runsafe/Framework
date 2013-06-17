@@ -20,13 +20,13 @@ public final class PlayerPickupItem extends EventRouterBase<IPlayerPickupItemEve
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(PlayerPickupItemEvent event)
+	public void acceptEvent(PlayerPickupItemEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(PlayerPickupItemEvent event)
+	public boolean onEvent(PlayerPickupItemEvent event)
 	{
 		this.handler.OnPlayerPickupItemEvent(new RunsafePlayerPickupItemEvent(event));
 		return true;

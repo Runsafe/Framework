@@ -22,14 +22,14 @@ public final class ItemFramePlace extends EventRouterBase<IItemFramePlaced, Hang
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(HangingPlaceEvent event)
+	public void acceptEvent(HangingPlaceEvent event)
 	{
 		if (event.getEntity().getType() == EntityType.ITEM_FRAME)
-			super.AcceptEvent(event);
+			super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(HangingPlaceEvent event)
+	public boolean onEvent(HangingPlaceEvent event)
 	{
 		return handler.OnItemFramePlaced(
 			ObjectWrapper.convert(event.getPlayer()),

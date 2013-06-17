@@ -21,13 +21,13 @@ public final class PlayerChat extends EventRouterBase<IPlayerChatEvent, AsyncPla
 	@EventHandler
 	// This is async already, so no need to check..
 	@Override
-	public void AcceptEvent(AsyncPlayerChatEvent event)
+	public void acceptEvent(AsyncPlayerChatEvent event)
 	{
-		OnEvent(event);
+		onEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(AsyncPlayerChatEvent event)
+	public boolean onEvent(AsyncPlayerChatEvent event)
 	{
 		handler.OnPlayerChatEvent(new RunsafePlayerChatEvent(event));
 		return true;

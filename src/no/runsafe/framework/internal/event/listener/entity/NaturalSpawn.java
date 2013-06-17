@@ -20,14 +20,14 @@ public final class NaturalSpawn extends EventRouterBase<INaturalSpawn, CreatureS
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(CreatureSpawnEvent event)
+	public void acceptEvent(CreatureSpawnEvent event)
 	{
 		if (event.getSpawnReason().equals(CreatureSpawnEvent.SpawnReason.NATURAL))
-			super.AcceptEvent(event);
+			super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(CreatureSpawnEvent event)
+	public boolean onEvent(CreatureSpawnEvent event)
 	{
 		return handler.OnNaturalSpawn(
 			ObjectWrapper.convert(event.getEntity()),

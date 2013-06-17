@@ -20,13 +20,13 @@ public final class InventoryMoveItem extends EventRouterBase<IInventoryMoveItem,
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(InventoryMoveItemEvent event)
+	public void acceptEvent(InventoryMoveItemEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(InventoryMoveItemEvent event)
+	public boolean onEvent(InventoryMoveItemEvent event)
 	{
 		handler.OnInventoryMoveItemEvent(new RunsafeInventoryMoveItemEvent(event));
 		return true;

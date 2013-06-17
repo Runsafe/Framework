@@ -47,8 +47,8 @@ public final class CommandEngine implements Startable
 	public void start()
 	{
 		if (commands != null)
-			for (BukkitCommandExecutor executor : GetCommands())
-				HookCommand(plugin.getCommand(executor.getName()), executor);
+			for (BukkitCommandExecutor executor : getCommands())
+				hookCommand(plugin.getCommand(executor.getName()), executor);
 	}
 
 	/**
@@ -59,7 +59,7 @@ public final class CommandEngine implements Startable
 	{
 	}
 
-	private void HookCommand(PluginCommand command, BukkitCommandExecutor executor)
+	private void hookCommand(PluginCommand command, BukkitCommandExecutor executor)
 	{
 		if (command == null)
 			output.outputToConsole(String.format("Command not found: %s - does it exist in plugin.yml?", executor.getName()));
@@ -70,7 +70,7 @@ public final class CommandEngine implements Startable
 		}
 	}
 
-	private List<BukkitCommandExecutor> GetCommands()
+	private List<BukkitCommandExecutor> getCommands()
 	{
 		ArrayList<BukkitCommandExecutor> handlers = new ArrayList<BukkitCommandExecutor>();
 		for (ICommandHandler command : commands)

@@ -67,7 +67,7 @@ public abstract class AsyncCallbackCommand<T> extends ExecutableCommand
 	 */
 	public final void Schedule(PreparedAsynchronousCallbackCommand target)
 	{
-		target.Schedule(scheduler);
+		target.schedule(scheduler);
 	}
 
 	private final IScheduler scheduler;

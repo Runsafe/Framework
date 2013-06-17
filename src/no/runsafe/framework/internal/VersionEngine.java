@@ -30,7 +30,7 @@ public final class VersionEngine implements Startable
 		String lastVersion = getLastVersion();
 		if (!plugin.getDescription().getVersion().equals(lastVersion))
 		{
-			if (updater == null || updater.UpdateFrom(lastVersion))
+			if (updater == null || updater.updateFrom(lastVersion))
 				saveCurrentVersion();
 		}
 		output.fine("Plugin version logged.");

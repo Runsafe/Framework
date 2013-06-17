@@ -20,13 +20,13 @@ public final class WorldSave extends EventRouterBase<IWorldSave, WorldSaveEvent>
 
 	@EventHandler
 	@Override
-	public void AcceptEvent(WorldSaveEvent event)
+	public void acceptEvent(WorldSaveEvent event)
 	{
-		super.AcceptEvent(event);
+		super.acceptEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(WorldSaveEvent event)
+	public boolean onEvent(WorldSaveEvent event)
 	{
 		handler.OnWorldSave(ObjectWrapper.convert(event.getWorld()));
 		return true;

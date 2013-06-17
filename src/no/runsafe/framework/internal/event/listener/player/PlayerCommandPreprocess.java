@@ -21,13 +21,13 @@ public final class PlayerCommandPreprocess extends EventRouterBase<IPlayerComman
 	// This one cannot be async, so don't check
 	@Override
 	@EventHandler
-	public void AcceptEvent(PlayerCommandPreprocessEvent event)
+	public void acceptEvent(PlayerCommandPreprocessEvent event)
 	{
-		OnEvent(event);
+		onEvent(event);
 	}
 
 	@Override
-	public boolean OnEvent(PlayerCommandPreprocessEvent event)
+	public boolean onEvent(PlayerCommandPreprocessEvent event)
 	{
 		handler.OnBeforePlayerCommand(new RunsafePlayerCommandPreprocessEvent(event));
 		return true;

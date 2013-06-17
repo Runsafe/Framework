@@ -15,7 +15,7 @@ public final class Broadcaster extends Output implements IOutput
 		this.serverOutput = server;
 	}
 
-	// Broadcasts the supplied string to all players on the event the output handler has
+	// Broadcasts the supplied String to all players on the event the output handler has
 	@Override
 	public void outputToServer(String message)
 	{

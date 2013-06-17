@@ -31,7 +31,7 @@ public final class PreparedAsynchronousCallbackCommand extends PreparedCommand
 		return usage(target);
 	}
 
-	public void Schedule(final IScheduler scheduler)
+	public void schedule(final IScheduler scheduler)
 	{
 		final AsyncCallbackCommand target = (AsyncCallbackCommand) command.peek();
 		scheduler.startAsyncTask(
