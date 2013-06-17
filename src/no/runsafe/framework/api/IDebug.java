@@ -13,6 +13,12 @@ public interface IDebug
 
 	public void logException(Exception exception);
 
+	public void logWarning(String message, Object... params);
+
+	public void logError(String message, Object... params);
+
+	public void logInformation(String message, Object... params);
+
 	// Sends the supplied String to the console/log the output handler has
 	public void outputToConsole(String message);
 

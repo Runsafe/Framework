@@ -63,6 +63,24 @@ public abstract class Output implements IDebug
 		);
 	}
 
+	@Override
+	public void logWarning(String message, Object... params)
+	{
+		outputToConsole(ChatColour.ToConsole("&e" + String.format(message, params)) + "&r", Level.WARNING);
+	}
+
+	@Override
+	public void logError(String message, Object... params)
+	{
+		outputToConsole(ChatColour.ToConsole("&4" + String.format(message, params)) + "&r", Level.SEVERE);
+	}
+
+	@Override
+	public void logInformation(String message, Object... params)
+	{
+		outputToConsole(ChatColour.ToConsole("&a" + String.format(message, params)) + "&r", Level.INFO);
+	}
+
 	// Sends the supplied String with the supplied logging level to the console/log the output handler has
 	@Override
 	public void outputToConsole(String message, Level level)
