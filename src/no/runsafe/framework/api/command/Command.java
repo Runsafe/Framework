@@ -1,11 +1,11 @@
 package no.runsafe.framework.api.command;
 
 import com.google.common.collect.ImmutableList;
+import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.internal.command.prepared.PreparedAsynchronousCallbackCommand;
 import no.runsafe.framework.internal.command.prepared.PreparedAsynchronousCommand;
 import no.runsafe.framework.internal.command.prepared.PreparedSynchronousCommand;
 import no.runsafe.framework.text.ChatColour;
-import no.runsafe.framework.api.IOutput;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.Arrays;
@@ -42,17 +42,20 @@ public class Command implements ICommandHandler
 	 *
 	 * @return A String to display to the player or console user
 	 */
-	public String getUsage()
+	public String getUsage(ICommandExecutor executor)
 	{
 		HashMap<String, String> available = new HashMap<String, String>();
 		if (!subCommands.isEmpty())
 		{
 			for (Command sub : subCommands.values())
 			{
-				if (sub.description == null)
-					available.put(sub.getName(), "");
-				else
-					available.put(sub.getName(), String.format(" - %s", sub.description));
+				if (executor.hasPermission(sub.permission))
+				{
+					if (sub.description == null)
+						available.put(sub.getName(), "");
+					else
+						available.put(sub.getName(), String.format(" - %s", sub.description));
+				}
 			}
 		}
 		StringBuilder usage = new StringBuilder();
@@ -153,7 +156,7 @@ public class Command implements ICommandHandler
 	 * Parses user input and returns a prepared command, ready to be executed
 	 *
 	 * @param executor The user or console executing the command
-	 * @param args The passed argument list
+	 * @param args     The passed argument list
 	 * @return A prepared command, ready to be executed
 	 */
 	@Override

@@ -47,7 +47,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 		for (Command tier : command)
 			params.add(tier.getUsageCommandParams());
 
-		return String.format("Usage: /%1$s %2$s", StringUtils.join(params, " "), target.getUsage());
+		return String.format("Usage: /%1$s %2$s", StringUtils.join(params, " "), target.getUsage(executor));
 	}
 
 	protected final ICommandExecutor executor;
