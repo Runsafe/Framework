@@ -1,9 +1,11 @@
 package no.runsafe.framework;
 
-import no.runsafe.framework.internal.command.BukkitCommandExecutor;
-import no.runsafe.framework.api.command.ICommandHandler;
+import no.runsafe.framework.api.IConfiguration;
 import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.internal.InjectionPlugin;
+import no.runsafe.framework.internal.command.BukkitCommandExecutor;
+import no.runsafe.framework.internal.configuration.ConfigurationEngine;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -67,6 +69,17 @@ public abstract class RunsafePlugin extends InjectionPlugin
 		output.fine("Plugin setup performed.");
 
 		output.outputDebugToConsole("Initiation complete", Level.FINE);
+	}
+
+	/**
+	 * Loads the given yaml from the plugins directory and returns an interface for accessing it.
+	 *
+	 * @param filename A file under the plugin folder to load.
+	 * @return An API for accessing the contents of the given file.
+	 */
+	public IConfiguration loadConfiguration(String filename)
+	{
+		return getComponent(ConfigurationEngine.class).loadConfiguration(String.format("plugins/%s/%s", getName(), filename));
 	}
 
 	protected abstract void PluginSetup();

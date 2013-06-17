@@ -1,6 +1,7 @@
 package no.runsafe.framework.internal.configuration;
 
 import no.runsafe.framework.RunsafePlugin;
+import no.runsafe.framework.api.IConfiguration;
 import no.runsafe.framework.api.IConfigurationFile;
 import no.runsafe.framework.api.event.plugin.IConfigurationChanged;
 import no.runsafe.framework.api.IOutput;
@@ -15,6 +16,15 @@ import java.io.InputStream;
  */
 public final class ConfigurationEngine implements Startable
 {
+	public IConfiguration loadConfiguration(String fileName)
+	{
+		Configuration config = new Configuration(console);
+		File configFile = new File(String.format(fileName));
+		config.configFile = YamlConfiguration.loadConfiguration(configFile);
+		config.configFilePath = fileName;
+		return config;
+	}
+
 	/**
 	 * This constructor must be here for plugins that don't provide any configuration listeners
 	 *
