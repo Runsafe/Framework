@@ -266,12 +266,12 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 
 	public Universe getUniverse()
 	{
-		return this.getWorld().GetUniverse();
+		return this.getWorld().getUniverse();
 	}
 
 	public boolean isInUniverse(String universeName)
 	{
-		return this.getUniverse().GetName().equals(universeName);
+		return this.getUniverse().getName().equals(universeName);
 	}
 
 	@Override
