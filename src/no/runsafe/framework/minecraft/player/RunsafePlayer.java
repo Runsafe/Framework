@@ -7,6 +7,7 @@ import no.runsafe.framework.internal.wrapper.player.BukkitPlayer;
 import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeWorld;
+import no.runsafe.framework.minecraft.Universe;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.event.player.RunsafeOperatorEvent;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
@@ -261,6 +262,16 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 	public void removeItem(Item itemType)
 	{
 		this.removeItem(itemType, itemType.getStackSize());
+	}
+
+	public Universe getUniverse()
+	{
+		return this.getWorld().GetUniverse();
+	}
+
+	public boolean isInUniverse(String universeName)
+	{
+		return this.getUniverse().GetName().equals(universeName);
 	}
 
 	@Override
