@@ -15,12 +15,27 @@ public class RunsafeCustomEvent extends RunsafeInternalEvent
 		this.data = data;
 	}
 
+	public RunsafePlayer getPlayer()
+	{
+		return player;
+	}
+
+	public String getEvent()
+	{
+		return event;
+	}
+
+	public Object getData()
+	{
+		return data;
+	}
+
 	@Override
 	public void Fire()
 	{
 		for (IKernel plugin : RunsafePlugin.Instances.values())
 			for (IPlayerCustomEvent listener : plugin.getComponents(IPlayerCustomEvent.class))
-				listener.OnPlayerCustomEvent(player, event, data);
+				listener.OnPlayerCustomEvent(this);
 	}
 
 	private final RunsafePlayer player;

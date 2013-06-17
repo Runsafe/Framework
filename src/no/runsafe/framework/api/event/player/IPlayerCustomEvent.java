@@ -1,8 +1,8 @@
 package no.runsafe.framework.api.event.player;
 
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
+import no.runsafe.framework.minecraft.event.player.RunsafeCustomEvent;
 
 public interface IPlayerCustomEvent
 {
-	public void OnPlayerCustomEvent(RunsafePlayer player, String event, Object data);
+	public void OnPlayerCustomEvent(RunsafeCustomEvent event);
 }
