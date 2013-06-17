@@ -75,6 +75,21 @@ public abstract class Output implements IDebug
 		outputToConsole(ChatColour.ToConsole("&4" + String.format(message, params)) + "&r", Level.SEVERE);
 	}
 
+	/**
+	 * This will log a fatal error and make the server die in a great big fireball.
+	 *
+	 * @param message The message to print before exiting the process.
+	 * @param params  Values to be passed into the message using String.format
+	 */
+	@Override
+	public void logFatal(String message, Object... params)
+	{
+		String formatted = String.format(message, params);
+		String border = StringUtils.repeat("=", formatted.length());
+		writeColoured("\n\n&4%1$s\n%2$s\n%1$s&r", Level.SEVERE, border, formatted);
+		System.exit(1);
+	}
+
 	@Override
 	public void logInformation(String message, Object... params)
 	{

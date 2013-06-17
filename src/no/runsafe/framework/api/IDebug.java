@@ -17,6 +17,14 @@ public interface IDebug
 
 	public void logError(String message, Object... params);
 
+	/**
+	 * This will log a fatal error and make the server die in a great big fireball.
+	 *
+	 * @param message The message to print before exiting the process.
+	 * @param params  Values to be passed into the message using String.format
+	 */
+	void logFatal(String message, Object... params);
+
 	public void logInformation(String message, Object... params);
 
 	// Sends the supplied String to the console/log the output handler has

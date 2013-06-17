@@ -1,10 +1,8 @@
 package no.runsafe.framework.internal.database.jdbc;
 
+import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.database.IDatabase;
 import no.runsafe.framework.api.database.ITransaction;
-import no.runsafe.framework.text.ConsoleColour;
-import no.runsafe.framework.api.IOutput;
-import no.runsafe.framework.minecraft.RunsafeServer;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -41,43 +39,20 @@ public final class Database extends QueryExecutor implements IDatabase
 			catch (IOException e1)
 			{
 				output.logException(e1);
+				output.logFatal("Unable to create runsafe/db.yml configuration file - Check permissions!");
 			}
-			output.write("\n" +
-				"\n" +
-				ConsoleColour.RED +
-				"================================================================\n" +
-				"Created new default runsafe/db.yml - you should change this now!\n" +
-				"================================================================" +
-				ConsoleColour.RESET
-			);
+			output.logFatal("Created new default runsafe/db.yml - You need to change this now!");
 			System.exit(1);
 		}
 		catch (IOException e)
 		{
 			output.logException(e);
-			output.write("\n" +
-				"\n" +
-				ConsoleColour.RED +
-				"=====================================================\n" +
-				"Unable to read runsafe/db.yml - you need to fix this!\n" +
-				"=====================================================" +
-				ConsoleColour.RESET
-			);
-			RunsafeServer.Instance.stop();
-			System.exit(1);
+			output.logFatal("Unable to read runsafe/db.yml - You need to fix this!");
 		}
 		catch (InvalidConfigurationException e)
 		{
 			output.logException(e);
-			output.write("\n" +
-				"\n" +
-				ConsoleColour.RED +
-				"=================================================================\n" +
-				"Invalid configuration file runsafe/db.yml - you need to fix this!\n" +
-				"=================================================================" +
-				ConsoleColour.RESET
-			);
-			System.exit(1);
+			output.logFatal("Invalid configuration file runsafe/db.yml - You need to fix this!");
 		}
 		this.databaseURL = config.getString("database.url");
 		this.databaseUsername = config.getString("database.username");
@@ -86,19 +61,11 @@ public final class Database extends QueryExecutor implements IDatabase
 		try
 		{
 			if (QueryRow("SELECT VERSION()") == null)
-				throw new Exception("No database!");
+				throw new Exception("No database!"); // In case query returned null without an exception
 		}
 		catch (Exception e)
 		{
-			output.write("\n" +
-				"\n" +
-				ConsoleColour.RED +
-				"====================================================================\n" +
-				"Unable to connect to MySQL - Edit configuration file runsafe/db.yml!\n" +
-				"====================================================================" +
-				ConsoleColour.RESET
-			);
-			System.exit(1);
+			output.logFatal("Unable to connect to MySQL - Check configuration file runsafe/db.yml!");
 		}
 	}
 
