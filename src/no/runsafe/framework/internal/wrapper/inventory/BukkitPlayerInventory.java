@@ -10,7 +10,7 @@ import java.util.List;
 
 public abstract class BukkitPlayerInventory extends RunsafeInventory
 {
-	public BukkitPlayerInventory(PlayerInventory toWrap)
+	protected BukkitPlayerInventory(PlayerInventory toWrap)
 	{
 		super(toWrap);
 		inventory = toWrap;

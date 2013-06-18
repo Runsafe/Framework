@@ -6,7 +6,7 @@ import org.bukkit.enchantments.Enchantment;
 
 public abstract class BukkitEnchantment
 {
-	public BukkitEnchantment(Enchantment toWrap)
+	protected BukkitEnchantment(Enchantment toWrap)
 	{
 		enchantment = toWrap;
 	}

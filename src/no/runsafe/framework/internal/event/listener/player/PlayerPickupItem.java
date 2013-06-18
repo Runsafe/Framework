@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerPickupItemEvent;
 
 public final class PlayerPickupItem extends EventRouterBase<IPlayerPickupItemEvent, PlayerPickupItemEvent>
 {
-	public PlayerPickupItem(IOutput output, IScheduler scheduler, IPlayerPickupItemEvent handler)
+	private PlayerPickupItem(IOutput output, IScheduler scheduler, IPlayerPickupItemEvent handler)
 	{
 		super(output, scheduler, handler);
 	}

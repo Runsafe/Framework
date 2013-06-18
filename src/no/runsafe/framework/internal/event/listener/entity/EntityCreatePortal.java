@@ -13,7 +13,7 @@ import org.bukkit.event.entity.EntityCreatePortalEvent;
 
 public final class EntityCreatePortal extends EventRouterBase<IEntityCreatePortalEvent, EntityCreatePortalEvent>
 {
-	public EntityCreatePortal(IOutput output, IScheduler scheduler, IEntityCreatePortalEvent handler)
+	private EntityCreatePortal(IOutput output, IScheduler scheduler, IEntityCreatePortalEvent handler)
 	{
 		super(output, scheduler, handler);
 	}

@@ -12,7 +12,7 @@ import org.bukkit.event.Listener;
 
 public final class PlayerPortalEvent extends EventRouterBase<IPlayerPortal, org.bukkit.event.player.PlayerPortalEvent>
 {
-	public PlayerPortalEvent(IOutput output, IScheduler scheduler, IPlayerPortal handler)
+	private PlayerPortalEvent(IOutput output, IScheduler scheduler, IPlayerPortal handler)
 	{
 		super(output, scheduler, handler);
 	}

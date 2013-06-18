@@ -13,7 +13,7 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 
 public final class CreatureSpawn extends EventRouterBase<IMobSpawnerPulsed, CreatureSpawnEvent>
 {
-	public CreatureSpawn(IOutput output, IScheduler scheduler, IMobSpawnerPulsed handler)
+	private CreatureSpawn(IOutput output, IScheduler scheduler, IMobSpawnerPulsed handler)
 	{
 		super(output, scheduler, handler);
 	}

@@ -8,7 +8,7 @@ import org.bukkit.block.Hopper;
 
 public abstract class BukkitHopper extends RunsafeBlockState implements IInventoryHolder
 {
-	public BukkitHopper(Hopper toWrap)
+	protected BukkitHopper(Hopper toWrap)
 	{
 		super(toWrap);
 		this.hopper = toWrap;

@@ -12,7 +12,7 @@ import org.bukkit.event.Listener;
 
 public final class PlayerTeleportEvent extends EventRouterBase<IPlayerTeleport, org.bukkit.event.player.PlayerTeleportEvent>
 {
-	protected PlayerTeleportEvent(IOutput output, IScheduler scheduler, IPlayerTeleport handler)
+	private PlayerTeleportEvent(IOutput output, IScheduler scheduler, IPlayerTeleport handler)
 	{
 		super(output, scheduler, handler);
 	}

@@ -5,7 +5,7 @@ import org.bukkit.block.Sign;
 
 public abstract class BukkitSign extends RunsafeBlockState
 {
-	public BukkitSign(Sign toWrap)
+	protected BukkitSign(Sign toWrap)
 	{
 		super(toWrap);
 		sign = toWrap;

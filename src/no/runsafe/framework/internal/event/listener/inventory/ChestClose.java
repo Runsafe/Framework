@@ -14,7 +14,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 
 public final class ChestClose extends EventRouterBase<IChestClosed, InventoryCloseEvent>
 {
-	protected ChestClose(IOutput output, IScheduler scheduler, IChestClosed handler)
+	private ChestClose(IOutput output, IScheduler scheduler, IChestClosed handler)
 	{
 		super(output, scheduler, handler);
 	}

@@ -4,7 +4,7 @@ import org.bukkit.event.Event;
 
 public class RunsafeEvent
 {
-	public RunsafeEvent(Event toWrap)
+	protected RunsafeEvent(Event toWrap)
 	{
 		event = toWrap;
 	}

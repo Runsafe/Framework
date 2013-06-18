@@ -6,7 +6,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 public abstract class BukkitSkull extends RunsafeMeta
 {
-	public BukkitSkull(ItemStack stack)
+	protected BukkitSkull(ItemStack stack)
 	{
 		super(stack);
 	}

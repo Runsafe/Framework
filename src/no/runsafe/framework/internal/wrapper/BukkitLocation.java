@@ -8,7 +8,7 @@ import org.bukkit.util.Vector;
 
 public abstract class BukkitLocation
 {
-	public BukkitLocation(Location toWrap)
+	protected BukkitLocation(Location toWrap)
 	{
 		location = toWrap;
 	}

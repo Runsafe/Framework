@@ -14,7 +14,7 @@ import org.bukkit.event.inventory.InventoryOpenEvent;
 
 public final class ChestOpen extends EventRouterBase<IChestOpen, InventoryOpenEvent>
 {
-	protected ChestOpen(IOutput output, IScheduler scheduler, IChestOpen handler)
+	private ChestOpen(IOutput output, IScheduler scheduler, IChestOpen handler)
 	{
 		super(output, scheduler, handler);
 	}

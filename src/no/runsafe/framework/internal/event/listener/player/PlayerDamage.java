@@ -15,7 +15,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 
 public final class PlayerDamage extends EventRouterBase<IPlayerDamageEvent, EntityDamageEvent>
 {
-	public PlayerDamage(IOutput output, IScheduler scheduler, IPlayerDamageEvent handler)
+	private PlayerDamage(IOutput output, IScheduler scheduler, IPlayerDamageEvent handler)
 	{
 		super(output, scheduler, handler);
 	}

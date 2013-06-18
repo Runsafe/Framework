@@ -45,7 +45,7 @@ public final class SchemaUpdater implements Startable
 		);
 	}
 
-	public int getRevision(String table)
+	int getRevision(String table)
 	{
 		IRow row = database.QueryRow("SELECT `revision` FROM runsafe_schema WHERE `table`=?", table);
 		if (row == null)
@@ -53,7 +53,7 @@ public final class SchemaUpdater implements Startable
 		return row.Integer("revision");
 	}
 
-	public void setRevision(String table, int revision)
+	void setRevision(String table, int revision)
 	{
 		database.Update(
 			"INSERT INTO runsafe_schema (`table`,`revision`) VALUES (?,?)" +

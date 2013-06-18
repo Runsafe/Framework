@@ -10,7 +10,7 @@ import java.util.List;
 
 public abstract class BukkitMeta extends RunsafeItemStack
 {
-	public BukkitMeta(ItemStack stack)
+	protected BukkitMeta(ItemStack stack)
 	{
 		super(stack);
 	}

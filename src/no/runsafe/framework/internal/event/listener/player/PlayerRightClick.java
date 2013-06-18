@@ -16,7 +16,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public final class PlayerRightClick extends EventRouterBase<IPlayerRightClick, PlayerInteractEvent>
 {
-	public PlayerRightClick(IOutput output, IScheduler scheduler, IPlayerRightClick handler)
+	private PlayerRightClick(IOutput output, IScheduler scheduler, IPlayerRightClick handler)
 	{
 		super(output, scheduler, handler);
 	}

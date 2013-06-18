@@ -11,7 +11,7 @@ import java.util.List;
 
 public abstract class BukkitChunk
 {
-	public BukkitChunk(Chunk toWrap)
+	protected BukkitChunk(Chunk toWrap)
 	{
 		chunk = toWrap;
 	}

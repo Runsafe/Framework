@@ -147,6 +147,6 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		this.container.addComponent(VersionEngine.class);
 	}
 
-	protected DefaultPicoContainer container = null;
+	private DefaultPicoContainer container = null;
 	protected IOutput output;
 }

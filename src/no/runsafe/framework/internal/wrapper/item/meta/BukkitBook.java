@@ -8,7 +8,7 @@ import java.util.List;
 
 public abstract class BukkitBook extends RunsafeMeta
 {
-	public BukkitBook(ItemStack toWrap)
+	protected BukkitBook(ItemStack toWrap)
 	{
 		super(toWrap);
 	}

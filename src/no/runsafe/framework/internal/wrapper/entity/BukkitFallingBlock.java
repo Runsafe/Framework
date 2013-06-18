@@ -5,7 +5,7 @@ import org.bukkit.entity.FallingBlock;
 
 public abstract class BukkitFallingBlock extends RunsafeEntity
 {
-	public BukkitFallingBlock(FallingBlock toWrap)
+	protected BukkitFallingBlock(FallingBlock toWrap)
 	{
 		super(toWrap);
 		this.block = toWrap;

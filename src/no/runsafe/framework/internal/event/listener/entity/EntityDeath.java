@@ -13,7 +13,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 
 public final class EntityDeath extends EventRouterBase<IEntityDeathEvent, EntityDeathEvent>
 {
-	public EntityDeath(IOutput output, IScheduler scheduler, IEntityDeathEvent handler)
+	private EntityDeath(IOutput output, IScheduler scheduler, IEntityDeathEvent handler)
 	{
 		super(output, scheduler, handler);
 	}

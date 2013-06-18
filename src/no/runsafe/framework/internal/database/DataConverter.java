@@ -11,7 +11,7 @@ import java.math.BigInteger;
 
 abstract class DataConverter
 {
-	protected String String(Object value)
+	String String(Object value)
 	{
 		if (value == null)
 			return null;
@@ -19,7 +19,7 @@ abstract class DataConverter
 		return value.toString();
 	}
 
-	protected Integer Integer(Object value)
+	Integer Integer(Object value)
 	{
 		if (value == null)
 			return null;
@@ -42,7 +42,7 @@ abstract class DataConverter
 		return null;
 	}
 
-	protected Long Long(Object value)
+	Long Long(Object value)
 	{
 		if (value == null)
 			return null;
@@ -65,7 +65,7 @@ abstract class DataConverter
 		return null;
 	}
 
-	protected Double Double(Object value)
+	Double Double(Object value)
 	{
 		if (value == null)
 			return null;
@@ -91,7 +91,7 @@ abstract class DataConverter
 		return null;
 	}
 
-	protected Float Float(Object value)
+	Float Float(Object value)
 	{
 		if (value == null)
 			return null;
@@ -117,14 +117,14 @@ abstract class DataConverter
 		return null;
 	}
 
-	protected DateTime DateTime(Object value)
+	DateTime DateTime(Object value)
 	{
 		if (value == null)
 			return null;
 		return new DateTime(value);
 	}
 
-	protected RunsafeLocation Location(Object world, Object x, Object y, Object z, Object yaw, Object pitch)
+	RunsafeLocation Location(Object world, Object x, Object y, Object z, Object yaw, Object pitch)
 	{
 		RunsafeWorld targetWorld = World(world);
 		if (targetWorld == null)
@@ -136,14 +136,14 @@ abstract class DataConverter
 		return new RunsafeLocation(targetWorld, Double(x), Double(y), Double(z));
 	}
 
-	protected RunsafeWorld World(Object value)
+	RunsafeWorld World(Object value)
 	{
 		if (value == null)
 			return null;
 		return RunsafeServer.Instance.getWorld(value.toString());
 	}
 
-	protected RunsafePlayer Player(Object value)
+	RunsafePlayer Player(Object value)
 	{
 		return value == null ? null : RunsafeServer.Instance.getOfflinePlayerExact(value.toString());
 	}

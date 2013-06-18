@@ -8,7 +8,7 @@ import org.bukkit.block.DoubleChest;
 
 public abstract class BukkitDoubleChest implements IInventoryHolder
 {
-	public BukkitDoubleChest(DoubleChest toWrap)
+	protected BukkitDoubleChest(DoubleChest toWrap)
 	{
 		chest = toWrap;
 	}

@@ -16,7 +16,7 @@ import java.util.UUID;
 
 public abstract class BukkitEntity extends BukkitMetadata
 {
-	public BukkitEntity(Entity toWrap)
+	protected BukkitEntity(Entity toWrap)
 	{
 		super(toWrap);
 		entity = toWrap;

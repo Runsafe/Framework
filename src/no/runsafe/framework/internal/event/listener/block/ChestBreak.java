@@ -14,7 +14,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 
 public final class ChestBreak extends EventRouterBase<IChestBreak, BlockBreakEvent>
 {
-	protected ChestBreak(IOutput output, IScheduler scheduler, IChestBreak handler)
+	private ChestBreak(IOutput output, IScheduler scheduler, IChestBreak handler)
 	{
 		super(output, scheduler, handler);
 	}

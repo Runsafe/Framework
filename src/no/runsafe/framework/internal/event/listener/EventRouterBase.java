@@ -23,7 +23,7 @@ public abstract class EventRouterBase<Wrapper extends IRunsafeEvent, EventType e
 	 * Don't forget to add @EventHandler - Java does not support annotations on base classes :(
 	 * @param event The raw event object coming from bukkit
 	 */
-	public void acceptEvent(EventType event)
+	protected void acceptEvent(EventType event)
 	{
 		if (isAsync)
 			invokeAsync(event);
@@ -39,7 +39,7 @@ public abstract class EventRouterBase<Wrapper extends IRunsafeEvent, EventType e
 	 * @param event The raw event object from bukkit
 	 * @return false to cancel a cancellable event
 	 */
-	public abstract boolean onEvent(EventType event);
+	protected abstract boolean onEvent(EventType event);
 
 	private void invokeAsync(final EventType event)
 	{
@@ -70,7 +70,7 @@ public abstract class EventRouterBase<Wrapper extends IRunsafeEvent, EventType e
 		}
 	}
 
-	protected final IScheduler scheduler;
+	private final IScheduler scheduler;
 	protected final Wrapper handler;
 	private final boolean isAsync;
 	private final IOutput console;

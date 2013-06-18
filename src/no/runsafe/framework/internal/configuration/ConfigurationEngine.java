@@ -81,7 +81,7 @@ public final class ConfigurationEngine implements Startable
 	/**
 	 * Loads configuration for the plugin from disk
 	 */
-	public void load()
+	void load()
 	{
 		if (this.configFilePath == null)
 			return;

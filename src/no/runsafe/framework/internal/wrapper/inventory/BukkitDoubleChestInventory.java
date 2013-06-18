@@ -7,7 +7,7 @@ import org.bukkit.inventory.DoubleChestInventory;
 
 public abstract class BukkitDoubleChestInventory extends RunsafeInventory
 {
-	public BukkitDoubleChestInventory(DoubleChestInventory toWrap)
+	protected BukkitDoubleChestInventory(DoubleChestInventory toWrap)
 	{
 		super(toWrap);
 		this.doubleChestInventory = toWrap;

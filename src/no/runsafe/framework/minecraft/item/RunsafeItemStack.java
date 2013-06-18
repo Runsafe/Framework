@@ -21,7 +21,7 @@ public abstract class RunsafeItemStack extends BukkitItemStack implements IEncha
 		return ObjectWrapper.convert(ItemStack.deserialize(args));
 	}
 
-	public RunsafeItemStack(ItemStack stack)
+	protected RunsafeItemStack(ItemStack stack)
 	{
 		super(stack);
 	}

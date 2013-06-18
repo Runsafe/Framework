@@ -13,7 +13,7 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 
 public final class NaturalSpawn extends EventRouterBase<INaturalSpawn, CreatureSpawnEvent>
 {
-	public NaturalSpawn(IOutput output, IScheduler scheduler, INaturalSpawn handler)
+	private NaturalSpawn(IOutput output, IScheduler scheduler, INaturalSpawn handler)
 	{
 		super(output, scheduler, handler);
 	}

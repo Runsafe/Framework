@@ -7,7 +7,7 @@ import org.bukkit.entity.Item;
 
 public abstract class BukkitItem extends RunsafeEntity
 {
-	public BukkitItem(Item toWrap)
+	protected BukkitItem(Item toWrap)
 	{
 		super(toWrap);
 		item = toWrap;

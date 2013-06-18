@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 
 public final class PlayerDropItem extends EventRouterBase<IPlayerDropItemEvent, PlayerDropItemEvent>
 {
-	public PlayerDropItem(IOutput output, IScheduler scheduler, IPlayerDropItemEvent handler)
+	private PlayerDropItem(IOutput output, IScheduler scheduler, IPlayerDropItemEvent handler)
 	{
 		super(output, scheduler, handler);
 	}

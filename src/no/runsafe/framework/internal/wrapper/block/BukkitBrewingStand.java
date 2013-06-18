@@ -8,7 +8,7 @@ import org.bukkit.block.BrewingStand;
 
 public abstract class BukkitBrewingStand extends RunsafeBlockState implements IInventoryHolder
 {
-	public BukkitBrewingStand(BrewingStand toWrap)
+	protected BukkitBrewingStand(BrewingStand toWrap)
 	{
 		super(toWrap);
 		stand = toWrap;

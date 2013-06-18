@@ -15,7 +15,7 @@ import org.bukkit.event.hanging.HangingPlaceEvent;
 
 public final class ItemFramePlace extends EventRouterBase<IItemFramePlaced, HangingPlaceEvent>
 {
-	protected ItemFramePlace(IOutput output, IScheduler scheduler, IItemFramePlaced handler)
+	private ItemFramePlace(IOutput output, IScheduler scheduler, IItemFramePlaced handler)
 	{
 		super(output, scheduler, handler);
 	}

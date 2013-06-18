@@ -10,7 +10,7 @@ import org.bukkit.block.Block;
 
 public abstract class BukkitBlock extends BukkitMetadata
 {
-	public BukkitBlock(Block toWrap)
+	protected BukkitBlock(Block toWrap)
 	{
 		super(toWrap);
 		block = toWrap;

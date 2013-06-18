@@ -14,7 +14,7 @@ import java.util.List;
 
 public abstract class BukkitLivingEntity extends RunsafeEntity
 {
-	public BukkitLivingEntity(LivingEntity toWrap)
+	protected BukkitLivingEntity(LivingEntity toWrap)
 	{
 		super(toWrap);
 		this.entity = toWrap;

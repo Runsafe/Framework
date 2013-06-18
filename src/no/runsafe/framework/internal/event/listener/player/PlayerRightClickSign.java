@@ -16,7 +16,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public final class PlayerRightClickSign extends EventRouterBase<IPlayerRightClickSign, PlayerInteractEvent>
 {
-	public PlayerRightClickSign(IOutput output, IScheduler scheduler, IPlayerRightClickSign handler)
+	private PlayerRightClickSign(IOutput output, IScheduler scheduler, IPlayerRightClickSign handler)
 	{
 		super(output, scheduler, handler);
 	}

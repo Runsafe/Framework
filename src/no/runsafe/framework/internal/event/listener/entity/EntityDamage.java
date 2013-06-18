@@ -13,7 +13,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 
 public final class EntityDamage extends EventRouterBase<IEntityDamageEvent, EntityDamageEvent>
 {
-	public EntityDamage(IOutput output, IScheduler scheduler, IEntityDamageEvent handler)
+	private EntityDamage(IOutput output, IScheduler scheduler, IEntityDamageEvent handler)
 	{
 		super(output, scheduler, handler);
 	}

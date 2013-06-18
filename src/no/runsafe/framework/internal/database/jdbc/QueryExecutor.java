@@ -112,7 +112,7 @@ abstract class QueryExecutor implements IQueryExecutor
 		}
 	}
 
-	protected Set getSet(PreparedStatement statement) throws SQLException
+	Set getSet(PreparedStatement statement) throws SQLException
 	{
 		output.finer("Running SQL: %s", statement);
 		ResultSet result = statement.executeQuery();
@@ -134,7 +134,7 @@ abstract class QueryExecutor implements IQueryExecutor
 		return new Set(results);
 	}
 
-	protected ArrayList<IValue> getValues(PreparedStatement statement) throws SQLException
+	ArrayList<IValue> getValues(PreparedStatement statement) throws SQLException
 	{
 		output.finer("Running SQL: %s", statement);
 		ResultSet result = statement.executeQuery();
@@ -153,13 +153,13 @@ abstract class QueryExecutor implements IQueryExecutor
 		return results;
 	}
 
-	protected PreparedStatement prepare(String query) throws SQLException
+	PreparedStatement prepare(String query) throws SQLException
 	{
 		Connection conn = getConnection();
 		return conn.prepareStatement(query);
 	}
 
-	protected void setParams(PreparedStatement statement, Object... params) throws SQLException
+	void setParams(PreparedStatement statement, Object... params) throws SQLException
 	{
 		for (int i = 0; i < params.length; i++)
 		{
@@ -172,5 +172,5 @@ abstract class QueryExecutor implements IQueryExecutor
 
 	protected abstract Connection getConnection();
 
-	protected final IOutput output;
+	final IOutput output;
 }

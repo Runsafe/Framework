@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 public final class PlayerQuit extends EventRouterBase<IPlayerQuitEvent, PlayerQuitEvent>
 {
-	public PlayerQuit(IOutput output, IScheduler scheduler, IPlayerQuitEvent handler)
+	private PlayerQuit(IOutput output, IScheduler scheduler, IPlayerQuitEvent handler)
 	{
 		super(output, scheduler, handler);
 	}

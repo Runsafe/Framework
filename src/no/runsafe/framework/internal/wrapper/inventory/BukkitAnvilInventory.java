@@ -5,7 +5,7 @@ import org.bukkit.inventory.AnvilInventory;
 
 public abstract class BukkitAnvilInventory extends RunsafeInventory
 {
-	public BukkitAnvilInventory(AnvilInventory inventory)
+	protected BukkitAnvilInventory(AnvilInventory inventory)
 	{
 		super(inventory);
 		this.inventory = inventory;

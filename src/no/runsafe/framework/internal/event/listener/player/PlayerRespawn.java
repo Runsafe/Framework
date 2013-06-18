@@ -15,7 +15,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 
 public final class PlayerRespawn extends EventRouterBase<IPlayerRespawn, PlayerRespawnEvent>
 {
-	public PlayerRespawn(IOutput output, IScheduler scheduler, IPlayerRespawn subscriber)
+	private PlayerRespawn(IOutput output, IScheduler scheduler, IPlayerRespawn subscriber)
 	{
 		super(output, scheduler, subscriber);
 	}

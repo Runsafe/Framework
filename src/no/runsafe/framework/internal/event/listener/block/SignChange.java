@@ -13,7 +13,7 @@ import org.bukkit.event.block.SignChangeEvent;
 
 public final class SignChange extends EventRouterBase<ISignChange, SignChangeEvent>
 {
-	public SignChange(IOutput output, IScheduler scheduler, ISignChange handler)
+	private SignChange(IOutput output, IScheduler scheduler, ISignChange handler)
 	{
 		super(output, scheduler, handler);
 	}

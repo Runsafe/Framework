@@ -13,7 +13,7 @@ import org.bukkit.event.world.ChunkLoadEvent;
 
 public final class ChunkLoad extends EventRouterBase<IChunkLoad, ChunkLoadEvent>
 {
-	public ChunkLoad(IOutput output, IScheduler scheduler, IChunkLoad handler)
+	private ChunkLoad(IOutput output, IScheduler scheduler, IChunkLoad handler)
 	{
 		super(output, scheduler, handler);
 	}

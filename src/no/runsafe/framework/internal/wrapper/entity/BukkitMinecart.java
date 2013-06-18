@@ -5,7 +5,7 @@ import org.bukkit.entity.Minecart;
 
 public abstract class BukkitMinecart extends RunsafeEntity
 {
-	public BukkitMinecart(Minecart toWrap)
+	protected BukkitMinecart(Minecart toWrap)
 	{
 		super(toWrap);
 		minecart = toWrap;

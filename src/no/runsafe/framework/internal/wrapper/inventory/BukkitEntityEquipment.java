@@ -9,7 +9,7 @@ import java.util.List;
 
 public abstract class BukkitEntityEquipment
 {
-	public BukkitEntityEquipment(EntityEquipment toWrap)
+	protected BukkitEntityEquipment(EntityEquipment toWrap)
 	{
 		entityEquipment = toWrap;
 	}

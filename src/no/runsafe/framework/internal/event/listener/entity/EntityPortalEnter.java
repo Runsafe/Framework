@@ -13,7 +13,7 @@ import org.bukkit.event.entity.EntityPortalEnterEvent;
 
 public final class EntityPortalEnter extends EventRouterBase<IEntityPortalEnterEvent, EntityPortalEnterEvent>
 {
-	public EntityPortalEnter(IOutput output, IScheduler scheduler, IEntityPortalEnterEvent handler)
+	private EntityPortalEnter(IOutput output, IScheduler scheduler, IEntityPortalEnterEvent handler)
 	{
 		super(output, scheduler, handler);
 	}

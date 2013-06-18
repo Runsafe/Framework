@@ -14,7 +14,7 @@ import org.bukkit.entity.Player;
 
 public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolder
 {
-	public BukkitPlayer(OfflinePlayer toWrap)
+	protected BukkitPlayer(OfflinePlayer toWrap)
 	{
 		super((toWrap instanceof Player) ? (Player) toWrap : null);
 		player = toWrap instanceof Player ? (Player) toWrap : null;

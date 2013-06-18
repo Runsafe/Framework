@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 public final class PlayerMove extends EventRouterBase<IPlayerMove, PlayerMoveEvent>
 {
-	public PlayerMove(IOutput output, IScheduler scheduler, IPlayerMove handler)
+	private PlayerMove(IOutput output, IScheduler scheduler, IPlayerMove handler)
 	{
 		super(output, scheduler, handler);
 	}

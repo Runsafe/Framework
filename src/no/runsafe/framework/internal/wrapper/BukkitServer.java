@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 public abstract class BukkitServer
 {
-	public BukkitServer(Server toWrap)
+	protected BukkitServer(Server toWrap)
 	{
 		server = toWrap;
 	}

@@ -15,7 +15,7 @@ import org.bukkit.event.hanging.HangingPlaceEvent;
 
 public final class PaintingPlace extends EventRouterBase<IPaintingPlaced, HangingPlaceEvent>
 {
-	protected PaintingPlace(IOutput output, IScheduler scheduler, IPaintingPlaced handler)
+	private PaintingPlace(IOutput output, IScheduler scheduler, IPaintingPlaced handler)
 	{
 		super(output, scheduler, handler);
 	}

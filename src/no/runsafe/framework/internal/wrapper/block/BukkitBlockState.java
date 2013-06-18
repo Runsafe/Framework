@@ -12,7 +12,7 @@ import org.bukkit.block.BlockState;
 @SuppressWarnings("deprecation")
 public abstract class BukkitBlockState extends BukkitMetadata
 {
-	public BukkitBlockState(BlockState blockState)
+	protected BukkitBlockState(BlockState blockState)
 	{
 		super(blockState);
 		this.blockState = blockState;

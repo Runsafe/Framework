@@ -13,7 +13,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 public final class PlayerChat extends EventRouterBase<IPlayerChatEvent, AsyncPlayerChatEvent>
 {
-	public PlayerChat(IOutput output, IScheduler scheduler, IPlayerChatEvent handler)
+	private PlayerChat(IOutput output, IScheduler scheduler, IPlayerChatEvent handler)
 	{
 		super(output, scheduler, handler);
 	}

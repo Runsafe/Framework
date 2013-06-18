@@ -8,7 +8,7 @@ import org.bukkit.block.Dropper;
 
 public abstract class BukkitDropper extends RunsafeBlockState implements IInventoryHolder
 {
-	public BukkitDropper(Dropper toWrap)
+	protected BukkitDropper(Dropper toWrap)
 	{
 		super(toWrap);
 		this.dropper = toWrap;

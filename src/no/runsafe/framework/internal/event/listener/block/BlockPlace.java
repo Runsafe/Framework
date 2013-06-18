@@ -13,7 +13,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 
 public final class BlockPlace extends EventRouterBase<IBlockPlace, BlockPlaceEvent>
 {
-	public BlockPlace(IOutput output, IScheduler scheduler, IBlockPlace handler)
+	private BlockPlace(IOutput output, IScheduler scheduler, IBlockPlace handler)
 	{
 		super(output, scheduler, handler);
 	}

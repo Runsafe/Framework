@@ -6,7 +6,7 @@ import org.bukkit.inventory.meta.FireworkMeta;
 
 public class BukkitFirework extends RunsafeMeta
 {
-	public BukkitFirework(ItemStack stack)
+	protected BukkitFirework(ItemStack stack)
 	{
 		super(stack);
 	}

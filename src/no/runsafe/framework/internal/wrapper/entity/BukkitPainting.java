@@ -6,7 +6,7 @@ import org.bukkit.entity.Painting;
 
 public abstract class BukkitPainting extends RunsafeHanging
 {
-	public BukkitPainting(Painting toWrap)
+	protected BukkitPainting(Painting toWrap)
 	{
 		super(toWrap);
 		painting = toWrap;

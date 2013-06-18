@@ -6,7 +6,7 @@ import org.bukkit.entity.Hanging;
 
 public abstract class BukkitHanging extends RunsafeEntity
 {
-	public BukkitHanging(Hanging toWrap)
+	protected BukkitHanging(Hanging toWrap)
 	{
 		super(toWrap);
 		hanging = toWrap;

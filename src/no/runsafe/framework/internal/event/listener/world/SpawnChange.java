@@ -13,7 +13,7 @@ import org.bukkit.event.world.SpawnChangeEvent;
 
 public final class SpawnChange extends EventRouterBase<ISpawnChange, SpawnChangeEvent>
 {
-	public SpawnChange(IOutput output, IScheduler scheduler, ISpawnChange handler)
+	private SpawnChange(IOutput output, IScheduler scheduler, ISpawnChange handler)
 	{
 		super(output, scheduler, handler);
 	}

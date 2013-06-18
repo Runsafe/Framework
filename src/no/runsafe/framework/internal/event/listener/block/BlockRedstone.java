@@ -13,7 +13,7 @@ import org.bukkit.event.block.BlockRedstoneEvent;
 
 public final class BlockRedstone extends EventRouterBase<IBlockRedstone, BlockRedstoneEvent>
 {
-	public BlockRedstone(IOutput output, IScheduler scheduler, IBlockRedstone handler)
+	private BlockRedstone(IOutput output, IScheduler scheduler, IBlockRedstone handler)
 	{
 		super(output, scheduler, handler);
 	}

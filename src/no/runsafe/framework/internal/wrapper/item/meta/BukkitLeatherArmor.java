@@ -7,7 +7,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 public abstract class BukkitLeatherArmor extends RunsafeMeta
 {
-	public BukkitLeatherArmor(ItemStack stack)
+	protected BukkitLeatherArmor(ItemStack stack)
 	{
 		super(stack);
 	}

@@ -13,7 +13,7 @@ import org.bukkit.event.inventory.InventoryEvent;
 
 public final class Inventory extends EventRouterBase<IInventory, InventoryEvent>
 {
-	protected Inventory(IOutput output, IScheduler scheduler, IInventory handler)
+	private Inventory(IOutput output, IScheduler scheduler, IInventory handler)
 	{
 		super(output, scheduler, handler);
 	}

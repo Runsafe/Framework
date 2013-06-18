@@ -6,7 +6,7 @@ import org.bukkit.inventory.meta.MapMeta;
 
 public abstract class BukkitMap extends RunsafeMeta
 {
-	public BukkitMap(ItemStack stack)
+	protected BukkitMap(ItemStack stack)
 	{
 		super(stack);
 	}

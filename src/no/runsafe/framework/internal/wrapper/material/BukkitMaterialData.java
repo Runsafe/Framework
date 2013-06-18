@@ -8,7 +8,7 @@ import org.bukkit.material.MaterialData;
 @SuppressWarnings("deprecation")
 public abstract class BukkitMaterialData
 {
-	public BukkitMaterialData(MaterialData toWrap)
+	protected BukkitMaterialData(MaterialData toWrap)
 	{
 		materialData = toWrap;
 	}

@@ -20,7 +20,7 @@ import java.util.List;
 public abstract class BukkitWorld extends BukkitMetadata
 {
 
-	public BukkitWorld(World toWrap)
+	protected BukkitWorld(World toWrap)
 	{
 		super(toWrap);
 		world = toWrap;

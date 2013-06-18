@@ -13,7 +13,7 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 
 public final class SpawnEggUsed extends EventRouterBase<ISpawnEggUsed, CreatureSpawnEvent>
 {
-	public SpawnEggUsed(IOutput output, IScheduler scheduler, ISpawnEggUsed handler)
+	private SpawnEggUsed(IOutput output, IScheduler scheduler, ISpawnEggUsed handler)
 	{
 		super(output, scheduler, handler);
 	}

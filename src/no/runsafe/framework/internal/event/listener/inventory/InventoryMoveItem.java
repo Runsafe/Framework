@@ -13,7 +13,7 @@ import org.bukkit.event.inventory.InventoryMoveItemEvent;
 
 public final class InventoryMoveItem extends EventRouterBase<IInventoryMoveItem, InventoryMoveItemEvent>
 {
-	protected InventoryMoveItem(IOutput output, IScheduler scheduler, IInventoryMoveItem handler)
+	private InventoryMoveItem(IOutput output, IScheduler scheduler, IInventoryMoveItem handler)
 	{
 		super(output, scheduler, handler);
 	}

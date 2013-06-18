@@ -13,7 +13,7 @@ import java.util.Map;
 
 public abstract class BukkitItemStack implements ConfigurationSerializable
 {
-	public BukkitItemStack(ItemStack stack)
+	protected BukkitItemStack(ItemStack stack)
 	{
 		itemStack = stack;
 	}

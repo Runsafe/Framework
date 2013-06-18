@@ -12,7 +12,7 @@ import java.util.Map;
 
 public abstract class BukkitEnchantmentStorage extends RunsafeMeta
 {
-	public BukkitEnchantmentStorage(ItemStack stack)
+	protected BukkitEnchantmentStorage(ItemStack stack)
 	{
 		super(stack);
 	}

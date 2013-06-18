@@ -18,7 +18,7 @@ public abstract class ExecutableCommand extends Command
 	 * @param permission  A permission String that a player must have to run the command or null to allow anyone to run it
 	 * @param arguments   Optional list of required command parameters
 	 */
-	public ExecutableCommand(String commandName, String description, String permission, String... arguments)
+	protected ExecutableCommand(String commandName, String description, String permission, String... arguments)
 	{
 		super(commandName, description, permission, arguments);
 	}
@@ -44,5 +44,5 @@ public abstract class ExecutableCommand extends Command
 	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
 	 * @return Message to show to the user running the command
 	 */
-	public abstract String OnExecute(ICommandExecutor executor, HashMap<String, String> parameters);
+	protected abstract String OnExecute(ICommandExecutor executor, HashMap<String, String> parameters);
 }

@@ -6,7 +6,7 @@ import org.bukkit.plugin.Plugin;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BukkitMetadataValue
+class BukkitMetadataValue
 {
 	public BukkitMetadataValue(MetadataValue toWrap)
 	{

@@ -6,7 +6,7 @@ import org.bukkit.inventory.InventoryHolder;
 
 public abstract class BukkitInventoryHolder
 {
-	public BukkitInventoryHolder(InventoryHolder toWrap)
+	protected BukkitInventoryHolder(InventoryHolder toWrap)
 	{
 		this.inventoryHolder = toWrap;
 	}

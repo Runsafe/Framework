@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 
 public final class PlayerTeleport extends EventRouterBase<IPlayerTeleportEvent, PlayerTeleportEvent>
 {
-	public PlayerTeleport(IOutput output, IScheduler scheduler, IPlayerTeleportEvent handler)
+	private PlayerTeleport(IOutput output, IScheduler scheduler, IPlayerTeleportEvent handler)
 	{
 		super(output, scheduler, handler);
 	}

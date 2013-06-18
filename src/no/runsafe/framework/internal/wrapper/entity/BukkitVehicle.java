@@ -5,7 +5,7 @@ import org.bukkit.entity.Vehicle;
 
 public abstract class BukkitVehicle extends RunsafeEntity
 {
-	public BukkitVehicle(Vehicle toWrap)
+	protected BukkitVehicle(Vehicle toWrap)
 	{
 		super(toWrap);
 		vehicle = toWrap;

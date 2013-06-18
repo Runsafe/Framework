@@ -12,7 +12,7 @@ import org.bukkit.entity.HumanEntity;
 
 public abstract class BukkitHumanEntity extends RunsafeEntity
 {
-	public BukkitHumanEntity(HumanEntity toWrap)
+	protected BukkitHumanEntity(HumanEntity toWrap)
 	{
 		super(toWrap);
 		this.humanEntity = toWrap;

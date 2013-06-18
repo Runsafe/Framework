@@ -8,7 +8,7 @@ import org.bukkit.block.Furnace;
 
 public abstract class BukkitFurnace extends RunsafeBlockState implements IInventoryHolder
 {
-	public BukkitFurnace(Furnace toWrap)
+	protected BukkitFurnace(Furnace toWrap)
 	{
 		super(toWrap);
 		furnace = toWrap;

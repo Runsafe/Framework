@@ -7,7 +7,7 @@ import org.bukkit.entity.ItemFrame;
 
 public abstract class BukkitItemFrame extends RunsafeHanging
 {
-	public BukkitItemFrame(ItemFrame toWrap)
+	protected BukkitItemFrame(ItemFrame toWrap)
 	{
 		super(toWrap);
 		itemFrame = toWrap;

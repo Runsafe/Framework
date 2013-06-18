@@ -5,7 +5,7 @@ import org.bukkit.block.NoteBlock;
 
 public abstract class BukkitNoteBlock extends RunsafeBlockState
 {
-	public BukkitNoteBlock(NoteBlock toWrap)
+	protected BukkitNoteBlock(NoteBlock toWrap)
 	{
 		super(toWrap);
 		noteBlock = toWrap;

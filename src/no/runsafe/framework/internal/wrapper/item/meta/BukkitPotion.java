@@ -6,7 +6,7 @@ import org.bukkit.inventory.meta.PotionMeta;
 
 public abstract class BukkitPotion extends RunsafeMeta
 {
-	public BukkitPotion(ItemStack stack)
+	protected BukkitPotion(ItemStack stack)
 	{
 		super(stack);
 	}

@@ -5,7 +5,7 @@ import org.bukkit.TravelAgent;
 
 public abstract class BukkitTravelAgent
 {
-	public BukkitTravelAgent(TravelAgent travelAgent)
+	protected BukkitTravelAgent(TravelAgent travelAgent)
 	{
 		this.travelAgent = travelAgent;
 	}

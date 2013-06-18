@@ -8,7 +8,7 @@ import org.bukkit.inventory.InventoryView;
 
 public abstract class BukkitInventoryView
 {
-	public BukkitInventoryView(InventoryView toWrap)
+	protected BukkitInventoryView(InventoryView toWrap)
 	{
 		this.inventoryView = toWrap;
 	}

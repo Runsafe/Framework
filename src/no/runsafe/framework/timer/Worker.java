@@ -69,8 +69,8 @@ public abstract class Worker<TokenType, StateType> implements Runnable
 			worker.start();
 	}
 
-	final IScheduler scheduler;
-	ITimer worker;
-	final ConcurrentHashMap<TokenType, StateType> state = new ConcurrentHashMap<TokenType, StateType>();
-	final Stack<TokenType> queue = new Stack<TokenType>();
+	private final IScheduler scheduler;
+	private ITimer worker;
+	private final ConcurrentHashMap<TokenType, StateType> state = new ConcurrentHashMap<TokenType, StateType>();
+	private final Stack<TokenType> queue = new Stack<TokenType>();
 }

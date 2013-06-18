@@ -13,7 +13,7 @@ import org.bukkit.event.entity.EntityChangeBlockEvent;
 
 public final class EntityChangeBlock extends EventRouterBase<IEntityChangeBlockEvent, EntityChangeBlockEvent>
 {
-	public EntityChangeBlock(IOutput output, IScheduler scheduler, IEntityChangeBlockEvent handler)
+	private EntityChangeBlock(IOutput output, IScheduler scheduler, IEntityChangeBlockEvent handler)
 	{
 		super(output, scheduler, handler);
 	}

@@ -8,7 +8,7 @@ import org.bukkit.block.Chest;
 
 public abstract class BukkitChest extends RunsafeBlockState implements IInventoryHolder
 {
-	public BukkitChest(Chest toWrap)
+	protected BukkitChest(Chest toWrap)
 	{
 		super(toWrap);
 		chest = toWrap;

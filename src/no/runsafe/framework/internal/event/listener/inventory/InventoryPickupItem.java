@@ -13,7 +13,7 @@ import org.bukkit.event.inventory.InventoryPickupItemEvent;
 
 public final class InventoryPickupItem extends EventRouterBase<IInventoryPickupItem, InventoryPickupItemEvent>
 {
-	protected InventoryPickupItem(IOutput output, IScheduler scheduler, IInventoryPickupItem handler)
+	private InventoryPickupItem(IOutput output, IScheduler scheduler, IInventoryPickupItem handler)
 	{
 		super(output, scheduler, handler);
 	}

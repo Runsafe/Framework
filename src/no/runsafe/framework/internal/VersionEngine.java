@@ -10,7 +10,7 @@ import org.picocontainer.Startable;
 import java.io.IOException;
 import java.util.logging.Level;
 
-public final class VersionEngine implements Startable
+final class VersionEngine implements Startable
 {
 	public VersionEngine(RunsafePlugin plugin, IOutput output)
 	{
@@ -41,7 +41,7 @@ public final class VersionEngine implements Startable
 	{
 	}
 
-	public String getLastVersion()
+	String getLastVersion()
 	{
 		YamlConfiguration config = new YamlConfiguration();
 		try
@@ -60,7 +60,7 @@ public final class VersionEngine implements Startable
 		return config.getString(plugin.getName());
 	}
 
-	public void saveCurrentVersion()
+	void saveCurrentVersion()
 	{
 		YamlConfiguration config = new YamlConfiguration();
 		try

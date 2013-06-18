@@ -14,7 +14,7 @@ import java.util.List;
 @SuppressWarnings("deprecation")
 public abstract class BukkitInventory
 {
-	public BukkitInventory(Inventory toWrap)
+	protected BukkitInventory(Inventory toWrap)
 	{
 		inventory = toWrap;
 	}

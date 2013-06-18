@@ -6,7 +6,7 @@ import org.bukkit.block.Jukebox;
 
 public abstract class BukkitJukebox extends RunsafeBlockState
 {
-	public BukkitJukebox(Jukebox toWrap)
+	protected BukkitJukebox(Jukebox toWrap)
 	{
 		super(toWrap);
 		jukebox = toWrap;

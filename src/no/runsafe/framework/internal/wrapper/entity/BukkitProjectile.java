@@ -8,7 +8,7 @@ import org.bukkit.util.Vector;
 
 public abstract class BukkitProjectile extends RunsafeEntity
 {
-	public BukkitProjectile(Projectile toWrap)
+	protected BukkitProjectile(Projectile toWrap)
 	{
 		super(toWrap);
 		projectile = toWrap;

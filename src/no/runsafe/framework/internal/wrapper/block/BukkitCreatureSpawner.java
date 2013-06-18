@@ -6,7 +6,7 @@ import org.bukkit.block.CreatureSpawner;
 
 public abstract class BukkitCreatureSpawner extends RunsafeBlockState
 {
-	public BukkitCreatureSpawner(CreatureSpawner toWrap)
+	protected BukkitCreatureSpawner(CreatureSpawner toWrap)
 	{
 		super(toWrap);
 		spawner = toWrap;
