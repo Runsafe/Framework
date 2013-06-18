@@ -86,14 +86,14 @@ public abstract class Output implements IDebug
 	{
 		String formatted = String.format(message, params);
 		String border = StringUtils.repeat("=", formatted.length());
-		writeColoured("\n\n&4%1$s\n%2$s\n%1$s&r", Level.SEVERE, border, formatted);
+		writeColoured("\n\n&4&l%1$s\n%2$s\n%1$s&r", Level.SEVERE, border, formatted);
 		System.exit(1);
 	}
 
 	@Override
 	public void logInformation(String message, Object... params)
 	{
-		outputToConsole(ChatColour.ToConsole("&a" + String.format(message, params) + "&r"), Level.INFO);
+		outputToConsole(ChatColour.ToConsole("&2" + String.format(message, params) + "&r"), Level.INFO);
 	}
 
 	// Sends the supplied String with the supplied logging level to the console/log the output handler has
