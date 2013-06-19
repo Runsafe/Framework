@@ -1,15 +1,15 @@
 package no.runsafe.framework.internal;
 
 import no.runsafe.framework.api.IKernel;
+import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.event.plugin.IPluginDisabled;
+import no.runsafe.framework.api.event.plugin.IPluginEnabled;
 import no.runsafe.framework.internal.command.CommandEngine;
 import no.runsafe.framework.internal.configuration.Configuration;
 import no.runsafe.framework.internal.configuration.ConfigurationEngine;
-import no.runsafe.framework.internal.database.jdbc.Database;
 import no.runsafe.framework.internal.database.SchemaUpdater;
+import no.runsafe.framework.internal.database.jdbc.Database;
 import no.runsafe.framework.internal.event.EventEngine;
-import no.runsafe.framework.api.event.plugin.IPluginDisabled;
-import no.runsafe.framework.api.event.plugin.IPluginEnabled;
-import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.timer.Scheduler;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,7 +19,6 @@ import org.picocontainer.behaviors.Caching;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Level;
 
 /**
  * Base plugin class containing all the injection handling code
@@ -66,12 +65,10 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	@Override
 	public final void addComponent(Object implOrInstance)
 	{
-		output.outputDebugToConsole(
-			String.format("Plugin %s added component %s",
-				this.getName(),
-				implOrInstance instanceof Class ? ((Class) implOrInstance).getCanonicalName() : implOrInstance.getClass().getCanonicalName()
-			),
-			Level.FINE
+		output.fine(
+			"Plugin %s added component %s",
+			this.getName(),
+			implOrInstance instanceof Class ? ((Class) implOrInstance).getCanonicalName() : implOrInstance.getClass().getCanonicalName()
 		);
 		container.addComponent(implOrInstance);
 	}
@@ -94,7 +91,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	@Override
 	public final <T> List<T> getComponents(Class<T> type)
 	{
-		output.fine("Got request for all instances of %s", type.getCanonicalName());
+		output.finer("Got request for all instances of %s", type.getCanonicalName());
 		return this.container.getComponents(type);
 	}
 
@@ -114,7 +111,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	@Override
 	public final void onDisable()
 	{
-		output.outputDebugToConsole(String.format("Disabling plugin %s", this.getName()), Level.FINE);
+		output.fine("Disabling plugin %s", this.getName());
 		for (IPluginDisabled impl : getComponents(IPluginDisabled.class))
 			impl.OnPluginDisabled();
 	}

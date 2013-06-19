@@ -163,9 +163,9 @@ public class Command implements ICommandHandler
 	public final IPreparedCommand prepare(ICommandExecutor executor, String[] args)
 	{
 		if (args != null)
-			console.fine("Preparing command %s %s", getName(), StringUtils.join(args, " "));
+			console.finer("Preparing command %s %s", getName(), StringUtils.join(args, " "));
 		else
-			console.fine("Preparing command %s", getName());
+			console.finer("Preparing command %s", getName());
 		return prepare(executor, new HashMap<String, String>(), args, new Stack<Command>());
 	}
 
@@ -193,31 +193,31 @@ public class Command implements ICommandHandler
 			else
 				args = new String[0];
 		}
-		console.fine("Command %s has %d parameters and %d args", getName(), myParams.size(), args.length);
+		console.finer("Command %s has %d parameters and %d args", getName(), myParams.size(), args.length);
 		if (args.length > 0)
 		{
-			console.fine("Looking for subcommand %s", args[0]);
+			console.finer("Looking for subcommand %s", args[0]);
 			Command subCommand = getSubCommand(args[0]);
 			if (subCommand != null)
 			{
 				subCommand.setConsole(console);
 				args = Arrays.copyOfRange(args, 1, args.length);
-				console.fine("Preparing subcommand %s", executor.getName());
+				console.finer("Preparing subcommand %s", executor.getName());
 				return subCommand.prepare(executor, params, args, stack);
 			}
 		}
 
 		if (stack.peek() instanceof AsyncCallbackCommand)
 		{
-			console.fine("Preparing AsyncCallback command with %d params and %d args", params.size(), args.length);
+			console.finer("Preparing AsyncCallback command with %d params and %d args", params.size(), args.length);
 			return new PreparedAsynchronousCallbackCommand(executor, stack, args, params);
 		}
 		if (stack.peek() instanceof AsyncCommand)
 		{
-			console.fine("Preparing Async command with %d params and %d args", params.size(), args.length);
+			console.finer("Preparing Async command with %d params and %d args", params.size(), args.length);
 			return new PreparedAsynchronousCommand(executor, stack, args, params);
 		}
-		console.fine("Preparing Sync command with %d params and %d args", params.size(), args.length);
+		console.finer("Preparing Sync command with %d params and %d args", params.size(), args.length);
 		return new PreparedSynchronousCommand(executor, stack, args, params);
 	}
 
