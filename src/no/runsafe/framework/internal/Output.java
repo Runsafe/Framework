@@ -6,8 +6,10 @@ import no.runsafe.framework.text.ChatColour;
 import no.runsafe.framework.text.ConsoleColour;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +21,7 @@ public abstract class Output implements IDebug
 	Output(Logger consoleLog)
 	{
 		this.consoleLog = consoleLog;
+		this.debugLevel = DefaultDebugLevel;
 	}
 
 	@Override
@@ -215,4 +218,15 @@ public abstract class Output implements IDebug
 
 	private final Logger consoleLog;
 	private Level debugLevel;
+
+	static private Level DefaultDebugLevel;
+
+	static
+	{
+		File configFile = new File("runsafe/output.yml");
+		YamlConfiguration config = YamlConfiguration.loadConfiguration(configFile);
+		if (!config.contains("debug"))
+			config.set("debug", "OFF");
+		DefaultDebugLevel = Level.parse(config.getString("debug").toUpperCase());
+	}
 }
