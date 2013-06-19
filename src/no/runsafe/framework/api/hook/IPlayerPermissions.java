@@ -13,6 +13,10 @@ public interface IPlayerPermissions extends IFrameworkHook
 	 */
 	List<String> getUserGroups(RunsafePlayer player);
 
+	List<String> getGroups();
+
+	boolean setGroup(RunsafePlayer player, String group);
+
 	List<String> getGroupPermissions(String groupName);
 
 	List<String> getPlayerPermissions(RunsafePlayer player);
