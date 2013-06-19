@@ -138,7 +138,7 @@ public class Command implements ICommandHandler
 				target = sub;
 			}
 		if (target != null)
-			return subCommands.get(null);
+			return subCommands.get(target);
 
 		return null;
 	}
