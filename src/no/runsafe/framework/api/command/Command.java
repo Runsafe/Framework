@@ -128,9 +128,17 @@ public class Command implements ICommandHandler
 		if (subCommands.containsKey(name))
 			return subCommands.get(name);
 
+		String target = null;
 		for (String sub : subCommands.keySet())
 			if (sub.startsWith(name))
-				return subCommands.get(sub);
+			{
+				if (target != null)
+					return null;
+
+				target = sub;
+			}
+		if (target != null)
+			return subCommands.get(null);
 
 		return null;
 	}
