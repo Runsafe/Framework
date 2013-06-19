@@ -1,8 +1,8 @@
 package no.runsafe.framework.minecraft.event.entity;
 
+import no.runsafe.framework.api.event.CancellableEvent;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
-import no.runsafe.framework.api.event.CancellableEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
 public class RunsafeEntityDamageEvent extends RunsafeEntityEvent implements CancellableEvent
@@ -75,6 +75,7 @@ public class RunsafeEntityDamageEvent extends RunsafeEntityEvent implements Canc
 		MAGIC,
 		WITHER,
 		FALLING_BLOCK,
+		THORNS,
 		CUSTOM
 	}
 
