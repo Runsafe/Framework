@@ -177,7 +177,7 @@ public class Command implements ICommandHandler
 	@Override
 	public void setConsole(IOutput console)
 	{
-		console.fine("Setting console on command object.");
+		console.finer("Setting console on command object.");
 		this.console = console;
 	}
 

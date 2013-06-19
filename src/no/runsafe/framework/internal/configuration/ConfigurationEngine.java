@@ -124,7 +124,7 @@ public final class ConfigurationEngine implements Startable
 			{
 				try
 				{
-					console.fine(
+					console.finer(
 						"Notifying subscriber %s about updated configuration.",
 						sub.getClass().getCanonicalName()
 					);
