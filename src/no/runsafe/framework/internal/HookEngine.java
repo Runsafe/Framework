@@ -4,6 +4,8 @@ import no.runsafe.framework.api.hook.IFrameworkHook;
 import org.picocontainer.DefaultPicoContainer;
 import org.picocontainer.Startable;
 
+import java.util.List;
+
 /**
  * This class handles hooks plugins provide to the framework
  */
@@ -25,8 +27,10 @@ public final class HookEngine implements Startable
 	 */
 	public HookEngine(IFrameworkHook[] hooks)
 	{
+		List<Object> components = hookContainer.getComponents();
 		for (IFrameworkHook hook : hooks)
-			hookContainer.addComponent(hook);
+			if (!components.contains(hook))
+				hookContainer.addComponent(hook);
 	}
 
 	/**
