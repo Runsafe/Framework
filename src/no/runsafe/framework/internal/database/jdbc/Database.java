@@ -5,6 +5,7 @@ import no.runsafe.framework.api.database.IDatabase;
 import no.runsafe.framework.api.database.ITransaction;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.joda.time.DateTime;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -42,7 +43,6 @@ public final class Database extends QueryExecutor implements IDatabase
 				output.logFatal("Unable to create runsafe/db.yml configuration file - Check permissions!");
 			}
 			output.logFatal("Created new default runsafe/db.yml - You need to change this now!");
-			System.exit(1);
 		}
 		catch (IOException e)
 		{
@@ -90,8 +90,20 @@ public final class Database extends QueryExecutor implements IDatabase
 	{
 		try
 		{
-			if (conn == null || conn.isClosed())
+			if (conn == null || accessTime == null || accessTime.isBefore(DateTime.now().minusMinutes(5)) || conn.isClosed())
 			{
+				if (conn != null)
+				{
+					try
+					{
+						conn.close();
+					}
+					catch (Exception e)
+					{
+						// Just ignore.
+					}
+				}
+				accessTime = DateTime.now();
 				conn = DriverManager.getConnection(this.databaseURL, this.databaseUsername, this.databasePassword);
 				output.fine(String.format("Opening connection to %s by %s", databaseURL, databaseUsername));
 			}
@@ -110,4 +122,5 @@ public final class Database extends QueryExecutor implements IDatabase
 	private final String databaseUsername;
 	private final String databasePassword;
 	protected Connection conn;
+	private DateTime accessTime = null;
 }
