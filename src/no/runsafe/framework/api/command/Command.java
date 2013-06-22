@@ -10,7 +10,10 @@ import org.apache.commons.lang.StringUtils;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Stack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * The base command class of the framework
@@ -190,6 +193,11 @@ public class Command implements ICommandHandler
 		this.console = console;
 	}
 
+	public List<String> getParameterOptions(String parameter)
+	{
+		return null;
+	}
+
 	private IPreparedCommand prepare(ICommandExecutor executor, HashMap<String, String> params, String[] args, Stack<Command> stack)
 	{
 		stack.add(this);
@@ -240,6 +248,17 @@ public class Command implements ICommandHandler
 
 			return this.getClass() != Command.class;
 		}
+		Matcher params = paramPermission.matcher(permission);
+		if (params.find())
+		{
+			List<String> options = getParameterOptions(params.group());
+			if (options == null)
+				return true;
+			for (String value : options)
+				if (executor.hasPermission(params.replaceAll(value)))
+					return true;
+			return false;
+		}
 		return executor.hasPermission(permission);
 	}
 
@@ -268,4 +287,5 @@ public class Command implements ICommandHandler
 	private final String permission;
 	private final String description;
 	private boolean captureTail;
+	private final static Pattern paramPermission = Pattern.compile("<(.*)>");
 }

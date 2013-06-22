@@ -10,6 +10,7 @@ import org.picocontainer.Startable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * This class handles the registration of command objects with bukkit.
