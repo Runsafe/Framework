@@ -49,7 +49,7 @@ public class Command implements ICommandHandler
 		{
 			for (Command sub : subCommands.values())
 			{
-				if (sub.permission == null || executor.hasPermission(sub.permission))
+				if (sub.isExecutable(executor))
 				{
 					if (sub.description == null)
 						available.put(sub.getName(), "");
@@ -117,10 +117,11 @@ public class Command implements ICommandHandler
 	/**
 	 * Resolve a subcommand
 	 *
-	 * @param name The partial or full subcommand name
+	 * @param executor
+	 * @param name     The partial or full subcommand name
 	 * @return The selected subcommand or null if no matches
 	 */
-	public final Command getSubCommand(String name)
+	public final Command getSubCommand(ICommandExecutor executor, String name)
 	{
 		if (subCommands.isEmpty())
 			return null;
@@ -130,7 +131,7 @@ public class Command implements ICommandHandler
 
 		String target = null;
 		for (String sub : subCommands.keySet())
-			if (sub.startsWith(name))
+			if (sub.startsWith(name) && subCommands.get(sub).isExecutable(executor))
 			{
 				if (target != null)
 					return null;
@@ -205,8 +206,8 @@ public class Command implements ICommandHandler
 		if (args.length > 0)
 		{
 			console.finer("Looking for subcommand %s", args[0]);
-			Command subCommand = getSubCommand(args[0]);
-			if (subCommand != null)
+			Command subCommand = getSubCommand(executor, args[0]);
+			if (subCommand != null && subCommand.isExecutable(executor))
 			{
 				subCommand.setConsole(console);
 				args = Arrays.copyOfRange(args, 1, args.length);
@@ -227,6 +228,19 @@ public class Command implements ICommandHandler
 		}
 		console.finer("Preparing Sync command with %d params and %d args", params.size(), args.length);
 		return new PreparedSynchronousCommand(executor, stack, args, params);
+	}
+
+	private boolean isExecutable(ICommandExecutor executor)
+	{
+		if (permission == null)
+		{
+			for (Command subCommand : subCommands.values())
+				if (subCommand.isExecutable(executor))
+					return true;
+
+			return this.getClass() != Command.class;
+		}
+		return executor.hasPermission(permission);
 	}
 
 	private HashMap<String, String> getParameters(String[] args)
