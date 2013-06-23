@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.database.jdbc;
 
+import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.database.IDatabase;
 import no.runsafe.framework.api.database.ITransaction;
@@ -7,6 +8,7 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.joda.time.DateTime;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
@@ -19,16 +21,29 @@ import java.util.logging.Level;
  */
 public final class Database extends QueryExecutor implements IDatabase
 {
-	public Database(IOutput output)
+	public Database(IOutput output, RunsafePlugin plugin)
 	{
 		super(output);
 		YamlConfiguration config = new YamlConfiguration();
+		boolean local = false;
 		try
 		{
-			config.load("runsafe/db.yml");
+			File localConfig = new File(String.format("plugins/%s/db.yml", plugin.getName()));
+			if (localConfig.exists())
+			{
+				local = true;
+				config.load(localConfig.getPath());
+			}
+			else
+				config.load("runsafe/db.yml");
 		}
 		catch (FileNotFoundException e)
 		{
+			if (local) // This should not happen..
+			{
+				output.logException(e);
+				output.logFatal("Error loading local config..");
+			}
 			config.createSection("database");
 			config.set("database.url", "jdbc:mysql://localhost:3306/minecraft");
 			config.set("database.username", "minecraftuser");
@@ -46,11 +61,21 @@ public final class Database extends QueryExecutor implements IDatabase
 		}
 		catch (IOException e)
 		{
+			if (local)
+			{
+				output.logException(e);
+				output.logFatal("Unable to read plugin database config!");
+			}
 			output.logException(e);
 			output.logFatal("Unable to read runsafe/db.yml - You need to fix this!");
 		}
 		catch (InvalidConfigurationException e)
 		{
+			if (local)
+			{
+				output.logException(e);
+				output.logFatal("Plugin database config is invalid!");
+			}
 			output.logException(e);
 			output.logFatal("Invalid configuration file runsafe/db.yml - You need to fix this!");
 		}
@@ -65,6 +90,10 @@ public final class Database extends QueryExecutor implements IDatabase
 		}
 		catch (Exception e)
 		{
+			if (local)
+			{
+				output.logFatal("Unable to connect to plugins database!");
+			}
 			output.logFatal("Unable to connect to MySQL - Check configuration file runsafe/db.yml!");
 		}
 	}
