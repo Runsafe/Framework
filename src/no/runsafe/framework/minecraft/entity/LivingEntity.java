@@ -18,6 +18,7 @@ public enum LivingEntity implements RunsafeEntityType
 	Enderman(EntityType.ENDERMAN),
 	Ghast(EntityType.GHAST),
 	Giant(EntityType.GIANT),
+	Horse(EntityType.HORSE),
 	IronGolem(EntityType.IRON_GOLEM),
 	LavaSlime(EntityType.MAGMA_CUBE),
 	MushroomCow(EntityType.MUSHROOM_COW),

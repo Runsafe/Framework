@@ -179,6 +179,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		List<IPlayerVisibility> visibilityHooks = HookEngine.hookContainer.getComponents(IPlayerVisibility.class);
 		if (visibilityHooks.isEmpty())
 			return true;
+
 		for (IPlayerVisibility check : visibilityHooks)
 			if (!check.canPlayerASeeB(this, target))
 				return false;
