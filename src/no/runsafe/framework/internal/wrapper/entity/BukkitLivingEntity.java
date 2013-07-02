@@ -33,6 +33,11 @@ public abstract class BukkitLivingEntity extends RunsafeEntity
 
 	public void setHealth(int i)
 	{
+		this.setHealth((double) i);
+	}
+
+	public void setHealth(double i)
+	{
 		entity.setHealth(i);
 	}
 
@@ -98,12 +103,22 @@ public abstract class BukkitLivingEntity extends RunsafeEntity
 
 	public void damage(int i)
 	{
+		this.damage((double) i);
+	}
+
+	public void damage(double i)
+	{
 		entity.damage(i);
+	}
+
+	public void damage(double i, RunsafeEntity source)
+	{
+		entity.damage(i, source.getRaw());
 	}
 
 	public void damage(int i, RunsafeEntity source)
 	{
-		entity.damage(i, source.getRaw());
+		this.damage((double) i, source);
 	}
 
 	public int getMaximumNoDamageTicks()
@@ -122,6 +137,11 @@ public abstract class BukkitLivingEntity extends RunsafeEntity
 	}
 
 	public void setLastDamage(int i)
+	{
+		entity.setLastDamage((double) i);
+	}
+
+	public void setLastDamage(double i)
 	{
 		entity.setLastDamage(i);
 	}
