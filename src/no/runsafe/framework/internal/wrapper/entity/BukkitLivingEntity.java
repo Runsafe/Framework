@@ -46,7 +46,7 @@ public abstract class BukkitLivingEntity extends RunsafeEntity
 		return ObjectWrapper.convert(this.entity.getEquipment());
 	}
 
-	public int getMaxHealth()
+	public double getMaxHealth()
 	{
 		return entity.getMaxHealth();
 	}
