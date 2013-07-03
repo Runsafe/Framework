@@ -26,7 +26,7 @@ public abstract class BukkitLivingEntity extends RunsafeEntity
 		return entity;
 	}
 
-	public int getHealth()
+	public double getHealth()
 	{
 		return entity.getHealth();
 	}
