@@ -13,7 +13,7 @@ public class RunsafeEntityDamageEvent extends RunsafeEntityEvent implements Canc
 		event = toWrap;
 	}
 
-	public int getDamage()
+	public double getDamage()
 	{
 		return event.getDamage();
 	}
