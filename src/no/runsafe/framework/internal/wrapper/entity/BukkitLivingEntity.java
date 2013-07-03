@@ -131,7 +131,7 @@ public abstract class BukkitLivingEntity extends RunsafeEntity
 		entity.setMaximumNoDamageTicks(i);
 	}
 
-	public int getLastDamage()
+	public double getLastDamage()
 	{
 		return entity.getLastDamage();
 	}
