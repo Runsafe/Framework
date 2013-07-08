@@ -6,6 +6,7 @@ import no.runsafe.framework.internal.wrapper.BukkitWorld;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import org.bukkit.World;
+import org.bukkit.craftbukkit.v1_6_R1.CraftWorld;
 import org.bukkit.entity.Entity;
 
 import java.util.List;
@@ -60,6 +61,11 @@ public class RunsafeWorld extends BukkitWorld
 	public boolean IsConnected(RunsafeWorld world)
 	{
 		return getUniverse().getName().equals(world.getUniverse().getName());
+	}
+
+	public net.minecraft.server.v1_6_R1.World getNMS()
+	{
+		return ((CraftWorld) this.world).getHandle();
 	}
 
 	private Universe universe = null;

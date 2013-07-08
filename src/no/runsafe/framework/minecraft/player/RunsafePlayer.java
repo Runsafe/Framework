@@ -1,5 +1,6 @@
 package no.runsafe.framework.minecraft.player;
 
+import net.minecraft.server.v1_6_R1.EntityHuman;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.hook.*;
 import no.runsafe.framework.internal.HookEngine;
@@ -14,6 +15,7 @@ import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import no.runsafe.framework.text.ChatColour;
 import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.craftbukkit.v1_6_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.joda.time.DateTime;
@@ -286,5 +288,10 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 	public void sendColouredMessage(String format, Object... params)
 	{
 		sendColouredMessage(String.format(format, params));
+	}
+
+	public EntityHuman getNMS()
+	{
+		return ((CraftPlayer) this.player).getHandle();
 	}
 }
