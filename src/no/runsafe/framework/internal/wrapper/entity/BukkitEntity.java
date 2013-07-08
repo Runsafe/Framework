@@ -9,6 +9,7 @@ import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import org.bukkit.Chunk;
+import org.bukkit.craftbukkit.v1_6_R1.entity.CraftEntity;
 import org.bukkit.entity.Entity;
 
 import java.util.List;
@@ -41,17 +42,29 @@ public abstract class BukkitEntity extends BukkitMetadata
 		return ObjectWrapper.convert(entity.getWorld());
 	}
 
+	private void dismountBeforeTeleport()
+	{
+		CraftEntity craftEntity = (CraftEntity) this.entity;
+		if (craftEntity.getHandle().vehicle != null)
+		{
+			craftEntity.getHandle().vehicle.passenger = null;
+			craftEntity.getHandle().vehicle = null;
+		}
+	}
+
 	public boolean teleport(RunsafeLocation location)
 	{
 		Chunk targetChunk = location.getWorld().getRaw().getChunkAt(location.getRaw());
 		if (!targetChunk.isLoaded())
 			targetChunk.load();
 
+		this.dismountBeforeTeleport();
 		return entity.teleport(location.getRaw());
 	}
 
 	public boolean teleport(RunsafeEntity entity)
 	{
+		this.dismountBeforeTeleport();
 		return this.entity.teleport(entity.getRaw());
 	}
 
