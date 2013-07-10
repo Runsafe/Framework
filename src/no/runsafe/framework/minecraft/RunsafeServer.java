@@ -1,13 +1,14 @@
 package no.runsafe.framework.minecraft;
 
+import com.google.common.collect.Lists;
+import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.hook.IPlayerLookupService;
 import no.runsafe.framework.internal.Debugger;
 import no.runsafe.framework.internal.HookEngine;
-import no.runsafe.framework.api.hook.IPlayerLookupService;
-import no.runsafe.framework.api.IDebug;
-import no.runsafe.framework.minecraft.player.RunsafeAmbiguousPlayer;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import no.runsafe.framework.internal.wrapper.BukkitServer;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
+import no.runsafe.framework.minecraft.player.RunsafeAmbiguousPlayer;
+import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
@@ -73,11 +74,15 @@ public class RunsafeServer extends BukkitServer
 
 	public List<RunsafePlayer> getOnlinePlayers(String playerName)
 	{
+		if (playerName == null)
+			return null;
+
 		playerName = playerName.toLowerCase();
 		List<OfflinePlayer> players = new ArrayList<OfflinePlayer>();
 		for (OfflinePlayer player : server.getOnlinePlayers())
 			if (player.getName().toLowerCase().startsWith(playerName))
 				players.add(player);
+
 		return ObjectWrapper.convert(players);
 	}
 
@@ -97,6 +102,9 @@ public class RunsafeServer extends BukkitServer
 
 	public List<String> findPlayer(String playerName)
 	{
+		if (playerName == null || playerName.isEmpty())
+			return null;
+
 		ArrayList<String> hits = new ArrayList<String>();
 		for (IPlayerLookupService lookup : HookEngine.hookContainer.getComponents(IPlayerLookupService.class))
 		{
@@ -134,13 +142,19 @@ public class RunsafeServer extends BukkitServer
 
 	public void banPlayer(RunsafePlayer banner, RunsafePlayer player, String reason)
 	{
-		kickingPlayer.put(player.getName(), banner);
+		if (player == null)
+			return;
+
+		if (banner != null)
+			kickingPlayer.put(player.getName(), banner);
 		player.setBanned(true);
 		player.kick(reason);
 	}
 
 	public void kickPlayer(RunsafePlayer kicker, RunsafePlayer player, String reason)
 	{
+		if (player == null)
+			return;
 		if (kicker != null)
 			kickingPlayer.put(player.getName(), kicker);
 		player.kick(reason);
@@ -148,6 +162,8 @@ public class RunsafeServer extends BukkitServer
 
 	public RunsafePlayer getKicker(String playerName)
 	{
+		if (playerName == null || playerName.isEmpty())
+			return null;
 		if (kickingPlayer.containsKey(playerName))
 		{
 			RunsafePlayer kicker = kickingPlayer.get(playerName);
@@ -159,6 +175,8 @@ public class RunsafeServer extends BukkitServer
 
 	public boolean someoneHasPermission(String permission)
 	{
+		if (permission == null || permission.isEmpty())
+			return false;
 		for (Player player : server.getOnlinePlayers())
 			if (player.hasPermission(permission))
 				return true;
@@ -167,6 +185,9 @@ public class RunsafeServer extends BukkitServer
 
 	public List<RunsafePlayer> getPlayersWithPermission(String permission)
 	{
+		if (permission == null || permission.isEmpty())
+			return Lists.newArrayList();
+
 		ArrayList<RunsafePlayer> results = new ArrayList<RunsafePlayer>();
 		for (Player player : server.getOnlinePlayers())
 			if (player.hasPermission(permission))
@@ -177,6 +198,8 @@ public class RunsafeServer extends BukkitServer
 	@SuppressWarnings("unchecked")
 	public <T extends Plugin> T getPlugin(String pluginName)
 	{
+		if (pluginName == null || pluginName.isEmpty())
+			return null;
 		Plugin plugin = server.getPluginManager().getPlugin(pluginName);
 		if (plugin == null)
 			return null;

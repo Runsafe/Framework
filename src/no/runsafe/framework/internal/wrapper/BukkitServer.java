@@ -1,11 +1,11 @@
 package no.runsafe.framework.internal.wrapper;
 
-import no.runsafe.framework.text.ChatColour;
 import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventoryHolder;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventoryType;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
+import no.runsafe.framework.text.ChatColour;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
 
@@ -30,11 +30,15 @@ public abstract class BukkitServer
 
 	public int broadcastMessage(String message, String permission)
 	{
+		if (message == null)
+			return 0;
 		return this.server.broadcast(ChatColour.ToMinecraft(message), permission);
 	}
 
 	public int broadcastMessage(String message)
 	{
+		if (message == null)
+			return 0;
 		return this.server.broadcastMessage(ChatColour.ToMinecraft(message));
 	}
 
@@ -110,6 +114,8 @@ public abstract class BukkitServer
 
 	public RunsafePlayer getOfflinePlayerExact(String playerName)
 	{
+		if (playerName == null || playerName.isEmpty())
+			return null;
 		return new RunsafePlayer(server.getOfflinePlayer(playerName));
 	}
 
@@ -180,16 +186,25 @@ public abstract class BukkitServer
 
 	public List<RunsafePlayer> matchPlayer(String playerName)
 	{
+		if (playerName == null || playerName.isEmpty())
+			return null;
+
 		return ObjectWrapper.convert(server.matchPlayer(playerName));
 	}
 
 	public RunsafeWorld getWorld(String worldName)
 	{
+		if (worldName == null || worldName.isEmpty())
+			return null;
+
 		return ObjectWrapper.convert(this.server.getWorld(worldName));
 	}
 
 	public RunsafeWorld getWorld(UUID uid)
 	{
+		if (uid == null)
+			return null;
+
 		return ObjectWrapper.convert(this.server.getWorld(uid));
 	}
 
@@ -250,16 +265,25 @@ public abstract class BukkitServer
 
 	public void unbanIp(String address)
 	{
+		if (address == null || address.isEmpty())
+			return;
+
 		this.server.unbanIP(address);
 	}
 
 	public boolean unloadWorld(String worldName, boolean save)
 	{
+		if (worldName == null || worldName.isEmpty())
+			return false;
+
 		return this.server.unloadWorld(worldName, save);
 	}
 
 	public boolean unloadWorld(RunsafeWorld world, boolean save)
 	{
+		if (world == null)
+			return false;
+
 		return this.unloadWorld(world.getName(), save);
 	}
 
@@ -270,6 +294,9 @@ public abstract class BukkitServer
 
 	public RunsafeInventory createInventory(RunsafeInventoryHolder holder, int size, String name)
 	{
+		if (name == null)
+			return createInventory(holder, size);
+
 		if (holder == null)
 			return ObjectWrapper.convert(this.server.createInventory(null, size, name));
 
@@ -286,6 +313,9 @@ public abstract class BukkitServer
 
 	public RunsafeInventory createInventory(RunsafeInventoryHolder holder, RunsafeInventoryType type)
 	{
+		if (type == null)
+			return null;
+
 		if (holder == null)
 			return ObjectWrapper.convert(this.server.createInventory(null, type.getRaw()));
 
@@ -299,6 +329,9 @@ public abstract class BukkitServer
 
 	public void unbanIP(String ip)
 	{
+		if (ip == null || ip.isEmpty())
+			return;
+
 		server.unbanIP(ip);
 	}
 
@@ -346,28 +379,6 @@ public abstract class BukkitServer
 	{
 		return server.getListeningPluginChannels();
 	}
-
-// Unwrapped methods:
-//	public PluginCommand getPluginCommand(String s)
-//	public Messenger getMessenger()
-//	public HelpMap getHelpMap()
-//	public Warning.WarningState getWarningState()
-//	public ItemFactory getItemFactory()
-//	public ScoreboardManager getScoreboardManager()
-//	public GameMode getDefaultGameMode()
-//	public void setDefaultGameMode(GameMode gameMode)
-//	public ConsoleCommandSender getConsoleSender()
-//	public PluginManager getPluginManager()
-//	public ServicesManager getServicesManager()
-//	public World createWorld(WorldCreator worldCreator)
-//	public File getUpdateFolderFile()
-//	public MapView getMap(short i)
-//	public MapView createMap(World world)
-//	public boolean dispatchCommand(CommandSender commandSender, String s) throws CommandException
-//	public List<Recipe> getRecipesFor(ItemStack itemStack)
-//	public void sendPluginMessage(Plugin plugin, String s, byte[] bytes)
-//	public boolean addRecipe(Recipe recipe)
-//	public Iterator<Recipe> recipeIterator()
 
 	protected final Server server;
 }
