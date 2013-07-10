@@ -49,8 +49,8 @@ abstract class QueryExecutor implements IQueryExecutor
 			PreparedStatement statement = conn.prepareStatement(query);
 			for (int i = 0; i < params.length; i++)
 				statement.setObject(i + 1, params[i]);
-			Set set = getSet(statement);
-			if (set == null || set.isEmpty())
+			ISet set = getSet(statement);
+			if (set.isEmpty())
 				return null;
 			return set.get(0);
 		}
@@ -112,16 +112,16 @@ abstract class QueryExecutor implements IQueryExecutor
 		}
 	}
 
-	Set getSet(PreparedStatement statement) throws SQLException
+	ISet getSet(PreparedStatement statement) throws SQLException
 	{
 		output.finer("Running SQL: %s", statement);
 		ResultSet result = statement.executeQuery();
 		if (!result.first())
-			return null;
+			return Set.Empty;
 		ResultSetMetaData meta = result.getMetaData();
 		int cols = meta.getColumnCount();
 		if (cols == 0)
-			return null;
+			return Set.Empty;
 		ArrayList<Row> results = new ArrayList<Row>();
 		while (!result.isAfterLast())
 		{
