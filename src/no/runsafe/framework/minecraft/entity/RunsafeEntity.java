@@ -1,7 +1,7 @@
 package no.runsafe.framework.minecraft.entity;
 
 import no.runsafe.framework.internal.wrapper.entity.BukkitEntity;
-import org.bukkit.craftbukkit.v1_6_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_6_R2.entity.CraftEntity;
 import org.bukkit.entity.Entity;
 
 public class RunsafeEntity extends BukkitEntity
@@ -31,7 +31,7 @@ public class RunsafeEntity extends BukkitEntity
 		);
 	}
 
-	public net.minecraft.server.v1_6_R1.Entity getNMS()
+	public net.minecraft.server.v1_6_R2.Entity getNMS()
 	{
 		return ((CraftEntity) this.entity).getHandle();
 	}
