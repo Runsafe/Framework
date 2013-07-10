@@ -9,8 +9,9 @@ import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import org.bukkit.Chunk;
-import org.bukkit.craftbukkit.v1_6_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_6_R2.entity.CraftEntity;
 import org.bukkit.entity.Entity;
+import org.bukkit.util.Vector;
 
 import java.util.List;
 import java.util.UUID;
@@ -183,6 +184,11 @@ public abstract class BukkitEntity extends BukkitMetadata
 	public RunsafeEntityType getEntityType()
 	{
 		return no.runsafe.framework.minecraft.entity.EntityType.convert(entity.getType());
+	}
+
+	public void setVelocity(Vector vec)
+	{
+		this.entity.setVelocity(vec);
 	}
 
 	protected final Entity entity;
