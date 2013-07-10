@@ -62,7 +62,7 @@ public class FunctionParameters
 
 	public RunsafePlayer getPlayer(int index)
 	{
-		RunsafePlayer player = RunsafeServer.Instance.getPlayerExact(this.getString(index));
+		RunsafePlayer player = RunsafeServer.Instance.getOfflinePlayerExact(this.getString(index));
 		if (player == null)
 			throw new LuaError(String.format("Argument %s is not a valid player.", index));
 
