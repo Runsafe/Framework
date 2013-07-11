@@ -1,12 +1,13 @@
 package no.runsafe.framework.internal.event.listener;
 
-import no.runsafe.framework.api.event.IAsyncEvent;
-import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.api.event.IAsyncEvent;
+import no.runsafe.framework.api.event.IRunsafeEvent;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerEvent;
 
 public abstract class EventRouterBase<Wrapper extends IRunsafeEvent, EventType extends Event> implements Listener
 {
@@ -21,6 +22,7 @@ public abstract class EventRouterBase<Wrapper extends IRunsafeEvent, EventType e
 	/**
 	 * Sadly, this method must be added to all implementing classes, but all you have to do, is call this one.
 	 * Don't forget to add @EventHandler - Java does not support annotations on base classes :(
+	 *
 	 * @param event The raw event object coming from bukkit
 	 */
 	protected void acceptEvent(EventType event)
@@ -66,6 +68,8 @@ public abstract class EventRouterBase<Wrapper extends IRunsafeEvent, EventType e
 		}
 		catch (Exception e)
 		{
+			if (event instanceof PlayerEvent && ((PlayerEvent) event).getPlayer() != null)
+				console.logInformation("Player %s caused an exception:", ((PlayerEvent) event).getPlayer().getName());
 			console.logException(e);
 		}
 	}
