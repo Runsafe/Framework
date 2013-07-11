@@ -189,7 +189,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 			return false;
 
 		for (IPlayerVisibility check : visibilityHooks)
-			if (!check.canPlayerASeeB(this, target))
+			if (check.isPlayerHidden(this, target))
 				return true;
 		return false;
 	}
@@ -211,7 +211,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		if (pvpFlagHooks.isEmpty())
 			return true;
 		for (IPlayerPvPFlag hook : pvpFlagHooks)
-			if (!hook.isFlaggedForPvP(this))
+			if (hook.isPvPDisabled(this))
 				return false;
 		return true;
 	}

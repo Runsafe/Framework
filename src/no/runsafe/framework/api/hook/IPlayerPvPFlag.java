@@ -7,6 +7,5 @@ public interface IPlayerPvPFlag extends IFrameworkHook
 	/**
 	 * Called by {@link no.runsafe.framework.minecraft.player.RunsafePlayer#isPvPFlagged()} for plugins controlling pvp actions
 	 */
-	@Deprecated
-	boolean isFlaggedForPvP(RunsafePlayer player);
+	boolean isPvPDisabled(RunsafePlayer player);
 }
