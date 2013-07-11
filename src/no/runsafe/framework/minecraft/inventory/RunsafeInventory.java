@@ -1,9 +1,9 @@
 package no.runsafe.framework.minecraft.inventory;
 
+import no.runsafe.framework.internal.wrapper.inventory.BukkitInventory;
 import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
-import no.runsafe.framework.internal.wrapper.inventory.BukkitInventory;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -56,6 +56,8 @@ public class RunsafeInventory extends BukkitInventory
 	public void unserialize(String serialized)
 	{
 		inventory.clear();
+		if (serialized == null)
+			return;
 		try
 		{
 			YamlConfiguration unserialize = new YamlConfiguration();
