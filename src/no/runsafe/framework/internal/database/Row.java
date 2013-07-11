@@ -10,6 +10,75 @@ import java.util.Map;
 
 public final class Row extends DataConverter implements IRow
 {
+	public static final IRow Empty = new IRow()
+	{
+		@Override
+		public String String(String column)
+		{
+			return null;
+		}
+
+		@Override
+		public Integer Integer(String column)
+		{
+			return null;
+		}
+
+		@Override
+		public Long Long(String column)
+		{
+			return null;
+		}
+
+		@Override
+		public Double Double(String column)
+		{
+			return null;
+		}
+
+		@Override
+		public Float Float(String column)
+		{
+			return null;
+		}
+
+		@Override
+		public DateTime DateTime(String column)
+		{
+			return null;
+		}
+
+		@Override
+		public RunsafeLocation Location()
+		{
+			return null;
+		}
+
+		@Override
+		public RunsafeLocation Location(String world, String x, String y, String z)
+		{
+			return null;
+		}
+
+		@Override
+		public RunsafeLocation Location(String world, String x, String y, String z, String yaw, String pitch)
+		{
+			return null;
+		}
+
+		@Override
+		public RunsafeWorld World(String column)
+		{
+			return null;
+		}
+
+		@Override
+		public RunsafePlayer Player(String column)
+		{
+			return null;
+		}
+	};
+
 	public Row(Map<String, Object> data)
 	{
 		raw = data;

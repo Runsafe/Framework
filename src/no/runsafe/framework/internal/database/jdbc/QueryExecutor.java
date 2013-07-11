@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.database.jdbc;
 
+import com.google.common.collect.Lists;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.database.IQueryExecutor;
 import no.runsafe.framework.api.database.IRow;
@@ -51,13 +52,13 @@ abstract class QueryExecutor implements IQueryExecutor
 				statement.setObject(i + 1, params[i]);
 			ISet set = getSet(statement);
 			if (set.isEmpty())
-				return null;
+				return Row.Empty;
 			return set.get(0);
 		}
 		catch (SQLException e)
 		{
 			output.logException(e);
-			return null;
+			return Row.Empty;
 		}
 	}
 
@@ -73,7 +74,28 @@ abstract class QueryExecutor implements IQueryExecutor
 		catch (SQLException e)
 		{
 			output.logException(e);
-			return null;
+			return Lists.newArrayList();
+		}
+	}
+
+	@Override
+	public IValue QueryValue(String query, Object... params)
+	{
+		try
+		{
+			Connection conn = getConnection();
+			PreparedStatement statement = conn.prepareStatement(query);
+			for (int i = 0; i < params.length; i++)
+				statement.setObject(i + 1, params[i]);
+			List<IValue> set = getValues(statement);
+			if (set.isEmpty())
+				return Value.Empty;
+			return set.get(0);
+		}
+		catch (SQLException e)
+		{
+			output.logException(e);
+			return Value.Empty;
 		}
 	}
 
@@ -134,16 +156,16 @@ abstract class QueryExecutor implements IQueryExecutor
 		return new Set(results);
 	}
 
-	ArrayList<IValue> getValues(PreparedStatement statement) throws SQLException
+	List<IValue> getValues(PreparedStatement statement) throws SQLException
 	{
 		output.finer("Running SQL: %s", statement);
 		ResultSet result = statement.executeQuery();
 		if (!result.first())
-			return null;
+			return Lists.newArrayList();
 		ResultSetMetaData meta = result.getMetaData();
 		int cols = meta.getColumnCount();
 		if (cols == 0)
-			return null;
+			return Lists.newArrayList();
 		ArrayList<IValue> results = new ArrayList<IValue>();
 		while (!result.isAfterLast())
 		{

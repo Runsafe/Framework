@@ -9,4 +9,6 @@ public interface IQueryExecutor
 	List<IValue> QueryColumn(String query, Object... params);
 	boolean Execute(String query, Object... params);
 	int Update(String query, Object... params);
+
+	IValue QueryValue(String query, Object... params);
 }

@@ -7,6 +7,57 @@ import org.joda.time.DateTime;
 
 public final class Value extends DataConverter implements IValue
 {
+	public static final IValue Empty = new IValue()
+	{
+		@Override
+		public String String()
+		{
+			return null;
+		}
+
+		@Override
+		public Integer Integer()
+		{
+			return null;
+		}
+
+		@Override
+		public Long Long()
+		{
+			return null;
+		}
+
+		@Override
+		public Double Double()
+		{
+			return null;
+		}
+
+		@Override
+		public Float Float()
+		{
+			return null;
+		}
+
+		@Override
+		public DateTime DateTime()
+		{
+			return null;
+		}
+
+		@Override
+		public RunsafePlayer Player()
+		{
+			return null;
+		}
+
+		@Override
+		public RunsafeWorld World()
+		{
+			return null;
+		}
+	};
+
 	public Value(Object data)
 	{
 		raw = data;
