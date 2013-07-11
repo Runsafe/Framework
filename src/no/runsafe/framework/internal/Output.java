@@ -69,13 +69,13 @@ public abstract class Output implements IDebug
 	@Override
 	public void logWarning(String message, Object... params)
 	{
-		outputToConsole(ChatColour.ToConsole("&e" + String.format(message, params) + "&r"), Level.WARNING);
+		outputToConsole(ChatColour.ToConsole("&e" + String.format(message.replace("&r", "&e"), params) + "&r"), Level.WARNING);
 	}
 
 	@Override
 	public void logError(String message, Object... params)
 	{
-		outputToConsole(ChatColour.ToConsole("&4" + String.format(message, params) + "&r"), Level.SEVERE);
+		outputToConsole(ChatColour.ToConsole("&4" + String.format(message.replace("&r", "&4"), params) + "&r"), Level.SEVERE);
 	}
 
 	/**
@@ -96,7 +96,7 @@ public abstract class Output implements IDebug
 	@Override
 	public void logInformation(String message, Object... params)
 	{
-		outputToConsole(ChatColour.ToConsole("&2" + String.format(message, params) + "&r"), Level.INFO);
+		outputToConsole(ChatColour.ToConsole("&2" + String.format(message.replace("&r", "&2"), params) + "&r"), Level.INFO);
 	}
 
 	// Sends the supplied String with the supplied logging level to the console/log the output handler has
