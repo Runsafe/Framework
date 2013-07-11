@@ -36,7 +36,7 @@ abstract class QueryExecutor implements IQueryExecutor
 		catch (SQLException e)
 		{
 			output.logException(e);
-			return null;
+			return Set.Empty;
 		}
 	}
 
