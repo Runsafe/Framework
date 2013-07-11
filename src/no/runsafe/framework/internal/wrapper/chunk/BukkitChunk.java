@@ -57,9 +57,15 @@ public abstract class BukkitChunk
 		return ObjectWrapper.convert(chunk.getTileEntities());
 	}
 
+	@Deprecated
 	public boolean isLoaded()
 	{
-		return chunk.isLoaded();
+		return !isUnloaded();
+	}
+
+	public boolean isUnloaded()
+	{
+		return !chunk.isLoaded();
 	}
 
 	public boolean load(boolean b)

@@ -97,7 +97,7 @@ public class Enchant implements IEnchant
 	@Override
 	public boolean canCoexist(IEnchant enchantment)
 	{
-		return !enchant.conflictsWith(enchantment);
+		return enchant.compatibleWith(enchantment);
 	}
 
 	@Override

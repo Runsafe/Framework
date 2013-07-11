@@ -120,7 +120,7 @@ public class Command implements ICommandHandler
 	/**
 	 * Resolve a subcommand
 	 *
-	 * @param executor
+	 * @param executor The player or console executing the command
 	 * @param name     The partial or full subcommand name
 	 * @return The selected subcommand or null if no matches
 	 */

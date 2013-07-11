@@ -273,18 +273,12 @@ public abstract class BukkitServer
 
 	public boolean unloadWorld(String worldName, boolean save)
 	{
-		if (worldName == null || worldName.isEmpty())
-			return false;
-
-		return this.server.unloadWorld(worldName, save);
+		return !(worldName == null || worldName.isEmpty()) && this.server.unloadWorld(worldName, save);
 	}
 
 	public boolean unloadWorld(RunsafeWorld world, boolean save)
 	{
-		if (world == null)
-			return false;
-
-		return this.unloadWorld(world.getName(), save);
+		return world != null && this.unloadWorld(world.getName(), save);
 	}
 
 	public boolean useExactLoginLocation()

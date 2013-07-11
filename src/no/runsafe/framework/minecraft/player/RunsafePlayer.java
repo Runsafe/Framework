@@ -100,7 +100,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 	{
 		RunsafeLocation target = new RunsafeLocation(world, x, y, z);
 		RunsafeChunk chunk = target.getChunk();
-		if (!chunk.isLoaded())
+		if (chunk.isUnloaded())
 			chunk.load();
 		teleport(target);
 	}
@@ -131,7 +131,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 			);
 			data.put("game.mode", player.getGameMode().name());
 			data.put("game.flying", player.isFlying() ? "true" : "false");
-			data.put("game.health", String.format("%d/%d", getHealth(), getMaxHealth()));
+			data.put("game.health", String.format("%.1f/%.1f", getHealth(), getMaxHealth()));
 		}
 		data.put("game.experience", String.format("%.1f", getXP()));
 		data.put("game.level", String.format("%d", getLevel()));
@@ -157,7 +157,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 	public String getBanReason()
 	{
 		List<IPlayerSessionDataProvider> dataHooks = HookEngine.hookContainer.getComponents(IPlayerSessionDataProvider.class);
-		if (!this.isBanned() || dataHooks.isEmpty())
+		if (this.isNotBanned() || dataHooks.isEmpty())
 			return null;
 		for (IPlayerSessionDataProvider provider : dataHooks)
 		{
@@ -176,16 +176,22 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		return null;
 	}
 
+	@Deprecated
 	public boolean canSee(RunsafePlayer target)
+	{
+		return !shouldNotSee(target);
+	}
+
+	public boolean shouldNotSee(RunsafePlayer target)
 	{
 		List<IPlayerVisibility> visibilityHooks = HookEngine.hookContainer.getComponents(IPlayerVisibility.class);
 		if (visibilityHooks.isEmpty())
-			return true;
+			return false;
 
 		for (IPlayerVisibility check : visibilityHooks)
 			if (!check.canPlayerASeeB(this, target))
-				return false;
-		return true;
+				return true;
+		return false;
 	}
 
 	public boolean isVanished()

@@ -69,10 +69,17 @@ public abstract class Timer implements ITimer, Runnable
 
 	public abstract void OnElapsed();
 
+	@Deprecated
 	@Override
 	public boolean isRunning()
 	{
-		return timerId > 0;
+		return !isDone();
+	}
+
+	@Override
+	public boolean isDone()
+	{
+		return timerId <= 0;
 	}
 
 	private final IScheduler systemScheduler;

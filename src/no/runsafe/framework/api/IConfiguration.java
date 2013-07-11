@@ -1,7 +1,5 @@
 package no.runsafe.framework.api;
 
-import org.bukkit.configuration.ConfigurationSection;
-
 import java.util.List;
 import java.util.Map;
 

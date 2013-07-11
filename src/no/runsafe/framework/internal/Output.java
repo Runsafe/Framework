@@ -219,7 +219,7 @@ public abstract class Output implements IDebug
 	private final Logger consoleLog;
 	private Level debugLevel;
 
-	static private Level DefaultDebugLevel;
+	static private final Level DefaultDebugLevel;
 
 	static
 	{

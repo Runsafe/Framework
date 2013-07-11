@@ -94,6 +94,7 @@ public abstract class RunsafeItemStack extends BukkitItemStack implements IEncha
 		return Item.get(itemStack.getType(), itemStack.getData().getData());
 	}
 
+	@SuppressWarnings({"CloneDoesntCallSuperClone", "CloneDoesntDeclareCloneNotSupportedException"})
 	@Override
 	public RunsafeMeta clone()
 	{

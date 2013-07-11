@@ -6,7 +6,6 @@ import no.runsafe.framework.api.command.Command;
 import no.runsafe.framework.api.command.ExecutableCommand;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.minecraft.RunsafeServer;
-import no.runsafe.framework.text.ChatColour;
 
 import java.util.HashMap;
 import java.util.Stack;

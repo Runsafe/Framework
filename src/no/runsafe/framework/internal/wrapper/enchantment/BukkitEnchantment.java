@@ -36,9 +36,15 @@ public abstract class BukkitEnchantment
 		return enchantment.getStartLevel();
 	}
 
+	@Deprecated
 	public boolean conflictsWith(IEnchant enchantment)
 	{
-		return this.enchantment.conflictsWith(enchantment.getEnchant().getRaw());
+		return !compatibleWith(enchantment);
+	}
+
+	public boolean compatibleWith(IEnchant enchantment)
+	{
+		return !this.enchantment.conflictsWith(enchantment.getEnchant().getRaw());
 	}
 
 	public boolean canEnchantItem(RunsafeMeta target)

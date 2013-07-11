@@ -10,6 +10,7 @@ public final class Set extends ArrayList<IRow> implements ISet
 {
 	public final static ISet Empty = new EmptySet();
 
+	@SuppressWarnings("NullableProblems")
 	private static class EmptySet implements ISet
 	{
 		@Override

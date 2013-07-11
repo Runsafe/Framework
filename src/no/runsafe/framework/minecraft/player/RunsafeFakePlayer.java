@@ -68,9 +68,9 @@ public class RunsafeFakePlayer extends RunsafePlayer
 	}
 
 	@Override
-	public boolean isBanned()
+	public boolean isNotBanned()
 	{
-		return false;
+		return true;
 	}
 
 	@Override
@@ -80,9 +80,9 @@ public class RunsafeFakePlayer extends RunsafePlayer
 	}
 
 	@Override
-	public boolean canSee(RunsafePlayer target)
+	public boolean shouldNotSee(RunsafePlayer target)
 	{
-		return true;
+		return false;
 	}
 
 	@Override

@@ -17,5 +17,5 @@ public class RunsafeProjectileHitEvent extends RunsafeEntityEvent
 		return ObjectWrapper.convert(this.event.getEntity());
 	}
 
-	private ProjectileHitEvent event;
+	private final ProjectileHitEvent event;
 }

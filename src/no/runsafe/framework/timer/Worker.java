@@ -65,7 +65,7 @@ public abstract class Worker<TokenType, StateType> implements Runnable
 
 	void pokeWorker()
 	{
-		if (worker != null && !worker.isRunning())
+		if (worker != null && worker.isDone())
 			worker.start();
 	}
 

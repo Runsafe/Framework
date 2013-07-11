@@ -64,9 +64,15 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 		return basePlayer.isWhitelisted();
 	}
 
+	@Deprecated
 	public boolean isBanned()
 	{
-		return basePlayer.isBanned();
+		return !isNotBanned();
+	}
+
+	public boolean isNotBanned()
+	{
+		return !basePlayer.isBanned();
 	}
 
 	public void setBanned(boolean banned)

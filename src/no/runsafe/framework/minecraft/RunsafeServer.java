@@ -134,7 +134,7 @@ public class RunsafeServer extends BukkitServer
 
 		List<RunsafePlayer> filtered = new ArrayList<RunsafePlayer>();
 		for (RunsafePlayer player : players)
-			if (!context.canSee(player))
+			if (context.shouldNotSee(player))
 				filtered.add(player);
 		filtered.removeAll(filtered);
 		return filtered;
