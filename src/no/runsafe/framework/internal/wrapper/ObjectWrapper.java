@@ -19,8 +19,6 @@ import org.bukkit.*;
 import org.bukkit.block.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.*;
@@ -292,8 +290,8 @@ public final class ObjectWrapper
 		if (toWrap instanceof ItemFrame)
 			return convert((ItemFrame) toWrap);
 
-		if (toWrap instanceof LivingEntity)
-			return convert((LivingEntity) toWrap);
+		if (toWrap instanceof org.bukkit.entity.LivingEntity)
+			return convert((org.bukkit.entity.LivingEntity) toWrap);
 
 		if (toWrap instanceof Projectile)
 			return convert((Projectile) toWrap);
@@ -332,7 +330,7 @@ public final class ObjectWrapper
 		return new RunsafeItemFrame(toWrap);
 	}
 
-	public static RunsafeLivingEntity convert(LivingEntity toWrap)
+	public static RunsafeLivingEntity convert(org.bukkit.entity.LivingEntity toWrap)
 	{
 		if (toWrap == null)
 			return null;
@@ -454,7 +452,7 @@ public final class ObjectWrapper
 		return null;
 	}
 
-	public static RunsafeEntityType convert(EntityType type)
+	public static RunsafeEntityType convert(org.bukkit.entity.EntityType type)
 	{
 		if (type == null)
 			return null;
