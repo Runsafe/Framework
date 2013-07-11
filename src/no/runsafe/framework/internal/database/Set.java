@@ -6,6 +6,7 @@ import no.runsafe.framework.api.database.ISet;
 
 import java.util.*;
 
+@SuppressWarnings("NullableProblems")
 public final class Set extends ArrayList<IRow> implements ISet
 {
 	public final static ISet Empty = new ISet()
