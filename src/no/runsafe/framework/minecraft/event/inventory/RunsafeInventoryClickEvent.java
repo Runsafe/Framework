@@ -50,12 +50,6 @@ public class RunsafeInventoryClickEvent extends RunsafeInventoryEvent implements
 		return this.event.isShiftClick();
 	}
 
-	@Deprecated
-	public void setCursor(RunsafeMeta what)
-	{
-		this.event.setCursor(what.getRaw());
-	}
-
 	public void setCurrentItem(RunsafeMeta what)
 	{
 		this.event.setCurrentItem(what.getRaw());
