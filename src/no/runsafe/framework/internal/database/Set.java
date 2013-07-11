@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.database;
 
+import com.google.common.collect.Lists;
 import no.runsafe.framework.api.database.IRow;
 import no.runsafe.framework.api.database.ISet;
 
@@ -32,7 +33,25 @@ public final class Set extends ArrayList<IRow> implements ISet
 		@Override
 		public Iterator<IRow> iterator()
 		{
-			return null;
+			return new Iterator<IRow>()
+			{
+				@Override
+				public boolean hasNext()
+				{
+					return false;
+				}
+
+				@Override
+				public IRow next()
+				{
+					return null;
+				}
+
+				@Override
+				public void remove()
+				{
+				}
+			};
 		}
 
 		@Override
@@ -132,19 +151,71 @@ public final class Set extends ArrayList<IRow> implements ISet
 		@Override
 		public ListIterator<IRow> listIterator()
 		{
-			return null;
+			return new ListIterator<IRow>()
+			{
+				@Override
+				public boolean hasNext()
+				{
+					return false;
+				}
+
+				@Override
+				public IRow next()
+				{
+					return null;
+				}
+
+				@Override
+				public boolean hasPrevious()
+				{
+					return false;
+				}
+
+				@Override
+				public IRow previous()
+				{
+					return null;
+				}
+
+				@Override
+				public int nextIndex()
+				{
+					return 0;
+				}
+
+				@Override
+				public int previousIndex()
+				{
+					return 0;
+				}
+
+				@Override
+				public void remove()
+				{
+				}
+
+				@Override
+				public void set(IRow iRow)
+				{
+				}
+
+				@Override
+				public void add(IRow iRow)
+				{
+				}
+			};
 		}
 
 		@Override
 		public ListIterator<IRow> listIterator(int index)
 		{
-			return null;
+			return listIterator();
 		}
 
 		@Override
 		public List<IRow> subList(int fromIndex, int toIndex)
 		{
-			return null;
+			return Lists.newArrayList();
 		}
 	}
 
