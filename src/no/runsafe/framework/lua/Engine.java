@@ -9,13 +9,13 @@ public class Engine extends OneArgFunction
 	@Override
 	public LuaValue call(LuaValue env)
 	{
-		Environment.global = env.checkglobals();
+		LuaEnvironment.global = env.checkglobals();
 		LuaTable lib = new LuaTable();
 
 		env.set("engine", lib);
 		env.get("package").get("loaded").set("engine", lib);
 
-		//Environment.global.get("dofile").call(LuaValue.valueOf("plugins/runsafe/middleclass.lua"));
+		LuaEnvironment.loadFile("plugins/runsafe/middleclass.lua");
 
 		return lib;
 	}
