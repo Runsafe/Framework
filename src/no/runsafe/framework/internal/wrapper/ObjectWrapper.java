@@ -344,6 +344,13 @@ public final class ObjectWrapper
 		return new RunsafeProjectile(toWrap);
 	}
 
+	public static RunsafeFish convert(Fish toWrap)
+	{
+		if (toWrap == null)
+			return null;
+		return new RunsafeFish(toWrap);
+	}
+
 	public static RunsafeWorld convert(World toWrap)
 	{
 		if (toWrap == null)

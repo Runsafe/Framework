@@ -29,5 +29,6 @@ public final class Factories
 		EventEngine.Register(PlayerPickupItem.Factory());
 		EventEngine.Register(PlayerTeleportEvent.Factory());
 		EventEngine.Register(PlayerDamage.Factory());
+		EventEngine.Register(PlayerFish.Factory());
 	}
 }
