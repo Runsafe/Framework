@@ -189,7 +189,7 @@ public abstract class Output implements IDebug
 			String.format(message, params)
 		);
 
-		if (messageLevel.intValue() <= Level.FINEST.intValue())
+		if (messageLevel.intValue() >= Level.FINEST.intValue())
 			formatted = String.format("%s\nat %s", formatted, getStackTrace());
 
 		return formatted;
