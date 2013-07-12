@@ -2,9 +2,9 @@ package no.runsafe.framework.internal.database;
 
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.database.IDatabase;
-import no.runsafe.framework.api.database.IRow;
 import no.runsafe.framework.api.database.ISchemaChanges;
 import no.runsafe.framework.api.database.ITransaction;
+import no.runsafe.framework.api.database.IValue;
 import org.picocontainer.Startable;
 
 import java.util.HashMap;
@@ -47,10 +47,8 @@ public final class SchemaUpdater implements Startable
 
 	int getRevision(String table)
 	{
-		IRow row = database.QueryRow("SELECT `revision` FROM runsafe_schema WHERE `table`=?", table);
-		if (row == null)
-			return 0;
-		return row.Integer("revision");
+		IValue revision = database.QueryValue("SELECT `revision` FROM runsafe_schema WHERE `table`=?", table);
+		return revision.Integer() == null ? 0 : revision.Integer();
 	}
 
 	void setRevision(String table, int revision)
