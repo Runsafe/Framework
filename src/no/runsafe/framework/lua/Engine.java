@@ -9,6 +9,7 @@ public class Engine extends OneArgFunction
 	public LuaValue call(LuaValue env)
 	{
 		LuaEnvironment.global = env.checkglobals();
+		LuaEnvironment.env = env;
 		LuaEnvironment.loadFile("plugins/runsafe/lua/middleclass.lua");
 
 		return null;
