@@ -18,4 +18,5 @@ public class LuaEnvironment
 	}
 
 	public static Globals global;
+	public static LuaValue env;
 }
