@@ -36,13 +36,17 @@ public final class SchemaUpdater implements Startable
 		this.schemaUpdaters = schemaUpdaters;
 		database = db;
 		console = output;
-		database.Execute(
-			"CREATE TABLE IF NOT EXISTS runsafe_schema (" +
-				"`table` varchar(255) NOT NULL," +
-				"`revision` int(11) NOT NULL," +
-				"PRIMARY KEY (`table`)" +
-				")"
-		);
+		if (!initialized)
+		{
+			database.Execute(
+				"CREATE TABLE IF NOT EXISTS runsafe_schema (" +
+					"`table` varchar(255) NOT NULL," +
+					"`revision` int(11) NOT NULL," +
+					"PRIMARY KEY (`table`)" +
+					")"
+			);
+			initialized = true;
+		}
 	}
 
 	int getRevision(String table)
@@ -112,8 +116,8 @@ public final class SchemaUpdater implements Startable
 		return newRevision;
 	}
 
-
 	private final IDatabase database;
 	private final IOutput console;
 	private final ISchemaChanges[] schemaUpdaters;
+	private static boolean initialized = false;
 }
