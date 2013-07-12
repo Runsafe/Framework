@@ -15,7 +15,7 @@ public class Engine extends OneArgFunction
 		env.set("engine", lib);
 		env.get("package").get("loaded").set("engine", lib);
 
-		LuaEnvironment.loadFile("plugins/runsafe/middleclass.lua");
+		LuaEnvironment.loadFile("plugins/runsafe/lua/middleclass.lua");
 
 		return lib;
 	}
