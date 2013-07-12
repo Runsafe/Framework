@@ -65,7 +65,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	@Override
 	public final void addComponent(Object implOrInstance)
 	{
-		output.fine(
+		output.finer(
 			"Plugin %s added component %s",
 			this.getName(),
 			implOrInstance instanceof Class ? ((Class) implOrInstance).getCanonicalName() : implOrInstance.getClass().getCanonicalName()

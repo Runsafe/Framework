@@ -1,9 +1,9 @@
 package no.runsafe.framework.internal.command;
 
 import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.command.ICommandExecutor;
+import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.minecraft.RunsafeConsole;
 import org.bukkit.command.PluginCommand;
 import org.picocontainer.Startable;
@@ -62,11 +62,11 @@ public final class CommandEngine implements Startable
 	private void hookCommand(PluginCommand command, BukkitCommandExecutor executor)
 	{
 		if (command == null)
-			output.outputToConsole(String.format("Command not found: %s - does it exist in plugin.yml?", executor.getName()));
+			output.logError("Command not found: %s - does it exist in plugin.yml?", executor.getName());
 		else
 		{
 			command.setExecutor(executor);
-			output.fine("Command handler for %s registered with bukkit.", executor.getName());
+			output.finer("Command handler for %s registered with bukkit.", executor.getName());
 		}
 	}
 
