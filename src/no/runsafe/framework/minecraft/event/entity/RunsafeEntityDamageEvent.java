@@ -20,6 +20,11 @@ public class RunsafeEntityDamageEvent extends RunsafeEntityEvent implements Canc
 
 	public void setDamage(int damage)
 	{
+		event.setDamage((double) damage);
+	}
+
+	public void setDamage(double damage)
+	{
 		event.setDamage(damage);
 	}
 
