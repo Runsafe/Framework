@@ -21,9 +21,8 @@ public abstract class Output implements IDebug
 	Output(Logger consoleLog)
 	{
 		this.consoleLog = consoleLog;
-		if(DefaultDebugLevel.intValue() <= Level.INFO.intValue())
-			info("Setting debug level to %s", DefaultDebugLevel.getName());
 		this.debugLevel = DefaultDebugLevel;
+		info("Setting debug level to %s", DefaultDebugLevel.getName());
 	}
 
 	@Override
