@@ -98,12 +98,6 @@ public class Environment implements Startable
 
 		Collection<File> list = FileUtils.listFiles(scripts, new String[]{"lua"}, false);
 		return list != null && !list.isEmpty() ? list : null;
-//
-//		if (!scripts.exists() || !scripts.isDirectory())
-//			return null;
-//
-//		File[] list = scripts.listFiles((FilenameFilter) new WildcardFileFilter("*.lua"));
-//		return list != null && list.length > 0 ? list : null;
 	}
 
 	private final RunsafePlugin plugin;
