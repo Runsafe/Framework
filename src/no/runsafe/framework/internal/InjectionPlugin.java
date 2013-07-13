@@ -10,6 +10,7 @@ import no.runsafe.framework.internal.configuration.ConfigurationEngine;
 import no.runsafe.framework.internal.database.SchemaUpdater;
 import no.runsafe.framework.internal.database.jdbc.Database;
 import no.runsafe.framework.internal.event.EventEngine;
+import no.runsafe.framework.lua.LuaEnvironment;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.timer.Scheduler;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -142,6 +143,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		this.container.addComponent(CommandEngine.class);
 		this.container.addComponent(HookEngine.class);
 		this.container.addComponent(VersionEngine.class);
+		this.container.addComponent(LuaEnvironment.class);
 	}
 
 	private DefaultPicoContainer container = null;
