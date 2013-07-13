@@ -7,7 +7,7 @@ import org.luaj.vm2.lib.VarArgFunction;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RunsafeLuaFunction extends VarArgFunction
+public abstract class RunsafeLuaFunction extends VarArgFunction
 {
 	public Varargs invoke(Varargs args)
 	{
@@ -45,8 +45,5 @@ public class RunsafeLuaFunction extends VarArgFunction
 		return varargsOf(values.toArray(new LuaValue[values.size()]));
 	}
 
-	public List<Object> run(FunctionParameters parameters)
-	{
-		return null;
-	}
+	public abstract List<Object> run(FunctionParameters parameters);
 }

@@ -1,0 +1,28 @@
+package no.runsafe.framework.api.lua;
+
+import no.runsafe.framework.RunsafePlugin;
+import org.luaj.vm2.LuaTable;
+import org.luaj.vm2.LuaValue;
+import org.luaj.vm2.lib.OneArgFunction;
+
+public abstract class Library extends OneArgFunction
+{
+	public Library(RunsafePlugin plugin, String module)
+	{
+		namespace = plugin.getName();
+		this.module = module;
+	}
+
+	@Override
+	public final LuaValue call(LuaValue environment)
+	{
+		LuaTable lib = getAPI();
+		environment.get(namespace).set(module, getAPI());
+		return lib;
+	}
+
+	protected abstract LuaTable getAPI();
+
+	private final String namespace;
+	private final String module;
+}
