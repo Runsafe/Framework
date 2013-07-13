@@ -56,6 +56,12 @@ public final class Value extends DataConverter implements IValue
 		{
 			return null;
 		}
+
+		@Override
+		public boolean isEmpty()
+		{
+			return true;
+		}
 	};
 
 	public Value(Object data)
@@ -109,6 +115,12 @@ public final class Value extends DataConverter implements IValue
 	public RunsafeWorld World()
 	{
 		return super.World(raw);
+	}
+
+	@Override
+	public boolean isEmpty()
+	{
+		return raw == null;
 	}
 
 	private final Object raw;

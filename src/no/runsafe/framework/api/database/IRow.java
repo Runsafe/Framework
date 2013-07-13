@@ -5,7 +5,7 @@ import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.joda.time.DateTime;
 
-public interface IRow
+public interface IRow extends IResult
 {
 	String String(String column);
 	Integer Integer(String column);

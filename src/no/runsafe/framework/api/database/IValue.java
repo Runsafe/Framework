@@ -4,7 +4,7 @@ import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.joda.time.DateTime;
 
-public interface IValue
+public interface IValue extends IResult
 {
 	String String();
 	Integer Integer();

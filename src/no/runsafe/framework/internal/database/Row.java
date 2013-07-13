@@ -77,6 +77,12 @@ public final class Row extends DataConverter implements IRow
 		{
 			return null;
 		}
+
+		@Override
+		public boolean isEmpty()
+		{
+			return true;
+		}
 	};
 
 	public Row(Map<String, Object> data)
@@ -148,6 +154,12 @@ public final class Row extends DataConverter implements IRow
 	public RunsafePlayer Player(String column)
 	{
 		return super.Player(getValue(column));
+	}
+
+	@Override
+	public boolean isEmpty()
+	{
+		return raw == null;
 	}
 
 	private Object getValue(String column)
