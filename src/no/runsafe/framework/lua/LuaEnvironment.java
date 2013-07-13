@@ -7,6 +7,7 @@ import org.apache.commons.io.FileUtils;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
+import org.luaj.vm2.lib.OneArgFunction;
 import org.luaj.vm2.lib.jse.JsePlatform;
 import org.picocontainer.Startable;
 
@@ -26,7 +27,7 @@ public class LuaEnvironment implements Startable
 
 	static
 	{
-		global = JsePlatform.standardGlobals().checkglobals();
+		JsePlatform.standardGlobals().load(new Bootstrap());
 		File source = new File("plugins/runsafe/lua");
 		if (source.exists() && source.isDirectory())
 		{
@@ -35,6 +36,17 @@ public class LuaEnvironment implements Startable
 				loadFile(script.getAbsolutePath());
 		}
 	}
+
+	private static class Bootstrap extends OneArgFunction
+	{
+		@Override
+		public LuaValue call(LuaValue env)
+		{
+			global = env.checkglobals();
+			return null;
+		}
+	}
+
 
 	public LuaEnvironment(RunsafePlugin plugin)
 	{
