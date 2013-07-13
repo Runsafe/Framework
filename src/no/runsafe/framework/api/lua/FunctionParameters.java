@@ -19,7 +19,7 @@ public class FunctionParameters
 
 	private LuaValue getLuaValue(int index)
 	{
-		if (this.parameters.size() < index -1)
+		if (this.parameters.size() < index - 1)
 			throw new LuaError("Function contains an invalid amount of parameters");
 
 		return this.parameters.get(index);
@@ -80,7 +80,14 @@ public class FunctionParameters
 
 	public RunsafeLocation getLocation(int index)
 	{
-		return new RunsafeLocation(this.getWorld(index), getDouble(index + 1), getDouble(index + 2), getDouble(index + 3));
+		return getLocation(index, false);
+	}
+
+	public RunsafeLocation getLocation(int index, boolean hasPitchAndYaw)
+	{
+		float yaw = hasPitchAndYaw ? getFloat(index + 4) : 0;
+		float pitch = hasPitchAndYaw ? getFloat(index + 5) : 0;
+		return new RunsafeLocation(this.getWorld(index), getDouble(index + 1), getDouble(index + 2), getDouble(index + 3), yaw, pitch);
 	}
 
 	public boolean hasParameter(int index)
