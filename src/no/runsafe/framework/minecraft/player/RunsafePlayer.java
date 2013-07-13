@@ -283,6 +283,15 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		return this.getUniverse().getName().equals(universeName);
 	}
 
+	public void clearInventory()
+	{
+		if(player == null)
+			return;
+
+		player.getInventory().clear();
+		updateInventory();
+	}
+
 	@Override
 	public void sendColouredMessage(String message)
 	{
