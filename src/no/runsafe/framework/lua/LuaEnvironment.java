@@ -70,6 +70,7 @@ public class LuaEnvironment implements Startable
 		List<Library> libraries = plugin.getComponents(Library.class);
 		if (!libraries.isEmpty())
 		{
+			RunsafeServer.Instance.getDebugger().fine("Adding plugin namespace %s to LUA environment", plugin.getName());
 			global.set(plugin.getName(), new LuaTable());
 			for (Library library : libraries)
 				global.load(library);
