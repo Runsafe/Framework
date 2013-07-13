@@ -42,7 +42,7 @@ public abstract class RunsafeLuaFunction extends Function
 					values.add(valueOf((Integer) object));
 			}
 		}
-		return varargsOf((LuaValue[]) values.toArray());
+		return varargsOf(values.toArray(new LuaValue[values.size()]));
 	}
 
 	public abstract List<Object> run(FunctionParameters parameters);
