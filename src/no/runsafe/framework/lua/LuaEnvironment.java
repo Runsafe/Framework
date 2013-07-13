@@ -80,8 +80,10 @@ public class LuaEnvironment implements Startable
 			return null;
 
 		File scripts = new File(data, "lua");
-		Collection<File> list = FileUtils.listFiles(scripts, new String[]{"lua"}, false);
+		if (!scripts.exists() || !scripts.isDirectory())
+			return null;
 
+		Collection<File> list = FileUtils.listFiles(scripts, new String[]{"lua"}, false);
 		return list != null && !list.isEmpty() ? list : null;
 //
 //		if (!scripts.exists() || !scripts.isDirectory())
