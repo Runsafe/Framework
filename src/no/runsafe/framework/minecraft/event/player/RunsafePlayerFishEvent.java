@@ -60,5 +60,5 @@ public class RunsafePlayerFishEvent extends RunsafePlayerEvent implements Cancel
 		FAILED_ATTEMPT
 	}
 
-	private PlayerFishEvent event;
+	private final PlayerFishEvent event;
 }

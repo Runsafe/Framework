@@ -1,4 +1,4 @@
-package no.runsafe.framework.lua;
+package no.runsafe.framework.api.lua;
 
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeServer;

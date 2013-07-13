@@ -20,5 +20,5 @@ public class RunsafeFish extends RunsafeProjectile
 		this.fish.setBiteChance(chance);
 	}
 
-	private Fish fish;
+	private final Fish fish;
 }

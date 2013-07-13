@@ -1,4 +1,4 @@
-package no.runsafe.framework.lua;
+package no.runsafe.framework.internal.lua;
 
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.lua.Library;
@@ -15,7 +15,7 @@ import java.io.File;
 import java.util.Collection;
 import java.util.List;
 
-public class LuaEnvironment implements Startable
+public class Environment implements Startable
 {
 	public static void loadFile(String file)
 	{
@@ -48,7 +48,7 @@ public class LuaEnvironment implements Startable
 	}
 
 
-	public LuaEnvironment(RunsafePlugin plugin)
+	public Environment(RunsafePlugin plugin)
 	{
 		this.plugin = plugin;
 	}
@@ -106,5 +106,5 @@ public class LuaEnvironment implements Startable
 //		return list != null && list.length > 0 ? list : null;
 	}
 
-	private RunsafePlugin plugin;
+	private final RunsafePlugin plugin;
 }
