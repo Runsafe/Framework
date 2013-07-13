@@ -18,6 +18,7 @@ public class RunsafeEntityDamageEvent extends RunsafeEntityEvent implements Canc
 		return event.getDamage();
 	}
 
+	@Deprecated
 	public void setDamage(int damage)
 	{
 		event.setDamage((double) damage);
