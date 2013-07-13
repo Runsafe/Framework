@@ -1,5 +1,6 @@
 package no.runsafe.framework.api.lua;
 
+import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.Varargs;
 
 public abstract class VoidFunction extends Function
@@ -8,7 +9,7 @@ public abstract class VoidFunction extends Function
 	public Varargs invoke(Varargs args)
 	{
 		this.run(VarargsToParameters(args));
-		return null;
+		return varargsOf(new LuaValue[0]);
 	}
 
 	protected abstract void run(FunctionParameters parameters);
