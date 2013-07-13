@@ -2,6 +2,7 @@ package no.runsafe.framework.lua;
 
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.lua.Library;
+import no.runsafe.framework.minecraft.RunsafeServer;
 import org.apache.commons.io.FileUtils;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaTable;
@@ -17,7 +18,8 @@ public class LuaEnvironment implements Startable
 {
 	public static void loadFile(String file)
 	{
-		LuaEnvironment.global.get("dofile").call(LuaValue.valueOf(file));
+		RunsafeServer.Instance.getDebugger().logInformation("Loading script %s", file);
+		global.get("dofile").call(LuaValue.valueOf(file));
 	}
 
 	public static Globals global;
@@ -25,9 +27,13 @@ public class LuaEnvironment implements Startable
 	static
 	{
 		global = JsePlatform.standardGlobals().checkglobals();
-		Collection<File> scripts = FileUtils.listFiles(new File("plugins/runsafe/lua"), new String[]{"lua"}, false);
-		for (File script : scripts)
-			LuaEnvironment.loadFile(script.getAbsolutePath());
+		File source = new File("plugins/runsafe/lua");
+		if (source.exists() && source.isDirectory())
+		{
+			Collection<File> scripts = FileUtils.listFiles(source, new String[]{"lua"}, false);
+			for (File script : scripts)
+				loadFile(script.getAbsolutePath());
+		}
 	}
 
 	public LuaEnvironment(RunsafePlugin plugin)
