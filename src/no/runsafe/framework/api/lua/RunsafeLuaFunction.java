@@ -2,13 +2,13 @@ package no.runsafe.framework.api.lua;
 
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.Varargs;
-import org.luaj.vm2.lib.VarArgFunction;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class RunsafeLuaFunction extends VarArgFunction
+public abstract class RunsafeLuaFunction extends Function
 {
+	@Override
 	public Varargs invoke(Varargs args)
 	{
 		FunctionParameters parameters = new FunctionParameters();
@@ -42,7 +42,7 @@ public abstract class RunsafeLuaFunction extends VarArgFunction
 					values.add(valueOf((Integer) object));
 			}
 		}
-		return varargsOf(values.toArray(new LuaValue[values.size()]));
+		return varargsOf((LuaValue[]) values.toArray());
 	}
 
 	public abstract List<Object> run(FunctionParameters parameters);

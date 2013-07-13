@@ -2,6 +2,7 @@ package no.runsafe.framework;
 
 import no.runsafe.framework.api.IConfigurationFile;
 
+import java.io.File;
 import java.io.InputStream;
 
 /**
@@ -12,7 +13,7 @@ public abstract class RunsafeConfigurablePlugin extends RunsafePlugin implements
 	@Override
 	public final String getConfigurationPath()
 	{
-		return String.format("plugins/%s/config.yml", getName());
+		return new File(getDataFolder(), "config.yml").getPath();
 	}
 
 	@Override
