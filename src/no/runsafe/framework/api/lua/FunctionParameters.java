@@ -64,7 +64,7 @@ public class FunctionParameters
 	{
 		RunsafePlayer player = RunsafeServer.Instance.getOfflinePlayerExact(this.getString(index));
 		if (player == null)
-			throw new LuaError(String.format("Argument %s is not a valid player.", index));
+			throw new LuaError(String.format("Argument %s at index %d is not a valid player.", this.getString(index), index));
 
 		return player;
 	}
@@ -73,7 +73,7 @@ public class FunctionParameters
 	{
 		RunsafeWorld world = RunsafeServer.Instance.getWorld(this.getString(index));
 		if (world == null)
-			throw new LuaError(String.format("Argument %s is not a valid world.", index));
+			throw new LuaError(String.format("Argument %s at index %d is not a valid world.", this.getString(index), index));
 
 		return world;
 	}
