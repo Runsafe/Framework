@@ -31,9 +31,4 @@ public interface IQueryExecutor
 	RunsafePlayer QueryPlayer(String query, Object... params);
 	RunsafeWorld QueryWorld(String query, Object... params);
 	RunsafeLocation QueryLocation(String query, Object... params);
-
-	@Deprecated
-	List<IValue> QueryColumn(String query, Object... params);
-	@Deprecated
-	IValue QueryValue(String query, Object... params);
 }

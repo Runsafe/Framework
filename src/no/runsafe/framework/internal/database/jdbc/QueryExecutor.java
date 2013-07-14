@@ -221,22 +221,6 @@ abstract class QueryExecutor implements IQueryExecutor
 	}
 
 	@Override
-	public List<IValue> QueryColumn(String query, Object... params)
-	{
-		try
-		{
-			PreparedStatement statement = prepare(query);
-			setParams(statement, params);
-			return getValues(statement);
-		}
-		catch (SQLException e)
-		{
-			output.logException(e);
-			return Lists.newArrayList();
-		}
-	}
-
-	@Override
 	public String QueryString(String query, Object... params)
 	{
 		return QueryValue(query, params).String();
@@ -291,27 +275,6 @@ abstract class QueryExecutor implements IQueryExecutor
 	}
 
 	@Override
-	public IValue QueryValue(String query, Object... params)
-	{
-		try
-		{
-			Connection conn = getConnection();
-			PreparedStatement statement = conn.prepareStatement(query);
-			for (int i = 0; i < params.length; i++)
-				statement.setObject(i + 1, params[i]);
-			List<IValue> set = getValues(statement);
-			if (set.isEmpty())
-				return Value.Empty;
-			return set.get(0);
-		}
-		catch (SQLException e)
-		{
-			output.logException(e);
-			return Value.Empty;
-		}
-	}
-
-	@Override
 	public boolean Execute(String query, Object... params)
 	{
 		try
@@ -343,6 +306,41 @@ abstract class QueryExecutor implements IQueryExecutor
 		{
 			output.logException(e);
 			return -1;
+		}
+	}
+
+	List<IValue> QueryColumn(String query, Object... params)
+	{
+		try
+		{
+			PreparedStatement statement = prepare(query);
+			setParams(statement, params);
+			return getValues(statement);
+		}
+		catch (SQLException e)
+		{
+			output.logException(e);
+			return Lists.newArrayList();
+		}
+	}
+
+	IValue QueryValue(String query, Object... params)
+	{
+		try
+		{
+			Connection conn = getConnection();
+			PreparedStatement statement = conn.prepareStatement(query);
+			for (int i = 0; i < params.length; i++)
+				statement.setObject(i + 1, params[i]);
+			List<IValue> set = getValues(statement);
+			if (set.isEmpty())
+				return Value.Empty;
+			return set.get(0);
+		}
+		catch (SQLException e)
+		{
+			output.logException(e);
+			return Value.Empty;
 		}
 	}
 
