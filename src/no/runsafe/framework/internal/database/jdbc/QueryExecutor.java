@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.database.jdbc;
 
+import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.database.IQueryExecutor;
@@ -9,8 +10,11 @@ import no.runsafe.framework.api.database.IValue;
 import no.runsafe.framework.internal.database.Row;
 import no.runsafe.framework.internal.database.Set;
 import no.runsafe.framework.internal.database.Value;
+import no.runsafe.framework.minecraft.RunsafeWorld;
+import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.joda.time.DateTime;
 
+import javax.annotation.Nullable;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,6 +67,142 @@ abstract class QueryExecutor implements IQueryExecutor
 	}
 
 	@Override
+	public List<String> QueryStrings(String query, Object... params)
+	{
+		return Lists.transform(
+			QueryColumn(query, params),
+			new Function<IValue, String>()
+			{
+				@Override
+				public String apply(@Nullable IValue value)
+				{
+					assert value != null;
+					return value.String();
+				}
+			}
+		);
+	}
+
+	@Override
+	public List<Integer> QueryIntegers(String query, Object... params)
+	{
+		return Lists.transform(
+			QueryColumn(query, params),
+			new Function<IValue, Integer>()
+			{
+				@Override
+				public Integer apply(@Nullable IValue value)
+				{
+					assert value != null;
+					return value.Integer();
+				}
+			}
+		);
+	}
+
+	@Override
+	public List<Long> QueryLongs(String query, Object... params)
+	{
+		return Lists.transform(
+			QueryColumn(query, params),
+			new Function<IValue, Long>()
+			{
+				@Override
+				public Long apply(@Nullable IValue value)
+				{
+					assert value != null;
+					return value.Long();
+				}
+			}
+		);
+	}
+
+	@Override
+	public List<Double> QueryDoubles(String query, Object... params)
+	{
+		return Lists.transform(
+			QueryColumn(query, params),
+			new Function<IValue, Double>()
+			{
+				@Override
+				public Double apply(@Nullable IValue value)
+				{
+					assert value != null;
+					return value.Double();
+				}
+			}
+		);
+	}
+
+	@Override
+	public List<Float> QueryFloats(String query, Object... params)
+	{
+		return Lists.transform(
+			QueryColumn(query, params),
+			new Function<IValue, Float>()
+			{
+				@Override
+				public Float apply(@Nullable IValue value)
+				{
+					assert value != null;
+					return value.Float();
+				}
+			}
+		);
+	}
+
+	@Override
+	public List<DateTime> QueryDateTimes(String query, Object... params)
+	{
+		return Lists.transform(
+			QueryColumn(query, params),
+			new Function<IValue, DateTime>()
+			{
+				@Override
+				public DateTime apply(@Nullable IValue value)
+				{
+					assert value != null;
+					return value.DateTime();
+				}
+			}
+		);
+	}
+
+	@Override
+	public List<RunsafePlayer> QueryPlayers(String query, Object... params)
+	{
+		return Lists.transform(
+			QueryColumn(query, params),
+			new Function<IValue, RunsafePlayer>()
+			{
+				@Override
+				public RunsafePlayer apply(@Nullable IValue value)
+				{
+					assert value != null;
+					return value.Player();
+				}
+			}
+		);
+	}
+
+	@Override
+	public List<RunsafeWorld> QueryWorlds(String query, Object... params)
+	{
+		return Lists.transform(
+			QueryColumn(query, params),
+			new Function<IValue, RunsafeWorld>()
+			{
+				@Override
+				public RunsafeWorld apply(@Nullable IValue value)
+				{
+					assert value != null;
+					return value.World();
+				}
+			}
+		);
+	}
+
+	@Override
 	public List<IValue> QueryColumn(String query, Object... params)
 	{
 		try
@@ -76,6 +216,54 @@ abstract class QueryExecutor implements IQueryExecutor
 			output.logException(e);
 			return Lists.newArrayList();
 		}
+	}
+
+	@Override
+	public String QueryString(String query, Object... params)
+	{
+		return QueryValue(query, params).String();
+	}
+
+	@Override
+	public Integer QueryInteger(String query, Object... params)
+	{
+		return QueryValue(query, params).Integer();
+	}
+
+	@Override
+	public Long QueryLong(String query, Object... params)
+	{
+		return QueryValue(query, params).Long();
+	}
+
+	@Override
+	public Double QueryDouble(String query, Object... params)
+	{
+		return QueryValue(query, params).Double();
+	}
+
+	@Override
+	public Float QueryFloat(String query, Object... params)
+	{
+		return QueryValue(query, params).Float();
+	}
+
+	@Override
+	public DateTime QueryDateTime(String query, Object... params)
+	{
+		return QueryValue(query, params).DateTime();
+	}
+
+	@Override
+	public RunsafePlayer QueryPlayer(String query, Object... params)
+	{
+		return QueryValue(query, params).Player();
+	}
+
+	@Override
+	public RunsafeWorld QueryWorld(String query, Object... params)
+	{
+		return QueryValue(query, params).World();
 	}
 
 	@Override
