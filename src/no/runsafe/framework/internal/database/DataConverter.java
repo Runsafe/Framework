@@ -130,6 +130,9 @@ abstract class DataConverter
 		if (targetWorld == null)
 			return null;
 
+		if (x == null || y == null || z == null)
+			return new RunsafeLocation(targetWorld, 0, 0, 0);
+
 		if (yaw != null && pitch != null)
 			return new RunsafeLocation(targetWorld, Double(x), Double(y), Double(z), Float(yaw), Float(pitch));
 
