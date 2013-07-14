@@ -10,6 +10,7 @@ import no.runsafe.framework.api.database.IValue;
 import no.runsafe.framework.internal.database.Row;
 import no.runsafe.framework.internal.database.Set;
 import no.runsafe.framework.internal.database.Value;
+import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.joda.time.DateTime;
@@ -203,6 +204,23 @@ abstract class QueryExecutor implements IQueryExecutor
 	}
 
 	@Override
+	public List<RunsafeLocation> QueryLocations(String query, Object... params)
+	{
+		return Lists.transform(
+			Query(query, params),
+			new Function<IRow, RunsafeLocation>()
+			{
+				@Override
+				public RunsafeLocation apply(@Nullable IRow row)
+				{
+					assert row != null;
+					return row.Location();
+				}
+			}
+		);
+	}
+
+	@Override
 	public List<IValue> QueryColumn(String query, Object... params)
 	{
 		try
@@ -264,6 +282,12 @@ abstract class QueryExecutor implements IQueryExecutor
 	public RunsafeWorld QueryWorld(String query, Object... params)
 	{
 		return QueryValue(query, params).World();
+	}
+
+	@Override
+	public RunsafeLocation QueryLocation(String query, Object... params)
+	{
+		return QueryRow(query, params).Location();
 	}
 
 	@Override

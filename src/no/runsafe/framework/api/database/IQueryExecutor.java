@@ -1,5 +1,6 @@
 package no.runsafe.framework.api.database;
 
+import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.joda.time.DateTime;
@@ -18,6 +19,7 @@ public interface IQueryExecutor
 	List<DateTime> QueryDateTimes(String query, Object... params);
 	List<RunsafePlayer> QueryPlayers(String query, Object... params);
 	List<RunsafeWorld> QueryWorlds(String query, Object... params);
+	List<RunsafeLocation> QueryLocations(String query, Object... params);
 	boolean Execute(String query, Object... params);
 	int Update(String query, Object... params);
 	String QueryString(String query, Object... params);
@@ -28,6 +30,7 @@ public interface IQueryExecutor
 	DateTime QueryDateTime(String query, Object... params);
 	RunsafePlayer QueryPlayer(String query, Object... params);
 	RunsafeWorld QueryWorld(String query, Object... params);
+	RunsafeLocation QueryLocation(String query, Object... params);
 
 	@Deprecated
 	List<IValue> QueryColumn(String query, Object... params);
