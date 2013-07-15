@@ -6,7 +6,6 @@ import no.runsafe.framework.internal.wrapper.BukkitWorld;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_6_R2.CraftWorld;
 import org.bukkit.entity.Entity;
 
 import java.util.List;
@@ -63,9 +62,20 @@ public class RunsafeWorld extends BukkitWorld
 		return getUniverse().getName().equals(world.getUniverse().getName());
 	}
 
-	public net.minecraft.server.v1_6_R2.World getNMS()
+	public RunsafeLocation getLocation(Double x, Double y, Double z)
 	{
-		return ((CraftWorld) this.world).getHandle();
+		return getLocation(x, y, z, null, null);
+	}
+
+	public RunsafeLocation getLocation(Double x, Double y, Double z, Float yaw, Float pitch)
+	{
+		if (x == null || y == null || z == null)
+			return null;
+
+		if (yaw == null || pitch == null)
+			return new RunsafeLocation(this, x, y, z);
+
+		return new RunsafeLocation(this, x, y, z, yaw, pitch);
 	}
 
 	private Universe universe = null;

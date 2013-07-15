@@ -9,7 +9,6 @@ import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import org.bukkit.Chunk;
-import org.bukkit.craftbukkit.v1_6_R2.entity.CraftEntity;
 import org.bukkit.entity.Entity;
 import org.bukkit.util.Vector;
 
@@ -41,16 +40,6 @@ public abstract class BukkitEntity extends BukkitMetadata
 		if (entity == null)
 			return null;
 		return ObjectWrapper.convert(entity.getWorld());
-	}
-
-	private void dismountBeforeTeleport()
-	{
-		CraftEntity craftEntity = (CraftEntity) this.entity;
-		if (craftEntity.getHandle().vehicle != null)
-		{
-			craftEntity.getHandle().vehicle.passenger = null;
-			craftEntity.getHandle().vehicle = null;
-		}
 	}
 
 	public boolean teleport(RunsafeLocation location)
@@ -189,6 +178,12 @@ public abstract class BukkitEntity extends BukkitMetadata
 	public void setVelocity(Vector vec)
 	{
 		this.entity.setVelocity(vec);
+	}
+
+	private void dismountBeforeTeleport()
+	{
+		if(entity.getVehicle() != null)
+			entity.eject();
 	}
 
 	protected final Entity entity;

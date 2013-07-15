@@ -30,9 +30,4 @@ public class RunsafeEntity extends BukkitEntity
 			breakBlocks
 		);
 	}
-
-	public net.minecraft.server.v1_6_R2.Entity getNMS()
-	{
-		return ((CraftEntity) this.entity).getHandle();
-	}
 }

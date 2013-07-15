@@ -304,9 +304,4 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 	{
 		sendColouredMessage(String.format(format, params));
 	}
-
-	public EntityHuman getNMS()
-	{
-		return ((CraftPlayer) this.player).getHandle();
-	}
 }

@@ -53,6 +53,7 @@
       <w>unban</w>
       <w>unregister</w>
       <w>unserialize</w>
+      <w>unwrapper</w>
       <w>whitelist</w>
       <w>whitelisted</w>
     </words>

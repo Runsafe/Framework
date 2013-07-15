@@ -1,17 +1,15 @@
 package no.runsafe.framework.minecraft.network;
 
 import net.minecraft.server.v1_6_R2.*;
+import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
-import org.bukkit.craftbukkit.v1_6_R2.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_6_R2.entity.CraftPlayer;
 
 public class RunsafePacketSender
 {
 	public RunsafePacketSender(RunsafePlayer player)
 	{
-		EntityPlayer rawPlayer = ((CraftPlayer) player.getRaw()).getHandle();
-		this.playerConnection = rawPlayer.playerConnection;
+		this.playerConnection = ObjectUnwrapper.convert(player).playerConnection;
 	}
 
 	public void sendChatPacket(String message)
@@ -21,7 +19,7 @@ public class RunsafePacketSender
 
 	public void sendNamedEntitySpawnPacket(RunsafeEntity entity)
 	{
-		Entity rawEntity = ((CraftEntity) entity.getRaw()).getHandle();
+		Entity rawEntity = ObjectUnwrapper.convert(entity);
 		this.playerConnection.sendPacket(new Packet20NamedEntitySpawn((EntityHuman) rawEntity));
 	}
 
