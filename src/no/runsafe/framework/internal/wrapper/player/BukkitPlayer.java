@@ -58,7 +58,6 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 		return basePlayer.isOp();
 	}
 
-
 	public boolean isWhitelisted()
 	{
 		return basePlayer.isWhitelisted();

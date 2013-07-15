@@ -183,7 +183,7 @@ public abstract class BukkitEntity extends BukkitMetadata
 	private void dismountBeforeTeleport()
 	{
 		if(entity.getVehicle() != null)
-			entity.eject();
+			entity.getVehicle().eject();
 	}
 
 	protected final Entity entity;
