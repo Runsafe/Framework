@@ -2,19 +2,19 @@ package no.runsafe.framework.internal.wrapper;
 
 import no.runsafe.framework.api.minecraft.IInventoryHolder;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
+import no.runsafe.framework.internal.wrapper.item.BukkitItemStack;
+import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeTravelAgent;
 import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.block.*;
+import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.enchantment.RunsafeEnchantment;
 import no.runsafe.framework.minecraft.entity.*;
+import no.runsafe.framework.minecraft.inventory.*;
 import no.runsafe.framework.minecraft.item.meta.*;
 import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
-import no.runsafe.framework.internal.wrapper.item.BukkitItemStack;
-import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
-import no.runsafe.framework.minecraft.inventory.*;
-import no.runsafe.framework.minecraft.chunk.*;
 import org.bukkit.*;
 import org.bukkit.block.*;
 import org.bukkit.enchantments.Enchantment;
@@ -76,6 +76,9 @@ public final class ObjectWrapper
 	{
 		if (toWrap == null)
 			return null;
+
+		if (toWrap instanceof PlayerInventory)
+			return new RunsafePlayerInventory((PlayerInventory) toWrap);
 
 		if (toWrap instanceof AnvilInventory)
 			return new RunsafeAnvilInventory((AnvilInventory) toWrap);
