@@ -3,6 +3,7 @@ package no.runsafe.framework.minecraft;
 import com.google.common.collect.Lists;
 import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.hook.IPlayerLookupService;
+import no.runsafe.framework.api.hook.IPlayerPermissions;
 import no.runsafe.framework.internal.Debugger;
 import no.runsafe.framework.internal.HookEngine;
 import no.runsafe.framework.internal.wrapper.BukkitServer;
@@ -31,6 +32,22 @@ public class RunsafeServer extends BukkitServer
 	public IDebug getDebugger()
 	{
 		return debugger;
+	}
+
+	public List<String> getGroups()
+	{
+		List<IPlayerPermissions> hooks = HookEngine.hookContainer.getComponents(IPlayerPermissions.class);
+		List<String> groups = new ArrayList<String>();
+		if (hooks != null)
+		{
+			for (IPlayerPermissions hook : hooks)
+			{
+				List<String> hookGroups = hook.getGroups();
+				if (hookGroups != null)
+					groups.addAll(hookGroups);
+			}
+		}
+		return groups;
 	}
 
 	public RunsafePlayer getPlayer(String playerName)
