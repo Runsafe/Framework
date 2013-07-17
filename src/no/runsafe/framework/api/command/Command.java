@@ -145,9 +145,13 @@ public class Command implements ICommandHandler
 	}
 
 	@Override
-	public final Set<String> getSubCommands()
+	public final List<String> getSubCommands(ICommandExecutor executor)
 	{
-		return subCommands.keySet();
+		List<String> available = new ArrayList<String>();
+		for (String sub : subCommands.keySet())
+			if (subCommands.get(sub).isExecutable(executor))
+				available.add(sub);
+		return available;
 	}
 
 	/**

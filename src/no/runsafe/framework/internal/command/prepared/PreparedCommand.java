@@ -58,7 +58,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 			i++; // Arg taken by selecting subcommand
 		}
 		List<String> params = command.peek().getParameters();
-		Set<String> subcommands = command.peek().getSubCommands();
+		List<String> subcommands = command.peek().getSubCommands(executor);
 		boolean takeParams = params != null && !params.isEmpty();
 		boolean takeSub = subcommands != null && !subcommands.isEmpty();
 
@@ -101,7 +101,9 @@ public abstract class PreparedCommand implements IPreparedCommand
 		}
 
 		if (takeSub)
-			return filterList(command.peek().getSubCommands(), args[args.length - 1]);
+		{
+			return filterList(command.peek().getSubCommands(executor), args[args.length - 1]);
+		}
 
 		return null;
 /*
