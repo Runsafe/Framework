@@ -12,14 +12,15 @@ import org.bukkit.command.TabExecutor;
 import org.bukkit.craftbukkit.libs.joptsimple.internal.Strings;
 import org.bukkit.entity.Player;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * This class sits between bukkit and the command objects, routing the commands through to the framework objects.
  */
-public final class BukkitCommandExecutor implements TabExecutor
+public final class BukkitCommandTabExecutor implements TabExecutor
 {
-	public BukkitCommandExecutor(ICommandHandler command, ICommandExecutor console, IOutput logger)
+	public BukkitCommandTabExecutor(ICommandHandler command, ICommandExecutor console, IOutput logger)
 	{
 		this.command = command;
 		this.console = console;
@@ -63,7 +64,7 @@ public final class BukkitCommandExecutor implements TabExecutor
 
 	private List<String> tabCompleteCommand(CommandSender sender, String[] args)
 	{
-		IPreparedCommand preparedCommand = preparedCommand(sender, args);
+		IPreparedCommand preparedCommand = preparedCommand(sender, args, true);
 //		String permission = preparedCommand.getRequiredPermission();
 //		if (permission != null && !sender.hasPermission(permission))
 //			return null;
@@ -74,7 +75,7 @@ public final class BukkitCommandExecutor implements TabExecutor
 
 	private void executeCommand(CommandSender sender, String[] args)
 	{
-		IPreparedCommand preparedCommand = preparedCommand(sender, args);
+		IPreparedCommand preparedCommand = preparedCommand(sender, args, false);
 
 		String permission = preparedCommand.getRequiredPermission();
 		if (permission == null || sender.hasPermission(permission))
@@ -93,8 +94,10 @@ public final class BukkitCommandExecutor implements TabExecutor
 		}
 	}
 
-	private IPreparedCommand preparedCommand(CommandSender sender, String[] args)
+	private IPreparedCommand preparedCommand(CommandSender sender, String[] args, boolean skipLast)
 	{
+		if (skipLast)
+			args = Arrays.copyOfRange(args, 0, args.length - 1);
 		if (sender instanceof Player)
 			return this.command.prepare(ObjectWrapper.convert((Player) sender), args);
 		else

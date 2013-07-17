@@ -77,7 +77,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 		if (args.length > i + (params == null ? 0 : params.size()) + 1)
 			return null;
 
-		if (takeParams && args.length - i <= params.size())
+		if (takeParams && args.length - i > 0 &&  args.length - i <= params.size())
 		{
 			String param = params.get(args.length - i - 1);
 			List<String> matches;

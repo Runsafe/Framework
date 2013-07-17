@@ -4,7 +4,7 @@ import no.runsafe.framework.api.IConfiguration;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.internal.InjectionPlugin;
-import no.runsafe.framework.internal.command.BukkitCommandExecutor;
+import no.runsafe.framework.internal.command.BukkitCommandTabExecutor;
 import no.runsafe.framework.internal.configuration.ConfigurationEngine;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
@@ -44,9 +44,9 @@ public abstract class RunsafePlugin extends InjectionPlugin
 			if (command != null)
 			{
 				CommandExecutor executor = command.getExecutor();
-				if (executor instanceof BukkitCommandExecutor)
+				if (executor instanceof BukkitCommandTabExecutor)
 				{
-					BukkitCommandExecutor handler = (BukkitCommandExecutor) executor;
+					BukkitCommandTabExecutor handler = (BukkitCommandTabExecutor) executor;
 					return handler.getHandler();
 				}
 			}
