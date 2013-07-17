@@ -89,8 +89,8 @@ public abstract class PreparedCommand implements IPreparedCommand
 				matches = command.peek().getParameterOptions(params.get(args.length - i - 1));
 
 			RunsafeServer.Instance.getDebugger().fine(
-				"TabComplete: matches=%s, filter=%d",
-				matches, args[args.length - 1].isEmpty() ? 1 : 0
+				"TabComplete: param=%s, matches=%s, filter=%d",
+				params.get(args.length - i - 1), matches, args[args.length - 1].isEmpty() ? 1 : 0
 			);
 //			return args[args.length - 1].isEmpty() ? matches : filterList(matches, args[i + ]);
 		}
