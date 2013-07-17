@@ -50,6 +50,35 @@ public abstract class PreparedCommand implements IPreparedCommand
 	public List<String> tabComplete(String[] args)
 	{
 		String last = null;
+		int i = 0;
+		for (Command cmd : command)
+		{
+			if (cmd == command.peek())
+				break;
+			i += cmd.getParameters().size(); // Args taken by command
+			i++; // Arg taken by selecting subcommand
+		}
+		List<String> params = command.peek().getParameters();
+		Set<String> subcommands = command.peek().getSubCommands();
+		boolean takeParams = params != null && !params.isEmpty();
+		boolean takeSub = subcommands != null && !subcommands.isEmpty();
+
+		RunsafeServer.Instance.getDebugger()
+			.fine("TabComplete: params=%s/%d, sub=%s/%d", params, takeParams ? 1 : 0, subcommands, takeSub ? 1 : 0);
+
+		if (!takeParams && !takeSub)
+			return null;
+
+		if (!takeSub && args.length - i >= params.size())
+			return null;
+
+
+		if (takeSub && (!takeParams || args.length - i >= params.size()))
+		{
+			RunsafeServer.Instance.getDebugger().fine("Filter on: %s", args[i + (takeParams ? params.size() : 0)]);
+			return filterList(command.peek().getSubCommands(), args[i + (takeParams ? params.size() : 0)]);
+		}
+
 		for (String param : command.peek().getParameters())
 		{
 			if (last == null)
@@ -61,22 +90,39 @@ public abstract class PreparedCommand implements IPreparedCommand
 		RunsafeServer.Instance.getDebugger().fine("TabComplete: last=%s", last);
 		RunsafeServer.Instance.getDebugger().fine("TabComplete: param=%s", parameters.get(last));
 		RunsafeServer.Instance.getDebugger().fine("TabComplete: args=[%s]", Strings.join(args, ","));
+		String filter = "";
 		if (parameters.get(last) != null && !parameters.get(last).isEmpty())
 		{
-			Set<String> subs = command.peek().getSubCommands();
-			if (subs != null)
-				return Lists.newArrayList(subs);
-			return null;
+			if (args[args.length - 1].isEmpty())
+			{
+				Set<String> subs = command.peek().getSubCommands();
+				if (subs != null)
+					return Lists.newArrayList(subs);
+				return null;
+			}
+			else
+				filter = args[args.length - 1];
 		}
 		if (last != null)
 		{
 			if (last.equalsIgnoreCase("player"))
-				return getPlayers();
+				return filerList(getPlayers(), filter);
 
 			if (last.equalsIgnoreCase("world"))
-				return getWorlds();
+				return filterList(getWorlds(), filter);
 		}
-		return command.peek().getParameterOptions(last);
+		return filterList(command.peek().getParameterOptions(last), filter);
+	}
+
+	private List<String> filterList(Iterable<String> values, String filter)
+	{
+		if (filter == null || filter.isEmpty())
+			return Lists.newArrayList(values);
+		List<String> matches = new ArrayList<String>();
+		for (String value : values)
+			if (value.toLowerCase().startsWith(filter.toLowerCase()))
+				matches.add(value);
+		return matches;
 	}
 
 	private List<String> getPlayers()
