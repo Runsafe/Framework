@@ -57,6 +57,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 				break;
 			last = param;
 		}
+		RunsafeServer.Instance.getDebugger().fine("TabComplete: last=%s", last);
 		if (parameters.get(last) != null)
 		{
 			Set<String> subs = command.peek().getSubCommands();
