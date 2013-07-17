@@ -63,15 +63,18 @@ public abstract class PreparedCommand implements IPreparedCommand
 		boolean takeParams = params != null && !params.isEmpty();
 		boolean takeSub = subcommands != null && !subcommands.isEmpty();
 
-		RunsafeServer.Instance.getDebugger()
-			.fine("TabComplete: params=%s/%d, sub=%s/%d", params, takeParams ? 1 : 0, subcommands, takeSub ? 1 : 0);
+		RunsafeServer.Instance.getDebugger().fine(
+			"TabComplete: [taken %d, free %d] params=%s/%d, sub=%s/%d",
+			i, args.length - i,
+			params, takeParams ? 1 : 0,
+			subcommands, takeSub ? 1 : 0
+		);
 
 		if (!takeParams && !takeSub)
 			return null;
 
 		if (!takeSub && args.length - i >= params.size())
 			return null;
-
 
 		if (takeSub && (!takeParams || args.length - i >= params.size()))
 		{
