@@ -106,7 +106,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 		if (last != null)
 		{
 			if (last.equalsIgnoreCase("player"))
-				return filerList(getPlayers(), filter);
+				return filterList(getPlayers(), filter);
 
 			if (last.equalsIgnoreCase("world"))
 				return filterList(getWorlds(), filter);
