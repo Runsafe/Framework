@@ -6,7 +6,6 @@ import net.minecraft.server.v1_6_R2.NBTTagCompound;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.entity.BukkitProjectile;
 import no.runsafe.framework.minecraft.block.RunsafeBlock;
-import org.bukkit.craftbukkit.v1_6_R2.entity.CraftArrow;
 import org.bukkit.entity.Projectile;
 
 public class RunsafeProjectile extends BukkitProjectile

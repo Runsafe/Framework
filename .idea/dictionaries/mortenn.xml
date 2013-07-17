@@ -49,6 +49,7 @@
       <w>strikethrough</w>
       <w>subcommand</w>
       <w>subcommands</w>
+      <w>tabcomplete</w>
       <w>teleport</w>
       <w>unban</w>
       <w>unregister</w>

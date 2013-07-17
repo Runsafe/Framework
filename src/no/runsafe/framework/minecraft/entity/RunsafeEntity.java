@@ -1,7 +1,6 @@
 package no.runsafe.framework.minecraft.entity;
 
 import no.runsafe.framework.internal.wrapper.entity.BukkitEntity;
-import org.bukkit.craftbukkit.v1_6_R2.entity.CraftEntity;
 import org.bukkit.entity.Entity;
 
 public class RunsafeEntity extends BukkitEntity
