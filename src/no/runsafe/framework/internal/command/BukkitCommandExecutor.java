@@ -1,14 +1,15 @@
 package no.runsafe.framework.internal.command;
 
-import no.runsafe.framework.api.command.ICommandHandler;
-import no.runsafe.framework.api.command.IPreparedCommand;
-import no.runsafe.framework.text.ChatColour;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.command.ICommandExecutor;
+import no.runsafe.framework.api.command.ICommandHandler;
+import no.runsafe.framework.api.command.IPreparedCommand;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
+import no.runsafe.framework.text.ChatColour;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
+import org.bukkit.craftbukkit.libs.joptsimple.internal.Strings;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -56,6 +57,7 @@ public final class BukkitCommandExecutor implements TabExecutor
 	@Override
 	public List<String> onTabComplete(CommandSender commandSender, Command command, String alias, String[] args)
 	{
+		logger.fine("Handling tabcomplete for '/%s %s'", alias, Strings.join(args, " "));
 		return tabCompleteCommand(commandSender, args);
 	}
 

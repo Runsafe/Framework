@@ -8,10 +8,7 @@ import no.runsafe.framework.internal.command.prepared.PreparedSynchronousCommand
 import no.runsafe.framework.text.ChatColour;
 import org.apache.commons.lang.StringUtils;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -145,6 +142,12 @@ public class Command implements ICommandHandler
 			return subCommands.get(target);
 
 		return null;
+	}
+
+	@Override
+	public final Set<String> getSubCommands()
+	{
+		return subCommands.keySet();
 	}
 
 	/**

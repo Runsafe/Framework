@@ -3,6 +3,7 @@ package no.runsafe.framework.api.command;
 import no.runsafe.framework.api.IOutput;
 
 import java.util.List;
+import java.util.Set;
 
 public interface ICommandHandler
 {
@@ -15,4 +16,6 @@ public interface ICommandHandler
 	List<String> getParameterOptions(String parameter);
 
 	List<String> getParameters();
+
+	Set<String> getSubCommands();
 }

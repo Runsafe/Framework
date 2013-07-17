@@ -12,10 +12,7 @@ import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.apache.commons.lang.StringUtils;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 import java.util.regex.Pattern;
 
 public abstract class PreparedCommand implements IPreparedCommand
@@ -60,22 +57,43 @@ public abstract class PreparedCommand implements IPreparedCommand
 				break;
 			last = param;
 		}
-		if(last != null && last.equalsIgnoreCase("player") && executor instanceof RunsafePlayer)
-			return RunsafeServer.Instance.getOnlinePlayers((RunsafePlayer)executor, parameters.get("player"));
-		if(last != null && last.equalsIgnoreCase("world"))
-			return Lists.transform(
-				RunsafeServer.Instance.getWorlds(),
-				new Function<RunsafeWorld, String>()
-				{
-					@Override
-					public String apply(@Nullable RunsafeWorld runsafeWorld)
-					{
-						assert runsafeWorld != null;
-						return runsafeWorld.getName();
-					}
-				}
-			);
+		if (parameters.get(last) != null)
+		{
+			Set<String> subs = command.peek().getSubCommands();
+			if (subs != null)
+				return Lists.newArrayList(subs);
+			return null;
+		}
+		if (last != null)
+		{
+			if (last.equalsIgnoreCase("player"))
+				return getPlayers();
+
+			if (last.equalsIgnoreCase("world"))
+				return getWorlds();
+		}
 		return command.peek().getParameterOptions(last);
+	}
+
+	private List<String> getPlayers()
+	{
+		return RunsafeServer.Instance.getOnlinePlayers((RunsafePlayer) executor, parameters.get("player"));
+	}
+
+	private List<String> getWorlds()
+	{
+		return Lists.transform(
+			RunsafeServer.Instance.getWorlds(),
+			new Function<RunsafeWorld, String>()
+			{
+				@Override
+				public String apply(@Nullable RunsafeWorld runsafeWorld)
+				{
+					assert runsafeWorld != null;
+					return runsafeWorld.getName();
+				}
+			}
+		);
 	}
 
 	protected String usage(Command target)
