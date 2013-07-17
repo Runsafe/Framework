@@ -64,9 +64,9 @@ public final class BukkitCommandExecutor implements TabExecutor
 	private List<String> tabCompleteCommand(CommandSender sender, String[] args)
 	{
 		IPreparedCommand preparedCommand = preparedCommand(sender, args);
-		String permission = preparedCommand.getRequiredPermission();
-		if (permission != null && !sender.hasPermission(permission))
-			return null;
+//		String permission = preparedCommand.getRequiredPermission();
+//		if (permission != null && !sender.hasPermission(permission))
+//			return null;
 		List<String> options = preparedCommand.tabComplete(args);
 		logger.fine("Tab completion options to return: %s", options);
 		return options;
