@@ -10,7 +10,6 @@ import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.apache.commons.lang.StringUtils;
-import org.bukkit.craftbukkit.libs.joptsimple.internal.Strings;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -63,6 +62,9 @@ public abstract class PreparedCommand implements IPreparedCommand
 		boolean takeParams = params != null && !params.isEmpty();
 		boolean takeSub = subcommands != null && !subcommands.isEmpty();
 
+		// i = 0
+		// args.length - i = 1 - args.length = 1
+		// TabComplete: [taken 0, free 1] params=[player]/1, sub=[clear, set, list]/1
 		RunsafeServer.Instance.getDebugger().fine(
 			"TabComplete: [taken %d, free %d] params=%s/%d, sub=%s/%d",
 			i, args.length - i,
@@ -73,11 +75,22 @@ public abstract class PreparedCommand implements IPreparedCommand
 		if (!takeParams && !takeSub)
 			return null;
 
-		if (takeParams && args.length - i < params.size())
+		//  true          1             0    1
+		if (takeParams && args.length - i <= params.size())
 		{
-			return filterList(command.peek().getParameterOptions(params.get(args.length - i - 1)), args[args.length - 1]);
+			List<String> matches;
+			if (params.get(args.length - i - 1).equalsIgnoreCase("player"))
+				matches = getPlayers();
+
+			else if (params.get(args.length - i - 1).equalsIgnoreCase("world"))
+				matches = getWorlds();
+
+			else
+				matches = command.peek().getParameterOptions(params.get(args.length - i - 1));
+
+			return args[args.length - 1].isEmpty() ? matches : filterList(matches, args[args.length - 1]);
 		}
-		else if (takeSub)
+		if (takeSub)
 			return filterList(command.peek().getSubCommands(), args[i + (takeParams ? params.size() : 0)]);
 
 		return null;
