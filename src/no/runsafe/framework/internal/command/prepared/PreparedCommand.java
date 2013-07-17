@@ -12,7 +12,10 @@ import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.apache.commons.lang.StringUtils;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Stack;
 import java.util.regex.Pattern;
 
 public abstract class PreparedCommand implements IPreparedCommand
@@ -48,24 +51,20 @@ public abstract class PreparedCommand implements IPreparedCommand
 	@Override
 	public List<String> tabComplete(String[] args)
 	{
-		String last = null;
 		int i = 0;
 		for (Command cmd : command)
 		{
 			if (cmd == command.peek())
 				break;
 			i += cmd.getParameters().size(); // Args taken by command
-			i++; // Arg taken by selecting subcommand
+			i++; // Arg taken by selecting the next subcommand
 		}
 		List<String> params = command.peek().getParameters();
 		List<String> subcommands = command.peek().getSubCommands(executor);
 		boolean takeParams = params != null && !params.isEmpty();
 		boolean takeSub = subcommands != null && !subcommands.isEmpty();
 
-		// i = 0
-		// args.length - i = 1 - args.length = 1
-		// TabComplete: [taken 0, free 1] params=[player]/1, sub=[clear, set, list]/1
-		RunsafeServer.Instance.getDebugger().fine(
+		RunsafeServer.Instance.getDebugger().finer(
 			"TabComplete: [taken %d, free %d] params=%s/%d, sub=%s/%d",
 			i, args.length - i,
 			params, takeParams ? 1 : 0,
@@ -73,13 +72,11 @@ public abstract class PreparedCommand implements IPreparedCommand
 		);
 
 		if (!takeParams && !takeSub)
-			return null;
+			return Lists.newArrayList();
 
-		// Out of context
 		if (args.length > i + (params == null ? 0 : params.size()) + 1)
 			return null;
 
-		//  true          2             0    1
 		if (takeParams && args.length - i <= params.size())
 		{
 			String param = params.get(args.length - i - 1);
@@ -91,9 +88,12 @@ public abstract class PreparedCommand implements IPreparedCommand
 				matches = getWorlds();
 
 			else
+			{
 				matches = command.peek().getParameterOptions(param);
-
-			RunsafeServer.Instance.getDebugger().fine(
+				if (matches == null)
+					return Lists.newArrayList();
+			}
+			RunsafeServer.Instance.getDebugger().finer(
 				"TabComplete: param=%s, matches=%s, filter=%d",
 				param, matches, args[args.length - 1].isEmpty() ? 0 : 1
 			);
@@ -105,49 +105,8 @@ public abstract class PreparedCommand implements IPreparedCommand
 			return filterList(command.peek().getSubCommands(executor), args[args.length - 1]);
 		}
 
-		return null;
-/*
-		if (!takeSub && args.length - i >= params.size())
-			return null;
-
-		if (takeSub && (!takeParams || args.length - i >= params.size()))
-		{
-			RunsafeServer.Instance.getDebugger().fine("Filter on: %s", args[i + (takeParams ? params.size() : 0)]);
-		}
-
-		for (String param : command.peek().getParameters())
-		{
-			if (last == null)
-				last = param;
-			if (parameters.get(param) == null)
-				break;
-			last = param;
-		}
-		RunsafeServer.Instance.getDebugger().fine("TabComplete: last=%s", last);
-		RunsafeServer.Instance.getDebugger().fine("TabComplete: param=%s", parameters.get(last));
-		RunsafeServer.Instance.getDebugger().fine("TabComplete: args=[%s]", Strings.join(args, ","));
-		String filter = "";
-		if (parameters.get(last) != null && !parameters.get(last).isEmpty())
-		{
-			if (args[args.length - 1].isEmpty())
-			{
-				Set<String> subs = command.peek().getSubCommands();
-				if (subs != null)
-					return Lists.newArrayList(subs);
-				return null;
-			}
-			else
-				filter = args[args.length - 1];
-		}
-		if (last != null)
-		{
-			if (last.equalsIgnoreCase("player"))
-				return filterList(getPlayers(), filter);
-
-			if (last.equalsIgnoreCase("world"))
-				return filterList(getWorlds(), filter);
-		}
-		return filterList(command.peek().getParameterOptions(last), filter);*/
+		// If capturing tail - allow tab completion of names in final parameter
+		return command.peek().isCapturingTail() ? null : Lists.<String>newArrayList();
 	}
 
 	private List<String> filterList(Iterable<String> values, String filter)

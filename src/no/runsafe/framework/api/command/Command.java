@@ -171,6 +171,12 @@ public class Command implements ICommandHandler
 		captureTail = true;
 	}
 
+	@Override
+	public final boolean isCapturingTail()
+	{
+		return captureTail;
+	}
+
 	/**
 	 * Parses user input and returns a prepared command, ready to be executed
 	 *

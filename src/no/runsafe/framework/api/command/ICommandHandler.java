@@ -19,4 +19,6 @@ public interface ICommandHandler
 	List<String> getParameters();
 
 	List<String> getSubCommands(ICommandExecutor executor);
+
+	boolean isCapturingTail();
 }
