@@ -10,6 +10,7 @@ import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.apache.commons.lang.StringUtils;
+import org.bukkit.craftbukkit.libs.joptsimple.internal.Strings;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -58,7 +59,8 @@ public abstract class PreparedCommand implements IPreparedCommand
 			last = param;
 		}
 		RunsafeServer.Instance.getDebugger().fine("TabComplete: last=%s", last);
-		if (parameters.get(last) != null)
+		RunsafeServer.Instance.getDebugger().fine("TabComplete: args=[%s]", Strings.join(arguments,","));
+		if (parameters.get(last) != null && !parameters.get(last).isEmpty())
 		{
 			Set<String> subs = command.peek().getSubCommands();
 			if (subs != null)
