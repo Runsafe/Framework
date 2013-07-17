@@ -228,14 +228,14 @@ public class RunsafeServer extends BukkitServer
 
 	public List<String> getOnlinePlayers(RunsafePlayer context, String playerName)
 	{
-		List<RunsafePlayer> matches = matchPlayer(playerName);
-		if(matches == null || matches.isEmpty())
+		List<RunsafePlayer> matches = playerName == null || playerName.isEmpty() ? getOnlinePlayers() : matchPlayer(playerName);
+		if (matches == null || matches.isEmpty())
 			return Lists.newArrayList();
 
 		List<String> players = new ArrayList<String>();
-		for(RunsafePlayer player : matches)
+		for (RunsafePlayer player : matches)
 		{
-			if(context.shouldNotSee(player))
+			if (context.shouldNotSee(player))
 				continue;
 			players.add(player.getName());
 		}

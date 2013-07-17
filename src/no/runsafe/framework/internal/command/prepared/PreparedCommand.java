@@ -78,19 +78,20 @@ public abstract class PreparedCommand implements IPreparedCommand
 		//  true          1             0    1
 		if (takeParams && args.length - i <= params.size())
 		{
+			String param = params.get(args.length - i - 1);
 			List<String> matches;
-			if (params.get(args.length - i - 1).equalsIgnoreCase("player"))
+			if (param.equalsIgnoreCase("player"))
 				matches = getPlayers();
 
-			else if (params.get(args.length - i - 1).equalsIgnoreCase("world"))
+			else if (param.equalsIgnoreCase("world"))
 				matches = getWorlds();
 
 			else
-				matches = command.peek().getParameterOptions(params.get(args.length - i - 1));
+				matches = command.peek().getParameterOptions(param);
 
 			RunsafeServer.Instance.getDebugger().fine(
 				"TabComplete: param=%s, matches=%s, filter=%d",
-				params.get(args.length - i - 1), matches, args[args.length - 1].isEmpty() ? 1 : 0
+				param, matches, args[args.length - 1].isEmpty() ? 0 : 1
 			);
 //			return args[args.length - 1].isEmpty() ? matches : filterList(matches, args[i + ]);
 		}
