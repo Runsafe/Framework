@@ -73,13 +73,21 @@ public abstract class PreparedCommand implements IPreparedCommand
 		if (!takeParams && !takeSub)
 			return null;
 
+		if (takeParams && args.length - i < params.size())
+		{
+			return filterList(command.peek().getParameterOptions(params.get(args.length - i)), args[args.length - 1]);
+		}
+		else if (takeSub)
+			return filterList(command.peek().getSubCommands(), args[i + (takeParams ? params.size() : 0)]);
+
+		return null;
+/*
 		if (!takeSub && args.length - i >= params.size())
 			return null;
 
 		if (takeSub && (!takeParams || args.length - i >= params.size()))
 		{
 			RunsafeServer.Instance.getDebugger().fine("Filter on: %s", args[i + (takeParams ? params.size() : 0)]);
-			return filterList(command.peek().getSubCommands(), args[i + (takeParams ? params.size() : 0)]);
 		}
 
 		for (String param : command.peek().getParameters())
@@ -114,7 +122,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 			if (last.equalsIgnoreCase("world"))
 				return filterList(getWorlds(), filter);
 		}
-		return filterList(command.peek().getParameterOptions(last), filter);
+		return filterList(command.peek().getParameterOptions(last), filter);*/
 	}
 
 	private List<String> filterList(Iterable<String> values, String filter)
