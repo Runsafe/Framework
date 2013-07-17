@@ -47,7 +47,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 	}
 
 	@Override
-	public List<String> tabComplete()
+	public List<String> tabComplete(String[] args)
 	{
 		String last = null;
 		for (String param : command.peek().getParameters())
@@ -60,7 +60,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 		}
 		RunsafeServer.Instance.getDebugger().fine("TabComplete: last=%s", last);
 		RunsafeServer.Instance.getDebugger().fine("TabComplete: param=%s", parameters.get(last));
-		RunsafeServer.Instance.getDebugger().fine("TabComplete: args=[%s]", Strings.join(arguments, ","));
+		RunsafeServer.Instance.getDebugger().fine("TabComplete: args=[%s]", Strings.join(args, ","));
 		if (parameters.get(last) != null && !parameters.get(last).isEmpty())
 		{
 			Set<String> subs = command.peek().getSubCommands();

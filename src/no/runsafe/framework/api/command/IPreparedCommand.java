@@ -7,5 +7,5 @@ public interface IPreparedCommand
 {
 	String getRequiredPermission();
 	String execute();
-	List<String> tabComplete();
+	List<String> tabComplete(String[] args);
 }
