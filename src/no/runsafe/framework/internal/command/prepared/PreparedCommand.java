@@ -75,7 +75,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 
 		if (takeParams && args.length - i < params.size())
 		{
-			return filterList(command.peek().getParameterOptions(params.get(args.length - i)), args[args.length - 1]);
+			return filterList(command.peek().getParameterOptions(params.get(args.length - i - 1)), args[args.length - 1]);
 		}
 		else if (takeSub)
 			return filterList(command.peek().getSubCommands(), args[i + (takeParams ? params.size() : 0)]);
