@@ -75,7 +75,11 @@ public abstract class PreparedCommand implements IPreparedCommand
 		if (!takeParams && !takeSub)
 			return null;
 
-		//  true          1             0    1
+		// Out of context
+		if (args.length > i + (params == null ? 0 : params.size()) + 1)
+			return null;
+
+		//  true          2             0    1
 		if (takeParams && args.length - i <= params.size())
 		{
 			String param = params.get(args.length - i - 1);
@@ -93,10 +97,11 @@ public abstract class PreparedCommand implements IPreparedCommand
 				"TabComplete: param=%s, matches=%s, filter=%d",
 				param, matches, args[args.length - 1].isEmpty() ? 0 : 1
 			);
-//			return args[args.length - 1].isEmpty() ? matches : filterList(matches, args[i + ]);
+			return args[args.length - 1].isEmpty() ? matches : filterList(matches, args[args.length - 1]);
 		}
-//		if (takeSub)
-//			return filterList(command.peek().getSubCommands(), args[i + (takeParams ? params.size() : 0)]);
+
+		if (takeSub)
+			return filterList(command.peek().getSubCommands(), args[args.length - 1]);
 
 		return null;
 /*
