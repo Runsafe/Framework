@@ -88,10 +88,14 @@ public abstract class PreparedCommand implements IPreparedCommand
 			else
 				matches = command.peek().getParameterOptions(params.get(args.length - i - 1));
 
-			return args[args.length - 1].isEmpty() ? matches : filterList(matches, args[args.length - 1]);
+			RunsafeServer.Instance.getDebugger().fine(
+				"TabComplete: matches=%s, filter=%d",
+				matches, args[args.length - 1].isEmpty() ? 1 : 0
+			);
+//			return args[args.length - 1].isEmpty() ? matches : filterList(matches, args[i + ]);
 		}
-		if (takeSub)
-			return filterList(command.peek().getSubCommands(), args[i + (takeParams ? params.size() : 0)]);
+//		if (takeSub)
+//			return filterList(command.peek().getSubCommands(), args[i + (takeParams ? params.size() : 0)]);
 
 		return null;
 /*
