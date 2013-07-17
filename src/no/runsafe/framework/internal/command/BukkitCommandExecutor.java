@@ -6,12 +6,17 @@ import no.runsafe.framework.text.ChatColour;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
+
+import java.util.List;
 
 /**
  * This class sits between bukkit and the command objects, routing the commands through to the framework objects.
  */
-public final class BukkitCommandExecutor implements org.bukkit.command.CommandExecutor
+public final class BukkitCommandExecutor implements TabExecutor
 {
 	public BukkitCommandExecutor(ICommandHandler command, ICommandExecutor console, IOutput logger)
 	{
@@ -48,13 +53,24 @@ public final class BukkitCommandExecutor implements org.bukkit.command.CommandEx
 		return true;
 	}
 
-	private void executeCommand(org.bukkit.command.CommandSender sender, String[] args)
+	@Override
+	public List<String> onTabComplete(CommandSender commandSender, Command command, String alias, String[] args)
 	{
-		IPreparedCommand preparedCommand;
-		if (sender instanceof Player)
-			preparedCommand = this.command.prepare(ObjectWrapper.convert((Player) sender), args);
-		else
-			preparedCommand = this.command.prepare(console, args);
+		return tabCompleteCommand(commandSender, args);
+	}
+
+	private List<String> tabCompleteCommand(CommandSender sender, String[] args)
+	{
+		IPreparedCommand preparedCommand = preparedCommand(sender, args);
+		String permission = preparedCommand.getRequiredPermission();
+		if (permission != null && !sender.hasPermission(permission))
+			return null;
+		return preparedCommand.tabComplete();
+	}
+
+	private void executeCommand(CommandSender sender, String[] args)
+	{
+		IPreparedCommand preparedCommand = preparedCommand(sender, args);
 
 		String permission = preparedCommand.getRequiredPermission();
 		if (permission == null || sender.hasPermission(permission))
@@ -71,6 +87,14 @@ public final class BukkitCommandExecutor implements org.bukkit.command.CommandEx
 				)
 			);
 		}
+	}
+
+	private IPreparedCommand preparedCommand(CommandSender sender, String[] args)
+	{
+		if (sender instanceof Player)
+			return this.command.prepare(ObjectWrapper.convert((Player) sender), args);
+		else
+			return this.command.prepare(console, args);
 	}
 
 	private final ICommandHandler command;

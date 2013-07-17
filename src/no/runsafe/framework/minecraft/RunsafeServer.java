@@ -225,4 +225,20 @@ public class RunsafeServer extends BukkitServer
 
 	private final ConcurrentHashMap<String, RunsafePlayer> kickingPlayer = new ConcurrentHashMap<String, RunsafePlayer>();
 	private final Debugger debugger;
+
+	public List<String> getOnlinePlayers(RunsafePlayer context, String playerName)
+	{
+		List<RunsafePlayer> matches = matchPlayer(playerName);
+		if(matches == null || matches.isEmpty())
+			return Lists.newArrayList();
+
+		List<String> players = new ArrayList<String>();
+		for(RunsafePlayer player : matches)
+		{
+			if(context.shouldNotSee(player))
+				continue;
+			players.add(player.getName());
+		}
+		return players;
+	}
 }

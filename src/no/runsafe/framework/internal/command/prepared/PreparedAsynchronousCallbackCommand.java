@@ -58,7 +58,6 @@ public final class PreparedAsynchronousCallbackCommand extends PreparedCommand
 									{
 										RunsafeServer.Instance.getDebugger().logException(e);
 									}
-
 								}
 							}, 1L
 						);

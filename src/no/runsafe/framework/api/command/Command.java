@@ -193,9 +193,16 @@ public class Command implements ICommandHandler
 		this.console = console;
 	}
 
+	@Override
 	public List<String> getParameterOptions(String parameter)
 	{
 		return null;
+	}
+
+	@Override
+	public List<String> getParameters()
+	{
+		return argumentList;
 	}
 
 	private IPreparedCommand prepare(ICommandExecutor executor, HashMap<String, String> params, String[] args, Stack<Command> stack)

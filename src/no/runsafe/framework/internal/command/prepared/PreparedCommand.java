@@ -1,13 +1,20 @@
 package no.runsafe.framework.internal.command.prepared;
 
-import no.runsafe.framework.api.command.IPreparedCommand;
+import com.google.common.base.Function;
+import com.google.common.collect.Lists;
 import no.runsafe.framework.api.command.Command;
-import no.runsafe.framework.api.command.IContextPermissionProvider;
 import no.runsafe.framework.api.command.ICommandExecutor;
+import no.runsafe.framework.api.command.IContextPermissionProvider;
+import no.runsafe.framework.api.command.IPreparedCommand;
+import no.runsafe.framework.minecraft.RunsafeServer;
+import no.runsafe.framework.minecraft.RunsafeWorld;
+import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.apache.commons.lang.StringUtils;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Stack;
 import java.util.regex.Pattern;
 
@@ -39,6 +46,36 @@ public abstract class PreparedCommand implements IPreparedCommand
 		if (requiredPermission == null || paramPermission.matcher(requiredPermission).matches())
 			return null;
 		return requiredPermission;
+	}
+
+	@Override
+	public List<String> tabComplete()
+	{
+		String last = null;
+		for (String param : command.peek().getParameters())
+		{
+			if (last == null)
+				last = param;
+			if (parameters.get(param) == null)
+				break;
+			last = param;
+		}
+		if(last != null && last.equalsIgnoreCase("player") && executor instanceof RunsafePlayer)
+			return RunsafeServer.Instance.getOnlinePlayers((RunsafePlayer)executor, parameters.get("player"));
+		if(last != null && last.equalsIgnoreCase("world"))
+			return Lists.transform(
+				RunsafeServer.Instance.getWorlds(),
+				new Function<RunsafeWorld, String>()
+				{
+					@Override
+					public String apply(@Nullable RunsafeWorld runsafeWorld)
+					{
+						assert runsafeWorld != null;
+						return runsafeWorld.getName();
+					}
+				}
+			);
+		return command.peek().getParameterOptions(last);
 	}
 
 	protected String usage(Command target)
