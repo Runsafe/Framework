@@ -182,6 +182,9 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 
 	public boolean shouldNotSee(RunsafePlayer target)
 	{
+		if (target.getName().equals(getName()))
+			return false;
+
 		List<IPlayerVisibility> visibilityHooks = HookEngine.hookContainer.getComponents(IPlayerVisibility.class);
 		if (visibilityHooks.isEmpty())
 			return false;
@@ -283,7 +286,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 
 	public void clearInventory()
 	{
-		if(player == null)
+		if (player == null)
 			return;
 
 		player.getInventory().clear();
