@@ -10,6 +10,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.YamlConfiguration;
 
+import javax.annotation.Nullable;
 import java.io.File;
 import java.util.logging.Level;
 
@@ -36,6 +37,7 @@ public abstract class RunsafePlugin extends InjectionPlugin
 		debugLevel = consoleDebug;
 	}
 
+	@Nullable
 	public static ICommandHandler getPluginCommand(String name)
 	{
 		for (String plugin : Instances.keySet())
@@ -65,7 +67,7 @@ public abstract class RunsafePlugin extends InjectionPlugin
 			output.setDebugLevel(debugLevel);
 		output.fine("Standard components added.");
 
-		this.PluginSetup();
+		PluginSetup();
 		output.fine("Plugin setup performed.");
 
 		output.outputDebugToConsole("Initiation complete", Level.FINE);

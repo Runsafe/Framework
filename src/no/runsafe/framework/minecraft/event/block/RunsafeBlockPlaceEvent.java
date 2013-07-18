@@ -3,6 +3,7 @@ package no.runsafe.framework.minecraft.event.block;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.event.block.BlockPlaceEvent;
 
 public class RunsafeBlockPlaceEvent extends RunsafeCancellableBlockEvent
@@ -24,6 +25,7 @@ public class RunsafeBlockPlaceEvent extends RunsafeCancellableBlockEvent
 		event.setBuild(canBuild);
 	}
 
+	@Override
 	public RunsafeBlock getBlock()
 	{
 		return ObjectWrapper.convert(event.getBlock());
@@ -41,7 +43,7 @@ public class RunsafeBlockPlaceEvent extends RunsafeCancellableBlockEvent
 
 	public RunsafePlayer getPlayer()
 	{
-		return ObjectWrapper.convert(event.getPlayer());
+		return ObjectWrapper.convert((OfflinePlayer) event.getPlayer());
 	}
 
 	private final BlockPlaceEvent event;

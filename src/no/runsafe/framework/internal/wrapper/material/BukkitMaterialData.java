@@ -5,7 +5,6 @@ import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.material.MaterialData;
 
-@SuppressWarnings("deprecation")
 public abstract class BukkitMaterialData
 {
 	protected BukkitMaterialData(MaterialData toWrap)
@@ -25,22 +24,22 @@ public abstract class BukkitMaterialData
 
 	public byte getData()
 	{
-		return this.materialData.getData();
+		return materialData.getData();
 	}
 
 	public void setData(byte data)
 	{
-		this.materialData.setData(data);
+		materialData.setData(data);
 	}
 
 	public RunsafeMeta toItemStack()
 	{
-		return ObjectWrapper.convert(this.materialData.toItemStack());
+		return ObjectWrapper.convert(materialData.toItemStack());
 	}
 
 	public RunsafeMeta toItemStack(int amount)
 	{
-		return ObjectWrapper.convert(this.materialData.toItemStack(amount));
+		return ObjectWrapper.convert(materialData.toItemStack(amount));
 	}
 
 	protected final MaterialData materialData;

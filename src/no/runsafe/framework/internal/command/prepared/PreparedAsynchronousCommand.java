@@ -7,13 +7,13 @@ import no.runsafe.framework.api.command.ExecutableCommand;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.minecraft.RunsafeServer;
 
-import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 public final class PreparedAsynchronousCommand extends PreparedCommand
 {
 	public PreparedAsynchronousCommand(
-		ICommandExecutor executor, Stack<Command> definingCommand, String[] args, HashMap<String, String> parameters)
+		ICommandExecutor executor, Stack<Command> definingCommand, String[] args, Map<String, String> parameters)
 	{
 		super(executor, definingCommand, args, parameters);
 	}
@@ -33,7 +33,7 @@ public final class PreparedAsynchronousCommand extends PreparedCommand
 
 	public String executeDirect()
 	{
-		final AsyncCommand target = (AsyncCommand) command.peek();
+		AsyncCommand target = (AsyncCommand) command.peek();
 		return target.OnAsyncExecute(executor, parameters, arguments);
 	}
 

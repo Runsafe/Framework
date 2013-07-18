@@ -24,6 +24,7 @@ public abstract class TimerFactory<T>
 	 *
 	 * @param state The state object given to create
 	 */
+	@SuppressWarnings("NoopMethodInAbstractClass")
 	public void OnTimerStarted(T state)
 	{
 	}
@@ -42,13 +43,14 @@ public abstract class TimerFactory<T>
 	 *
 	 * @param state The state object given to create
 	 */
+	@SuppressWarnings("NoopMethodInAbstractClass")
 	public void OnTimerCompleted(T state)
 	{
 	}
 
 	private final class StateHolder implements Runnable
 	{
-		public StateHolder(TimerFactory<T> factory, T state)
+		private StateHolder(TimerFactory<T> factory, T state)
 		{
 			this.factory = factory;
 			this.state = state;
@@ -65,7 +67,7 @@ public abstract class TimerFactory<T>
 		private final TimerFactory<T> factory;
 	}
 
-	private void ScheduleCompletion(final T state)
+	void ScheduleCompletion(final T state)
 	{
 		scheduler.startSyncTask(
 			new Runnable()

@@ -1,6 +1,6 @@
 package no.runsafe.framework.api.command;
 
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Base class representing a command that has an implementation that can be executed
@@ -28,7 +28,7 @@ public abstract class ExecutableCommand extends Command
 	 * @param arguments  Tailing arguments not asked for in the command definition
 	 * @return Message to show to the user running the command
 	 */
-	public String OnExecute(ICommandExecutor executor, HashMap<String, String> parameters, String[] arguments)
+	public String OnExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
 	{
 		return OnExecute(executor, parameters);
 	}
@@ -41,5 +41,5 @@ public abstract class ExecutableCommand extends Command
 	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
 	 * @return Message to show to the user running the command
 	 */
-	protected abstract String OnExecute(ICommandExecutor executor, HashMap<String, String> parameters);
+	protected abstract String OnExecute(ICommandExecutor executor, Map<String, String> parameters);
 }

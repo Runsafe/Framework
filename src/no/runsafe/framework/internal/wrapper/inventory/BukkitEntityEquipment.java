@@ -16,27 +16,27 @@ public abstract class BukkitEntityEquipment
 
 	public RunsafeMeta getItemInHand()
 	{
-		return ObjectWrapper.convert(this.entityEquipment.getItemInHand());
+		return ObjectWrapper.convert(entityEquipment.getItemInHand());
 	}
 
 	public RunsafeMeta getHelmet()
 	{
-		return ObjectWrapper.convert(this.entityEquipment.getHelmet());
+		return ObjectWrapper.convert(entityEquipment.getHelmet());
 	}
 
 	public RunsafeMeta getChestplate()
 	{
-		return ObjectWrapper.convert(this.entityEquipment.getChestplate());
+		return ObjectWrapper.convert(entityEquipment.getChestplate());
 	}
 
 	public RunsafeMeta getLeggings()
 	{
-		return ObjectWrapper.convert(this.entityEquipment.getLeggings());
+		return ObjectWrapper.convert(entityEquipment.getLeggings());
 	}
 
 	public RunsafeMeta getBoots()
 	{
-		return ObjectWrapper.convert(this.entityEquipment.getBoots());
+		return ObjectWrapper.convert(entityEquipment.getBoots());
 	}
 
 	public List<RunsafeMeta> getArmorContents()
@@ -46,37 +46,37 @@ public abstract class BukkitEntityEquipment
 
 	public float getItemInHandDropChance()
 	{
-		return this.entityEquipment.getItemInHandDropChance();
+		return entityEquipment.getItemInHandDropChance();
 	}
 
 	public float getHelmetDropChance()
 	{
-		return this.entityEquipment.getHelmetDropChance();
+		return entityEquipment.getHelmetDropChance();
 	}
 
 	public float getChestplateDropChance()
 	{
-		return this.entityEquipment.getChestplateDropChance();
+		return entityEquipment.getChestplateDropChance();
 	}
 
 	public float getLeggingsDropChance()
 	{
-		return this.entityEquipment.getLeggingsDropChance();
+		return entityEquipment.getLeggingsDropChance();
 	}
 
 	public float getBootsDropChance()
 	{
-		return this.entityEquipment.getBootsDropChance();
+		return entityEquipment.getBootsDropChance();
 	}
 
 	public void clear()
 	{
-		this.entityEquipment.clear();
+		entityEquipment.clear();
 	}
 
 	public RunsafeEntity getHolder()
 	{
-		return ObjectWrapper.convert(this.entityEquipment.getHolder());
+		return ObjectWrapper.convert(entityEquipment.getHolder());
 	}
 
 	public EntityEquipment getRaw()

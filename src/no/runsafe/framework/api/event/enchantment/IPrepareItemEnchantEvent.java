@@ -5,5 +5,5 @@ import no.runsafe.framework.minecraft.event.enchantment.RunsafePrepareItemEnchan
 
 public interface IPrepareItemEnchantEvent extends IRunsafeEvent
 {
-	public void OnPrepareItemEnchantEvent(RunsafePrepareItemEnchantEvent event);
+	void OnPrepareItemEnchantEvent(RunsafePrepareItemEnchantEvent event);
 }

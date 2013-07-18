@@ -7,13 +7,14 @@ import no.runsafe.framework.api.EventRouterFactory;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.api.IScheduler;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.SignChangeEvent;
 
 public final class SignChange extends EventRouterBase<ISignChange, SignChangeEvent>
 {
-	private SignChange(IOutput output, IScheduler scheduler, ISignChange handler)
+	SignChange(IOutput output, IScheduler scheduler, ISignChange handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -29,7 +30,7 @@ public final class SignChange extends EventRouterBase<ISignChange, SignChangeEve
 	public boolean onEvent(SignChangeEvent event)
 	{
 		return handler.OnSignChange(
-			ObjectWrapper.convert(event.getPlayer()),
+			ObjectWrapper.convert((OfflinePlayer) event.getPlayer()),
 			ObjectWrapper.convert(event.getBlock()),
 			event.getLines()
 		);

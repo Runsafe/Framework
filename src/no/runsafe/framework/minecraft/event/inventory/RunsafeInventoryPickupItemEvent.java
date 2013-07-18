@@ -11,17 +11,17 @@ public class RunsafeInventoryPickupItemEvent extends RunsafeCancellableEvent
 	public RunsafeInventoryPickupItemEvent(InventoryPickupItemEvent toWrap)
 	{
 		super(toWrap);
-		this.event = toWrap;
+		event = toWrap;
 	}
 
 	public RunsafeInventory getInventory()
 	{
-		return ObjectWrapper.convert(this.event.getInventory());
+		return ObjectWrapper.convert(event.getInventory());
 	}
 
 	public RunsafeItem getItem()
 	{
-		return ObjectWrapper.convert(this.event.getItem());
+		return ObjectWrapper.convert(event.getItem());
 	}
 
 	private final InventoryPickupItemEvent event;

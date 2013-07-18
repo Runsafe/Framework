@@ -2,8 +2,12 @@ package no.runsafe.framework.minecraft;
 
 import org.bukkit.FireworkEffect;
 
-public class Firework
+public final class Firework
 {
+	private Firework()
+	{
+	}
+
 	public enum EffectType
 	{
 		Ball(FireworkEffect.Type.BALL),

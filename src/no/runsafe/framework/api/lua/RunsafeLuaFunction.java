@@ -16,7 +16,7 @@ public abstract class RunsafeLuaFunction extends Function
 			parameters.addParameter(args.checkvalue(currentIndex));
 			currentIndex += 1;
 		}
-		return this.objectListToVarargs(this.run(parameters));
+		return objectListToVarargs(run(parameters));
 	}
 
 	public abstract List<Object> run(FunctionParameters parameters);

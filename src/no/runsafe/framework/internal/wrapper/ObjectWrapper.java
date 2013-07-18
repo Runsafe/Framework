@@ -4,6 +4,7 @@ import no.runsafe.framework.api.minecraft.IInventoryHolder;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.internal.wrapper.item.BukkitItemStack;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
+import no.runsafe.framework.internal.wrapper.player.BukkitPlayer;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeTravelAgent;
 import no.runsafe.framework.minecraft.RunsafeWorld;
@@ -25,53 +26,78 @@ import org.bukkit.inventory.meta.*;
 import org.bukkit.material.MaterialData;
 import org.bukkit.metadata.Metadatable;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
+@SuppressWarnings({"ChainOfInstanceofChecks", "UnnecessaryFullyQualifiedName", "OverlyComplexClass", "OverlyCoupledClass"})
 public final class ObjectWrapper
 {
+	private ObjectWrapper()
+	{
+	}
+
+	@Nullable
 	@SuppressWarnings("unchecked")
-	public static <Wrapper> List<Wrapper> convert(List<?> toWrap)
+	public static <Wrapper> List<Wrapper> convert(Collection<?> toWrap)
 	{
 		if (toWrap == null)
 			return null;
 
-		ArrayList<Wrapper> results = new ArrayList<Wrapper>();
+		List<Wrapper> results = new ArrayList<Wrapper>();
 		for (Object item : toWrap)
 		{
 			if (item instanceof Metadatable)
 				results.add((Wrapper) convert((Metadatable) item));
 			else if (item instanceof ItemStack)
 				results.add((Wrapper) convert((ItemStack) item));
+			else if (item instanceof OfflinePlayer)
+				results.add((Wrapper) convert((OfflinePlayer) item));
 		}
 		return results;
 	}
 
+	@Nullable
 	@SuppressWarnings("unchecked")
-	public static <Wrapper extends BukkitMetadata, Raw extends Metadatable> List<Wrapper> convert(Raw[] toWrap)
+	public static <Wrapper extends BukkitPlayer, Raw extends OfflinePlayer> List<Wrapper> convert(Raw... toWrap)
 	{
 		if (toWrap == null)
 			return null;
 
-		ArrayList<Wrapper> results = new ArrayList<Wrapper>();
+		List<Wrapper> results = new ArrayList<Wrapper>();
 		for (Raw item : toWrap)
 			results.add((Wrapper) convert(item));
 		return results;
 	}
 
 	@SuppressWarnings("unchecked")
-	public static <Wrapper extends BukkitItemStack, Raw extends ItemStack> List<Wrapper> convert(Raw[] toWrap)
+	@Nullable
+	public static <Wrapper extends BukkitMetadata, Raw extends Metadatable> List<Wrapper> convert(Raw... toWrap)
 	{
 		if (toWrap == null)
 			return null;
 
-		ArrayList<Wrapper> results = new ArrayList<Wrapper>();
+		List<Wrapper> results = new ArrayList<Wrapper>();
 		for (Raw item : toWrap)
 			results.add((Wrapper) convert(item));
 		return results;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Nullable
+	public static <Wrapper extends BukkitItemStack, Raw extends ItemStack> List<Wrapper> convert(Raw... toWrap)
+	{
+		if (toWrap == null)
+			return null;
+
+		List<Wrapper> results = new ArrayList<Wrapper>();
+		for (Raw item : toWrap)
+			results.add((Wrapper) convert(item));
+		return results;
+	}
+
+	@Nullable
 	public static RunsafeInventory convert(Inventory toWrap)
 	{
 		if (toWrap == null)
@@ -86,6 +112,7 @@ public final class ObjectWrapper
 		return new RunsafeInventory(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeEntityEquipment convert(EntityEquipment toWrap)
 	{
 		if (toWrap == null)
@@ -94,6 +121,7 @@ public final class ObjectWrapper
 		return new RunsafeEntityEquipment(toWrap);
 	}
 
+	@Nullable
 	public static no.runsafe.framework.minecraft.Item convert(Material toWrap)
 	{
 		if (toWrap == null)
@@ -101,6 +129,7 @@ public final class ObjectWrapper
 		return no.runsafe.framework.minecraft.Item.get(toWrap, (byte) 0);
 	}
 
+	@Nullable
 	public static RunsafeChunk convert(Chunk toWrap)
 	{
 		if (toWrap == null)
@@ -108,6 +137,7 @@ public final class ObjectWrapper
 		return new RunsafeChunk(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeMaterialData convert(MaterialData toWrap)
 	{
 		if (toWrap == null)
@@ -115,28 +145,29 @@ public final class ObjectWrapper
 		return new RunsafeMaterialData(toWrap);
 	}
 
-	public static List<RunsafePlayer> convert(OfflinePlayer[] toWrap)
-	{
-		if (toWrap == null)
-			return null;
+//	public static List<RunsafePlayer> convert(OfflinePlayer[] toWrap)
+//	{
+//		if (toWrap == null)
+//			return null;
+//
+//		List<RunsafePlayer> results = new ArrayList<RunsafePlayer>();
+//		for (OfflinePlayer player : toWrap)
+//			results.add(new RunsafePlayer(player));
+//		return results;
+//	}
 
-		ArrayList<RunsafePlayer> results = new ArrayList<RunsafePlayer>();
-		for (OfflinePlayer player : toWrap)
-			results.add(new RunsafePlayer(player));
-		return results;
-	}
+//	public static List<RunsafePlayer> convert(Iterable<? extends OfflinePlayer> toWrap)
+//	{
+//		if (toWrap == null)
+//			return null;
+//
+//		List<RunsafePlayer> results = new ArrayList<RunsafePlayer>();
+//		for (OfflinePlayer player : toWrap)
+//			results.add(new RunsafePlayer(player));
+//		return results;
+//	}
 
-	public static List<RunsafePlayer> convert(Set<? extends OfflinePlayer> toWrap)
-	{
-		if (toWrap == null)
-			return null;
-
-		ArrayList<RunsafePlayer> results = new ArrayList<RunsafePlayer>();
-		for (OfflinePlayer player : toWrap)
-			results.add(new RunsafePlayer(player));
-		return results;
-	}
-
+	@Nullable
 	public static BukkitMetadata convert(Metadatable toWrap)
 	{
 		if (toWrap == null)
@@ -157,6 +188,7 @@ public final class ObjectWrapper
 		return new BukkitMetadata(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeBlock convert(Block toWrap)
 	{
 		if (toWrap == null)
@@ -166,6 +198,7 @@ public final class ObjectWrapper
 		return new RunsafeBlock(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeBlockState convert(BlockState toWrap)
 	{
 		if (toWrap == null)
@@ -201,6 +234,7 @@ public final class ObjectWrapper
 		return new RunsafeBlockState(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeBrewingStand convert(BrewingStand toWrap)
 	{
 		if (toWrap == null)
@@ -208,6 +242,7 @@ public final class ObjectWrapper
 		return new RunsafeBrewingStand(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeChest convert(Chest toWrap)
 	{
 		if (toWrap == null)
@@ -215,6 +250,7 @@ public final class ObjectWrapper
 		return new RunsafeChest(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeDoubleChest convert(DoubleChest toWrap)
 	{
 		if (toWrap == null)
@@ -222,6 +258,7 @@ public final class ObjectWrapper
 		return new RunsafeDoubleChest(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeCreatureSpawner convert(CreatureSpawner toWrap)
 	{
 		if (toWrap == null)
@@ -229,6 +266,7 @@ public final class ObjectWrapper
 		return new RunsafeCreatureSpawner(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeDispenser convert(Dispenser toWrap)
 	{
 		if (toWrap == null)
@@ -236,6 +274,7 @@ public final class ObjectWrapper
 		return new RunsafeDispenser(toWrap);
 	}
 
+	@Nullable
 	public static RunsafePlayerInventory convert(PlayerInventory toWrap)
 	{
 		if (toWrap == null)
@@ -243,6 +282,7 @@ public final class ObjectWrapper
 		return new RunsafePlayerInventory(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeFurnace convert(Furnace toWrap)
 	{
 		if (toWrap == null)
@@ -250,6 +290,7 @@ public final class ObjectWrapper
 		return new RunsafeFurnace(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeJukebox convert(Jukebox toWrap)
 	{
 		if (toWrap == null)
@@ -257,6 +298,7 @@ public final class ObjectWrapper
 		return new RunsafeJukebox(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeFallingBlock convert(FallingBlock toWrap)
 	{
 		if (toWrap == null)
@@ -265,6 +307,7 @@ public final class ObjectWrapper
 		return new RunsafeFallingBlock(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeNoteBlock convert(NoteBlock toWrap)
 	{
 		if (toWrap == null)
@@ -272,6 +315,7 @@ public final class ObjectWrapper
 		return new RunsafeNoteBlock(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeSign convert(Sign toWrap)
 	{
 		if (toWrap == null)
@@ -279,13 +323,14 @@ public final class ObjectWrapper
 		return new RunsafeSign(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeEntity convert(Entity toWrap)
 	{
 		if (toWrap == null)
 			return null;
 
 		if (toWrap instanceof Player)
-			return convert((Player) toWrap);
+			return convert((OfflinePlayer) toWrap);
 
 		if (toWrap instanceof Painting)
 			return convert((Painting) toWrap);
@@ -305,20 +350,23 @@ public final class ObjectWrapper
 		return new RunsafeEntity(toWrap);
 	}
 
-	public static RunsafePlayer convert(Player toWrap)
+	@Nullable
+	public static RunsafePlayer convert(OfflinePlayer toWrap)
 	{
 		if (toWrap == null)
 			return null;
 		return new RunsafePlayer(toWrap);
 	}
 
+	@Nullable
 	public static RunsafePlayer convert(HumanEntity toWrap)
 	{
 		if (toWrap == null)
 			return null;
-		return new RunsafePlayer((Player) toWrap);
+		return new RunsafePlayer((OfflinePlayer) toWrap);
 	}
 
+	@Nullable
 	public static RunsafePainting convert(Painting toWrap)
 	{
 		if (toWrap == null)
@@ -326,6 +374,7 @@ public final class ObjectWrapper
 		return new RunsafePainting(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeItemFrame convert(ItemFrame toWrap)
 	{
 		if (toWrap == null)
@@ -333,6 +382,7 @@ public final class ObjectWrapper
 		return new RunsafeItemFrame(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeLivingEntity convert(org.bukkit.entity.LivingEntity toWrap)
 	{
 		if (toWrap == null)
@@ -340,6 +390,7 @@ public final class ObjectWrapper
 		return new RunsafeLivingEntity(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeProjectile convert(Projectile toWrap)
 	{
 		if (toWrap == null)
@@ -347,6 +398,7 @@ public final class ObjectWrapper
 		return new RunsafeProjectile(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeFish convert(Fish toWrap)
 	{
 		if (toWrap == null)
@@ -354,6 +406,7 @@ public final class ObjectWrapper
 		return new RunsafeFish(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeWorld convert(World toWrap)
 	{
 		if (toWrap == null)
@@ -361,6 +414,7 @@ public final class ObjectWrapper
 		return new RunsafeWorld(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeLocation convert(Location toWrap)
 	{
 		if (toWrap == null)
@@ -368,6 +422,7 @@ public final class ObjectWrapper
 		return new RunsafeLocation(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeItem convert(Item toWrap)
 	{
 		if (toWrap == null)
@@ -375,6 +430,7 @@ public final class ObjectWrapper
 		return new RunsafeItem(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeMeta convert(ItemStack toWrap)
 	{
 		if (toWrap == null)
@@ -397,6 +453,7 @@ public final class ObjectWrapper
 		return new RunsafeMeta(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeEnchantment convert(Enchantment toWrap)
 	{
 		if (toWrap == null)
@@ -409,6 +466,7 @@ public final class ObjectWrapper
 		return RunsafeInventoryType.valueOf(toWrap.name());
 	}
 
+	@Nullable
 	public static RunsafeInventoryView convert(InventoryView toWrap)
 	{
 		if (toWrap == null)
@@ -416,6 +474,7 @@ public final class ObjectWrapper
 		return new RunsafeInventoryView(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeTravelAgent convert(TravelAgent toWrap)
 	{
 		if (toWrap == null)
@@ -423,6 +482,7 @@ public final class ObjectWrapper
 		return new RunsafeTravelAgent(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeHopper convert(Hopper toWrap)
 	{
 		if (toWrap == null)
@@ -431,6 +491,7 @@ public final class ObjectWrapper
 		return new RunsafeHopper(toWrap);
 	}
 
+	@Nullable
 	public static RunsafeDropper convert(Dropper toWrap)
 	{
 		if (toWrap == null)
@@ -439,6 +500,7 @@ public final class ObjectWrapper
 		return new RunsafeDropper(toWrap);
 	}
 
+	@Nullable
 	public static IInventoryHolder convert(InventoryHolder toWrap)
 	{
 		if (toWrap == null)
@@ -456,12 +518,13 @@ public final class ObjectWrapper
 		if (toWrap instanceof DoubleChest)
 			return convert((DoubleChest) toWrap);
 		if (toWrap instanceof Player)
-			return convert((Player) toWrap);
+			return convert((OfflinePlayer) toWrap);
 		if (toWrap instanceof Dropper)
 			return convert((Dropper) toWrap);
 		return null;
 	}
 
+	@Nullable
 	public static RunsafeEntityType convert(org.bukkit.entity.EntityType type)
 	{
 		if (type == null)

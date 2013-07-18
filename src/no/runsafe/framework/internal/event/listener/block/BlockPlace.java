@@ -7,13 +7,14 @@ import no.runsafe.framework.api.EventRouterFactory;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.api.IScheduler;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 
 public final class BlockPlace extends EventRouterBase<IBlockPlace, BlockPlaceEvent>
 {
-	private BlockPlace(IOutput output, IScheduler scheduler, IBlockPlace handler)
+	BlockPlace(IOutput output, IScheduler scheduler, IBlockPlace handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -29,7 +30,7 @@ public final class BlockPlace extends EventRouterBase<IBlockPlace, BlockPlaceEve
 	public boolean onEvent(BlockPlaceEvent event)
 	{
 		return handler.OnBlockPlace(
-			ObjectWrapper.convert(event.getPlayer()),
+			ObjectWrapper.convert((OfflinePlayer) event.getPlayer()),
 			ObjectWrapper.convert(event.getBlock())
 		);
 	}

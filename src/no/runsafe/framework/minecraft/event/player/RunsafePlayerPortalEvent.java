@@ -9,27 +9,27 @@ public class RunsafePlayerPortalEvent extends RunsafePlayerTeleportEvent
 	public RunsafePlayerPortalEvent(PlayerPortalEvent toWrap)
 	{
 		super(toWrap);
-		this.event = toWrap;
+		event = toWrap;
 	}
 
 	public void useTravelAgent(boolean useTravelAgent)
 	{
-		this.event.useTravelAgent(useTravelAgent);
+		event.useTravelAgent(useTravelAgent);
 	}
 
 	public boolean useTravelAgent()
 	{
-		return this.event.useTravelAgent();
+		return event.useTravelAgent();
 	}
 
 	public RunsafeTravelAgent getPortalTravelAgent()
 	{
-		return ObjectWrapper.convert(this.event.getPortalTravelAgent());
+		return ObjectWrapper.convert(event.getPortalTravelAgent());
 	}
 
 	public void setPortalTravelAgent(RunsafeTravelAgent travelAgent)
 	{
-		this.event.setPortalTravelAgent(travelAgent.getRaw());
+		event.setPortalTravelAgent(travelAgent.getRaw());
 	}
 
 	private final PlayerPortalEvent event;

@@ -8,7 +8,7 @@ import org.bukkit.FireworkEffect;
 import org.bukkit.inventory.meta.FireworkMeta;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 import java.util.Random;
 
 public class FireworkBuilder
@@ -163,8 +163,8 @@ public class FireworkBuilder
 	}
 
 	private FireworkEffect.Builder builder;
-	private final List<FireworkEffect> effects = new ArrayList<FireworkEffect>();
-	private int power = 0;
+	private final Collection<FireworkEffect> effects = new ArrayList<FireworkEffect>();
+	private int power;
 
 	private static final Random rng = new Random();
 }

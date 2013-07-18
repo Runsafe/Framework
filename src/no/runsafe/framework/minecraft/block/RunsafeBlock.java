@@ -1,11 +1,12 @@
 package no.runsafe.framework.minecraft.block;
 
-import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.internal.wrapper.block.BukkitBlock;
+import no.runsafe.framework.minecraft.Item;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class RunsafeBlock extends BukkitBlock
 {
@@ -16,25 +17,26 @@ public class RunsafeBlock extends BukkitBlock
 
 	public boolean is(Item type)
 	{
-		return this.block.getType() == type.getType()
-			&& (type.getData() == (byte) -1 || this.getData() == type.getData());
+		return block.getType() == type.getType()
+			&& (type.getData() == (byte) -1 || getData() == type.getData());
 	}
 
 	public boolean hasInterface()
 	{
-		return RunsafeBlock.interfaceBlocks.contains(this.getTypeId());
+		return RunsafeBlock.interfaceBlocks.contains(getTypeId());
 	}
 
 	public boolean isInteractBlock()
 	{
-		return RunsafeBlock.interactBlocks.contains(this.getTypeId());
+		return RunsafeBlock.interactBlocks.contains(getTypeId());
 	}
 
 	public boolean canPassThrough()
 	{
-		return passableBlocks.contains(this.getTypeId());
+		return passableBlocks.contains(getTypeId());
 	}
 
+	@SuppressWarnings("EnumSwitchStatementWhichMissesCases")
 	public boolean isHazardous()
 	{
 		switch (block.getType())
@@ -70,20 +72,12 @@ public class RunsafeBlock extends BukkitBlock
 
 	public boolean isAbleToFall()
 	{
-		switch (block.getType())
-		{
-			case SAND:
-			case GRAVEL:
-			case ANVIL:
-				return true;
-			default:
-				return false;
-		}
+		return block.getType().hasGravity();
 	}
 
-	private static final ArrayList<Integer> passableBlocks = new ArrayList<Integer>();
-	private static final ArrayList<Integer> interfaceBlocks = new ArrayList<Integer>();
-	private static final ArrayList<Integer> interactBlocks = new ArrayList<Integer>();
+	private static final Collection<Integer> passableBlocks = new ArrayList<Integer>();
+	private static final Collection<Integer> interfaceBlocks = new ArrayList<Integer>();
+	private static final Collection<Integer> interactBlocks = new ArrayList<Integer>();
 
 	static
 	{

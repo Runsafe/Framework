@@ -21,7 +21,7 @@ public class RunsafeInventory extends BukkitInventory
 	public void remove(Item item, int amount)
 	{
 		int needed = amount;
-		for (RunsafeMeta itemStack : this.getContents())
+		for (RunsafeMeta itemStack : getContents())
 		{
 			if (itemStack.is(item))
 			{

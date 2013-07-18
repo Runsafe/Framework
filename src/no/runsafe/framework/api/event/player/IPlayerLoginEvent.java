@@ -5,5 +5,5 @@ import no.runsafe.framework.api.event.IRunsafeEvent;
 
 public interface IPlayerLoginEvent extends IRunsafeEvent
 {
-	public void OnPlayerLogin(RunsafePlayerLoginEvent event);
+	void OnPlayerLogin(RunsafePlayerLoginEvent event);
 }

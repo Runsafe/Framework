@@ -22,6 +22,7 @@ public class RunsafeEntityDamageEvent extends RunsafeCancellableEntityEvent
 		event.setDamage(damage);
 	}
 
+	@Override
 	public RunsafeEntity getEntity()
 	{
 		return ObjectWrapper.convert(event.getEntity());
@@ -29,10 +30,10 @@ public class RunsafeEntityDamageEvent extends RunsafeCancellableEntityEvent
 
 	public RunsafeDamageCause getCause()
 	{
-		if (this.event == null)
+		if (event == null)
 			return RunsafeDamageCause.CUSTOM;
 
-		return RunsafeDamageCause.valueOf(this.event.getCause().name());
+		return RunsafeDamageCause.valueOf(event.getCause().name());
 	}
 
 	public EntityDamageEvent getRaw()

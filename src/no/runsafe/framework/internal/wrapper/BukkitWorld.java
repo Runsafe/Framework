@@ -53,7 +53,7 @@ public abstract class BukkitWorld extends BukkitMetadata
 
 	public RunsafeItem dropItem(RunsafeLocation location, RunsafeMeta itemStack)
 	{
-		return new RunsafeItem((world.dropItem(location.getRaw(), itemStack.getRaw())));
+		return new RunsafeItem(world.dropItem(location.getRaw(), itemStack.getRaw()));
 	}
 
 	public void strikeLightning(RunsafeLocation location)
@@ -84,7 +84,7 @@ public abstract class BukkitWorld extends BukkitMetadata
 	@Override
 	public World getRaw()
 	{
-		return this.world;
+		return world;
 	}
 
 	public int getMaxHeight()
@@ -119,17 +119,17 @@ public abstract class BukkitWorld extends BukkitMetadata
 
 	public <T extends Entity> T spawn(RunsafeLocation location, Class<T> mob)
 	{
-		return this.world.spawn(location.getRaw(), mob);
+		return world.spawn(location.getRaw(), mob);
 	}
 
 	public void playEffect(RunsafeLocation location, Effect effect, int data)
 	{
-		this.world.playEffect(location.getRaw(), effect, data);
+		world.playEffect(location.getRaw(), effect, data);
 	}
 
 	public void playSound(RunsafeLocation location, Sound sound, float volume, float pitch)
 	{
-		this.world.playSound(location.getRaw(), sound.getSound(), volume, pitch);
+		world.playSound(location.getRaw(), sound.getSound(), volume, pitch);
 	}
 
 	protected final World world;

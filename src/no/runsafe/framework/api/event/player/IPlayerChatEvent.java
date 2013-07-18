@@ -5,5 +5,5 @@ import no.runsafe.framework.minecraft.event.player.RunsafePlayerChatEvent;
 
 public interface IPlayerChatEvent extends IRunsafeEvent
 {
-    public void OnPlayerChatEvent(RunsafePlayerChatEvent event);
+    void OnPlayerChatEvent(RunsafePlayerChatEvent event);
 }

@@ -13,7 +13,7 @@ import org.bukkit.event.world.WorldLoadEvent;
 
 public final class WorldLoad extends EventRouterBase<IWorldLoad, WorldLoadEvent>
 {
-	private WorldLoad(IOutput output, IScheduler scheduler, IWorldLoad handler)
+	WorldLoad(IOutput output, IScheduler scheduler, IWorldLoad handler)
 	{
 		super(output, scheduler, handler);
 	}

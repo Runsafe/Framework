@@ -58,7 +58,7 @@ public class RunsafePlayerPreLoginEvent extends RunsafeEvent
 
 	public boolean getHasBeenKicked()
 	{
-		return event.getResult() != org.bukkit.event.player.PlayerPreLoginEvent.Result.ALLOWED;
+		return event.getLoginResult() != AsyncPlayerPreLoginEvent.Result.ALLOWED;
 	}
 
 	public String getKickMessage()

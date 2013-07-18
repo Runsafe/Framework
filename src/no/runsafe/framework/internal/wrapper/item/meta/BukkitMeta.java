@@ -5,6 +5,7 @@ import no.runsafe.framework.minecraft.item.RunsafeItemStack;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,6 +71,7 @@ public abstract class BukkitMeta extends RunsafeItemStack
 		return meta != null && meta.hasDisplayName();
 	}
 
+	@Nullable
 	public String getDisplayName()
 	{
 		ItemMeta meta = getRawMeta();
@@ -93,6 +95,7 @@ public abstract class BukkitMeta extends RunsafeItemStack
 		return meta != null && meta.hasLore();
 	}
 
+	@Nullable
 	public List<String> getLore()
 	{
 		ItemMeta meta = getRawMeta();

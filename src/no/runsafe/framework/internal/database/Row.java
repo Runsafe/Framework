@@ -6,84 +6,12 @@ import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.joda.time.DateTime;
 
+import javax.annotation.Nullable;
 import java.util.Map;
 
 public final class Row extends DataConverter implements IRow
 {
-	public static final IRow Empty = new IRow()
-	{
-		@Override
-		public String String(String column)
-		{
-			return null;
-		}
-
-		@Override
-		public Integer Integer(String column)
-		{
-			return null;
-		}
-
-		@Override
-		public Long Long(String column)
-		{
-			return null;
-		}
-
-		@Override
-		public Double Double(String column)
-		{
-			return null;
-		}
-
-		@Override
-		public Float Float(String column)
-		{
-			return null;
-		}
-
-		@Override
-		public DateTime DateTime(String column)
-		{
-			return null;
-		}
-
-		@Override
-		public RunsafeLocation Location()
-		{
-			return null;
-		}
-
-		@Override
-		public RunsafeLocation Location(String world, String x, String y, String z)
-		{
-			return null;
-		}
-
-		@Override
-		public RunsafeLocation Location(String world, String x, String y, String z, String yaw, String pitch)
-		{
-			return null;
-		}
-
-		@Override
-		public RunsafeWorld World(String column)
-		{
-			return null;
-		}
-
-		@Override
-		public RunsafePlayer Player(String column)
-		{
-			return null;
-		}
-
-		@Override
-		public boolean isEmpty()
-		{
-			return true;
-		}
-	};
+	public static final IRow Empty = new EmptyRow();
 
 	public Row(Map<String, Object> data)
 	{
@@ -93,37 +21,37 @@ public final class Row extends DataConverter implements IRow
 	@Override
 	public String String(String column)
 	{
-		return super.String(getValue(column));
+		return String(getValue(column));
 	}
 
 	@Override
 	public Integer Integer(String column)
 	{
-		return super.Integer(getValue(column));
+		return Integer(getValue(column));
 	}
 
 	@Override
 	public Long Long(String column)
 	{
-		return super.Long(getValue(column));
+		return Long(getValue(column));
 	}
 
 	@Override
 	public Double Double(String column)
 	{
-		return super.Double(getValue(column));
+		return Double(getValue(column));
 	}
 
 	@Override
 	public Float Float(String column)
 	{
-		return super.Float(getValue(column));
+		return Float(getValue(column));
 	}
 
 	@Override
 	public DateTime DateTime(String column)
 	{
-		return super.DateTime(getValue(column));
+		return DateTime(getValue(column));
 	}
 
 	@Override
@@ -141,19 +69,19 @@ public final class Row extends DataConverter implements IRow
 	@Override
 	public RunsafeLocation Location(String world, String x, String y, String z, String yaw, String pitch)
 	{
-		return super.Location(getValue(world), getValue(x), getValue(y), getValue(z), getValue(yaw), getValue(pitch));
+		return Location(getValue(world), getValue(x), getValue(y), getValue(z), getValue(yaw), getValue(pitch));
 	}
 
 	@Override
 	public RunsafeWorld World(String column)
 	{
-		return super.World(getValue(column));
+		return World(getValue(column));
 	}
 
 	@Override
 	public RunsafePlayer Player(String column)
 	{
-		return super.Player(getValue(column));
+		return Player(getValue(column));
 	}
 
 	@Override
@@ -162,6 +90,7 @@ public final class Row extends DataConverter implements IRow
 		return raw == null;
 	}
 
+	@Nullable
 	private Object getValue(String column)
 	{
 		if (!raw.containsKey(column))
@@ -170,4 +99,94 @@ public final class Row extends DataConverter implements IRow
 	}
 
 	private final Map<String, Object> raw;
+
+	private static class EmptyRow implements IRow
+	{
+		EmptyRow()
+		{
+		}
+
+		@Override
+		@Nullable
+		public String String(String column)
+		{
+			return null;
+		}
+
+		@Override
+		@Nullable
+		public Integer Integer(String column)
+		{
+			return null;
+		}
+
+		@Override
+		@Nullable
+		public Long Long(String column)
+		{
+			return null;
+		}
+
+		@Override
+		@Nullable
+		public Double Double(String column)
+		{
+			return null;
+		}
+
+		@Override
+		@Nullable
+		public Float Float(String column)
+		{
+			return null;
+		}
+
+		@Override
+		@Nullable
+		public DateTime DateTime(String column)
+		{
+			return null;
+		}
+
+		@Override
+		@Nullable
+		public RunsafeLocation Location()
+		{
+			return null;
+		}
+
+		@Override
+		@Nullable
+		public RunsafeLocation Location(String world, String x, String y, String z)
+		{
+			return null;
+		}
+
+		@Override
+		@Nullable
+		public RunsafeLocation Location(String world, String x, String y, String z, String yaw, String pitch)
+		{
+			return null;
+		}
+
+		@Override
+		@Nullable
+		public RunsafeWorld World(String column)
+		{
+			return null;
+		}
+
+		@Override
+		@Nullable
+		public RunsafePlayer Player(String column)
+		{
+			return null;
+		}
+
+		@Override
+		public boolean isEmpty()
+		{
+			return true;
+		}
+	}
 }

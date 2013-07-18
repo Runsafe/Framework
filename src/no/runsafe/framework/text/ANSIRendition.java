@@ -62,6 +62,7 @@ public class ANSIRendition
 		return this;
 	}
 
+	@SuppressWarnings("SameParameterValue")
 	public ANSIRendition background(ANSIColour colour)
 	{
 		background = colour.background();

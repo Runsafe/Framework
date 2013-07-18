@@ -15,24 +15,25 @@ public abstract class BukkitItem extends RunsafeEntity
 
 	public RunsafeMeta getItemStack()
 	{
-		return ObjectWrapper.convert(this.item.getItemStack());
+		return ObjectWrapper.convert(item.getItemStack());
 	}
 
 	public int getPickupDelay()
 	{
-		return this.item.getPickupDelay();
+		return item.getPickupDelay();
 	}
 
 	public void setItemStack(RunsafeMeta stack)
 	{
-		this.item.setItemStack(stack.getRaw());
+		item.setItemStack(stack.getRaw());
 	}
 
 	public void setPickupDelay(int delay)
 	{
-		this.item.setPickupDelay(delay);
+		item.setPickupDelay(delay);
 	}
 
+	@Override
 	public Item getRaw()
 	{
 		return item;

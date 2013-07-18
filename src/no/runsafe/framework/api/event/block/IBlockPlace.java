@@ -13,5 +13,5 @@ public interface IBlockPlace extends IRunsafeEvent
 	 * @param block  The block being placed
 	 * @return If not an async event, whether to allow the event
 	 */
-	public boolean OnBlockPlace(RunsafePlayer player, RunsafeBlock block);
+	boolean OnBlockPlace(RunsafePlayer player, RunsafeBlock block);
 }

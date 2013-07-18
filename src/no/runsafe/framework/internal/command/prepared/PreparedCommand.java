@@ -12,20 +12,17 @@ import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.apache.commons.lang.StringUtils;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 import java.util.regex.Pattern;
 
 public abstract class PreparedCommand implements IPreparedCommand
 {
 	public PreparedCommand(
-		ICommandExecutor executor, Stack<Command> definingCommand, String[] args, HashMap<String, String> parameters)
+		ICommandExecutor executor, Stack<Command> definingCommand, String[] args, Map<String, String> parameters)
 	{
 		this.executor = executor;
-		this.command = definingCommand;
-		this.arguments = args;
+		command = definingCommand;
+		arguments = args;
 		this.parameters = parameters;
 		Command execute = command.peek();
 		String permission = null;
@@ -37,10 +34,11 @@ public abstract class PreparedCommand implements IPreparedCommand
 			for (String param : parameters.keySet())
 				if (parameters.get(param) != null)
 					permission = permission.replace("<" + param + ">", parameters.get(param));
-		this.requiredPermission = permission;
+		requiredPermission = permission;
 	}
 
 	@Override
+	@Nullable
 	public String getRequiredPermission()
 	{
 		if (requiredPermission == null || paramPermission.matcher(requiredPermission).matches())
@@ -49,12 +47,13 @@ public abstract class PreparedCommand implements IPreparedCommand
 	}
 
 	@Override
-	public List<String> tabComplete(String[] args)
+	@Nullable
+	public List<String> tabComplete(String... args)
 	{
 		int i = 0;
 		for (Command cmd : command)
 		{
-			if (cmd == command.peek())
+			if (cmd.equals(command.peek()))
 				break;
 			i += cmd.getParameters().size(); // Args taken by command
 			i++; // Arg taken by selecting the next subcommand
@@ -143,7 +142,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 
 	protected String usage(Command target)
 	{
-		ArrayList<String> params = new ArrayList<String>();
+		Collection<String> params = new ArrayList<String>();
 		for (Command tier : command)
 			params.add(tier.getUsageCommandParams());
 
@@ -153,7 +152,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 	protected final ICommandExecutor executor;
 	protected final Stack<Command> command;
 	protected final String[] arguments;
-	protected final HashMap<String, String> parameters;
+	protected final Map<String, String> parameters;
 	private final String requiredPermission;
-	private final static Pattern paramPermission = Pattern.compile(".*<.*>.*");
+	private static final Pattern paramPermission = Pattern.compile(".*<.*>.*");
 }

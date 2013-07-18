@@ -5,5 +5,5 @@ import no.runsafe.framework.minecraft.event.player.RunsafePlayerPickupItemEvent;
 
 public interface IPlayerPickupItemEvent extends IRunsafeEvent
 {
-	public void OnPlayerPickupItemEvent(RunsafePlayerPickupItemEvent event);
+	void OnPlayerPickupItemEvent(RunsafePlayerPickupItemEvent event);
 }

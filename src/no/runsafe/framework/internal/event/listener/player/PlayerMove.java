@@ -7,13 +7,14 @@ import no.runsafe.framework.api.event.player.IPlayerMove;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.api.IScheduler;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 public final class PlayerMove extends EventRouterBase<IPlayerMove, PlayerMoveEvent>
 {
-	private PlayerMove(IOutput output, IScheduler scheduler, IPlayerMove handler)
+	PlayerMove(IOutput output, IScheduler scheduler, IPlayerMove handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -28,7 +29,7 @@ public final class PlayerMove extends EventRouterBase<IPlayerMove, PlayerMoveEve
 	@Override
 	public boolean onEvent(PlayerMoveEvent event)
 	{
-		return handler.OnPlayerMove(ObjectWrapper.convert(event.getPlayer()), ObjectWrapper.convert(event.getFrom()), ObjectWrapper.convert(event.getTo()));
+		return handler.OnPlayerMove(ObjectWrapper.convert((OfflinePlayer) event.getPlayer()), ObjectWrapper.convert(event.getFrom()), ObjectWrapper.convert(event.getTo()));
 	}
 
 	public static EventRouterFactory Factory()

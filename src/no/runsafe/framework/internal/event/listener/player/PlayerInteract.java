@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public final class PlayerInteract extends EventRouterBase<IPlayerInteractEvent, PlayerInteractEvent>
 {
-	private PlayerInteract(IOutput output, IScheduler scheduler, IPlayerInteractEvent handler)
+	PlayerInteract(IOutput output, IScheduler scheduler, IPlayerInteractEvent handler)
 	{
 		super(output, scheduler, handler);
 	}

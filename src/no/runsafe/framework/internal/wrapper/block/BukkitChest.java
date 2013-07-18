@@ -14,6 +14,7 @@ public abstract class BukkitChest extends RunsafeBlockState implements IInventor
 		chest = toWrap;
 	}
 
+	@Override
 	public RunsafeInventory getInventory()
 	{
 		return ObjectWrapper.convert(chest.getBlockInventory());

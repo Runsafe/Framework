@@ -8,6 +8,8 @@ import no.runsafe.framework.internal.wrapper.entity.BukkitProjectile;
 import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import org.bukkit.entity.Projectile;
 
+import javax.annotation.Nullable;
+
 public class RunsafeProjectile extends BukkitProjectile
 {
 	public RunsafeProjectile(Projectile toWrap)
@@ -15,15 +17,16 @@ public class RunsafeProjectile extends BukkitProjectile
 		super(toWrap);
 	}
 
+	@Nullable
 	public RunsafeBlock getImpaledBlock()
 	{
-		IProjectile projectile = ObjectUnwrapper.convert(this);
-		if(!(projectile instanceof EntityArrow))
+		IProjectile minecraftProjectile = ObjectUnwrapper.convert(this);
+		if(!(minecraftProjectile instanceof EntityArrow))
 			return null;
 
-		EntityArrow arrow = (EntityArrow)projectile;
+		EntityArrow arrow = (EntityArrow)minecraftProjectile;
 		NBTTagCompound tag = new NBTTagCompound();
 		arrow.a(tag);
-		return this.getWorld().getBlockAt(tag.getShort("xTile"), tag.getShort("yTile"), tag.getShort("zTile"));
+		return getWorld().getBlockAt(tag.getShort("xTile"), tag.getShort("yTile"), tag.getShort("zTile"));
 	}
 }

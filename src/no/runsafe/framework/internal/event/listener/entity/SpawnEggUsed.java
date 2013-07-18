@@ -13,7 +13,7 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 
 public final class SpawnEggUsed extends EventRouterBase<ISpawnEggUsed, CreatureSpawnEvent>
 {
-	private SpawnEggUsed(IOutput output, IScheduler scheduler, ISpawnEggUsed handler)
+	SpawnEggUsed(IOutput output, IScheduler scheduler, ISpawnEggUsed handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -22,7 +22,7 @@ public final class SpawnEggUsed extends EventRouterBase<ISpawnEggUsed, CreatureS
 	@Override
 	public void acceptEvent(CreatureSpawnEvent event)
 	{
-		if (event.getSpawnReason().equals(CreatureSpawnEvent.SpawnReason.SPAWNER_EGG))
+		if (event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.SPAWNER_EGG)
 			super.acceptEvent(event);
 	}
 

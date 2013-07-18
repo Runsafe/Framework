@@ -3,9 +3,11 @@ package no.runsafe.framework.minecraft.event.player;
 import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.event.player.IPlayerChatEvent;
+import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.api.event.IFakeableEvent;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import java.util.List;
@@ -40,9 +42,10 @@ public class RunsafePlayerChatEvent extends RunsafeCancellablePlayerEvent implem
 		event.setMessage(message);
 	}
 
+	@Override
 	public RunsafePlayer getPlayer()
 	{
-		return ObjectWrapper.convert(event.getPlayer());
+		return ObjectWrapper.convert((OfflinePlayer) event.getPlayer());
 	}
 
 	public List<RunsafePlayer> getRecipients()
@@ -50,12 +53,14 @@ public class RunsafePlayerChatEvent extends RunsafeCancellablePlayerEvent implem
 		return ObjectWrapper.convert(event.getRecipients());
 	}
 
-	public void Fire()
+	@Override
+	public boolean Fire()
 	{
 		isFake = true;
-		for (IKernel plugin : RunsafePlugin.Instances.values())
+		for (IKernel plugin : InjectionPlugin.Instances.values())
 			for (IPlayerChatEvent listener : plugin.getComponents(IPlayerChatEvent.class))
 				listener.OnPlayerChatEvent(this);
+		return !isCancelled();
 	}
 
 	@Override
@@ -65,5 +70,5 @@ public class RunsafePlayerChatEvent extends RunsafeCancellablePlayerEvent implem
 	}
 
 	private final AsyncPlayerChatEvent event;
-	private boolean isFake = false;
+	private boolean isFake;
 }

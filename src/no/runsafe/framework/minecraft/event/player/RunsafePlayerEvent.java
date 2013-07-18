@@ -3,6 +3,7 @@ package no.runsafe.framework.minecraft.event.player;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.event.RunsafeEvent;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.event.player.PlayerEvent;
 
 public class RunsafePlayerEvent extends RunsafeEvent
@@ -15,7 +16,7 @@ public class RunsafePlayerEvent extends RunsafeEvent
 
 	public RunsafePlayer getPlayer()
 	{
-		return ObjectWrapper.convert(event.getPlayer());
+		return ObjectWrapper.convert((OfflinePlayer) event.getPlayer());
 	}
 
 	private final PlayerEvent event;

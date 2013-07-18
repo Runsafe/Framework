@@ -6,5 +6,5 @@ import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 
 public interface INaturalSpawn extends IRunsafeEvent
 {
-	public boolean OnNaturalSpawn(RunsafeEntity entity, RunsafeLocation location);
+	boolean OnNaturalSpawn(RunsafeEntity entity, RunsafeLocation location);
 }

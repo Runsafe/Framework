@@ -6,12 +6,14 @@ import no.runsafe.framework.minecraft.enchantment.RunsafeEnchantment;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import org.bukkit.enchantments.Enchantment;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Enchant implements IEnchant
 {
-	public static final List<IEnchant> All = new ArrayList<IEnchant>();
+	public static final Collection<IEnchant> All = new ArrayList<IEnchant>();
 	public static final IEnchant EnvironmentalProtection = new Enchant(Enchantment.PROTECTION_ENVIRONMENTAL, true);
 	public static final IEnchant FireProtection = new Enchant(Enchantment.PROTECTION_FIRE, true);
 	public static final IEnchant FallProtection = new Enchant(Enchantment.PROTECTION_FALL, true);
@@ -35,6 +37,7 @@ public class Enchant implements IEnchant
 	public static final IEnchant FlameArrow = new Enchant(Enchantment.ARROW_FIRE, true);
 	public static final IEnchant InfiniteArrows = new Enchant(Enchantment.ARROW_INFINITE, true);
 
+	@Nullable
 	public static IEnchant getByName(String name)
 	{
 		for (Enchantment enchantType : Enchantment.values())
@@ -45,7 +48,7 @@ public class Enchant implements IEnchant
 
 	public static List<IEnchant> getByTarget(IEnchantable target)
 	{
-		ArrayList<IEnchant> enchants = new ArrayList<IEnchant>();
+		List<IEnchant> enchants = new ArrayList<IEnchant>();
 		for (IEnchant enchant : All)
 			if (enchant.canEnchant(target))
 				enchants.add(enchant);
@@ -66,7 +69,7 @@ public class Enchant implements IEnchant
 	{
 		if (root)
 			return copy().max();
-		this.power = getMaxLevel();
+		power = getMaxLevel();
 		return this;
 	}
 
@@ -127,10 +130,10 @@ public class Enchant implements IEnchant
 
 	private Enchant(Enchantment type, boolean root)
 	{
-		this.enchant = new RunsafeEnchantment(type);
+		enchant = new RunsafeEnchantment(type);
 		this.type = type;
 		this.root = root;
-		this.power = getMaxLevel();
+		power = getMaxLevel();
 		if (root)
 			All.add(this);
 	}

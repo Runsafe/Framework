@@ -9,12 +9,12 @@ public class RunsafeInventoryCloseEvent extends RunsafeInventoryEvent
 	public RunsafeInventoryCloseEvent(InventoryCloseEvent toWrap)
 	{
 		super(toWrap);
-		this.event = toWrap;
+		event = toWrap;
 	}
 
 	public RunsafePlayer getPlayer()
 	{
-		return ObjectWrapper.convert(this.event.getPlayer());
+		return ObjectWrapper.convert(event.getPlayer());
 	}
 
 	private final InventoryCloseEvent event;

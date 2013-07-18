@@ -5,5 +5,5 @@ import no.runsafe.framework.minecraft.event.player.RunsafePlayerDeathEvent;
 
 public interface IPlayerDeathEvent extends IRunsafeEvent
 {
-	public void OnPlayerDeathEvent(RunsafePlayerDeathEvent event);
+	void OnPlayerDeathEvent(RunsafePlayerDeathEvent event);
 }

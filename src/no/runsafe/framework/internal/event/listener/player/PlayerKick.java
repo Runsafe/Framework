@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerKickEvent;
 
 public final class PlayerKick extends EventRouterBase<IPlayerKickEvent, PlayerKickEvent>
 {
-	private PlayerKick(IOutput output, IScheduler scheduler, IPlayerKickEvent handler)
+	PlayerKick(IOutput output, IScheduler scheduler, IPlayerKickEvent handler)
 	{
 		super(output, scheduler, handler);
 	}

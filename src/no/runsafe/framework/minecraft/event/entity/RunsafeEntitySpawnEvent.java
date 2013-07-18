@@ -15,12 +15,12 @@ public class RunsafeEntitySpawnEvent extends RunsafeCancellableEntityEvent
 
 	public boolean isFromMobSpawner()
 	{
-		return event.getSpawnReason().equals(CreatureSpawnEvent.SpawnReason.SPAWNER);
+		return event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.SPAWNER;
 	}
 
 	public boolean isFromSpawnEgg()
 	{
-		return event.getSpawnReason().equals(CreatureSpawnEvent.SpawnReason.SPAWNER_EGG);
+		return event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.SPAWNER_EGG;
 	}
 
 	public RunsafeLocation getLocation()

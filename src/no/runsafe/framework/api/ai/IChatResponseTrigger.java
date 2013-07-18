@@ -5,6 +5,6 @@ import java.util.regex.Pattern;
 
 public interface IChatResponseTrigger
 {
-	public String getResponse(String player, Matcher message);
-	public Pattern getRule();
+	String getResponse(String player, Matcher message);
+	Pattern getRule();
 }

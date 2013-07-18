@@ -5,5 +5,5 @@ import no.runsafe.framework.minecraft.event.player.RunsafePlayerKickEvent;
 
 public interface IPlayerKickEvent extends IRunsafeEvent
 {
-	public void OnPlayerKick(RunsafePlayerKickEvent event);
+	void OnPlayerKick(RunsafePlayerKickEvent event);
 }

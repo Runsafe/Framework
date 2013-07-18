@@ -3,6 +3,7 @@ package no.runsafe.framework.internal.wrapper.entity;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.minecraft.RunsafeWorld;
+import no.runsafe.framework.minecraft.entity.EntityType;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent;
@@ -12,6 +13,7 @@ import org.bukkit.Chunk;
 import org.bukkit.entity.Entity;
 import org.bukkit.util.Vector;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,11 +25,13 @@ public abstract class BukkitEntity extends BukkitMetadata
 		entity = toWrap;
 	}
 
+	@Override
 	public Entity getRaw()
 	{
 		return entity;
 	}
 
+	@Nullable
 	public RunsafeLocation getLocation()
 	{
 		if (entity == null)
@@ -35,6 +39,7 @@ public abstract class BukkitEntity extends BukkitMetadata
 		return ObjectWrapper.convert(entity.getLocation());
 	}
 
+	@Nullable
 	public RunsafeWorld getWorld()
 	{
 		if (entity == null)
@@ -48,13 +53,13 @@ public abstract class BukkitEntity extends BukkitMetadata
 		if (!targetChunk.isLoaded())
 			targetChunk.load();
 
-		this.dismountBeforeTeleport();
+		dismountBeforeTeleport();
 		return entity.teleport(location.getRaw());
 	}
 
 	public boolean teleport(RunsafeEntity entity)
 	{
-		this.dismountBeforeTeleport();
+		dismountBeforeTeleport();
 		return this.entity.teleport(entity.getRaw());
 	}
 
@@ -98,6 +103,7 @@ public abstract class BukkitEntity extends BukkitMetadata
 		return RunsafeServer.Instance;
 	}
 
+	@Nullable
 	public RunsafeEntity getPassenger()
 	{
 		if (entity == null)
@@ -172,12 +178,12 @@ public abstract class BukkitEntity extends BukkitMetadata
 
 	public RunsafeEntityType getEntityType()
 	{
-		return no.runsafe.framework.minecraft.entity.EntityType.convert(entity.getType());
+		return EntityType.convert(entity.getType());
 	}
 
 	public void setVelocity(Vector vec)
 	{
-		this.entity.setVelocity(vec);
+		entity.setVelocity(vec);
 	}
 
 	private void dismountBeforeTeleport()

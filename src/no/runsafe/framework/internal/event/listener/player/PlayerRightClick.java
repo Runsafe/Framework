@@ -9,6 +9,7 @@ import no.runsafe.framework.api.event.player.IPlayerRightClickBlock;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.api.IScheduler;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -16,7 +17,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public final class PlayerRightClick extends EventRouterBase<IPlayerRightClick, PlayerInteractEvent>
 {
-	private PlayerRightClick(IOutput output, IScheduler scheduler, IPlayerRightClick handler)
+	PlayerRightClick(IOutput output, IScheduler scheduler, IPlayerRightClick handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -42,7 +43,7 @@ public final class PlayerRightClick extends EventRouterBase<IPlayerRightClick, P
 	{
 		return
 			handler.OnPlayerRightClick(
-				ObjectWrapper.convert(event.getPlayer()),
+				ObjectWrapper.convert((OfflinePlayer) event.getPlayer()),
 				ObjectWrapper.convert(event.getItem()),
 				ObjectWrapper.convert(event.getClickedBlock())
 			);

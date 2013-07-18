@@ -13,12 +13,12 @@ public abstract class BukkitEnchantment
 
 	public BukkitEnchantment(int id)
 	{
-		this.enchantment = Enchantment.getById(id);
+		enchantment = Enchantment.getById(id);
 	}
 
 	public int getId()
 	{
-		return this.enchantment.getId();
+		return enchantment.getId();
 	}
 
 	public String getName()
@@ -49,12 +49,12 @@ public abstract class BukkitEnchantment
 
 	public boolean canEnchantItem(RunsafeMeta target)
 	{
-		return this.enchantment.canEnchantItem(target.getRaw());
+		return enchantment.canEnchantItem(target.getRaw());
 	}
 
 	public Enchantment getRaw()
 	{
-		return this.enchantment;
+		return enchantment;
 	}
 
 	protected final Enchantment enchantment;

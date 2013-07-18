@@ -5,5 +5,5 @@ import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent;
 
 public interface IEntityDamageEvent extends IRunsafeEvent
 {
-	public void OnEntityDamage(RunsafeEntityDamageEvent event);
+	void OnEntityDamage(RunsafeEntityDamageEvent event);
 }

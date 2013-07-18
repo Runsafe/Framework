@@ -27,7 +27,7 @@ public class RunsafePainting extends BukkitPainting
 			newId = Art.values().length;
 		while (!painting.setArt(Art.getById(newId)) && newId != oldId)
 		{
-			newId = (newId - 1);
+			newId--;
 			if (newId < 1)
 				newId = Art.values().length;
 		}

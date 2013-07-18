@@ -7,6 +7,7 @@ import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.Chunk;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public abstract class BukkitChunk
@@ -40,6 +41,7 @@ public abstract class BukkitChunk
 
 	//RunsafeChunkSnapshot getChunkSnapshot(boolean b, boolean b1, boolean b2);
 
+	@Nullable
 	public List<RunsafeEntity> getEntities()
 	{
 		try

@@ -9,6 +9,7 @@ import no.runsafe.framework.text.ChatColour;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
 
+import javax.annotation.Nullable;
 import java.io.File;
 import java.util.List;
 import java.util.Map;
@@ -25,41 +26,41 @@ public abstract class BukkitServer
 
 	public void banIP(String address)
 	{
-		this.server.banIP(address);
+		server.banIP(address);
 	}
 
 	public int broadcastMessage(String message, String permission)
 	{
 		if (message == null)
 			return 0;
-		return this.server.broadcast(ChatColour.ToMinecraft(message), permission);
+		return server.broadcast(ChatColour.ToMinecraft(message), permission);
 	}
 
 	public int broadcastMessage(String message)
 	{
 		if (message == null)
 			return 0;
-		return this.server.broadcastMessage(ChatColour.ToMinecraft(message));
+		return server.broadcastMessage(ChatColour.ToMinecraft(message));
 	}
 
 	public void clearRecipes()
 	{
-		this.server.clearRecipes();
+		server.clearRecipes();
 	}
 
 	public boolean getAllowEnd()
 	{
-		return this.server.getAllowEnd();
+		return server.getAllowEnd();
 	}
 
 	public boolean getAllowFlight()
 	{
-		return this.server.getAllowFlight();
+		return server.getAllowFlight();
 	}
 
 	public boolean getAllowNether()
 	{
-		return this.server.getAllowNether();
+		return server.getAllowNether();
 	}
 
 	public List<RunsafePlayer> getBannedPlayers()
@@ -69,49 +70,50 @@ public abstract class BukkitServer
 
 	public String getBukkitVersion()
 	{
-		return this.server.getBukkitVersion();
+		return server.getBukkitVersion();
 	}
 
 	public Map<String, String[]> getCommandAliases()
 	{
-		return this.server.getCommandAliases();
+		return server.getCommandAliases();
 	}
 
 	public long getConnectionThrottle()
 	{
-		return this.server.getConnectionThrottle();
+		return server.getConnectionThrottle();
 	}
 
 	public boolean getGenerateStructures()
 	{
-		return this.server.getGenerateStructures();
+		return server.getGenerateStructures();
 	}
 
 	public String getIp()
 	{
-		return this.server.getIp();
+		return server.getIp();
 	}
 
 	public Set<String> getIpBans()
 	{
-		return this.server.getIPBans();
+		return server.getIPBans();
 	}
 
 	public Logger getLogger()
 	{
-		return this.server.getLogger();
+		return server.getLogger();
 	}
 
 	public int getMaxPlayers()
 	{
-		return this.server.getMaxPlayers();
+		return server.getMaxPlayers();
 	}
 
 	public String getName()
 	{
-		return this.server.getName();
+		return server.getName();
 	}
 
+	@Nullable
 	public RunsafePlayer getOfflinePlayerExact(String playerName)
 	{
 		if (playerName == null || playerName.isEmpty())
@@ -126,7 +128,7 @@ public abstract class BukkitServer
 
 	public boolean getOnlineMode()
 	{
-		return this.server.getOnlineMode();
+		return server.getOnlineMode();
 	}
 
 	public List<RunsafePlayer> getOnlinePlayers()
@@ -141,42 +143,42 @@ public abstract class BukkitServer
 
 	public int getPort()
 	{
-		return this.server.getPort();
+		return server.getPort();
 	}
 
 	public String getServerId()
 	{
-		return this.server.getServerId();
+		return server.getServerId();
 	}
 
 	public String getServerName()
 	{
-		return this.server.getServerName();
+		return server.getServerName();
 	}
 
 	public int getSpawnRadius()
 	{
-		return this.server.getSpawnRadius();
+		return server.getSpawnRadius();
 	}
 
 	public int getTicksPerAnimalSpawns()
 	{
-		return this.server.getTicksPerAnimalSpawns();
+		return server.getTicksPerAnimalSpawns();
 	}
 
 	public int getTicksPerMonsterSpawns()
 	{
-		return this.server.getTicksPerMonsterSpawns();
+		return server.getTicksPerMonsterSpawns();
 	}
 
 	public String getUpdateFolder()
 	{
-		return this.server.getUpdateFolder();
+		return server.getUpdateFolder();
 	}
 
 	public int getViewDistance()
 	{
-		return this.server.getViewDistance();
+		return server.getViewDistance();
 	}
 
 	public List<RunsafePlayer> getWhitelistedPlayers()
@@ -184,6 +186,7 @@ public abstract class BukkitServer
 		return ObjectWrapper.convert(server.getWhitelistedPlayers());
 	}
 
+	@Nullable
 	public List<RunsafePlayer> matchPlayer(String playerName)
 	{
 		if (playerName == null || playerName.isEmpty())
@@ -192,20 +195,22 @@ public abstract class BukkitServer
 		return ObjectWrapper.convert(server.matchPlayer(playerName));
 	}
 
+	@Nullable
 	public RunsafeWorld getWorld(String worldName)
 	{
 		if (worldName == null || worldName.isEmpty())
 			return null;
 
-		return ObjectWrapper.convert(this.server.getWorld(worldName));
+		return ObjectWrapper.convert(server.getWorld(worldName));
 	}
 
+	@Nullable
 	public RunsafeWorld getWorld(UUID uid)
 	{
 		if (uid == null)
 			return null;
 
-		return ObjectWrapper.convert(this.server.getWorld(uid));
+		return ObjectWrapper.convert(server.getWorld(uid));
 	}
 
 	public List<RunsafeWorld> getWorlds()
@@ -215,52 +220,52 @@ public abstract class BukkitServer
 
 	public File getWorldContainer()
 	{
-		return this.server.getWorldContainer();
+		return server.getWorldContainer();
 	}
 
 	public String getWorldType()
 	{
-		return this.server.getWorldType();
+		return server.getWorldType();
 	}
 
 	public boolean hasWhitelist()
 	{
-		return this.server.hasWhitelist();
+		return server.hasWhitelist();
 	}
 
 	public void reload()
 	{
-		this.server.reload();
+		server.reload();
 	}
 
 	public void reloadWhitelist()
 	{
-		this.server.reloadWhitelist();
+		server.reloadWhitelist();
 	}
 
 	public void resetRecipes()
 	{
-		this.server.resetRecipes();
+		server.resetRecipes();
 	}
 
 	public void savePlayers()
 	{
-		this.server.savePlayers();
+		server.savePlayers();
 	}
 
 	public void setSpawnRadius(int radius)
 	{
-		this.server.setSpawnRadius(radius);
+		server.setSpawnRadius(radius);
 	}
 
 	public void setWhitelist(boolean value)
 	{
-		this.server.setWhitelist(value);
+		server.setWhitelist(value);
 	}
 
 	public void shutdown()
 	{
-		this.server.shutdown();
+		server.shutdown();
 	}
 
 	public void unbanIp(String address)
@@ -268,22 +273,22 @@ public abstract class BukkitServer
 		if (address == null || address.isEmpty())
 			return;
 
-		this.server.unbanIP(address);
+		server.unbanIP(address);
 	}
 
 	public boolean unloadWorld(String worldName, boolean save)
 	{
-		return !(worldName == null || worldName.isEmpty()) && this.server.unloadWorld(worldName, save);
+		return !(worldName == null || worldName.isEmpty()) && server.unloadWorld(worldName, save);
 	}
 
 	public boolean unloadWorld(RunsafeWorld world, boolean save)
 	{
-		return world != null && this.unloadWorld(world.getName(), save);
+		return world != null && unloadWorld(world.getName(), save);
 	}
 
 	public boolean useExactLoginLocation()
 	{
-		return this.server.useExactLoginLocation();
+		return server.useExactLoginLocation();
 	}
 
 	public RunsafeInventory createInventory(RunsafeInventoryHolder holder, int size, String name)
@@ -292,28 +297,29 @@ public abstract class BukkitServer
 			return createInventory(holder, size);
 
 		if (holder == null)
-			return ObjectWrapper.convert(this.server.createInventory(null, size, name));
+			return ObjectWrapper.convert(server.createInventory(null, size, name));
 
-		return ObjectWrapper.convert(this.server.createInventory(holder.getRaw(), size, name));
+		return ObjectWrapper.convert(server.createInventory(holder.getRaw(), size, name));
 	}
 
 	public RunsafeInventory createInventory(RunsafeInventoryHolder holder, int size)
 	{
 		if (holder == null)
-			return ObjectWrapper.convert(this.server.createInventory(null, size));
+			return ObjectWrapper.convert(server.createInventory(null, size));
 
-		return ObjectWrapper.convert(this.server.createInventory(holder.getRaw(), size));
+		return ObjectWrapper.convert(server.createInventory(holder.getRaw(), size));
 	}
 
+	@Nullable
 	public RunsafeInventory createInventory(RunsafeInventoryHolder holder, RunsafeInventoryType type)
 	{
 		if (type == null)
 			return null;
 
 		if (holder == null)
-			return ObjectWrapper.convert(this.server.createInventory(null, type.getRaw()));
+			return ObjectWrapper.convert(server.createInventory(null, type.getRaw()));
 
-		return ObjectWrapper.convert(this.server.createInventory(holder.getRaw(), type.getRaw()));
+		return ObjectWrapper.convert(server.createInventory(holder.getRaw(), type.getRaw()));
 	}
 
 	public void stop()

@@ -1,9 +1,10 @@
 package no.runsafe.framework.minecraft.event.player;
 
-import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.api.event.player.IPlayerJoinEvent;
+import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.event.IFakeableEvent;
+import no.runsafe.framework.api.event.player.IPlayerJoinEvent;
+import no.runsafe.framework.internal.InjectionPlugin;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 public class RunsafePlayerJoinEvent extends RunsafePlayerEvent implements IFakeableEvent
@@ -24,12 +25,14 @@ public class RunsafePlayerJoinEvent extends RunsafePlayerEvent implements IFakea
 		event.setJoinMessage(message);
 	}
 
-	public void Fire()
+	@Override
+	public boolean Fire()
 	{
 		isFake = true;
-		for (IKernel plugin : RunsafePlugin.Instances.values())
+		for (IKernel plugin : InjectionPlugin.Instances.values())
 			for (IPlayerJoinEvent listener : plugin.getComponents(IPlayerJoinEvent.class))
 				listener.OnPlayerJoinEvent(this);
+		return true;
 	}
 
 	@Override

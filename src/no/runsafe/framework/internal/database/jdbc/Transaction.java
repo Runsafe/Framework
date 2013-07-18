@@ -26,7 +26,7 @@ public final class Transaction extends QueryExecutor implements ITransaction
 		}
 		catch (SQLException e)
 		{
-			this.output.outputToConsole(e.getMessage() + Arrays.toString(e.getStackTrace()), Level.SEVERE);
+			output.outputToConsole(e.getMessage() + Arrays.toString(e.getStackTrace()), Level.SEVERE);
 		}
 	}
 
@@ -40,7 +40,7 @@ public final class Transaction extends QueryExecutor implements ITransaction
 		}
 		catch (SQLException e)
 		{
-			this.output.outputToConsole(e.getMessage() + Arrays.toString(e.getStackTrace()), Level.SEVERE);
+			output.outputToConsole(e.getMessage() + Arrays.toString(e.getStackTrace()), Level.SEVERE);
 		}
 	}
 

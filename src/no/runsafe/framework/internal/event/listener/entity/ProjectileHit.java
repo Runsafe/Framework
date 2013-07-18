@@ -13,7 +13,7 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 
 public class ProjectileHit extends EventRouterBase<IProjectileHitEvent, ProjectileHitEvent>
 {
-	private ProjectileHit(IOutput output, IScheduler scheduler, IProjectileHitEvent handler)
+	ProjectileHit(IOutput output, IScheduler scheduler, IProjectileHitEvent handler)
 	{
 		super(output, scheduler, handler);
 	}

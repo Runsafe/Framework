@@ -2,6 +2,7 @@ package no.runsafe.framework.minecraft.event.block;
 
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.event.block.BlockBreakEvent;
 
 public class RunsafeBlockBreakEvent extends RunsafeCancellableBlockEvent
@@ -14,7 +15,7 @@ public class RunsafeBlockBreakEvent extends RunsafeCancellableBlockEvent
 
 	public RunsafePlayer getPlayer()
 	{
-		return ObjectWrapper.convert(event.getPlayer());
+		return ObjectWrapper.convert((OfflinePlayer) event.getPlayer());
 	}
 
 	public void setXP(int xp)

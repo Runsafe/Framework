@@ -10,7 +10,7 @@ public class RunsafeBlockDispenseEvent extends RunsafeCancellableBlockEvent
 	public RunsafeBlockDispenseEvent(BlockDispenseEvent toWrap)
 	{
 		super(toWrap);
-		this.event = toWrap;
+		event = toWrap;
 	}
 
 	public RunsafeMeta getItem()

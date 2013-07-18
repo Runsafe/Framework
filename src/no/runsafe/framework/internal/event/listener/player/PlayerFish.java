@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerFishEvent;
 
 public class PlayerFish extends EventRouterBase<IPlayerFishEvent, PlayerFishEvent>
 {
-	private PlayerFish(IOutput output, IScheduler scheduler, IPlayerFishEvent handler)
+	PlayerFish(IOutput output, IScheduler scheduler, IPlayerFishEvent handler)
 	{
 		super(output, scheduler, handler);
 	}

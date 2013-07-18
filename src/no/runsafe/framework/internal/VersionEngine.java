@@ -7,6 +7,7 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.picocontainer.Startable;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.logging.Level;
 
@@ -41,6 +42,7 @@ public final class VersionEngine implements Startable
 	{
 	}
 
+	@Nullable
 	String getLastVersion()
 	{
 		YamlConfiguration config = new YamlConfiguration();

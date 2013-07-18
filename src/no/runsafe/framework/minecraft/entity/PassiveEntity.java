@@ -26,6 +26,7 @@ public enum PassiveEntity implements RunsafeEntityType
 		type = bukkitType;
 	}
 
+	@Override
 	public Class<? extends Entity> getEntityType()
 	{
 		return type.getEntityClass();

@@ -15,7 +15,7 @@ public class RunsafeBlockEvent extends RunsafeEvent
 
 	public RunsafeBlock getBlock()
 	{
-		return ObjectWrapper.convert(this.event.getBlock());
+		return ObjectWrapper.convert(event.getBlock());
 	}
 
 	private final BlockEvent event;

@@ -18,8 +18,8 @@ public class RunsafeAmbiguousPlayer extends RunsafePlayer
 	{
 		super(online.get(0).getRawPlayer());
 		ambiguity = new ArrayList<String>();
-		for (RunsafePlayer player : online)
-			ambiguity.add(player.getName());
+		for (RunsafePlayer option : online)
+			ambiguity.add(option.getName());
 	}
 
 	public List<String> getAmbiguity()

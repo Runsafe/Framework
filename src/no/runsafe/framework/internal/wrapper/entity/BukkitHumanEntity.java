@@ -15,102 +15,102 @@ public abstract class BukkitHumanEntity extends RunsafeEntity
 	protected BukkitHumanEntity(HumanEntity toWrap)
 	{
 		super(toWrap);
-		this.humanEntity = toWrap;
+		humanEntity = toWrap;
 	}
 
 	public String getName()
 	{
-		return this.humanEntity.getName();
+		return humanEntity.getName();
 	}
 
 	public RunsafePlayerInventory getInventory()
 	{
-		return ObjectWrapper.convert(this.humanEntity.getInventory());
+		return ObjectWrapper.convert(humanEntity.getInventory());
 	}
 
 	public RunsafeInventory getEnderChest()
 	{
-		return ObjectWrapper.convert(this.humanEntity.getEnderChest());
+		return ObjectWrapper.convert(humanEntity.getEnderChest());
 	}
 
 	public RunsafeInventoryView getOpenInventory()
 	{
-		return ObjectWrapper.convert(this.humanEntity.getOpenInventory());
+		return ObjectWrapper.convert(humanEntity.getOpenInventory());
 	}
 
 	public RunsafeInventoryView openInventory(RunsafeInventory inventory)
 	{
-		return ObjectWrapper.convert(this.humanEntity.openInventory(inventory.getRaw()));
+		return ObjectWrapper.convert(humanEntity.openInventory(inventory.getRaw()));
 	}
 
 	public RunsafeInventoryView openWorkbench(RunsafeLocation location, boolean force)
 	{
-		return ObjectWrapper.convert(this.humanEntity.openWorkbench(location.getRaw(), force));
+		return ObjectWrapper.convert(humanEntity.openWorkbench(location.getRaw(), force));
 	}
 
 	public RunsafeInventoryView openEnchanting(RunsafeLocation location, boolean force)
 	{
-		return ObjectWrapper.convert(this.humanEntity.openEnchanting(location.getRaw(), force));
+		return ObjectWrapper.convert(humanEntity.openEnchanting(location.getRaw(), force));
 	}
 
 	public void openInventory(RunsafeInventoryView inventory)
 	{
-		this.humanEntity.openInventory(inventory.getRaw());
+		humanEntity.openInventory(inventory.getRaw());
 	}
 
 	public void closeInventory()
 	{
-		this.humanEntity.closeInventory();
+		humanEntity.closeInventory();
 	}
 
 	public RunsafeMeta getItemInHand()
 	{
-		return ObjectWrapper.convert(this.humanEntity.getItemInHand());
+		return ObjectWrapper.convert(humanEntity.getItemInHand());
 	}
 
 	public void setItemInHand(RunsafeMeta item)
 	{
-		this.humanEntity.setItemInHand(item.getRaw());
+		humanEntity.setItemInHand(item.getRaw());
 	}
 
 	public RunsafeMeta getItemOnCursor()
 	{
-		return ObjectWrapper.convert(this.humanEntity.getItemOnCursor());
+		return ObjectWrapper.convert(humanEntity.getItemOnCursor());
 	}
 
 	public void setItemOnCursor(RunsafeMeta item)
 	{
-		this.humanEntity.setItemOnCursor(item.getRaw());
+		humanEntity.setItemOnCursor(item.getRaw());
 	}
 
 	public boolean isSleeping()
 	{
-		return this.humanEntity.isSleeping();
+		return humanEntity.isSleeping();
 	}
 
 	public int getSleepTicks()
 	{
-		return this.humanEntity.getSleepTicks();
+		return humanEntity.getSleepTicks();
 	}
 
 	public GameMode getGameMode()
 	{
-		return this.humanEntity.getGameMode();
+		return humanEntity.getGameMode();
 	}
 
 	public void setGameMode(GameMode mode)
 	{
-		this.humanEntity.setGameMode(mode);
+		humanEntity.setGameMode(mode);
 	}
 
 	public boolean isBlocking()
 	{
-		return this.humanEntity.isBlocking();
+		return humanEntity.isBlocking();
 	}
 
 	public int getExpToLevel()
 	{
-		return this.humanEntity.getExpToLevel();
+		return humanEntity.getExpToLevel();
 	}
 
 	@Override

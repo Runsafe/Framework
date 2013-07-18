@@ -10,22 +10,22 @@ public class RunsafeEntityChangeBlockEvent extends RunsafeCancellableEntityEvent
 	public RunsafeEntityChangeBlockEvent(EntityChangeBlockEvent toWrap)
 	{
 		super(toWrap);
-		this.event = toWrap;
+		event = toWrap;
 	}
 
 	public RunsafeBlock getBlock()
 	{
-		return ObjectWrapper.convert(this.event.getBlock());
+		return ObjectWrapper.convert(event.getBlock());
 	}
 
 	public Item getTo()
 	{
-		return Item.get(this.event.getTo(), (byte) 0);
+		return Item.get(event.getTo(), (byte) 0);
 	}
 
 	public byte getData()
 	{
-		return this.event.getData();
+		return event.getData();
 	}
 
 	private final EntityChangeBlockEvent event;

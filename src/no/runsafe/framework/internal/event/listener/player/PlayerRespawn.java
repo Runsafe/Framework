@@ -9,13 +9,14 @@ import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.api.IScheduler;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 public final class PlayerRespawn extends EventRouterBase<IPlayerRespawn, PlayerRespawnEvent>
 {
-	private PlayerRespawn(IOutput output, IScheduler scheduler, IPlayerRespawn subscriber)
+	PlayerRespawn(IOutput output, IScheduler scheduler, IPlayerRespawn subscriber)
 	{
 		super(output, scheduler, subscriber);
 	}
@@ -32,7 +33,7 @@ public final class PlayerRespawn extends EventRouterBase<IPlayerRespawn, PlayerR
 	public boolean onEvent(PlayerRespawnEvent event)
 	{
 		RunsafeLocation redirect = handler.OnPlayerRespawn(
-			ObjectWrapper.convert(event.getPlayer()),
+			ObjectWrapper.convert((OfflinePlayer) event.getPlayer()),
 			ObjectWrapper.convert(event.getRespawnLocation()),
 			event.isBedSpawn()
 		);

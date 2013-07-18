@@ -2,6 +2,7 @@ package no.runsafe.framework.timer;
 
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.ITimer;
+import no.runsafe.framework.internal.Minecraft;
 
 import java.util.Stack;
 import java.util.concurrent.ConcurrentHashMap;
@@ -10,13 +11,13 @@ public abstract class Worker<TokenType, StateType> implements Runnable
 {
 	public Worker(IScheduler scheduler)
 	{
-		this(scheduler, 10L);
+		this(scheduler, Minecraft.TICKS_PER_SECOND);
 	}
 
 	public Worker(IScheduler scheduler, long ticks)
 	{
 		this.scheduler = scheduler;
-		this.worker = scheduler.createAsyncTimer(this, ticks, ticks);
+		worker = scheduler.createAsyncTimer(this, ticks, ticks);
 	}
 
 	public void Push(TokenType key, StateType value)
@@ -48,7 +49,7 @@ public abstract class Worker<TokenType, StateType> implements Runnable
 
 	public abstract void process(TokenType key, StateType value);
 
-	@SuppressWarnings("EmptyMethod")
+	@SuppressWarnings({"EmptyMethod", "NoopMethodInAbstractClass"})
 	protected void onWorkerDone()
 	{
 	}
@@ -57,9 +58,9 @@ public abstract class Worker<TokenType, StateType> implements Runnable
 	{
 		if (ticks > 0)
 		{
-			if (this.worker != null)
+			if (worker != null)
 				worker.stop();
-			worker = scheduler.createAsyncTimer(this, 10L, ticks);
+			worker = scheduler.createAsyncTimer(this, Minecraft.TICKS_PER_SECOND, ticks);
 		}
 	}
 

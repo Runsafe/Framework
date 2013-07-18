@@ -7,6 +7,7 @@ import no.runsafe.framework.api.EventRouterFactory;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.api.IScheduler;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Chest;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,7 +15,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 
 public final class ChestBreak extends EventRouterBase<IChestBreak, BlockBreakEvent>
 {
-	private ChestBreak(IOutput output, IScheduler scheduler, IChestBreak handler)
+	ChestBreak(IOutput output, IScheduler scheduler, IChestBreak handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -31,7 +32,7 @@ public final class ChestBreak extends EventRouterBase<IChestBreak, BlockBreakEve
 	public boolean onEvent(BlockBreakEvent event)
 	{
 		return handler.OnChestBreak(
-			ObjectWrapper.convert(event.getPlayer()),
+			ObjectWrapper.convert((OfflinePlayer) event.getPlayer()),
 			ObjectWrapper.convert((Chest) event.getBlock())
 		);
 	}

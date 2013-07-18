@@ -16,27 +16,29 @@ public class RunsafePlayerInventory extends BukkitPlayerInventory
 		super(toWrap);
 	}
 
+	@Override
 	public String serialize()
 	{
 		YamlConfiguration serialize = new YamlConfiguration();
 		ConfigurationSection contents = serialize.createSection("contents");
 		ConfigurationSection armour = serialize.createSection("armour");
 		int index = 0;
-		for (ItemStack item : inventory.getContents())
+		for (ItemStack item : playerInventory.getContents())
 		{
 			contents.set(String.valueOf(index), item);
 			index++;
 		}
-		armour.set("helmet", inventory.getHelmet());
-		armour.set("chestplate", inventory.getChestplate());
-		armour.set("leggings", inventory.getLeggings());
-		armour.set("boots", inventory.getBoots());
+		armour.set("helmet", playerInventory.getHelmet());
+		armour.set("chestplate", playerInventory.getChestplate());
+		armour.set("leggings", playerInventory.getLeggings());
+		armour.set("boots", playerInventory.getBoots());
 		return serialize.saveToString();
 	}
 
+	@Override
 	public void unserialize(String serialized)
 	{
-		inventory.clear();
+		playerInventory.clear();
 		try
 		{
 			YamlConfiguration unserialize = new YamlConfiguration();
@@ -44,11 +46,11 @@ public class RunsafePlayerInventory extends BukkitPlayerInventory
 			ConfigurationSection contents = unserialize.getConfigurationSection("contents");
 			ConfigurationSection armour = unserialize.getConfigurationSection("armour");
 			for (String index : contents.getKeys(false))
-				inventory.setItem(Integer.valueOf(index), contents.getItemStack(index));
-			inventory.setHelmet(armour.getItemStack("helmet"));
-			inventory.setChestplate(armour.getItemStack("chestplate"));
-			inventory.setLeggings(armour.getItemStack("leggings"));
-			inventory.setBoots(armour.getItemStack("boots"));
+				playerInventory.setItem(Integer.valueOf(index), contents.getItemStack(index));
+			playerInventory.setHelmet(armour.getItemStack("helmet"));
+			playerInventory.setChestplate(armour.getItemStack("chestplate"));
+			playerInventory.setLeggings(armour.getItemStack("leggings"));
+			playerInventory.setBoots(armour.getItemStack("boots"));
 		}
 		catch (InvalidConfigurationException e)
 		{

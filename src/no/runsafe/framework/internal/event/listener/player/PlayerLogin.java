@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerLoginEvent;
 
 public final class PlayerLogin extends EventRouterBase<IPlayerLoginEvent, PlayerLoginEvent>
 {
-	private PlayerLogin(IOutput output, IScheduler scheduler, IPlayerLoginEvent handler)
+	PlayerLogin(IOutput output, IScheduler scheduler, IPlayerLoginEvent handler)
 	{
 		super(output, scheduler, handler);
 	}

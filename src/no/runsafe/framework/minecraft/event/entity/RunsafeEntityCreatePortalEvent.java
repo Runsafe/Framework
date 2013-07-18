@@ -7,7 +7,7 @@ public class RunsafeEntityCreatePortalEvent extends RunsafeCancellableEntityEven
 	public RunsafeEntityCreatePortalEvent(EntityCreatePortalEvent toWrap)
 	{
 		super(toWrap);
-		this.event = toWrap;
+		event = toWrap;
 	}
 
 	private final EntityCreatePortalEvent event;

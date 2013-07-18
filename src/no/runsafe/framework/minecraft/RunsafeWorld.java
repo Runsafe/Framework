@@ -8,6 +8,7 @@ import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class RunsafeWorld extends BukkitWorld
@@ -22,11 +23,13 @@ public class RunsafeWorld extends BukkitWorld
 		super(RunsafeServer.Instance.getWorld(worldName).getRaw());
 	}
 
-	public boolean equals(RunsafeWorld world)
+	@Override
+	public boolean equals(Object world)
 	{
-		return getName().equals(world.getName());
+		return world instanceof RunsafeWorld && getName().equals(((BukkitWorld) world).getName());
 	}
 
+	@Nullable
 	public RunsafeEntity getEntityById(int id)
 	{
 		for (Entity entity : world.getEntities())
@@ -67,6 +70,7 @@ public class RunsafeWorld extends BukkitWorld
 		return getLocation(x, y, z, null, null);
 	}
 
+	@Nullable
 	public RunsafeLocation getLocation(Double x, Double y, Double z, Float yaw, Float pitch)
 	{
 		if (x == null || y == null || z == null)
@@ -78,5 +82,5 @@ public class RunsafeWorld extends BukkitWorld
 		return new RunsafeLocation(this, x, y, z, yaw, pitch);
 	}
 
-	private Universe universe = null;
+	private Universe universe;
 }

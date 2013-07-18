@@ -7,6 +7,7 @@ import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.LivingEntity;
 
 import java.util.HashSet;
@@ -17,161 +18,161 @@ public abstract class BukkitLivingEntity extends RunsafeEntity
 	protected BukkitLivingEntity(LivingEntity toWrap)
 	{
 		super(toWrap);
-		this.entity = toWrap;
+		livingEntity = toWrap;
 	}
 
 	@Override
 	public LivingEntity getRaw()
 	{
-		return entity;
+		return livingEntity;
 	}
 
 	public double getHealth()
 	{
-		return entity.getHealth();
+		return livingEntity.getHealth();
 	}
 
 	public void setHealth(int i)
 	{
-		this.setHealth((double) i);
+		setHealth((double) i);
 	}
 
 	public void setHealth(double i)
 	{
-		entity.setHealth(i);
+		livingEntity.setHealth(i);
 	}
 
 	public RunsafeEntityEquipment getEquipment()
 	{
-		return ObjectWrapper.convert(this.entity.getEquipment());
+		return ObjectWrapper.convert(livingEntity.getEquipment());
 	}
 
 	public double getMaxHealth()
 	{
-		return entity.getMaxHealth();
+		return livingEntity.getMaxHealth();
 	}
 
 	public double getEyeHeight()
 	{
-		return entity.getEyeHeight();
+		return livingEntity.getEyeHeight();
 	}
 
 	public double getEyeHeight(boolean b)
 	{
-		return entity.getEyeHeight(b);
+		return livingEntity.getEyeHeight(b);
 	}
 
 	public RunsafeLocation getEyeLocation()
 	{
-		return ObjectWrapper.convert(entity.getEyeLocation());
+		return ObjectWrapper.convert(livingEntity.getEyeLocation());
 	}
 
 	public List<RunsafeBlock> getLineOfSight(HashSet<Byte> transparent, int maxDistance)
 	{
-		return ObjectWrapper.convert(entity.getLineOfSight(transparent, maxDistance));
+		return ObjectWrapper.convert(livingEntity.getLineOfSight(transparent, maxDistance));
 	}
 
 	public RunsafeBlock getTargetBlock(HashSet<Byte> transparent, int maxDistance)
 	{
-		return ObjectWrapper.convert(entity.getTargetBlock(transparent, maxDistance));
+		return ObjectWrapper.convert(livingEntity.getTargetBlock(transparent, maxDistance));
 	}
 
 	public List<RunsafeBlock> getLastTwoTargetBlocks(HashSet<Byte> transparent, int maxDistance)
 	{
-		return ObjectWrapper.convert(entity.getLastTwoTargetBlocks(transparent, maxDistance));
+		return ObjectWrapper.convert(livingEntity.getLastTwoTargetBlocks(transparent, maxDistance));
 	}
 
 	public int getRemainingAir()
 	{
-		return entity.getRemainingAir();
+		return livingEntity.getRemainingAir();
 	}
 
 	public void setRemainingAir(int i)
 	{
-		entity.setRemainingAir(i);
+		livingEntity.setRemainingAir(i);
 	}
 
 	public int getMaximumAir()
 	{
-		return entity.getMaximumAir();
+		return livingEntity.getMaximumAir();
 	}
 
 	public void setMaximumAir(int i)
 	{
-		entity.setMaximumAir(i);
+		livingEntity.setMaximumAir(i);
 	}
 
 	public void damage(int i)
 	{
-		this.damage((double) i);
+		damage((double) i);
 	}
 
 	public void damage(double i)
 	{
-		entity.damage(i);
+		livingEntity.damage(i);
 	}
 
 	public void damage(double i, RunsafeEntity source)
 	{
-		entity.damage(i, source.getRaw());
+		livingEntity.damage(i, source.getRaw());
 	}
 
 	public void damage(int i, RunsafeEntity source)
 	{
-		this.damage((double) i, source);
+		damage((double) i, source);
 	}
 
 	public int getMaximumNoDamageTicks()
 	{
-		return entity.getMaximumNoDamageTicks();
+		return livingEntity.getMaximumNoDamageTicks();
 	}
 
 	public void setMaximumNoDamageTicks(int i)
 	{
-		entity.setMaximumNoDamageTicks(i);
+		livingEntity.setMaximumNoDamageTicks(i);
 	}
 
 	public double getLastDamage()
 	{
-		return entity.getLastDamage();
+		return livingEntity.getLastDamage();
 	}
 
 	public void setLastDamage(int i)
 	{
-		entity.setLastDamage((double) i);
+		livingEntity.setLastDamage((double) i);
 	}
 
 	public void setLastDamage(double i)
 	{
-		entity.setLastDamage(i);
+		livingEntity.setLastDamage(i);
 	}
 
 	public int getNoDamageTicks()
 	{
-		return entity.getNoDamageTicks();
+		return livingEntity.getNoDamageTicks();
 	}
 
 	public void setNoDamageTicks(int i)
 	{
-		entity.setNoDamageTicks(i);
+		livingEntity.setNoDamageTicks(i);
 	}
 
 	public RunsafePlayer getKiller()
 	{
-		return ObjectWrapper.convert(entity.getKiller());
+		return ObjectWrapper.convert((OfflinePlayer) livingEntity.getKiller());
 	}
 
 	public void addBuff(Buff buff)
 	{
 		if (entity != null)
-			entity.addPotionEffect(buff.getEffect());
+			livingEntity.addPotionEffect(buff.getEffect());
 	}
 
 	public void removeBuff(Buff buff)
 	{
 		if (entity != null)
-			entity.removePotionEffect(buff.getType());
+			livingEntity.removePotionEffect(buff.getType());
 	}
 
-	protected final LivingEntity entity;
+	protected final LivingEntity livingEntity;
 }

@@ -8,27 +8,27 @@ public abstract class BukkitFallingBlock extends RunsafeEntity
 	protected BukkitFallingBlock(FallingBlock toWrap)
 	{
 		super(toWrap);
-		this.block = toWrap;
+		block = toWrap;
 	}
 
 	public Byte getBlockData()
 	{
-		return this.block.getBlockData();
+		return block.getBlockData();
 	}
 
 	public int getBlockId()
 	{
-		return this.block.getBlockId();
+		return block.getBlockId();
 	}
 
 	public boolean getDropItem()
 	{
-		return this.block.getDropItem();
+		return block.getDropItem();
 	}
 
 	public void setDropItem(boolean drop)
 	{
-		this.block.setDropItem(drop);
+		block.setDropItem(drop);
 	}
 
 	@Override

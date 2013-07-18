@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public final class PlayerJoin extends EventRouterBase<IPlayerJoinEvent, PlayerJoinEvent>
 {
-	private PlayerJoin(IOutput output, IScheduler scheduler, IPlayerJoinEvent subscriber)
+	PlayerJoin(IOutput output, IScheduler scheduler, IPlayerJoinEvent subscriber)
 	{
 		super(output, scheduler, subscriber);
 	}

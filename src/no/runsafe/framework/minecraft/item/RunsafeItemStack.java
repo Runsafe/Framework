@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
 public abstract class RunsafeItemStack extends BukkitItemStack implements IEnchantable
 {
 	public static RunsafeMeta deserialize(Map<String, Object> args)
@@ -28,12 +27,12 @@ public abstract class RunsafeItemStack extends BukkitItemStack implements IEncha
 
 	public String getNormalName()
 	{
-		return this.getType().name().replace("_", " ").toLowerCase();
+		return getType().name().replace("_", " ").toLowerCase();
 	}
 
-	public static List<RunsafeMeta> convert(ItemStack[] items)
+	public static List<RunsafeMeta> convert(ItemStack... items)
 	{
-		ArrayList<RunsafeMeta> result = new ArrayList<RunsafeMeta>();
+		List<RunsafeMeta> result = new ArrayList<RunsafeMeta>();
 		for (ItemStack item : items)
 			result.add(ObjectWrapper.convert(item));
 		return result;

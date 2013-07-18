@@ -7,12 +7,13 @@ import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.player.IPlayerPortal;
 import no.runsafe.framework.internal.event.listener.EventRouterBase;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 public final class PlayerPortalEvent extends EventRouterBase<IPlayerPortal, org.bukkit.event.player.PlayerPortalEvent>
 {
-	private PlayerPortalEvent(IOutput output, IScheduler scheduler, IPlayerPortal handler)
+	PlayerPortalEvent(IOutput output, IScheduler scheduler, IPlayerPortal handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -28,7 +29,7 @@ public final class PlayerPortalEvent extends EventRouterBase<IPlayerPortal, org.
 	public boolean onEvent(org.bukkit.event.player.PlayerPortalEvent event)
 	{
 		return handler.OnPlayerPortal(
-			ObjectWrapper.convert(event.getPlayer()),
+			ObjectWrapper.convert((OfflinePlayer) event.getPlayer()),
 			ObjectWrapper.convert(event.getFrom()),
 			ObjectWrapper.convert(event.getTo())
 		);

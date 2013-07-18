@@ -16,18 +16,18 @@ public class RunsafeInventoryEvent extends RunsafeEvent
 	public RunsafeInventoryEvent(InventoryEvent toWrap)
 	{
 		super(toWrap);
-		this.event = toWrap;
+		event = toWrap;
 	}
 
 	public RunsafeInventory getInventory()
 	{
-		return ObjectWrapper.convert(this.event.getInventory());
+		return ObjectWrapper.convert(event.getInventory());
 	}
 
 	public List<RunsafePlayer> getViewers()
 	{
 		List<RunsafePlayer> runsafeHumanEntities = new ArrayList<RunsafePlayer>();
-		for (HumanEntity humanEntity : this.event.getViewers())
+		for (HumanEntity humanEntity : event.getViewers())
 			runsafeHumanEntities.add(ObjectWrapper.convert(humanEntity));
 
 		return runsafeHumanEntities;
@@ -35,7 +35,7 @@ public class RunsafeInventoryEvent extends RunsafeEvent
 
 	public RunsafeInventoryView getView()
 	{
-		return ObjectWrapper.convert(this.event.getView());
+		return ObjectWrapper.convert(event.getView());
 	}
 
 	private final InventoryEvent event;

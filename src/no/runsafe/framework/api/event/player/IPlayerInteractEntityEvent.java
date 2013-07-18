@@ -5,5 +5,5 @@ import no.runsafe.framework.minecraft.event.player.RunsafePlayerInteractEntityEv
 
 public interface IPlayerInteractEntityEvent extends IRunsafeEvent
 {
-    public void OnPlayerInteractEntityEvent(RunsafePlayerInteractEntityEvent event);
+    void OnPlayerInteractEntityEvent(RunsafePlayerInteractEntityEvent event);
 }

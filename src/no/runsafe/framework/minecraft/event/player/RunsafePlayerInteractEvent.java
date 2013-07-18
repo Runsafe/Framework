@@ -29,22 +29,22 @@ public class RunsafePlayerInteractEvent extends RunsafeCancellablePlayerEvent
 
 	public boolean hasItem()
 	{
-		return this.event.hasItem();
+		return event.hasItem();
 	}
 
 	public Item getMaterial()
 	{
-		return Item.get(this.event.getMaterial(), (byte) 0);
+		return Item.get(event.getMaterial(), (byte) 0);
 	}
 
 	public boolean hasBlock()
 	{
-		return this.event.hasBlock();
+		return event.hasBlock();
 	}
 
 	public boolean isBlockInHand()
 	{
-		return this.event.isBlockInHand();
+		return event.isBlockInHand();
 	}
 
 	public RunsafeBlock getBlock()

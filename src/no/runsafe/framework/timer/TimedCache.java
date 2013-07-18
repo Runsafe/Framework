@@ -2,6 +2,7 @@ package no.runsafe.framework.timer;
 
 import no.runsafe.framework.api.IScheduler;
 
+import javax.annotation.Nullable;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class TimedCache<Key, Value>
@@ -25,6 +26,7 @@ public class TimedCache<Key, Value>
 		timers.clear();
 	}
 
+	@Nullable
 	public Value Cache(Key key)
 	{
 		return key != null && cache.containsKey(key) ? cache.get(key) : null;

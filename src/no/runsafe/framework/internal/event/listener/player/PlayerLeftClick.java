@@ -16,7 +16,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public final class PlayerLeftClick extends EventRouterBase<IPlayerLeftClickEvent, PlayerInteractEvent>
 {
-	private PlayerLeftClick(IOutput output, IScheduler scheduler, IPlayerLeftClickEvent handler)
+	PlayerLeftClick(IOutput output, IScheduler scheduler, IPlayerLeftClickEvent handler)
 	{
 		super(output, scheduler, handler);
 	}

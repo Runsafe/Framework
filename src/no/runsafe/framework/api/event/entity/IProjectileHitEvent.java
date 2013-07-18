@@ -5,5 +5,5 @@ import no.runsafe.framework.minecraft.event.entity.RunsafeProjectileHitEvent;
 
 public interface IProjectileHitEvent extends IRunsafeEvent
 {
-	public void OnProjectileHit(RunsafeProjectileHitEvent event);
+	void OnProjectileHit(RunsafeProjectileHitEvent event);
 }

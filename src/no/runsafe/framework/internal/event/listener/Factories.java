@@ -2,6 +2,10 @@ package no.runsafe.framework.internal.event.listener;
 
 public final class Factories
 {
+	private Factories()
+	{
+	}
+
 	public static void Register()
 	{
 		if (isRegistered)
@@ -16,5 +20,5 @@ public final class Factories
 		isRegistered = true;
 	}
 
-	private static boolean isRegistered = false;
+	private static boolean isRegistered;
 }

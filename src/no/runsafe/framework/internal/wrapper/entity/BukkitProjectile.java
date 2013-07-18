@@ -24,6 +24,7 @@ public abstract class BukkitProjectile extends RunsafeEntity
 		projectile.setShooter(livingEntity.getRaw());
 	}
 
+	@Override
 	public void setVelocity(Vector velocity)
 	{
 		projectile.setVelocity(velocity);
@@ -41,7 +42,7 @@ public abstract class BukkitProjectile extends RunsafeEntity
 
 	public boolean isOnGround()
 	{
-		return this.projectile.isOnGround();
+		return projectile.isOnGround();
 	}
 
 	@Override

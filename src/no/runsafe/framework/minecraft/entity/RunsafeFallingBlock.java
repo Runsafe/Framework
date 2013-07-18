@@ -17,7 +17,7 @@ public class RunsafeFallingBlock extends BukkitFallingBlock
 
 	public int getFallingBlockID()
 	{
-		return this.fallingBlockID;
+		return fallingBlockID;
 	}
 
 	private int fallingBlockID;

@@ -8,6 +8,7 @@ import no.runsafe.framework.internal.command.prepared.PreparedSynchronousCommand
 import no.runsafe.framework.text.ChatColour;
 import org.apache.commons.lang.StringUtils;
 
+import javax.annotation.Nullable;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,13 +29,13 @@ public class Command implements ICommandHandler
 	 */
 	public Command(String commandName, String description, String permission, String... arguments)
 	{
-		this.name = commandName;
+		name = commandName;
 		this.permission = permission;
 		this.description = description;
 		if (arguments == null)
-			this.argumentList = null;
+			argumentList = null;
 		else
-			this.argumentList = ImmutableList.copyOf(arguments);
+			argumentList = ImmutableList.copyOf(arguments);
 	}
 
 	/**
@@ -44,7 +45,7 @@ public class Command implements ICommandHandler
 	 */
 	public String getUsage(ICommandExecutor executor)
 	{
-		HashMap<String, String> available = new HashMap<String, String>();
+		Map<String, String> available = new HashMap<String, String>();
 		if (!subCommands.isEmpty())
 		{
 			for (Command sub : subCommands.values())
@@ -121,6 +122,7 @@ public class Command implements ICommandHandler
 	 * @param name     The partial or full subcommand name
 	 * @return The selected subcommand or null if no matches
 	 */
+	@Nullable
 	public final Command getSubCommand(ICommandExecutor executor, String name)
 	{
 		if (subCommands.isEmpty())
@@ -157,6 +159,7 @@ public class Command implements ICommandHandler
 	/**
 	 * @return The name of this command
 	 */
+	@Override
 	public final String getName()
 	{
 		return name;
@@ -185,7 +188,7 @@ public class Command implements ICommandHandler
 	 * @return A prepared command, ready to be executed
 	 */
 	@Override
-	public final IPreparedCommand prepare(ICommandExecutor executor, String[] args)
+	public final IPreparedCommand prepare(ICommandExecutor executor, String... args)
 	{
 		if (args != null)
 			console.finer("Preparing command %s %s", getName(), StringUtils.join(args, " "));
@@ -206,6 +209,7 @@ public class Command implements ICommandHandler
 		this.console = console;
 	}
 
+	@Nullable
 	@Override
 	public List<String> getParameterOptions(String parameter)
 	{
@@ -218,17 +222,16 @@ public class Command implements ICommandHandler
 		return argumentList;
 	}
 
-	private IPreparedCommand prepare(ICommandExecutor executor, HashMap<String, String> params, String[] args, Stack<Command> stack)
+	private IPreparedCommand prepare(ICommandExecutor executor, Map<String, String> params, String[] args, Stack<Command> stack)
 	{
 		stack.add(this);
-		HashMap<String, String> myParams = getParameters(args);
+		Map<String, String> myParams = getParameters(args);
 		params.putAll(myParams);
-		if (myParams.size() > 0)
+		if (!myParams.isEmpty())
 		{
-			if (!captureTail && args.length > myParams.size())
-				args = Arrays.copyOfRange(args, myParams.size(), args.length);
-			else
-				args = new String[0];
+			args = captureTail || args.length <= myParams.size()
+				? new String[0] :
+				Arrays.copyOfRange(args, myParams.size(), args.length);
 		}
 		console.finer("Command %s has %d parameters and %d args", getName(), myParams.size(), args.length);
 		if (args.length > 0)
@@ -266,7 +269,7 @@ public class Command implements ICommandHandler
 				if (subCommand.isExecutable(executor))
 					return true;
 
-			return this.getClass() != Command.class;
+			return !getClass().equals(Command.class);
 		}
 		Matcher params = paramPermission.matcher(permission);
 		if (params.find())
@@ -282,7 +285,7 @@ public class Command implements ICommandHandler
 		return executor.hasPermission(permission);
 	}
 
-	private HashMap<String, String> getParameters(String[] args)
+	private Map<String, String> getParameters(String... args)
 	{
 		HashMap<String, String> parameters = new HashMap<String, String>();
 
@@ -301,11 +304,12 @@ public class Command implements ICommandHandler
 	}
 
 	protected IOutput console;
+	@Nullable
 	private final ImmutableList<String> argumentList;
-	private final HashMap<String, Command> subCommands = new HashMap<String, Command>();
+	private final Map<String, Command> subCommands = new HashMap<String, Command>();
 	private final String name;
 	private final String permission;
 	private final String description;
 	private boolean captureTail;
-	private final static Pattern paramPermission = Pattern.compile("<(.*)>");
+	private static final Pattern paramPermission = Pattern.compile("<(.*)>");
 }

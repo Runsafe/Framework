@@ -3,7 +3,9 @@ package no.runsafe.framework.api.command;
 import no.runsafe.framework.internal.command.prepared.PreparedAsynchronousCallbackCommand;
 import no.runsafe.framework.api.IScheduler;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Base class representing a command that has an implementation that can be executed asynchronously with a return value
@@ -11,22 +13,23 @@ import java.util.HashMap;
  */
 public abstract class AsyncCallbackCommand<T> extends ExecutableCommand
 {
-	public AsyncCallbackCommand(String name, String description, String permission, IScheduler scheduler, String... args)
+	protected AsyncCallbackCommand(String name, String description, String permission, IScheduler scheduler, String... args)
 	{
 		super(name, description, permission, args);
 		this.scheduler = scheduler;
 	}
 
 	/**
-	 * Called on the main thread before {@link AsyncCallbackCommand#OnAsyncExecute(no.runsafe.framework.api.command.ICommandExecutor, java.util.HashMap)}
+	 * Called on the main thread before {@link AsyncCallbackCommand#OnAsyncExecute(ICommandExecutor, HashMap)}
 	 *
 	 * @param executor   The player or console executing the command
 	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
 	 * @param arguments  Tailing arguments not asked for in the command definition
 	 * @return Message to show to the user running the command
 	 */
+	@Nullable
 	@Override
-	public String OnExecute(ICommandExecutor executor, HashMap<String, String> parameters, String[] arguments)
+	public String OnExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
 	{
 		return null;
 	}
@@ -39,7 +42,7 @@ public abstract class AsyncCallbackCommand<T> extends ExecutableCommand
 	 * @param arguments  Tailing arguments not asked for in the command definition
 	 * @return Data object that gets passed to SyncPostExecute
 	 */
-	public T OnAsyncExecute(ICommandExecutor executor, HashMap<String, String> parameters, String[] arguments)
+	public T OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
 	{
 		return OnAsyncExecute(executor, parameters);
 	}
@@ -51,10 +54,10 @@ public abstract class AsyncCallbackCommand<T> extends ExecutableCommand
 	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
 	 * @return Data object that gets passed to SyncPostExecute
 	 */
-	public abstract T OnAsyncExecute(ICommandExecutor executor, HashMap<String, String> parameters);
+	protected abstract T OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters);
 
 	/**
-	 * This method gets called on the main thread after the {@link AsyncCallbackCommand#OnAsyncExecute(no.runsafe.framework.api.command.ICommandExecutor, java.util.HashMap)} completes
+	 * This method gets called on the main thread after the {@link AsyncCallbackCommand#OnAsyncExecute(ICommandExecutor, HashMap)} completes
 	 *
 	 * @param result The value returned from the background thread
 	 */

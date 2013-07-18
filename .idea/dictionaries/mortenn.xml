@@ -14,11 +14,13 @@
       <w>ender</w>
       <w>fakeable</w>
       <w>glowstone</w>
+      <w>iterable</w>
       <w>jdbc</w>
       <w>knockback</w>
       <w>lapis</w>
       <w>laytonsmith</w>
       <w>maxdistance</w>
+      <w>maxlength</w>
       <w>mellohi</w>
       <w>minecart</w>
       <w>minecraft</w>
@@ -30,6 +32,7 @@
       <w>pickaxe</w>
       <w>pico</w>
       <w>picocontainer</w>
+      <w>playerlist</w>
       <w>pling</w>
       <w>preprocess</w>
       <w>purreow</w>

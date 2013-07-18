@@ -4,5 +4,5 @@ import no.runsafe.framework.minecraft.event.player.RunsafeCustomEvent;
 
 public interface IPlayerCustomEvent
 {
-	public void OnPlayerCustomEvent(RunsafeCustomEvent event);
+	void OnPlayerCustomEvent(RunsafeCustomEvent event);
 }

@@ -9,18 +9,18 @@ public class RunsafePacketSender
 {
 	public RunsafePacketSender(RunsafePlayer player)
 	{
-		this.playerConnection = ObjectUnwrapper.convert(player).playerConnection;
+		playerConnection = ObjectUnwrapper.convert(player).playerConnection;
 	}
 
 	public void sendChatPacket(String message)
 	{
-		this.playerConnection.sendPacket(new Packet3Chat(message));
+		playerConnection.sendPacket(new Packet3Chat(message));
 	}
 
 	public void sendNamedEntitySpawnPacket(RunsafeEntity entity)
 	{
 		Entity rawEntity = ObjectUnwrapper.convert(entity);
-		this.playerConnection.sendPacket(new Packet20NamedEntitySpawn((EntityHuman) rawEntity));
+		playerConnection.sendPacket(new Packet20NamedEntitySpawn((EntityHuman) rawEntity));
 	}
 
 	private final PlayerConnection playerConnection;

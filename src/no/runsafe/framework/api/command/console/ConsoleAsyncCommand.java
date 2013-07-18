@@ -5,7 +5,9 @@ import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.minecraft.RunsafeConsole;
 import no.runsafe.framework.api.IScheduler;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Base class representing a command that can only be executed by the console and has an implementation that can be executed asynchronously
@@ -19,7 +21,7 @@ public abstract class ConsoleAsyncCommand extends AsyncCommand
 	}
 
 	@Override
-	public final String OnExecute(ICommandExecutor executor, HashMap<String, String> parameters, String[] arguments)
+	public final String OnExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
 	{
 		if (executor instanceof RunsafeConsole)
 			return OnExecute(parameters, arguments);
@@ -27,7 +29,7 @@ public abstract class ConsoleAsyncCommand extends AsyncCommand
 	}
 
 	@Override
-	public final String OnAsyncExecute(ICommandExecutor executor, HashMap<String, String> parameters, String[] arguments)
+	public final String OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
 	{
 		if (executor instanceof RunsafeConsole)
 			return OnAsyncExecute(executor, parameters);
@@ -35,7 +37,7 @@ public abstract class ConsoleAsyncCommand extends AsyncCommand
 	}
 
 	@Override
-	public final String OnAsyncExecute(ICommandExecutor executor, HashMap<String, String> parameters)
+	public final String OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters)
 	{
 		if (executor instanceof RunsafeConsole)
 			return OnAsyncExecute(executor, parameters);
@@ -43,26 +45,27 @@ public abstract class ConsoleAsyncCommand extends AsyncCommand
 	}
 
 	/**
-	 * This method is called on the main thread before {@link ConsoleAsyncCommand#OnAsyncExecute(java.util.HashMap)}
+	 * This method is called on the main thread before {@link ConsoleAsyncCommand#OnAsyncExecute(HashMap)}
 	 * Override this method if you use optional arguments
 	 *
 	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
 	 * @param arguments  Tailing arguments not asked for in the command definition
 	 * @return Message to show in the console
 	 */
-	public String OnExecute(HashMap<String, String> parameters, String[] arguments)
+	public String OnExecute(Map<String, String> parameters, String... arguments)
 	{
 		return OnExecute(parameters);
 	}
 
 	/**
-	 * This method is called on the main thread before {@link ConsoleAsyncCommand#OnAsyncExecute(java.util.HashMap)}
+	 * This method is called on the main thread before {@link ConsoleAsyncCommand#OnAsyncExecute(HashMap)}
 	 * Override this method if you don't use optional arguments
 	 *
 	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
 	 * @return Message to show in the console
 	 */
-	public String OnExecute(HashMap<String, String> parameters)
+	@Nullable
+	public String OnExecute(Map<String, String> parameters)
 	{
 		return null;
 	}
@@ -74,7 +77,7 @@ public abstract class ConsoleAsyncCommand extends AsyncCommand
 	 * @param arguments  Tailing arguments not asked for in the command definition
 	 * @return Message to show in the console after the command completes
 	 */
-	public String OnAsyncExecute(HashMap<String, String> parameters, String[] arguments)
+	public String OnAsyncExecute(Map<String, String> parameters, String... arguments)
 	{
 		return OnAsyncExecute(parameters);
 	}
@@ -85,5 +88,5 @@ public abstract class ConsoleAsyncCommand extends AsyncCommand
 	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
 	 * @return Message to show in the console after the command completes
 	 */
-	public abstract String OnAsyncExecute(HashMap<String, String> parameters);
+	public abstract String OnAsyncExecute(Map<String, String> parameters);
 }

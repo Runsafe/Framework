@@ -2,7 +2,7 @@ package no.runsafe.framework.api.event;
 
 public interface CancellableEvent
 {
-	public boolean isCancelled();
-	public void cancel();
-	public void addCancellationHandle(Runnable callback);
+	boolean isCancelled();
+	void cancel();
+	void addCancellationHandle(Runnable callback);
 }

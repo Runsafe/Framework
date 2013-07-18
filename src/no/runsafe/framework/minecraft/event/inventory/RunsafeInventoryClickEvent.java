@@ -11,57 +11,57 @@ public class RunsafeInventoryClickEvent extends RunsafeCancellableInventoryEvent
 	public RunsafeInventoryClickEvent(InventoryClickEvent toWrap)
 	{
 		super(toWrap);
-		this.event = toWrap;
+		event = toWrap;
 	}
 
 	public InventoryType.SlotType getSlotType()
 	{
-		return this.event.getSlotType();
+		return event.getSlotType();
 	}
 
 	public RunsafeMeta getCursor()
 	{
-		return ObjectWrapper.convert(this.event.getCursor());
+		return ObjectWrapper.convert(event.getCursor());
 	}
 
 	public RunsafePlayer getWhoClicked()
 	{
-		return ObjectWrapper.convert(this.event.getWhoClicked());
+		return ObjectWrapper.convert(event.getWhoClicked());
 	}
 
 	public RunsafeMeta getCurrentItem()
 	{
-		return ObjectWrapper.convert(this.event.getCurrentItem());
+		return ObjectWrapper.convert(event.getCurrentItem());
 	}
 
 	public boolean isRightClick()
 	{
-		return this.event.isRightClick();
+		return event.isRightClick();
 	}
 
 	public boolean isLeftClick()
 	{
-		return this.event.isLeftClick();
+		return event.isLeftClick();
 	}
 
 	public boolean isShiftClick()
 	{
-		return this.event.isShiftClick();
+		return event.isShiftClick();
 	}
 
 	public void setCurrentItem(RunsafeMeta what)
 	{
-		this.event.setCurrentItem(what.getRaw());
+		event.setCurrentItem(what.getRaw());
 	}
 
 	public int getSlot()
 	{
-		return this.event.getSlot();
+		return event.getSlot();
 	}
 
 	public int getRawSlot()
 	{
-		return this.event.getRawSlot();
+		return event.getRawSlot();
 	}
 
 	private final InventoryClickEvent event;

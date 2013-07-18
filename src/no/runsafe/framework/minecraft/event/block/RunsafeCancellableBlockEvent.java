@@ -5,7 +5,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.block.BlockEvent;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 public class RunsafeCancellableBlockEvent extends RunsafeBlockEvent implements CancellableEvent
 {
@@ -35,6 +35,6 @@ public class RunsafeCancellableBlockEvent extends RunsafeBlockEvent implements C
 		cancellationCallbacks.add(callback);
 	}
 
-	private final List<Runnable> cancellationCallbacks = new ArrayList<Runnable>();
+	private final Collection<Runnable> cancellationCallbacks = new ArrayList<Runnable>();
 	private final Cancellable event;
 }

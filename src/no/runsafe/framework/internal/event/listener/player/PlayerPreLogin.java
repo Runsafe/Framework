@@ -13,7 +13,7 @@ import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 
 public final class PlayerPreLogin extends EventRouterBase<IPlayerPreLoginEvent, AsyncPlayerPreLoginEvent>
 {
-	private PlayerPreLogin(IOutput output, IScheduler scheduler, IPlayerPreLoginEvent handler)
+	PlayerPreLogin(IOutput output, IScheduler scheduler, IPlayerPreLoginEvent handler)
 	{
 		super(output, scheduler, handler);
 	}

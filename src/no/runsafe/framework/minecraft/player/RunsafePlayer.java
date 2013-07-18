@@ -14,22 +14,18 @@ import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import no.runsafe.framework.text.ChatColour;
 import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.joda.time.DateTime;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
+@SuppressWarnings("OverlyCoupledClass")
 public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 {
-	public RunsafePlayer(Player toWrap)
-	{
-		super(toWrap);
-	}
-
 	public RunsafePlayer(OfflinePlayer toWrap)
 	{
 		super(toWrap);
@@ -45,6 +41,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		return name;
 	}
 
+	@Nullable
 	public String getLastSeen(RunsafePlayer checker)
 	{
 		List<IPlayerSeen> seenHooks = HookEngine.hookContainer.getComponents(IPlayerSeen.class);
@@ -57,7 +54,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 	public boolean isNew()
 	{
 		List<IPlayerSessionDataProvider> dataHooks = HookEngine.hookContainer.getComponents(IPlayerSessionDataProvider.class);
-		if (this.isOnline() || dataHooks.isEmpty())
+		if (isOnline() || dataHooks.isEmpty())
 			return false;
 
 		for (IPlayerSessionDataProvider provider : dataHooks)
@@ -81,17 +78,17 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 
 	public boolean isSurvivalist()
 	{
-		return player != null && player.getGameMode().equals(GameMode.SURVIVAL);
+		return player != null && player.getGameMode() == GameMode.SURVIVAL;
 	}
 
 	public boolean isCreative()
 	{
-		return player != null && player.getGameMode().equals(GameMode.CREATIVE);
+		return player != null && player.getGameMode() == GameMode.CREATIVE;
 	}
 
 	public boolean isAdventurer()
 	{
-		return player != null && player.getGameMode().equals(GameMode.ADVENTURE);
+		return player != null && player.getGameMode() == GameMode.ADVENTURE;
 	}
 
 	public void teleport(RunsafeWorld world, double x, double y, double z)
@@ -103,22 +100,22 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		teleport(target);
 	}
 
-	public HashMap<String, String> getData()
+	public Map<String, String> getData()
 	{
 		List<IPlayerDataProvider> dataHooks = HookEngine.hookContainer.getComponents(IPlayerDataProvider.class);
-		HashMap<String, String> results = getBasicData();
+		Map<String, String> results = getBasicData();
 		for (IPlayerDataProvider provider : dataHooks)
 		{
-			HashMap<String, String> data = provider.GetPlayerData(this);
+			Map<String, String> data = provider.GetPlayerData(this);
 			if (data != null)
 				results.putAll(data);
 		}
 		return results;
 	}
 
-	public HashMap<String, String> getBasicData()
+	public Map<String, String> getBasicData()
 	{
-		LinkedHashMap<String, String> data = new LinkedHashMap<String, String>();
+		Map<String, String> data = new LinkedHashMap<String, String>();
 		if (isOnline())
 		{
 			data.put("game.ip",
@@ -137,10 +134,11 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		return data;
 	}
 
+	@Nullable
 	public DateTime lastLogout()
 	{
 		List<IPlayerSessionDataProvider> dataHooks = HookEngine.hookContainer.getComponents(IPlayerSessionDataProvider.class);
-		if (this.isOnline() || dataHooks.isEmpty())
+		if (isOnline() || dataHooks.isEmpty())
 			return null;
 		DateTime logout = null;
 		for (IPlayerSessionDataProvider provider : dataHooks)
@@ -152,10 +150,11 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		return logout;
 	}
 
+	@Nullable
 	public String getBanReason()
 	{
 		List<IPlayerSessionDataProvider> dataHooks = HookEngine.hookContainer.getComponents(IPlayerSessionDataProvider.class);
-		if (this.isNotBanned() || dataHooks.isEmpty())
+		if (isNotBanned() || dataHooks.isEmpty())
 			return null;
 		for (IPlayerSessionDataProvider provider : dataHooks)
 		{
@@ -166,9 +165,10 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		return null;
 	}
 
+	@Nullable
 	public String getDataValue(String key)
 	{
-		HashMap<String, String> data = getData();
+		Map<String, String> data = getData();
 		if (data.containsKey(key))
 			return data.get(key);
 		return null;
@@ -219,14 +219,14 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 
 	public List<String> getGroups()
 	{
-		ArrayList<String> result = new ArrayList<String>();
+		List<String> result = new ArrayList<String>();
 		for (IPlayerPermissions hook : HookEngine.hookContainer.getComponents(IPlayerPermissions.class))
 		{
 			List<String> groups = hook.getUserGroups(this);
 			if (groups != null)
 				result.addAll(groups);
 		}
-		if (result.size() == 0)
+		if (result.isEmpty())
 			result.add("unknown");
 		return result;
 	}
@@ -265,23 +265,23 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 
 	public void removeItem(Item itemType, int amount)
 	{
-		this.getInventory().remove(itemType, amount);
-		this.updateInventory();
+		getInventory().remove(itemType, amount);
+		updateInventory();
 	}
 
 	public void removeItem(Item itemType)
 	{
-		this.removeItem(itemType, itemType.getStackSize());
+		removeItem(itemType, itemType.getStackSize());
 	}
 
 	public Universe getUniverse()
 	{
-		return this.getWorld().getUniverse();
+		return getWorld().getUniverse();
 	}
 
 	public boolean isInUniverse(String universeName)
 	{
-		return this.getUniverse().getName().equals(universeName);
+		return getUniverse().getName().equals(universeName);
 	}
 
 	public void clearInventory()

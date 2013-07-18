@@ -50,17 +50,17 @@ public abstract class BukkitLocation
 
 	public void setX(double x)
 	{
-		this.location.setX(x);
+		location.setX(x);
 	}
 
 	public void setY(double y)
 	{
-		this.location.setY(y);
+		location.setY(y);
 	}
 
 	public void setZ(double z)
 	{
-		this.location.setZ(z);
+		location.setZ(z);
 	}
 
 	public RunsafeWorld getWorld()
@@ -90,52 +90,52 @@ public abstract class BukkitLocation
 
 	public RunsafeChunk getChunk()
 	{
-		return ObjectWrapper.convert(this.location.getChunk());
+		return ObjectWrapper.convert(location.getChunk());
 	}
 
 	public RunsafeBlock getBlock()
 	{
-		return ObjectWrapper.convert(this.location.getBlock());
+		return ObjectWrapper.convert(location.getBlock());
 	}
 
 	public Vector getDirection()
 	{
-		return this.location.getDirection();
+		return location.getDirection();
 	}
 
 	public BukkitLocation add(BukkitLocation vec)
 	{
-		return ObjectWrapper.convert(this.location.add(vec.getRaw()));
+		return ObjectWrapper.convert(location.add(vec.getRaw()));
 	}
 
 	public BukkitLocation add(double x, double y, double z)
 	{
-		return ObjectWrapper.convert(this.location.add(x, y, z));
+		return ObjectWrapper.convert(location.add(x, y, z));
 	}
 
 	public BukkitLocation subtract(BukkitLocation vec)
 	{
-		return ObjectWrapper.convert(this.location.subtract(vec.getRaw()));
+		return ObjectWrapper.convert(location.subtract(vec.getRaw()));
 	}
 
 	public BukkitLocation subtract(Vector vec)
 	{
-		return ObjectWrapper.convert(this.location.subtract(vec));
+		return ObjectWrapper.convert(location.subtract(vec));
 	}
 
 	public BukkitLocation subtract(double x, double y, double z)
 	{
-		return ObjectWrapper.convert(this.location.subtract(x, y, z));
+		return ObjectWrapper.convert(location.subtract(x, y, z));
 	}
 
 	public double length()
 	{
-		return this.location.length();
+		return location.length();
 	}
 
 	public double lengthSquared()
 	{
-		return this.location.lengthSquared();
+		return location.lengthSquared();
 	}
 
 	public double distance(BukkitLocation location)
@@ -153,12 +153,12 @@ public abstract class BukkitLocation
 
 	public BukkitLocation multiply(double m)
 	{
-		return ObjectWrapper.convert(this.location.multiply(m));
+		return ObjectWrapper.convert(location.multiply(m));
 	}
 
 	public BukkitLocation zero()
 	{
-		return ObjectWrapper.convert(this.location.zero());
+		return ObjectWrapper.convert(location.zero());
 	}
 
 	protected final Location location;

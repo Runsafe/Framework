@@ -11,7 +11,6 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
-@SuppressWarnings("deprecation")
 public abstract class BukkitInventory
 {
 	protected BukkitInventory(Inventory toWrap)
@@ -24,7 +23,7 @@ public abstract class BukkitInventory
 		return ObjectWrapper.convert(inventory.getHolder());
 	}
 
-	public List<RunsafeMeta> getContents()
+	public Iterable<RunsafeMeta> getContents()
 	{
 		return ObjectWrapper.convert(Lists.newArrayList(inventory.getContents()));
 	}
@@ -51,17 +50,17 @@ public abstract class BukkitInventory
 
 	public Inventory getRaw()
 	{
-		return this.inventory;
+		return inventory;
 	}
 
 	public boolean contains(RunsafeMeta itemStack)
 	{
-		return this.inventory.contains(itemStack.getRaw());
+		return inventory.contains(itemStack.getRaw());
 	}
 
 	public boolean contains(RunsafeMeta itemStack, int amount)
 	{
-		return this.inventory.contains(itemStack.getRaw(), amount);
+		return inventory.contains(itemStack.getRaw(), amount);
 	}
 
 	public boolean contains(Item item)
@@ -76,62 +75,62 @@ public abstract class BukkitInventory
 
 	public int first(RunsafeMeta itemStack)
 	{
-		return this.inventory.first(itemStack.getRaw());
+		return inventory.first(itemStack.getRaw());
 	}
 
 	public int first(Item material)
 	{
-		return this.inventory.first(material.getType());
+		return inventory.first(material.getType());
 	}
 
 	public int firstEmpty()
 	{
-		return this.inventory.firstEmpty();
+		return inventory.firstEmpty();
 	}
 
 	public int getMaxStackSize()
 	{
-		return this.inventory.getMaxStackSize();
+		return inventory.getMaxStackSize();
 	}
 
 	public String getName()
 	{
-		return this.inventory.getName();
+		return inventory.getName();
 	}
 
 	public String getTitle()
 	{
-		return this.inventory.getTitle();
+		return inventory.getTitle();
 	}
 
 	public int getSize()
 	{
-		return this.inventory.getSize();
+		return inventory.getSize();
 	}
 
 	public void remove(RunsafeMeta itemStack)
 	{
-		this.inventory.remove(itemStack.getRaw());
+		inventory.remove(itemStack.getRaw());
 	}
 
 	public void remove(Item material)
 	{
-		this.inventory.remove(material.getType());
+		inventory.remove(material.getType());
 	}
 
 	public void setItem(int index, RunsafeMeta itemStack)
 	{
-		this.inventory.setItem(index, itemStack.getRaw());
+		inventory.setItem(index, itemStack.getRaw());
 	}
 
 	public void setMaxStackSize(int size)
 	{
-		this.inventory.setMaxStackSize(size);
+		inventory.setMaxStackSize(size);
 	}
 
 	public List<RunsafePlayer> getViewers()
 	{
-		return ObjectWrapper.convert(this.inventory.getViewers());
+		return ObjectWrapper.convert(inventory.getViewers());
 	}
 
 	protected final Inventory inventory;

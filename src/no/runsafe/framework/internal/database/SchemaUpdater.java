@@ -35,17 +35,20 @@ public final class SchemaUpdater implements Startable
 		this.schemaUpdaters = schemaUpdaters;
 		database = db;
 		console = output;
-		if (!initialized)
-		{
-			database.Execute(
-				"CREATE TABLE IF NOT EXISTS runsafe_schema (" +
-					"`table` varchar(255) NOT NULL," +
-					"`revision` int(11) NOT NULL," +
-					"PRIMARY KEY (`table`)" +
-					")"
-			);
-			initialized = true;
-		}
+		if (!SchemaUpdater.initialized)
+			Initialize(db);
+	}
+
+	private static void Initialize(IDatabase database)
+	{
+		database.Execute(
+			"CREATE TABLE IF NOT EXISTS runsafe_schema (" +
+				"`table` varchar(255) NOT NULL," +
+				"`revision` int(11) NOT NULL," +
+				"PRIMARY KEY (`table`)" +
+				")"
+		);
+		SchemaUpdater.initialized = true;
 	}
 
 	int getRevision(String table)
@@ -96,11 +99,11 @@ public final class SchemaUpdater implements Startable
 		}
 	}
 
-	private int executeSchemaChanges(String tableName, int oldRevision, int newRevision, List<String> queries)
+	private int executeSchemaChanges(String tableName, int oldRevision, int newRevision, Iterable<String> queries)
 	{
-		String sqlQuery = null;
 		ITransaction transaction = database.Isolate();
 		console.write(String.format("Updating table %s from revision %d to revision %d", tableName, oldRevision, newRevision));
+		String sqlQuery = null;
 		for (String sql : queries)
 		{
 			if (!transaction.Execute(sql))
@@ -118,5 +121,5 @@ public final class SchemaUpdater implements Startable
 	private final IDatabase database;
 	private final IOutput console;
 	private final ISchemaChanges[] schemaUpdaters;
-	private static boolean initialized = false;
+	private static boolean initialized;
 }

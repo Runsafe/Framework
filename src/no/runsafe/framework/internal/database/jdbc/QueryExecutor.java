@@ -14,6 +14,7 @@ import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.joda.time.DateTime;
+import org.joda.time.ReadableInstant;
 
 import javax.annotation.Nullable;
 import java.sql.*;
@@ -376,7 +377,7 @@ abstract class QueryExecutor implements IQueryExecutor
 		int cols = meta.getColumnCount();
 		if (cols == 0)
 			return Lists.newArrayList();
-		ArrayList<IValue> results = new ArrayList<IValue>();
+		List<IValue> results = new ArrayList<IValue>();
 		while (!result.isAfterLast())
 		{
 			results.add(new Value(result.getObject(1)));
@@ -395,8 +396,8 @@ abstract class QueryExecutor implements IQueryExecutor
 	{
 		for (int i = 0; i < params.length; i++)
 		{
-			if (params[i] instanceof DateTime)
-				statement.setObject(i + 1, new Timestamp(((DateTime) params[i]).getMillis()));
+			if (params[i] instanceof ReadableInstant)
+				statement.setObject(i + 1, new Timestamp(((ReadableInstant) params[i]).getMillis()));
 			else
 				statement.setObject(i + 1, params[i]);
 		}
@@ -404,5 +405,5 @@ abstract class QueryExecutor implements IQueryExecutor
 
 	protected abstract Connection getConnection();
 
-	final IOutput output;
+	protected final IOutput output;
 }

@@ -34,6 +34,7 @@ public abstract class BukkitFurnace extends RunsafeBlockState implements IInvent
 		furnace.setCookTime(i);
 	}
 
+	@Override
 	public RunsafeInventory getInventory()
 	{
 		return ObjectWrapper.convert(furnace.getInventory());

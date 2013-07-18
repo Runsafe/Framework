@@ -7,6 +7,7 @@ import no.runsafe.framework.api.EventRouterFactory;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.api.IScheduler;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.event.EventHandler;
@@ -15,7 +16,7 @@ import org.bukkit.event.hanging.HangingPlaceEvent;
 
 public final class ItemFramePlace extends EventRouterBase<IItemFramePlaced, HangingPlaceEvent>
 {
-	private ItemFramePlace(IOutput output, IScheduler scheduler, IItemFramePlaced handler)
+	ItemFramePlace(IOutput output, IScheduler scheduler, IItemFramePlaced handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -32,7 +33,7 @@ public final class ItemFramePlace extends EventRouterBase<IItemFramePlaced, Hang
 	public boolean onEvent(HangingPlaceEvent event)
 	{
 		return handler.OnItemFramePlaced(
-			ObjectWrapper.convert(event.getPlayer()),
+			ObjectWrapper.convert((OfflinePlayer) event.getPlayer()),
 			ObjectWrapper.convert((ItemFrame) event.getEntity())
 		);
 	}

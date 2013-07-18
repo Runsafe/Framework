@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 public final class PlayerCommandPreprocess extends EventRouterBase<IPlayerCommandPreprocessEvent, PlayerCommandPreprocessEvent>
 {
-	private PlayerCommandPreprocess(IOutput output, IScheduler scheduler, IPlayerCommandPreprocessEvent handler)
+	PlayerCommandPreprocess(IOutput output, IScheduler scheduler, IPlayerCommandPreprocessEvent handler)
 	{
 		super(output, scheduler, handler);
 	}

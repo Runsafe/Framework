@@ -4,11 +4,17 @@ import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.minecraft.Item;
 import org.bukkit.Material;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EntityType
+public final class EntityType
 {
+	private EntityType()
+	{
+	}
+
+	@Nullable
 	public static RunsafeEntityType convert(org.bukkit.entity.EntityType entityType)
 	{
 		if (types.isEmpty())
@@ -25,6 +31,7 @@ public class EntityType
 		return types.get(entityType);
 	}
 
+	@Nullable
 	public static RunsafeEntityType Get(Item item)
 	{
 		if (item.getType() != Material.MONSTER_EGG)
@@ -38,5 +45,5 @@ public class EntityType
 		return convert(org.bukkit.entity.EntityType.fromId(id));
 	}
 
-	private final static Map<org.bukkit.entity.EntityType, RunsafeEntityType> types = new HashMap<org.bukkit.entity.EntityType, RunsafeEntityType>();
+	private static final Map<org.bukkit.entity.EntityType, RunsafeEntityType> types = new HashMap<org.bukkit.entity.EntityType, RunsafeEntityType>();
 }

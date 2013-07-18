@@ -5,7 +5,8 @@ import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import no.runsafe.framework.api.IScheduler;
 
-import java.util.HashMap;
+import javax.annotation.Nullable;
+import java.util.Map;
 
 /**
  * Base class representing a command that can only be executed by a player and has an implementation that can be executed asynchronously
@@ -19,7 +20,7 @@ public abstract class PlayerAsyncCommand extends AsyncCommand
 	}
 
 	@Override
-	public final String OnExecute(ICommandExecutor executor, HashMap<String, String> parameters, String[] arguments)
+	public final String OnExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
 	{
 		if (executor instanceof RunsafePlayer)
 			return OnExecute((RunsafePlayer) executor, parameters, arguments);
@@ -27,7 +28,7 @@ public abstract class PlayerAsyncCommand extends AsyncCommand
 	}
 
 	@Override
-	public final String OnAsyncExecute(ICommandExecutor executor, HashMap<String, String> parameters, String[] arguments)
+	public final String OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
 	{
 		if (executor instanceof RunsafePlayer)
 			return OnAsyncExecute((RunsafePlayer) executor, parameters, arguments);
@@ -35,7 +36,7 @@ public abstract class PlayerAsyncCommand extends AsyncCommand
 	}
 
 	@Override
-	public final String OnAsyncExecute(ICommandExecutor executor, HashMap<String, String> parameters)
+	public final String OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters)
 	{
 		if (executor instanceof RunsafePlayer)
 			return OnAsyncExecute((RunsafePlayer) executor, parameters);
@@ -43,7 +44,7 @@ public abstract class PlayerAsyncCommand extends AsyncCommand
 	}
 
 	/**
-	 * This method is called on the main thread before {@link PlayerAsyncCommand#OnAsyncExecute(no.runsafe.framework.api.command.ICommandExecutor, java.util.HashMap)}
+	 * This method is called on the main thread before {@link PlayerAsyncCommand#OnAsyncExecute(ICommandExecutor, Map)}
 	 * Override this method if you use optional arguments
 	 *
 	 * @param executor   The player executing the command
@@ -51,20 +52,21 @@ public abstract class PlayerAsyncCommand extends AsyncCommand
 	 * @param arguments  Tailing arguments not asked for in the command definition
 	 * @return Message to show to the user running the command
 	 */
-	public String OnExecute(RunsafePlayer executor, HashMap<String, String> parameters, String[] arguments)
+	public String OnExecute(RunsafePlayer executor, Map<String, String> parameters, String... arguments)
 	{
 		return OnExecute(executor, parameters);
 	}
 
 	/**
-	 * This method is called on the main thread before {@link PlayerAsyncCommand#OnAsyncExecute(no.runsafe.framework.api.command.ICommandExecutor, java.util.HashMap)}
+	 * This method is called on the main thread before {@link PlayerAsyncCommand#OnAsyncExecute(ICommandExecutor, Map)}
 	 * Override this method if you don't use optional arguments
 	 *
 	 * @param executor   The player executing the command
 	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
 	 * @return Message to show to the user running the command
 	 */
-	public String OnExecute(RunsafePlayer executor, HashMap<String, String> parameters)
+	@Nullable
+	public String OnExecute(RunsafePlayer executor, Map<String, String> parameters)
 	{
 		return null;
 	}
@@ -77,7 +79,7 @@ public abstract class PlayerAsyncCommand extends AsyncCommand
 	 * @param arguments  Tailing arguments not asked for in the command definition
 	 * @return Message to show to the user running the command after the command completes
 	 */
-	public String OnAsyncExecute(RunsafePlayer executor, HashMap<String, String> parameters, String[] arguments)
+	public String OnAsyncExecute(RunsafePlayer executor, Map<String, String> parameters, String... arguments)
 	{
 		return OnAsyncExecute(executor, parameters);
 	}
@@ -89,5 +91,5 @@ public abstract class PlayerAsyncCommand extends AsyncCommand
 	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
 	 * @return Message to show to the user running the command after the command completes
 	 */
-	public abstract String OnAsyncExecute(RunsafePlayer executor, HashMap<String, String> parameters);
+	public abstract String OnAsyncExecute(RunsafePlayer executor, Map<String, String> parameters);
 }

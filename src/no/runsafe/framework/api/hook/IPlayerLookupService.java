@@ -1,11 +1,13 @@
 package no.runsafe.framework.api.hook;
 
+import no.runsafe.framework.minecraft.RunsafeServer;
+
 import java.util.List;
 
 public interface IPlayerLookupService extends IFrameworkHook
 {
 	/**
-	 * Called by {@link no.runsafe.framework.minecraft.RunsafeServer#getPlayer(String)} to autocomplete partial names
+	 * Called by {@link RunsafeServer#getPlayer(String)} to autocomplete partial names
 	 */
-	public List<String> findPlayer(String lookup);
+	List<String> findPlayer(String lookup);
 }

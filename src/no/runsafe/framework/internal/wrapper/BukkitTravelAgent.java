@@ -12,49 +12,49 @@ public abstract class BukkitTravelAgent
 
 	public boolean createPortal(RunsafeLocation location)
 	{
-		return this.travelAgent.createPortal(location.getRaw());
+		return travelAgent.createPortal(location.getRaw());
 	}
 
 	public RunsafeLocation findOrCreate(RunsafeLocation location)
 	{
-		return ObjectWrapper.convert(this.travelAgent.findOrCreate(location.getRaw()));
+		return ObjectWrapper.convert(travelAgent.findOrCreate(location.getRaw()));
 	}
 
 	public RunsafeLocation findPortal(RunsafeLocation location)
 	{
-		return ObjectWrapper.convert(this.travelAgent.findPortal(location.getRaw()));
+		return ObjectWrapper.convert(travelAgent.findPortal(location.getRaw()));
 	}
 
 	public boolean getCanCreatePortal()
 	{
-		return this.travelAgent.getCanCreatePortal();
+		return travelAgent.getCanCreatePortal();
 	}
 
 	public int getSearchRadius()
 	{
-		return this.travelAgent.getSearchRadius();
+		return travelAgent.getSearchRadius();
 	}
 
 	public void setCanCreatePortal(boolean create)
 	{
-		this.travelAgent.setCanCreatePortal(create);
+		travelAgent.setCanCreatePortal(create);
 	}
 
 	public BukkitTravelAgent setCreationRadius(int radius)
 	{
-		this.travelAgent.setCreationRadius(radius);
+		travelAgent.setCreationRadius(radius);
 		return this;
 	}
 
 	public BukkitTravelAgent setSearchRadius(int radius)
 	{
-		this.travelAgent.setSearchRadius(radius);
+		travelAgent.setSearchRadius(radius);
 		return this;
 	}
 
 	public TravelAgent getRaw()
 	{
-		return this.travelAgent;
+		return travelAgent;
 	}
 
 	protected final TravelAgent travelAgent;

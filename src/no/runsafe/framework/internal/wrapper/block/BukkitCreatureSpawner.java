@@ -2,6 +2,7 @@ package no.runsafe.framework.internal.wrapper.block;
 
 import no.runsafe.framework.minecraft.block.RunsafeBlockState;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
+import no.runsafe.framework.minecraft.entity.EntityType;
 import org.bukkit.block.CreatureSpawner;
 
 public abstract class BukkitCreatureSpawner extends RunsafeBlockState
@@ -29,7 +30,7 @@ public abstract class BukkitCreatureSpawner extends RunsafeBlockState
 
 	public RunsafeEntityType getCreature()
 	{
-		return no.runsafe.framework.minecraft.entity.EntityType.convert(spawner.getSpawnedType());
+		return EntityType.convert(spawner.getSpawnedType());
 	}
 
 	@Override

@@ -3,7 +3,8 @@ package no.runsafe.framework.api.command;
 import no.runsafe.framework.internal.command.prepared.PreparedAsynchronousCommand;
 import no.runsafe.framework.api.IScheduler;
 
-import java.util.HashMap;
+import javax.annotation.Nullable;
+import java.util.Map;
 
 /**
  * Base class representing a command that has an implementation that can be executed asynchronously
@@ -17,8 +18,9 @@ public abstract class AsyncCommand extends ExecutableCommand
 		this.scheduler = scheduler;
 	}
 
+	@Nullable
 	@Override
-	public String OnExecute(ICommandExecutor executor, HashMap<String, String> parameters)
+	public String OnExecute(ICommandExecutor executor, Map<String, String> parameters)
 	{
 		return null;
 	}
@@ -31,7 +33,7 @@ public abstract class AsyncCommand extends ExecutableCommand
 	 * @param arguments  Tailing arguments not asked for in the command definition
 	 * @return Message to show to the user running the command
 	 */
-	public String OnAsyncExecute(ICommandExecutor executor, HashMap<String, String> parameters, String[] arguments)
+	public String OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
 	{
 		return OnAsyncExecute(executor, parameters);
 	}
@@ -43,7 +45,7 @@ public abstract class AsyncCommand extends ExecutableCommand
 	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
 	 * @return Message to show to the user running the command
 	 */
-	public abstract String OnAsyncExecute(ICommandExecutor executor, HashMap<String, String> parameters);
+	public abstract String OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters);
 
 	/**
 	 * Callback from the prepared command object to use our scheduler

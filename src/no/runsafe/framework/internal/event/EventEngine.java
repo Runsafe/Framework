@@ -10,10 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.picocontainer.Startable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public final class EventEngine implements Startable
 {
@@ -33,7 +30,7 @@ public final class EventEngine implements Startable
 		eventSubscribers = events;
 		this.scheduler = scheduler;
 		this.output = output;
-		this.pluginManager = manager;
+		pluginManager = manager;
 		this.plugin = plugin;
 	}
 
@@ -62,17 +59,17 @@ public final class EventEngine implements Startable
 			factories.put(factory.getInterface(), factory);
 	}
 
-	private List<Listener> getListeners()
+	private Iterable<Listener> getListeners()
 	{
-		ArrayList<Listener> listeners = new ArrayList<Listener>();
+		List<Listener> listeners = new ArrayList<Listener>();
 		for (IRunsafeEvent sub : eventSubscribers)
 			listeners.addAll(getRouters(sub));
 		return listeners;
 	}
 
-	private List<Listener> getRouters(IRunsafeEvent subscriber)
+	private Collection<Listener> getRouters(IRunsafeEvent subscriber)
 	{
-		ArrayList<Listener> routers = new ArrayList<Listener>();
+		List<Listener> routers = new ArrayList<Listener>();
 		for (Class<? extends IRunsafeEvent> type : factories.keySet())
 			if (type.isAssignableFrom(subscriber.getClass()))
 				routers.add(factories.get(type).getListener(output, scheduler, subscriber));

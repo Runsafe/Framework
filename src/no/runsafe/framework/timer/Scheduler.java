@@ -2,6 +2,7 @@ package no.runsafe.framework.timer;
 
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.ITimer;
+import no.runsafe.framework.internal.Minecraft;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
@@ -16,25 +17,25 @@ public class Scheduler implements IScheduler
 	@Override
 	public int startSyncTask(Runnable func, Long ticks)
 	{
-		return this.scheduler.scheduleSyncDelayedTask(this.plugin, func, ticks);
+		return scheduler.scheduleSyncDelayedTask(plugin, func, ticks);
 	}
 
 	@Override
 	public int startSyncTask(Runnable func, int seconds)
 	{
-		return this.startSyncTask(func, (long) seconds * 20);
+		return startSyncTask(func, (long) seconds * Minecraft.TICKS_PER_SECOND);
 	}
 
 	@Override
 	public int startSyncRepeatingTask(Runnable func, int delay, int period)
 	{
-		return this.startSyncRepeatingTask(func, (long) delay * 20, (long) period * 20);
+		return startSyncRepeatingTask(func, (long) delay * Minecraft.TICKS_PER_SECOND, (long) period * Minecraft.TICKS_PER_SECOND);
 	}
 
 	@Override
 	public int startSyncRepeatingTask(Runnable func, long delay, long period)
 	{
-		return this.scheduler.scheduleSyncRepeatingTask(this.plugin, func, delay, period);
+		return scheduler.scheduleSyncRepeatingTask(plugin, func, delay, period);
 	}
 
 	@Override
@@ -46,7 +47,7 @@ public class Scheduler implements IScheduler
 	@Override
 	public ITimer createSyncTimer(Runnable func, int delay, int period)
 	{
-		return createSyncTimer(func, (long) delay * 20, (long) period * 20);
+		return createSyncTimer(func, (long) delay * Minecraft.TICKS_PER_SECOND, (long) period * Minecraft.TICKS_PER_SECOND);
 	}
 
 	@Override
@@ -70,7 +71,7 @@ public class Scheduler implements IScheduler
 	@Override
 	public ITimer createAsyncTimer(Runnable func, int delay, int period)
 	{
-		return createAsyncTimer(func, (long) delay * 20, (long) period * 20);
+		return createAsyncTimer(func, (long) delay * Minecraft.TICKS_PER_SECOND, (long) period * Minecraft.TICKS_PER_SECOND);
 	}
 
 	@Override
@@ -88,29 +89,29 @@ public class Scheduler implements IScheduler
 	@Override
 	public void cancelTask(int eventId)
 	{
-		if (this.scheduler.isQueued(eventId))
-			this.scheduler.cancelTask(eventId);
+		if (scheduler.isQueued(eventId))
+			scheduler.cancelTask(eventId);
 	}
 
 	@Override
 	@Deprecated
 	public int startAsyncTask(Runnable func, Long ticks)
 	{
-		return this.scheduler.scheduleAsyncDelayedTask(this.plugin, func, ticks);
+		return scheduler.scheduleAsyncDelayedTask(plugin, func, ticks);
 	}
 
 	@Override
 	@Deprecated
 	public int startAsyncTask(Runnable func, int seconds)
 	{
-		return this.startAsyncTask(func, (long) seconds * 20);
+		return startAsyncTask(func, (long) seconds * Minecraft.TICKS_PER_SECOND);
 	}
 
 	@Override
 	@Deprecated
 	public int startAsyncRepeatingTask(Runnable func, long delay, long period)
 	{
-		return this.scheduler.scheduleAsyncRepeatingTask(this.plugin, func, delay, period);
+		return scheduler.scheduleAsyncRepeatingTask(plugin, func, delay, period);
 	}
 
 	private final JavaPlugin plugin;

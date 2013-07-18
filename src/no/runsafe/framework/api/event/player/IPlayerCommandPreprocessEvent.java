@@ -5,5 +5,5 @@ import no.runsafe.framework.api.event.IRunsafeEvent;
 
 public interface IPlayerCommandPreprocessEvent extends IRunsafeEvent
 {
-	public void OnBeforePlayerCommand(RunsafePlayerCommandPreprocessEvent event);
+	void OnBeforePlayerCommand(RunsafePlayerCommandPreprocessEvent event);
 }

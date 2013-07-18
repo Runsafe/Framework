@@ -6,6 +6,8 @@ import no.runsafe.framework.minecraft.RunsafeLocation;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 
+import javax.annotation.Nullable;
+
 public enum LivingEntity implements RunsafeEntityType
 {
 	Bat(EntityType.BAT),
@@ -90,9 +92,10 @@ public enum LivingEntity implements RunsafeEntityType
 	@Override
 	public RunsafeEntity spawn(RunsafeLocation location)
 	{
-		return ObjectWrapper.convert(location.getWorld().spawn(location, this.getEntityType()));
+		return ObjectWrapper.convert(location.getWorld().spawn(location, getEntityType()));
 	}
 
 	private final EntityType type;
+	@Nullable
 	private final String nameOverride;
 }

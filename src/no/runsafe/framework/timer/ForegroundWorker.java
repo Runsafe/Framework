@@ -16,7 +16,7 @@ public abstract class ForegroundWorker<TokenType, StateType> implements Runnable
 	protected ForegroundWorker(IScheduler scheduler, long ticks)
 	{
 		this.scheduler = scheduler;
-		this.worker = scheduler.createSyncTimer(this, ticks, ticks);
+		worker = scheduler.createSyncTimer(this, ticks, ticks);
 	}
 
 	public void Push(TokenType key, StateType value)
@@ -50,7 +50,7 @@ public abstract class ForegroundWorker<TokenType, StateType> implements Runnable
 
 	public abstract void process(TokenType key, StateType value);
 
-	@SuppressWarnings("EmptyMethod")
+	@SuppressWarnings({"EmptyMethod", "NoopMethodInAbstractClass"})
 	protected void onWorkerDone()
 	{
 	}
@@ -59,7 +59,7 @@ public abstract class ForegroundWorker<TokenType, StateType> implements Runnable
 	{
 		if (ticks > 0)
 		{
-			if (this.worker != null)
+			if (worker != null)
 				worker.stop();
 			worker = scheduler.createSyncTimer(this, 1L, ticks);
 		}

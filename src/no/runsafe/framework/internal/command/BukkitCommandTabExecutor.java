@@ -6,6 +6,7 @@ import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.api.command.IPreparedCommand;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.text.ChatColour;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -38,7 +39,7 @@ public final class BukkitCommandTabExecutor implements TabExecutor
 	}
 
 	@Override
-	public boolean onCommand(org.bukkit.command.CommandSender sender, org.bukkit.command.Command command, String label, String[] args)
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
 	{
 		if (args == null)
 			args = new String[0];
@@ -62,17 +63,17 @@ public final class BukkitCommandTabExecutor implements TabExecutor
 		return tabCompleteCommand(commandSender, args);
 	}
 
-	private List<String> tabCompleteCommand(CommandSender sender, String[] args)
+	private List<String> tabCompleteCommand(CommandSender sender, String... args)
 	{
-		IPreparedCommand preparedCommand = preparedCommand(sender, args, true);
+		IPreparedCommand preparedCommand = preparedCommand(sender, true, args);
 		List<String> options = preparedCommand.tabComplete(args);
 		logger.fine("Tab completion options to return: %s", options);
 		return options;
 	}
 
-	private void executeCommand(CommandSender sender, String[] args)
+	private void executeCommand(CommandSender sender, String... args)
 	{
-		IPreparedCommand preparedCommand = preparedCommand(sender, args, false);
+		IPreparedCommand preparedCommand = preparedCommand(sender, false, args);
 
 		String permission = preparedCommand.getRequiredPermission();
 		if (permission == null || sender.hasPermission(permission))
@@ -91,14 +92,14 @@ public final class BukkitCommandTabExecutor implements TabExecutor
 		}
 	}
 
-	private IPreparedCommand preparedCommand(CommandSender sender, String[] args, boolean skipLast)
+	private IPreparedCommand preparedCommand(CommandSender sender, boolean skipLast, String[] args)
 	{
 		if (skipLast)
 			args = Arrays.copyOfRange(args, 0, args.length - 1);
-		if (sender instanceof Player)
-			return this.command.prepare(ObjectWrapper.convert((Player) sender), args);
-		else
-			return this.command.prepare(console, args);
+		return command.prepare(
+			sender instanceof Player ? ObjectWrapper.convert((OfflinePlayer) sender) : console,
+			args
+		);
 	}
 
 	private final ICommandHandler command;

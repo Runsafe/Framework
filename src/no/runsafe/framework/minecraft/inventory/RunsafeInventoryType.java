@@ -22,25 +22,25 @@ public enum RunsafeInventoryType
 	private final int size;
 	private final String title;
 
-	private RunsafeInventoryType(int defaultSize, String defaultTitle)
+	RunsafeInventoryType(int defaultSize, String defaultTitle)
 	{
-		this.size = defaultSize;
-		this.title = defaultTitle;
+		size = defaultSize;
+		title = defaultTitle;
 	}
 
 	public int getDefaultSize()
 	{
-		return this.size;
+		return size;
 	}
 
 	public String getDefaultTitle()
 	{
-		return this.title;
+		return title;
 	}
 
 	public InventoryType getRaw()
 	{
-		return InventoryType.valueOf(this.name());
+		return InventoryType.valueOf(name());
 	}
 
 	public enum SlotType

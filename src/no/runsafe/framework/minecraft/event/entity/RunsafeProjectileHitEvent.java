@@ -9,12 +9,12 @@ public class RunsafeProjectileHitEvent extends RunsafeEntityEvent
 	public RunsafeProjectileHitEvent(ProjectileHitEvent toWrap)
 	{
 		super(toWrap);
-		this.event = toWrap;
+		event = toWrap;
 	}
 
 	public RunsafeProjectile getProjectile()
 	{
-		return ObjectWrapper.convert(this.event.getEntity());
+		return ObjectWrapper.convert(event.getEntity());
 	}
 
 	private final ProjectileHitEvent event;

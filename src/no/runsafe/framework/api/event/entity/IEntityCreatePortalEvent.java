@@ -5,5 +5,5 @@ import no.runsafe.framework.minecraft.event.entity.RunsafeEntityCreatePortalEven
 
 public interface IEntityCreatePortalEvent extends IRunsafeEvent
 {
-	public void OnEntityCreatePortal(RunsafeEntityCreatePortalEvent event);
+	void OnEntityCreatePortal(RunsafeEntityCreatePortalEvent event);
 }

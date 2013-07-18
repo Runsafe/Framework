@@ -13,7 +13,7 @@ import org.bukkit.event.world.WorldSaveEvent;
 
 public final class WorldSave extends EventRouterBase<IWorldSave, WorldSaveEvent>
 {
-	private WorldSave(IOutput output, IScheduler scheduler, IWorldSave handler)
+	WorldSave(IOutput output, IScheduler scheduler, IWorldSave handler)
 	{
 		super(output, scheduler, handler);
 	}

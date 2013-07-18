@@ -13,7 +13,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 
 public final class InventoryClose extends EventRouterBase<IInventoryClosed, InventoryCloseEvent>
 {
-	private InventoryClose(IOutput output, IScheduler scheduler, IInventoryClosed handler)
+	InventoryClose(IOutput output, IScheduler scheduler, IInventoryClosed handler)
 	{
 		super(output, scheduler, handler);
 	}

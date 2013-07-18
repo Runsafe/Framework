@@ -7,12 +7,13 @@ import no.runsafe.framework.api.event.player.IPlayerTeleport;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.api.IScheduler;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 public final class PlayerTeleportEvent extends EventRouterBase<IPlayerTeleport, org.bukkit.event.player.PlayerTeleportEvent>
 {
-	private PlayerTeleportEvent(IOutput output, IScheduler scheduler, IPlayerTeleport handler)
+	PlayerTeleportEvent(IOutput output, IScheduler scheduler, IPlayerTeleport handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -28,7 +29,7 @@ public final class PlayerTeleportEvent extends EventRouterBase<IPlayerTeleport, 
 	public boolean onEvent(org.bukkit.event.player.PlayerTeleportEvent event)
 	{
 		return handler.OnPlayerTeleport(
-			ObjectWrapper.convert(event.getPlayer()),
+			ObjectWrapper.convert((OfflinePlayer) event.getPlayer()),
 			ObjectWrapper.convert(event.getFrom()),
 			ObjectWrapper.convert(event.getTo())
 		);

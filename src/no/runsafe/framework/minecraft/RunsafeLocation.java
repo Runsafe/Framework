@@ -16,6 +16,7 @@ public class RunsafeLocation extends BukkitLocation
 		super(new Location(world.getRaw(), x, y, z));
 	}
 
+	@SuppressWarnings("ConstructorWithTooManyParameters")
 	public RunsafeLocation(RunsafeWorld world, double x, double y, double z, float yaw, float pitch)
 	{
 		super(new Location(world.getRaw(), x, y, z, yaw, pitch));
@@ -33,32 +34,32 @@ public class RunsafeLocation extends BukkitLocation
 
 	public void incrementX(double x)
 	{
-		this.setX(this.getX() + x);
+		setX(getX() + x);
 	}
 
 	public void incrementY(double y)
 	{
-		this.setY(this.getY() + y);
+		setY(getY() + y);
 	}
 
 	public void incrementZ(double z)
 	{
-		this.setZ(this.getZ() + z);
+		setZ(getZ() + z);
 	}
 
 	public void decrementX(double x)
 	{
-		this.setX(this.getX() - x);
+		setX(getX() - x);
 	}
 
 	public void decrementY(double y)
 	{
-		this.setY(this.getY() - y);
+		setY(getY() - y);
 	}
 
 	public void decrementZ(double z)
 	{
-		this.setZ(this.getZ() - z);
+		setZ(getZ() - z);
 	}
 
 	public void Play(Sound sound)
@@ -74,13 +75,13 @@ public class RunsafeLocation extends BukkitLocation
 	@Override
 	public String toString()
 	{
-		return String.format("world: %s X: %s Y: %s Z: %s", this.getWorld().getName(), this.getX(), this.getY(), this.getZ());
+		return String.format("world: %s X: %s Y: %s Z: %s", getWorld().getName(), getX(), getY(), getZ());
 	}
 
 	public void offset(double x, double y, double z)
 	{
-		if (x > 0) this.incrementX(x); else this.decrementX(x);
-		if (y > 0) this.incrementY(y); else this.decrementY(y);
-		if (z > 0) this.incrementZ(z); else this.decrementZ(z);
+		if (x > 0) incrementX(x); else decrementX(x);
+		if (y > 0) incrementY(y); else decrementY(y);
+		if (z > 0) incrementZ(z); else decrementZ(z);
 	}
 }

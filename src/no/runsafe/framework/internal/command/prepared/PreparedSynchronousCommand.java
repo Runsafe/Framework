@@ -4,13 +4,13 @@ import no.runsafe.framework.api.command.Command;
 import no.runsafe.framework.api.command.ExecutableCommand;
 import no.runsafe.framework.api.command.ICommandExecutor;
 
-import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 public final class PreparedSynchronousCommand extends PreparedCommand
 {
 	public PreparedSynchronousCommand(
-		ICommandExecutor executor, Stack<Command> definingCommand, String[] args, HashMap<String, String> parameters)
+		ICommandExecutor executor, Stack<Command> definingCommand, String[] args, Map<String, String> parameters)
 	{
 		super(executor, definingCommand, args, parameters);
 	}

@@ -13,5 +13,5 @@ public interface ISignChange extends IRunsafeEvent
 	 * @param block  The sign block that was changed
 	 * @return If not an async event, whether to allow the event
 	 */
-	boolean OnSignChange(RunsafePlayer player, RunsafeBlock block, String[] text);
+	boolean OnSignChange(RunsafePlayer player, RunsafeBlock block, String... text);
 }

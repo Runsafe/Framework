@@ -8,7 +8,7 @@ public abstract class BukkitInventoryHolder
 {
 	protected BukkitInventoryHolder(InventoryHolder toWrap)
 	{
-		this.inventoryHolder = toWrap;
+		inventoryHolder = toWrap;
 	}
 
 	public RunsafeInventory getInventory()
@@ -18,7 +18,7 @@ public abstract class BukkitInventoryHolder
 
 	public InventoryHolder getRaw()
 	{
-		return this.inventoryHolder;
+		return inventoryHolder;
 	}
 
 	private final InventoryHolder inventoryHolder;

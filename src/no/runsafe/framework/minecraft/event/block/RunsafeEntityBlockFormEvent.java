@@ -9,7 +9,7 @@ public class RunsafeEntityBlockFormEvent extends RunsafeCancellableBlockEvent
 	public RunsafeEntityBlockFormEvent(EntityBlockFormEvent toWrap)
 	{
 		super(toWrap);
-		this.event = toWrap;
+		event = toWrap;
 	}
 
 	public RunsafeEntity getEntity()

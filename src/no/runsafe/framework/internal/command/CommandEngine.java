@@ -8,6 +8,7 @@ import no.runsafe.framework.minecraft.RunsafeConsole;
 import org.bukkit.command.PluginCommand;
 import org.picocontainer.Startable;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,10 +22,10 @@ public final class CommandEngine implements Startable
 	 */
 	public CommandEngine()
 	{
-		this.commands = null;
-		this.plugin = null;
-		this.console = null;
-		this.output = null;
+		commands = null;
+		plugin = null;
+		console = null;
+		output = null;
 	}
 
 	/**
@@ -36,7 +37,7 @@ public final class CommandEngine implements Startable
 	{
 		this.commands = commands;
 		this.plugin = plugin;
-		this.console = new RunsafeConsole(output);
+		console = new RunsafeConsole(output);
 		this.output = output;
 	}
 
@@ -70,9 +71,9 @@ public final class CommandEngine implements Startable
 		}
 	}
 
-	private List<BukkitCommandTabExecutor> getCommands()
+	private Iterable<BukkitCommandTabExecutor> getCommands()
 	{
-		ArrayList<BukkitCommandTabExecutor> handlers = new ArrayList<BukkitCommandTabExecutor>();
+		List<BukkitCommandTabExecutor> handlers = new ArrayList<BukkitCommandTabExecutor>();
 		for (ICommandHandler command : commands)
 		{
 			command.setConsole(output);
@@ -81,8 +82,12 @@ public final class CommandEngine implements Startable
 		return handlers;
 	}
 
+	@Nullable
 	private final ICommandExecutor console;
+	@Nullable
 	private final IOutput output;
+	@Nullable
 	private final ICommandHandler[] commands;
+	@Nullable
 	private final RunsafePlugin plugin;
 }

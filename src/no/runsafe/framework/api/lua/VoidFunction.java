@@ -8,7 +8,7 @@ public abstract class VoidFunction extends Function
 	@Override
 	public Varargs invoke(Varargs args)
 	{
-		this.run(VarargsToParameters(args));
+		run(VarargsToParameters(args));
 		return varargsOf(new LuaValue[0]);
 	}
 

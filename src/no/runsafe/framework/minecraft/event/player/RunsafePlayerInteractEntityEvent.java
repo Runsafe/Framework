@@ -14,7 +14,7 @@ public class RunsafePlayerInteractEntityEvent extends RunsafeCancellablePlayerEv
 
 	public RunsafeEntity getRightClicked()
 	{
-		return ObjectWrapper.convert(this.event.getRightClicked());
+		return ObjectWrapper.convert(event.getRightClicked());
 	}
 
 	private final PlayerInteractEntityEvent event;

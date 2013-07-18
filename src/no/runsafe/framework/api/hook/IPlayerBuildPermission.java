@@ -6,7 +6,7 @@ import no.runsafe.framework.minecraft.player.RunsafePlayer;
 public interface IPlayerBuildPermission extends IFrameworkHook
 {
 	/**
-	 * Called by {@link no.runsafe.framework.minecraft.player.RunsafePlayer#canBuildNow()} on behalf of plugins that
+	 * Called by {@link RunsafePlayer#canBuildNow()} on behalf of plugins that
 	 * want to find out if the player can build or not
 	 */
 	boolean blockPlayerBuilding(RunsafePlayer player, RunsafeLocation location);

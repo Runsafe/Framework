@@ -15,13 +15,14 @@ import org.bukkit.Server;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class RunsafeServer extends BukkitServer
 {
-	public static RunsafeServer Instance = null;
+	public static RunsafeServer Instance;
 
 	public RunsafeServer(Server toWrap)
 	{
@@ -50,6 +51,7 @@ public class RunsafeServer extends BukkitServer
 		return groups;
 	}
 
+	@Nullable
 	public RunsafePlayer getPlayer(String playerName)
 	{
 		if (playerName == null)
@@ -57,11 +59,11 @@ public class RunsafeServer extends BukkitServer
 
 		Player rawPlayer = server.getPlayerExact(playerName);
 		if (rawPlayer != null && rawPlayer.isOnline())
-			return ObjectWrapper.convert(rawPlayer);
+			return ObjectWrapper.convert((OfflinePlayer) rawPlayer);
 
 		List<String> hits = findPlayer(playerName);
 
-		if (hits.size() == 0)
+		if (hits.isEmpty())
 			return null;
 
 		if (hits.size() == 1)
@@ -70,6 +72,7 @@ public class RunsafeServer extends BukkitServer
 		return new RunsafeAmbiguousPlayer(server.getOfflinePlayer(hits.get(0)), hits);
 	}
 
+	@Nullable
 	public RunsafePlayer getOnlinePlayer(RunsafePlayer context, String playerName)
 	{
 		if (playerName == null)
@@ -89,6 +92,7 @@ public class RunsafeServer extends BukkitServer
 		return new RunsafeAmbiguousPlayer(online);
 	}
 
+	@Nullable
 	public List<RunsafePlayer> getOnlinePlayers(String playerName)
 	{
 		if (playerName == null)
@@ -103,12 +107,13 @@ public class RunsafeServer extends BukkitServer
 		return ObjectWrapper.convert(players);
 	}
 
+	@Nullable
 	public RunsafePlayer getPlayerExact(String playerName)
 	{
 		if (playerName == null)
 			return null;
 
-		Player player = this.server.getPlayerExact(playerName);
+		Player player = server.getPlayerExact(playerName);
 		if (player == null)
 		{
 			List<String> players = findPlayer(playerName);
@@ -117,12 +122,13 @@ public class RunsafeServer extends BukkitServer
 		return new RunsafePlayer(player);
 	}
 
+	@Nullable
 	public List<String> findPlayer(String playerName)
 	{
 		if (playerName == null || playerName.isEmpty())
 			return null;
 
-		ArrayList<String> hits = new ArrayList<String>();
+		List<String> hits = new ArrayList<String>();
 		for (IPlayerLookupService lookup : HookEngine.hookContainer.getComponents(IPlayerLookupService.class))
 		{
 			List<String> data = lookup.findPlayer(playerName);
@@ -177,6 +183,7 @@ public class RunsafeServer extends BukkitServer
 		player.kick(reason);
 	}
 
+	@Nullable
 	public RunsafePlayer getKicker(String playerName)
 	{
 		if (playerName == null || playerName.isEmpty())
@@ -205,14 +212,15 @@ public class RunsafeServer extends BukkitServer
 		if (permission == null || permission.isEmpty())
 			return Lists.newArrayList();
 
-		ArrayList<RunsafePlayer> results = new ArrayList<RunsafePlayer>();
+		List<RunsafePlayer> results = new ArrayList<RunsafePlayer>();
 		for (Player player : server.getOnlinePlayers())
 			if (player.hasPermission(permission))
-				results.add(ObjectWrapper.convert(player));
+				results.add(ObjectWrapper.convert((OfflinePlayer) player));
 		return results;
 	}
 
 	@SuppressWarnings("unchecked")
+	@Nullable
 	public <T extends Plugin> T getPlugin(String pluginName)
 	{
 		if (pluginName == null || pluginName.isEmpty())

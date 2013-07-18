@@ -2,6 +2,7 @@ package no.runsafe.framework.timer;
 
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.ITimer;
+import no.runsafe.framework.internal.Minecraft;
 
 public abstract class Timer implements ITimer, Runnable
 {
@@ -20,7 +21,7 @@ public abstract class Timer implements ITimer, Runnable
 	@Override
 	public void resetSeconds(int seconds)
 	{
-		resetTicks((long) seconds * 20);
+		resetTicks((long) seconds * Minecraft.TICKS_PER_SECOND);
 	}
 
 	@Override
@@ -45,17 +46,15 @@ public abstract class Timer implements ITimer, Runnable
 		stop();
 		if (period == 0)
 		{
-			if (asynchronous)
-				this.timerId = systemScheduler.startAsyncTask(this, delay);
-			else
-				this.timerId = systemScheduler.startSyncTask(this, delay);
+			timerId = asynchronous
+				? systemScheduler.startAsyncTask(this, delay)
+				: systemScheduler.startSyncTask(this, delay);
 		}
 		else
 		{
-			if (asynchronous)
-				this.timerId = systemScheduler.startAsyncRepeatingTask(this, delay, period);
-			else
-				this.timerId = systemScheduler.startSyncRepeatingTask(this, delay, period);
+			timerId = asynchronous
+				? systemScheduler.startAsyncRepeatingTask(this, delay, period)
+				: systemScheduler.startSyncRepeatingTask(this, delay, period);
 		}
 	}
 

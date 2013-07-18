@@ -4,7 +4,7 @@ import no.runsafe.framework.api.command.ExecutableCommand;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Base class representing a command that can only be executed by a player
@@ -17,7 +17,7 @@ public abstract class PlayerCommand extends ExecutableCommand
 	}
 
 	@Override
-	public final String OnExecute(ICommandExecutor executor, HashMap<String, String> parameters, String[] arguments)
+	public final String OnExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
 	{
 		if (executor instanceof RunsafePlayer)
 			return OnExecute((RunsafePlayer) executor, parameters, arguments);
@@ -26,7 +26,7 @@ public abstract class PlayerCommand extends ExecutableCommand
 	}
 
 	@Override
-	public final String OnExecute(ICommandExecutor executor, HashMap<String, String> parameters)
+	public final String OnExecute(ICommandExecutor executor, Map<String, String> parameters)
 	{
 		if (executor instanceof RunsafePlayer)
 			return OnExecute((RunsafePlayer) executor, parameters);
@@ -42,7 +42,7 @@ public abstract class PlayerCommand extends ExecutableCommand
 	 * @param arguments  Tailing arguments not asked for in the command definition
 	 * @return Message to show to the user running the command
 	 */
-	public String OnExecute(RunsafePlayer executor, HashMap<String, String> parameters, String[] arguments)
+	public String OnExecute(RunsafePlayer executor, Map<String, String> parameters, String... arguments)
 	{
 		return OnExecute(executor, parameters);
 	}
@@ -54,5 +54,5 @@ public abstract class PlayerCommand extends ExecutableCommand
 	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
 	 * @return Message to show to the user running the command
 	 */
-	public abstract String OnExecute(RunsafePlayer executor, HashMap<String, String> parameters);
+	public abstract String OnExecute(RunsafePlayer executor, Map<String, String> parameters);
 }

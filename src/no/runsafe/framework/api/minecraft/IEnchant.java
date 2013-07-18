@@ -4,23 +4,23 @@ import no.runsafe.framework.minecraft.enchantment.RunsafeEnchantment;
 
 public interface IEnchant
 {
-	public IEnchant power(int power);
+	IEnchant power(int power);
 
-	public IEnchant max();
+	IEnchant max();
 
-	public IEnchant applyTo(IEnchantable target);
+	IEnchant applyTo(IEnchantable target);
 
-	public int getId();
+	int getId();
 
-	public String getName();
+	String getName();
 
-	public int getMaxLevel();
+	int getMaxLevel();
 
-	public int getStartLevel();
+	int getStartLevel();
 
-	public boolean canCoexist(IEnchant enchantment);
+	boolean canCoexist(IEnchant enchantment);
 
-	public boolean canEnchant(IEnchantable target);
+	boolean canEnchant(IEnchantable target);
 
 	int power();
 

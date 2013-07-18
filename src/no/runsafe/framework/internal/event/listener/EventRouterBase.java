@@ -13,10 +13,10 @@ public abstract class EventRouterBase<Wrapper extends IRunsafeEvent, EventType e
 {
 	protected EventRouterBase(IOutput output, IScheduler scheduler, Wrapper handler)
 	{
-		this.console = output;
+		console = output;
 		this.scheduler = scheduler;
 		this.handler = handler;
-		this.isAsync = (handler instanceof IAsyncEvent);
+		isAsync = handler instanceof IAsyncEvent;
 	}
 
 	/**

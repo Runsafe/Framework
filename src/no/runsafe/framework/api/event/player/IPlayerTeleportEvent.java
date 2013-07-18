@@ -5,5 +5,5 @@ import no.runsafe.framework.api.event.IRunsafeEvent;
 
 public interface IPlayerTeleportEvent extends IRunsafeEvent
 {
-	public void OnPlayerTeleport(RunsafePlayerTeleportEvent event);
+	void OnPlayerTeleport(RunsafePlayerTeleportEvent event);
 }

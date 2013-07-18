@@ -7,17 +7,17 @@ public class RunsafeFish extends RunsafeProjectile
 	public RunsafeFish(Fish toWrap)
 	{
 		super(toWrap);
-		this.fish = toWrap;
+		fish = toWrap;
 	}
 
 	public double getBiteChance()
 	{
-		return this.fish.getBiteChance();
+		return fish.getBiteChance();
 	}
 
 	public void setBiteChance(double chance)
 	{
-		this.fish.setBiteChance(chance);
+		fish.setBiteChance(chance);
 	}
 
 	private final Fish fish;

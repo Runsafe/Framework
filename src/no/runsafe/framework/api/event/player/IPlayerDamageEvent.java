@@ -6,5 +6,5 @@ import no.runsafe.framework.minecraft.player.RunsafePlayer;
 
 public interface IPlayerDamageEvent extends IRunsafeEvent
 {
-	public void OnPlayerDamage(RunsafePlayer player, RunsafeEntityDamageEvent event);
+	void OnPlayerDamage(RunsafePlayer player, RunsafeEntityDamageEvent event);
 }

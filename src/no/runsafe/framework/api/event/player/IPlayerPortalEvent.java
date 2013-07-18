@@ -5,5 +5,5 @@ import no.runsafe.framework.minecraft.event.player.RunsafePlayerPortalEvent;
 
 public interface IPlayerPortalEvent extends IRunsafeEvent
 {
-	public void OnPlayerPortalEvent(RunsafePlayerPortalEvent event);
+	void OnPlayerPortalEvent(RunsafePlayerPortalEvent event);
 }

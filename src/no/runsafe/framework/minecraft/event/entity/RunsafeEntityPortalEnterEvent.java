@@ -15,12 +15,12 @@ public class RunsafeEntityPortalEnterEvent extends RunsafeEntityEvent
 
 	public RunsafeLocation getLocation()
 	{
-		return ObjectWrapper.convert(this.event.getLocation());
+		return ObjectWrapper.convert(event.getLocation());
 	}
 
 	public RunsafeBlock getBlock()
 	{
-		return this.getLocation().getBlock();
+		return getLocation().getBlock();
 	}
 
 	private final EntityPortalEnterEvent event;

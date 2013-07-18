@@ -1,8 +1,8 @@
 package no.runsafe.framework.internal.wrapper.item;
 
+import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.enchantment.RunsafeEnchantment;
 import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
-import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.Material;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.enchantments.Enchantment;
@@ -20,12 +20,12 @@ public abstract class BukkitItemStack implements ConfigurationSerializable
 
 	public Material getType()
 	{
-		return this.itemStack.getType();
+		return itemStack.getType();
 	}
 
 	public void setType(Material type)
 	{
-		this.itemStack.setType(type);
+		itemStack.setType(type);
 	}
 
 	public int getItemId()
@@ -60,10 +60,7 @@ public abstract class BukkitItemStack implements ConfigurationSerializable
 
 	public void remove(int amount)
 	{
-		if (itemStack.getAmount() > amount)
-			itemStack.setAmount(itemStack.getAmount() - amount);
-		else
-			itemStack.setAmount(0);
+		itemStack.setAmount(Math.max(0, itemStack.getAmount() - amount));
 	}
 
 	public RunsafeMaterialData getData()
@@ -112,7 +109,7 @@ public abstract class BukkitItemStack implements ConfigurationSerializable
 	public Map<RunsafeEnchantment, Integer> getEnchantments()
 	{
 		Map<Enchantment, Integer> bukkitEnchants = itemStack.getEnchantments();
-		HashMap<RunsafeEnchantment, Integer> enchants = new HashMap<RunsafeEnchantment, Integer>();
+		Map<RunsafeEnchantment, Integer> enchants = new HashMap<RunsafeEnchantment, Integer>();
 		for (Enchantment ench : bukkitEnchants.keySet())
 			enchants.put(ObjectWrapper.convert(ench), bukkitEnchants.get(ench));
 		return enchants;
@@ -141,7 +138,7 @@ public abstract class BukkitItemStack implements ConfigurationSerializable
 	@Override
 	public Map<String, Object> serialize()
 	{
-		return this.itemStack.serialize();
+		return itemStack.serialize();
 	}
 
 	protected final ItemStack itemStack;

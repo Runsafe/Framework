@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ICommandHandler
 {
-	IPreparedCommand prepare(ICommandExecutor executor, String[] args);
+	IPreparedCommand prepare(ICommandExecutor executor, String... args);
 
 	String getName();
 

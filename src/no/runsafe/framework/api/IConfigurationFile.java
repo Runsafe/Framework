@@ -7,7 +7,7 @@ import java.io.InputStream;
  */
 public interface IConfigurationFile
 {
-	public String getConfigurationPath();
+	String getConfigurationPath();
 
-	public InputStream getDefaultConfiguration();
+	InputStream getDefaultConfiguration();
 }

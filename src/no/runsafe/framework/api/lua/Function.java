@@ -24,7 +24,7 @@ public abstract class Function extends VarArgFunction
 		return parameters;
 	}
 
-	protected Varargs objectListToVarargs(List<Object> objects)
+	protected Varargs objectListToVarargs(Iterable<Object> objects)
 	{
 		List<LuaValue> values = new ArrayList<LuaValue>();
 

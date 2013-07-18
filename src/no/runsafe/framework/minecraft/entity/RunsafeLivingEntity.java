@@ -12,10 +12,13 @@ import org.bukkit.entity.Projectile;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.Vector;
 
+import javax.annotation.Nullable;
 import java.util.HashSet;
 
 public class RunsafeLivingEntity extends BukkitLivingEntity
 {
+	public static final int MAX_DISTANCE = 300;
+
 	public RunsafeLivingEntity(LivingEntity toWrap)
 	{
 		super(toWrap);
@@ -27,7 +30,7 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 		for (Material material : Material.values())
 			if (material.isTransparent())
 				transparent.add((byte) material.getId());
-		return getTargetBlock(transparent, 300);
+		return getTargetBlock(transparent, MAX_DISTANCE);
 	}
 
 	public RunsafeEntity Fire(String projectileType)
@@ -53,22 +56,23 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 	public void removeBuffs()
 	{
 		if (entity != null)
-			for (PotionEffect effect : entity.getActivePotionEffects())
-				entity.removePotionEffect(effect.getType());
+			for (PotionEffect effect : livingEntity.getActivePotionEffects())
+				livingEntity.removePotionEffect(effect.getType());
 	}
 
 	private RunsafeEntity Launch(Class<? extends Entity> launch)
 	{
-		Vector velocity = entity.getEyeLocation().getDirection().multiply(2);
-		Entity launched = entity.getWorld().spawn(entity.getEyeLocation().add(velocity), launch);
+		Vector velocity = livingEntity.getEyeLocation().getDirection().multiply(2);
+		Entity launched = entity.getWorld().spawn(livingEntity.getEyeLocation().add(velocity), launch);
 		launched.setVelocity(velocity);
 		return ObjectWrapper.convert(launched);
 	}
 
+	@Nullable
 	private RunsafeEntity Fire(Class<? extends Entity> projectile)
 	{
 		if (!Projectile.class.isAssignableFrom(projectile))
 			return null;
-		return ObjectWrapper.convert(entity.launchProjectile(projectile.asSubclass(Projectile.class)));
+		return ObjectWrapper.convert(livingEntity.launchProjectile(projectile.asSubclass(Projectile.class)));
 	}
 }

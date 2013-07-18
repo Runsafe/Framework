@@ -5,5 +5,5 @@ import no.runsafe.framework.minecraft.event.inventory.RunsafeInventoryPickupItem
 
 public interface IInventoryPickupItem extends IRunsafeEvent
 {
-	public void OnInventoryPickupItemEvent(RunsafeInventoryPickupItemEvent event);
+	void OnInventoryPickupItemEvent(RunsafeInventoryPickupItemEvent event);
 }

@@ -7,6 +7,7 @@ import no.runsafe.framework.api.EventRouterFactory;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.api.IScheduler;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Painting;
 import org.bukkit.event.EventHandler;
@@ -15,7 +16,7 @@ import org.bukkit.event.hanging.HangingPlaceEvent;
 
 public final class PaintingPlace extends EventRouterBase<IPaintingPlaced, HangingPlaceEvent>
 {
-	private PaintingPlace(IOutput output, IScheduler scheduler, IPaintingPlaced handler)
+	PaintingPlace(IOutput output, IScheduler scheduler, IPaintingPlaced handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -32,7 +33,7 @@ public final class PaintingPlace extends EventRouterBase<IPaintingPlaced, Hangin
 	public boolean onEvent(HangingPlaceEvent event)
 	{
 		return handler.OnPaintingPlaced(
-			ObjectWrapper.convert(event.getPlayer()),
+			ObjectWrapper.convert((OfflinePlayer) event.getPlayer()),
 			ObjectWrapper.convert((Painting) event.getEntity())
 		);
 	}

@@ -6,5 +6,5 @@ import no.runsafe.framework.minecraft.player.RunsafePlayer;
 
 public interface IItemFramePlaced extends IRunsafeEvent
 {
-	public boolean OnItemFramePlaced(RunsafePlayer player, RunsafeItemFrame itemFrame);
+	boolean OnItemFramePlaced(RunsafePlayer player, RunsafeItemFrame itemFrame);
 }

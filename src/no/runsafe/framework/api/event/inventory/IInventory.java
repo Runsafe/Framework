@@ -5,5 +5,5 @@ import no.runsafe.framework.minecraft.event.inventory.RunsafeInventoryEvent;
 
 public interface IInventory extends IRunsafeEvent
 {
-	public void OnInventoryEvent(RunsafeInventoryEvent event);
+	void OnInventoryEvent(RunsafeInventoryEvent event);
 }

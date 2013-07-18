@@ -13,7 +13,7 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 
 public final class NaturalSpawn extends EventRouterBase<INaturalSpawn, CreatureSpawnEvent>
 {
-	private NaturalSpawn(IOutput output, IScheduler scheduler, INaturalSpawn handler)
+	NaturalSpawn(IOutput output, IScheduler scheduler, INaturalSpawn handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -22,7 +22,7 @@ public final class NaturalSpawn extends EventRouterBase<INaturalSpawn, CreatureS
 	@Override
 	public void acceptEvent(CreatureSpawnEvent event)
 	{
-		if (event.getSpawnReason().equals(CreatureSpawnEvent.SpawnReason.NATURAL))
+		if (event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.NATURAL)
 			super.acceptEvent(event);
 	}
 

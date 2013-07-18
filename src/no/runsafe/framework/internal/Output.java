@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal;
 
 import no.runsafe.framework.api.IDebug;
-import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
+import no.runsafe.framework.internal.wrapper.item.BukkitItemStack;
 import no.runsafe.framework.text.ChatColour;
 import no.runsafe.framework.text.ConsoleColour;
 import org.apache.commons.lang.StringUtils;
@@ -11,7 +11,7 @@ import org.bukkit.configuration.serialization.ConfigurationSerializable;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +21,7 @@ public abstract class Output implements IDebug
 	Output(Logger consoleLog)
 	{
 		this.consoleLog = consoleLog;
-		this.debugLevel = DefaultDebugLevel;
+		debugLevel = DefaultDebugLevel;
 		info("Setting debug level to %s", DefaultDebugLevel.getName());
 	}
 
@@ -104,7 +104,7 @@ public abstract class Output implements IDebug
 	@Override
 	public void outputToConsole(String message, Level level)
 	{
-		this.consoleLog.log(level, message);
+		consoleLog.log(level, message);
 	}
 
 	// Sends the supplied String to the console/log the output handler has if the debug level is high enough
@@ -119,14 +119,14 @@ public abstract class Output implements IDebug
 	@Override
 	public Level getDebugLevel()
 	{
-		return this.debugLevel;
+		return debugLevel;
 	}
 
 	// Sets the debug output level
 	@Override
 	public void setDebugLevel(Level level)
 	{
-		this.debugLevel = level;
+		debugLevel = level;
 	}
 
 	@Override
@@ -175,8 +175,8 @@ public abstract class Output implements IDebug
 	public void dumpData(Object raw, Level messageLevel)
 	{
 		if (debugLevel != null && messageLevel.intValue() >= debugLevel.intValue())
-			if (raw instanceof RunsafeMeta)
-				dumpData(((RunsafeMeta) raw).getRaw());
+			if (raw instanceof BukkitItemStack)
+				dumpData(((BukkitItemStack) raw).getRaw());
 	}
 
 	private String formatDebugMessage(String message, Level messageLevel, Object... params)
@@ -198,7 +198,7 @@ public abstract class Output implements IDebug
 	private String getStackTrace()
 	{
 		int skip = 5;
-		List<String> stack = new ArrayList<String>();
+		Collection<String> stack = new ArrayList<String>();
 		for (StackTraceElement element : Thread.currentThread().getStackTrace())
 		{
 			if (skip < 1)
@@ -219,8 +219,7 @@ public abstract class Output implements IDebug
 
 	private final Logger consoleLog;
 	private Level debugLevel;
-
-	static private final Level DefaultDebugLevel;
+	private static final Level DefaultDebugLevel;
 
 	static
 	{

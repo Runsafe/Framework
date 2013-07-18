@@ -13,7 +13,7 @@ import org.bukkit.event.entity.EntityShootBowEvent;
 
 public final class EntityShootBow extends EventRouterBase<IEntityShootBowEvent, EntityShootBowEvent>
 {
-	private EntityShootBow(IOutput output, IScheduler scheduler, IEntityShootBowEvent handler)
+	EntityShootBow(IOutput output, IScheduler scheduler, IEntityShootBowEvent handler)
 	{
 		super(output, scheduler, handler);
 	}

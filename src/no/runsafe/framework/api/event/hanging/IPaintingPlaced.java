@@ -6,5 +6,5 @@ import no.runsafe.framework.minecraft.player.RunsafePlayer;
 
 public interface IPaintingPlaced extends IRunsafeEvent
 {
-	public boolean OnPaintingPlaced(RunsafePlayer player, RunsafePainting painting);
+	boolean OnPaintingPlaced(RunsafePlayer player, RunsafePainting painting);
 }

@@ -5,5 +5,5 @@ import no.runsafe.framework.minecraft.event.player.RunsafePlayerFishEvent;
 
 public interface IPlayerFishEvent extends IRunsafeEvent
 {
-	public void OnPlayerFish(RunsafePlayerFishEvent event);
+	void OnPlayerFish(RunsafePlayerFishEvent event);
 }

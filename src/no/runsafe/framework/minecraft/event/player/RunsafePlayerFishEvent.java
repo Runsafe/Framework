@@ -10,32 +10,32 @@ public class RunsafePlayerFishEvent extends RunsafeCancellablePlayerEvent
 	public RunsafePlayerFishEvent(PlayerFishEvent toWrap)
 	{
 		super(toWrap);
-		this.event = toWrap;
+		event = toWrap;
 	}
 
 	public RunsafeEntity getCaught()
 	{
-		return ObjectWrapper.convert(this.event.getCaught());
+		return ObjectWrapper.convert(event.getCaught());
 	}
 
 	public RunsafeFish getFish()
 	{
-		return ObjectWrapper.convert(this.event.getHook());
+		return ObjectWrapper.convert(event.getHook());
 	}
 
 	public int getExpToDrop()
 	{
-		return this.event.getExpToDrop();
+		return event.getExpToDrop();
 	}
 
 	public void setExpToDrop(int exp)
 	{
-		this.event.setExpToDrop(exp);
+		event.setExpToDrop(exp);
 	}
 
 	public State getState()
 	{
-		return RunsafePlayerFishEvent.State.valueOf(this.event.getState().name());
+		return State.valueOf(event.getState().name());
 	}
 
 	public enum State

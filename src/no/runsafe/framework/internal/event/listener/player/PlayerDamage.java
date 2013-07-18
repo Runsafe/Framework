@@ -8,6 +8,7 @@ import no.runsafe.framework.api.event.player.IPlayerDamageEvent;
 import no.runsafe.framework.internal.event.listener.EventRouterBase;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,7 +16,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 
 public final class PlayerDamage extends EventRouterBase<IPlayerDamageEvent, EntityDamageEvent>
 {
-	private PlayerDamage(IOutput output, IScheduler scheduler, IPlayerDamageEvent handler)
+	PlayerDamage(IOutput output, IScheduler scheduler, IPlayerDamageEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -33,7 +34,7 @@ public final class PlayerDamage extends EventRouterBase<IPlayerDamageEvent, Enti
 		if (event.getEntity() instanceof Player)
 		{
 			Player player = (Player) event.getEntity();
-			handler.OnPlayerDamage(ObjectWrapper.convert(player), new RunsafeEntityDamageEvent(event));
+			handler.OnPlayerDamage(ObjectWrapper.convert((OfflinePlayer) player), new RunsafeEntityDamageEvent(event));
 		}
 		return true;
 	}

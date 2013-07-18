@@ -13,8 +13,15 @@ import org.bukkit.craftbukkit.v1_6_R2.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_6_R2.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_6_R2.entity.CraftProjectile;
 
-public class ObjectUnwrapper
+import javax.annotation.Nullable;
+
+public final class ObjectUnwrapper
 {
+	private ObjectUnwrapper()
+	{
+	}
+
+	@Nullable
 	public static EntityPlayer convert(RunsafePlayer player)
 	{
 		if (player == null)
@@ -22,6 +29,7 @@ public class ObjectUnwrapper
 		return ((CraftPlayer) player.getRaw()).getHandle();
 	}
 
+	@Nullable
 	public static Entity convert(RunsafeEntity entity)
 	{
 		if (entity == null)

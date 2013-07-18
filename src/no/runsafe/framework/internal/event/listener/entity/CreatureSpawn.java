@@ -13,7 +13,7 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 
 public final class CreatureSpawn extends EventRouterBase<IMobSpawnerPulsed, CreatureSpawnEvent>
 {
-	private CreatureSpawn(IOutput output, IScheduler scheduler, IMobSpawnerPulsed handler)
+	CreatureSpawn(IOutput output, IScheduler scheduler, IMobSpawnerPulsed handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -22,7 +22,7 @@ public final class CreatureSpawn extends EventRouterBase<IMobSpawnerPulsed, Crea
 	@Override
 	public void acceptEvent(CreatureSpawnEvent event)
 	{
-		if (event.getSpawnReason().equals(CreatureSpawnEvent.SpawnReason.SPAWNER))
+		if (event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.SPAWNER)
 			super.acceptEvent(event);
 	}
 

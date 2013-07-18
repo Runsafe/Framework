@@ -9,7 +9,6 @@ import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import org.bukkit.block.BlockState;
 
-@SuppressWarnings("deprecation")
 public abstract class BukkitBlockState extends BukkitMetadata
 {
 	protected BukkitBlockState(BlockState blockState)
@@ -93,6 +92,7 @@ public abstract class BukkitBlockState extends BukkitMetadata
 		blockState.update();
 	}
 
+	@Override
 	public BlockState getRaw()
 	{
 		return blockState;

@@ -4,8 +4,12 @@ import org.bukkit.ChatColor;
 
 import java.util.regex.Pattern;
 
-public class ConsoleColour
+public final class ConsoleColour
 {
+	private ConsoleColour()
+	{
+	}
+
 	public static String FromMinecraft(String message)
 	{
 		message = BUKKIT_DARK_GREEN.matcher(message).replaceAll(DARK_GREEN);

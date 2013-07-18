@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 
 public final class PlayerChangedWorld extends EventRouterBase<IPlayerChangedWorldEvent, PlayerChangedWorldEvent>
 {
-	private PlayerChangedWorld(IOutput output, IScheduler scheduler, IPlayerChangedWorldEvent handler)
+	PlayerChangedWorld(IOutput output, IScheduler scheduler, IPlayerChangedWorldEvent handler)
 	{
 		super(output, scheduler, handler);
 	}

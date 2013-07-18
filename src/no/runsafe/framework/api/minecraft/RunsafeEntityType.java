@@ -3,10 +3,11 @@ package no.runsafe.framework.api.minecraft;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 
 public interface RunsafeEntityType
 {
-	public Class<? extends Entity> getEntityType();
+	Class<? extends Entity> getEntityType();
 
 	String getName();
 
@@ -18,5 +19,5 @@ public interface RunsafeEntityType
 
 	RunsafeEntity spawn(RunsafeLocation location);
 
-	org.bukkit.entity.EntityType getRaw();
+	EntityType getRaw();
 }

@@ -6,5 +6,5 @@ import no.runsafe.framework.minecraft.player.RunsafePlayer;
 
 public interface IPlayerTeleport extends IRunsafeEvent
 {
-	public boolean OnPlayerTeleport(RunsafePlayer player, RunsafeLocation from, RunsafeLocation to);
+	boolean OnPlayerTeleport(RunsafePlayer player, RunsafeLocation from, RunsafeLocation to);
 }

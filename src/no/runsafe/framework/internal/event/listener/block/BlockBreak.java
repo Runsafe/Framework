@@ -7,13 +7,14 @@ import no.runsafe.framework.api.EventRouterFactory;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.api.IScheduler;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
 public final class BlockBreak extends EventRouterBase<IBlockBreak, BlockBreakEvent>
 {
-	private BlockBreak(IOutput output, IScheduler scheduler, IBlockBreak handler)
+	BlockBreak(IOutput output, IScheduler scheduler, IBlockBreak handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -29,7 +30,7 @@ public final class BlockBreak extends EventRouterBase<IBlockBreak, BlockBreakEve
 	public boolean onEvent(BlockBreakEvent event)
 	{
 		return handler.OnBlockBreak(
-			ObjectWrapper.convert(event.getPlayer()),
+			ObjectWrapper.convert((OfflinePlayer) event.getPlayer()),
 			ObjectWrapper.convert(event.getBlock())
 		);
 	}

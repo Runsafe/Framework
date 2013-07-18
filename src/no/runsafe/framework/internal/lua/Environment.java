@@ -12,6 +12,7 @@ import org.luaj.vm2.lib.OneArgFunction;
 import org.luaj.vm2.lib.jse.JsePlatform;
 import org.picocontainer.Startable;
 
+import javax.annotation.Nullable;
 import java.io.File;
 import java.util.Collection;
 import java.util.List;
@@ -34,12 +35,19 @@ public class Environment implements Startable
 		{
 			Collection<File> scripts = FileUtils.listFiles(source, new String[]{"lua"}, false);
 			for (File script : scripts)
+			{
 				loadFile(script.getAbsolutePath());
+			}
 		}
 	}
 
 	private static class Bootstrap extends OneArgFunction
 	{
+		Bootstrap()
+		{
+		}
+
+		@Nullable
 		@Override
 		public LuaValue call(LuaValue env)
 		{
@@ -95,6 +103,7 @@ public class Environment implements Startable
 					loadFile(script.getAbsolutePath());
 	}
 
+	@Nullable
 	private Collection<File> getScripts()
 	{
 		File data = plugin.getDataFolder();
@@ -106,7 +115,7 @@ public class Environment implements Startable
 			return null;
 
 		Collection<File> list = FileUtils.listFiles(scripts, new String[]{"lua"}, false);
-		return list != null && !list.isEmpty() ? list : null;
+		return list == null || list.isEmpty() ? null : list;
 	}
 
 	private final RunsafePlugin plugin;

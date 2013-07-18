@@ -3,6 +3,7 @@ package no.runsafe.framework.minecraft;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
+@SuppressWarnings("StaticVariableOfConcreteClass")
 public class Effect
 {
 	public static final Effect Click1 = new Effect(org.bukkit.Effect.CLICK1);
@@ -11,7 +12,7 @@ public class Effect
 	public static final Effect DoorToggle = new Effect(org.bukkit.Effect.DOOR_TOGGLE);
 	public static final Effect Extinguish = new Effect(org.bukkit.Effect.EXTINGUISH);
 
-	public static class Record
+	public static final class Record
 	{
 		public static final Effect C418_13 = new Effect(org.bukkit.Effect.RECORD_PLAY, Material.GOLD_RECORD.getId());
 		public static final Effect C418_Cat = new Effect(org.bukkit.Effect.RECORD_PLAY, Material.GREEN_RECORD.getId());
@@ -25,6 +26,10 @@ public class Effect
 		public static final Effect C418_Ward = new Effect(org.bukkit.Effect.RECORD_PLAY, Material.RECORD_10.getId());
 		public static final Effect C418_11 = new Effect(org.bukkit.Effect.RECORD_PLAY, Material.RECORD_11.getId());
 		public static final Effect C418_Wait = new Effect(org.bukkit.Effect.RECORD_PLAY, Material.RECORD_12.getId());
+
+		private Record()
+		{
+		}
 	}
 
 	public static final Effect GhastShriek = new Effect(org.bukkit.Effect.GHAST_SHRIEK);
@@ -34,7 +39,7 @@ public class Effect
 	public static final Effect ZombieChewIron = new Effect(org.bukkit.Effect.ZOMBIE_CHEW_IRON_DOOR);
 	public static final Effect ZombieDestroyDoor = new Effect(org.bukkit.Effect.ZOMBIE_DESTROY_DOOR);
 
-	public static class Smoke
+	public static final class Smoke
 	{
 		public static final Effect Up = new Effect(org.bukkit.Effect.SMOKE, BlockFace.UP.ordinal());
 		public static final Effect Down = new Effect(org.bukkit.Effect.SMOKE, BlockFace.DOWN.ordinal());
@@ -54,6 +59,10 @@ public class Effect
 		public static final Effect EastNorthEast = new Effect(org.bukkit.Effect.SMOKE, BlockFace.EAST_NORTH_EAST.ordinal());
 		public static final Effect NorthEast = new Effect(org.bukkit.Effect.SMOKE, BlockFace.NORTH_EAST.ordinal());
 		public static final Effect NorthNorthEast = new Effect(org.bukkit.Effect.SMOKE, BlockFace.NORTH_NORTH_EAST.ordinal());
+
+		private Smoke()
+		{
+		}
 	}
 
 	public static final Effect StepSound = new Effect(org.bukkit.Effect.STEP_SOUND);

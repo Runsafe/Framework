@@ -5,6 +5,7 @@ import no.runsafe.framework.minecraft.event.inventory.RunsafeCancellableInventor
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.event.enchantment.PrepareItemEnchantEvent;
 
 public class RunsafePrepareItemEnchantEvent extends RunsafeCancellableInventoryEvent
@@ -12,32 +13,32 @@ public class RunsafePrepareItemEnchantEvent extends RunsafeCancellableInventoryE
 	public RunsafePrepareItemEnchantEvent(PrepareItemEnchantEvent toWrap)
 	{
 		super(toWrap);
-		this.event = toWrap;
+		event = toWrap;
 	}
 
 	public RunsafePlayer getEnchanter()
 	{
-		return ObjectWrapper.convert(this.event.getEnchanter());
+		return ObjectWrapper.convert((OfflinePlayer) event.getEnchanter());
 	}
 
 	public RunsafeBlock getEnchantBlock()
 	{
-		return ObjectWrapper.convert(this.event.getEnchantBlock());
+		return ObjectWrapper.convert(event.getEnchantBlock());
 	}
 
 	public RunsafeMeta getItem()
 	{
-		return ObjectWrapper.convert(this.event.getItem());
+		return ObjectWrapper.convert(event.getItem());
 	}
 
 	public int[] getExpLevelCostsOffered()
 	{
-		return this.event.getExpLevelCostsOffered();
+		return event.getExpLevelCostsOffered();
 	}
 
 	public int getEnchantmentBonus()
 	{
-		return this.event.getEnchantmentBonus();
+		return event.getEnchantmentBonus();
 	}
 
 	private final PrepareItemEnchantEvent event;

@@ -24,6 +24,7 @@ public abstract class BukkitBrewingStand extends RunsafeBlockState implements II
 		stand.setBrewingTime(i);
 	}
 
+	@Override
 	public RunsafeInventory getInventory()
 	{
 		return ObjectWrapper.convert(stand.getInventory());

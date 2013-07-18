@@ -10,62 +10,62 @@ public abstract class BukkitInventoryView
 {
 	protected BukkitInventoryView(InventoryView toWrap)
 	{
-		this.inventoryView = toWrap;
+		inventoryView = toWrap;
 	}
 
 	public RunsafePlayer getPlayer()
 	{
-		return ObjectWrapper.convert(this.inventoryView.getPlayer());
+		return ObjectWrapper.convert(inventoryView.getPlayer());
 	}
 
 	public void setItem(int slot, RunsafeMeta item)
 	{
-		this.inventoryView.setItem(slot, item.getRaw());
+		inventoryView.setItem(slot, item.getRaw());
 	}
 
 	public RunsafeMeta getItem(int slot)
 	{
-		return ObjectWrapper.convert(this.inventoryView.getItem(slot));
+		return ObjectWrapper.convert(inventoryView.getItem(slot));
 	}
 
 	public void setCursor(RunsafeMeta item)
 	{
-		this.inventoryView.setCursor(item.getRaw());
+		inventoryView.setCursor(item.getRaw());
 	}
 
 	public RunsafeMeta getCursor()
 	{
-		return ObjectWrapper.convert(this.inventoryView.getCursor());
+		return ObjectWrapper.convert(inventoryView.getCursor());
 	}
 
 	public int convertSlot(int rawSlot)
 	{
-		return this.inventoryView.convertSlot(rawSlot);
+		return inventoryView.convertSlot(rawSlot);
 	}
 
 	public void close()
 	{
-		this.inventoryView.close();
+		inventoryView.close();
 	}
 
 	public int countSlots()
 	{
-		return this.inventoryView.countSlots();
+		return inventoryView.countSlots();
 	}
 
 	public String getTitle()
 	{
-		return this.inventoryView.getTitle();
+		return inventoryView.getTitle();
 	}
 
 	public InventoryView getRaw()
 	{
-		return this.inventoryView;
+		return inventoryView;
 	}
 
 	public RunsafeInventoryType getType()
 	{
-		return ObjectWrapper.convert(this.inventoryView.getType());
+		return ObjectWrapper.convert(inventoryView.getType());
 	}
 
 	protected final InventoryView inventoryView;

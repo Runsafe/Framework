@@ -4,13 +4,26 @@ import com.google.common.collect.Lists;
 import no.runsafe.framework.api.database.IRow;
 import no.runsafe.framework.api.database.ISet;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
 @SuppressWarnings("NullableProblems")
 public final class Set extends ArrayList<IRow> implements ISet
 {
-	public final static ISet Empty = new ISet()
+	public static final ISet Empty = new EmptySet();
+
+	public Set(Collection<Row> dataSet)
 	{
+		addAll(dataSet);
+	}
+
+	@SuppressWarnings({"MethodReturnAlwaysConstant", "OverlyComplexAnonymousInnerClass"})
+	private static class EmptySet implements ISet
+	{
+		EmptySet()
+		{
+		}
+
 		@Override
 		public int size()
 		{
@@ -43,7 +56,7 @@ public final class Set extends ArrayList<IRow> implements ISet
 				@Override
 				public IRow next()
 				{
-					return null;
+					throw new NoSuchElementException("There are no rows");
 				}
 
 				@Override
@@ -113,12 +126,14 @@ public final class Set extends ArrayList<IRow> implements ISet
 		}
 
 		@Override
+		@Nullable
 		public IRow get(int index)
 		{
 			return null;
 		}
 
 		@Override
+		@Nullable
 		public IRow set(int index, IRow element)
 		{
 			return null;
@@ -130,6 +145,7 @@ public final class Set extends ArrayList<IRow> implements ISet
 		}
 
 		@Override
+		@Nullable
 		public IRow remove(int index)
 		{
 			return null;
@@ -161,7 +177,7 @@ public final class Set extends ArrayList<IRow> implements ISet
 				@Override
 				public IRow next()
 				{
-					return null;
+					throw new NoSuchElementException("There are no rows");
 				}
 
 				@Override
@@ -171,6 +187,7 @@ public final class Set extends ArrayList<IRow> implements ISet
 				}
 
 				@Override
+				@Nullable
 				public IRow previous()
 				{
 					return null;
@@ -216,10 +233,5 @@ public final class Set extends ArrayList<IRow> implements ISet
 		{
 			return Lists.newArrayList();
 		}
-	};
-
-	public Set(Collection<Row> dataSet)
-	{
-		this.addAll(dataSet);
 	}
 }

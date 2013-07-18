@@ -13,32 +13,32 @@ public abstract class BukkitPlayerInventory extends RunsafeInventory
 	protected BukkitPlayerInventory(PlayerInventory toWrap)
 	{
 		super(toWrap);
-		inventory = toWrap;
+		playerInventory = toWrap;
 	}
 
 	public List<RunsafeMeta> getArmorContents()
 	{
-		return ObjectWrapper.convert(inventory.getArmorContents());
+		return ObjectWrapper.convert(playerInventory.getArmorContents());
 	}
 
 	public RunsafeMeta getHelmet()
 	{
-		return ObjectWrapper.convert(inventory.getHelmet());
+		return ObjectWrapper.convert(playerInventory.getHelmet());
 	}
 
 	public RunsafeMeta getChestplate()
 	{
-		return ObjectWrapper.convert(inventory.getChestplate());
+		return ObjectWrapper.convert(playerInventory.getChestplate());
 	}
 
 	public RunsafeMeta getLeggings()
 	{
-		return ObjectWrapper.convert(inventory.getLeggings());
+		return ObjectWrapper.convert(playerInventory.getLeggings());
 	}
 
 	public RunsafeMeta getBoots()
 	{
-		return ObjectWrapper.convert(inventory.getBoots());
+		return ObjectWrapper.convert(playerInventory.getBoots());
 	}
 
 	public void setArmorContents(List<RunsafeMeta> itemStacks)
@@ -46,54 +46,56 @@ public abstract class BukkitPlayerInventory extends RunsafeInventory
 		ItemStack[] stacks = new ItemStack[itemStacks.size()];
 		for (int i = 0; i < itemStacks.size(); ++i)
 			stacks[i] = itemStacks.get(i).getRaw();
-		inventory.setArmorContents(stacks);
+		playerInventory.setArmorContents(stacks);
 	}
 
 	public void setHelmet(RunsafeMeta itemStack)
 	{
-		inventory.setHelmet(itemStack.getRaw());
+		playerInventory.setHelmet(itemStack.getRaw());
 	}
 
 	public void setChestplate(RunsafeMeta itemStack)
 	{
-		inventory.setChestplate(itemStack.getRaw());
+		playerInventory.setChestplate(itemStack.getRaw());
 	}
 
 	public void setLeggings(RunsafeMeta itemStack)
 	{
-		inventory.setLeggings(itemStack.getRaw());
+		playerInventory.setLeggings(itemStack.getRaw());
 	}
 
 	public void setBoots(RunsafeMeta itemStack)
 	{
-		inventory.setBoots(itemStack.getRaw());
+		playerInventory.setBoots(itemStack.getRaw());
 	}
 
 	public RunsafeMeta getItemInHand()
 	{
-		return ObjectWrapper.convert(inventory.getItemInHand());
+		return ObjectWrapper.convert(playerInventory.getItemInHand());
 	}
 
 	public void setItemInHand(RunsafeMeta itemStack)
 	{
-		inventory.setItemInHand(itemStack.getRaw());
+		playerInventory.setItemInHand(itemStack.getRaw());
 	}
 
 	public int getHeldItemSlot()
 	{
-		return inventory.getHeldItemSlot();
+		return playerInventory.getHeldItemSlot();
 	}
 
+	@Override
 	public void clear()
 	{
 		super.clear();
-		inventory.setArmorContents(new ItemStack[4]);
+		playerInventory.setArmorContents(new ItemStack[4]);
 	}
 
+	@Override
 	public PlayerInventory getRaw()
 	{
-		return inventory;
+		return playerInventory;
 	}
 
-	protected final PlayerInventory inventory;
+	protected final PlayerInventory playerInventory;
 }

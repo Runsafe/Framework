@@ -13,7 +13,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 
 public final class PlayerDeath extends EventRouterBase<IPlayerDeathEvent, PlayerDeathEvent>
 {
-	private PlayerDeath(IOutput output, IScheduler scheduler, IPlayerDeathEvent handler)
+	PlayerDeath(IOutput output, IScheduler scheduler, IPlayerDeathEvent handler)
 	{
 		super(output, scheduler, handler);
 	}

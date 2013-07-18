@@ -4,7 +4,7 @@ import no.runsafe.framework.api.event.CancellableEvent;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 public abstract class RunsafeCancellableCustomEvent extends RunsafeCustomEvent implements CancellableEvent
 {
@@ -13,23 +13,26 @@ public abstract class RunsafeCancellableCustomEvent extends RunsafeCustomEvent i
 		super(player, event);
 	}
 
+	@Override
 	public boolean isCancelled()
 	{
 		return cancelled;
 	}
 
+	@Override
 	public void cancel()
 	{
-		this.cancelled = true;
+		cancelled = true;
 		for (Runnable callback : onCancelled)
 			callback.run();
 	}
 
+	@Override
 	public void addCancellationHandle(Runnable callback)
 	{
 		onCancelled.add(callback);
 	}
 
-	private final List<Runnable> onCancelled = new ArrayList<Runnable>();
-	private boolean cancelled = false;
+	private final Collection<Runnable> onCancelled = new ArrayList<Runnable>();
+	private boolean cancelled;
 }

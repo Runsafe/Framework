@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface IUniverseMapper extends IFrameworkHook
 {
-	public List<String> GetUniverses();
-	public List<String> GetWorlds(String universe);
-	public String GetUniverse(String world);
+	List<String> GetUniverses();
+	Iterable<String> GetWorlds(String universe);
+	String GetUniverse(String world);
 }

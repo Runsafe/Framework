@@ -11,19 +11,19 @@ public abstract class BukkitDropper extends RunsafeBlockState implements IInvent
 	protected BukkitDropper(Dropper toWrap)
 	{
 		super(toWrap);
-		this.dropper = toWrap;
+		dropper = toWrap;
 	}
 
 	@Override
 	public Dropper getRaw()
 	{
-		return this.dropper;
+		return dropper;
 	}
 
 	@Override
 	public RunsafeInventory getInventory()
 	{
-		return ObjectWrapper.convert(this.dropper.getInventory());
+		return ObjectWrapper.convert(dropper.getInventory());
 	}
 
 	protected final Dropper dropper;

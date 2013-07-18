@@ -18,12 +18,12 @@ public abstract class BukkitBlock extends BukkitMetadata
 
 	public int getData()
 	{
-		return this.block.getData();
+		return block.getData();
 	}
 
 	public void setData(byte data)
 	{
-		this.block.setData(data);
+		block.setData(data);
 	}
 
 	public void set(Item type)
@@ -38,7 +38,7 @@ public abstract class BukkitBlock extends BukkitMetadata
 
 	public void setTypeId(int materialID)
 	{
-		this.block.setTypeId(materialID);
+		block.setTypeId(materialID);
 	}
 
 	public RunsafeWorld getWorld()
@@ -56,6 +56,7 @@ public abstract class BukkitBlock extends BukkitMetadata
 		return ObjectWrapper.convert(block.getLocation());
 	}
 
+	@Override
 	public Block getRaw()
 	{
 		return block;

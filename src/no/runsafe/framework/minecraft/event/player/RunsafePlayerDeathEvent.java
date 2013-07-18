@@ -1,12 +1,14 @@
 package no.runsafe.framework.minecraft.event.player;
 
-import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.api.event.player.IPlayerDeathEvent;
-import no.runsafe.framework.internal.wrapper.ObjectWrapper;
+import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.event.IFakeableEvent;
+import no.runsafe.framework.api.event.player.IPlayerDeathEvent;
+import no.runsafe.framework.internal.InjectionPlugin;
+import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDeathEvent;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
 public class RunsafePlayerDeathEvent extends RunsafeEntityDeathEvent implements IFakeableEvent
@@ -14,71 +16,73 @@ public class RunsafePlayerDeathEvent extends RunsafeEntityDeathEvent implements 
 	public RunsafePlayerDeathEvent(PlayerDeathEvent toWrap)
 	{
 		super(toWrap);
-		this.event = toWrap;
+		event = toWrap;
 	}
 
 	public void setDeathMessage(String deathMessage)
 	{
-		this.event.setDeathMessage(deathMessage);
+		event.setDeathMessage(deathMessage);
 	}
 
 	public String getDeathMessage()
 	{
-		return this.event.getDeathMessage();
+		return event.getDeathMessage();
 	}
 
 	public int getNewExp()
 	{
-		return this.event.getNewExp();
+		return event.getNewExp();
 	}
 
 	public void setNewExp(int exp)
 	{
-		this.event.setNewExp(exp);
+		event.setNewExp(exp);
 	}
 
 	public int getNewLevel()
 	{
-		return this.event.getNewLevel();
+		return event.getNewLevel();
 	}
 
 	public void setNewLevel(int level)
 	{
-		this.event.setNewLevel(level);
+		event.setNewLevel(level);
 	}
 
 	public int getNewTotalExp()
 	{
-		return this.event.getNewTotalExp();
+		return event.getNewTotalExp();
 	}
 
 	public void setNewTotalExp(int totalExp)
 	{
-		this.event.setNewTotalExp(totalExp);
+		event.setNewTotalExp(totalExp);
 	}
 
 	public boolean getKeepLevel()
 	{
-		return this.event.getKeepLevel();
+		return event.getKeepLevel();
 	}
 
 	public void setKeepLevel(boolean keepLevel)
 	{
-		this.event.setKeepLevel(keepLevel);
+		event.setKeepLevel(keepLevel);
 	}
 
-	public void Fire()
+	@Override
+	public boolean Fire()
 	{
 		isFake = true;
-		for (IKernel plugin : RunsafePlugin.Instances.values())
+		for (IKernel plugin : InjectionPlugin.Instances.values())
 			for (IPlayerDeathEvent listener : plugin.getComponents(IPlayerDeathEvent.class))
 				listener.OnPlayerDeathEvent(this);
+		return true;
 	}
 
 	@Override
 	public RunsafePlayer getEntity()
 	{
-		return ObjectWrapper.convert(event.getEntity());
+		return ObjectWrapper.convert((OfflinePlayer) event.getEntity());
 	}
 
 	@Override
@@ -88,5 +92,5 @@ public class RunsafePlayerDeathEvent extends RunsafeEntityDeathEvent implements 
 	}
 
 	private final PlayerDeathEvent event;
-	private boolean isFake = false;
+	private boolean isFake;
 }

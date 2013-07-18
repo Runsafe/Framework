@@ -5,5 +5,5 @@ import no.runsafe.framework.minecraft.event.entity.RunsafeEntityShootBowEvent;
 
 public interface IEntityShootBowEvent extends IRunsafeEvent
 {
-    public void OnEntityShootBowEvent(RunsafeEntityShootBowEvent event);
+    void OnEntityShootBowEvent(RunsafeEntityShootBowEvent event);
 }

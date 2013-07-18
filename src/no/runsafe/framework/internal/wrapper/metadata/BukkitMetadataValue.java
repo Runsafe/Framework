@@ -1,14 +1,16 @@
 package no.runsafe.framework.internal.wrapper.metadata;
 
+import com.google.common.collect.Lists;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
 class BukkitMetadataValue
 {
-	public BukkitMetadataValue(MetadataValue toWrap)
+	BukkitMetadataValue(MetadataValue toWrap)
 	{
 		dataValue = toWrap;
 	}
@@ -75,12 +77,13 @@ class BukkitMetadataValue
 
 	private final MetadataValue dataValue;
 
-	public static List<BukkitMetadataValue> convert(List<MetadataValue> metadata)
+	@Nullable
+	public static List<BukkitMetadataValue> convert(Iterable<MetadataValue> metadata)
 	{
 		if(metadata == null)
 			return null;
 
-		ArrayList<BukkitMetadataValue> data = new ArrayList<BukkitMetadataValue>();
+		List<BukkitMetadataValue> data = Lists.newArrayList();
 		for(MetadataValue value : metadata)
 			data.add(new BukkitMetadataValue(value));
 		return data;

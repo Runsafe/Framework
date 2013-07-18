@@ -8,6 +8,7 @@ import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.minecraft.block.RunsafeSign;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Sign;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,7 +17,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public final class PlayerRightClickSign extends EventRouterBase<IPlayerRightClickSign, PlayerInteractEvent>
 {
-	private PlayerRightClickSign(IOutput output, IScheduler scheduler, IPlayerRightClickSign handler)
+	PlayerRightClickSign(IOutput output, IScheduler scheduler, IPlayerRightClickSign handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -31,11 +32,11 @@ public final class PlayerRightClickSign extends EventRouterBase<IPlayerRightClic
 	@Override
 	public boolean onEvent(PlayerInteractEvent event)
 	{
-		return (event.getAction() != Action.RIGHT_CLICK_BLOCK)
+		return event.getAction() != Action.RIGHT_CLICK_BLOCK
 			|| event.getClickedBlock() == null
 			|| !(event.getClickedBlock().getState() instanceof Sign)
 			|| handler.OnPlayerRightClickSign(
-					ObjectWrapper.convert(event.getPlayer()),
+					ObjectWrapper.convert((OfflinePlayer) event.getPlayer()),
 					ObjectWrapper.convert(event.getItem()),
 					(RunsafeSign)ObjectWrapper.convert(event.getClickedBlock().getState())
 				);

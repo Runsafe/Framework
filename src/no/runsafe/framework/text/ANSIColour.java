@@ -11,20 +11,22 @@ public enum ANSIColour
 	Cyan(6),
 	White(7);
 
-	private ANSIColour(int code)
+	ANSIColour(int colourCode)
 	{
-		this.code = code;
+		code = colourCode;
 	}
 
 	public int foreground()
 	{
-		return code + 30;
+		return code + FOREGROUND_BLACK;
 	}
 
 	public int background()
 	{
-		return code + 40;
+		return code + BACKGROUND_BLACK;
 	}
 
 	private final int code;
+	private static final int FOREGROUND_BLACK = 30;
+	private static final int BACKGROUND_BLACK = 40;
 }

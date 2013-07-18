@@ -6,11 +6,13 @@ import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.joda.time.DateTime;
 
+import javax.annotation.Nullable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
 abstract class DataConverter
 {
+	@Nullable
 	String String(Object value)
 	{
 		if (value == null)
@@ -19,13 +21,14 @@ abstract class DataConverter
 		return value.toString();
 	}
 
+	@Nullable
 	Integer Integer(Object value)
 	{
 		if (value == null)
 			return null;
 
 		if (value instanceof BigDecimal)
-			return ((BigDecimal) value).intValue();
+			return ((Number) value).intValue();
 
 		if (value instanceof String)
 			return Integer.valueOf((String) value);
@@ -37,18 +40,19 @@ abstract class DataConverter
 			return ((Long) value).intValue();
 
 		if (value instanceof BigInteger)
-			return ((BigInteger) value).intValue();
+			return ((Number) value).intValue();
 
 		return null;
 	}
 
+	@Nullable
 	Long Long(Object value)
 	{
 		if (value == null)
 			return null;
 
 		if (value instanceof BigDecimal)
-			return ((BigDecimal) value).longValue();
+			return ((Number) value).longValue();
 
 		if (value instanceof String)
 			return Long.valueOf((String) value);
@@ -60,11 +64,12 @@ abstract class DataConverter
 			return Long.valueOf((Integer) value);
 
 		if (value instanceof BigInteger)
-			return ((BigInteger) value).longValue();
+			return ((Number) value).longValue();
 
 		return null;
 	}
 
+	@Nullable
 	Double Double(Object value)
 	{
 		if (value == null)
@@ -86,11 +91,12 @@ abstract class DataConverter
 			return ((Integer) value).doubleValue();
 
 		if (value instanceof BigInteger)
-			return ((BigInteger) value).doubleValue();
+			return ((Number) value).doubleValue();
 
 		return null;
 	}
 
+	@Nullable
 	Float Float(Object value)
 	{
 		if (value == null)
@@ -112,11 +118,12 @@ abstract class DataConverter
 			return ((Integer) value).floatValue();
 
 		if (value instanceof BigInteger)
-			return ((BigInteger) value).floatValue();
+			return ((Number) value).floatValue();
 
 		return null;
 	}
 
+	@Nullable
 	DateTime DateTime(Object value)
 	{
 		if (value == null)
@@ -124,6 +131,7 @@ abstract class DataConverter
 		return new DateTime(value);
 	}
 
+	@Nullable
 	RunsafeLocation Location(Object world, Object x, Object y, Object z, Object yaw, Object pitch)
 	{
 		RunsafeWorld targetWorld = World(world);
@@ -139,6 +147,7 @@ abstract class DataConverter
 		return new RunsafeLocation(targetWorld, Double(x), Double(y), Double(z));
 	}
 
+	@Nullable
 	RunsafeWorld World(Object value)
 	{
 		if (value == null)
@@ -146,6 +155,7 @@ abstract class DataConverter
 		return RunsafeServer.Instance.getWorld(value.toString());
 	}
 
+	@Nullable
 	RunsafePlayer Player(Object value)
 	{
 		return value == null ? null : RunsafeServer.Instance.getOfflinePlayerExact(value.toString());

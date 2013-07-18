@@ -5,7 +5,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.inventory.InventoryEvent;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 public class RunsafeCancellableInventoryEvent extends RunsafeInventoryEvent implements CancellableEvent
 {
@@ -35,6 +35,6 @@ public class RunsafeCancellableInventoryEvent extends RunsafeInventoryEvent impl
 		cancellationCallbacks.add(callback);
 	}
 
-	private final List<Runnable> cancellationCallbacks = new ArrayList<Runnable>();
+	private final Collection<Runnable> cancellationCallbacks = new ArrayList<Runnable>();
 	private final Cancellable event;
 }

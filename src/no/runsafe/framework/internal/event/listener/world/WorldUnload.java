@@ -13,7 +13,7 @@ import org.bukkit.event.world.WorldUnloadEvent;
 
 public final class WorldUnload extends EventRouterBase<IWorldUnload, WorldUnloadEvent>
 {
-	private WorldUnload(IOutput output, IScheduler scheduler, IWorldUnload handler)
+	WorldUnload(IOutput output, IScheduler scheduler, IWorldUnload handler)
 	{
 		super(output, scheduler, handler);
 	}

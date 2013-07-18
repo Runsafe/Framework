@@ -8,6 +8,7 @@ import no.runsafe.framework.api.IOutput;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.picocontainer.Startable;
 
+import javax.annotation.Nullable;
 import java.io.File;
 import java.io.InputStream;
 
@@ -48,19 +49,19 @@ public final class ConfigurationEngine implements Startable
 		Configuration configuration,
 		IOutput output, IConfigurationChanged[] subscribers)
 	{
-		this.console = output;
+		console = output;
 		this.subscribers = subscribers;
 		this.configuration = configuration;
 		if (plugin instanceof IConfigurationFile)
 		{
 			IConfigurationFile provider = (IConfigurationFile) plugin;
-			this.configFilePath = provider.getConfigurationPath();
-			this.configurationFile = provider;
+			configFilePath = provider.getConfigurationPath();
+			configurationFile = provider;
 		}
 		else
 		{
-			this.configFilePath = null;
-			this.configurationFile = null;
+			configFilePath = null;
+			configurationFile = null;
 		}
 	}
 
@@ -83,20 +84,20 @@ public final class ConfigurationEngine implements Startable
 	 */
 	void load()
 	{
-		if (this.configFilePath == null)
+		if (configFilePath == null)
 			return;
 
-		File configFile = new File(this.configFilePath);
+		File configFile = new File(configFilePath);
 
-		this.configuration.configFile = YamlConfiguration.loadConfiguration(configFile);
-		this.configuration.configFilePath = this.configFilePath;
-		InputStream defaults = this.configurationFile.getDefaultConfiguration();
+		configuration.configFile = YamlConfiguration.loadConfiguration(configFile);
+		configuration.configFilePath = configFilePath;
+		InputStream defaults = configurationFile.getDefaultConfiguration();
 		if (defaults != null)
 		{
-			this.configuration.configFile.setDefaults(YamlConfiguration.loadConfiguration(defaults));
-			this.configuration.configFile.options().copyDefaults(true);
+			configuration.configFile.setDefaults(YamlConfiguration.loadConfiguration(defaults));
+			configuration.configFile.options().copyDefaults(true);
 		}
-		this.configuration.save();
+		configuration.save();
 		notifySubscribers();
 	}
 
@@ -106,11 +107,11 @@ public final class ConfigurationEngine implements Startable
 	 */
 	public boolean restoreToDefaults()
 	{
-		if (this.configuration.configFile.getDefaults() != null)
+		if (configuration.configFile.getDefaults() != null)
 		{
-			this.configuration.configFile.options().copyDefaults(true);
-			this.configuration.save();
-			this.console.write("Configuration restored to defaults.");
+			configuration.configFile.options().copyDefaults(true);
+			configuration.save();
+			console.write("Configuration restored to defaults.");
 			return true;
 		}
 		return false;
@@ -144,6 +145,8 @@ public final class ConfigurationEngine implements Startable
 	private final IConfigurationChanged[] subscribers;
 	private final IOutput console;
 	private final Configuration configuration;
+	@Nullable
 	private final String configFilePath;
+	@Nullable
 	private final IConfigurationFile configurationFile;
 }

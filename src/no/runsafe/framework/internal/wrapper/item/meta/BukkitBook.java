@@ -13,6 +13,7 @@ public abstract class BukkitBook extends RunsafeMeta
 		super(toWrap);
 	}
 
+	@Override
 	public BookMeta getRawMeta()
 	{
 		return (BookMeta) itemStack.getItemMeta();

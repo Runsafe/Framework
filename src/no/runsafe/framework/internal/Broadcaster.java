@@ -12,14 +12,14 @@ public final class Broadcaster extends Output implements IOutput
 	public Broadcaster(RunsafeServer server, Logger logger)
 	{
 		super(logger);
-		this.serverOutput = server;
+		serverOutput = server;
 	}
 
 	// Broadcasts the supplied String to all players on the event the output handler has
 	@Override
 	public void outputToServer(String message)
 	{
-		this.serverOutput.broadcastMessage(message);
+		serverOutput.broadcastMessage(message);
 	}
 
 	@Override

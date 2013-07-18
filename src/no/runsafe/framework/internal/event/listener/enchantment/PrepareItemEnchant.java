@@ -13,7 +13,7 @@ import org.bukkit.event.enchantment.PrepareItemEnchantEvent;
 
 public final class PrepareItemEnchant extends EventRouterBase<IPrepareItemEnchantEvent, PrepareItemEnchantEvent>
 {
-	private PrepareItemEnchant(IOutput output, IScheduler scheduler, IPrepareItemEnchantEvent handler)
+	PrepareItemEnchant(IOutput output, IScheduler scheduler, IPrepareItemEnchantEvent handler)
 	{
 		super(output, scheduler, handler);
 	}

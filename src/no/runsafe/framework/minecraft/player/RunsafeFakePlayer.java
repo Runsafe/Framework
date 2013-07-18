@@ -18,14 +18,14 @@ public class RunsafeFakePlayer extends RunsafePlayer
 	@Override
 	public boolean hasPermission(String permission)
 	{
-		List<String> groups = getGroups();
+		List<String> memberOf = getGroups();
 		for (IPlayerPermissions hook : HookEngine.hookContainer.getComponents(IPlayerPermissions.class))
 		{
 			List<String> permissions = hook.getPlayerPermissions(this);
 			if (permissions != null && permissions.contains(permission))
 				return true;
 
-			for (String group : groups)
+			for (String group : memberOf)
 			{
 				if (group == null)
 					continue;

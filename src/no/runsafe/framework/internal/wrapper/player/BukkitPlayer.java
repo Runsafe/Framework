@@ -12,25 +12,29 @@ import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
+import javax.annotation.Nullable;
+
 public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolder
 {
+	public static final int PLAYERLIST_MAXLENGTH = 16;
+
 	protected BukkitPlayer(OfflinePlayer toWrap)
 	{
-		super((toWrap instanceof Player) ? (Player) toWrap : null);
+		super(toWrap instanceof Player ? (Player) toWrap : null);
 		player = toWrap instanceof Player ? (Player) toWrap : null;
 		basePlayer = toWrap;
 	}
 
+	@Nullable
 	public String getName()
 	{
-		if (basePlayer == null)
-			return null;
-		return basePlayer.getName();
+		return basePlayer == null ? null : basePlayer.getName();
 	}
 
 	public void closeInventory()
 	{
-		this.player.closeInventory();
+		if (player != null)
+			player.closeInventory();
 	}
 
 	public boolean hasPlayedBefore()
@@ -47,10 +51,10 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 	{
 		if (player == null)
 			return;
-		if (playerName.length() > 16)
-			this.player.setPlayerListName(playerName.substring(0, 16));
+		if (playerName.length() > PLAYERLIST_MAXLENGTH)
+			player.setPlayerListName(playerName.substring(0, PLAYERLIST_MAXLENGTH));
 		else
-			this.player.setPlayerListName(playerName);
+			player.setPlayerListName(playerName);
 	}
 
 	public boolean isOP()
@@ -87,10 +91,7 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 
 	public float getXP()
 	{
-		if (player == null)
-			return 0;
-
-		return player.getExp();
+		return player == null ? 0.0f : player.getExp();
 	}
 
 	public void setXP(float points)
@@ -101,10 +102,7 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 
 	public int getLevel()
 	{
-		if (player == null)
-			return 0;
-
-		return player.getLevel();
+		return player == null ? 0 : player.getLevel();
 	}
 
 	public void setLevel(int level)
@@ -124,11 +122,10 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 			player.sendBlockChange(location.getRaw(), itemId, data);
 	}
 
+	@Nullable
 	public RunsafeMeta getItemInHand()
 	{
-		if (player == null)
-			return null;
-		return ObjectWrapper.convert(player.getItemInHand());
+		return player == null ? null : ObjectWrapper.convert(player.getItemInHand());
 	}
 
 	public void sendMessage(String message)
@@ -139,15 +136,14 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 
 	public Player getRawPlayer()
 	{
-		return this.player;
+		return player;
 	}
 
+	@Override
+	@Nullable
 	public RunsafePlayerInventory getInventory()
 	{
-		if (player == null)
-			return null;
-
-		return new RunsafePlayerInventory(player.getInventory());
+		return player == null ? null : new RunsafePlayerInventory(player.getInventory());
 	}
 
 	@SuppressWarnings("deprecation")
@@ -162,41 +158,47 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 		return player != null && player.hasPermission(permission);
 	}
 
+	@Nullable
 	public GameMode getGameMode()
 	{
-		return this.player.getGameMode();
+		return player == null ? null : player.getGameMode();
 	}
 
 	public void setGameMode(GameMode gameMode)
 	{
-		this.player.setGameMode(gameMode);
+		if (player != null)
+			player.setGameMode(gameMode);
 	}
 
 	public void openInventory(RunsafeInventory inventory)
 	{
-		this.player.openInventory(inventory.getRaw());
+		if (player != null)
+			player.openInventory(inventory.getRaw());
 	}
 
 	public int getFoodLevel()
 	{
-		return player.getFoodLevel();
+		return player == null ? 0 : player.getFoodLevel();
 	}
 
 	public void setFoodLevel(int level)
 	{
-		player.setFoodLevel(level);
+		if (player != null)
+			player.setFoodLevel(level);
 	}
 
 	public float getSaturation()
 	{
-		return player.getSaturation();
+		return player == null ? 0.0f : player.getSaturation();
 	}
 
 	public void setSaturation(float saturation)
 	{
-		player.setSaturation(saturation);
+		if (player != null)
+			player.setSaturation(saturation);
 	}
 
+	@Nullable
 	protected final Player player;
 	protected final OfflinePlayer basePlayer;
 }

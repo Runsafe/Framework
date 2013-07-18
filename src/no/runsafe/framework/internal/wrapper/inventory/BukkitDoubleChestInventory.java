@@ -10,22 +10,23 @@ public abstract class BukkitDoubleChestInventory extends RunsafeInventory
 	protected BukkitDoubleChestInventory(DoubleChestInventory toWrap)
 	{
 		super(toWrap);
-		this.doubleChestInventory = toWrap;
+		doubleChestInventory = toWrap;
 	}
 
 	public RunsafeInventory getLeftSide()
 	{
-		return ObjectWrapper.convert(this.doubleChestInventory.getLeftSide());
+		return ObjectWrapper.convert(doubleChestInventory.getLeftSide());
 	}
 
 	public RunsafeInventory getRightSide()
 	{
-		return ObjectWrapper.convert(this.doubleChestInventory.getRightSide());
+		return ObjectWrapper.convert(doubleChestInventory.getRightSide());
 	}
 
+	@Override
 	public RunsafeDoubleChest getHolder()
 	{
-		return ObjectWrapper.convert(this.doubleChestInventory.getHolder());
+		return ObjectWrapper.convert(doubleChestInventory.getHolder());
 	}
 
 	@Override

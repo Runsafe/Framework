@@ -5,5 +5,5 @@ import no.runsafe.framework.minecraft.event.enchantment.RunsafeEnchantItemEvent;
 
 public interface IEnchantItemEvent extends IRunsafeEvent
 {
-	public void OnEnchantItemEvent(RunsafeEnchantItemEvent event);
+	void OnEnchantItemEvent(RunsafeEnchantItemEvent event);
 }

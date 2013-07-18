@@ -1,12 +1,32 @@
 package no.runsafe.framework.minecraft.event.player;
 
+import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class RunsafePlayerFakeChatEvent extends RunsafePlayerChatEvent
 {
+	@Nullable
+	public static String Run(RunsafePlayer player, String message)
+	{
+		RunsafePlayerFakeChatEvent event = new RunsafePlayerFakeChatEvent(player, message);
+		if (!event.Fire())
+			return null;
+
+		return String.format(event.getFormat(), event.getPlayer().getName(), event.getMessage());
+	}
+
+	public static void Broadcast(RunsafePlayer player, String message)
+	{
+		String result = Run(player, message);
+		if (result != null)
+			RunsafeServer.Instance.broadcastMessage(result);
+	}
+
 	public RunsafePlayerFakeChatEvent(RunsafePlayer player, String message)
 	{
 		super(null);
@@ -45,6 +65,7 @@ public class RunsafePlayerFakeChatEvent extends RunsafePlayerChatEvent
 	}
 
 	@Override
+	@Nullable
 	public List<RunsafePlayer> getRecipients()
 	{
 		return null;
@@ -70,7 +91,7 @@ public class RunsafePlayerFakeChatEvent extends RunsafePlayerChatEvent
 		cancellationCallbacks.add(callback);
 	}
 
-	private final List<Runnable> cancellationCallbacks = new ArrayList<Runnable>();
+	private final Collection<Runnable> cancellationCallbacks = new ArrayList<Runnable>();
 	private final RunsafePlayer player;
 	private String message;
 	private String format = "<%1$s> %2$s";

@@ -8,6 +8,7 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.joda.time.DateTime;
 
+import javax.annotation.Nullable;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -79,9 +80,9 @@ public final class Database extends QueryExecutor implements IDatabase
 			output.logException(e);
 			output.logFatal("Invalid configuration file runsafe/db.yml - You need to fix this!");
 		}
-		this.databaseURL = config.getString("database.url");
-		this.databaseUsername = config.getString("database.username");
-		this.databasePassword = config.getString("database.password");
+		databaseURL = config.getString("database.url");
+		databaseUsername = config.getString("database.username");
+		databasePassword = config.getString("database.password");
 
 		try
 		{
@@ -99,21 +100,23 @@ public final class Database extends QueryExecutor implements IDatabase
 	}
 
 	@Override
+	@Nullable
 	public ITransaction Isolate()
 	{
 		try
 		{
-			Connection conn = getConnection();
-			conn.setAutoCommit(false);
-			return new Transaction(output, conn);
+			Connection connection = getConnection();
+			connection.setAutoCommit(false);
+			return new Transaction(output, connection);
 		}
 		catch (SQLException e)
 		{
-			this.output.outputToConsole(e.getMessage(), Level.SEVERE);
+			output.outputToConsole(e.getMessage(), Level.SEVERE);
 			return null;
 		}
 	}
 
+	@Nullable
 	@Override
 	protected Connection getConnection()
 	{
@@ -133,23 +136,24 @@ public final class Database extends QueryExecutor implements IDatabase
 					}
 				}
 				accessTime = DateTime.now();
-				conn = DriverManager.getConnection(this.databaseURL, this.databaseUsername, this.databasePassword);
+
+				conn = DriverManager.getConnection(databaseURL, databaseUsername, databasePassword);
 				output.fine(String.format("Opening connection to %s by %s", databaseURL, databaseUsername));
 			}
-			if (conn == null)
-				output.fine("Connection is null");
-			return conn;
+			if (conn != null)
+				return conn;
+			output.fine("Connection is null");
 		}
 		catch (SQLException e)
 		{
-			this.output.write(e.getMessage());
-			return null;
+			output.write(e.getMessage());
 		}
+		return null;
 	}
 
 	private final String databaseURL;
 	private final String databaseUsername;
 	private final String databasePassword;
-	protected Connection conn;
-	private DateTime accessTime = null;
+	private Connection conn;
+	private DateTime accessTime;
 }
