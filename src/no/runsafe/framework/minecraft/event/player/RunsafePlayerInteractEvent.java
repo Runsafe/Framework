@@ -1,16 +1,15 @@
 package no.runsafe.framework.minecraft.event.player;
 
+import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.block.RunsafeBlock;
-import no.runsafe.framework.api.event.CancellableEvent;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
-import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.block.BlockFace;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-public class RunsafePlayerInteractEvent extends RunsafePlayerEvent implements CancellableEvent
+public class RunsafePlayerInteractEvent extends RunsafeCancellablePlayerEvent
 {
 	public RunsafePlayerInteractEvent(PlayerInteractEvent toWrap)
 	{
@@ -72,18 +71,6 @@ public class RunsafePlayerInteractEvent extends RunsafePlayerEvent implements Ca
 			event.getClickedBlock().getY() + face.getModY(),
 			event.getClickedBlock().getZ() + face.getModZ()
 		);
-	}
-
-	@Override
-	public boolean getCancelled()
-	{
-		return event.isCancelled();
-	}
-
-	@Override
-	public void setCancelled(boolean cancel)
-	{
-		event.setCancelled(cancel);
 	}
 
 	private final PlayerInteractEvent event;

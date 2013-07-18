@@ -2,10 +2,9 @@ package no.runsafe.framework.minecraft.event.player;
 
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.RunsafeTravelAgent;
-import no.runsafe.framework.api.event.CancellableEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
 
-public class RunsafePlayerPortalEvent extends RunsafePlayerTeleportEvent implements CancellableEvent
+public class RunsafePlayerPortalEvent extends RunsafePlayerTeleportEvent
 {
 	public RunsafePlayerPortalEvent(PlayerPortalEvent toWrap)
 	{
@@ -31,18 +30,6 @@ public class RunsafePlayerPortalEvent extends RunsafePlayerTeleportEvent impleme
 	public void setPortalTravelAgent(RunsafeTravelAgent travelAgent)
 	{
 		this.event.setPortalTravelAgent(travelAgent.getRaw());
-	}
-
-	@Override
-	public boolean getCancelled()
-	{
-		return this.event.isCancelled();
-	}
-
-	@Override
-	public void setCancelled(boolean cancel)
-	{
-		this.event.setCancelled(cancel);
 	}
 
 	private final PlayerPortalEvent event;

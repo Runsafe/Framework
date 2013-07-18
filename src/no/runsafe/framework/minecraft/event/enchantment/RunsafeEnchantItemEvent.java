@@ -1,19 +1,18 @@
 package no.runsafe.framework.minecraft.event.enchantment;
 
+import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import no.runsafe.framework.minecraft.enchantment.RunsafeEnchantment;
-import no.runsafe.framework.api.event.CancellableEvent;
-import no.runsafe.framework.minecraft.event.inventory.RunsafeInventoryEvent;
+import no.runsafe.framework.minecraft.event.inventory.RunsafeCancellableInventoryEvent;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
-import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.enchantment.EnchantItemEvent;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class RunsafeEnchantItemEvent extends RunsafeInventoryEvent implements CancellableEvent
+public class RunsafeEnchantItemEvent extends RunsafeCancellableInventoryEvent
 {
 	public RunsafeEnchantItemEvent(EnchantItemEvent toWrap)
 	{
@@ -59,18 +58,6 @@ public class RunsafeEnchantItemEvent extends RunsafeInventoryEvent implements Ca
 	public int whichButton()
 	{
 		return this.event.whichButton();
-	}
-
-	@Override
-	public boolean getCancelled()
-	{
-		return this.event.isCancelled();
-	}
-
-	@Override
-	public void setCancelled(boolean cancel)
-	{
-		this.event.setCancelled(cancel);
 	}
 
 	private final EnchantItemEvent event;

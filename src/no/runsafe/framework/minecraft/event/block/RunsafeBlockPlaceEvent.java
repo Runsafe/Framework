@@ -2,11 +2,10 @@ package no.runsafe.framework.minecraft.event.block;
 
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.block.RunsafeBlock;
-import no.runsafe.framework.api.event.CancellableEvent;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.event.block.BlockPlaceEvent;
 
-public class RunsafeBlockPlaceEvent extends RunsafeBlockEvent implements CancellableEvent
+public class RunsafeBlockPlaceEvent extends RunsafeCancellableBlockEvent
 {
 	public RunsafeBlockPlaceEvent(BlockPlaceEvent toWrap)
 	{
@@ -43,18 +42,6 @@ public class RunsafeBlockPlaceEvent extends RunsafeBlockEvent implements Cancell
 	public RunsafePlayer getPlayer()
 	{
 		return ObjectWrapper.convert(event.getPlayer());
-	}
-
-	@Override
-	public boolean getCancelled()
-	{
-		return event.isCancelled();
-	}
-
-	@Override
-	public void setCancelled(boolean cancel)
-	{
-		event.setCancelled(cancel);
 	}
 
 	private final BlockPlaceEvent event;

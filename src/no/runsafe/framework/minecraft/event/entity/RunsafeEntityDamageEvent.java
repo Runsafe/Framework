@@ -1,11 +1,10 @@
 package no.runsafe.framework.minecraft.event.entity;
 
-import no.runsafe.framework.api.event.CancellableEvent;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import org.bukkit.event.entity.EntityDamageEvent;
 
-public class RunsafeEntityDamageEvent extends RunsafeEntityEvent implements CancellableEvent
+public class RunsafeEntityDamageEvent extends RunsafeCancellableEntityEvent
 {
 	public RunsafeEntityDamageEvent(EntityDamageEvent toWrap)
 	{
@@ -34,18 +33,6 @@ public class RunsafeEntityDamageEvent extends RunsafeEntityEvent implements Canc
 			return RunsafeDamageCause.CUSTOM;
 
 		return RunsafeDamageCause.valueOf(this.event.getCause().name());
-	}
-
-	@Override
-	public boolean getCancelled()
-	{
-		return event.isCancelled();
-	}
-
-	@Override
-	public void setCancelled(boolean cancel)
-	{
-		event.setCancelled(cancel);
 	}
 
 	public EntityDamageEvent getRaw()

@@ -1,13 +1,12 @@
 package no.runsafe.framework.minecraft.event.inventory;
 
-import no.runsafe.framework.api.event.CancellableEvent;
+import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
-import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 
-public class RunsafeInventoryClickEvent extends RunsafeInventoryEvent implements CancellableEvent
+public class RunsafeInventoryClickEvent extends RunsafeCancellableInventoryEvent
 {
 	public RunsafeInventoryClickEvent(InventoryClickEvent toWrap)
 	{
@@ -63,18 +62,6 @@ public class RunsafeInventoryClickEvent extends RunsafeInventoryEvent implements
 	public int getRawSlot()
 	{
 		return this.event.getRawSlot();
-	}
-
-	@Override
-	public boolean getCancelled()
-	{
-		return this.event.isCancelled();
-	}
-
-	@Override
-	public void setCancelled(boolean cancel)
-	{
-		this.event.setCancelled(cancel);
 	}
 
 	private final InventoryClickEvent event;

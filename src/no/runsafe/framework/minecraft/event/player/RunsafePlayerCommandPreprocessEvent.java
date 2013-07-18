@@ -1,44 +1,31 @@
 package no.runsafe.framework.minecraft.event.player;
 
-import no.runsafe.framework.api.event.CancellableEvent;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
-public class RunsafePlayerCommandPreprocessEvent extends RunsafePlayerEvent implements CancellableEvent
+public class RunsafePlayerCommandPreprocessEvent extends RunsafeCancellablePlayerEvent
 {
 	public RunsafePlayerCommandPreprocessEvent(PlayerCommandPreprocessEvent toWrap)
 	{
 		super(toWrap);
-        this.event = toWrap;
+		this.event = toWrap;
 	}
 
-    @Override
-    public boolean getCancelled()
-    {
-        return event.isCancelled();
-    }
+	public String getMessage()
+	{
+		return this.event.getMessage();
+	}
 
-    @Override
-    public void setCancelled(boolean cancel)
-    {
-        event.setCancelled(cancel);
-    }
+	public RunsafePlayer getPlayer()
+	{
+		return new RunsafePlayer(this.event.getPlayer());
+	}
 
-    public String getMessage()
-    {
-        return this.event.getMessage();
-    }
+	public void setPlayer(RunsafePlayer player)
+	{
+		this.event.setPlayer((Player) player.getRaw());
+	}
 
-    public RunsafePlayer getPlayer()
-    {
-        return new RunsafePlayer(this.event.getPlayer());
-    }
-
-    public void setPlayer(RunsafePlayer player)
-    {
-        this.event.setPlayer((Player) player.getRaw());
-    }
-
-    private final PlayerCommandPreprocessEvent event;
+	private final PlayerCommandPreprocessEvent event;
 }

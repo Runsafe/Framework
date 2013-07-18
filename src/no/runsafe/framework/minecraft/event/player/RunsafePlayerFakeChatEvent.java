@@ -2,6 +2,7 @@ package no.runsafe.framework.minecraft.event.player;
 
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RunsafePlayerFakeChatEvent extends RunsafePlayerChatEvent
@@ -11,18 +12,6 @@ public class RunsafePlayerFakeChatEvent extends RunsafePlayerChatEvent
 		super(null);
 		this.player = player;
 		this.message = message;
-	}
-
-	@Override
-	public boolean getCancelled()
-	{
-		return cancelled;
-	}
-
-	@Override
-	public void setCancelled(boolean cancel)
-	{
-		cancelled = cancel;
 	}
 
 	@Override
@@ -61,6 +50,27 @@ public class RunsafePlayerFakeChatEvent extends RunsafePlayerChatEvent
 		return null;
 	}
 
+	@Override
+	public boolean isCancelled()
+	{
+		return cancelled;
+	}
+
+	@Override
+	public void cancel()
+	{
+		cancelled = true;
+		for (Runnable callback : cancellationCallbacks)
+			callback.run();
+	}
+
+	@Override
+	public void addCancellationHandle(Runnable callback)
+	{
+		cancellationCallbacks.add(callback);
+	}
+
+	private final List<Runnable> cancellationCallbacks = new ArrayList<Runnable>();
 	private final RunsafePlayer player;
 	private String message;
 	private String format = "<%1$s> %2$s";

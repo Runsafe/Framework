@@ -1,12 +1,11 @@
 package no.runsafe.framework.minecraft.event.block;
 
-import no.runsafe.framework.api.event.CancellableEvent;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.util.Vector;
 
-public class RunsafeBlockDispenseEvent extends RunsafeBlockEvent implements CancellableEvent
+public class RunsafeBlockDispenseEvent extends RunsafeCancellableBlockEvent
 {
 	public RunsafeBlockDispenseEvent(BlockDispenseEvent toWrap)
 	{
@@ -32,18 +31,6 @@ public class RunsafeBlockDispenseEvent extends RunsafeBlockEvent implements Canc
 	public void setVelocity(Vector velocity)
 	{
 		event.setVelocity(velocity);
-	}
-
-	@Override
-	public boolean getCancelled()
-	{
-		return event.isCancelled();
-	}
-
-	@Override
-	public void setCancelled(boolean cancel)
-	{
-		event.setCancelled(cancel);
 	}
 
 	private final BlockDispenseEvent event;

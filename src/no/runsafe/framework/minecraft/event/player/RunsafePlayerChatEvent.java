@@ -4,7 +4,6 @@ import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.event.player.IPlayerChatEvent;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.api.event.CancellableEvent;
 import no.runsafe.framework.api.event.IFakeableEvent;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -13,24 +12,12 @@ import java.util.List;
 
 //import org.bukkit.event.player.PlayerChatEvent;
 
-public class RunsafePlayerChatEvent extends RunsafePlayerEvent implements CancellableEvent, IFakeableEvent
+public class RunsafePlayerChatEvent extends RunsafeCancellablePlayerEvent implements IFakeableEvent
 {
 	public RunsafePlayerChatEvent(AsyncPlayerChatEvent toWrap)
 	{
 		super(toWrap);
 		event = toWrap;
-	}
-
-	@Override
-	public boolean getCancelled()
-	{
-		return event.isCancelled();
-	}
-
-	@Override
-	public void setCancelled(boolean cancel)
-	{
-		event.setCancelled(cancel);
 	}
 
 	public String getFormat()
