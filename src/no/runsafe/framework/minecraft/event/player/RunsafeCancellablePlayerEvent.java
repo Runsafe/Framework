@@ -4,7 +4,6 @@ import no.runsafe.framework.api.event.CancellableEvent;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.player.PlayerEvent;
 
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,23 +13,6 @@ public abstract class RunsafeCancellablePlayerEvent extends RunsafePlayerEvent i
 	{
 		super(toWrap);
 		event = (Cancellable) toWrap;
-	}
-
-	@Override
-	@Deprecated
-	public boolean getCancelled()
-	{
-		return isCancelled();
-	}
-
-	@Override
-	@Deprecated
-	public void setCancelled(boolean cancel)
-	{
-		if (cancel)
-			this.cancel();
-		else
-			throw new InvalidParameterException("You cannot un-cancel an event");
 	}
 
 	@Override

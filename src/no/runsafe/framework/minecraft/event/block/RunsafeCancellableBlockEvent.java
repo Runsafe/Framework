@@ -16,20 +16,6 @@ public class RunsafeCancellableBlockEvent extends RunsafeBlockEvent implements C
 	}
 
 	@Override
-	@Deprecated
-	public boolean getCancelled()
-	{
-		return event.isCancelled();
-	}
-
-	@Override
-	@Deprecated
-	public void setCancelled(boolean cancel)
-	{
-		event.setCancelled(cancel);
-	}
-
-	@Override
 	public boolean isCancelled()
 	{
 		return event.isCancelled();

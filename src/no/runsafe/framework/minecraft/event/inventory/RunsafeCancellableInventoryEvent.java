@@ -16,23 +16,6 @@ public class RunsafeCancellableInventoryEvent extends RunsafeInventoryEvent impl
 	}
 
 	@Override
-	@Deprecated
-	public boolean getCancelled()
-	{
-		return event.isCancelled();
-	}
-
-	@Override
-	@Deprecated
-	public void setCancelled(boolean cancel)
-	{
-		if (cancel)
-			this.cancel();
-		else
-			throw new IllegalArgumentException("You cannot un-cancel an event!");
-	}
-
-	@Override
 	public boolean isCancelled()
 	{
 		return event.isCancelled();

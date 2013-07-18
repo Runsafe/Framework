@@ -17,20 +17,6 @@ public class RunsafeCancellableEvent extends RunsafeEvent implements Cancellable
 	}
 
 	@Override
-	@Deprecated
-	public boolean getCancelled()
-	{
-		return this.event.isCancelled();
-	}
-
-	@Override
-	@Deprecated
-	public void setCancelled(boolean cancel)
-	{
-		this.event.setCancelled(cancel);
-	}
-
-	@Override
 	public boolean isCancelled()
 	{
 		return event.isCancelled();
