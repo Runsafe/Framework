@@ -29,7 +29,7 @@ public final class PlayerPortal extends EventRouterBase<IPlayerPortalEvent, Play
 	public boolean onEvent(PlayerPortalEvent event)
 	{
 		handler.OnPlayerPortalEvent(new RunsafePlayerPortalEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

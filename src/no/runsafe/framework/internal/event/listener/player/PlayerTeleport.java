@@ -29,7 +29,7 @@ public final class PlayerTeleport extends EventRouterBase<IPlayerTeleportEvent, 
 	public boolean onEvent(PlayerTeleportEvent event)
 	{
 		handler.OnPlayerTeleport(new RunsafePlayerTeleportEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

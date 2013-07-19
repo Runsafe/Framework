@@ -131,9 +131,9 @@ public abstract class BukkitEntity extends BukkitMetadata
 		return entity.getFallDistance();
 	}
 
-	public void setFallDistance(float v)
+	public void setFallDistance(float distance)
 	{
-		entity.setFallDistance(v);
+		entity.setFallDistance(distance);
 	}
 
 	public void setLastDamageCause(RunsafeEntityDamageEvent entityDamageEvent)
@@ -156,9 +156,9 @@ public abstract class BukkitEntity extends BukkitMetadata
 		return entity.getTicksLived();
 	}
 
-	public void setTicksLived(int i)
+	public void setTicksLived(int ticks)
 	{
-		entity.setTicksLived(i);
+		entity.setTicksLived(ticks);
 	}
 
 	public boolean isInsideVehicle()
@@ -181,9 +181,9 @@ public abstract class BukkitEntity extends BukkitMetadata
 		return EntityType.convert(entity.getType());
 	}
 
-	public void setVelocity(Vector vec)
+	public void setVelocity(Vector velocity)
 	{
-		entity.setVelocity(vec);
+		entity.setVelocity(velocity);
 	}
 
 	private void dismountBeforeTeleport()

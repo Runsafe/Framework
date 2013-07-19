@@ -86,7 +86,7 @@ public abstract class BukkitItemStack implements ConfigurationSerializable
 	public boolean equals(Object obj)
 	{
 		if (obj instanceof BukkitItemStack)
-			return itemStack.equals(((BukkitItemStack) obj).getRaw());
+			return itemStack.equals(((BukkitItemStack) obj).itemStack);
 
 		return obj instanceof ItemStack && itemStack.equals(obj);
 	}
@@ -109,9 +109,9 @@ public abstract class BukkitItemStack implements ConfigurationSerializable
 	public Map<RunsafeEnchantment, Integer> getEnchantments()
 	{
 		Map<Enchantment, Integer> bukkitEnchants = itemStack.getEnchantments();
-		Map<RunsafeEnchantment, Integer> enchants = new HashMap<RunsafeEnchantment, Integer>();
-		for (Enchantment ench : bukkitEnchants.keySet())
-			enchants.put(ObjectWrapper.convert(ench), bukkitEnchants.get(ench));
+		Map<RunsafeEnchantment, Integer> enchants = new HashMap<RunsafeEnchantment, Integer>(bukkitEnchants.size());
+		for (Map.Entry<Enchantment, Integer> enchantment : bukkitEnchants.entrySet())
+			enchants.put(ObjectWrapper.convert(enchantment.getKey()), enchantment.getValue());
 		return enchants;
 	}
 

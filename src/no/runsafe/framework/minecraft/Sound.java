@@ -493,9 +493,10 @@ public class Sound
 	Sound(org.bukkit.Sound sample)
 	{
 		this.sample = sample;
+		//noinspection ThisEscapedInObjectConstruction
 		soundboard.put(sample.name(), this);
 	}
 
 	private final org.bukkit.Sound sample;
-	private static final Map<String, Sound> soundboard = new HashMap<String, Sound>();
+	private static final Map<String, Sound> soundboard = new HashMap<String, Sound>(org.bukkit.Sound.values().length);
 }

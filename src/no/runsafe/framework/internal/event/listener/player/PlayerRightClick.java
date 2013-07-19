@@ -42,7 +42,7 @@ public final class PlayerRightClick extends EventRouterBase<IPlayerRightClick, P
 	public boolean onEvent(PlayerInteractEvent event)
 	{
 		return
-			handler.OnPlayerRightClick(
+			!handler.OnPlayerRightClick(
 				ObjectWrapper.convert((OfflinePlayer) event.getPlayer()),
 				ObjectWrapper.convert(event.getItem()),
 				ObjectWrapper.convert(event.getClickedBlock())

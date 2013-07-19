@@ -19,9 +19,9 @@ public abstract class BukkitFurnace extends RunsafeBlockState implements IInvent
 		return furnace.getBurnTime();
 	}
 
-	public void setBurnTime(short i)
+	public void setBurnTime(short time)
 	{
-		furnace.setBurnTime(i);
+		furnace.setBurnTime(time);
 	}
 
 	public short getCookTime()
@@ -29,9 +29,9 @@ public abstract class BukkitFurnace extends RunsafeBlockState implements IInvent
 		return furnace.getCookTime();
 	}
 
-	public void setCookTime(short i)
+	public void setCookTime(short time)
 	{
-		furnace.setCookTime(i);
+		furnace.setCookTime(time);
 	}
 
 	@Override

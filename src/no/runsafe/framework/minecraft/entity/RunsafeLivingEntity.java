@@ -1,9 +1,9 @@
 package no.runsafe.framework.minecraft.entity;
 
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
-import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.entity.BukkitLivingEntity;
+import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -26,9 +26,10 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 
 	public RunsafeBlock getTarget()
 	{
-		HashSet<Byte> transparent = new HashSet<Byte>();
+		HashSet<Byte> transparent = new HashSet<Byte>(10);
 		for (Material material : Material.values())
 			if (material.isTransparent())
+				//noinspection NumericCastThatLosesPrecision,UnnecessaryExplicitNumericCast
 				transparent.add((byte) material.getId());
 		return getTargetBlock(transparent, MAX_DISTANCE);
 	}

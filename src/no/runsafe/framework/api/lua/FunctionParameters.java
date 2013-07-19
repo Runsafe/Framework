@@ -85,8 +85,8 @@ public class FunctionParameters
 
 	public RunsafeLocation getLocation(int index, boolean hasPitchAndYaw)
 	{
-		float yaw = hasPitchAndYaw ? getFloat(index + 4) : 0;
-		float pitch = hasPitchAndYaw ? getFloat(index + 5) : 0;
+		float yaw = hasPitchAndYaw ? getFloat(index + 4) : 0.0f;
+		float pitch = hasPitchAndYaw ? getFloat(index + 5) : 0.0f;
 		return new RunsafeLocation(getWorld(index), getDouble(index + 1), getDouble(index + 2), getDouble(index + 3), yaw, pitch);
 	}
 
@@ -95,5 +95,6 @@ public class FunctionParameters
 		return parameters.size() >= index + 1;
 	}
 
-	private final List<LuaValue> parameters = new ArrayList<LuaValue>();
+	private final List<LuaValue> parameters = new ArrayList<LuaValue>(0);
+	
 }

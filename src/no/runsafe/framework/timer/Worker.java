@@ -9,14 +9,15 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public abstract class Worker<TokenType, StateType> implements Runnable
 {
-	public Worker(IScheduler scheduler)
+	protected Worker(IScheduler scheduler)
 	{
 		this(scheduler, Minecraft.TICKS_PER_SECOND);
 	}
 
-	public Worker(IScheduler scheduler, long ticks)
+	protected Worker(IScheduler scheduler, long ticks)
 	{
 		this.scheduler = scheduler;
+		//noinspection ThisEscapedInObjectConstruction
 		worker = scheduler.createAsyncTimer(this, ticks, ticks);
 	}
 

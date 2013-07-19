@@ -22,7 +22,7 @@ public abstract class Output implements IDebug
 	{
 		this.consoleLog = consoleLog;
 		debugLevel = DefaultDebugLevel;
-		info("Setting debug level to %s", DefaultDebugLevel.getName());
+		outputDebugToConsole("Setting debug level to %s", Level.FINE, DefaultDebugLevel.getName());
 	}
 
 	@Override
@@ -109,7 +109,7 @@ public abstract class Output implements IDebug
 
 	// Sends the supplied String to the console/log the output handler has if the debug level is high enough
 	@Override
-	public void outputDebugToConsole(String message, Level messageLevel, Object... params)
+	public final void outputDebugToConsole(String message, Level messageLevel, Object... params)
 	{
 		if (debugLevel != null && messageLevel.intValue() >= debugLevel.intValue())
 			outputToConsole(formatDebugMessage(message, messageLevel, params), Level.INFO);
@@ -172,11 +172,11 @@ public abstract class Output implements IDebug
 	}
 
 	@Override
-	public void dumpData(Object raw, Level messageLevel)
+	public void dumpData(Object object, Level messageLevel)
 	{
 		if (debugLevel != null && messageLevel.intValue() >= debugLevel.intValue())
-			if (raw instanceof BukkitItemStack)
-				dumpData(((BukkitItemStack) raw).getRaw());
+			if (object instanceof BukkitItemStack)
+				dumpData(((BukkitItemStack) object).getRaw());
 	}
 
 	private String formatDebugMessage(String message, Level messageLevel, Object... params)
@@ -195,10 +195,10 @@ public abstract class Output implements IDebug
 		return formatted;
 	}
 
-	private String getStackTrace()
+	private static String getStackTrace()
 	{
 		int skip = 5;
-		Collection<String> stack = new ArrayList<String>();
+		Collection<String> stack = new ArrayList<String>(5);
 		for (StackTraceElement element : Thread.currentThread().getStackTrace())
 		{
 			if (skip < 1)
@@ -213,8 +213,8 @@ public abstract class Output implements IDebug
 	{
 		outputToConsole(String.format("Dumping instance of %s", raw.getClass().getCanonicalName()));
 		Map<String, Object> values = raw.serialize();
-		for (String key : values.keySet())
-			outputToConsole(String.format(" - %s: %s", key, values.get(key)));
+		for (Map.Entry<String, Object> entry : values.entrySet())
+			outputToConsole(String.format(" - %s: %s", entry.getKey(), entry.getValue()));
 	}
 
 	private final Logger consoleLog;
@@ -223,7 +223,7 @@ public abstract class Output implements IDebug
 
 	static
 	{
-		File configFile = new File("runsafe/output.yml");
+		File configFile = new File("runsafe", "output.yml");
 		YamlConfiguration config = YamlConfiguration.loadConfiguration(configFile);
 		if (!config.contains("debug"))
 			config.set("debug", "OFF");

@@ -29,7 +29,7 @@ public final class InventoryClick extends EventRouterBase<IInventoryClick, Inven
 	public boolean onEvent(InventoryClickEvent event)
 	{
 		handler.OnInventoryClickEvent(new RunsafeInventoryClickEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

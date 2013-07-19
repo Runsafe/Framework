@@ -29,7 +29,7 @@ public final class ChunkPopulate extends EventRouterBase<IChunkPopulate, ChunkPo
 	public boolean onEvent(ChunkPopulateEvent event)
 	{
 		handler.OnChunkPopulate(ObjectWrapper.convert(event.getChunk()));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

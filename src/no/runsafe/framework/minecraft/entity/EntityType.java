@@ -5,7 +5,7 @@ import no.runsafe.framework.minecraft.Item;
 import org.bukkit.Material;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 
 public final class EntityType
@@ -14,6 +14,7 @@ public final class EntityType
 	{
 	}
 
+	@SuppressWarnings({"MethodWithMultipleLoops", "ConstantConditions"})
 	@Nullable
 	public static RunsafeEntityType convert(org.bukkit.entity.EntityType entityType)
 	{
@@ -45,5 +46,6 @@ public final class EntityType
 		return convert(org.bukkit.entity.EntityType.fromId(id));
 	}
 
-	private static final Map<org.bukkit.entity.EntityType, RunsafeEntityType> types = new HashMap<org.bukkit.entity.EntityType, RunsafeEntityType>();
+	private static final Map<org.bukkit.entity.EntityType, RunsafeEntityType> types =
+		new EnumMap<org.bukkit.entity.EntityType, RunsafeEntityType>(org.bukkit.entity.EntityType.class);
 }

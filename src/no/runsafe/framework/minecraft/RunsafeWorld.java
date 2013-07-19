@@ -20,13 +20,20 @@ public class RunsafeWorld extends BukkitWorld
 
 	public RunsafeWorld(String worldName)
 	{
+		//noinspection ConstantConditions
 		super(RunsafeServer.Instance.getWorld(worldName).getRaw());
 	}
 
 	@Override
-	public boolean equals(Object world)
+	public boolean equals(Object obj)
 	{
-		return world instanceof RunsafeWorld && getName().equals(((BukkitWorld) world).getName());
+		return obj instanceof RunsafeWorld && getName().equals(((BukkitWorld) obj).getName());
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return getName().hashCode();
 	}
 
 	@Nullable

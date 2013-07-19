@@ -103,9 +103,9 @@ public class FireworkBuilder
 		return this;
 	}
 
-	public FireworkBuilder Colour(byte r, byte g, byte b)
+	public FireworkBuilder Colour(byte red, byte green, byte blue)
 	{
-		builder = builder.withColor(Color.fromRGB(r, g, b));
+		builder = builder.withColor(Color.fromRGB(red, green, blue));
 		return this;
 	}
 
@@ -115,9 +115,9 @@ public class FireworkBuilder
 		return this;
 	}
 
-	public FireworkBuilder Fade(byte r, byte g, byte b)
+	public FireworkBuilder Fade(byte red, byte green, byte blue)
 	{
-		builder = builder.withFade(Color.fromRGB(r, g, b));
+		builder = builder.withFade(Color.fromRGB(red, green, blue));
 		return this;
 	}
 
@@ -163,7 +163,7 @@ public class FireworkBuilder
 	}
 
 	private FireworkEffect.Builder builder;
-	private final Collection<FireworkEffect> effects = new ArrayList<FireworkEffect>();
+	private final Collection<FireworkEffect> effects = new ArrayList<FireworkEffect>(0);
 	private int power;
 
 	private static final Random rng = new Random();

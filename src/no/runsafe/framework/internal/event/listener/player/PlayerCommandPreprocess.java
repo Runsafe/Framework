@@ -30,7 +30,7 @@ public final class PlayerCommandPreprocess extends EventRouterBase<IPlayerComman
 	public boolean onEvent(PlayerCommandPreprocessEvent event)
 	{
 		handler.OnBeforePlayerCommand(new RunsafePlayerCommandPreprocessEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

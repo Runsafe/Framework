@@ -110,6 +110,7 @@ public class Buff
 		if (root)
 			return convertToBuff().duration(value);
 
+		//noinspection NumericCastThatLosesPrecision
 		duration = (int) (value * Minecraft.TICKS_PER_SECOND);
 		return this;
 	}

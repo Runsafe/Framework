@@ -29,7 +29,7 @@ public final class BlockPlace extends EventRouterBase<IBlockPlace, BlockPlaceEve
 	@Override
 	public boolean onEvent(BlockPlaceEvent event)
 	{
-		return handler.OnBlockPlace(
+		return !handler.OnBlockPlace(
 			ObjectWrapper.convert((OfflinePlayer) event.getPlayer()),
 			ObjectWrapper.convert(event.getBlock())
 		);

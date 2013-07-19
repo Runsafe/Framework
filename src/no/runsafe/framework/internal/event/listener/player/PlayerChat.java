@@ -30,7 +30,7 @@ public final class PlayerChat extends EventRouterBase<IPlayerChatEvent, AsyncPla
 	public boolean onEvent(AsyncPlayerChatEvent event)
 	{
 		handler.OnPlayerChatEvent(new RunsafePlayerChatEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

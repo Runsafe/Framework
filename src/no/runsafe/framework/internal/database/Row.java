@@ -9,7 +9,7 @@ import org.joda.time.DateTime;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public final class Row extends DataConverter implements IRow
+public final class Row implements IRow
 {
 	public static final IRow Empty = new EmptyRow();
 
@@ -21,37 +21,37 @@ public final class Row extends DataConverter implements IRow
 	@Override
 	public String String(String column)
 	{
-		return String(getValue(column));
+		return DataConverter.String(getValue(column));
 	}
 
 	@Override
 	public Integer Integer(String column)
 	{
-		return Integer(getValue(column));
+		return DataConverter.Integer(getValue(column));
 	}
 
 	@Override
 	public Long Long(String column)
 	{
-		return Long(getValue(column));
+		return DataConverter.Long(getValue(column));
 	}
 
 	@Override
 	public Double Double(String column)
 	{
-		return Double(getValue(column));
+		return DataConverter.Double(getValue(column));
 	}
 
 	@Override
 	public Float Float(String column)
 	{
-		return Float(getValue(column));
+		return DataConverter.Float(getValue(column));
 	}
 
 	@Override
 	public DateTime DateTime(String column)
 	{
-		return DateTime(getValue(column));
+		return DataConverter.DateTime(getValue(column));
 	}
 
 	@Override
@@ -66,22 +66,23 @@ public final class Row extends DataConverter implements IRow
 		return Location(world, x, y, z, "yaw", "pitch");
 	}
 
+	@SuppressWarnings("MethodWithTooManyParameters")
 	@Override
 	public RunsafeLocation Location(String world, String x, String y, String z, String yaw, String pitch)
 	{
-		return Location(getValue(world), getValue(x), getValue(y), getValue(z), getValue(yaw), getValue(pitch));
+		return DataConverter.Location(getValue(world), getValue(x), getValue(y), getValue(z), getValue(yaw), getValue(pitch));
 	}
 
 	@Override
 	public RunsafeWorld World(String column)
 	{
-		return World(getValue(column));
+		return DataConverter.World(getValue(column));
 	}
 
 	@Override
 	public RunsafePlayer Player(String column)
 	{
-		return Player(getValue(column));
+		return DataConverter.Player(getValue(column));
 	}
 
 	@Override
@@ -162,6 +163,7 @@ public final class Row extends DataConverter implements IRow
 			return null;
 		}
 
+		@SuppressWarnings("MethodWithTooManyParameters")
 		@Override
 		@Nullable
 		public RunsafeLocation Location(String world, String x, String y, String z, String yaw, String pitch)

@@ -8,7 +8,7 @@ import java.util.Collection;
 
 public abstract class RunsafeCancellableCustomEvent extends RunsafeCustomEvent implements CancellableEvent
 {
-	public RunsafeCancellableCustomEvent(RunsafePlayer player, String event)
+	protected RunsafeCancellableCustomEvent(RunsafePlayer player, String event)
 	{
 		super(player, event);
 	}
@@ -30,9 +30,11 @@ public abstract class RunsafeCancellableCustomEvent extends RunsafeCustomEvent i
 	@Override
 	public void addCancellationHandle(Runnable callback)
 	{
+		if (onCancelled == null)
+			onCancelled = new ArrayList<Runnable>(1);
 		onCancelled.add(callback);
 	}
 
-	private final Collection<Runnable> onCancelled = new ArrayList<Runnable>();
+	private Collection<Runnable> onCancelled;
 	private boolean cancelled;
 }

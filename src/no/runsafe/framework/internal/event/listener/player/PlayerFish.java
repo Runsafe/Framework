@@ -29,7 +29,7 @@ public class PlayerFish extends EventRouterBase<IPlayerFishEvent, PlayerFishEven
 	public boolean onEvent(PlayerFishEvent event)
 	{
 		handler.OnPlayerFish(new RunsafePlayerFishEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

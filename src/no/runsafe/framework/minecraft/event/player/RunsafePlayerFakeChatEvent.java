@@ -17,7 +17,7 @@ public class RunsafePlayerFakeChatEvent extends RunsafePlayerChatEvent
 		if (!event.Fire())
 			return null;
 
-		return String.format(event.getFormat(), event.getPlayer().getName(), event.getMessage());
+		return String.format(event.format, event.player.getName(), event.message);
 	}
 
 	public static void Broadcast(RunsafePlayer player, String message)
@@ -88,10 +88,12 @@ public class RunsafePlayerFakeChatEvent extends RunsafePlayerChatEvent
 	@Override
 	public void addCancellationHandle(Runnable callback)
 	{
+		if (cancellationCallbacks == null)
+			cancellationCallbacks = new ArrayList<Runnable>(1);
 		cancellationCallbacks.add(callback);
 	}
 
-	private final Collection<Runnable> cancellationCallbacks = new ArrayList<Runnable>();
+	private Collection<Runnable> cancellationCallbacks;
 	private final RunsafePlayer player;
 	private String message;
 	private String format = "<%1$s> %2$s";

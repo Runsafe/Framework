@@ -9,6 +9,7 @@ import java.util.List;
 
 public abstract class Function extends VarArgFunction
 {
+	@SuppressWarnings("AbstractMethodOverridesConcreteMethod")
 	@Override
 	public abstract Varargs invoke(Varargs args);
 
@@ -26,7 +27,7 @@ public abstract class Function extends VarArgFunction
 
 	protected Varargs objectListToVarargs(Iterable<Object> objects)
 	{
-		List<LuaValue> values = new ArrayList<LuaValue>();
+		List<LuaValue> values = new ArrayList<LuaValue>(0);
 
 		if (objects != null)
 		{

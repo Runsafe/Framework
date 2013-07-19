@@ -32,7 +32,7 @@ public final class SpawnChange extends EventRouterBase<ISpawnChange, SpawnChange
 			ObjectWrapper.convert(event.getWorld()),
 			ObjectWrapper.convert(event.getPreviousLocation())
 		);
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public abstract class AsyncCommand extends ExecutableCommand
 {
-	public AsyncCommand(String name, String description, String permission, IScheduler scheduler, String... args)
+	protected AsyncCommand(String name, String description, String permission, IScheduler scheduler, String... args)
 	{
 		super(name, description, permission, args);
 		this.scheduler = scheduler;

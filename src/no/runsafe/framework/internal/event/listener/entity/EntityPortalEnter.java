@@ -29,7 +29,7 @@ public final class EntityPortalEnter extends EventRouterBase<IEntityPortalEnterE
 	public boolean onEvent(EntityPortalEnterEvent event)
 	{
 		handler.OnEntityPortalEnter(new RunsafeEntityPortalEnterEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

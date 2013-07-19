@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.command;
 
+import com.google.common.collect.ImmutableList;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.ICommandHandler;
@@ -59,14 +60,15 @@ public final class BukkitCommandTabExecutor implements TabExecutor
 	@Override
 	public List<String> onTabComplete(CommandSender commandSender, Command command, String alias, String[] args)
 	{
+		//noinspection HardcodedFileSeparator
 		logger.fine("Handling tabcomplete for '/%s %s'", alias, Strings.join(args, " "));
-		return tabCompleteCommand(commandSender, args);
+		return ImmutableList.copyOf(tabCompleteCommand(commandSender, args));
 	}
 
-	private List<String> tabCompleteCommand(CommandSender sender, String... args)
+	private Iterable<String> tabCompleteCommand(CommandSender sender, String... args)
 	{
 		IPreparedCommand preparedCommand = preparedCommand(sender, true, args);
-		List<String> options = preparedCommand.tabComplete(args);
+		Iterable<String> options = preparedCommand.tabComplete(args);
 		logger.fine("Tab completion options to return: %s", options);
 		return options;
 	}
@@ -92,7 +94,7 @@ public final class BukkitCommandTabExecutor implements TabExecutor
 		}
 	}
 
-	private IPreparedCommand preparedCommand(CommandSender sender, boolean skipLast, String[] args)
+	private IPreparedCommand preparedCommand(CommandSender sender, boolean skipLast, String... args)
 	{
 		if (skipLast)
 			args = Arrays.copyOfRange(args, 0, args.length - 1);

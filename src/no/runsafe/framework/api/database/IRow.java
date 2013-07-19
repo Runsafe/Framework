@@ -15,6 +15,7 @@ public interface IRow extends IResult
 	DateTime DateTime(String column);
 	RunsafeLocation Location();
 	RunsafeLocation Location(String world, String x, String y, String z);
+	@SuppressWarnings("MethodWithTooManyParameters")
 	RunsafeLocation Location(String world, String x, String y, String z, String yaw, String pitch);
 	RunsafeWorld World(String column);
 	RunsafePlayer Player(String column);

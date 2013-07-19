@@ -28,7 +28,7 @@ public final class InventoryOpen extends EventRouterBase<IInventoryOpen, Invento
 	@Override
 	public boolean onEvent(InventoryOpenEvent event)
 	{
-		return handler.OnInventoryOpen(
+		return !handler.OnInventoryOpen(
 			ObjectWrapper.convert(event.getPlayer()),
 			ObjectWrapper.convert(event.getInventory())
 		);

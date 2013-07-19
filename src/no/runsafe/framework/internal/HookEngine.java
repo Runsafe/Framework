@@ -25,7 +25,7 @@ public final class HookEngine implements Startable
 	 *
 	 * @param hooks Framework hooks provided by the plugin
 	 */
-	public HookEngine(IFrameworkHook[] hooks)
+	public HookEngine(IFrameworkHook... hooks)
 	{
 		List<Object> components = hookContainer.getComponents();
 		for (IFrameworkHook hook : hooks)

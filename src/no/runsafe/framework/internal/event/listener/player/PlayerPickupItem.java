@@ -29,7 +29,7 @@ public final class PlayerPickupItem extends EventRouterBase<IPlayerPickupItemEve
 	public boolean onEvent(PlayerPickupItemEvent event)
 	{
 		handler.OnPlayerPickupItemEvent(new RunsafePlayerPickupItemEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

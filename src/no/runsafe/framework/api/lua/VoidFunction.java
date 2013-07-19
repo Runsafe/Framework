@@ -12,5 +12,6 @@ public abstract class VoidFunction extends Function
 		return varargsOf(new LuaValue[0]);
 	}
 
+	@SuppressWarnings("InstanceMethodNamingConvention")
 	protected abstract void run(FunctionParameters parameters);
 }

@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public abstract class ConsoleCommand extends ExecutableCommand
 {
-	public ConsoleCommand(String commandName, String description, String... arguments)
+	protected ConsoleCommand(String commandName, String description, String... arguments)
 	{
 		super(commandName, description, null, arguments);
 	}

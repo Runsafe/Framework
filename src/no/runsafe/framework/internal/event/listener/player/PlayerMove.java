@@ -29,7 +29,7 @@ public final class PlayerMove extends EventRouterBase<IPlayerMove, PlayerMoveEve
 	@Override
 	public boolean onEvent(PlayerMoveEvent event)
 	{
-		return handler.OnPlayerMove(ObjectWrapper.convert((OfflinePlayer) event.getPlayer()), ObjectWrapper.convert(event.getFrom()), ObjectWrapper.convert(event.getTo()));
+		return !handler.OnPlayerMove(ObjectWrapper.convert((OfflinePlayer) event.getPlayer()), ObjectWrapper.convert(event.getFrom()), ObjectWrapper.convert(event.getTo()));
 	}
 
 	public static EventRouterFactory Factory()

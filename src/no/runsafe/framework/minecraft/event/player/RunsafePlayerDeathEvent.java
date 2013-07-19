@@ -1,6 +1,5 @@
 package no.runsafe.framework.minecraft.event.player;
 
-import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.event.IFakeableEvent;
 import no.runsafe.framework.api.event.player.IPlayerDeathEvent;
@@ -69,6 +68,7 @@ public class RunsafePlayerDeathEvent extends RunsafeEntityDeathEvent implements 
 		event.setKeepLevel(keepLevel);
 	}
 
+	@SuppressWarnings("MethodWithMultipleLoops")
 	@Override
 	public boolean Fire()
 	{

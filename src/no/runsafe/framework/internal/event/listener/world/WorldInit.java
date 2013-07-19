@@ -29,7 +29,7 @@ public final class WorldInit extends EventRouterBase<IWorldInit, WorldInitEvent>
 	public boolean onEvent(WorldInitEvent event)
 	{
 		handler.OnWorldInit(ObjectWrapper.convert(event.getWorld()));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

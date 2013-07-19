@@ -26,7 +26,7 @@ public class RunsafeInventoryEvent extends RunsafeEvent
 
 	public List<RunsafePlayer> getViewers()
 	{
-		List<RunsafePlayer> runsafeHumanEntities = new ArrayList<RunsafePlayer>();
+		List<RunsafePlayer> runsafeHumanEntities = new ArrayList<RunsafePlayer>(event.getViewers().size());
 		for (HumanEntity humanEntity : event.getViewers())
 			runsafeHumanEntities.add(ObjectWrapper.convert(humanEntity));
 

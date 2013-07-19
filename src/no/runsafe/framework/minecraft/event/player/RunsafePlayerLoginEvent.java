@@ -1,6 +1,5 @@
 package no.runsafe.framework.minecraft.event.player;
 
-import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.event.IFakeableEvent;
 import no.runsafe.framework.api.event.player.IPlayerLoginEvent;
@@ -67,6 +66,7 @@ public class RunsafePlayerLoginEvent extends RunsafePlayerEvent implements IFake
 		event.setKickMessage(message);
 	}
 
+	@SuppressWarnings("MethodWithMultipleLoops")
 	@Override
 	public boolean Fire()
 	{

@@ -29,7 +29,7 @@ public final class PlayerKick extends EventRouterBase<IPlayerKickEvent, PlayerKi
 	public boolean onEvent(PlayerKickEvent event)
 	{
 		handler.OnPlayerKick(new RunsafePlayerKickEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

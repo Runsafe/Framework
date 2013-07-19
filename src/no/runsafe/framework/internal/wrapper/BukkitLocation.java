@@ -6,6 +6,7 @@ import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
 
+@SuppressWarnings("InstanceMethodNamingConvention")
 public abstract class BukkitLocation
 {
 	protected BukkitLocation(Location toWrap)
@@ -105,7 +106,7 @@ public abstract class BukkitLocation
 
 	public BukkitLocation add(BukkitLocation vec)
 	{
-		return ObjectWrapper.convert(location.add(vec.getRaw()));
+		return ObjectWrapper.convert(location.add(vec.location));
 	}
 
 	public BukkitLocation add(double x, double y, double z)
@@ -115,7 +116,7 @@ public abstract class BukkitLocation
 
 	public BukkitLocation subtract(BukkitLocation vec)
 	{
-		return ObjectWrapper.convert(location.subtract(vec.getRaw()));
+		return ObjectWrapper.convert(location.subtract(vec.location));
 	}
 
 	public BukkitLocation subtract(Vector vec)
@@ -140,20 +141,20 @@ public abstract class BukkitLocation
 
 	public double distance(BukkitLocation location)
 	{
-		if (!location.getWorld().getName().equals(location.getRaw().getWorld().getName()))
+		if (!location.getWorld().getName().equals(location.location.getWorld().getName()))
 			return Double.NaN;
 
-		return this.location.distance(location.getRaw());
+		return this.location.distance(location.location);
 	}
 
 	public double distanceSquared(BukkitLocation location)
 	{
-		return this.location.distanceSquared(location.getRaw());
+		return this.location.distanceSquared(location.location);
 	}
 
-	public BukkitLocation multiply(double m)
+	public BukkitLocation multiply(double factor)
 	{
-		return ObjectWrapper.convert(location.multiply(m));
+		return ObjectWrapper.convert(location.multiply(factor));
 	}
 
 	public BukkitLocation zero()

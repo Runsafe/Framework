@@ -39,13 +39,13 @@ public abstract class BukkitMeta extends RunsafeItemStack
 		return meta == null ? -1 : meta.getEnchantLevel(ench.getRaw());
 	}
 
-	public boolean addEnchant(RunsafeEnchantment ench, int level, boolean ignoreLevelRestriction)
+	public boolean addEnchant(RunsafeEnchantment ench, int level, boolean anyLevel)
 	{
 		ItemMeta meta = getRawMeta();
 		boolean success = false;
 		if (meta != null)
 		{
-			success = meta.addEnchant(ench.getRaw(), level, ignoreLevelRestriction);
+			success = meta.addEnchant(ench.getRaw(), level, anyLevel);
 			if (success)
 				itemStack.setItemMeta(meta);
 		}
@@ -109,7 +109,7 @@ public abstract class BukkitMeta extends RunsafeItemStack
 		{
 			List<String> currentLore = meta.getLore();
 			if (currentLore == null)
-				currentLore = new ArrayList<String>();
+				currentLore = new ArrayList<String>(1);
 			currentLore.add(lore);
 			meta.setLore(currentLore);
 			itemStack.setItemMeta(meta);

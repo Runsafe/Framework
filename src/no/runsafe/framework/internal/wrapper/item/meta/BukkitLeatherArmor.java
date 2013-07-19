@@ -30,10 +30,10 @@ public abstract class BukkitLeatherArmor extends RunsafeMeta
 		itemStack.setItemMeta(meta);
 	}
 
-	public void setColor(int r, int g, int b)
+	public void setColor(int red, int green, int blue)
 	{
 		LeatherArmorMeta meta = getRawMeta();
-		meta.setColor(Color.fromRGB(r, g, b));
+		meta.setColor(Color.fromRGB(red, green, blue));
 		itemStack.setItemMeta(meta);
 	}
 }

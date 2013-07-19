@@ -29,7 +29,7 @@ public final class WorldLoad extends EventRouterBase<IWorldLoad, WorldLoadEvent>
 	public boolean onEvent(WorldLoadEvent event)
 	{
 		handler.OnWorldLoad(ObjectWrapper.convert(event.getWorld()));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

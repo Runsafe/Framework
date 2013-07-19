@@ -29,7 +29,7 @@ public final class InventoryPickupItem extends EventRouterBase<IInventoryPickupI
 	public boolean onEvent(InventoryPickupItemEvent event)
 	{
 		handler.OnInventoryPickupItemEvent(new RunsafeInventoryPickupItemEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

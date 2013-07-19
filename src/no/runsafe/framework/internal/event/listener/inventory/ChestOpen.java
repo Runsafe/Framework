@@ -30,7 +30,7 @@ public final class ChestOpen extends EventRouterBase<IChestOpen, InventoryOpenEv
 	@Override
 	public boolean onEvent(InventoryOpenEvent event)
 	{
-		return handler.OnChestOpen(
+		return !handler.OnChestOpen(
 			ObjectWrapper.convert(event.getPlayer()),
 			ObjectWrapper.convert(event.getInventory())
 		);

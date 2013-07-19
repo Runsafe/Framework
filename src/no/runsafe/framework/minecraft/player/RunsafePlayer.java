@@ -10,13 +10,14 @@ import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.Universe;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.event.player.RunsafeOperatorEvent;
+import no.runsafe.framework.minecraft.inventory.RunsafePlayerInventory;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import no.runsafe.framework.text.ChatColour;
 import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.inventory.ItemStack;
 import org.joda.time.DateTime;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -113,10 +114,11 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		return results;
 	}
 
+	@SuppressWarnings("HardcodedFileSeparator")
 	public Map<String, String> getBasicData()
 	{
-		Map<String, String> data = new LinkedHashMap<String, String>();
-		if (isOnline())
+		Map<String, String> data = new LinkedHashMap<String, String>(7);
+		if (player != null && isOnline())
 		{
 			data.put("game.ip",
 				String.format("%s [%s]",
@@ -180,9 +182,10 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		return !shouldNotSee(target);
 	}
 
-	public boolean shouldNotSee(RunsafePlayer target)
+	public boolean shouldNotSee(@Nonnull RunsafePlayer target)
 	{
-		if (target.getName().equals(getName()))
+		//noinspection ConstantConditions
+		if (getName().equals(target.getName()))
 			return false;
 
 		List<IPlayerVisibility> visibilityHooks = HookEngine.hookContainer.getComponents(IPlayerVisibility.class);
@@ -219,7 +222,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 
 	public List<String> getGroups()
 	{
-		List<String> result = new ArrayList<String>();
+		List<String> result = new ArrayList<String>(5);
 		for (IPlayerPermissions hook : HookEngine.hookContainer.getComponents(IPlayerPermissions.class))
 		{
 			List<String> groups = hook.getUserGroups(this);
@@ -255,18 +258,24 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 
 	public void give(RunsafeMeta... items)
 	{
-		if (items == null || items.length < 1)
+		if (player == null || items == null || items.length < 1)
 			return;
-		ItemStack[] itemStacks = new ItemStack[items.length];
-		for (int i = 0; i < items.length; ++i)
-			itemStacks[i] = items[i].getRaw();
-		player.getInventory().addItem(itemStacks);
+		RunsafePlayerInventory inventory = getInventory();
+		if (inventory != null)
+		{
+			inventory.addItems(items);
+			updateInventory();
+		}
 	}
 
 	public void removeItem(Item itemType, int amount)
 	{
-		getInventory().remove(itemType, amount);
-		updateInventory();
+		RunsafePlayerInventory inventory = getInventory();
+		if (inventory != null)
+		{
+			inventory.remove(itemType, amount);
+			updateInventory();
+		}
 	}
 
 	public void removeItem(Item itemType)
@@ -274,14 +283,17 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		removeItem(itemType, itemType.getStackSize());
 	}
 
+	@Nullable
 	public Universe getUniverse()
 	{
-		return getWorld().getUniverse();
+		RunsafeWorld world = getWorld();
+		return world == null ? null : world.getUniverse();
 	}
 
 	public boolean isInUniverse(String universeName)
 	{
-		return getUniverse().getName().equals(universeName);
+		Universe universe = getUniverse();
+		return universe != null && universe.getName().equals(universeName);
 	}
 
 	public void clearInventory()

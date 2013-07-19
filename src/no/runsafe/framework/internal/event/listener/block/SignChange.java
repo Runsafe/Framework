@@ -29,7 +29,7 @@ public final class SignChange extends EventRouterBase<ISignChange, SignChangeEve
 	@Override
 	public boolean onEvent(SignChangeEvent event)
 	{
-		return handler.OnSignChange(
+		return !handler.OnSignChange(
 			ObjectWrapper.convert((OfflinePlayer) event.getPlayer()),
 			ObjectWrapper.convert(event.getBlock()),
 			event.getLines()

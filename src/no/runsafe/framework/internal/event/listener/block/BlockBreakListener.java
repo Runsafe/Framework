@@ -29,7 +29,7 @@ public final class BlockBreakListener extends EventRouterBase<IBlockBreakEvent, 
 	public boolean onEvent(BlockBreakEvent event)
 	{
 		handler.OnBlockBreakEvent(new RunsafeBlockBreakEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

@@ -41,22 +41,22 @@ public abstract class BukkitEnchantmentStorage extends RunsafeMeta
 	public Map<RunsafeEnchantment, Integer> getStoredEnchants()
 	{
 		Map<Enchantment, Integer> bukkitEnchants = getRawMeta().getStoredEnchants();
-		Map<RunsafeEnchantment, Integer> enchants = new HashMap<RunsafeEnchantment, Integer>();
-			for (Enchantment ench : bukkitEnchants.keySet())
-				enchants.put(ObjectWrapper.convert(ench), bukkitEnchants.get(ench));
+		Map<RunsafeEnchantment, Integer> enchants = new HashMap<RunsafeEnchantment, Integer>(bukkitEnchants.size());
+			for (Map.Entry<Enchantment, Integer> enchantment : bukkitEnchants.entrySet())
+				enchants.put(ObjectWrapper.convert(enchantment.getKey()), enchantment.getValue());
 			return enchants;
 	}
 
-	public boolean addStoredEnchant(RunsafeEnchantment ench, int level, boolean ignoreLevelRestriction)
+	public boolean addStoredEnchant(RunsafeEnchantment ench, int level, boolean anyLevel)
 	{
 		EnchantmentStorageMeta meta = getRawMeta();
-		boolean success = meta.addStoredEnchant(ench.getRaw(), level, ignoreLevelRestriction);
+		boolean success = meta.addStoredEnchant(ench.getRaw(), level, anyLevel);
 		if (success)
 			itemStack.setItemMeta(meta);
 		return success;
 	}
 
-	public boolean removeStoredEnchant(RunsafeEnchantment ench) throws IllegalArgumentException
+	public boolean removeStoredEnchant(RunsafeEnchantment ench)
 	{
 		EnchantmentStorageMeta meta = getRawMeta();
 		boolean success = meta.removeStoredEnchant(ench.getRaw());

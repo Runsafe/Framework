@@ -5,7 +5,6 @@ import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.List;
 
 class BukkitMetadataValue

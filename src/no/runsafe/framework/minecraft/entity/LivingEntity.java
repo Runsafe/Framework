@@ -41,16 +41,15 @@ public enum LivingEntity implements RunsafeEntityType
 	Wolf(EntityType.WOLF),
 	Zombie(EntityType.ZOMBIE);
 
-	LivingEntity(EntityType bukkitType, String name)
+	LivingEntity(EntityType bukkitType)
+	{
+		this(bukkitType, null);
+	}
+
+	LivingEntity(EntityType bukkitType, @Nullable String name)
 	{
 		type = bukkitType;
 		nameOverride = name;
-	}
-
-	LivingEntity(EntityType bukkitType)
-	{
-		type = bukkitType;
-		nameOverride = null;
 	}
 
 	@Override

@@ -29,7 +29,7 @@ public final class BlockRedstone extends EventRouterBase<IBlockRedstone, BlockRe
 	public boolean onEvent(BlockRedstoneEvent event)
 	{
 		handler.OnBlockRedstoneEvent(new RunsafeBlockRedstoneEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

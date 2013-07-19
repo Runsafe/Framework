@@ -1,8 +1,7 @@
 package no.runsafe.framework.minecraft.inventory;
 
-import com.google.common.collect.Lists;
-import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import no.runsafe.framework.internal.wrapper.inventory.BukkitEntityEquipment;
+import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
 
@@ -48,10 +47,10 @@ public class RunsafeEntityEquipment extends BukkitEntityEquipment
 
 	public RunsafeEntityEquipment setArmorContents(Iterable<RunsafeMeta> itemStacks)
 	{
-		Collection<ItemStack> bukkitItemStacks = new ArrayList<ItemStack>();
+		Collection<ItemStack> bukkitItemStacks = new ArrayList<ItemStack>(4);
 		for (RunsafeMeta itemStack : itemStacks)
 			bukkitItemStacks.add(itemStack.getRaw());
-		entityEquipment.setArmorContents((ItemStack[]) bukkitItemStacks.toArray());
+		entityEquipment.setArmorContents(bukkitItemStacks.toArray(new ItemStack[bukkitItemStacks.size()]));
 		return this;
 	}
 

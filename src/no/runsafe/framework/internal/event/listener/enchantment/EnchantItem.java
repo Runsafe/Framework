@@ -29,7 +29,7 @@ public final class EnchantItem extends EventRouterBase<IEnchantItemEvent, Enchan
 	public boolean onEvent(EnchantItemEvent event)
 	{
 		handler.OnEnchantItemEvent(new RunsafeEnchantItemEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

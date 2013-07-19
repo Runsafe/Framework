@@ -29,7 +29,7 @@ public final class NaturalSpawn extends EventRouterBase<INaturalSpawn, CreatureS
 	@Override
 	public boolean onEvent(CreatureSpawnEvent event)
 	{
-		return handler.OnNaturalSpawn(
+		return !handler.OnNaturalSpawn(
 			ObjectWrapper.convert(event.getEntity()),
 			ObjectWrapper.convert(event.getLocation())
 		);

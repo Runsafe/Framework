@@ -29,7 +29,7 @@ public class ProjectileHit extends EventRouterBase<IProjectileHitEvent, Projecti
 	public boolean onEvent(ProjectileHitEvent event)
 	{
 		handler.OnProjectileHit(new RunsafeProjectileHitEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

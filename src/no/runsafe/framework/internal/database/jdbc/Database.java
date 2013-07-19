@@ -26,60 +26,8 @@ public final class Database extends QueryExecutor implements IDatabase
 	{
 		super(output);
 		YamlConfiguration config = new YamlConfiguration();
-		boolean local = false;
-		try
-		{
-			File localConfig = new File(String.format("plugins/%s/db.yml", plugin.getName()));
-			if (localConfig.exists())
-			{
-				local = true;
-				config.load(localConfig.getPath());
-			}
-			else
-				config.load("runsafe/db.yml");
-		}
-		catch (FileNotFoundException e)
-		{
-			if (local) // This should not happen..
-			{
-				output.logException(e);
-				output.logFatal("Error loading local config..");
-			}
-			config.createSection("database");
-			config.set("database.url", "jdbc:mysql://localhost:3306/minecraft");
-			config.set("database.username", "minecraftuser");
-			config.set("database.password", "p4ssw0rd");
-			try
-			{
-				config.save("runsafe/db.yml");
-			}
-			catch (IOException e1)
-			{
-				output.logException(e1);
-				output.logFatal("Unable to create runsafe/db.yml configuration file - Check permissions!");
-			}
-			output.logFatal("Created new default runsafe/db.yml - You need to change this now!");
-		}
-		catch (IOException e)
-		{
-			if (local)
-			{
-				output.logException(e);
-				output.logFatal("Unable to read plugin database config!");
-			}
-			output.logException(e);
-			output.logFatal("Unable to read runsafe/db.yml - You need to fix this!");
-		}
-		catch (InvalidConfigurationException e)
-		{
-			if (local)
-			{
-				output.logException(e);
-				output.logFatal("Plugin database config is invalid!");
-			}
-			output.logException(e);
-			output.logFatal("Invalid configuration file runsafe/db.yml - You need to fix this!");
-		}
+		File location = configure(config, plugin);
+
 		databaseURL = config.getString("database.url");
 		databaseUsername = config.getString("database.username");
 		databasePassword = config.getString("database.password");
@@ -87,15 +35,12 @@ public final class Database extends QueryExecutor implements IDatabase
 		try
 		{
 			if (QueryRow("SELECT VERSION()") == null)
-				throw new Exception("No database!"); // In case query returned null without an exception
+				output.logFatal("Unable to connect to MySQL - Verify %s!", location);
 		}
 		catch (Exception e)
 		{
-			if (local)
-			{
-				output.logFatal("Unable to connect to plugins database!");
-			}
-			output.logFatal("Unable to connect to MySQL - Check configuration file runsafe/db.yml!");
+			output.logException(e);
+			output.logFatal("An error occurred while testing the MySQL connection - Verify %s!", location);
 		}
 	}
 
@@ -106,6 +51,8 @@ public final class Database extends QueryExecutor implements IDatabase
 		try
 		{
 			Connection connection = getConnection();
+			if (connection == null)
+				return null;
 			connection.setAutoCommit(false);
 			return new Transaction(output, connection);
 		}
@@ -123,32 +70,89 @@ public final class Database extends QueryExecutor implements IDatabase
 		try
 		{
 			if (conn == null || accessTime == null || accessTime.isBefore(DateTime.now().minusMinutes(5)) || conn.isClosed())
-			{
-				if (conn != null)
-				{
-					try
-					{
-						conn.close();
-					}
-					catch (Exception e)
-					{
-						// Just ignore.
-					}
-				}
-				accessTime = DateTime.now();
+				open();
 
-				conn = DriverManager.getConnection(databaseURL, databaseUsername, databasePassword);
-				output.fine(String.format("Opening connection to %s by %s", databaseURL, databaseUsername));
-			}
 			if (conn != null)
 				return conn;
-			output.fine("Connection is null");
+
+			output.logError("Unable to get database connection!");
 		}
 		catch (SQLException e)
 		{
-			output.write(e.getMessage());
+			output.logException(e);
 		}
 		return null;
+	}
+
+	private File configure(YamlConfiguration config, RunsafePlugin plugin)
+	{
+		boolean local = false;
+		File configFile = new File(plugin.getDataFolder(), "db.yml");
+		if (configFile.exists())
+			local = true;
+		else
+			configFile = new File("runsafe", "db.yml");
+
+		try
+		{
+			config.load(configFile.getPath());
+		}
+		catch (FileNotFoundException e)
+		{
+			if (local) // This should not happen..
+			{
+				output.logException(e);
+				output.logFatal("Error loading local config..");
+			}
+			config.createSection("database");
+			config.set("database.url", "jdbc:mysql://localhost:3306/minecraft");
+			config.set("database.username", "minecraftuser");
+			config.set("database.password", "p4ssw0rd");
+			try
+			{
+				config.save(configFile.getPath());
+			}
+			catch (IOException e1)
+			{
+				output.logException(e1);
+				output.logFatal("Unable to create %s configuration file - Check permissions!", configFile);
+			}
+			output.logFatal("Created new default %s - You need to change this now!", configFile);
+		}
+		catch (IOException e)
+		{
+			output.logException(e);
+			output.logFatal("Unable to read %s - You need to fix this!", configFile);
+		}
+		catch (InvalidConfigurationException e)
+		{
+			output.logException(e);
+			output.logFatal("Invalid configuration file %s - You need to fix this!", configFile);
+		}
+		return configFile;
+	}
+
+	private void open() throws SQLException
+	{
+		if (conn != null)
+			close();
+
+		accessTime = DateTime.now();
+		conn = DriverManager.getConnection(databaseURL, databaseUsername, databasePassword);
+		output.fine(String.format("Opening connection to %s by %s", databaseURL, databaseUsername));
+	}
+
+	private void close()
+	{
+		//noinspection OverlyBroadCatchBlock
+		try
+		{
+			conn.close();
+		}
+		catch (Exception ignored)
+		{
+			// Just ignore.
+		}
 	}
 
 	private final String databaseURL;

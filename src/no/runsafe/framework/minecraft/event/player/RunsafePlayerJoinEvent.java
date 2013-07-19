@@ -1,6 +1,5 @@
 package no.runsafe.framework.minecraft.event.player;
 
-import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.event.IFakeableEvent;
 import no.runsafe.framework.api.event.player.IPlayerJoinEvent;
@@ -25,6 +24,7 @@ public class RunsafePlayerJoinEvent extends RunsafePlayerEvent implements IFakea
 		event.setJoinMessage(message);
 	}
 
+	@SuppressWarnings("MethodWithMultipleLoops")
 	@Override
 	public boolean Fire()
 	{

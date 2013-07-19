@@ -1,7 +1,6 @@
 package no.runsafe.framework.minecraft.event.player;
 
 import no.runsafe.framework.api.IKernel;
-import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.event.player.IPlayerChatEvent;
 import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
@@ -53,6 +52,7 @@ public class RunsafePlayerChatEvent extends RunsafeCancellablePlayerEvent implem
 		return ObjectWrapper.convert(event.getRecipients());
 	}
 
+	@SuppressWarnings("MethodWithMultipleLoops")
 	@Override
 	public boolean Fire()
 	{

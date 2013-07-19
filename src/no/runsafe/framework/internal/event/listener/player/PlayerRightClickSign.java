@@ -32,14 +32,14 @@ public final class PlayerRightClickSign extends EventRouterBase<IPlayerRightClic
 	@Override
 	public boolean onEvent(PlayerInteractEvent event)
 	{
-		return event.getAction() != Action.RIGHT_CLICK_BLOCK
-			|| event.getClickedBlock() == null
-			|| !(event.getClickedBlock().getState() instanceof Sign)
-			|| handler.OnPlayerRightClickSign(
-					ObjectWrapper.convert((OfflinePlayer) event.getPlayer()),
-					ObjectWrapper.convert(event.getItem()),
-					(RunsafeSign)ObjectWrapper.convert(event.getClickedBlock().getState())
-				);
+		return event.getAction() == Action.RIGHT_CLICK_BLOCK
+			&& event.getClickedBlock() != null
+			&& event.getClickedBlock().getState() instanceof Sign
+			&& !handler.OnPlayerRightClickSign(
+			ObjectWrapper.convert((OfflinePlayer) event.getPlayer()),
+			ObjectWrapper.convert(event.getItem()),
+			(RunsafeSign) ObjectWrapper.convert(event.getClickedBlock().getState())
+		);
 
 	}
 

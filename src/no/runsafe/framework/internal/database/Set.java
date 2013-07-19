@@ -79,7 +79,7 @@ public final class Set extends ArrayList<IRow> implements ISet
 		}
 
 		@Override
-		public boolean add(IRow iRow)
+		public boolean add(IRow e)
 		{
 			return false;
 		}
@@ -211,12 +211,12 @@ public final class Set extends ArrayList<IRow> implements ISet
 				}
 
 				@Override
-				public void set(IRow iRow)
+				public void set(IRow e)
 				{
 				}
 
 				@Override
-				public void add(IRow iRow)
+				public void add(IRow e)
 				{
 				}
 			};

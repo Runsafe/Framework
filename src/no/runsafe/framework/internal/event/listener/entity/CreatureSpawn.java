@@ -29,7 +29,7 @@ public final class CreatureSpawn extends EventRouterBase<IMobSpawnerPulsed, Crea
 	@Override
 	public boolean onEvent(CreatureSpawnEvent event)
 	{
-		return handler.OnMobSpawnerPulsed(
+		return !handler.OnMobSpawnerPulsed(
 			ObjectWrapper.convert(event.getEntity()),
 			ObjectWrapper.convert(event.getLocation())
 		);

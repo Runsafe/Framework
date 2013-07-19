@@ -15,6 +15,7 @@ import org.bukkit.craftbukkit.v1_6_R2.entity.CraftProjectile;
 
 import javax.annotation.Nullable;
 
+@SuppressWarnings("OverloadedMethodsWithSameNumberOfParameters")
 public final class ObjectUnwrapper
 {
 	private ObjectUnwrapper()

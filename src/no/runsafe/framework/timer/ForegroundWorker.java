@@ -16,6 +16,7 @@ public abstract class ForegroundWorker<TokenType, StateType> implements Runnable
 	protected ForegroundWorker(IScheduler scheduler, long ticks)
 	{
 		this.scheduler = scheduler;
+		//noinspection ThisEscapedInObjectConstruction
 		worker = scheduler.createSyncTimer(this, ticks, ticks);
 	}
 
@@ -57,7 +58,7 @@ public abstract class ForegroundWorker<TokenType, StateType> implements Runnable
 
 	public void setInterval(long ticks)
 	{
-		if (ticks > 0)
+		if (ticks > 0L)
 		{
 			if (worker != null)
 				worker.stop();

@@ -9,7 +9,7 @@ import java.util.Collection;
 
 public abstract class RunsafeCancellablePlayerEvent extends RunsafePlayerEvent implements CancellableEvent
 {
-	public RunsafeCancellablePlayerEvent(PlayerEvent toWrap)
+	protected RunsafeCancellablePlayerEvent(PlayerEvent toWrap)
 	{
 		super(toWrap);
 		event = (Cancellable) toWrap;
@@ -32,9 +32,11 @@ public abstract class RunsafeCancellablePlayerEvent extends RunsafePlayerEvent i
 	@Override
 	public void addCancellationHandle(Runnable callback)
 	{
+		if (cancellationCallbacks == null)
+			cancellationCallbacks = new ArrayList<Runnable>(1);
 		cancellationCallbacks.add(callback);
 	}
 
-	private final Collection<Runnable> cancellationCallbacks = new ArrayList<Runnable>();
+	private Collection<Runnable> cancellationCallbacks;
 	private final Cancellable event;
 }

@@ -11,7 +11,7 @@ public abstract class BukkitEnchantment
 		enchantment = toWrap;
 	}
 
-	public BukkitEnchantment(int id)
+	protected BukkitEnchantment(int id)
 	{
 		enchantment = Enchantment.getById(id);
 	}

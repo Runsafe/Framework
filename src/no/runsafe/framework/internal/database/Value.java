@@ -7,7 +7,7 @@ import org.joda.time.DateTime;
 
 import javax.annotation.Nullable;
 
-public final class Value extends DataConverter implements IValue
+public final class Value implements IValue
 {
 	public static final IValue Empty = new EmptyValue();
 
@@ -19,49 +19,49 @@ public final class Value extends DataConverter implements IValue
 	@Override
 	public String String()
 	{
-		return String(raw);
+		return DataConverter.String(raw);
 	}
 
 	@Override
 	public Integer Integer()
 	{
-		return Integer(raw);
+		return DataConverter.Integer(raw);
 	}
 
 	@Override
 	public Long Long()
 	{
-		return Long(raw);
+		return DataConverter.Long(raw);
 	}
 
 	@Override
 	public Double Double()
 	{
-		return Double(raw);
+		return DataConverter.Double(raw);
 	}
 
 	@Override
 	public Float Float()
 	{
-		return Float(raw);
+		return DataConverter.Float(raw);
 	}
 
 	@Override
 	public DateTime DateTime()
 	{
-		return DateTime(raw);
+		return DataConverter.DateTime(raw);
 	}
 
 	@Override
 	public RunsafePlayer Player()
 	{
-		return Player(raw);
+		return DataConverter.Player(raw);
 	}
 
 	@Override
 	public RunsafeWorld World()
 	{
-		return World(raw);
+		return DataConverter.World(raw);
 	}
 
 	@Override

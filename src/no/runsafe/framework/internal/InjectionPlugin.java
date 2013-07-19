@@ -29,7 +29,7 @@ import java.util.Map;
 @SuppressWarnings("OverlyCoupledClass")
 public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 {
-	public static final Map<String, InjectionPlugin> Instances = new HashMap<String, InjectionPlugin>();
+	public static final Map<String, InjectionPlugin> Instances = new HashMap<String, InjectionPlugin>(1);
 
 	/**
 	 * get the first implementation of a given API from any plugin
@@ -57,7 +57,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	 */
 	public static <T> List<T> getPluginAPI(Class<T> apiType)
 	{
-		List<T> results = new ArrayList<T>();
+		List<T> results = new ArrayList<T>(1);
 		for (InjectionPlugin plugin : Instances.values())
 		{
 			List<T> instance = plugin.getComponents(apiType);
@@ -73,7 +73,9 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		output.finer(
 			"Plugin %s added component %s",
 			getName(),
-			implOrInstance instanceof Class ? ((Class) implOrInstance).getCanonicalName() : implOrInstance.getClass().getCanonicalName()
+			implOrInstance instanceof Class<?>
+				? ((Class<?>) implOrInstance).getCanonicalName()
+				: implOrInstance.getClass().getCanonicalName()
 		);
 		container.addComponent(implOrInstance);
 	}
@@ -120,6 +122,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 			impl.OnPluginDisabled();
 	}
 
+	@SuppressWarnings("NonThreadSafeLazyInitialization")
 	protected void initializePlugin()
 	{
 		if (container != null)
@@ -133,6 +136,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		addStandardComponents();
 	}
 
+	@SuppressWarnings("OverlyCoupledMethod")
 	private void addStandardComponents()
 	{
 		container.addComponent(this);

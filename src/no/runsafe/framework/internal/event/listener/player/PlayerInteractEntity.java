@@ -29,7 +29,7 @@ public final class PlayerInteractEntity extends EventRouterBase<IPlayerInteractE
 	public boolean onEvent(PlayerInteractEntityEvent event)
 	{
 		handler.OnPlayerInteractEntityEvent(new RunsafePlayerInteractEntityEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

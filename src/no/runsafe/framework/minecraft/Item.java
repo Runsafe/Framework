@@ -15,6 +15,7 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("UnnecessaryExplicitNumericCast")
 public class Item implements IEnchantable
 {
 	public static final byte AnyData = -1;
@@ -536,6 +537,7 @@ public class Item implements IEnchantable
 			}
 		}
 
+		@SuppressWarnings("NumericCastThatLosesPrecision")
 		public static final class MonsterEgg
 		{
 			private MonsterEgg()
@@ -1112,6 +1114,7 @@ public class Item implements IEnchantable
 		item = root ? null : new RunsafeMaterialData(material.getId(), dataByte).toItemStack(1);
 
 		if (root)
+			//noinspection ThisEscapedInObjectConstruction
 			addItem(this);
 	}
 
@@ -1131,12 +1134,12 @@ public class Item implements IEnchantable
 
 	private static void addItem(Item item)
 	{
-		String key = String.format("%s_%d", item.material.name(), item.getData());
+		String key = String.format("%s_%d", item.material.name(), item.data);
 		if (!items.containsKey(key))
 			items.put(key, item);
 	}
 
-	private static final Map<String, Item> items = new HashMap<String, Item>();
+	private static final Map<String, Item> items = new HashMap<String, Item>(Material.values().length);
 	private final Material material;
 	private final boolean root;
 	@Nullable

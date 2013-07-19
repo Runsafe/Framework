@@ -32,9 +32,11 @@ public class RunsafeCancellableBlockEvent extends RunsafeBlockEvent implements C
 	@Override
 	public void addCancellationHandle(Runnable callback)
 	{
+		if (cancellationCallbacks == null)
+			cancellationCallbacks = new ArrayList<Runnable>(1);
 		cancellationCallbacks.add(callback);
 	}
 
-	private final Collection<Runnable> cancellationCallbacks = new ArrayList<Runnable>();
+	private Collection<Runnable> cancellationCallbacks;
 	private final Cancellable event;
 }

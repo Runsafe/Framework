@@ -29,7 +29,7 @@ public final class PlayerDeath extends EventRouterBase<IPlayerDeathEvent, Player
 	public boolean onEvent(PlayerDeathEvent event)
 	{
 		handler.OnPlayerDeathEvent(new RunsafePlayerDeathEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

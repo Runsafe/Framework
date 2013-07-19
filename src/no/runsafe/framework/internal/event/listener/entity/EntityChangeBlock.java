@@ -26,10 +26,10 @@ public final class EntityChangeBlock extends EventRouterBase<IEntityChangeBlockE
 	}
 
 	@Override
-	public boolean onEvent(EntityChangeBlockEvent entityChangeBlockEvent)
+	public boolean onEvent(EntityChangeBlockEvent event)
 	{
-		handler.OnEntityChangeBlockEvent(new RunsafeEntityChangeBlockEvent(entityChangeBlockEvent));
-		return true;
+		handler.OnEntityChangeBlockEvent(new RunsafeEntityChangeBlockEvent(event));
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

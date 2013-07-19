@@ -82,10 +82,10 @@ public interface IScheduler
 	 * Create a timer that will run on the main thread periodically
 	 *
 	 * @param func  Code to be executed
-	 * @param delay Delay before first execution in ticks
+	 * @param ticks Delay before first execution in ticks
 	 * @return a timer
 	 */
-	ITimer createSyncTimer(Runnable func, Long delay);
+	ITimer createSyncTimer(Runnable func, Long ticks);
 
 	/**
 	 * Create a timer that will run on the main thread periodically
@@ -101,10 +101,10 @@ public interface IScheduler
 	 * Create a timer that will run on the main thread periodically
 	 *
 	 * @param func  Code to be executed
-	 * @param delay Delay before first execution in ticks
+	 * @param seconds Delay before first execution in seconds
 	 * @return a timer
 	 */
-	ITimer createSyncTimer(Runnable func, int delay);
+	ITimer createSyncTimer(Runnable func, int seconds);
 
 	/**
 	 * Create a timer that will run on a background thread periodically
@@ -120,10 +120,10 @@ public interface IScheduler
 	 * Create a timer that will run on a background thread periodically
 	 *
 	 * @param func  Code to be executed
-	 * @param delay Delay before first execution in ticks
+	 * @param ticks Delay before first execution in ticks
 	 * @return a timer
 	 */
-	ITimer createAsyncTimer(Runnable func, Long delay);
+	ITimer createAsyncTimer(Runnable func, Long ticks);
 
 	/**
 	 * Create a timer that will run on a background thread periodically
@@ -139,10 +139,10 @@ public interface IScheduler
 	 * Create a timer that will run on a background thread periodically
 	 *
 	 * @param func  Code to be executed
-	 * @param delay Delay before first execution in seconds
+	 * @param seconds Delay before first execution in seconds
 	 * @return a timer
 	 */
-	ITimer createAsyncTimer(Runnable func, int delay);
+	ITimer createAsyncTimer(Runnable func, int seconds);
 
 	/**
 	 * Cancels a timer, should not be used directly

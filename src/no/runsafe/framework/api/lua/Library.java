@@ -8,7 +8,7 @@ import org.luaj.vm2.lib.OneArgFunction;
 
 public abstract class Library extends OneArgFunction
 {
-	public Library(RunsafePlugin plugin, String module)
+	protected Library(RunsafePlugin plugin, String module)
 	{
 		namespace = plugin.getName();
 		this.module = module;

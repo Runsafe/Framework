@@ -35,9 +35,9 @@ public abstract class BukkitProjectile extends RunsafeEntity
 		return projectile.doesBounce();
 	}
 
-	public void setBounce(boolean b)
+	public void setBounce(boolean bounce)
 	{
-		projectile.setBounce(b);
+		projectile.setBounce(bounce);
 	}
 
 	public boolean isOnGround()

@@ -19,5 +19,6 @@ public abstract class RunsafeLuaFunction extends Function
 		return objectListToVarargs(run(parameters));
 	}
 
+	@SuppressWarnings("InstanceMethodNamingConvention")
 	public abstract List<Object> run(FunctionParameters parameters);
 }

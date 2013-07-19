@@ -11,5 +11,6 @@ public abstract class BooleanFunction extends Function
 		return varargsOf(new LuaValue[]{valueOf(run(VarargsToParameters(args)))});
 	}
 
+	@SuppressWarnings("InstanceMethodNamingConvention")
 	protected abstract boolean run(FunctionParameters parameters);
 }

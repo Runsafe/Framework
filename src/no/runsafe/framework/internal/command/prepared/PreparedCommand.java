@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 
 public abstract class PreparedCommand implements IPreparedCommand
 {
-	public PreparedCommand(
+	protected PreparedCommand(
 		ICommandExecutor executor, Stack<Command> definingCommand, String[] args, Map<String, String> parameters)
 	{
 		this.executor = executor;
@@ -31,9 +31,9 @@ public abstract class PreparedCommand implements IPreparedCommand
 		if (permission == null)
 			permission = command.peek().getPermission();
 		if (permission != null)
-			for (String param : parameters.keySet())
-				if (parameters.get(param) != null)
-					permission = permission.replace("<" + param + ">", parameters.get(param));
+			for (Map.Entry<String, String> parameter : parameters.entrySet())
+				if (parameter.getValue() != null)
+					permission = permission.replace('<' + parameter.getKey() + '>', parameter.getValue());
 		requiredPermission = permission;
 	}
 
@@ -46,9 +46,10 @@ public abstract class PreparedCommand implements IPreparedCommand
 		return requiredPermission;
 	}
 
+	@SuppressWarnings("OverlyComplexMethod")
 	@Override
 	@Nullable
-	public List<String> tabComplete(String... args)
+	public Iterable<String> tabComplete(String... args)
 	{
 		int i = 0;
 		for (Command cmd : command)
@@ -64,7 +65,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 		boolean takeSub = subcommands != null && !subcommands.isEmpty();
 
 		RunsafeServer.Instance.getDebugger().finer(
-			"TabComplete: [taken %d, free %d] params=%s/%d, sub=%s/%d",
+			"TabComplete: [taken %d, free %d] params=%s:%d, sub=%s:%d",
 			i, args.length - i,
 			params, takeParams ? 1 : 0,
 			subcommands, takeSub ? 1 : 0
@@ -79,7 +80,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 		if (takeParams && args.length - i > 0 &&  args.length - i <= params.size())
 		{
 			String param = params.get(args.length - i - 1);
-			List<String> matches;
+			Iterable<String> matches;
 			if (param.equalsIgnoreCase("player"))
 				matches = getPlayers();
 
@@ -108,11 +109,11 @@ public abstract class PreparedCommand implements IPreparedCommand
 		return command.peek().isCapturingTail() ? null : Lists.<String>newArrayList();
 	}
 
-	private List<String> filterList(Iterable<String> values, String filter)
+	private static List<String> filterList(Iterable<String> values, String filter)
 	{
 		if (filter == null || filter.isEmpty())
 			return Lists.newArrayList(values);
-		List<String> matches = new ArrayList<String>();
+		List<String> matches = new ArrayList<String>(1);
 		for (String value : values)
 			if (value.toLowerCase().startsWith(filter.toLowerCase()))
 				matches.add(value);
@@ -124,7 +125,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 		return RunsafeServer.Instance.getOnlinePlayers((RunsafePlayer) executor, parameters.get("player"));
 	}
 
-	private List<String> getWorlds()
+	private static List<String> getWorlds()
 	{
 		return Lists.transform(
 			RunsafeServer.Instance.getWorlds(),
@@ -142,10 +143,11 @@ public abstract class PreparedCommand implements IPreparedCommand
 
 	protected String usage(Command target)
 	{
-		Collection<String> params = new ArrayList<String>();
+		Collection<String> params = new ArrayList<String>(command.size());
 		for (Command tier : command)
 			params.add(tier.getUsageCommandParams());
 
+		//noinspection HardcodedFileSeparator
 		return String.format("Usage: /%1$s %2$s", StringUtils.join(params, " "), target.getUsage(executor));
 	}
 

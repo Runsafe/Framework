@@ -6,7 +6,7 @@ import no.runsafe.framework.internal.Minecraft;
 
 public abstract class Timer implements ITimer, Runnable
 {
-	public Timer(IScheduler scheduler, boolean async)
+	protected Timer(IScheduler scheduler, boolean async)
 	{
 		systemScheduler = scheduler;
 		asynchronous = async;
@@ -21,7 +21,7 @@ public abstract class Timer implements ITimer, Runnable
 	@Override
 	public void resetSeconds(int seconds)
 	{
-		resetTicks((long) seconds * Minecraft.TICKS_PER_SECOND);
+		resetTicks(seconds * Minecraft.TICKS_PER_SECOND);
 	}
 
 	@Override

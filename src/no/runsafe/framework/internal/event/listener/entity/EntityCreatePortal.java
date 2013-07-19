@@ -26,10 +26,10 @@ public final class EntityCreatePortal extends EventRouterBase<IEntityCreatePorta
 	}
 
 	@Override
-	public boolean onEvent(EntityCreatePortalEvent entityDeathEvent)
+	public boolean onEvent(EntityCreatePortalEvent event)
 	{
-		handler.OnEntityCreatePortal(new RunsafeEntityCreatePortalEvent(entityDeathEvent));
-		return true;
+		handler.OnEntityCreatePortal(new RunsafeEntityCreatePortalEvent(event));
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

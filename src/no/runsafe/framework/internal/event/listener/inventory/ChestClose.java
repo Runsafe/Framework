@@ -34,7 +34,7 @@ public final class ChestClose extends EventRouterBase<IChestClosed, InventoryClo
 			ObjectWrapper.convert(event.getPlayer()),
 			ObjectWrapper.convert(event.getInventory())
 		);
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

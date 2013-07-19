@@ -20,10 +20,11 @@ public class Universe
 		return name;
 	}
 
+	@SuppressWarnings("MethodWithMultipleLoops")
 	public List<RunsafeWorld> getWorlds()
 	{
 		List<IUniverseMapper> dataHooks = HookEngine.hookContainer.getComponents(IUniverseMapper.class);
-		Map<String, RunsafeWorld> worlds = new HashMap<String, RunsafeWorld>();
+		Map<String, RunsafeWorld> worlds = new HashMap<String, RunsafeWorld>(RunsafeServer.Instance.getWorlds().size());
 		for (IUniverseMapper mapper : dataHooks)
 		{
 			for (String world : mapper.GetWorlds(name))

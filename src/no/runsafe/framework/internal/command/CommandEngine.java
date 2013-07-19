@@ -8,6 +8,7 @@ import no.runsafe.framework.minecraft.RunsafeConsole;
 import org.bukkit.command.PluginCommand;
 import org.picocontainer.Startable;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,22 +19,11 @@ import java.util.List;
 public final class CommandEngine implements Startable
 {
 	/**
-	 * This constructor in order for plugins without commands to start without exceptions
-	 */
-	public CommandEngine()
-	{
-		commands = null;
-		plugin = null;
-		console = null;
-		output = null;
-	}
-
-	/**
 	 * @param output   The console to output debug information to
 	 * @param commands The commands provided by the plugin
 	 * @param plugin   The plugin
 	 */
-	public CommandEngine(IOutput output, ICommandHandler[] commands, RunsafePlugin plugin)
+	public CommandEngine(@Nullable IOutput output, @Nonnull RunsafePlugin plugin, @Nonnull ICommandHandler... commands)
 	{
 		this.commands = commands;
 		this.plugin = plugin;
@@ -47,9 +37,8 @@ public final class CommandEngine implements Startable
 	@Override
 	public void start()
 	{
-		if (commands != null)
-			for (BukkitCommandTabExecutor executor : getCommands())
-				hookCommand(plugin.getCommand(executor.getName()), executor);
+		for (BukkitCommandTabExecutor executor : getCommands())
+			hookCommand(plugin.getCommand(executor.getName()), executor);
 	}
 
 	/**
@@ -62,6 +51,7 @@ public final class CommandEngine implements Startable
 
 	private void hookCommand(PluginCommand command, BukkitCommandTabExecutor executor)
 	{
+		assert output != null;
 		if (command == null)
 			output.logError("Command not found: %s - does it exist in plugin.yml?", executor.getName());
 		else
@@ -73,7 +63,7 @@ public final class CommandEngine implements Startable
 
 	private Iterable<BukkitCommandTabExecutor> getCommands()
 	{
-		List<BukkitCommandTabExecutor> handlers = new ArrayList<BukkitCommandTabExecutor>();
+		List<BukkitCommandTabExecutor> handlers = new ArrayList<BukkitCommandTabExecutor>(commands.length);
 		for (ICommandHandler command : commands)
 		{
 			command.setConsole(output);
@@ -86,8 +76,8 @@ public final class CommandEngine implements Startable
 	private final ICommandExecutor console;
 	@Nullable
 	private final IOutput output;
-	@Nullable
+	@Nonnull
 	private final ICommandHandler[] commands;
-	@Nullable
+	@Nonnull
 	private final RunsafePlugin plugin;
 }

@@ -5,6 +5,7 @@ import net.minecraft.server.v1_6_R2.IProjectile;
 import net.minecraft.server.v1_6_R2.NBTTagCompound;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.entity.BukkitProjectile;
+import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import org.bukkit.entity.Projectile;
 
@@ -21,12 +22,13 @@ public class RunsafeProjectile extends BukkitProjectile
 	public RunsafeBlock getImpaledBlock()
 	{
 		IProjectile minecraftProjectile = ObjectUnwrapper.convert(this);
-		if(!(minecraftProjectile instanceof EntityArrow))
+		RunsafeWorld world = getWorld();
+		if (!(minecraftProjectile instanceof EntityArrow) || world == null)
 			return null;
 
-		EntityArrow arrow = (EntityArrow)minecraftProjectile;
+		EntityArrow arrow = (EntityArrow) minecraftProjectile;
 		NBTTagCompound tag = new NBTTagCompound();
 		arrow.a(tag);
-		return getWorld().getBlockAt(tag.getShort("xTile"), tag.getShort("yTile"), tag.getShort("zTile"));
+		return world.getBlockAt(tag.getShort("xTile"), tag.getShort("yTile"), tag.getShort("zTile"));
 	}
 }

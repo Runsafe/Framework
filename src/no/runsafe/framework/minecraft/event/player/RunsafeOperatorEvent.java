@@ -1,6 +1,5 @@
 package no.runsafe.framework.minecraft.event.player;
 
-import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.event.player.IPlayerOperatorEvent;
 import no.runsafe.framework.internal.InjectionPlugin;
@@ -25,6 +24,7 @@ public class RunsafeOperatorEvent extends RunsafeInternalEvent
 		return op;
 	}
 
+	@SuppressWarnings("MethodWithMultipleLoops")
 	@Override
 	public boolean Fire()
 	{

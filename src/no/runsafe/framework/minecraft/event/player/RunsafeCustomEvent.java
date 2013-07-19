@@ -1,6 +1,5 @@
 package no.runsafe.framework.minecraft.event.player;
 
-import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.event.player.IPlayerCustomEvent;
 import no.runsafe.framework.internal.InjectionPlugin;
@@ -9,7 +8,7 @@ import no.runsafe.framework.minecraft.player.RunsafePlayer;
 
 public abstract class RunsafeCustomEvent extends RunsafeInternalEvent
 {
-	public RunsafeCustomEvent(RunsafePlayer player, String event)
+	protected RunsafeCustomEvent(RunsafePlayer player, String event)
 	{
 		this.player = player;
 		this.event = event;
@@ -27,6 +26,7 @@ public abstract class RunsafeCustomEvent extends RunsafeInternalEvent
 
 	public abstract Object getData();
 
+	@SuppressWarnings("MethodWithMultipleLoops")
 	@Override
 	public boolean Fire()
 	{

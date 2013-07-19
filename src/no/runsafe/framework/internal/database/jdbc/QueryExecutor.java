@@ -345,6 +345,7 @@ abstract class QueryExecutor implements IQueryExecutor
 		}
 	}
 
+	@SuppressWarnings("MethodWithMultipleLoops")
 	ISet getSet(PreparedStatement statement) throws SQLException
 	{
 		output.finer("Running SQL: %s", statement);
@@ -355,10 +356,10 @@ abstract class QueryExecutor implements IQueryExecutor
 		int cols = meta.getColumnCount();
 		if (cols == 0)
 			return Set.Empty;
-		ArrayList<Row> results = new ArrayList<Row>();
+		ArrayList<Row> results = new ArrayList<Row>(1);
 		while (!result.isAfterLast())
 		{
-			HashMap<String, Object> row = new HashMap<String, Object>();
+			HashMap<String, Object> row = new HashMap<String, Object>(cols);
 			for (int i = 0; i < cols; ++i)
 				row.put(meta.getColumnName(i + 1), result.getObject(i + 1));
 			results.add(new Row(row));
@@ -377,7 +378,7 @@ abstract class QueryExecutor implements IQueryExecutor
 		int cols = meta.getColumnCount();
 		if (cols == 0)
 			return Lists.newArrayList();
-		List<IValue> results = new ArrayList<IValue>();
+		List<IValue> results = new ArrayList<IValue>(0);
 		while (!result.isAfterLast())
 		{
 			results.add(new Value(result.getObject(1)));
@@ -392,7 +393,7 @@ abstract class QueryExecutor implements IQueryExecutor
 		return conn.prepareStatement(query);
 	}
 
-	void setParams(PreparedStatement statement, Object... params) throws SQLException
+	static void setParams(PreparedStatement statement, Object... params) throws SQLException
 	{
 		for (int i = 0; i < params.length; i++)
 		{

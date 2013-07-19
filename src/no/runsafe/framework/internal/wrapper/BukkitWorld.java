@@ -71,6 +71,7 @@ public abstract class BukkitWorld extends BukkitMetadata
 		world.createExplosion(location.getX(), location.getY(), location.getZ(), power, setFire, breakBlocks);
 	}
 
+	@SuppressWarnings("MethodWithTooManyParameters")
 	public void createExplosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks)
 	{
 		world.createExplosion(x, y, z, power, setFire, breakBlocks);

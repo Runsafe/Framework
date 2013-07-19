@@ -25,22 +25,25 @@ public final class PlayerLeftClick extends EventRouterBase<IPlayerLeftClickEvent
 	@Override
 	public void acceptEvent(PlayerInteractEvent event)
 	{
-		super.acceptEvent(event);
+		boolean accept = false;
+		if (handler instanceof IPlayerLeftClickAirEvent && event.getAction() == Action.LEFT_CLICK_AIR)
+			accept = true;
+
+		if (handler instanceof IPlayerLeftClickBlockEvent && event.getAction() == Action.LEFT_CLICK_BLOCK)
+			accept = true;
+
+		if (!(handler instanceof IPlayerLeftClickAirEvent || handler instanceof IPlayerLeftClickBlockEvent))
+			accept = true;
+
+		if(accept)
+			super.acceptEvent(event);
 	}
 
 	@Override
 	public boolean onEvent(PlayerInteractEvent event)
 	{
-		if (!(handler instanceof IPlayerLeftClickAirEvent || handler instanceof IPlayerLeftClickBlockEvent))
-			handler.OnPlayerLeftClick(new RunsafePlayerClickEvent(event));
-
-		else if (handler instanceof IPlayerLeftClickAirEvent && event.getAction() == Action.LEFT_CLICK_AIR)
-			handler.OnPlayerLeftClick(new RunsafePlayerClickEvent(event));
-
-		else if (handler instanceof IPlayerLeftClickBlockEvent && event.getAction() == Action.LEFT_CLICK_BLOCK)
-			handler.OnPlayerLeftClick(new RunsafePlayerClickEvent(event));
-
-		return true;
+		handler.OnPlayerLeftClick(new RunsafePlayerClickEvent(event));
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

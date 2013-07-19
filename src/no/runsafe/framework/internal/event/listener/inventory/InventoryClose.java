@@ -29,7 +29,7 @@ public final class InventoryClose extends EventRouterBase<IInventoryClosed, Inve
 	public boolean onEvent(InventoryCloseEvent event)
 	{
 		handler.OnInventoryClosed(new RunsafeInventoryCloseEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

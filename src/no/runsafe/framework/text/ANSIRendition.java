@@ -62,7 +62,6 @@ public class ANSIRendition
 		return this;
 	}
 
-	@SuppressWarnings("SameParameterValue")
 	public ANSIRendition background(ANSIColour colour)
 	{
 		background = colour.background();
@@ -91,7 +90,7 @@ public class ANSIRendition
 			code.append(format(foreground));
 		if (background >= 0)
 			code.append(format(background));
-		code.append("m");
+		code.append('m');
 		return code.toString();
 	}
 

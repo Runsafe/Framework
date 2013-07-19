@@ -28,7 +28,7 @@ public final class PlayerPortalEvent extends EventRouterBase<IPlayerPortal, org.
 	@Override
 	public boolean onEvent(org.bukkit.event.player.PlayerPortalEvent event)
 	{
-		return handler.OnPlayerPortal(
+		return !handler.OnPlayerPortal(
 			ObjectWrapper.convert((OfflinePlayer) event.getPlayer()),
 			ObjectWrapper.convert(event.getFrom()),
 			ObjectWrapper.convert(event.getTo())

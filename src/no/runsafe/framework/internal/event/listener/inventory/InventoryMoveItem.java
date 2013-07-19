@@ -29,7 +29,7 @@ public final class InventoryMoveItem extends EventRouterBase<IInventoryMoveItem,
 	public boolean onEvent(InventoryMoveItemEvent event)
 	{
 		handler.OnInventoryMoveItemEvent(new RunsafeInventoryMoveItemEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

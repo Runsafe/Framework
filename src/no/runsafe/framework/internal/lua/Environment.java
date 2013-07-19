@@ -19,26 +19,25 @@ import java.util.List;
 
 public class Environment implements Startable
 {
-	public static void loadFile(String file)
-	{
-		RunsafeServer.Instance.getDebugger().logInformation("Loading script %s", file);
-		global.get("dofile").call(LuaValue.valueOf(file));
-	}
-
 	public static Globals global;
 
 	static
 	{
 		JsePlatform.standardGlobals().load(new Bootstrap());
-		File source = new File("plugins/runsafe/lua");
+		File source = new File("plugins/runsafe", "lua");
 		if (source.exists() && source.isDirectory())
 		{
 			Collection<File> scripts = FileUtils.listFiles(source, new String[]{"lua"}, false);
 			for (File script : scripts)
-			{
 				loadFile(script.getAbsolutePath());
-			}
 		}
+	}
+
+	@SuppressWarnings("StaticVariableUsedBeforeInitialization")
+	public static void loadFile(String file)
+	{
+		RunsafeServer.Instance.getDebugger().logInformation("Loading script %s", file);
+		global.get("dofile").call(LuaValue.valueOf(file));
 	}
 
 	private static class Bootstrap extends OneArgFunction

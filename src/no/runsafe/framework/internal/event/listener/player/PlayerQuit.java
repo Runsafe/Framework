@@ -29,7 +29,7 @@ public final class PlayerQuit extends EventRouterBase<IPlayerQuitEvent, PlayerQu
 	public boolean onEvent(PlayerQuitEvent event)
 	{
 		handler.OnPlayerQuit(new RunsafePlayerQuitEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

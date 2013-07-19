@@ -268,14 +268,6 @@ public abstract class BukkitServer
 		server.shutdown();
 	}
 
-	public void unbanIp(String address)
-	{
-		if (address == null || address.isEmpty())
-			return;
-
-		server.unbanIP(address);
-	}
-
 	public boolean unloadWorld(String worldName, boolean save)
 	{
 		return !(worldName == null || worldName.isEmpty()) && server.unloadWorld(worldName, save);

@@ -29,7 +29,7 @@ public final class SpawnEggUsed extends EventRouterBase<ISpawnEggUsed, CreatureS
 	@Override
 	public boolean onEvent(CreatureSpawnEvent event)
 	{
-		return handler.OnSpawnEggUsed(
+		return !handler.OnSpawnEggUsed(
 			ObjectWrapper.convert(event.getEntity()),
 			ObjectWrapper.convert(event.getLocation())
 		);

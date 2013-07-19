@@ -15,6 +15,7 @@ public class RunsafeBlock extends BukkitBlock
 		super(toWrap);
 	}
 
+	@SuppressWarnings("InstanceMethodNamingConvention")
 	public boolean is(Item type)
 	{
 		return block.getType() == type.getType()
@@ -75,9 +76,9 @@ public class RunsafeBlock extends BukkitBlock
 		return block.getType().hasGravity();
 	}
 
-	private static final Collection<Integer> passableBlocks = new ArrayList<Integer>();
-	private static final Collection<Integer> interfaceBlocks = new ArrayList<Integer>();
-	private static final Collection<Integer> interactBlocks = new ArrayList<Integer>();
+	private static final Collection<Integer> passableBlocks = new ArrayList<Integer>(40);
+	private static final Collection<Integer> interfaceBlocks = new ArrayList<Integer>(12);
+	private static final Collection<Integer> interactBlocks = new ArrayList<Integer>(12);
 
 	static
 	{

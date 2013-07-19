@@ -48,7 +48,7 @@ public class RunsafeEnchantItemEvent extends RunsafeCancellableInventoryEvent
 
 	public Map<RunsafeEnchantment, Integer> getEnchantsToAdd()
 	{
-		Map<RunsafeEnchantment, Integer> enchantments = new HashMap<RunsafeEnchantment, Integer>();
+		Map<RunsafeEnchantment, Integer> enchantments = new HashMap<RunsafeEnchantment, Integer>(event.getEnchantsToAdd().size());
 
 		for (Map.Entry<Enchantment, Integer> enchant : event.getEnchantsToAdd().entrySet())
 			enchantments.put(ObjectWrapper.convert(enchant.getKey()), enchant.getValue());

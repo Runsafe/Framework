@@ -29,7 +29,7 @@ public final class ChunkUnload extends EventRouterBase<IChunkUnload, ChunkUnload
 	public boolean onEvent(ChunkUnloadEvent event)
 	{
 		handler.OnChunkUnload(ObjectWrapper.convert(event.getChunk()));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

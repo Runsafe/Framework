@@ -1,7 +1,6 @@
 package no.runsafe.framework.api.command;
 
 import javax.annotation.Nullable;
-import java.util.List;
 
 public interface IPreparedCommand
 {
@@ -10,5 +9,5 @@ public interface IPreparedCommand
 	@Nullable
 	String execute();
 	@Nullable
-	List<String> tabComplete(String... args);
+	Iterable<String> tabComplete(String... args);
 }

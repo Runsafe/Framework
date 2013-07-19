@@ -8,6 +8,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.picocontainer.Startable;
 
 import javax.annotation.Nullable;
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 
@@ -42,49 +43,57 @@ public final class VersionEngine implements Startable
 	{
 	}
 
+	@SuppressWarnings("OverlyBroadCatchBlock")
 	@Nullable
 	String getLastVersion()
 	{
 		YamlConfiguration config = new YamlConfiguration();
+		File configFile = new File("runsafe", "plugins.yml");
 		try
 		{
-			config.load("runsafe/plugins.yml");
+			config.load(configFile);
 		}
-		catch (IOException e)
+		catch (IOException ignored)
 		{
 			return null;
 		}
 		catch (InvalidConfigurationException e)
 		{
-			output.outputToConsole(String.format("Invalid yml in runsafe/plugins.yml! - %s", e.getMessage()), Level.WARNING);
+			output.logException(e);
+			output.outputToConsole(String.format("Invalid yml in %s!", configFile), Level.WARNING);
 			return null;
 		}
 		return config.getString(plugin.getName());
 	}
 
+	@SuppressWarnings("OverlyBroadCatchBlock")
 	void saveCurrentVersion()
 	{
 		YamlConfiguration config = new YamlConfiguration();
+		File configFile = new File("runsafe", "plugins.yml");
 		try
 		{
-			config.load("runsafe/plugins.yml");
+			config.load(configFile);
 		}
 		catch (IOException e)
 		{
-			output.outputToConsole(String.format("Problem loading runsafe/plugins.yml! - %s", e.getMessage()), Level.WARNING);
+			output.logException(e);
+			output.outputToConsole(String.format("Problem loading %s!", configFile), Level.WARNING);
 		}
 		catch (InvalidConfigurationException e)
 		{
-			output.outputToConsole(String.format("Invalid yml in runsafe/plugins.yml! - %s", e.getMessage()), Level.WARNING);
+			output.logException(e);
+			output.outputToConsole(String.format("Invalid yml in %s!", configFile), Level.WARNING);
 		}
 		config.set(plugin.getName(), plugin.getDescription().getVersion());
 		try
 		{
-			config.save("runsafe/plugins.yml");
+			config.save(configFile);
 		}
 		catch (IOException e)
 		{
-			output.outputToConsole(String.format("Unable to save runsafe/plugins.yml! - %s", e.getMessage()), Level.SEVERE);
+			output.logException(e);
+			output.outputToConsole(String.format("Unable to save %s!", configFile), Level.SEVERE);
 		}
 	}
 

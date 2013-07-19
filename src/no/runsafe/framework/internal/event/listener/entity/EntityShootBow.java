@@ -29,7 +29,7 @@ public final class EntityShootBow extends EventRouterBase<IEntityShootBowEvent, 
 	public boolean onEvent(EntityShootBowEvent event)
 	{
 		handler.OnEntityShootBowEvent(new RunsafeEntityShootBowEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

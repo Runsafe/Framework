@@ -16,7 +16,7 @@ public final class EventEngine implements Startable
 {
 	static
 	{
-		factories = new HashMap<Class<? extends IRunsafeEvent>, EventRouterFactory>();
+		factories = new HashMap<Class<? extends IRunsafeEvent>, EventRouterFactory>(0);
 	}
 
 	public EventEngine(IOutput output, IScheduler scheduler, PluginManager manager, RunsafePlugin plugin)
@@ -61,7 +61,7 @@ public final class EventEngine implements Startable
 
 	private Iterable<Listener> getListeners()
 	{
-		List<Listener> listeners = new ArrayList<Listener>();
+		List<Listener> listeners = new ArrayList<Listener>(eventSubscribers.length);
 		for (IRunsafeEvent sub : eventSubscribers)
 			listeners.addAll(getRouters(sub));
 		return listeners;
@@ -69,10 +69,10 @@ public final class EventEngine implements Startable
 
 	private Collection<Listener> getRouters(IRunsafeEvent subscriber)
 	{
-		List<Listener> routers = new ArrayList<Listener>();
-		for (Class<? extends IRunsafeEvent> type : factories.keySet())
-			if (type.isAssignableFrom(subscriber.getClass()))
-				routers.add(factories.get(type).getListener(output, scheduler, subscriber));
+		List<Listener> routers = new ArrayList<Listener>(factories.size());
+		for (Map.Entry<Class<? extends IRunsafeEvent>, EventRouterFactory> factory : factories.entrySet())
+			if (factory.getKey().isAssignableFrom(subscriber.getClass()))
+				routers.add(factory.getValue().getListener(output, scheduler, subscriber));
 		return routers;
 	}
 

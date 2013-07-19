@@ -39,7 +39,7 @@ public abstract class EventRouterBase<Wrapper extends IRunsafeEvent, EventType e
 	 * returning false from here will cancel the event.
 	 *
 	 * @param event The raw event object from bukkit
-	 * @return false to cancel a cancellable event
+	 * @return true to cancel a cancellable event
 	 */
 	protected abstract boolean onEvent(EventType event);
 
@@ -62,8 +62,8 @@ public abstract class EventRouterBase<Wrapper extends IRunsafeEvent, EventType e
 	{
 		try
 		{
-			boolean result = onEvent(event);
-			if (!result && event instanceof Cancellable)
+			boolean cancelled = onEvent(event);
+			if (cancelled && event instanceof Cancellable)
 				((Cancellable) event).setCancelled(true);
 		}
 		catch (Exception e)

@@ -37,7 +37,7 @@ public final class BlockDispense extends EventRouterBase<IBlockDispense, BlockDi
 	@Override
 	public boolean onEvent(BlockDispenseEvent event)
 	{
-		return handler.OnBlockDispense(
+		return !handler.OnBlockDispense(
 			ObjectWrapper.convert(event.getBlock()),
 			ObjectWrapper.convert(event.getItem())
 		);

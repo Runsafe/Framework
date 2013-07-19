@@ -22,6 +22,7 @@ public class RunsafeLocation extends BukkitLocation
 		super(new Location(world.getRaw(), x, y, z, yaw, pitch));
 	}
 
+	@SuppressWarnings("InstanceMethodNamingConvention")
 	public RunsafeLocation top()
 	{
 		Location target = location.getWorld().getHighestBlockAt(location).getLocation();

@@ -5,11 +5,15 @@ import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 
+import javax.annotation.Nonnull;
+
 public class RunsafePacketSender
 {
-	public RunsafePacketSender(RunsafePlayer player)
+	public RunsafePacketSender(@Nonnull RunsafePlayer player)
 	{
-		playerConnection = ObjectUnwrapper.convert(player).playerConnection;
+		EntityPlayer nmsPlayer = ObjectUnwrapper.convert(player);
+		assert nmsPlayer != null;
+		playerConnection = nmsPlayer.playerConnection;
 	}
 
 	public void sendChatPacket(String message)

@@ -2,10 +2,10 @@ package no.runsafe.framework.minecraft.item;
 
 import no.runsafe.framework.api.minecraft.IEnchant;
 import no.runsafe.framework.api.minecraft.IEnchantable;
-import no.runsafe.framework.minecraft.Item;
-import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.item.BukkitItemStack;
+import no.runsafe.framework.minecraft.Item;
+import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
@@ -32,12 +32,13 @@ public abstract class RunsafeItemStack extends BukkitItemStack implements IEncha
 
 	public static List<RunsafeMeta> convert(ItemStack... items)
 	{
-		List<RunsafeMeta> result = new ArrayList<RunsafeMeta>();
+		List<RunsafeMeta> result = new ArrayList<RunsafeMeta>(items.length);
 		for (ItemStack item : items)
 			result.add(ObjectWrapper.convert(item));
 		return result;
 	}
 
+	@SuppressWarnings("InstanceMethodNamingConvention")
 	public boolean is(Item type)
 	{
 		return itemStack.getType() == type.getType()

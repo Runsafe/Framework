@@ -9,43 +9,43 @@ public interface IConfiguration
 	 * @param value The configuration key
 	 * @return The value as a String
 	 */
-	String getConfigValueAsString(String value);
+	String getConfigValueAsString(String key);
 
 	/**
 	 * @param value The configuration key
 	 * @return The value as a boolean
 	 */
-	boolean getConfigValueAsBoolean(String value);
+	boolean getConfigValueAsBoolean(String key);
 
 	/**
 	 * @param value The configuration key
 	 * @return The value as an Integer
 	 */
-	int getConfigValueAsInt(String value);
+	int getConfigValueAsInt(String key);
 
 	/**
 	 * @param value The configuration key
 	 * @return The value as a double precision float
 	 */
-	double getConfigValueAsDouble(String value);
+	double getConfigValueAsDouble(String key);
 
 	/**
 	 * @param value The configuration key
 	 * @return The value as a float
 	 */
-	float getConfigValueAsFloat(String value);
+	float getConfigValueAsFloat(String key);
 
 	/**
 	 * @param value The configuration key
 	 * @return The value as a list of strings
 	 */
-	List<String> getConfigValueAsList(String value);
+	List<String> getConfigValueAsList(String key);
 
 	/**
 	 * @param value The configuration key
 	 * @return The value as a list of integers
 	 */
-	List<Integer> getConfigValueAsIntegerList(String value);
+	List<Integer> getConfigValueAsIntegerList(String key);
 
 	/**
 	 * @param key   The configuration key
@@ -57,31 +57,31 @@ public interface IConfiguration
 	 * @param path The configuration key
 	 * @return The section as a String map
 	 */
-	Map<String, String> getConfigValuesAsMap(String path);
+	Map<String, String> getConfigValuesAsMap(String key);
 
 	/**
 	 * @param path The configuration key
 	 * @return The section as a Integer map
 	 */
-	Map<String, Integer> getConfigValuesAsIntegerMap(String path);
+	Map<String, Integer> getConfigValuesAsIntegerMap(String key);
 
 	/**
 	 * @param path The configuration key
 	 * @return The section as a map of String maps
 	 */
-	Map<String, Map<String, String>> getConfigSectionsAsMap(String path);
+	Map<String, Map<String, String>> getConfigSectionsAsMap(String key);
 
 	/**
 	 * @param path The configuration key
 	 * @return The section as a map of String lists
 	 */
-	Map<String, List<String>> getConfigSectionsAsList(String path);
+	Map<String, List<String>> getConfigSectionsAsList(String key);
 
 	/**
 	 * @param path The configuration key
 	 * @return The section as a map of Integer lists
 	 */
-	Map<String, List<Integer>> getConfigSectionsAsIntegerList(String path);
+	Map<String, List<Integer>> getConfigSectionsAsIntegerList(String key);
 
 	/**
 	 * Writes configuration to disk

@@ -5,6 +5,7 @@ import org.bukkit.ChatColor;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@SuppressWarnings("MethodNamesDifferingOnlyByCase")
 public enum ChatColour
 {
 	BLACK('0', ChatColor.BLACK, ConsoleColour.BLACK),

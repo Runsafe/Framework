@@ -3,8 +3,8 @@ package no.runsafe.framework.internal.configuration;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.IConfiguration;
 import no.runsafe.framework.api.IConfigurationFile;
-import no.runsafe.framework.api.event.plugin.IConfigurationChanged;
 import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.event.plugin.IConfigurationChanged;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.picocontainer.Startable;
 
@@ -20,22 +20,18 @@ public final class ConfigurationEngine implements Startable
 	public IConfiguration loadConfiguration(String fileName)
 	{
 		Configuration config = new Configuration(console);
-		File configFile = new File(String.format(fileName));
-		config.configFile = YamlConfiguration.loadConfiguration(configFile);
+		File configFile = new File(fileName);
 		config.configFilePath = fileName;
+		config.configFile = YamlConfiguration.loadConfiguration(configFile);
 		return config;
 	}
 
-	/**
-	 * This constructor must be here for plugins that don't provide any configuration listeners
-	 *
-	 * @param plugin        The plugin
-	 * @param configuration The configuration handler class
-	 * @param output        Console to write messages to
-	 */
-	public ConfigurationEngine(RunsafePlugin plugin, Configuration configuration, IOutput output)
+	public IConfiguration loadConfiguration(File configFile)
 	{
-		this(plugin, configuration, output, null);
+		Configuration config = new Configuration(console);
+		config.configFilePath = configFile.getPath();
+		config.configFile = YamlConfiguration.loadConfiguration(configFile);
+		return config;
 	}
 
 	/**
@@ -47,7 +43,7 @@ public final class ConfigurationEngine implements Startable
 	public ConfigurationEngine(
 		RunsafePlugin plugin,
 		Configuration configuration,
-		IOutput output, IConfigurationChanged[] subscribers)
+		IOutput output, IConfigurationChanged... subscribers)
 	{
 		console = output;
 		this.subscribers = subscribers;
@@ -84,7 +80,7 @@ public final class ConfigurationEngine implements Startable
 	 */
 	void load()
 	{
-		if (configFilePath == null)
+		if (configFilePath == null || configurationFile == null)
 			return;
 
 		File configFile = new File(configFilePath);
@@ -103,6 +99,7 @@ public final class ConfigurationEngine implements Startable
 
 	/**
 	 * Restore plugin configuration to the defaults
+	 *
 	 * @return Success
 	 */
 	public boolean restoreToDefaults()

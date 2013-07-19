@@ -6,7 +6,7 @@ import no.runsafe.framework.api.ITimer;
 @SuppressWarnings("EmptyMethod")
 public abstract class TimerFactory<T>
 {
-	public TimerFactory(IScheduler scheduler)
+	protected TimerFactory(IScheduler scheduler)
 	{
 		this.scheduler = scheduler;
 	}
@@ -50,7 +50,7 @@ public abstract class TimerFactory<T>
 
 	private final class StateHolder implements Runnable
 	{
-		private StateHolder(TimerFactory<T> factory, T state)
+		StateHolder(TimerFactory<T> factory, T state)
 		{
 			this.factory = factory;
 			this.state = state;

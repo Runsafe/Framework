@@ -32,7 +32,7 @@ public final class ItemFramePlace extends EventRouterBase<IItemFramePlaced, Hang
 	@Override
 	public boolean onEvent(HangingPlaceEvent event)
 	{
-		return handler.OnItemFramePlaced(
+		return !handler.OnItemFramePlaced(
 			ObjectWrapper.convert((OfflinePlayer) event.getPlayer()),
 			ObjectWrapper.convert((ItemFrame) event.getEntity())
 		);

@@ -29,7 +29,7 @@ public final class PlayerPreLogin extends EventRouterBase<IPlayerPreLoginEvent, 
 	public boolean onEvent(AsyncPlayerPreLoginEvent event)
 	{
 		handler.OnBeforePlayerLogin(new RunsafePlayerPreLoginEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

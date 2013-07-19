@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@SuppressWarnings({"ChainOfInstanceofChecks", "UnnecessaryFullyQualifiedName", "OverlyComplexClass", "OverlyCoupledClass"})
+@SuppressWarnings({"ChainOfInstanceofChecks", "UnnecessaryFullyQualifiedName", "OverlyComplexClass", "OverlyCoupledClass", "OverloadedVarargsMethod"})
 public final class ObjectWrapper
 {
 	private ObjectWrapper()
@@ -45,7 +45,7 @@ public final class ObjectWrapper
 		if (toWrap == null)
 			return null;
 
-		List<Wrapper> results = new ArrayList<Wrapper>();
+		List<Wrapper> results = new ArrayList<Wrapper>(toWrap.size());
 		for (Object item : toWrap)
 		{
 			if (item instanceof Metadatable)
@@ -65,7 +65,7 @@ public final class ObjectWrapper
 		if (toWrap == null)
 			return null;
 
-		List<Wrapper> results = new ArrayList<Wrapper>();
+		List<Wrapper> results = new ArrayList<Wrapper>(toWrap.length);
 		for (Raw item : toWrap)
 			results.add((Wrapper) convert(item));
 		return results;
@@ -78,7 +78,7 @@ public final class ObjectWrapper
 		if (toWrap == null)
 			return null;
 
-		List<Wrapper> results = new ArrayList<Wrapper>();
+		List<Wrapper> results = new ArrayList<Wrapper>(toWrap.length);
 		for (Raw item : toWrap)
 			results.add((Wrapper) convert(item));
 		return results;
@@ -91,7 +91,7 @@ public final class ObjectWrapper
 		if (toWrap == null)
 			return null;
 
-		List<Wrapper> results = new ArrayList<Wrapper>();
+		List<Wrapper> results = new ArrayList<Wrapper>(toWrap.length);
 		for (Raw item : toWrap)
 			results.add((Wrapper) convert(item));
 		return results;
@@ -198,6 +198,7 @@ public final class ObjectWrapper
 		return new RunsafeBlock(toWrap);
 	}
 
+	@SuppressWarnings("OverlyComplexMethod")
 	@Nullable
 	public static RunsafeBlockState convert(BlockState toWrap)
 	{

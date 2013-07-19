@@ -29,7 +29,7 @@ public final class PlayerChangedWorld extends EventRouterBase<IPlayerChangedWorl
 	public boolean onEvent(PlayerChangedWorldEvent event)
 	{
 		handler.OnPlayerChangedWorld(new RunsafePlayerChangedWorldEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

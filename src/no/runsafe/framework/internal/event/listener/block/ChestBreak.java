@@ -31,7 +31,7 @@ public final class ChestBreak extends EventRouterBase<IChestBreak, BlockBreakEve
 	@Override
 	public boolean onEvent(BlockBreakEvent event)
 	{
-		return handler.OnChestBreak(
+		return !handler.OnChestBreak(
 			ObjectWrapper.convert((OfflinePlayer) event.getPlayer()),
 			ObjectWrapper.convert((Chest) event.getBlock())
 		);

@@ -29,7 +29,7 @@ public final class BlockBreak extends EventRouterBase<IBlockBreak, BlockBreakEve
 	@Override
 	public boolean onEvent(BlockBreakEvent event)
 	{
-		return handler.OnBlockBreak(
+		return !handler.OnBlockBreak(
 			ObjectWrapper.convert((OfflinePlayer) event.getPlayer()),
 			ObjectWrapper.convert(event.getBlock())
 		);

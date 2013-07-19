@@ -26,10 +26,10 @@ public final class EntityDamage extends EventRouterBase<IEntityDamageEvent, Enti
 	}
 
 	@Override
-	public boolean onEvent(EntityDamageEvent entityDamageByEntityEvent)
+	public boolean onEvent(EntityDamageEvent event)
 	{
-		handler.OnEntityDamage(new RunsafeEntityDamageEvent(entityDamageByEntityEvent));
-		return true;
+		handler.OnEntityDamage(new RunsafeEntityDamageEvent(event));
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

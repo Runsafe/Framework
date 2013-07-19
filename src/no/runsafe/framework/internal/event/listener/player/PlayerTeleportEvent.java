@@ -28,7 +28,7 @@ public final class PlayerTeleportEvent extends EventRouterBase<IPlayerTeleport, 
 	@Override
 	public boolean onEvent(org.bukkit.event.player.PlayerTeleportEvent event)
 	{
-		return handler.OnPlayerTeleport(
+		return !handler.OnPlayerTeleport(
 			ObjectWrapper.convert((OfflinePlayer) event.getPlayer()),
 			ObjectWrapper.convert(event.getFrom()),
 			ObjectWrapper.convert(event.getTo())

@@ -40,7 +40,7 @@ public final class PlayerRespawn extends EventRouterBase<IPlayerRespawn, PlayerR
 		if (redirect != null && !(handler instanceof IAsyncEvent))
 			event.setRespawnLocation(redirect.getRaw());
 
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

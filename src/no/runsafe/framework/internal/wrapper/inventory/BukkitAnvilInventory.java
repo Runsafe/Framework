@@ -8,7 +8,7 @@ public abstract class BukkitAnvilInventory extends RunsafeInventory
 	protected BukkitAnvilInventory(AnvilInventory inventory)
 	{
 		super(inventory);
-		this.anvilInventory = inventory;
+		anvilInventory = inventory;
 	}
 
 	@Override

@@ -30,7 +30,7 @@ public final class PlayerJoin extends EventRouterBase<IPlayerJoinEvent, PlayerJo
 	public boolean onEvent(PlayerJoinEvent event)
 	{
 		handler.OnPlayerJoinEvent(new RunsafePlayerJoinEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

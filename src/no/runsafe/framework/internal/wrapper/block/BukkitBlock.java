@@ -26,6 +26,7 @@ public abstract class BukkitBlock extends BukkitMetadata
 		block.setData(data);
 	}
 
+	@SuppressWarnings("InstanceMethodNamingConvention")
 	public void set(Item type)
 	{
 		block.setType(type.getType());

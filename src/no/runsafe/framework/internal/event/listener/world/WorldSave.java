@@ -29,7 +29,7 @@ public final class WorldSave extends EventRouterBase<IWorldSave, WorldSaveEvent>
 	public boolean onEvent(WorldSaveEvent event)
 	{
 		handler.OnWorldSave(ObjectWrapper.convert(event.getWorld()));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

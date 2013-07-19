@@ -1,7 +1,6 @@
 package no.runsafe.framework.minecraft.event.player;
 
 import no.runsafe.framework.api.IKernel;
-import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.event.player.IPlayerKickEvent;
 import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.minecraft.RunsafeServer;
@@ -38,6 +37,7 @@ public class RunsafePlayerKickEvent extends RunsafePlayerEvent implements IFakea
 		event.setReason(reason);
 	}
 
+	@SuppressWarnings("MethodWithMultipleLoops")
 	@Override
 	public boolean Fire()
 	{

@@ -15,27 +15,16 @@ import java.util.List;
 public final class SchemaUpdater implements Startable
 {
 	/**
-	 * This constructor is required for plugins that do not provide any ISchemaChanges objects
-	 *
-	 * @param db     The database handler
-	 * @param output The console to log information to
-	 */
-	public SchemaUpdater(IDatabase db, IOutput output)
-	{
-		this(db, output, null);
-	}
-
-	/**
 	 * @param db             The database handler
 	 * @param output         The console to log information to
 	 * @param schemaUpdaters Schema updaters
 	 */
-	public SchemaUpdater(IDatabase db, IOutput output, ISchemaChanges[] schemaUpdaters)
+	public SchemaUpdater(IDatabase db, IOutput output, ISchemaChanges... schemaUpdaters)
 	{
 		this.schemaUpdaters = schemaUpdaters;
 		database = db;
 		console = output;
-		if (!SchemaUpdater.initialized)
+		if (SchemaUpdater.uninitialized)
 			Initialize(db);
 	}
 
@@ -46,9 +35,9 @@ public final class SchemaUpdater implements Startable
 				"`table` varchar(255) NOT NULL," +
 				"`revision` int(11) NOT NULL," +
 				"PRIMARY KEY (`table`)" +
-				")"
+				')'
 		);
-		SchemaUpdater.initialized = true;
+		SchemaUpdater.uninitialized = false;
 	}
 
 	int getRevision(String table)
@@ -78,6 +67,7 @@ public final class SchemaUpdater implements Startable
 	{
 	}
 
+	@SuppressWarnings("MethodWithMultipleLoops")
 	private void executeSchemaChanges()
 	{
 		for (ISchemaChanges changes : schemaUpdaters)
@@ -121,5 +111,5 @@ public final class SchemaUpdater implements Startable
 	private final IDatabase database;
 	private final IOutput console;
 	private final ISchemaChanges[] schemaUpdaters;
-	private static boolean initialized;
+	private static boolean uninitialized = true;
 }

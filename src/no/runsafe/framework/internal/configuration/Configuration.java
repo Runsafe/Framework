@@ -24,11 +24,11 @@ public final class Configuration implements IConfiguration
 
 	@Nullable
 	@Override
-	public String getConfigValueAsString(String value)
+	public String getConfigValueAsString(String key)
 	{
 		if (configFile == null)
 			return null;
-		return configFile.getString(value);
+		return configFile.getString(key);
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public final class Configuration implements IConfiguration
 	{
 		String value = getConfigValueAsString(key);
 		if (value == null)
-			return 0;
+			return 0.0D;
 		return Double.parseDouble(value);
 	}
 
@@ -61,95 +61,95 @@ public final class Configuration implements IConfiguration
 	{
 		String value = getConfigValueAsString(key);
 		if (value == null)
-			return 0;
+			return 0.0f;
 		return Float.parseFloat(value);
 	}
 
 	@Nullable
 	@Override
-	public List<String> getConfigValueAsList(String value)
+	public List<String> getConfigValueAsList(String key)
 	{
 		if (configFile == null)
 			return null;
-		return configFile.getStringList(value);
+		return configFile.getStringList(key);
 	}
 
 	@Nullable
 	@Override
-	public List<Integer> getConfigValueAsIntegerList(String value)
+	public List<Integer> getConfigValueAsIntegerList(String key)
 	{
 		if (configFile == null)
 			return null;
-		return configFile.getIntegerList(value);
+		return configFile.getIntegerList(key);
 	}
 
 	@Nullable
 	@Override
-	public Map<String, String> getConfigValuesAsMap(String path)
+	public Map<String, String> getConfigValuesAsMap(String key)
 	{
 		if (configFile == null)
 			return null;
-		ConfigurationSection section = configFile.getConfigurationSection(path);
-		Map<String, String> values = new HashMap<String, String>();
+		ConfigurationSection section = configFile.getConfigurationSection(key);
+		Map<String, String> values = new HashMap<String, String>(1);
 		if (section != null)
-			for (String key : section.getKeys(true))
-				values.put(key, section.getString(key));
+			for (String subKey : section.getKeys(true))
+				values.put(subKey, section.getString(subKey));
 		return values;
 	}
 
 	@Nullable
 	@Override
-	public Map<String, Integer> getConfigValuesAsIntegerMap(String path)
+	public Map<String, Integer> getConfigValuesAsIntegerMap(String key)
 	{
 		if (configFile == null)
 			return null;
-		ConfigurationSection section = configFile.getConfigurationSection(path);
-		Map<String, Integer> values = new HashMap<String, Integer>();
+		ConfigurationSection section = configFile.getConfigurationSection(key);
+		Map<String, Integer> values = new HashMap<String, Integer>(1);
 		if (section != null)
-			for (String key : section.getKeys(true))
-				values.put(key, section.getInt(key));
+			for (String subKey : section.getKeys(true))
+				values.put(subKey, section.getInt(subKey));
 		return values;
 	}
 
 	@Nullable
 	@Override
-	public Map<String, Map<String, String>> getConfigSectionsAsMap(String path)
+	public Map<String, Map<String, String>> getConfigSectionsAsMap(String key)
 	{
 		if (configFile == null)
 			return null;
-		ConfigurationSection section = configFile.getConfigurationSection(path);
-		Map<String, Map<String, String>> results = new HashMap<String, Map<String, String>>();
+		ConfigurationSection section = configFile.getConfigurationSection(key);
+		Map<String, Map<String, String>> results = new HashMap<String, Map<String, String>>(1);
 		if (section != null)
-			for (String key : section.getKeys(false))
-				results.put(key, getConfigValuesAsMap(path + "." + key));
+			for (String subKey : section.getKeys(false))
+				results.put(subKey, getConfigValuesAsMap(key + '.' + subKey));
 		return results;
 	}
 
 	@Nullable
 	@Override
-	public Map<String, List<String>> getConfigSectionsAsList(String path)
+	public Map<String, List<String>> getConfigSectionsAsList(String key)
 	{
 		if (configFile == null)
 			return null;
-		ConfigurationSection section = configFile.getConfigurationSection(path);
-		Map<String, List<String>> results = new HashMap<String, List<String>>();
+		ConfigurationSection section = configFile.getConfigurationSection(key);
+		Map<String, List<String>> results = new HashMap<String, List<String>>(1);
 		if (section != null)
-			for (String key : section.getKeys(true))
-				results.put(key, getConfigValueAsList(path + "." + key));
+			for (String subKey : section.getKeys(true))
+				results.put(subKey, getConfigValueAsList(key + '.' + subKey));
 		return results;
 	}
 
 	@Nullable
 	@Override
-	public Map<String, List<Integer>> getConfigSectionsAsIntegerList(String path)
+	public Map<String, List<Integer>> getConfigSectionsAsIntegerList(String key)
 	{
 		if (configFile == null)
 			return null;
-		ConfigurationSection section = configFile.getConfigurationSection(path);
-		Map<String, List<Integer>> results = new HashMap<String, List<Integer>>();
+		ConfigurationSection section = configFile.getConfigurationSection(key);
+		Map<String, List<Integer>> results = new HashMap<String, List<Integer>>(1);
 		if (section != null)
-			for (String key : section.getKeys(true))
-				results.put(key, getConfigValueAsIntegerList(path + "." + key));
+			for (String subKey : section.getKeys(true))
+				results.put(subKey, getConfigValueAsIntegerList(key + '.' + subKey));
 		return results;
 	}
 

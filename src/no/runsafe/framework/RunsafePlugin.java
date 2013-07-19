@@ -12,6 +12,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import javax.annotation.Nullable;
 import java.io.File;
+import java.util.Map;
 import java.util.logging.Level;
 
 public abstract class RunsafePlugin extends InjectionPlugin
@@ -19,17 +20,19 @@ public abstract class RunsafePlugin extends InjectionPlugin
 	static
 	{
 		Level consoleDebug = null;
-		if (new File("runsafe/global.yml").exists())
+		File globalConfig = new File("runsafe", "global.yml");
+		if (globalConfig.exists())
 		{
+			//noinspection OverlyBroadCatchBlock
 			try
 			{
 				YamlConfiguration global = new YamlConfiguration();
-				global.load("runsafe/global.yml");
+				global.load(globalConfig);
 				String debug = (String) global.get("debug");
 				if (debug != null)
 					consoleDebug = Level.parse(debug);
 			}
-			catch (Exception e)
+			catch (Exception ignored)
 			{
 				consoleDebug = Level.OFF;
 			}
@@ -40,9 +43,9 @@ public abstract class RunsafePlugin extends InjectionPlugin
 	@Nullable
 	public static ICommandHandler getPluginCommand(String name)
 	{
-		for (String plugin : Instances.keySet())
+		for (Map.Entry<String, InjectionPlugin> plugin : Instances.entrySet())
 		{
-			PluginCommand command = Instances.get(plugin).getCommand(name);
+			PluginCommand command = plugin.getValue().getCommand(name);
 			if (command != null)
 			{
 				CommandExecutor executor = command.getExecutor();
@@ -81,7 +84,7 @@ public abstract class RunsafePlugin extends InjectionPlugin
 	 */
 	public IConfiguration loadConfiguration(String filename)
 	{
-		return getComponent(ConfigurationEngine.class).loadConfiguration(String.format("plugins/%s/%s", getName(), filename));
+		return getComponent(ConfigurationEngine.class).loadConfiguration(new File(getDataFolder(), filename));
 	}
 
 	protected abstract void PluginSetup();

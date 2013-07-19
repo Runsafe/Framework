@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public abstract class ConsoleAsyncCommand extends AsyncCommand
 {
-	public ConsoleAsyncCommand(String name, String description, IScheduler scheduler, String... args)
+	protected ConsoleAsyncCommand(String name, String description, IScheduler scheduler, String... args)
 	{
 		super(name, description, null, scheduler, args);
 	}
@@ -32,7 +32,7 @@ public abstract class ConsoleAsyncCommand extends AsyncCommand
 	public final String OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
 	{
 		if (executor instanceof RunsafeConsole)
-			return OnAsyncExecute(executor, parameters);
+			return OnAsyncExecute(parameters, arguments);
 		return "This command must be used from the console.";
 	}
 
@@ -40,7 +40,7 @@ public abstract class ConsoleAsyncCommand extends AsyncCommand
 	public final String OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters)
 	{
 		if (executor instanceof RunsafeConsole)
-			return OnAsyncExecute(executor, parameters);
+			return OnAsyncExecute(parameters);
 		return "This command must be used from the console.";
 	}
 

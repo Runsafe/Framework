@@ -26,10 +26,10 @@ public final class EntityDeath extends EventRouterBase<IEntityDeathEvent, Entity
 	}
 
 	@Override
-	public boolean onEvent(EntityDeathEvent entityDeathEvent)
+	public boolean onEvent(EntityDeathEvent event)
 	{
-		handler.OnEntityDeath(new RunsafeEntityDeathEvent(entityDeathEvent));
-		return true;
+		handler.OnEntityDeath(new RunsafeEntityDeathEvent(event));
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

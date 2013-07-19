@@ -29,7 +29,7 @@ public final class PrepareItemEnchant extends EventRouterBase<IPrepareItemEnchan
 	public boolean onEvent(PrepareItemEnchantEvent event)
 	{
 		handler.OnPrepareItemEnchantEvent(new RunsafePrepareItemEnchantEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()
@@ -43,9 +43,9 @@ public final class PrepareItemEnchant extends EventRouterBase<IPrepareItemEnchan
 			}
 
 			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent handler)
+			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
-				return new PrepareItemEnchant(output, scheduler, (IPrepareItemEnchantEvent) handler);
+				return new PrepareItemEnchant(output, scheduler, (IPrepareItemEnchantEvent) subscriber);
 			}
 		};
 	}

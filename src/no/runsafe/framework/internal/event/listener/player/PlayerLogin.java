@@ -29,7 +29,7 @@ public final class PlayerLogin extends EventRouterBase<IPlayerLoginEvent, Player
 	public boolean onEvent(PlayerLoginEvent event)
 	{
 		handler.OnPlayerLogin(new RunsafePlayerLoginEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

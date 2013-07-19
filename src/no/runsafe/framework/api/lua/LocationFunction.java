@@ -13,7 +13,7 @@ public abstract class LocationFunction extends Function
 	{
 		RunsafeLocation location = run(VarargsToParameters(args));
 
-		List<Object> values = new ArrayList<Object>();
+		List<Object> values = new ArrayList<Object>(4);
 		values.add(location.getWorld().getName());
 		values.add(location.getX());
 		values.add(location.getY());
@@ -21,5 +21,6 @@ public abstract class LocationFunction extends Function
 		return objectListToVarargs(values);
 	}
 
+	@SuppressWarnings("InstanceMethodNamingConvention")
 	public abstract RunsafeLocation run(FunctionParameters parameters);
 }

@@ -7,7 +7,9 @@ import no.runsafe.framework.internal.command.prepared.PreparedAsynchronousComman
 import no.runsafe.framework.internal.command.prepared.PreparedSynchronousCommand;
 import no.runsafe.framework.text.ChatColour;
 import org.apache.commons.lang.StringUtils;
+import org.bukkit.craftbukkit.libs.joptsimple.internal.Strings;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -32,10 +34,7 @@ public class Command implements ICommandHandler
 		name = commandName;
 		this.permission = permission;
 		this.description = description;
-		if (arguments == null)
-			argumentList = null;
-		else
-			argumentList = ImmutableList.copyOf(arguments);
+		argumentList = arguments == null ? ImmutableList.<String>of() : ImmutableList.copyOf(arguments);
 	}
 
 	/**
@@ -45,38 +44,37 @@ public class Command implements ICommandHandler
 	 */
 	public String getUsage(ICommandExecutor executor)
 	{
-		Map<String, String> available = new HashMap<String, String>();
-		if (!subCommands.isEmpty())
-		{
-			for (Command sub : subCommands.values())
-			{
-				if (sub.isExecutable(executor))
-				{
-					if (sub.description == null)
-						available.put(sub.getName(), "");
-					else
-						available.put(sub.getName(), String.format(" - %s", sub.description));
-				}
-			}
-		}
-		StringBuilder usage = new StringBuilder();
+		Map<String, String> available = getAvailableSubCommands(executor);
+		List<String> usage = new ArrayList<String>(subCommands.size());
 		if (available.isEmpty())
 			return description == null ? "" : description;
 
-		int width = 0;
-		for (String cmd : available.keySet())
-			if (cmd.length() > width)
-				width = cmd.length();
-		String format = String.format("  %%1s%%2$-%ds%%3$s%%4$s\n", width);
-		for (String cmd : available.keySet())
-			usage.append(String.format(format, ChatColour.YELLOW, cmd, ChatColour.RESET, available.get(cmd)));
+		String format = "  %s%s%s: %s";
+		for (Map.Entry<String, String> stringStringEntry : available.entrySet())
+			usage.add(String.format(format, ChatColour.YELLOW, stringStringEntry.getKey(), ChatColour.RESET, stringStringEntry.getValue()));
 
 		return String.format(
 			"<%1$scommand%2$s>\nAvailable commands:\n%3$s",
 			ChatColour.YELLOW,
 			ChatColour.RESET,
-			usage
+			Strings.join(usage, "\n")
 		);
+	}
+
+	private Map<String, String> getAvailableSubCommands(ICommandExecutor executor)
+	{
+		Map<String, String> available = new HashMap<String, String>(subCommands.size());
+		for (Command sub : subCommands.values())
+		{
+			if (sub.isExecutable(executor))
+			{
+				if (sub.description == null)
+					available.put(sub.name, "");
+				else
+					available.put(sub.name, String.format(" - %s", sub.description));
+			}
+		}
+		return available;
 	}
 
 	/**
@@ -93,7 +91,7 @@ public class Command implements ICommandHandler
 				ChatColour.YELLOW + StringUtils.join(
 				argumentList,
 				ChatColour.RESET + "> <" + ChatColour.YELLOW
-			) + ChatColour.RESET + ">";
+			) + ChatColour.RESET + '>';
 		return part;
 	}
 
@@ -112,7 +110,7 @@ public class Command implements ICommandHandler
 	 */
 	public final void addSubCommand(Command subCommand)
 	{
-		subCommands.put(subCommand.getName(), subCommand);
+		subCommands.put(subCommand.name, subCommand);
 	}
 
 	/**
@@ -149,10 +147,10 @@ public class Command implements ICommandHandler
 	@Override
 	public final List<String> getSubCommands(ICommandExecutor executor)
 	{
-		List<String> available = new ArrayList<String>();
-		for (String sub : subCommands.keySet())
-			if (subCommands.get(sub).isExecutable(executor))
-				available.add(sub);
+		List<String> available = new ArrayList<String>(subCommands.size());
+		for (Map.Entry<String, Command> stringCommandEntry : subCommands.entrySet())
+			if (stringCommandEntry.getValue().isExecutable(executor))
+				available.add(stringCommandEntry.getKey());
 		return available;
 	}
 
@@ -188,13 +186,10 @@ public class Command implements ICommandHandler
 	 * @return A prepared command, ready to be executed
 	 */
 	@Override
-	public final IPreparedCommand prepare(ICommandExecutor executor, String... args)
+	public final IPreparedCommand prepare(ICommandExecutor executor, @Nonnull String... args)
 	{
-		if (args != null)
-			console.finer("Preparing command %s %s", getName(), StringUtils.join(args, " "));
-		else
-			console.finer("Preparing command %s", getName());
-		return prepare(executor, new HashMap<String, String>(), args, new Stack<Command>());
+		console.finer("Preparing command %s %s", name, StringUtils.join(args, " "));
+		return prepare(executor, new HashMap<String, String>(args.length), args, new Stack<Command>());
 	}
 
 	/**
@@ -219,7 +214,7 @@ public class Command implements ICommandHandler
 	@Override
 	public List<String> getParameters()
 	{
-		return argumentList;
+		return Collections.unmodifiableList(argumentList);
 	}
 
 	private IPreparedCommand prepare(ICommandExecutor executor, Map<String, String> params, String[] args, Stack<Command> stack)
@@ -233,7 +228,7 @@ public class Command implements ICommandHandler
 				? new String[0] :
 				Arrays.copyOfRange(args, myParams.size(), args.length);
 		}
-		console.finer("Command %s has %d parameters and %d args", getName(), myParams.size(), args.length);
+		console.finer("Command %s has %d parameters and %d args", name, myParams.size(), args.length);
 		if (args.length > 0)
 		{
 			console.finer("Looking for subcommand %s", args[0]);
@@ -261,6 +256,7 @@ public class Command implements ICommandHandler
 		return new PreparedSynchronousCommand(executor, stack, args, params);
 	}
 
+	@SuppressWarnings("MethodWithMultipleLoops")
 	private boolean isExecutable(ICommandExecutor executor)
 	{
 		if (permission == null)
@@ -274,7 +270,7 @@ public class Command implements ICommandHandler
 		Matcher params = paramPermission.matcher(permission);
 		if (params.find())
 		{
-			List<String> options = getParameterOptions(params.group());
+			Iterable<String> options = getParameterOptions(params.group());
 			if (options == null)
 				return true;
 			for (String value : options)
@@ -287,7 +283,7 @@ public class Command implements ICommandHandler
 
 	private Map<String, String> getParameters(String... args)
 	{
-		HashMap<String, String> parameters = new HashMap<String, String>();
+		Map<String, String> parameters = new HashMap<String, String>(args.length);
 
 		int index = 0;
 		for (String parameter : argumentList)
@@ -304,9 +300,8 @@ public class Command implements ICommandHandler
 	}
 
 	protected IOutput console;
-	@Nullable
 	private final ImmutableList<String> argumentList;
-	private final Map<String, Command> subCommands = new HashMap<String, Command>();
+	private final Map<String, Command> subCommands = new HashMap<String, Command>(0);
 	private final String name;
 	private final String permission;
 	private final String description;

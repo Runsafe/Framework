@@ -29,7 +29,7 @@ public final class PlayerDropItem extends EventRouterBase<IPlayerDropItemEvent, 
 	public boolean onEvent(PlayerDropItemEvent event)
 	{
 		handler.OnPlayerDropItem(new RunsafePlayerDropItemEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

@@ -6,6 +6,7 @@ import no.runsafe.framework.internal.Minecraft;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
+@SuppressWarnings("deprecation")
 public class Scheduler implements IScheduler
 {
 	public Scheduler(BukkitScheduler scheduler, JavaPlugin plugin)
@@ -23,13 +24,13 @@ public class Scheduler implements IScheduler
 	@Override
 	public int startSyncTask(Runnable func, int seconds)
 	{
-		return startSyncTask(func, (long) seconds * Minecraft.TICKS_PER_SECOND);
+		return startSyncTask(func, seconds * Minecraft.TICKS_PER_SECOND);
 	}
 
 	@Override
 	public int startSyncRepeatingTask(Runnable func, int delay, int period)
 	{
-		return startSyncRepeatingTask(func, (long) delay * Minecraft.TICKS_PER_SECOND, (long) period * Minecraft.TICKS_PER_SECOND);
+		return startSyncRepeatingTask(func, delay * Minecraft.TICKS_PER_SECOND, period * Minecraft.TICKS_PER_SECOND);
 	}
 
 	@Override
@@ -47,13 +48,13 @@ public class Scheduler implements IScheduler
 	@Override
 	public ITimer createSyncTimer(Runnable func, int delay, int period)
 	{
-		return createSyncTimer(func, (long) delay * Minecraft.TICKS_PER_SECOND, (long) period * Minecraft.TICKS_PER_SECOND);
+		return createSyncTimer(func, delay * Minecraft.TICKS_PER_SECOND, period * Minecraft.TICKS_PER_SECOND);
 	}
 
 	@Override
-	public ITimer createSyncTimer(Runnable func, Long delay)
+	public ITimer createSyncTimer(Runnable func, Long ticks)
 	{
-		return createSyncTimer(func, delay, 0L);
+		return createSyncTimer(func, ticks, 0L);
 	}
 
 	@Override
@@ -71,13 +72,13 @@ public class Scheduler implements IScheduler
 	@Override
 	public ITimer createAsyncTimer(Runnable func, int delay, int period)
 	{
-		return createAsyncTimer(func, (long) delay * Minecraft.TICKS_PER_SECOND, (long) period * Minecraft.TICKS_PER_SECOND);
+		return createAsyncTimer(func, delay * Minecraft.TICKS_PER_SECOND, period * Minecraft.TICKS_PER_SECOND);
 	}
 
 	@Override
-	public ITimer createAsyncTimer(Runnable func, Long delay)
+	public ITimer createAsyncTimer(Runnable func, Long ticks)
 	{
-		return createAsyncTimer(func, delay, 0L);
+		return createAsyncTimer(func, ticks, 0L);
 	}
 
 	@Override
@@ -104,7 +105,7 @@ public class Scheduler implements IScheduler
 	@Deprecated
 	public int startAsyncTask(Runnable func, int seconds)
 	{
-		return startAsyncTask(func, (long) seconds * Minecraft.TICKS_PER_SECOND);
+		return startAsyncTask(func, seconds * Minecraft.TICKS_PER_SECOND);
 	}
 
 	@Override

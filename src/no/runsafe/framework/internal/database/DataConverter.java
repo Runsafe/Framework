@@ -10,10 +10,14 @@ import javax.annotation.Nullable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-abstract class DataConverter
+final class DataConverter
 {
+	private DataConverter()
+	{
+	}
+
 	@Nullable
-	String String(Object value)
+	static String String(Object value)
 	{
 		if (value == null)
 			return null;
@@ -22,7 +26,7 @@ abstract class DataConverter
 	}
 
 	@Nullable
-	Integer Integer(Object value)
+	static Integer Integer(Object value)
 	{
 		if (value == null)
 			return null;
@@ -46,7 +50,7 @@ abstract class DataConverter
 	}
 
 	@Nullable
-	Long Long(Object value)
+	static Long Long(Object value)
 	{
 		if (value == null)
 			return null;
@@ -70,7 +74,7 @@ abstract class DataConverter
 	}
 
 	@Nullable
-	Double Double(Object value)
+	static Double Double(Object value)
 	{
 		if (value == null)
 			return null;
@@ -97,7 +101,7 @@ abstract class DataConverter
 	}
 
 	@Nullable
-	Float Float(Object value)
+	static Float Float(Object value)
 	{
 		if (value == null)
 			return null;
@@ -124,31 +128,32 @@ abstract class DataConverter
 	}
 
 	@Nullable
-	DateTime DateTime(Object value)
+	static DateTime DateTime(Object value)
 	{
 		if (value == null)
 			return null;
 		return new DateTime(value);
 	}
 
+	@SuppressWarnings("MethodWithTooManyParameters")
 	@Nullable
-	RunsafeLocation Location(Object world, Object x, Object y, Object z, Object yaw, Object pitch)
+	static RunsafeLocation Location(Object world, Object x, Object y, Object z, Object yaw, Object pitch)
 	{
 		RunsafeWorld targetWorld = World(world);
 		if (targetWorld == null)
 			return null;
 
 		if (x == null || y == null || z == null)
-			return new RunsafeLocation(targetWorld, 0, 0, 0);
+			return new RunsafeLocation(targetWorld, 0.0D, 0.0D, 0.0D);
 
 		if (yaw != null && pitch != null)
-			return new RunsafeLocation(targetWorld, Double(x), Double(y), Double(z), Float(yaw), Float(pitch));
+			return new RunsafeLocation(targetWorld, (Double) x, (Double) y, (Double) z, (Float) yaw, (Float) pitch);
 
-		return new RunsafeLocation(targetWorld, Double(x), Double(y), Double(z));
+		return new RunsafeLocation(targetWorld, (Double) x, (Double) y, (Double) z);
 	}
 
 	@Nullable
-	RunsafeWorld World(Object value)
+	static RunsafeWorld World(Object value)
 	{
 		if (value == null)
 			return null;
@@ -156,7 +161,7 @@ abstract class DataConverter
 	}
 
 	@Nullable
-	RunsafePlayer Player(Object value)
+	static RunsafePlayer Player(Object value)
 	{
 		return value == null ? null : RunsafeServer.Instance.getOfflinePlayerExact(value.toString());
 	}

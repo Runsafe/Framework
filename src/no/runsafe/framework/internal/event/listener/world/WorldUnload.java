@@ -29,7 +29,7 @@ public final class WorldUnload extends EventRouterBase<IWorldUnload, WorldUnload
 	public boolean onEvent(WorldUnloadEvent event)
 	{
 		handler.OnWorldUnload(ObjectWrapper.convert(event.getWorld()));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

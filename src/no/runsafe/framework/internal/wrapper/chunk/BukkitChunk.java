@@ -1,10 +1,10 @@
 package no.runsafe.framework.internal.wrapper.chunk;
 
+import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import no.runsafe.framework.minecraft.block.RunsafeBlockState;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
-import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.Chunk;
 
 import javax.annotation.Nullable;
@@ -37,21 +37,10 @@ public abstract class BukkitChunk
 		return ObjectWrapper.convert(chunk.getBlock(i, i1, i2));
 	}
 
-	//RunsafeChunkSnapshot getChunkSnapshot();
-
-	//RunsafeChunkSnapshot getChunkSnapshot(boolean b, boolean b1, boolean b2);
-
 	@Nullable
 	public List<RunsafeEntity> getEntities()
 	{
-		try
-		{
-			return ObjectWrapper.convert(chunk.getEntities());
-		}
-		catch (NullPointerException npe)
-		{
-			return null;
-		}
+		return ObjectWrapper.convert(chunk.getEntities());
 	}
 
 	public List<RunsafeBlockState> getTileEntities()

@@ -36,7 +36,7 @@ public final class PlayerDamage extends EventRouterBase<IPlayerDamageEvent, Enti
 			Player player = (Player) event.getEntity();
 			handler.OnPlayerDamage(ObjectWrapper.convert((OfflinePlayer) player), new RunsafeEntityDamageEvent(event));
 		}
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public abstract class PlayerAsyncCallbackCommand<T> extends AsyncCallbackCommand<T>
 {
-	public PlayerAsyncCallbackCommand(String name, String description, String permission, IScheduler scheduler, String... args)
+	protected PlayerAsyncCallbackCommand(String name, String description, String permission, IScheduler scheduler, String... args)
 	{
 		super(name, description, permission, scheduler, args);
 	}

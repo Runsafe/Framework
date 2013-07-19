@@ -7,7 +7,6 @@ import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 
 import java.net.InetAddress;
 
-@SuppressWarnings("deprecation")
 public class RunsafePlayerPreLoginEvent extends RunsafeEvent
 {
 	public RunsafePlayerPreLoginEvent(AsyncPlayerPreLoginEvent toWrap)

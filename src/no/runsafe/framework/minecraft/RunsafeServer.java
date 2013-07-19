@@ -1,5 +1,6 @@
 package no.runsafe.framework.minecraft;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.hook.IPlayerLookupService;
@@ -15,6 +16,7 @@ import org.bukkit.Server;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,18 +37,18 @@ public class RunsafeServer extends BukkitServer
 		return debugger;
 	}
 
-	public List<String> getGroups()
+	public static List<String> getGroups()
 	{
 		List<IPlayerPermissions> hooks = HookEngine.hookContainer.getComponents(IPlayerPermissions.class);
-		List<String> groups = new ArrayList<String>();
-		if (hooks != null)
+		if (hooks == null)
+			return Lists.newArrayList();
+
+		List<String> groups = new ArrayList<String>(hooks.size() * 5);
+		for (IPlayerPermissions hook : hooks)
 		{
-			for (IPlayerPermissions hook : hooks)
-			{
-				List<String> hookGroups = hook.getGroups();
-				if (hookGroups != null)
-					groups.addAll(hookGroups);
-			}
+			List<String> hookGroups = hook.getGroups();
+			if (hookGroups != null)
+				groups.addAll(hookGroups);
 		}
 		return groups;
 	}
@@ -99,7 +101,7 @@ public class RunsafeServer extends BukkitServer
 			return null;
 
 		playerName = playerName.toLowerCase();
-		List<OfflinePlayer> players = new ArrayList<OfflinePlayer>();
+		List<OfflinePlayer> players = new ArrayList<OfflinePlayer>(server.getOnlinePlayers().length);
 		for (OfflinePlayer player : server.getOnlinePlayers())
 			if (player.getName().toLowerCase().startsWith(playerName))
 				players.add(player);
@@ -122,13 +124,14 @@ public class RunsafeServer extends BukkitServer
 		return new RunsafePlayer(player);
 	}
 
-	@Nullable
-	public List<String> findPlayer(String playerName)
+	@SuppressWarnings("MethodWithMultipleLoops")
+	@Nonnull
+	public static List<String> findPlayer(String playerName)
 	{
 		if (playerName == null || playerName.isEmpty())
-			return null;
+			return ImmutableList.of();
 
-		List<String> hits = new ArrayList<String>();
+		List<String> hits = new ArrayList<String>(1);
 		for (IPlayerLookupService lookup : HookEngine.hookContainer.getComponents(IPlayerLookupService.class))
 		{
 			List<String> data = lookup.findPlayer(playerName);
@@ -150,12 +153,12 @@ public class RunsafeServer extends BukkitServer
 		return hits;
 	}
 
-	public List<RunsafePlayer> filterPlayers(RunsafePlayer context, List<RunsafePlayer> players)
+	public static List<RunsafePlayer> filterPlayers(RunsafePlayer context, List<RunsafePlayer> players)
 	{
 		if (context == null || players == null)
 			return players;
 
-		List<RunsafePlayer> filtered = new ArrayList<RunsafePlayer>();
+		List<RunsafePlayer> filtered = new ArrayList<RunsafePlayer>(players.size());
 		for (RunsafePlayer player : players)
 			if (context.shouldNotSee(player))
 				filtered.add(player);
@@ -212,7 +215,7 @@ public class RunsafeServer extends BukkitServer
 		if (permission == null || permission.isEmpty())
 			return Lists.newArrayList();
 
-		List<RunsafePlayer> results = new ArrayList<RunsafePlayer>();
+		List<RunsafePlayer> results = new ArrayList<RunsafePlayer>(server.getOnlinePlayers().length);
 		for (Player player : server.getOnlinePlayers())
 			if (player.hasPermission(permission))
 				results.add(ObjectWrapper.convert((OfflinePlayer) player));
@@ -240,7 +243,7 @@ public class RunsafeServer extends BukkitServer
 		if (matches == null || matches.isEmpty())
 			return Lists.newArrayList();
 
-		List<String> players = new ArrayList<String>();
+		List<String> players = new ArrayList<String>(matches.size());
 		for (RunsafePlayer player : matches)
 		{
 			if (context.shouldNotSee(player))

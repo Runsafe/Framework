@@ -32,7 +32,7 @@ public final class PaintingPlace extends EventRouterBase<IPaintingPlaced, Hangin
 	@Override
 	public boolean onEvent(HangingPlaceEvent event)
 	{
-		return handler.OnPaintingPlaced(
+		return !handler.OnPaintingPlaced(
 			ObjectWrapper.convert((OfflinePlayer) event.getPlayer()),
 			ObjectWrapper.convert((Painting) event.getEntity())
 		);

@@ -13,6 +13,7 @@ import org.bukkit.entity.LivingEntity;
 import java.util.HashSet;
 import java.util.List;
 
+@SuppressWarnings("OverloadedMethodsWithSameNumberOfParameters")
 public abstract class BukkitLivingEntity extends RunsafeEntity
 {
 	protected BukkitLivingEntity(LivingEntity toWrap)
@@ -32,14 +33,15 @@ public abstract class BukkitLivingEntity extends RunsafeEntity
 		return livingEntity.getHealth();
 	}
 
+	@Deprecated
 	public void setHealth(int i)
 	{
 		setHealth((double) i);
 	}
 
-	public void setHealth(double i)
+	public void setHealth(double health)
 	{
-		livingEntity.setHealth(i);
+		livingEntity.setHealth(health);
 	}
 
 	public RunsafeEntityEquipment getEquipment()
@@ -102,24 +104,26 @@ public abstract class BukkitLivingEntity extends RunsafeEntity
 		livingEntity.setMaximumAir(i);
 	}
 
+	@Deprecated
 	public void damage(int i)
 	{
 		damage((double) i);
 	}
 
-	public void damage(double i)
+	public void damage(double damage)
 	{
-		livingEntity.damage(i);
+		livingEntity.damage(damage);
 	}
 
-	public void damage(double i, RunsafeEntity source)
+	public void damage(double damage, RunsafeEntity source)
 	{
-		livingEntity.damage(i, source.getRaw());
+		livingEntity.damage(damage, source.getRaw());
 	}
 
-	public void damage(int i, RunsafeEntity source)
+	@Deprecated
+	public void damage(int damage, RunsafeEntity source)
 	{
-		damage((double) i, source);
+		damage((double) damage, source);
 	}
 
 	public int getMaximumNoDamageTicks()
@@ -137,14 +141,15 @@ public abstract class BukkitLivingEntity extends RunsafeEntity
 		return livingEntity.getLastDamage();
 	}
 
+	@Deprecated
 	public void setLastDamage(int i)
 	{
-		livingEntity.setLastDamage((double) i);
+		livingEntity.setLastDamage(i);
 	}
 
-	public void setLastDamage(double i)
+	public void setLastDamage(double damage)
 	{
-		livingEntity.setLastDamage(i);
+		livingEntity.setLastDamage(damage);
 	}
 
 	public int getNoDamageTicks()
