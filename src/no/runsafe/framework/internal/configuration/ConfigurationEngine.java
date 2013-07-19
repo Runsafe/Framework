@@ -15,6 +15,7 @@ import java.io.InputStream;
 /**
  * This class handles basic configuration features of the plugin
  */
+@SuppressWarnings("OverloadedVarargsMethod")
 public final class ConfigurationEngine implements Startable
 {
 	public IConfiguration loadConfiguration(String fileName)
@@ -32,6 +33,15 @@ public final class ConfigurationEngine implements Startable
 		config.configFilePath = configFile.getPath();
 		config.configFile = YamlConfiguration.loadConfiguration(configFile);
 		return config;
+	}
+
+	/**
+	 * This is needed for pico to not throw exceptions
+	 * @param plugin The plugin
+	 */
+	public ConfigurationEngine(RunsafePlugin plugin)
+	{
+		this(plugin, null, null);
 	}
 
 	/**

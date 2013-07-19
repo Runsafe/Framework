@@ -12,8 +12,19 @@ import java.util.List;
 /**
  * This class handles database schema updates
  */
+@SuppressWarnings("OverloadedVarargsMethod")
 public final class SchemaUpdater implements Startable
 {
+	/**
+	 * This is needed for pico to not throw exceptions
+	 * @param db     The database handler
+	 * @param output The console to log information to
+	 */
+	public SchemaUpdater(IDatabase db, IOutput output)
+	{
+		this(db, output, new ISchemaChanges[0]);
+	}
+
 	/**
 	 * @param db             The database handler
 	 * @param output         The console to log information to

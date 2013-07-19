@@ -1,11 +1,11 @@
 package no.runsafe.framework.internal.event;
 
 import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.internal.event.listener.Factories;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.api.event.IRunsafeEvent;
+import no.runsafe.framework.internal.event.listener.Factories;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.picocontainer.Startable;
@@ -21,11 +21,11 @@ public final class EventEngine implements Startable
 
 	public EventEngine(IOutput output, IScheduler scheduler, PluginManager manager, RunsafePlugin plugin)
 	{
-		this(output, scheduler, null, manager, plugin);
+		this(output, scheduler, manager, plugin, new IRunsafeEvent[0]);
 	}
 
 	public EventEngine(
-		IOutput output, IScheduler scheduler, IRunsafeEvent[] events, PluginManager manager, RunsafePlugin plugin)
+		IOutput output, IScheduler scheduler, PluginManager manager, RunsafePlugin plugin, IRunsafeEvent... events)
 	{
 		eventSubscribers = events;
 		this.scheduler = scheduler;
