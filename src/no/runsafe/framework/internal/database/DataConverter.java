@@ -135,7 +135,7 @@ final class DataConverter
 		return new DateTime(value);
 	}
 
-	@SuppressWarnings("MethodWithTooManyParameters")
+	@SuppressWarnings({"MethodWithTooManyParameters", "ConstantConditions"})
 	@Nullable
 	static RunsafeLocation Location(Object world, Object x, Object y, Object z, Object yaw, Object pitch)
 	{
@@ -147,7 +147,7 @@ final class DataConverter
 			return new RunsafeLocation(targetWorld, 0.0D, 0.0D, 0.0D);
 
 		if (yaw != null && pitch != null)
-			return new RunsafeLocation(targetWorld, (Double) x, (Double) y, (Double) z, (Float) yaw, (Float) pitch);
+			return new RunsafeLocation(targetWorld, (Double) x, (Double) y, (Double) z, Float(yaw), Float(pitch));
 
 		return new RunsafeLocation(targetWorld, (Double) x, (Double) y, (Double) z);
 	}
