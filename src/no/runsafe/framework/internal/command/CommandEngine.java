@@ -16,8 +16,19 @@ import java.util.List;
 /**
  * This class handles the registration of command objects with bukkit.
  */
+@SuppressWarnings("OverloadedVarargsMethod")
 public final class CommandEngine implements Startable
 {
+	/**
+	 * This is needed for pico to not throw exceptions
+	 *
+	 * @param plugin The plugin
+	 */
+	public CommandEngine(@Nonnull RunsafePlugin plugin)
+	{
+		this(null, plugin);
+	}
+
 	/**
 	 * @param output   The console to output debug information to
 	 * @param commands The commands provided by the plugin
