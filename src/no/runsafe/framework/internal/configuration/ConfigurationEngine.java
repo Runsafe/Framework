@@ -37,6 +37,7 @@ public final class ConfigurationEngine implements Startable
 
 	/**
 	 * This is needed for pico to not throw exceptions
+	 *
 	 * @param plugin The plugin
 	 */
 	public ConfigurationEngine(RunsafePlugin plugin)
@@ -90,7 +91,7 @@ public final class ConfigurationEngine implements Startable
 	 */
 	void load()
 	{
-		if (configFilePath == null || configurationFile == null)
+		if (configFilePath == null || configurationFile == null || configuration == null)
 			return;
 
 		File configFile = new File(configFilePath);
