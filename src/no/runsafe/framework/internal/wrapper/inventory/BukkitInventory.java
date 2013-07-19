@@ -23,7 +23,7 @@ public abstract class BukkitInventory
 		return ObjectWrapper.convert(inventory.getHolder());
 	}
 
-	public Iterable<RunsafeMeta> getContents()
+	public List<RunsafeMeta> getContents()
 	{
 		return ObjectWrapper.convert(Lists.newArrayList(inventory.getContents()));
 	}
