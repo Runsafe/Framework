@@ -61,8 +61,8 @@ public abstract class PreparedCommand implements IPreparedCommand
 		}
 		List<String> params = command.peek().getParameters();
 		List<String> subcommands = command.peek().getSubCommands(executor);
-		boolean takeParams = params != null && !params.isEmpty();
-		boolean takeSub = subcommands != null && !subcommands.isEmpty();
+		boolean takeParams = !params.isEmpty();
+		boolean takeSub = !subcommands.isEmpty();
 
 		RunsafeServer.Instance.getDebugger().finer(
 			"TabComplete: [taken %d, free %d] params=%s:%d, sub=%s:%d",
@@ -74,13 +74,13 @@ public abstract class PreparedCommand implements IPreparedCommand
 		if (!takeParams && !takeSub)
 			return Lists.newArrayList();
 
-		if (args.length > i + (params == null ? 0 : params.size()) + 1)
+		if (args.length > i + params.size() + 1)
 			return null;
 
 		if (takeParams && args.length - i > 0 && args.length - i <= params.size())
 		{
 			String param = params.get(args.length - i - 1);
-			Iterable<String> matches;
+			List<String> matches;
 			if (param.equalsIgnoreCase("player"))
 				matches = getPlayers();
 
@@ -91,7 +91,11 @@ public abstract class PreparedCommand implements IPreparedCommand
 			{
 				matches = command.peek().getParameterOptionsPartial(param, args[args.length - 1]);
 				if (matches != null)
+				{
+					if (matches.isEmpty())
+						return null;
 					return matches;
+				}
 				matches = command.peek().getParameterOptions(param);
 				if (matches == null)
 					return Lists.newArrayList();
