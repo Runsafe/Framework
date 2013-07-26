@@ -144,6 +144,7 @@ public class Command implements ICommandHandler
 		return null;
 	}
 
+	@Nonnull
 	@Override
 	public final List<String> getSubCommands(ICommandExecutor executor)
 	{
@@ -157,6 +158,7 @@ public class Command implements ICommandHandler
 	/**
 	 * @return The name of this command
 	 */
+	@Nonnull
 	@Override
 	public final String getName()
 	{
@@ -185,6 +187,7 @@ public class Command implements ICommandHandler
 	 * @param args     The passed argument list
 	 * @return A prepared command, ready to be executed
 	 */
+	@Nonnull
 	@Override
 	public final IPreparedCommand prepare(ICommandExecutor executor, @Nonnull String... args)
 	{
@@ -211,6 +214,14 @@ public class Command implements ICommandHandler
 		return null;
 	}
 
+	@Nullable
+	@Override
+	public List<String> getParameterOptionsPartial(String parameter, String arg)
+	{
+		return null;
+	}
+
+	@Nonnull
 	@Override
 	public List<String> getParameters()
 	{
