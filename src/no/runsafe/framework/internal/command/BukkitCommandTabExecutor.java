@@ -14,6 +14,7 @@ import org.bukkit.command.TabExecutor;
 import org.bukkit.craftbukkit.libs.joptsimple.internal.Strings;
 import org.bukkit.entity.Player;
 
+import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
 
@@ -57,12 +58,16 @@ public final class BukkitCommandTabExecutor implements TabExecutor
 		return true;
 	}
 
+	@Nullable
 	@Override
 	public List<String> onTabComplete(CommandSender commandSender, Command command, String alias, String[] args)
 	{
 		//noinspection HardcodedFileSeparator
 		logger.fine("Handling tabcomplete for '/%s %s'", alias, Strings.join(args, " "));
-		return ImmutableList.copyOf(tabCompleteCommand(commandSender, args));
+		Iterable<String> alternatives = tabCompleteCommand(commandSender, args);
+		if (alternatives == null)
+			return null;
+		return ImmutableList.copyOf(alternatives);
 	}
 
 	private Iterable<String> tabCompleteCommand(CommandSender sender, String... args)
