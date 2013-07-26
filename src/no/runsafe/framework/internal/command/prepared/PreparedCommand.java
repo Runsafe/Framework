@@ -89,6 +89,10 @@ public abstract class PreparedCommand implements IPreparedCommand
 
 			else
 			{
+				RunsafeServer.Instance.getDebugger().finer(
+					"TabComplete-Partial: param=%s, arg=%s",
+					param, args[args.length - 1]
+				);
 				matches = command.peek().getParameterOptionsPartial(param, args[args.length - 1]);
 				if (matches != null)
 				{
