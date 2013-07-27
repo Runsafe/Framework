@@ -2,10 +2,9 @@ package no.runsafe.framework.internal.command.prepared;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
-import no.runsafe.framework.api.command.Command;
-import no.runsafe.framework.api.command.ICommandExecutor;
-import no.runsafe.framework.api.command.IContextPermissionProvider;
-import no.runsafe.framework.api.command.IPreparedCommand;
+import no.runsafe.framework.api.command.*;
+import no.runsafe.framework.api.command.argument.IArgument;
+import no.runsafe.framework.api.command.argument.ITabComplete;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
@@ -18,13 +17,13 @@ import java.util.regex.Pattern;
 public abstract class PreparedCommand implements IPreparedCommand
 {
 	protected PreparedCommand(
-		ICommandExecutor executor, Stack<Command> definingCommand, String[] args, Map<String, String> parameters)
+		ICommandExecutor executor, Stack<ICommandHandler> definingCommand, String[] args, Map<String, String> parameters)
 	{
 		this.executor = executor;
 		command = definingCommand;
 		arguments = args;
 		this.parameters = parameters;
-		Command execute = command.peek();
+		ICommandHandler execute = command.peek();
 		String permission = null;
 		if (execute instanceof IContextPermissionProvider)
 			permission = ((IContextPermissionProvider) execute).getPermission(executor, parameters, args);
@@ -51,15 +50,8 @@ public abstract class PreparedCommand implements IPreparedCommand
 	@Nullable
 	public Iterable<String> tabComplete(String... args)
 	{
-		int i = 0;
-		for (Command cmd : command)
-		{
-			if (cmd.equals(command.peek()))
-				break;
-			i += cmd.getParameters().size(); // Args taken by command
-			i++; // Arg taken by selecting the next subcommand
-		}
-		List<String> params = command.peek().getParameters();
+		int i = countSuperParams();
+		List<IArgument> params = command.peek().getParameters();
 		List<String> subcommands = command.peek().getSubCommands(executor);
 		boolean takeParams = !params.isEmpty();
 		boolean takeSub = !subcommands.isEmpty();
@@ -79,13 +71,10 @@ public abstract class PreparedCommand implements IPreparedCommand
 
 		if (takeParams && args.length - i > 0 && args.length - i <= params.size())
 		{
-			String param = params.get(args.length - i - 1);
+			IArgument param = params.get(args.length - i - 1);
 			List<String> matches;
-			if (param.equalsIgnoreCase("player"))
-				matches = getPlayers();
-
-			else if (param.equalsIgnoreCase("world"))
-				matches = getWorlds();
+			if(param instanceof ITabComplete)
+				matches = ((ITabComplete)param).getAlternatives((RunsafePlayer) executor, args[args.length - 1]);
 
 			else
 			{
@@ -93,14 +82,14 @@ public abstract class PreparedCommand implements IPreparedCommand
 					"TabComplete-Partial: param=%s, arg=%s",
 					param, args[args.length - 1]
 				);
-				matches = command.peek().getParameterOptionsPartial(param, args[args.length - 1]);
+				matches = command.peek().getParameterOptionsPartial(param.toString(), args[args.length - 1]);
 				if (matches != null)
 				{
 					if (matches.isEmpty())
 						return null;
 					return matches;
 				}
-				matches = command.peek().getParameterOptions(param);
+				matches = command.peek().getParameterOptions(param.toString());
 				if (matches == null)
 					return Lists.newArrayList();
 			}
@@ -118,6 +107,19 @@ public abstract class PreparedCommand implements IPreparedCommand
 
 		// If capturing tail - allow tab completion of names in final parameter
 		return command.peek().isCapturingTail() ? null : Lists.<String>newArrayList();
+	}
+
+	private int countSuperParams()
+	{
+		int i = 0;
+		for (ICommandHandler cmd : command)
+		{
+			if (cmd.equals(command.peek()))
+				break;
+			i += cmd.getParameters().size(); // Args taken by command
+			i++; // Arg taken by selecting the next subcommand
+		}
+		return i;
 	}
 
 	private static List<String> filterList(Iterable<String> values, String filter)
@@ -152,10 +154,10 @@ public abstract class PreparedCommand implements IPreparedCommand
 		);
 	}
 
-	protected String usage(Command target)
+	protected String usage(ICommandHandler target)
 	{
 		Collection<String> params = new ArrayList<String>(command.size());
-		for (Command tier : command)
+		for (ICommandHandler tier : command)
 			params.add(tier.getUsageCommandParams());
 
 		//noinspection HardcodedFileSeparator
@@ -163,7 +165,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 	}
 
 	protected final ICommandExecutor executor;
-	protected final Stack<Command> command;
+	protected final Stack<ICommandHandler> command;
 	protected final String[] arguments;
 	protected final Map<String, String> parameters;
 	private final String requiredPermission;

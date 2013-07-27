@@ -2,9 +2,9 @@ package no.runsafe.framework.internal.command.prepared;
 
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.command.AsyncCommand;
-import no.runsafe.framework.api.command.Command;
 import no.runsafe.framework.api.command.ExecutableCommand;
 import no.runsafe.framework.api.command.ICommandExecutor;
+import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.minecraft.RunsafeServer;
 
 import java.util.Map;
@@ -13,7 +13,7 @@ import java.util.Stack;
 public final class PreparedAsynchronousCommand extends PreparedCommand
 {
 	public PreparedAsynchronousCommand(
-		ICommandExecutor executor, Stack<Command> definingCommand, String[] args, Map<String, String> parameters)
+		ICommandExecutor executor, Stack<ICommandHandler> definingCommand, String[] args, Map<String, String> parameters)
 	{
 		super(executor, definingCommand, args, parameters);
 	}
@@ -21,7 +21,7 @@ public final class PreparedAsynchronousCommand extends PreparedCommand
 	@Override
 	public String execute()
 	{
-		Command target = command.peek();
+		ICommandHandler target = command.peek();
 		if (target instanceof AsyncCommand && !parameters.containsValue(null))
 		{
 			((AsyncCommand) target).Schedule(this);

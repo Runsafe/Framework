@@ -1,9 +1,11 @@
 package no.runsafe.framework.api.command;
 
+import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 import no.runsafe.framework.api.IOutput;
-import no.runsafe.framework.internal.command.prepared.PreparedAsynchronousCallbackCommand;
-import no.runsafe.framework.internal.command.prepared.PreparedAsynchronousCommand;
+import no.runsafe.framework.api.command.argument.IArgument;
+import no.runsafe.framework.api.command.argument.RequiredArgument;
 import no.runsafe.framework.internal.command.prepared.PreparedSynchronousCommand;
 import no.runsafe.framework.text.ChatColour;
 import org.apache.commons.lang.StringUtils;
@@ -29,12 +31,18 @@ public class Command implements ICommandHandler
 	 * @param permission  A permission String that a player must have to run the command or null to allow anyone to run it
 	 * @param arguments   Optional list of required command parameters
 	 */
-	public Command(String commandName, String description, String permission, String... arguments)
+	public Command(
+		@Nonnull String commandName, @Nonnull String description, @Nullable String permission,
+		CharSequence... arguments
+	)
 	{
 		name = commandName;
 		this.permission = permission;
 		this.description = description;
-		argumentList = arguments == null ? ImmutableList.<String>of() : ImmutableList.copyOf(arguments);
+		List<IArgument> converted = new ArrayList<IArgument>(arguments.length);
+		for (CharSequence arg : arguments)
+			converted.add(arg instanceof IArgument ? (IArgument) arg : new RequiredArgument(arg.toString()));
+		argumentList = ImmutableList.copyOf(converted);
 	}
 
 	/**
@@ -42,7 +50,9 @@ public class Command implements ICommandHandler
 	 *
 	 * @return A String to display to the player or console user
 	 */
-	public String getUsage(ICommandExecutor executor)
+	@Nonnull
+	@Override
+	public String getUsage(@Nonnull ICommandExecutor executor)
 	{
 		Map<String, String> available = getAvailableSubCommands(executor);
 		List<String> usage = new ArrayList<String>(subCommands.size());
@@ -61,43 +71,42 @@ public class Command implements ICommandHandler
 		);
 	}
 
-	private Map<String, String> getAvailableSubCommands(ICommandExecutor executor)
-	{
-		Map<String, String> available = new HashMap<String, String>(subCommands.size());
-		for (Command sub : subCommands.values())
-		{
-			if (sub.isExecutable(executor))
-			{
-				if (sub.description == null)
-					available.put(sub.name, "");
-				else
-					available.put(sub.name, String.format(" - %s", sub.description));
-			}
-		}
-		return available;
-	}
-
 	/**
 	 * The command arguments listed in usage is built by this.
 	 * Override this if you have optional arguments
 	 *
 	 * @return List of arguments for inclusion in the command usage
 	 */
+	@Nonnull
+	@Override
 	public String getUsageCommandParams()
 	{
 		String part = ChatColour.BLUE + name + ChatColour.RESET;
 		if (!argumentList.isEmpty())
-			part += " <" +
-				ChatColour.YELLOW + StringUtils.join(
-				argumentList,
-				ChatColour.RESET + "> <" + ChatColour.YELLOW
-			) + ChatColour.RESET + '>';
+			part += Strings.join(
+				Lists.transform(argumentList, new Function<IArgument, String>()
+				{
+					@Override
+					public String apply(@Nullable IArgument arg)
+					{
+						assert arg != null;
+						return String.format(
+							arg.isRequired() ? "<%s%s%s>%s" : "[%s%s%s]%s",
+							ChatColour.YELLOW, arg, ChatColour.RESET,
+							arg.isWhitespaceInclusive() ? "+" : ""
+						);
+					}
+				}),
+				" "
+			);
 		return part;
 	}
 
 	/**
 	 * @return The permission required to execute this command
 	 */
+	@Nullable
+	@Override
 	public final String getPermission()
 	{
 		return permission;
@@ -165,15 +174,7 @@ public class Command implements ICommandHandler
 		return name;
 	}
 
-	/**
-	 * Call this method in your constructor if the final parameter should grab all tailing arguments
-	 * i.e. if you want to support spaces without "" for input to a command
-	 */
-	protected final void captureTail()
-	{
-		captureTail = true;
-	}
-
+	@Deprecated
 	@Override
 	public final boolean isCapturingTail()
 	{
@@ -192,46 +193,20 @@ public class Command implements ICommandHandler
 	public final IPreparedCommand prepare(ICommandExecutor executor, @Nonnull String... args)
 	{
 		console.finer("Preparing command %s %s", name, StringUtils.join(args, " "));
-		return prepare(executor, new HashMap<String, String>(args.length), args, new Stack<Command>());
-	}
-
-	/**
-	 * Called by the framework to register a console object for debug output
-	 *
-	 * @param console The console to print debug information to
-	 */
-	@Override
-	public void setConsole(IOutput console)
-	{
-		console.finer("Setting console on command object.");
-		this.console = console;
-	}
-
-	@Nullable
-	@Override
-	public List<String> getParameterOptions(String parameter)
-	{
-		return null;
-	}
-
-	@Nullable
-	@Override
-	public List<String> getParameterOptionsPartial(String parameter, String arg)
-	{
-		return null;
+		return prepareCommand(executor, new HashMap<String, String>(args.length), args, new Stack<ICommandHandler>());
 	}
 
 	@Nonnull
 	@Override
-	public List<String> getParameters()
-	{
-		return Collections.unmodifiableList(argumentList);
-	}
-
-	private IPreparedCommand prepare(ICommandExecutor executor, Map<String, String> params, String[] args, Stack<Command> stack)
+	public final IPreparedCommand prepareCommand(
+		@Nonnull ICommandExecutor executor,
+		@Nonnull Map<String, String> params,
+		@Nonnull String[] args,
+		@Nonnull Stack<ICommandHandler> stack
+	)
 	{
 		stack.add(this);
-		Map<String, String> myParams = getParameters(args);
+		Map<String, String> myParams = parseParameters(args);
 		params.putAll(myParams);
 		if (!myParams.isEmpty())
 		{
@@ -243,32 +218,66 @@ public class Command implements ICommandHandler
 		if (args.length > 0)
 		{
 			console.finer("Looking for subcommand %s", args[0]);
-			Command subCommand = getSubCommand(executor, args[0]);
+			ICommandHandler subCommand = getSubCommand(executor, args[0]);
 			if (subCommand != null && subCommand.isExecutable(executor))
 			{
 				subCommand.setConsole(console);
 				args = Arrays.copyOfRange(args, 1, args.length);
 				console.finer("Preparing subcommand %s", executor.getName());
-				return subCommand.prepare(executor, params, args, stack);
+				return subCommand.prepareCommand(executor, params, args, stack);
 			}
 		}
+		return stack.peek().createAction(executor, stack, args, params);
+	}
 
-		if (stack.peek() instanceof AsyncCallbackCommand)
-		{
-			console.finer("Preparing AsyncCallback command with %d params and %d args", params.size(), args.length);
-			return new PreparedAsynchronousCallbackCommand(executor, stack, args, params);
-		}
-		if (stack.peek() instanceof AsyncCommand)
-		{
-			console.finer("Preparing Async command with %d params and %d args", params.size(), args.length);
-			return new PreparedAsynchronousCommand(executor, stack, args, params);
-		}
+	@Nonnull
+	@Override
+	public IPreparedCommand createAction(
+		@Nonnull ICommandExecutor executor,
+		@Nonnull Stack<ICommandHandler> stack,
+		@Nonnull String[] args,
+		@Nonnull Map<String, String> params
+	)
+	{
 		console.finer("Preparing Sync command with %d params and %d args", params.size(), args.length);
 		return new PreparedSynchronousCommand(executor, stack, args, params);
 	}
 
-	@SuppressWarnings("MethodWithMultipleLoops")
-	private boolean isExecutable(ICommandExecutor executor)
+	/**
+	 * Called by the framework to register a console object for debug output
+	 *
+	 * @param console The console to print debug information to
+	 */
+	@Override
+	public void setConsole(@Nonnull IOutput console)
+	{
+		console.finer("Setting console on command object.");
+		this.console = console;
+	}
+
+	@Nullable
+	@Override
+	public List<String> getParameterOptions(@Nonnull String parameter)
+	{
+		return null;
+	}
+
+	@Nullable
+	@Override
+	public List<String> getParameterOptionsPartial(@Nonnull String parameter, @Nonnull String arg)
+	{
+		return null;
+	}
+
+	@Nonnull
+	@Override
+	public List<IArgument> getParameters()
+	{
+		return Collections.unmodifiableList(argumentList);
+	}
+
+	@Override
+	public boolean isExecutable(@Nonnull ICommandExecutor executor)
 	{
 		if (permission == null)
 		{
@@ -278,6 +287,32 @@ public class Command implements ICommandHandler
 
 			return !getClass().equals(Command.class);
 		}
+		return checkPermission(executor);
+	}
+
+	/**
+	 * Call this method in your constructor if the final parameter should grab all tailing arguments
+	 * i.e. if you want to support spaces without "" for input to a command
+	 */
+	@Deprecated
+	protected final void captureTail()
+	{
+		captureTail = true;
+	}
+
+	private Map<String, String> getAvailableSubCommands(ICommandExecutor executor)
+	{
+		Map<String, String> available = new HashMap<String, String>(subCommands.size());
+		for (Command sub : subCommands.values())
+		{
+			if (sub.isExecutable(executor))
+				available.put(sub.name, String.format(" - %s", sub.description));
+		}
+		return available;
+	}
+
+	private boolean checkPermission(ICommandExecutor executor)
+	{
 		Matcher params = paramPermission.matcher(permission);
 		if (params.find())
 		{
@@ -292,26 +327,36 @@ public class Command implements ICommandHandler
 		return executor.hasPermission(permission);
 	}
 
-	private Map<String, String> getParameters(String... args)
+	private Map<String, String> parseParameters(String... args)
 	{
 		Map<String, String> parameters = new HashMap<String, String>(args.length);
 
 		int index = 0;
-		for (String parameter : argumentList)
+		for (IArgument parameter : argumentList)
 		{
+			if (parameter.isWhitespaceInclusive())
+			{
+				if (args.length > index)
+				{
+					parameters.put(parameter.toString(), StringUtils.join(args, " ", index, args.length));
+					break;
+				}
+			}
+
 			String value = null;
 			if (args.length > index)
 				value = args[index];
 			index++;
-			parameters.put(parameter, value);
+			if (parameter.isRequired() || value != null && !value.isEmpty())
+				parameters.put(parameter.toString(), value);
 		}
 		if (captureTail && args.length > index)
-			parameters.put(argumentList.get(index - 1), StringUtils.join(args, " ", index - 1, args.length));
+			parameters.put(argumentList.get(index - 1).toString(), StringUtils.join(args, " ", index - 1, args.length));
 		return parameters;
 	}
 
 	protected IOutput console;
-	private final ImmutableList<String> argumentList;
+	private final ImmutableList<IArgument> argumentList;
 	private final Map<String, Command> subCommands = new HashMap<String, Command>(0);
 	private final String name;
 	private final String permission;

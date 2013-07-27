@@ -3,9 +3,11 @@ package no.runsafe.framework.api.command;
 import no.runsafe.framework.internal.command.prepared.PreparedAsynchronousCallbackCommand;
 import no.runsafe.framework.api.IScheduler;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 /**
  * Base class representing a command that has an implementation that can be executed asynchronously with a return value
@@ -71,6 +73,14 @@ public abstract class AsyncCallbackCommand<T> extends ExecutableCommand
 	public final void Schedule(PreparedAsynchronousCallbackCommand target)
 	{
 		target.schedule(scheduler);
+	}
+
+	@Nonnull
+	@Override
+	public IPreparedCommand createAction(@Nonnull ICommandExecutor executor, @Nonnull Stack<ICommandHandler> stack, @Nonnull String[] args, @Nonnull Map<String, String> params)
+	{
+		console.finer("Preparing AsyncCallback command with %d params and %d args", params.size(), args.length);
+		return new PreparedAsynchronousCallbackCommand(executor, stack, args, params);
 	}
 
 	private final IScheduler scheduler;

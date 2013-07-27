@@ -1,32 +1,64 @@
 package no.runsafe.framework.api.command;
 
 import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.command.argument.IArgument;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Map;
+import java.util.Stack;
 
 public interface ICommandHandler
 {
 	@Nonnull
-	IPreparedCommand prepare(ICommandExecutor executor, String... args);
-
-	@Nonnull
 	String getName();
 
-	void setConsole(IOutput console);
+	void setConsole(@Nonnull IOutput console);
 
 	@Nullable
-	List<String> getParameterOptions(String parameter);
+	List<String> getParameterOptions(@Nonnull String parameter);
 
 	@Nullable
-	Iterable<String> getParameterOptionsPartial(String parameter, String arg);
+	List<String> getParameterOptionsPartial(@Nonnull String parameter, @Nonnull String arg);
 
 	@Nonnull
-	List<String> getParameters();
+	List<IArgument> getParameters();
 
 	@Nonnull
 	List<String> getSubCommands(ICommandExecutor executor);
 
+	@Deprecated
 	boolean isCapturingTail();
+
+	@Nonnull
+	String getUsageCommandParams();
+
+	@Nullable
+	String getPermission();
+
+	@Nonnull
+	String getUsage(@Nonnull ICommandExecutor executor);
+
+	@SuppressWarnings("MethodWithMultipleLoops")
+	boolean isExecutable(@Nonnull ICommandExecutor executor);
+
+	@Nonnull
+	IPreparedCommand prepare(ICommandExecutor executor, String... args);
+
+	@Nonnull
+	IPreparedCommand prepareCommand(
+		@Nonnull ICommandExecutor executor,
+		@Nonnull Map<String, String> params,
+		@Nonnull String[] args,
+		@Nonnull Stack<ICommandHandler> stack
+	);
+
+	@Nonnull
+	IPreparedCommand createAction(
+		@Nonnull ICommandExecutor executor,
+		@Nonnull Stack<ICommandHandler> stack,
+		@Nonnull String[] args,
+		@Nonnull Map<String, String> params
+	);
 }
