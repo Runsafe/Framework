@@ -5,7 +5,9 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.command.argument.IArgument;
+import no.runsafe.framework.api.command.argument.PlayerArgument;
 import no.runsafe.framework.api.command.argument.RequiredArgument;
+import no.runsafe.framework.api.command.argument.WorldArgument;
 import no.runsafe.framework.internal.command.prepared.PreparedSynchronousCommand;
 import no.runsafe.framework.text.ChatColour;
 import org.apache.commons.lang.StringUtils;
@@ -41,7 +43,14 @@ public class Command implements ICommandHandler
 		this.description = description;
 		List<IArgument> converted = new ArrayList<IArgument>(arguments.length);
 		for (CharSequence arg : arguments)
-			converted.add(arg instanceof IArgument ? (IArgument) arg : new RequiredArgument(arg.toString()));
+		{
+			if (arg.equals("player"))
+				converted.add(new PlayerArgument(true));
+			else if (arg.equals("world"))
+				converted.add(new WorldArgument(true));
+			else
+				converted.add(arg instanceof IArgument ? (IArgument) arg : new RequiredArgument(arg.toString()));
+		}
 		argumentList = ImmutableList.copyOf(converted);
 	}
 

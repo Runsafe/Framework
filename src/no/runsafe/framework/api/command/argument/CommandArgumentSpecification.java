@@ -25,5 +25,11 @@ public abstract class CommandArgumentSpecification implements IArgument
 		return name.subSequence(start, end);
 	}
 
+	@Override
+	public String toString()
+	{
+		return name;
+	}
+
 	private final String name;
 }
