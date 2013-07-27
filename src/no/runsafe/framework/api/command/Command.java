@@ -66,7 +66,7 @@ public class Command implements ICommandHandler
 		Map<String, String> available = getAvailableSubCommands(executor);
 		List<String> usage = new ArrayList<String>(subCommands.size());
 		if (available.isEmpty())
-			return description == null ? "" : description;
+			return description;
 
 		String format = "  %s%s%s: %s";
 		for (Map.Entry<String, String> stringStringEntry : available.entrySet())
@@ -92,7 +92,7 @@ public class Command implements ICommandHandler
 	{
 		String part = ChatColour.BLUE + name + ChatColour.RESET;
 		if (!argumentList.isEmpty())
-			part += Strings.join(
+			part += ' ' + Strings.join(
 				Lists.transform(argumentList, new Function<IArgument, String>()
 				{
 					@Override
