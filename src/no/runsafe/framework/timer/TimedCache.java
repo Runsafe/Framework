@@ -34,7 +34,7 @@ public class TimedCache<Key, Value>
 
 	public Value Cache(Key key, Value value)
 	{
-		if (key == null)
+		if (key == null || value == null)
 			return value;
 		RefreshTimer(key);
 		Value cached = cache.putIfAbsent(key, value);
