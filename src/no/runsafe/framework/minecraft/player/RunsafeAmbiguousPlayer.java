@@ -1,5 +1,6 @@
 package no.runsafe.framework.minecraft.player;
 
+import com.google.common.collect.ImmutableList;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.OfflinePlayer;
 
@@ -24,7 +25,7 @@ public class RunsafeAmbiguousPlayer extends RunsafePlayer
 
 	public Iterable<String> getAmbiguity()
 	{
-		return ambiguity;
+		return ImmutableList.copyOf(ambiguity);
 	}
 
 	@Override
