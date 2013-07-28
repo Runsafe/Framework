@@ -19,19 +19,4 @@ public abstract class ExecutableCommand extends Command implements ISyncExecute
 	{
 		super(commandName, description, permission, arguments);
 	}
-
-	/**
-	 * Override this method if you have optional arguments
-	 *
-	 * @param executor   The player or console executing the command
-	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
-	 * @param arguments  Tailing arguments not asked for in the command definition
-	 * @return Message to show to the user running the command
-	 */
-	@Override
-	@Deprecated
-	public String OnExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
-	{
-		return OnExecute(executor, parameters);
-	}
 }

@@ -20,7 +20,7 @@ public final class PreparedSynchronousCommand extends PreparedCommand
 	{
 		ICommandHandler target = command.peek();
 		if (target instanceof ISyncExecute && !parameters.containsValue(null))
-			return ((ISyncExecute) target).OnExecute(executor, parameters, arguments);
+			return ((ISyncExecute) target).OnExecute(executor, parameters);
 
 		return usage(target);
 	}

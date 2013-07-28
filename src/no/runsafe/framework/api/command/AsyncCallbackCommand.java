@@ -21,37 +21,6 @@ public abstract class AsyncCallbackCommand<T> extends ExecutableCommand implemen
 		this.scheduler = scheduler;
 	}
 
-	/**
-	 * Called on the main thread before {@link AsyncCallbackCommand#OnAsyncExecute(ICommandExecutor, HashMap)}
-	 *
-	 * @param executor   The player or console executing the command
-	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
-	 * @param arguments  Tailing arguments not asked for in the command definition
-	 * @return Message to show to the user running the command
-	 */
-	@Nullable
-	@Override
-	@Deprecated
-	public String OnExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
-	{
-		return null;
-	}
-
-	/**
-	 * Override this method if you have optional arguments
-	 *
-	 * @param executor   The player or console executing the command
-	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
-	 * @param arguments  Tailing arguments not asked for in the command definition
-	 * @return Data object that gets passed to SyncPostExecute
-	 */
-	@Override
-	@Deprecated
-	public T OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
-	{
-		return OnAsyncExecute(executor, parameters);
-	}
-
 	@Nonnull
 	@Override
 	public IScheduler getScheduler()

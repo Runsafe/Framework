@@ -22,7 +22,7 @@ public final class PreparedAsynchronousCommand extends PreparedCommand
 		if (target instanceof CommandScheduler && !parameters.containsValue(null))
 		{
 			schedule(((CommandScheduler) target).getScheduler());
-			return ((ISyncExecute) target).OnExecute(executor, parameters, arguments);
+			return ((ISyncExecute) target).OnExecute(executor, parameters);
 		}
 
 		return usage(target);
@@ -31,7 +31,7 @@ public final class PreparedAsynchronousCommand extends PreparedCommand
 	public String executeDirect()
 	{
 		IAsyncExecute target = (IAsyncExecute) command.peek();
-		return target.OnAsyncExecute(executor, parameters, arguments);
+		return target.OnAsyncExecute(executor, parameters);
 	}
 
 	public void schedule(final IScheduler scheduler)
@@ -45,7 +45,7 @@ public final class PreparedAsynchronousCommand extends PreparedCommand
 				{
 					try
 					{
-						final String result = target.OnAsyncExecute(executor, parameters, arguments);
+						final String result = target.OnAsyncExecute(executor, parameters);
 						if (result != null && executor != null)
 							scheduler.startSyncTask(
 								new Runnable()

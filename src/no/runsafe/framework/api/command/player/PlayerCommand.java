@@ -17,36 +17,12 @@ public abstract class PlayerCommand extends ExecutableCommand
 	}
 
 	@Override
-	@Deprecated
-	public final String OnExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
-	{
-		if (executor instanceof RunsafePlayer)
-			return OnExecute((RunsafePlayer) executor, parameters, arguments);
-
-		return "This command cannot be used from the console.";
-	}
-
-	@Override
 	public final String OnExecute(ICommandExecutor executor, Map<String, String> parameters)
 	{
 		if (executor instanceof RunsafePlayer)
 			return OnExecute((RunsafePlayer) executor, parameters);
 
 		return "This command cannot be used from the console.";
-	}
-
-	/**
-	 * Override this method if you use optional arguments
-	 *
-	 * @param executor   The player executing the command
-	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
-	 * @param arguments  Tailing arguments not asked for in the command definition
-	 * @return Message to show to the user running the command
-	 */
-	@Deprecated
-	public String OnExecute(RunsafePlayer executor, Map<String, String> parameters, String... arguments)
-	{
-		return OnExecute(executor, parameters);
 	}
 
 	/**

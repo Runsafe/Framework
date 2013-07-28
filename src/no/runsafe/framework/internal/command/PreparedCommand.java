@@ -68,8 +68,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 		if (takeSub)
 			return filterList(command.peek().getSubCommands(executor), args[args.length - 1]);
 
-		// If capturing tail - allow tab completion of names in final parameter
-		return command.peek().isCapturingTail() ? null : Lists.<String>newArrayList();
+		return null;
 	}
 
 	@Nullable

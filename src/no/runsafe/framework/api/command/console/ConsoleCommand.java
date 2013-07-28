@@ -17,35 +17,12 @@ public abstract class ConsoleCommand extends ExecutableCommand
 	}
 
 	@Override
-	@Deprecated
-	public final String OnExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
-	{
-		if (executor instanceof RunsafeConsole)
-			return OnExecute(parameters, arguments);
-
-		return "This command must be used from the console.";
-	}
-
-	@Override
 	public final String OnExecute(ICommandExecutor executor, Map<String, String> parameters)
 	{
 		if (executor instanceof RunsafeConsole)
 			return OnExecute(parameters);
 
 		return "This command must be used from the console.";
-	}
-
-	/**
-	 * Override this method if you use optional arguments
-	 *
-	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
-	 * @param arguments  Tailing arguments not asked for in the command definition
-	 * @return Message to show in the console
-	 */
-	@Deprecated
-	public String OnExecute(Map<String, String> parameters, String... arguments)
-	{
-		return OnExecute(parameters);
 	}
 
 	/**

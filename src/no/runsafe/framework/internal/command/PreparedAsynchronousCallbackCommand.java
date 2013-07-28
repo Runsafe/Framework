@@ -22,7 +22,7 @@ public final class PreparedAsynchronousCallbackCommand extends PreparedCommand
 		if (target instanceof CommandScheduler && !parameters.containsValue(null))
 		{
 			schedule(((CommandScheduler) target).getScheduler());
-			return ((ISyncExecute) target).OnExecute(executor, parameters, arguments);
+			return ((ISyncExecute) target).OnExecute(executor, parameters);
 		}
 
 		return usage(target);
@@ -43,7 +43,7 @@ public final class PreparedAsynchronousCallbackCommand extends PreparedCommand
 					{
 						try
 						{
-							final T result = target.OnAsyncExecute(executor, parameters, arguments);
+							final T result = target.OnAsyncExecute(executor, parameters);
 							scheduler.startSyncTask(
 								new Runnable()
 								{

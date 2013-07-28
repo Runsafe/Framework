@@ -27,21 +27,6 @@ public abstract class AsyncCommand extends ExecutableCommand implements CommandS
 		return null;
 	}
 
-	/**
-	 * If you use optional arguments, override this method
-	 *
-	 * @param executor   The console or player executing the command
-	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
-	 * @param arguments  Tailing arguments not asked for in the command definition
-	 * @return Message to show to the user running the command
-	 */
-	@Override
-	@Deprecated
-	public String OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
-	{
-		return OnAsyncExecute(executor, parameters);
-	}
-
 	@Nonnull
 	@Override
 	public IScheduler getScheduler()

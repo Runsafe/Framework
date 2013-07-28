@@ -21,29 +21,10 @@ public abstract class ConsoleAsyncCallbackCommand<T> extends AsyncCallbackComman
 		super(name, description, null, scheduler, args);
 	}
 
-	@Override
-	@Deprecated
-	public final String OnExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
-	{
-		if (executor instanceof RunsafePlayer)
-			return "This command must be used from the console.";
-		return OnExecute(parameters, arguments);
-	}
-
 	@Nullable
 	@Override
 	public final String OnExecute(ICommandExecutor executor, Map<String, String> parameters)
 	{
-		return null;
-	}
-
-	@Nullable
-	@Override
-	@Deprecated
-	public final T OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
-	{
-		if (executor instanceof RunsafeConsole)
-			return OnAsyncExecute(parameters, arguments);
 		return null;
 	}
 
@@ -54,20 +35,6 @@ public abstract class ConsoleAsyncCallbackCommand<T> extends AsyncCallbackComman
 		if (executor instanceof RunsafeConsole)
 			return OnAsyncExecute(parameters);
 		return null;
-	}
-
-	/**
-	 * This method is called on the main thread before {@link ConsoleAsyncCallbackCommand#OnAsyncExecute(HashMap)}
-	 * Override this method if you use optional arguments
-	 *
-	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
-	 * @param arguments  Tailing arguments not asked for in the command definition
-	 * @return Message to show in the console
-	 */
-	@Deprecated
-	public String OnExecute(Map<String, String> parameters, String... arguments)
-	{
-		return OnExecute(parameters);
 	}
 
 	/**

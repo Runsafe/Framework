@@ -4,9 +4,6 @@ import java.util.Map;
 
 public interface ISyncExecute
 {
-	@Deprecated
-	String OnExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments);
-
 	/**
 	 * The implementation of the command.
 	 * If you use optional arguments, you still need to override this method, just leave it empty.

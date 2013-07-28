@@ -4,9 +4,6 @@ import java.util.Map;
 
 public interface IAsyncExecute
 {
-	@Deprecated
-	String OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments);
-
 	/**
 	 * If you use optional arguments, you still need to override this but you can leave it empty.
 	 *

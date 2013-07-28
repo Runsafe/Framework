@@ -21,43 +21,11 @@ public abstract class ConsoleAsyncCommand extends AsyncCommand
 	}
 
 	@Override
-	@Deprecated
-	public final String OnExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
-	{
-		if (executor instanceof RunsafeConsole)
-			return OnExecute(parameters, arguments);
-		return "This command must be used from the console.";
-	}
-
-	@Override
-	@Deprecated
-	public final String OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
-	{
-		if (executor instanceof RunsafeConsole)
-			return OnAsyncExecute(parameters, arguments);
-		return "This command must be used from the console.";
-	}
-
-	@Override
 	public final String OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters)
 	{
 		if (executor instanceof RunsafeConsole)
 			return OnAsyncExecute(parameters);
 		return "This command must be used from the console.";
-	}
-
-	/**
-	 * This method is called on the main thread before {@link ConsoleAsyncCommand#OnAsyncExecute(HashMap)}
-	 * Override this method if you use optional arguments
-	 *
-	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
-	 * @param arguments  Tailing arguments not asked for in the command definition
-	 * @return Message to show in the console
-	 */
-	@Deprecated
-	public String OnExecute(Map<String, String> parameters, String... arguments)
-	{
-		return OnExecute(parameters);
 	}
 
 	/**
@@ -71,19 +39,6 @@ public abstract class ConsoleAsyncCommand extends AsyncCommand
 	public String OnExecute(Map<String, String> parameters)
 	{
 		return null;
-	}
-
-	/**
-	 * If you use optional arguments, override this method
-	 *
-	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
-	 * @param arguments  Tailing arguments not asked for in the command definition
-	 * @return Message to show in the console after the command completes
-	 */
-	@Deprecated
-	public String OnAsyncExecute(Map<String, String> parameters, String... arguments)
-	{
-		return OnAsyncExecute(parameters);
 	}
 
 	/**

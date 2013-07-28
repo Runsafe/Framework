@@ -20,44 +20,11 @@ public abstract class PlayerAsyncCommand extends AsyncCommand
 	}
 
 	@Override
-	@Deprecated
-	public final String OnExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
-	{
-		if (executor instanceof RunsafePlayer)
-			return OnExecute((RunsafePlayer) executor, parameters, arguments);
-		return "This command cannot be used from the console.";
-	}
-
-	@Override
-	@Deprecated
-	public final String OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
-	{
-		if (executor instanceof RunsafePlayer)
-			return OnAsyncExecute((RunsafePlayer) executor, parameters, arguments);
-		return "This command cannot be used from the console.";
-	}
-
-	@Override
 	public final String OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters)
 	{
 		if (executor instanceof RunsafePlayer)
 			return OnAsyncExecute((RunsafePlayer) executor, parameters);
 		return "This command cannot be used from the console.";
-	}
-
-	/**
-	 * This method is called on the main thread before {@link PlayerAsyncCommand#OnAsyncExecute(ICommandExecutor, Map)}
-	 * Override this method if you use optional arguments
-	 *
-	 * @param executor   The player executing the command
-	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
-	 * @param arguments  Tailing arguments not asked for in the command definition
-	 * @return Message to show to the user running the command
-	 */
-	@Deprecated
-	public String OnExecute(RunsafePlayer executor, Map<String, String> parameters, String... arguments)
-	{
-		return OnExecute(executor, parameters);
 	}
 
 	/**
@@ -72,20 +39,6 @@ public abstract class PlayerAsyncCommand extends AsyncCommand
 	public String OnExecute(RunsafePlayer executor, Map<String, String> parameters)
 	{
 		return null;
-	}
-
-	/**
-	 * If you use optional arguments, override this method
-	 *
-	 * @param executor   The player executing the command
-	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
-	 * @param arguments  Tailing arguments not asked for in the command definition
-	 * @return Message to show to the user running the command after the command completes
-	 */
-	@Deprecated
-	public String OnAsyncExecute(RunsafePlayer executor, Map<String, String> parameters, String... arguments)
-	{
-		return OnAsyncExecute(executor, parameters);
 	}
 
 	/**
