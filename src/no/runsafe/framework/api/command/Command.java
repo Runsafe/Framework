@@ -5,9 +5,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.command.argument.IArgument;
-import no.runsafe.framework.api.command.argument.PlayerArgument;
-import no.runsafe.framework.api.command.argument.RequiredArgument;
-import no.runsafe.framework.api.command.argument.WorldArgument;
 import no.runsafe.framework.internal.command.PreparedSynchronousCommand;
 import no.runsafe.framework.text.ChatColour;
 import org.apache.commons.lang.StringUtils;
@@ -38,6 +35,7 @@ public class Command implements ICommandHandler
 		IArgument... arguments
 	)
 	{
+		validate(arguments);
 		name = commandName;
 		this.permission = permission;
 		this.description = description;
@@ -280,6 +278,26 @@ public class Command implements ICommandHandler
 			return !getClass().equals(Command.class);
 		}
 		return checkPermission(executor);
+	}
+
+	private void validate(IArgument[] arguments)
+	{
+		boolean optional = false;
+		boolean whitespace = false;
+		for (IArgument argument : arguments)
+		{
+			if (whitespace)
+				throw new IllegalArgumentException("Whitespace may only be captured by the final argument!");
+
+			if (optional && argument.isRequired())
+				throw new IllegalArgumentException("There may not be required parameters after an optional one!");
+
+			if (!argument.isRequired())
+				optional = true;
+
+			if (argument.isWhitespaceInclusive())
+				whitespace = true;
+		}
 	}
 
 	private Map<String, String> getAvailableSubCommands(ICommandExecutor executor)
