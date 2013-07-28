@@ -12,7 +12,7 @@ public class TimedCache<Key, Value>
 		this.scheduler = scheduler;
 	}
 
-	public void Invalidate(Key key)
+	public void Invalidate(@Nullable Key key)
 	{
 		if (key != null)
 			cache.remove(key);
@@ -27,12 +27,13 @@ public class TimedCache<Key, Value>
 	}
 
 	@Nullable
-	public Value Cache(Key key)
+	public Value Cache(@Nullable Key key)
 	{
 		return key != null && cache.containsKey(key) ? cache.get(key) : null;
 	}
 
-	public Value Cache(Key key, Value value)
+	@Nullable
+	public Value Cache(@Nullable Key key, @Nullable Value value)
 	{
 		if (key == null || value == null)
 			return value;

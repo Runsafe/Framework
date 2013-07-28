@@ -22,6 +22,7 @@ public abstract class ConsoleAsyncCallbackCommand<T> extends AsyncCallbackComman
 	}
 
 	@Override
+	@Deprecated
 	public final String OnExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
 	{
 		if (executor instanceof RunsafePlayer)
@@ -38,6 +39,7 @@ public abstract class ConsoleAsyncCallbackCommand<T> extends AsyncCallbackComman
 
 	@Nullable
 	@Override
+	@Deprecated
 	public final T OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
 	{
 		if (executor instanceof RunsafeConsole)
@@ -62,6 +64,7 @@ public abstract class ConsoleAsyncCallbackCommand<T> extends AsyncCallbackComman
 	 * @param arguments  Tailing arguments not asked for in the command definition
 	 * @return Message to show in the console
 	 */
+	@Deprecated
 	public String OnExecute(Map<String, String> parameters, String... arguments)
 	{
 		return OnExecute(parameters);
@@ -87,6 +90,7 @@ public abstract class ConsoleAsyncCallbackCommand<T> extends AsyncCallbackComman
 	 * @param arguments  Tailing arguments not asked for in the command definition
 	 * @return A value to return to the post-processing method
 	 */
+	@Deprecated
 	public T OnAsyncExecute(Map<String, String> parameters, String... arguments)
 	{
 		return OnAsyncExecute(parameters);

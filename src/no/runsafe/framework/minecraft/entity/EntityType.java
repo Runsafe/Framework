@@ -14,7 +14,7 @@ public final class EntityType
 	{
 	}
 
-	@SuppressWarnings({"MethodWithMultipleLoops", "ConstantConditions"})
+	@SuppressWarnings("MethodWithMultipleLoops")
 	@Nullable
 	public static RunsafeEntityType convert(org.bukkit.entity.EntityType entityType)
 	{

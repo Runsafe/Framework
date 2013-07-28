@@ -17,6 +17,7 @@ public abstract class ConsoleCommand extends ExecutableCommand
 	}
 
 	@Override
+	@Deprecated
 	public final String OnExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
 	{
 		if (executor instanceof RunsafeConsole)
@@ -41,6 +42,7 @@ public abstract class ConsoleCommand extends ExecutableCommand
 	 * @param arguments  Tailing arguments not asked for in the command definition
 	 * @return Message to show in the console
 	 */
+	@Deprecated
 	public String OnExecute(Map<String, String> parameters, String... arguments)
 	{
 		return OnExecute(parameters);

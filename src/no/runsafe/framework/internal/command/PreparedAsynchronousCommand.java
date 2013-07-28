@@ -1,10 +1,7 @@
-package no.runsafe.framework.internal.command.prepared;
+package no.runsafe.framework.internal.command;
 
 import no.runsafe.framework.api.IScheduler;
-import no.runsafe.framework.api.command.AsyncCommand;
-import no.runsafe.framework.api.command.ExecutableCommand;
-import no.runsafe.framework.api.command.ICommandExecutor;
-import no.runsafe.framework.api.command.ICommandHandler;
+import no.runsafe.framework.api.command.*;
 import no.runsafe.framework.minecraft.RunsafeServer;
 
 import java.util.Map;
@@ -22,10 +19,10 @@ public final class PreparedAsynchronousCommand extends PreparedCommand
 	public String execute()
 	{
 		ICommandHandler target = command.peek();
-		if (target instanceof AsyncCommand && !parameters.containsValue(null))
+		if (target instanceof CommandScheduler && !parameters.containsValue(null))
 		{
-			((AsyncCommand) target).Schedule(this);
-			return ((ExecutableCommand) target).OnExecute(executor, parameters, arguments);
+			schedule(((CommandScheduler) target).getScheduler());
+			return ((ISyncExecute) target).OnExecute(executor, parameters, arguments);
 		}
 
 		return usage(target);
@@ -33,13 +30,13 @@ public final class PreparedAsynchronousCommand extends PreparedCommand
 
 	public String executeDirect()
 	{
-		AsyncCommand target = (AsyncCommand) command.peek();
+		IAsyncExecute target = (IAsyncExecute) command.peek();
 		return target.OnAsyncExecute(executor, parameters, arguments);
 	}
 
 	public void schedule(final IScheduler scheduler)
 	{
-		final AsyncCommand target = (AsyncCommand) command.peek();
+		final IAsyncExecute target = (IAsyncExecute) command.peek();
 		scheduler.startAsyncTask(
 			new Runnable()
 			{

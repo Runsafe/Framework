@@ -62,12 +62,9 @@ public final class BukkitCommandTabExecutor implements TabExecutor
 	@Override
 	public List<String> onTabComplete(CommandSender commandSender, Command command, String alias, String[] args)
 	{
-		//noinspection HardcodedFileSeparator
-		logger.fine("Handling tabcomplete for '/%s %s'", alias, Strings.join(args, " "));
+		logger.fine("Handling tabcomplete for command '%s %s'", alias, Strings.join(args, " "));
 		Iterable<String> alternatives = tabCompleteCommand(commandSender, args);
-		if (alternatives == null)
-			return null;
-		return ImmutableList.copyOf(alternatives);
+		return alternatives == null ? null : ImmutableList.copyOf(alternatives);
 	}
 
 	private Iterable<String> tabCompleteCommand(CommandSender sender, String... args)

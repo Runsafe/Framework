@@ -1,15 +1,16 @@
-package no.runsafe.framework.internal.command.prepared;
+package no.runsafe.framework.internal.command;
 
-import com.google.common.base.Function;
 import com.google.common.collect.Lists;
-import no.runsafe.framework.api.command.*;
+import no.runsafe.framework.api.command.ICommandExecutor;
+import no.runsafe.framework.api.command.ICommandHandler;
+import no.runsafe.framework.api.command.IContextPermissionProvider;
+import no.runsafe.framework.api.command.IPreparedCommand;
 import no.runsafe.framework.api.command.argument.IArgument;
 import no.runsafe.framework.api.command.argument.ITabComplete;
-import no.runsafe.framework.minecraft.RunsafeServer;
-import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.apache.commons.lang.StringUtils;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
 import java.util.regex.Pattern;
@@ -45,7 +46,6 @@ public abstract class PreparedCommand implements IPreparedCommand
 		return requiredPermission;
 	}
 
-	@SuppressWarnings("OverlyComplexMethod")
 	@Override
 	@Nullable
 	public Iterable<String> tabComplete(String... args)
@@ -56,13 +56,6 @@ public abstract class PreparedCommand implements IPreparedCommand
 		boolean takeParams = !params.isEmpty();
 		boolean takeSub = !subcommands.isEmpty();
 
-		RunsafeServer.Instance.getDebugger().finer(
-			"TabComplete: [taken %d, free %d] params=%s:%d, sub=%s:%d",
-			i, args.length - i,
-			params, takeParams ? 1 : 0,
-			subcommands, takeSub ? 1 : 0
-		);
-
 		if (!takeParams && !takeSub)
 			return Lists.newArrayList();
 
@@ -70,43 +63,36 @@ public abstract class PreparedCommand implements IPreparedCommand
 			return null;
 
 		if (takeParams && args.length - i > 0 && args.length - i <= params.size())
-		{
-			IArgument param = params.get(args.length - i - 1);
-			List<String> matches;
-			if(param instanceof ITabComplete)
-				matches = ((ITabComplete)param).getAlternatives((RunsafePlayer) executor, args[args.length - 1]);
-
-			else
-			{
-				RunsafeServer.Instance.getDebugger().finer(
-					"TabComplete-Partial: param=%s, arg=%s",
-					param, args[args.length - 1]
-				);
-				matches = command.peek().getParameterOptionsPartial(param.toString(), args[args.length - 1]);
-				if (matches != null)
-				{
-					if (matches.isEmpty())
-						return null;
-					return matches;
-				}
-				matches = command.peek().getParameterOptions(param.toString());
-				if (matches == null)
-					return Lists.newArrayList();
-			}
-			RunsafeServer.Instance.getDebugger().finer(
-				"TabComplete: param=%s, matches=%s, filter=%d",
-				param, matches, args[args.length - 1].isEmpty() ? 0 : 1
-			);
-			return args[args.length - 1].isEmpty() ? matches : filterList(matches, args[args.length - 1]);
-		}
+			return getSuggestions(params.get(args.length - i - 1), args);
 
 		if (takeSub)
-		{
 			return filterList(command.peek().getSubCommands(executor), args[args.length - 1]);
-		}
 
 		// If capturing tail - allow tab completion of names in final parameter
 		return command.peek().isCapturingTail() ? null : Lists.<String>newArrayList();
+	}
+
+	@Nullable
+	private Iterable<String> getSuggestions(@Nonnull IArgument param, @Nonnull String... args)
+	{
+		List<String> matches;
+		if (param instanceof ITabComplete)
+			matches = ((ITabComplete) param).getAlternatives((RunsafePlayer) executor, args[args.length - 1]);
+
+		else
+		{
+			matches = command.peek().getParameterOptionsPartial(param.toString(), args[args.length - 1]);
+			if (matches != null)
+			{
+				if (matches.isEmpty())
+					return null;
+				return matches;
+			}
+			matches = command.peek().getParameterOptions(param.toString());
+			if (matches == null)
+				return Lists.newArrayList();
+		}
+		return args[args.length - 1].isEmpty() ? matches : filterList(matches, args[args.length - 1]);
 	}
 
 	private int countSuperParams()
@@ -131,27 +117,6 @@ public abstract class PreparedCommand implements IPreparedCommand
 			if (value.toLowerCase().startsWith(filter.toLowerCase()))
 				matches.add(value);
 		return matches;
-	}
-
-	private List<String> getPlayers()
-	{
-		return RunsafeServer.Instance.getOnlinePlayers((RunsafePlayer) executor, parameters.get("player"));
-	}
-
-	private static List<String> getWorlds()
-	{
-		return Lists.transform(
-			RunsafeServer.Instance.getWorlds(),
-			new Function<RunsafeWorld, String>()
-			{
-				@Override
-				public String apply(@Nullable RunsafeWorld runsafeWorld)
-				{
-					assert runsafeWorld != null;
-					return runsafeWorld.getName();
-				}
-			}
-		);
 	}
 
 	protected String usage(ICommandHandler target)

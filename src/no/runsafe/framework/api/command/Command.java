@@ -8,7 +8,7 @@ import no.runsafe.framework.api.command.argument.IArgument;
 import no.runsafe.framework.api.command.argument.PlayerArgument;
 import no.runsafe.framework.api.command.argument.RequiredArgument;
 import no.runsafe.framework.api.command.argument.WorldArgument;
-import no.runsafe.framework.internal.command.prepared.PreparedSynchronousCommand;
+import no.runsafe.framework.internal.command.PreparedSynchronousCommand;
 import no.runsafe.framework.text.ChatColour;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.craftbukkit.libs.joptsimple.internal.Strings;

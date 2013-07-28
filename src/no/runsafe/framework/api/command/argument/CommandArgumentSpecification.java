@@ -1,5 +1,7 @@
 package no.runsafe.framework.api.command.argument;
 
+import javax.annotation.Nonnull;
+
 public abstract class CommandArgumentSpecification implements IArgument
 {
 	protected CommandArgumentSpecification(String name)
@@ -25,6 +27,7 @@ public abstract class CommandArgumentSpecification implements IArgument
 		return name.subSequence(start, end);
 	}
 
+	@Nonnull
 	@Override
 	public String toString()
 	{

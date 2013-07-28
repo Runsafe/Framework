@@ -17,6 +17,7 @@ public abstract class PlayerCommand extends ExecutableCommand
 	}
 
 	@Override
+	@Deprecated
 	public final String OnExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
 	{
 		if (executor instanceof RunsafePlayer)
@@ -42,6 +43,7 @@ public abstract class PlayerCommand extends ExecutableCommand
 	 * @param arguments  Tailing arguments not asked for in the command definition
 	 * @return Message to show to the user running the command
 	 */
+	@Deprecated
 	public String OnExecute(RunsafePlayer executor, Map<String, String> parameters, String... arguments)
 	{
 		return OnExecute(executor, parameters);

@@ -1,8 +1,8 @@
-package no.runsafe.framework.internal.command.prepared;
+package no.runsafe.framework.internal.command;
 
-import no.runsafe.framework.api.command.ExecutableCommand;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.ICommandHandler;
+import no.runsafe.framework.api.command.ISyncExecute;
 
 import java.util.Map;
 import java.util.Stack;
@@ -19,8 +19,8 @@ public final class PreparedSynchronousCommand extends PreparedCommand
 	public String execute()
 	{
 		ICommandHandler target = command.peek();
-		if (target instanceof ExecutableCommand && !parameters.containsValue(null))
-			return ((ExecutableCommand) target).OnExecute(executor, parameters, arguments);
+		if (target instanceof ISyncExecute && !parameters.containsValue(null))
+			return ((ISyncExecute) target).OnExecute(executor, parameters, arguments);
 
 		return usage(target);
 	}

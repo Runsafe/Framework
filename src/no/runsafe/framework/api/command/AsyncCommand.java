@@ -1,7 +1,7 @@
 package no.runsafe.framework.api.command;
 
 import no.runsafe.framework.api.IScheduler;
-import no.runsafe.framework.internal.command.prepared.PreparedAsynchronousCommand;
+import no.runsafe.framework.internal.command.PreparedAsynchronousCommand;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -12,7 +12,7 @@ import java.util.Stack;
  * Base class representing a command that has an implementation that can be executed asynchronously
  * WARNING: Do not call bukkit APIs from the background thread!
  */
-public abstract class AsyncCommand extends ExecutableCommand
+public abstract class AsyncCommand extends ExecutableCommand implements CommandScheduler, IAsyncExecute
 {
 	protected AsyncCommand(String name, String description, String permission, IScheduler scheduler, String... args)
 	{
@@ -35,33 +35,28 @@ public abstract class AsyncCommand extends ExecutableCommand
 	 * @param arguments  Tailing arguments not asked for in the command definition
 	 * @return Message to show to the user running the command
 	 */
+	@Override
+	@Deprecated
 	public String OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
 	{
 		return OnAsyncExecute(executor, parameters);
 	}
 
-	/**
-	 * If you use optional arguments, you still need to override this but you can leave it empty.
-	 *
-	 * @param executor   The console or player executing the command
-	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
-	 * @return Message to show to the user running the command
-	 */
-	public abstract String OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters);
-
-	/**
-	 * Callback from the prepared command object to use our scheduler
-	 *
-	 * @param target The prepared command that should get executed
-	 */
-	public final void Schedule(PreparedAsynchronousCommand target)
+	@Nonnull
+	@Override
+	public IScheduler getScheduler()
 	{
-		target.schedule(scheduler);
+		return scheduler;
 	}
 
 	@Nonnull
 	@Override
-	public IPreparedCommand createAction(@Nonnull ICommandExecutor executor, @Nonnull Stack<ICommandHandler> stack, @Nonnull String[] args, @Nonnull Map<String, String> params)
+	public IPreparedCommand createAction(
+		@Nonnull ICommandExecutor executor,
+		@Nonnull Stack<ICommandHandler> stack,
+		@Nonnull String[] args,
+		@Nonnull Map<String, String> params
+	)
 	{
 		console.finer("Preparing Async command with %d params and %d args", params.size(), args.length);
 		return new PreparedAsynchronousCommand(executor, stack, args, params);

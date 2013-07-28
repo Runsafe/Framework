@@ -1,7 +1,8 @@
 package no.runsafe.framework.minecraft.player;
 
-import no.runsafe.framework.internal.HookEngine;
+import com.google.common.collect.ImmutableList;
 import no.runsafe.framework.api.hook.IPlayerPermissions;
+import no.runsafe.framework.internal.HookEngine;
 import no.runsafe.framework.minecraft.RunsafeWorld;
 
 import javax.annotation.Nonnull;
@@ -95,7 +96,7 @@ public class RunsafeFakePlayer extends RunsafePlayer
 	@Override
 	public List<String> getGroups()
 	{
-		return groups;
+		return ImmutableList.copyOf(groups);
 	}
 
 	@Override

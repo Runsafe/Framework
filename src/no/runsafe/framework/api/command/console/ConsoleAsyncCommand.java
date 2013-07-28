@@ -21,6 +21,7 @@ public abstract class ConsoleAsyncCommand extends AsyncCommand
 	}
 
 	@Override
+	@Deprecated
 	public final String OnExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
 	{
 		if (executor instanceof RunsafeConsole)
@@ -29,6 +30,7 @@ public abstract class ConsoleAsyncCommand extends AsyncCommand
 	}
 
 	@Override
+	@Deprecated
 	public final String OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
 	{
 		if (executor instanceof RunsafeConsole)
@@ -52,6 +54,7 @@ public abstract class ConsoleAsyncCommand extends AsyncCommand
 	 * @param arguments  Tailing arguments not asked for in the command definition
 	 * @return Message to show in the console
 	 */
+	@Deprecated
 	public String OnExecute(Map<String, String> parameters, String... arguments)
 	{
 		return OnExecute(parameters);
@@ -77,6 +80,7 @@ public abstract class ConsoleAsyncCommand extends AsyncCommand
 	 * @param arguments  Tailing arguments not asked for in the command definition
 	 * @return Message to show in the console after the command completes
 	 */
+	@Deprecated
 	public String OnAsyncExecute(Map<String, String> parameters, String... arguments)
 	{
 		return OnAsyncExecute(parameters);

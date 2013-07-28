@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.command;
 
+import com.google.common.collect.ImmutableList;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.command.ICommandExecutor;
@@ -52,12 +53,11 @@ public final class CommandEngine implements Startable
 			hookCommand(plugin.getCommand(executor.getName()), executor);
 	}
 
-	/**
-	 * Not used
-	 */
 	@Override
 	public void stop()
 	{
+		for (BukkitCommandTabExecutor executor : getCommands())
+			unhookCommand(plugin.getCommand(executor.getName()));
 	}
 
 	private void hookCommand(PluginCommand command, BukkitCommandTabExecutor executor)
@@ -72,8 +72,16 @@ public final class CommandEngine implements Startable
 		}
 	}
 
+	private void unhookCommand(PluginCommand command)
+	{
+		command.setExecutor(null);
+	}
+
 	private Iterable<BukkitCommandTabExecutor> getCommands()
 	{
+		if (output == null)
+			return ImmutableList.of();
+
 		List<BukkitCommandTabExecutor> handlers = new ArrayList<BukkitCommandTabExecutor>(commands.length);
 		for (ICommandHandler command : commands)
 		{

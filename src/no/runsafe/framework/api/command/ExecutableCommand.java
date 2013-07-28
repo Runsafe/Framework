@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * Base class representing a command that has an implementation that can be executed
  */
-public abstract class ExecutableCommand extends Command
+public abstract class ExecutableCommand extends Command implements ISyncExecute
 {
 	/**
 	 * Defines the command
@@ -28,18 +28,10 @@ public abstract class ExecutableCommand extends Command
 	 * @param arguments  Tailing arguments not asked for in the command definition
 	 * @return Message to show to the user running the command
 	 */
+	@Override
+	@Deprecated
 	public String OnExecute(ICommandExecutor executor, Map<String, String> parameters, String... arguments)
 	{
 		return OnExecute(executor, parameters);
 	}
-
-	/**
-	 * The implementation of the command.
-	 * If you use optional arguments, you still need to override this method, just leave it empty.
-	 *
-	 * @param executor   The player or console executing the command
-	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
-	 * @return Message to show to the user running the command
-	 */
-	protected abstract String OnExecute(ICommandExecutor executor, Map<String, String> parameters);
 }

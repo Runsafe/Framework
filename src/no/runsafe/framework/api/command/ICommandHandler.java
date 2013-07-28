@@ -40,7 +40,6 @@ public interface ICommandHandler
 	@Nonnull
 	String getUsage(@Nonnull ICommandExecutor executor);
 
-	@SuppressWarnings("MethodWithMultipleLoops")
 	boolean isExecutable(@Nonnull ICommandExecutor executor);
 
 	@Nonnull
