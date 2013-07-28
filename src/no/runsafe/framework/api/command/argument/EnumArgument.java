@@ -8,7 +8,7 @@ import java.util.List;
 
 public class EnumArgument extends CommandArgumentSpecification implements ITabComplete
 {
-	protected EnumArgument(String name, Enum<?>[] values, boolean required)
+	public EnumArgument(String name, Enum<?>[] values, boolean required)
 	{
 		super(name);
 		List<String> names = new ArrayList<String>(values.length);
