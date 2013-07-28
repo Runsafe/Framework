@@ -28,9 +28,6 @@ public interface ICommandHandler
 	@Nonnull
 	List<String> getSubCommands(ICommandExecutor executor);
 
-	@Deprecated
-	boolean isCapturingTail();
-
 	@Nonnull
 	String getUsageCommandParams();
 

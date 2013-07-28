@@ -183,13 +183,6 @@ public class Command implements ICommandHandler
 		return name;
 	}
 
-	@Deprecated
-	@Override
-	public final boolean isCapturingTail()
-	{
-		return captureTail;
-	}
-
 	/**
 	 * Parses user input and returns a prepared command, ready to be executed
 	 *
@@ -219,7 +212,7 @@ public class Command implements ICommandHandler
 		params.putAll(myParams);
 		if (!myParams.isEmpty())
 		{
-			args = captureTail || args.length <= myParams.size()
+			args = args.length <= myParams.size()
 				? new String[0] :
 				Arrays.copyOfRange(args, myParams.size(), args.length);
 		}
@@ -299,16 +292,6 @@ public class Command implements ICommandHandler
 		return checkPermission(executor);
 	}
 
-	/**
-	 * Call this method in your constructor if the final parameter should grab all tailing arguments
-	 * i.e. if you want to support spaces without "" for input to a command
-	 */
-	@Deprecated
-	protected final void captureTail()
-	{
-		captureTail = true;
-	}
-
 	private Map<String, String> getAvailableSubCommands(ICommandExecutor executor)
 	{
 		Map<String, String> available = new HashMap<String, String>(subCommands.size());
@@ -359,8 +342,6 @@ public class Command implements ICommandHandler
 			if (parameter.isRequired() || value != null && !value.isEmpty())
 				parameters.put(parameter.toString(), value);
 		}
-		if (captureTail && args.length > index)
-			parameters.put(argumentList.get(index - 1).toString(), StringUtils.join(args, " ", index - 1, args.length));
 		return parameters;
 	}
 
@@ -370,6 +351,5 @@ public class Command implements ICommandHandler
 	private final String name;
 	private final String permission;
 	private final String description;
-	private boolean captureTail;
 	private static final Pattern paramPermission = Pattern.compile("<(.*)>");
 }
