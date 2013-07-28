@@ -16,12 +16,6 @@ import java.util.Map;
  */
 public abstract class ConsoleAsyncCallbackCommand<T> extends AsyncCallbackCommand<T> implements IConsoleAsyncCallbackExecute<T>
 {
-	@Deprecated
-	protected ConsoleAsyncCallbackCommand(String name, String description, IScheduler scheduler, CharSequence... args)
-	{
-		super(name, description, null, scheduler, args);
-	}
-
 	protected ConsoleAsyncCallbackCommand(String name, String description, IScheduler scheduler, IArgument... args)
 	{
 		super(name, description, null, scheduler, args);

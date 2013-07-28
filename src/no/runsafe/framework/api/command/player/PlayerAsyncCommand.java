@@ -15,12 +15,6 @@ import java.util.Map;
  */
 public abstract class PlayerAsyncCommand extends AsyncCommand implements IPlayerAsyncExecute
 {
-	@Deprecated
-	protected PlayerAsyncCommand(String name, String description, String permission, IScheduler scheduler, CharSequence... args)
-	{
-		super(name, description, permission, scheduler, args);
-	}
-
 	protected PlayerAsyncCommand(String name, String description, String permission, IScheduler scheduler, IArgument... args)
 	{
 		super(name, description, permission, scheduler, args);

@@ -14,13 +14,6 @@ import java.util.Stack;
  */
 public abstract class AsyncCallbackCommand<T> extends ExecutableCommand implements CommandScheduler, IAsyncCallbackExecute<T>
 {
-	@Deprecated
-	protected AsyncCallbackCommand(String name, String description, String permission, IScheduler scheduler, CharSequence... args)
-	{
-		super(name, description, permission, args);
-		this.scheduler = scheduler;
-	}
-
 	protected AsyncCallbackCommand(String name, String description, String permission, IScheduler scheduler, IArgument... args)
 	{
 		super(name, description, permission, args);

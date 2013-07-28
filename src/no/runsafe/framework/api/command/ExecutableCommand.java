@@ -18,12 +18,6 @@ public abstract class ExecutableCommand extends Command implements ISyncExecute
 	 * @param permission  A permission String that a player must have to run the command or null to allow anyone to run it
 	 * @param arguments   Optional list of required command parameters
 	 */
-	@Deprecated
-	protected ExecutableCommand(String commandName, String description, String permission, CharSequence... arguments)
-	{
-		super(commandName, description, permission, arguments);
-	}
-
 	protected ExecutableCommand(@Nonnull String commandName, @Nonnull String description, @Nullable String permission, IArgument... arguments)
 	{
 		super(commandName, description, permission, arguments);

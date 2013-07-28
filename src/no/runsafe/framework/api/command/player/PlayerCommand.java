@@ -12,12 +12,6 @@ import java.util.Map;
  */
 public abstract class PlayerCommand extends ExecutableCommand implements IPlayerExecute
 {
-	@Deprecated
-	protected PlayerCommand(String commandName, String description, String permission, CharSequence... arguments)
-	{
-		super(commandName, description, permission, arguments);
-	}
-
 	protected PlayerCommand(String commandName, String description, String permission, IArgument... arguments)
 	{
 		super(commandName, description, permission, arguments);

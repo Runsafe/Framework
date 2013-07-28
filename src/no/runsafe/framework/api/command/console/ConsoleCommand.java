@@ -12,17 +12,10 @@ import java.util.Map;
  */
 public abstract class ConsoleCommand extends ExecutableCommand implements IConsoleExecute
 {
-	@Deprecated
-	protected ConsoleCommand(String commandName, String description, CharSequence... arguments)
-	{
-		super(commandName, description, null, arguments);
-	}
-
 	protected ConsoleCommand(String commandName, String description, IArgument... arguments)
 	{
 		super(commandName, description, null, arguments);
 	}
-
 
 	@Override
 	public final String OnExecute(ICommandExecutor executor, Map<String, String> parameters)
