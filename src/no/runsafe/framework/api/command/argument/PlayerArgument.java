@@ -18,6 +18,12 @@ public class PlayerArgument extends CommandArgumentSpecification implements ITab
 		this.required = required;
 	}
 
+	public PlayerArgument(String name, boolean required)
+	{
+		super(name);
+		this.required = required;
+	}
+
 	@Override
 	public boolean isRequired()
 	{
