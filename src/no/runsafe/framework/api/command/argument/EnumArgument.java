@@ -18,7 +18,7 @@ public class EnumArgument extends CommandArgumentSpecification implements ITabCo
 		this.required = required;
 	}
 
-	public EnumArgument(String name, String[] values, boolean required)
+	public EnumArgument(String name, Iterable<String> values, boolean required)
 	{
 		super(name);
 		alternatives = ImmutableList.copyOf(values);
