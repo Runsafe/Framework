@@ -91,7 +91,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 			if (matches == null)
 				return Lists.newArrayList();
 		}
-		return args[args.length - 1].isEmpty() ? matches : filterList(matches, args[args.length - 1]);
+		return matches == null || args[args.length - 1].isEmpty() ? matches : filterList(matches, args[args.length - 1]);
 	}
 
 	private int countSuperParams()
