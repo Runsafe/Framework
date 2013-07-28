@@ -12,7 +12,7 @@ import java.util.Map;
  * Base class representing a command that can only be executed by a player and has an implementation that can be executed asynchronously
  * WARNING: Do not call bukkit APIs from the background thread!
  */
-public abstract class PlayerAsyncCommand extends AsyncCommand
+public abstract class PlayerAsyncCommand extends AsyncCommand implements IPlayerAsyncExecute
 {
 	protected PlayerAsyncCommand(String name, String description, String permission, IScheduler scheduler, CharSequence... args)
 	{
@@ -29,7 +29,6 @@ public abstract class PlayerAsyncCommand extends AsyncCommand
 
 	/**
 	 * This method is called on the main thread before {@link PlayerAsyncCommand#OnAsyncExecute(ICommandExecutor, Map)}
-	 * Override this method if you don't use optional arguments
 	 *
 	 * @param executor   The player executing the command
 	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
@@ -40,13 +39,4 @@ public abstract class PlayerAsyncCommand extends AsyncCommand
 	{
 		return null;
 	}
-
-	/**
-	 * If you use optional arguments, you still need to override this but you can leave it empty.
-	 *
-	 * @param executor   The player executing the command
-	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
-	 * @return Message to show to the user running the command after the command completes
-	 */
-	public abstract String OnAsyncExecute(RunsafePlayer executor, Map<String, String> parameters);
 }

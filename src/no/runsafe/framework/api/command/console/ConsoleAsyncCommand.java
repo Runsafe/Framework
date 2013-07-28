@@ -13,7 +13,7 @@ import java.util.Map;
  * Base class representing a command that can only be executed by the console and has an implementation that can be executed asynchronously
  * WARNING: Do not call bukkit APIs from the background thread!
  */
-public abstract class ConsoleAsyncCommand extends AsyncCommand
+public abstract class ConsoleAsyncCommand extends AsyncCommand implements IConsoleAsyncExecute
 {
 	protected ConsoleAsyncCommand(String name, String description, IScheduler scheduler, CharSequence... args)
 	{
@@ -40,12 +40,4 @@ public abstract class ConsoleAsyncCommand extends AsyncCommand
 	{
 		return null;
 	}
-
-	/**
-	 * If you use optional arguments, you still need to override this but you can leave it empty.
-	 *
-	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
-	 * @return Message to show in the console after the command completes
-	 */
-	public abstract String OnAsyncExecute(Map<String, String> parameters);
 }

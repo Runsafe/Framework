@@ -13,7 +13,7 @@ import java.util.Map;
  * Base class representing a command that can only be executed by a player and has an implementation that can be executed asynchronously with a return value
  * WARNING: Do not call bukkit APIs from the background thread!
  */
-public abstract class PlayerAsyncCallbackCommand<T> extends AsyncCallbackCommand<T>
+public abstract class PlayerAsyncCallbackCommand<T> extends AsyncCallbackCommand<T> implements IPlayerAsyncCallbackExecute<T>
 {
 	protected PlayerAsyncCallbackCommand(String name, String description, String permission, IScheduler scheduler, CharSequence... args)
 	{
@@ -39,7 +39,6 @@ public abstract class PlayerAsyncCallbackCommand<T> extends AsyncCallbackCommand
 
 	/**
 	 * This method is called on the main thread before {@link PlayerAsyncCallbackCommand#OnAsyncExecute(ICommandExecutor, Map)}
-	 * Override this method if you don't use optional arguments
 	 *
 	 * @param executor   The player executing the command
 	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
@@ -50,27 +49,4 @@ public abstract class PlayerAsyncCallbackCommand<T> extends AsyncCallbackCommand
 	{
 		return null;
 	}
-
-	/**
-	 * If you use optional arguments, override this method
-	 *
-	 * @param executor   The player executing the command
-	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
-	 * @param arguments  Tailing arguments not asked for in the command definition
-	 * @return Message to show to the user running the command
-	 */
-	@Deprecated
-	public T OnAsyncExecute(RunsafePlayer executor, Map<String, String> parameters, String... arguments)
-	{
-		return OnAsyncExecute(executor, parameters);
-	}
-
-	/**
-	 * If you use optional arguments, you still need to override this but you can leave it empty.
-	 *
-	 * @param executor   The player executing the command
-	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
-	 * @return Message to show to the user running the command
-	 */
-	public abstract T OnAsyncExecute(RunsafePlayer executor, Map<String, String> parameters);
 }

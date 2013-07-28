@@ -72,7 +72,7 @@ public final class CommandEngine implements Startable
 		}
 	}
 
-	private void unhookCommand(PluginCommand command)
+	private static void unhookCommand(PluginCommand command)
 	{
 		command.setExecutor(null);
 	}

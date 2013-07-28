@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Base class representing a command that can only be executed by a player
  */
-public abstract class PlayerCommand extends ExecutableCommand
+public abstract class PlayerCommand extends ExecutableCommand implements IPlayerExecute
 {
 	protected PlayerCommand(String commandName, String description, String permission, CharSequence... arguments)
 	{
@@ -24,13 +24,4 @@ public abstract class PlayerCommand extends ExecutableCommand
 
 		return "This command cannot be used from the console.";
 	}
-
-	/**
-	 * If you use optional arguments, you must still override this command but you can leave it blank.
-	 *
-	 * @param executor   The player executing the command
-	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
-	 * @return Message to show to the user running the command
-	 */
-	public abstract String OnExecute(RunsafePlayer executor, Map<String, String> parameters);
 }
