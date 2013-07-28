@@ -10,6 +10,13 @@ public class TimedCache<Key, Value>
 	public TimedCache(IScheduler scheduler)
 	{
 		this.scheduler = scheduler;
+		timeout = DEFAULT_TIMEOUT;
+	}
+
+	public TimedCache(IScheduler scheduler, int timeout)
+	{
+		this.scheduler = scheduler;
+		this.timeout = timeout;
 	}
 
 	public void Invalidate(@Nullable Key key)
@@ -56,7 +63,7 @@ public class TimedCache<Key, Value>
 					Invalidate(key);
 				}
 			},
-			300
+			timeout
 		);
 		Integer activeTask = timers.putIfAbsent(key, task);
 		if (activeTask != null)
@@ -66,4 +73,6 @@ public class TimedCache<Key, Value>
 	private final ConcurrentHashMap<Key, Value> cache = new ConcurrentHashMap<Key, Value>();
 	private final ConcurrentHashMap<Key, Integer> timers = new ConcurrentHashMap<Key, Integer>();
 	private final IScheduler scheduler;
+	private final int timeout;
+	private static final int DEFAULT_TIMEOUT = 300;
 }
