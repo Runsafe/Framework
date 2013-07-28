@@ -14,7 +14,7 @@ import java.util.Stack;
  */
 public abstract class AsyncCommand extends ExecutableCommand implements CommandScheduler, IAsyncExecute
 {
-	protected AsyncCommand(String name, String description, String permission, IScheduler scheduler, String... args)
+	protected AsyncCommand(String name, String description, String permission, IScheduler scheduler, CharSequence... args)
 	{
 		super(name, description, permission, args);
 		this.scheduler = scheduler;

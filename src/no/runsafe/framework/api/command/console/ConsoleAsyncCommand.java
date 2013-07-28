@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public abstract class ConsoleAsyncCommand extends AsyncCommand
 {
-	protected ConsoleAsyncCommand(String name, String description, IScheduler scheduler, String... args)
+	protected ConsoleAsyncCommand(String name, String description, IScheduler scheduler, CharSequence... args)
 	{
 		super(name, description, null, scheduler, args);
 	}

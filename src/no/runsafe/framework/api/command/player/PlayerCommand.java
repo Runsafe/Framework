@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public abstract class PlayerCommand extends ExecutableCommand
 {
-	protected PlayerCommand(String commandName, String description, String permission, String... arguments)
+	protected PlayerCommand(String commandName, String description, String permission, CharSequence... arguments)
 	{
 		super(commandName, description, permission, arguments);
 	}

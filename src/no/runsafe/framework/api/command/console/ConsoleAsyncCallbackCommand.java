@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public abstract class ConsoleAsyncCallbackCommand<T> extends AsyncCallbackCommand<T>
 {
-	protected ConsoleAsyncCallbackCommand(String name, String description, IScheduler scheduler, String... args)
+	protected ConsoleAsyncCallbackCommand(String name, String description, IScheduler scheduler, CharSequence... args)
 	{
 		super(name, description, null, scheduler, args);
 	}
