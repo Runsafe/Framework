@@ -1,5 +1,6 @@
 package no.runsafe.framework.minecraft.player;
 
+import com.google.common.collect.ImmutableList;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.hook.*;
 import no.runsafe.framework.internal.HookEngine;
@@ -220,7 +221,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		return true;
 	}
 
-	public List<String> getGroups()
+	public ImmutableList<String> getGroups()
 	{
 		List<String> result = new ArrayList<String>(5);
 		for (IPlayerPermissions hook : HookEngine.hookContainer.getComponents(IPlayerPermissions.class))
@@ -231,7 +232,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		}
 		if (result.isEmpty())
 			result.add("unknown");
-		return result;
+		return ImmutableList.copyOf(result);
 	}
 
 	public boolean setGroup(String group)

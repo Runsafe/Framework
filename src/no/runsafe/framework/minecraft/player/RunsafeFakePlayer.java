@@ -6,15 +6,15 @@ import no.runsafe.framework.internal.HookEngine;
 import no.runsafe.framework.minecraft.RunsafeWorld;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
 import java.util.List;
 
 public class RunsafeFakePlayer extends RunsafePlayer
 {
-	public RunsafeFakePlayer(String playerName)
+	public RunsafeFakePlayer(String playerName, String... groups)
 	{
 		super(null);
 		name = playerName;
+		this.groups = ImmutableList.copyOf(groups);
 	}
 
 	@SuppressWarnings("MethodWithMultipleLoops")
@@ -94,9 +94,9 @@ public class RunsafeFakePlayer extends RunsafePlayer
 	}
 
 	@Override
-	public List<String> getGroups()
+	public ImmutableList<String> getGroups()
 	{
-		return ImmutableList.copyOf(groups);
+		return groups;
 	}
 
 	@Override
@@ -111,7 +111,7 @@ public class RunsafeFakePlayer extends RunsafePlayer
 	}
 
 	private final String name;
-	private final List<String> groups = new ArrayList<String>(1);
+	private final ImmutableList<String> groups;
 	private boolean isOp;
 	private RunsafeWorld world;
 }
