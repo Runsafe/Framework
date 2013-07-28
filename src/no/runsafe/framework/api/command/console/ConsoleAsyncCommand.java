@@ -2,6 +2,7 @@ package no.runsafe.framework.api.command.console;
 
 import no.runsafe.framework.api.command.AsyncCommand;
 import no.runsafe.framework.api.command.ICommandExecutor;
+import no.runsafe.framework.api.command.argument.IArgument;
 import no.runsafe.framework.minecraft.RunsafeConsole;
 import no.runsafe.framework.api.IScheduler;
 
@@ -15,7 +16,13 @@ import java.util.Map;
  */
 public abstract class ConsoleAsyncCommand extends AsyncCommand implements IConsoleAsyncExecute
 {
+	@Deprecated
 	protected ConsoleAsyncCommand(String name, String description, IScheduler scheduler, CharSequence... args)
+	{
+		super(name, description, null, scheduler, args);
+	}
+
+	protected ConsoleAsyncCommand(String name, String description, IScheduler scheduler, IArgument... args)
 	{
 		super(name, description, null, scheduler, args);
 	}
@@ -35,6 +42,7 @@ public abstract class ConsoleAsyncCommand extends AsyncCommand implements IConso
 	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
 	 * @return Message to show in the console
 	 */
+	@Override
 	@Nullable
 	public String OnExecute(Map<String, String> parameters)
 	{

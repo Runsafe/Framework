@@ -33,14 +33,36 @@ public class Command implements ICommandHandler
 	 * @param permission  A permission String that a player must have to run the command or null to allow anyone to run it
 	 * @param arguments   Optional list of required command parameters
 	 */
+	@Deprecated
 	public Command(
 		@Nonnull String commandName, @Nonnull String description, @Nullable String permission,
 		CharSequence... arguments
 	)
 	{
+		this(commandName, description, permission, convert(arguments));
+	}
+
+	/**
+	 * Defines the command
+	 *
+	 * @param commandName The name of the command. For top level commands, this must be as defined in plugin.yml
+	 * @param description A short descriptive text of what the command does
+	 * @param permission  A permission String that a player must have to run the command or null to allow anyone to run it
+	 * @param arguments   Optional list of required command parameters
+	 */
+	public Command(
+		@Nonnull String commandName, @Nonnull String description, @Nullable String permission,
+		IArgument... arguments
+	)
+	{
 		name = commandName;
 		this.permission = permission;
 		this.description = description;
+		argumentList = ImmutableList.copyOf(arguments);
+	}
+
+	protected static IArgument[] convert(CharSequence... arguments)
+	{
 		List<IArgument> converted = new ArrayList<IArgument>(arguments.length);
 		for (CharSequence arg : arguments)
 		{
@@ -51,7 +73,7 @@ public class Command implements ICommandHandler
 			else
 				converted.add(arg instanceof IArgument ? (IArgument) arg : new RequiredArgument(arg.toString()));
 		}
-		argumentList = ImmutableList.copyOf(converted);
+		return converted.toArray(new IArgument[converted.size()]);
 	}
 
 	/**

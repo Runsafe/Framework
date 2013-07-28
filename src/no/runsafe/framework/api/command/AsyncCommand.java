@@ -1,6 +1,7 @@
 package no.runsafe.framework.api.command;
 
 import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.api.command.argument.IArgument;
 import no.runsafe.framework.internal.command.PreparedAsynchronousCommand;
 
 import javax.annotation.Nonnull;
@@ -14,7 +15,14 @@ import java.util.Stack;
  */
 public abstract class AsyncCommand extends ExecutableCommand implements CommandScheduler, IAsyncExecute
 {
+	@Deprecated
 	protected AsyncCommand(String name, String description, String permission, IScheduler scheduler, CharSequence... args)
+	{
+		super(name, description, permission, args);
+		this.scheduler = scheduler;
+	}
+
+	protected AsyncCommand(String name, String description, String permission, IScheduler scheduler, IArgument... args)
 	{
 		super(name, description, permission, args);
 		this.scheduler = scheduler;

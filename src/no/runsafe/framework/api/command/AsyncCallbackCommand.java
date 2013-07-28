@@ -1,11 +1,10 @@
 package no.runsafe.framework.api.command;
 
 import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.api.command.argument.IArgument;
 import no.runsafe.framework.internal.command.PreparedAsynchronousCallbackCommand;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
@@ -15,7 +14,14 @@ import java.util.Stack;
  */
 public abstract class AsyncCallbackCommand<T> extends ExecutableCommand implements CommandScheduler, IAsyncCallbackExecute<T>
 {
+	@Deprecated
 	protected AsyncCallbackCommand(String name, String description, String permission, IScheduler scheduler, CharSequence... args)
+	{
+		super(name, description, permission, args);
+		this.scheduler = scheduler;
+	}
+
+	protected AsyncCallbackCommand(String name, String description, String permission, IScheduler scheduler, IArgument... args)
 	{
 		super(name, description, permission, args);
 		this.scheduler = scheduler;

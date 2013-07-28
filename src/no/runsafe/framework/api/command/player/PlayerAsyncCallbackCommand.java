@@ -1,10 +1,11 @@
 package no.runsafe.framework.api.command.player;
 
+import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.command.AsyncCallbackCommand;
 import no.runsafe.framework.api.command.ICommandExecutor;
+import no.runsafe.framework.api.command.argument.IArgument;
 import no.runsafe.framework.minecraft.RunsafeConsole;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
-import no.runsafe.framework.api.IScheduler;
 
 import javax.annotation.Nullable;
 import java.util.Map;
@@ -15,7 +16,13 @@ import java.util.Map;
  */
 public abstract class PlayerAsyncCallbackCommand<T> extends AsyncCallbackCommand<T> implements IPlayerAsyncCallbackExecute<T>
 {
+	@Deprecated
 	protected PlayerAsyncCallbackCommand(String name, String description, String permission, IScheduler scheduler, CharSequence... args)
+	{
+		super(name, description, permission, scheduler, args);
+	}
+
+	protected PlayerAsyncCallbackCommand(String name, String description, String permission, IScheduler scheduler, IArgument... args)
 	{
 		super(name, description, permission, scheduler, args);
 	}
@@ -44,6 +51,7 @@ public abstract class PlayerAsyncCallbackCommand<T> extends AsyncCallbackCommand
 	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
 	 * @return Message to show to the user running the command
 	 */
+	@Override
 	@Nullable
 	public String OnExecute(RunsafePlayer executor, Map<String, String> parameters)
 	{
