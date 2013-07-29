@@ -2,7 +2,9 @@ package no.runsafe.framework;
 
 import no.runsafe.framework.api.IConfiguration;
 import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.command.ICommandHandler;
+import no.runsafe.framework.api.event.IServerReady;
 import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.command.BukkitCommandTabExecutor;
 import no.runsafe.framework.internal.configuration.ConfigurationEngine;
@@ -12,6 +14,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import javax.annotation.Nullable;
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
@@ -65,6 +68,8 @@ public abstract class RunsafePlugin extends InjectionPlugin
 		Instances.put(getName(), this);
 		super.initializePlugin();
 
+		scheduleReadyEvent(getComponent(IScheduler.class));
+
 		output = getComponent(IOutput.class);
 		if (debugLevel != null)
 			output.setDebugLevel(debugLevel);
@@ -89,5 +94,29 @@ public abstract class RunsafePlugin extends InjectionPlugin
 
 	protected abstract void PluginSetup();
 
+	private static void scheduleReadyEvent(IScheduler scheduler)
+	{
+		if (scheduled != null)
+			return;
+
+		// This is actually safe due to how plugins are initialized by bukkit.
+		//noinspection NonThreadSafeLazyInitialization
+		scheduled = scheduler.createSyncTimer(
+			new Runnable()
+			{
+				@Override
+				public void run()
+				{
+					List<IServerReady> listeners = getPluginAPI(IServerReady.class);
+					if (listeners != null)
+						for (IServerReady listener : listeners)
+							listener.OnServerReady();
+				}
+			},
+			0
+		);
+	}
+
 	private static final Level debugLevel;
+	private static Object scheduled;
 }

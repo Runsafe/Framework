@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerFishEvent;
 
-public class PlayerFish extends EventRouterBase<IPlayerFishEvent, PlayerFishEvent>
+public final class PlayerFish extends EventRouterBase<IPlayerFishEvent, PlayerFishEvent>
 {
 	PlayerFish(IOutput output, IScheduler scheduler, IPlayerFishEvent handler)
 	{

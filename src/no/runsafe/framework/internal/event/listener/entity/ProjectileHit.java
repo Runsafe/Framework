@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
 
-public class ProjectileHit extends EventRouterBase<IProjectileHitEvent, ProjectileHitEvent>
+public final class ProjectileHit extends EventRouterBase<IProjectileHitEvent, ProjectileHitEvent>
 {
 	ProjectileHit(IOutput output, IScheduler scheduler, IProjectileHitEvent handler)
 	{

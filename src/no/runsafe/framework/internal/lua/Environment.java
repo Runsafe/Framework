@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.lua;
 
 import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.api.event.IServerReady;
 import no.runsafe.framework.api.lua.Library;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import org.apache.commons.io.FileUtils;
@@ -17,7 +17,7 @@ import java.io.File;
 import java.util.Collection;
 import java.util.List;
 
-public class Environment implements Startable
+public class Environment implements Startable, IServerReady
 {
 	public static Globals global;
 
@@ -56,30 +56,28 @@ public class Environment implements Startable
 	}
 
 
-	public Environment(RunsafePlugin plugin, IScheduler scheduler)
+	public Environment(RunsafePlugin plugin)
 	{
 		this.plugin = plugin;
-		this.scheduler = scheduler;
 	}
 
 	@Override
 	public void start()
 	{
 		loadAPI();
-		scheduler.startSyncTask(new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				loadScripts();
-			}
-		}, 0);
 	}
 
 	@Override
 	public void stop()
 	{
 	}
+
+	@Override
+	public void OnServerReady()
+	{
+		loadScripts();
+	}
+
 
 	private void loadAPI()
 	{
@@ -118,5 +116,4 @@ public class Environment implements Startable
 	}
 
 	private final RunsafePlugin plugin;
-	private final IScheduler scheduler;
 }
