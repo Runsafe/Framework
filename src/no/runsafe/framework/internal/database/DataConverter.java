@@ -147,9 +147,9 @@ final class DataConverter
 			return new RunsafeLocation(targetWorld, 0.0D, 0.0D, 0.0D);
 
 		if (yaw != null && pitch != null)
-			return new RunsafeLocation(targetWorld, (Double) x, (Double) y, (Double) z, Float(yaw), Float(pitch));
+			return new RunsafeLocation(targetWorld, Double(x), Double(y), Double(z), Float(yaw), Float(pitch));
 
-		return new RunsafeLocation(targetWorld, (Double) x, (Double) y, (Double) z);
+		return new RunsafeLocation(targetWorld, Double(x), Double(y), Double(z));
 	}
 
 	@Nullable
