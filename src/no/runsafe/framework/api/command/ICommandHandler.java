@@ -14,6 +14,9 @@ public interface ICommandHandler
 	@Nonnull
 	String getName();
 
+	@Nonnull
+	String getDescription();
+
 	void setConsole(@Nonnull IOutput console);
 
 	@Nullable

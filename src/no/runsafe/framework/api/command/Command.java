@@ -114,9 +114,9 @@ public class Command implements ICommandHandler
 	 *
 	 * @param subCommand The subcommand to add to this command
 	 */
-	public final void addSubCommand(Command subCommand)
+	public final void addSubCommand(ICommandHandler subCommand)
 	{
-		subCommands.put(subCommand.name, subCommand);
+		subCommands.put(subCommand.getName(), subCommand);
 	}
 
 	/**
@@ -127,7 +127,7 @@ public class Command implements ICommandHandler
 	 * @return The selected subcommand or null if no matches
 	 */
 	@Nullable
-	public final Command getSubCommand(ICommandExecutor executor, String name)
+	public final ICommandHandler getSubCommand(ICommandExecutor executor, String name)
 	{
 		if (subCommands.isEmpty())
 			return null;
@@ -155,7 +155,7 @@ public class Command implements ICommandHandler
 	public final List<String> getSubCommands(ICommandExecutor executor)
 	{
 		List<String> available = new ArrayList<String>(subCommands.size());
-		for (Map.Entry<String, Command> stringCommandEntry : subCommands.entrySet())
+		for (Map.Entry<String, ICommandHandler> stringCommandEntry : subCommands.entrySet())
 			if (stringCommandEntry.getValue().isExecutable(executor))
 				available.add(stringCommandEntry.getKey());
 		return available;
@@ -169,6 +169,13 @@ public class Command implements ICommandHandler
 	public final String getName()
 	{
 		return name;
+	}
+
+	@Nonnull
+	@Override
+	public String getDescription()
+	{
+		return description;
 	}
 
 	/**
@@ -271,7 +278,7 @@ public class Command implements ICommandHandler
 	{
 		if (permission == null)
 		{
-			for (Command subCommand : subCommands.values())
+			for (ICommandHandler subCommand : subCommands.values())
 				if (subCommand.isExecutable(executor))
 					return true;
 
@@ -303,10 +310,10 @@ public class Command implements ICommandHandler
 	private Map<String, String> getAvailableSubCommands(ICommandExecutor executor)
 	{
 		Map<String, String> available = new HashMap<String, String>(subCommands.size());
-		for (Command sub : subCommands.values())
+		for (ICommandHandler sub : subCommands.values())
 		{
 			if (sub.isExecutable(executor))
-				available.put(sub.name, String.format(" - %s", sub.description));
+				available.put(sub.getName(), String.format(" - %s", sub.getDescription()));
 		}
 		return available;
 	}
@@ -355,7 +362,7 @@ public class Command implements ICommandHandler
 
 	protected IOutput console;
 	private final ImmutableList<IArgument> argumentList;
-	private final Map<String, Command> subCommands = new HashMap<String, Command>(0);
+	private final Map<String, ICommandHandler> subCommands = new HashMap<String, ICommandHandler>(0);
 	private final String name;
 	private final String permission;
 	private final String description;
