@@ -6,8 +6,6 @@ import java.util.List;
 
 public interface IPlayerPermissions extends IFrameworkHook
 {
-	boolean setUserGroup(RunsafePlayer player, String group);
-
 	/**
 	 * Called by {@link RunsafePlayer#getGroups()} to resolve a players group memberships
 	 */
