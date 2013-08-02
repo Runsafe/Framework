@@ -101,5 +101,4 @@ public class FunctionParameters
 	}
 
 	private final List<LuaValue> parameters = new ArrayList<LuaValue>(0);
-	
 }
