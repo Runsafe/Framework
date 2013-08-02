@@ -25,6 +25,11 @@ public class FunctionParameters
 		return parameters.get(index);
 	}
 
+	public int parameterCount()
+	{
+		return parameters.size();
+	}
+
 	public String getString(int index)
 	{
 		return getLuaValue(index).toString();
