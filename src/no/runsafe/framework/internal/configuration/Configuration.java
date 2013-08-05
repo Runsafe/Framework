@@ -2,6 +2,8 @@ package no.runsafe.framework.internal.configuration;
 
 import no.runsafe.framework.api.IConfiguration;
 import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.minecraft.RunsafeServer;
+import no.runsafe.framework.minecraft.RunsafeWorld;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -151,6 +153,12 @@ public final class Configuration implements IConfiguration
 			for (String subKey : section.getKeys(true))
 				results.put(subKey, getConfigValueAsIntegerList(key + '.' + subKey));
 		return results;
+	}
+
+	@Override
+	public RunsafeWorld getConfigValueAsWorld(String key)
+	{
+		return RunsafeServer.Instance.getWorld(getConfigValueAsString(key));
 	}
 
 	@Override

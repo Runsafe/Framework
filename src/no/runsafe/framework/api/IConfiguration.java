@@ -1,5 +1,7 @@
 package no.runsafe.framework.api;
 
+import no.runsafe.framework.minecraft.RunsafeWorld;
+
 import java.util.List;
 import java.util.Map;
 
@@ -82,6 +84,12 @@ public interface IConfiguration
 	 * @return The section as a map of Integer lists
 	 */
 	Map<String, List<Integer>> getConfigSectionsAsIntegerList(String key);
+
+	/**
+	 * @param path The configuration key
+	 * @return The RunsafeWorld with the matching name for the value.
+	 */
+	RunsafeWorld getConfigValueAsWorld(String key);
 
 	/**
 	 * Writes configuration to disk
