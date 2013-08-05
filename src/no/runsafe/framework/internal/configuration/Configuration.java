@@ -169,6 +169,9 @@ public final class Configuration implements IConfiguration
 			return null;
 
 		ConfigurationSection section = configFile.getConfigurationSection(key);
+		if (section == null)
+			return null;
+
 		if (section.contains("world") && section.contains("x") && section.contains("y") && section.contains("z"))
 		{
 			RunsafeWorld world = this.getConfigValueAsWorld(key + ".world");
