@@ -2,6 +2,7 @@ package no.runsafe.framework.internal.configuration;
 
 import no.runsafe.framework.api.IConfiguration;
 import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.minecraft.RunsafeWorld;
 import org.bukkit.configuration.ConfigurationSection;
@@ -159,6 +160,37 @@ public final class Configuration implements IConfiguration
 	public RunsafeWorld getConfigValueAsWorld(String key)
 	{
 		return RunsafeServer.Instance.getWorld(getConfigValueAsString(key));
+	}
+
+	@Override
+	public RunsafeLocation getConfigValueAsLocation(String key)
+	{
+		if (configFile == null)
+			return null;
+
+		ConfigurationSection section = configFile.getConfigurationSection(key);
+		if (section.contains("world") && section.contains("x") && section.contains("y") && section.contains("z"))
+		{
+			RunsafeWorld world = this.getConfigValueAsWorld(key + ".world");
+			if (world == null)
+				return null;
+
+			RunsafeLocation location = new RunsafeLocation(
+					world,
+					section.getDouble("x"),
+					section.getDouble("y"),
+					section.getDouble("z")
+			);
+
+			if (section.contains("yaw"))
+				location.setYaw(Float.parseFloat(section.getString("yaw")));
+
+			if (section.contains("pitch"))
+				location.setPitch(Float.parseFloat(section.getString("pitch")));
+
+			return location;
+		}
+		return null;
 	}
 
 	@Override

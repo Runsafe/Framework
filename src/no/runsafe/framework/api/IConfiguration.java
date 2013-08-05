@@ -1,5 +1,6 @@
 package no.runsafe.framework.api;
 
+import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeWorld;
 
 import java.util.List;
@@ -90,6 +91,12 @@ public interface IConfiguration
 	 * @return The RunsafeWorld with the matching name for the value.
 	 */
 	RunsafeWorld getConfigValueAsWorld(String key);
+
+	/**
+	 * @param path The configuration path.
+	 * @return The RunsafeLocation from the matching value.
+	 */
+	RunsafeLocation getConfigValueAsLocation(String key);
 
 	/**
 	 * Writes configuration to disk
