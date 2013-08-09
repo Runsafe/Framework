@@ -1,8 +1,12 @@
 package no.runsafe.framework.minecraft;
 
+import no.runsafe.framework.internal.packets.PacketHelper;
 import no.runsafe.framework.internal.wrapper.BukkitLocation;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
+import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.Location;
+
+import java.util.HashMap;
 
 public class RunsafeLocation extends BukkitLocation
 {
@@ -84,5 +88,32 @@ public class RunsafeLocation extends BukkitLocation
 		if (x > 0) incrementX(x); else decrementX(x);
 		if (y > 0) incrementY(y); else decrementY(y);
 		if (z > 0) incrementZ(z); else decrementZ(z);
+	}
+
+	public void playEffect(WorldEffect effect, float offsetX, float offsetY, float offsetZ, int speed, int amount, int range)
+	{
+		try
+		{
+			HashMap<String, Object> data = new HashMap<String, Object>();
+			data.put("a", effect.getName());
+			data.put("b", (float) getX());
+			data.put("c", (float) getY());
+			data.put("d", (float) getZ());
+			data.put("e", offsetX);
+			data.put("f", offsetY);
+			data.put("g", offsetZ);
+			data.put("h", speed);
+			data.put("i", amount);
+
+			Object packet = PacketHelper.stuffPacket(PacketHelper.getPacket("Packet63WorldParticles"), data);
+
+			for (RunsafePlayer player : this.getWorld().getPlayers())
+				if (player.getLocation().distance(this) <= range)
+					player.sendPacket(packet);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 }
