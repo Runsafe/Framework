@@ -7,6 +7,7 @@ import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.entity.BukkitProjectile;
 import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.block.RunsafeBlock;
+import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.entity.Projectile;
 
 import javax.annotation.Nullable;
@@ -30,5 +31,14 @@ public class RunsafeProjectile extends BukkitProjectile
 		NBTTagCompound tag = new NBTTagCompound();
 		arrow.a(tag);
 		return world.getBlockAt(tag.getShort("xTile"), tag.getShort("yTile"), tag.getShort("zTile"));
+	}
+
+	public RunsafePlayer getShooterPlayer()
+	{
+		RunsafeEntity shooterEntity = this.getWorld().getEntityById(this.getShooter().getEntityId());
+		if (shooterEntity instanceof RunsafePlayer)
+			return (RunsafePlayer) shooterEntity;
+
+		return null;
 	}
 }
