@@ -35,9 +35,16 @@ public class RunsafeProjectile extends BukkitProjectile
 
 	public RunsafePlayer getShooterPlayer()
 	{
-		RunsafeEntity shooterEntity = this.getWorld().getEntityById(this.getShooter().getEntityId());
-		if (shooterEntity instanceof RunsafePlayer)
-			return (RunsafePlayer) shooterEntity;
+		RunsafeWorld world = getWorld();
+		RunsafeLivingEntity shooter = getShooter();
+
+		if (world != null && shooter != null)
+		{
+			RunsafeEntity shooterEntity = world.getEntityById(shooter.getEntityId());
+
+			if (shooterEntity instanceof RunsafePlayer)
+				return (RunsafePlayer) shooterEntity;
+		}
 
 		return null;
 	}
