@@ -1,9 +1,11 @@
 package no.runsafe.framework.minecraft.player;
 
 import com.google.common.collect.ImmutableList;
+import com.sun.deploy.util.ReflectionUtil;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.hook.*;
 import no.runsafe.framework.internal.HookEngine;
+import no.runsafe.framework.internal.packets.PacketHelper;
 import no.runsafe.framework.internal.wrapper.player.BukkitPlayer;
 import no.runsafe.framework.minecraft.*;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
@@ -319,19 +321,8 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 
 	public void sendPacket(Object packet) throws Exception
 	{
-		Object player = this.player.getClass().getMethod("getHandle").invoke(this.player);
-		Field playerConnectionField = player.getClass().getField("playerConnection");
-		Object playerConnection = playerConnectionField.get(player);
-
-		//playerConnection.getClass().getMethod("sendPacket").invoke(playerConnection, packet);
-
-		for (Method method : playerConnection.getClass().getMethods())
-		{
-			if (method.getName().equalsIgnoreCase("sendPacket"))
-			{
-				method.invoke(playerConnection, packet);
-				return;
-			}
-		}
+		Object entityPlayer = PacketHelper.getMethod("getHandle", player.getClass(), 0).invoke(player);
+		Object playerConnection = entityPlayer.getClass().getField("playerConnection").get(entityPlayer);
+		PacketHelper.getMethod("sendPacket", playerConnection.getClass(), 1).invoke(playerConnection, packet);
 	}
 }

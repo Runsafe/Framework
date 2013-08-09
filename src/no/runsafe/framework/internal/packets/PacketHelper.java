@@ -3,6 +3,7 @@ package no.runsafe.framework.internal.packets;
 import org.bukkit.Bukkit;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -37,6 +38,15 @@ public final class PacketHelper
 			field.set(packet, node.getValue());
 		}
 		return packet;
+	}
+
+	public static Method getMethod(String name, Class<?> c, int params)
+	{
+		for (Method method : c.getMethods())
+			if (method.getName().equals(name) && method.getParameterTypes().length == params)
+				return method;
+
+		return null;
 	}
 
 	private static final Pattern pattern = Pattern.compile("(\\.)(\\w+)$");
