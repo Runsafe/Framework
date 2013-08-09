@@ -317,7 +317,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 	@Override
 	public void sendColouredMessage(String format, Object... params)
 	{
-		sendColouredMessage(String.format(format, params));-
+		sendColouredMessage(String.format(format, params));
 	}
 
 	public void sendPacket(Object packet) throws Exception
