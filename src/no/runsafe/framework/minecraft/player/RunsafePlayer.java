@@ -317,7 +317,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 	@Override
 	public void sendColouredMessage(String format, Object... params)
 	{
-		sendColouredMessage(String.format(format, params));
+		sendColouredMessage(String.format(format, params));-
 	}
 
 	public void sendPacket(Object packet) throws Exception
@@ -325,6 +325,15 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		Object player = this.player.getClass().getMethod("getHandle").invoke(this.player);
 		Object playerConnection = player.getClass().getField("playerConnection").get(player);
 
-		playerConnection.getClass().getMethod("sendPacket").invoke(playerConnection, packet);
+		//playerConnection.getClass().getMethod("sendPacket").invoke(playerConnection, packet);
+
+		for (Method method : playerConnection.getClass().getMethods())
+		{
+			if (method.getName().equalsIgnoreCase("sendPacket"))
+			{
+				method.invoke(playerConnection, packet);
+				return;
+			}
+		}
 	}
 }
