@@ -66,6 +66,10 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 		Vector velocity = livingEntity.getEyeLocation().getDirection().multiply(2);
 		Entity launched = entity.getWorld().spawn(livingEntity.getEyeLocation().add(velocity), launch);
 		launched.setVelocity(velocity);
+
+		if (entity instanceof Projectile)
+			((Projectile) entity).setShooter(this.getRaw());
+
 		return ObjectWrapper.convert(launched);
 	}
 
@@ -74,6 +78,12 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 	{
 		if (!Projectile.class.isAssignableFrom(projectile))
 			return null;
-		return ObjectWrapper.convert(livingEntity.launchProjectile(projectile.asSubclass(Projectile.class)));
+
+		RunsafeEntity entity = ObjectWrapper.convert(livingEntity.launchProjectile(projectile.asSubclass(Projectile.class)));
+
+		if (entity instanceof Projectile)
+			((Projectile) entity).setShooter(this.getRaw());
+
+		return entity;
 	}
 }
