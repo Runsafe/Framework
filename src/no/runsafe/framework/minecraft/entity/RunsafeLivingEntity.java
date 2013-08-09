@@ -68,7 +68,7 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 		launched.setVelocity(velocity);
 
 		if (entity instanceof Projectile)
-			((Projectile) entity).setShooter(this.getRaw());
+			((Projectile) entity).setShooter(getRaw());
 
 		return ObjectWrapper.convert(launched);
 	}
@@ -82,7 +82,7 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 		RunsafeEntity entity = ObjectWrapper.convert(livingEntity.launchProjectile(projectile.asSubclass(Projectile.class)));
 
 		if (entity instanceof Projectile)
-			((Projectile) entity).setShooter(this.getRaw());
+			((Projectile) entity).setShooter(getRaw());
 
 		return entity;
 	}
