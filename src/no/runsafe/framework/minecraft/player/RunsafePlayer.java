@@ -21,6 +21,8 @@ import org.joda.time.DateTime;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -316,5 +318,13 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 	public void sendColouredMessage(String format, Object... params)
 	{
 		sendColouredMessage(String.format(format, params));
+	}
+
+	public void sendPacket(Object packet) throws Exception
+	{
+		Object player = this.player.getClass().getMethod("getHandler").invoke(this.player);
+		Object playerConnection = player.getClass().getField("playerConnection").get(player);
+
+		playerConnection.getClass().getMethod("sendPacket").invoke(playerConnection, packet);
 	}
 }
