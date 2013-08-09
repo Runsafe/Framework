@@ -5,10 +5,7 @@ import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.hook.*;
 import no.runsafe.framework.internal.HookEngine;
 import no.runsafe.framework.internal.wrapper.player.BukkitPlayer;
-import no.runsafe.framework.minecraft.Item;
-import no.runsafe.framework.minecraft.RunsafeLocation;
-import no.runsafe.framework.minecraft.RunsafeWorld;
-import no.runsafe.framework.minecraft.Universe;
+import no.runsafe.framework.minecraft.*;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.event.player.RunsafeOperatorEvent;
 import no.runsafe.framework.minecraft.inventory.RunsafePlayerInventory;
@@ -329,6 +326,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 
 		for (Method method : playerConnection.getClass().getMethods())
 		{
+			RunsafeServer.Instance.getLogger().fine(method.getName());
 			if (method.getName().equalsIgnoreCase("sendPacket"))
 			{
 				method.invoke(playerConnection, packet);
