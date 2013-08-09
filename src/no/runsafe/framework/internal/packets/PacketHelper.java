@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.packets;
 
+import no.runsafe.framework.minecraft.RunsafeServer;
 import org.bukkit.Bukkit;
 
 import java.lang.reflect.Field;
@@ -15,6 +16,7 @@ public final class PacketHelper
 	public static String getPackageName()
 	{
 		Matcher match = pattern.matcher(Bukkit.getServer().getClass().getPackage().getName());
+		RunsafeServer.Instance.getLogger().fine(Bukkit.getServer().getClass().getPackage().getName());
 		return "net.minecraft.server." + match.group(2);
 	}
 
