@@ -322,7 +322,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 
 	public void sendPacket(Object packet) throws Exception
 	{
-		Object player = this.player.getClass().getMethod("getHandler").invoke(this.player);
+		Object player = this.player.getClass().getMethod("getHandle").invoke(this.player);
 		Object playerConnection = player.getClass().getField("playerConnection").get(player);
 
 		playerConnection.getClass().getMethod("sendPacket").invoke(playerConnection, packet);
