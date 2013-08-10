@@ -7,6 +7,7 @@ import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.Location;
 
 import java.util.HashMap;
+import java.util.Random;
 
 public class RunsafeLocation extends BukkitLocation
 {
@@ -90,6 +91,11 @@ public class RunsafeLocation extends BukkitLocation
 		if (z > 0) incrementZ(z); else decrementZ(z);
 	}
 
+	public void playEffect(WorldEffect effect, int speed, int amount, int range)
+	{
+		this.playEffect(effect, random.nextFloat(), random.nextFloat(), random.nextFloat(), speed, amount, range);
+	}
+
 	public void playEffect(WorldEffect effect, float offsetX, float offsetY, float offsetZ, int speed, int amount, int range)
 	{
 		try
@@ -116,4 +122,6 @@ public class RunsafeLocation extends BukkitLocation
 			e.printStackTrace();
 		}
 	}
+
+	private Random random = new Random();
 }
