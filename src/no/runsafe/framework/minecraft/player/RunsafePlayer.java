@@ -324,7 +324,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		PacketHelper.getMethod("sendPacket", playerConnection.getClass(), 1).invoke(playerConnection, packet);
 	}
 
-	public void knockbackToPoint(RunsafeLocation location)
+	public void throwToPoint(RunsafeLocation location)
 	{
 		RunsafeLocation playerLocation = getLocation();
 
@@ -332,7 +332,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 			setVelocity(location.toVector().subtract(playerLocation.toVector()));
 	}
 
-	public void knockbackFromPoint(RunsafeLocation location)
+	public void throwFromPoint(RunsafeLocation location)
 	{
 		RunsafeLocation playerLocation = getLocation();
 
