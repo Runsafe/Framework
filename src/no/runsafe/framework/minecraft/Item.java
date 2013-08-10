@@ -115,6 +115,7 @@ public class Item implements IEnchantable
 		public static final Item NetherBrick = new Item(Material.NETHER_BRICK, true);
 		public static final Item EndStone = new Item(Material.ENDER_STONE, true);
 		public static final Item Emerald = new Item(Material.EMERALD_BLOCK, true);
+		public static final Item CoalBlock = new Item(Material.COAL_BLOCK, true);
 
 		private BuildingBlock()
 		{
