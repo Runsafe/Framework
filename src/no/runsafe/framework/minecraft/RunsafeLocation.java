@@ -5,6 +5,7 @@ import no.runsafe.framework.internal.wrapper.BukkitLocation;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.Location;
+import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -136,6 +137,11 @@ public class RunsafeLocation extends BukkitLocation
 		{
 			e.printStackTrace();
 		}
+	}
+
+	public Vector toVector()
+	{
+		return location.toVector();
 	}
 
 	private Random random = new Random();
