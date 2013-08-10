@@ -6,7 +6,9 @@ import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.Location;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 public class RunsafeLocation extends BukkitLocation
@@ -89,6 +91,20 @@ public class RunsafeLocation extends BukkitLocation
 		if (x > 0) incrementX(x); else decrementX(x);
 		if (y > 0) incrementY(y); else decrementY(y);
 		if (z > 0) incrementZ(z); else decrementZ(z);
+	}
+
+	public List<RunsafePlayer> getPlayersInRange(double range)
+	{
+		List<RunsafePlayer> players = new ArrayList<RunsafePlayer>();
+
+		for (RunsafePlayer player : getWorld().getPlayers())
+		{
+			RunsafeLocation playerLocation = player.getLocation();
+			if (playerLocation != null && playerLocation.distance(this) <= range)
+				players.add(player);
+		}
+
+		return players;
 	}
 
 	public void playEffect(WorldEffect effect, int speed, int amount, int range)
