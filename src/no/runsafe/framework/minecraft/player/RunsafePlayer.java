@@ -322,4 +322,9 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		Object playerConnection = entityPlayer.getClass().getField("playerConnection").get(entityPlayer);
 		PacketHelper.getMethod("sendPacket", playerConnection.getClass(), 1).invoke(playerConnection, packet);
 	}
+
+	public void heal(double amount)
+	{
+		setHealth(getHealth() + amount);
+	}
 }
