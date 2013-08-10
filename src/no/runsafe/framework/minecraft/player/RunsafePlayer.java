@@ -325,6 +325,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 
 	public void heal(double amount)
 	{
-		setHealth(getHealth() + amount);
+		double heal = getHealth() + amount;
+		setHealth(heal > 20D ? 20D : heal);
 	}
 }
