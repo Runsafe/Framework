@@ -1,7 +1,7 @@
 package no.runsafe.framework.minecraft.player;
 
 import com.google.common.collect.ImmutableList;
-import com.sun.deploy.util.ReflectionUtil;
+
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.hook.*;
 import no.runsafe.framework.internal.HookEngine;
@@ -13,15 +13,12 @@ import no.runsafe.framework.minecraft.event.player.RunsafeOperatorEvent;
 import no.runsafe.framework.minecraft.inventory.RunsafePlayerInventory;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import no.runsafe.framework.text.ChatColour;
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
 import org.joda.time.DateTime;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
