@@ -332,6 +332,14 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 			setVelocity(location.toVector().subtract(playerLocation.toVector()));
 	}
 
+	public void knockbackFromPoint(RunsafeLocation location)
+	{
+		RunsafeLocation playerLocation = getLocation();
+
+		if (playerLocation != null)
+			setVelocity(location.toVector().add(playerLocation.toVector()));
+	}
+
 	public void heal(double amount)
 	{
 		double heal = getHealth() + amount;
