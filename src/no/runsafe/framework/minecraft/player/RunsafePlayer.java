@@ -15,6 +15,7 @@ import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import no.runsafe.framework.text.ChatColour;
 import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.util.Vector;
 import org.joda.time.DateTime;
 
 import javax.annotation.Nonnull;
@@ -321,6 +322,11 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		Object entityPlayer = PacketHelper.getMethod("getHandle", player.getClass(), 0).invoke(player);
 		Object playerConnection = entityPlayer.getClass().getField("playerConnection").get(entityPlayer);
 		PacketHelper.getMethod("sendPacket", playerConnection.getClass(), 1).invoke(playerConnection, packet);
+	}
+
+	public void knockbackToPoint(RunsafeLocation location)
+	{
+		Vector vector = location.
 	}
 
 	public void heal(double amount)
