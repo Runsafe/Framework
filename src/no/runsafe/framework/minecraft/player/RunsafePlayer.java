@@ -326,7 +326,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 
 	public void throwToPoint(RunsafeLocation location)
 	{
-		this.throwToPoint(location, 1);
+		this.throwToPoint(location, 0);
 	}
 
 	public void throwToPoint(RunsafeLocation location, double modifier)
@@ -339,7 +339,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 
 	public void throwFromPoint(RunsafeLocation location)
 	{
-		this.throwFromPoint(location, 1);
+		this.throwFromPoint(location, 0);
 	}
 
 	public void throwFromPoint(RunsafeLocation location, double modifier)
