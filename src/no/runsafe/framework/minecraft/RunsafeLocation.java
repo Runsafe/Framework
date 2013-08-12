@@ -131,7 +131,7 @@ public class RunsafeLocation extends BukkitLocation
 			Object packet = PacketHelper.stuffPacket(PacketHelper.getPacket("Packet63WorldParticles"), data);
 
 			for (RunsafePlayer player : getPlayersInRange(range))
-					player.sendPacket(packet);
+					PacketHelper.sendPacket(player, packet);
 		}
 		catch (Exception e)
 		{

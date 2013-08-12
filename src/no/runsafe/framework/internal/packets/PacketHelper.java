@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.packets;
 
+import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.Bukkit;
 
 import java.lang.reflect.Field;
@@ -47,6 +48,13 @@ public final class PacketHelper
 				return method;
 
 		return null;
+	}
+
+	public static void sendPacket(RunsafePlayer player, Object packet) throws Exception
+	{
+		Object entityPlayer = PacketHelper.getMethod("getHandle", player.getClass(), 0).invoke(player);
+		Object playerConnection = entityPlayer.getClass().getField("playerConnection").get(entityPlayer);
+		PacketHelper.getMethod("sendPacket", playerConnection.getClass(), 1).invoke(playerConnection, packet);
 	}
 
 	private static final Pattern pattern = Pattern.compile("(\\.)(\\w+)$");

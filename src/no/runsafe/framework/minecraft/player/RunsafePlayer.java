@@ -317,13 +317,6 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		sendColouredMessage(String.format(format, params));
 	}
 
-	public void sendPacket(Object packet) throws Exception
-	{
-		Object entityPlayer = PacketHelper.getMethod("getHandle", player.getClass(), 0).invoke(player);
-		Object playerConnection = entityPlayer.getClass().getField("playerConnection").get(entityPlayer);
-		PacketHelper.getMethod("sendPacket", playerConnection.getClass(), 1).invoke(playerConnection, packet);
-	}
-
 	public void throwToPoint(RunsafeLocation location)
 	{
 		RunsafeLocation playerLocation = getLocation();
