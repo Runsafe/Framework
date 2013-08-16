@@ -26,8 +26,9 @@ public class RunsafeCancellableEvent extends RunsafeEvent implements Cancellable
 	public void cancel()
 	{
 		event.setCancelled(true);
-		for (Runnable callback : cancellationCallbacks)
-			callback.run();
+		if (cancellationCallbacks != null)
+			for (Runnable callback : cancellationCallbacks)
+				callback.run();
 	}
 
 	@Override

@@ -25,8 +25,9 @@ public class RunsafeCancellableBlockEvent extends RunsafeBlockEvent implements C
 	public void cancel()
 	{
 		event.setCancelled(true);
-		for (Runnable callback : cancellationCallbacks)
-			callback.run();
+		if (cancellationCallbacks != null)
+			for (Runnable callback : cancellationCallbacks)
+				callback.run();
 	}
 
 	@Override

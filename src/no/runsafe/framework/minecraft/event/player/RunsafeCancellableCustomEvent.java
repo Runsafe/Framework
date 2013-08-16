@@ -23,8 +23,9 @@ public abstract class RunsafeCancellableCustomEvent extends RunsafeCustomEvent i
 	public void cancel()
 	{
 		cancelled = true;
-		for (Runnable callback : onCancelled)
-			callback.run();
+		if (onCancelled != null)
+			for (Runnable callback : onCancelled)
+				callback.run();
 	}
 
 	@Override
