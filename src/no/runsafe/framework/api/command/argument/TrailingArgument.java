@@ -5,12 +5,19 @@ public class TrailingArgument extends CommandArgumentSpecification
 	public TrailingArgument(String name)
 	{
 		super(name);
+		required = true;
+	}
+
+	public TrailingArgument(String name, boolean required)
+	{
+		super(name);
+		this.required = required;
 	}
 
 	@Override
 	public boolean isRequired()
 	{
-		return true;
+		return required;
 	}
 
 	@Override
@@ -18,4 +25,6 @@ public class TrailingArgument extends CommandArgumentSpecification
 	{
 		return true;
 	}
+
+	private final boolean required;
 }
