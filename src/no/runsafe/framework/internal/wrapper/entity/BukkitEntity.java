@@ -6,11 +6,14 @@ import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.entity.EntityType;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
+import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageByEntityEvent;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import org.bukkit.Chunk;
 import org.bukkit.entity.Entity;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.util.Vector;
 
 import javax.annotation.Nullable;
@@ -143,6 +146,11 @@ public abstract class BukkitEntity extends BukkitMetadata
 
 	public RunsafeEntityDamageEvent getLastDamageCause()
 	{
+		EntityDamageEvent event = entity.getLastDamageCause();
+
+		if (event instanceof EntityDamageByEntityEvent)
+			return new RunsafeEntityDamageByEntityEvent((EntityDamageByEntityEvent) event);
+
 		return new RunsafeEntityDamageEvent(entity.getLastDamageCause());
 	}
 
