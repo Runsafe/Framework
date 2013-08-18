@@ -19,6 +19,5 @@ public final class Factories
 		EventEngine.Register(InventoryMoveItem.Factory());
 		EventEngine.Register(InventoryPickupItem.Factory());
 		EventEngine.Register(CraftItem.Factory());
-		EventEngine.Register(EnchantItem.Factory());
 	}
 }
