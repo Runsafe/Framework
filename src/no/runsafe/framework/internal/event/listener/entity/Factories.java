@@ -21,5 +21,6 @@ public final class Factories
 		EventEngine.Register(EntityCreatePortal.Factory());
 		EventEngine.Register(EntityDamage.Factory());
 		EventEngine.Register(ProjectileHit.Factory());
+		EventEngine.Register(EntityTame.Factory());
 	}
 }

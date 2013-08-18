@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.wrapper.entity;
 
+import no.runsafe.framework.api.minecraft.IAnimalTamer;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
@@ -10,7 +11,7 @@ import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.GameMode;
 import org.bukkit.entity.HumanEntity;
 
-public abstract class BukkitHumanEntity extends RunsafeEntity
+public abstract class BukkitHumanEntity extends RunsafeEntity implements IAnimalTamer
 {
 	protected BukkitHumanEntity(HumanEntity toWrap)
 	{
@@ -18,6 +19,7 @@ public abstract class BukkitHumanEntity extends RunsafeEntity
 		humanEntity = toWrap;
 	}
 
+	@Override
 	public String getName()
 	{
 		return humanEntity.getName();

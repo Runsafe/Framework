@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.wrapper;
 
+import no.runsafe.framework.api.minecraft.IAnimalTamer;
 import no.runsafe.framework.api.minecraft.IInventoryHolder;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.internal.wrapper.item.BukkitItemStack;
@@ -522,6 +523,21 @@ public final class ObjectWrapper
 			return convert((OfflinePlayer) toWrap);
 		if (toWrap instanceof Dropper)
 			return convert((Dropper) toWrap);
+		return null;
+	}
+
+	@Nullable
+	public static IAnimalTamer convert(AnimalTamer toWrap)
+	{
+		if (toWrap == null)
+			return null;
+
+		if (toWrap instanceof OfflinePlayer)
+			return convert((OfflinePlayer) toWrap);
+
+		if (toWrap instanceof HumanEntity)
+			return convert((HumanEntity) toWrap);
+
 		return null;
 	}
 

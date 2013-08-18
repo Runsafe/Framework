@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.wrapper.player;
 
+import no.runsafe.framework.api.minecraft.IAnimalTamer;
 import no.runsafe.framework.api.minecraft.IInventoryHolder;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.RunsafeLocation;
@@ -14,7 +15,7 @@ import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
 
-public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolder
+public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolder, IAnimalTamer
 {
 	public static final int PLAYERLIST_MAXLENGTH = 16;
 
@@ -25,6 +26,7 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 		basePlayer = toWrap;
 	}
 
+	@Override
 	@Nullable
 	public String getName()
 	{
