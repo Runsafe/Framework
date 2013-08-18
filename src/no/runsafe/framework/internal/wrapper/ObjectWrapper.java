@@ -532,4 +532,13 @@ public final class ObjectWrapper
 			return null;
 		return no.runsafe.framework.minecraft.entity.EntityType.convert(type);
 	}
+
+	@Nullable
+	public static RunsafeRecipe convert(Recipe toWrap)
+	{
+		if (toWrap == null)
+			return null;
+
+		return new RunsafeRecipe(toWrap);
+	}
 }
