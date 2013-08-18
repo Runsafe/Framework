@@ -39,6 +39,16 @@ public class RunsafeInventory extends BukkitInventory
 		}
 	}
 
+	public int getAmountOfItem(Item item)
+	{
+		int amount = 0;
+		for (RunsafeMeta meta : getContents())
+			if (meta.is(item))
+				amount += meta.getAmount();
+
+		return amount;
+	}
+
 	public String serialize()
 	{
 		YamlConfiguration serialize = new YamlConfiguration();
