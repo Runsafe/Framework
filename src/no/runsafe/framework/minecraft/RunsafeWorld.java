@@ -89,5 +89,10 @@ public class RunsafeWorld extends BukkitWorld
 		return new RunsafeLocation(this, x, y, z, yaw, pitch);
 	}
 
+	public boolean isWorld(RunsafeWorld world)
+	{
+		return getName().equals(world.getName());
+	}
+
 	private Universe universe;
 }
