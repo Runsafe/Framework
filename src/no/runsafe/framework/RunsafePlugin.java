@@ -99,7 +99,7 @@ public abstract class RunsafePlugin extends InjectionPlugin
 		if (scheduled != null)
 			return;
 
-		// This is actually safe due to how plugins are initialized by bukkit.
+		// This is actually safe due to how plugins are initialized by bukkit..
 		//noinspection NonThreadSafeLazyInitialization
 		scheduled = scheduler.createSyncTimer(
 			new Runnable()
