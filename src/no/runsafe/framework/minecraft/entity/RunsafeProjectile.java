@@ -1,8 +1,8 @@
 package no.runsafe.framework.minecraft.entity;
 
-import net.minecraft.server.v1_6_R2.EntityArrow;
-import net.minecraft.server.v1_6_R2.IProjectile;
-import net.minecraft.server.v1_6_R2.NBTTagCompound;
+import net.minecraft.server.v1_6_R3.EntityArrow;
+import net.minecraft.server.v1_6_R3.IProjectile;
+import net.minecraft.server.v1_6_R3.NBTTagCompound;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.entity.BukkitProjectile;
 import no.runsafe.framework.minecraft.RunsafeWorld;
