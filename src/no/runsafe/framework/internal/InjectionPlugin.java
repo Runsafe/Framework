@@ -4,6 +4,7 @@ import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.event.plugin.IPluginDisabled;
 import no.runsafe.framework.api.event.plugin.IPluginEnabled;
+import no.runsafe.framework.files.PluginFileManager;
 import no.runsafe.framework.internal.command.CommandEngine;
 import no.runsafe.framework.internal.configuration.Configuration;
 import no.runsafe.framework.internal.configuration.ConfigurationEngine;
@@ -154,6 +155,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		container.addComponent(HookEngine.class);
 		container.addComponent(VersionEngine.class);
 		container.addComponent(Environment.class);
+		container.addComponent(PluginFileManager.class);
 	}
 
 	private DefaultPicoContainer container;

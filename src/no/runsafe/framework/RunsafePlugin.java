@@ -5,6 +5,8 @@ import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.api.event.IServerReady;
+import no.runsafe.framework.files.PluginDataFile;
+import no.runsafe.framework.files.PluginFileManager;
 import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.command.BukkitCommandTabExecutor;
 import no.runsafe.framework.internal.configuration.ConfigurationEngine;
@@ -115,6 +117,16 @@ public abstract class RunsafePlugin extends InjectionPlugin
 			},
 			0
 		);
+	}
+
+	/**
+	 * Returns the class responsible for handling files for this plug-in instance.
+	 *
+	 * @return PluginFileManager
+	 */
+	public PluginFileManager getFileManager()
+	{
+		return getComponent(PluginFileManager.class);
 	}
 
 	private static final Level debugLevel;
