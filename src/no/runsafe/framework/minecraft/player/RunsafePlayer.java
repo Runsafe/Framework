@@ -338,4 +338,13 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		double heal = getHealth() + amount;
 		setHealth(heal > 20D ? 20D : heal);
 	}
+
+	public String getWorldName()
+	{
+		RunsafeWorld world = getWorld();
+		if (world != null)
+			return world.getName();
+
+		return "";
+	}
 }
