@@ -81,8 +81,10 @@ public class RunsafePlayerFakeChatEvent extends RunsafePlayerChatEvent
 	public void cancel()
 	{
 		cancelled = true;
-		for (Runnable callback : cancellationCallbacks)
-			callback.run();
+		if (cancellationCallbacks != null)
+			for (Runnable callback : cancellationCallbacks)
+				if (callback != null)
+					callback.run();
 	}
 
 	@Override
