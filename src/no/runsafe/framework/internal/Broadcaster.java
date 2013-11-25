@@ -19,9 +19,8 @@ public final class Broadcaster extends Output implements IOutput
 	@Override
 	public void outputToServer(String message)
 	{
-		writeColoured(message);
-		for(RunsafePlayer player : serverOutput.getOnlinePlayers())
-			player.sendMessage(message);
+		write(message);
+		broadcast(message);
 	}
 
 	@Override
@@ -33,7 +32,14 @@ public final class Broadcaster extends Output implements IOutput
 	@Override
 	public void broadcastColoured(String message)
 	{
-		outputToServer(ChatColour.ToMinecraft(message));
+		writeColoured(message);
+		broadcast(ChatColour.ToMinecraft(message));
+	}
+
+	private void broadcast(String message)
+	{
+		for(RunsafePlayer player : serverOutput.getOnlinePlayers())
+			player.sendMessage(message);
 	}
 
 	private final RunsafeServer serverOutput;
