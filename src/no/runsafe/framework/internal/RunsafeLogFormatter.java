@@ -24,7 +24,7 @@ public class RunsafeLogFormatter extends SimpleFormatter
 		}
 		String message = formatMessage(record);
 		return String.format(
-			"[%s] (%s %s) %s: %s",
+			"[%s] (%s %s) %s: %s\n",
 			timestamp, source, record.getLoggerName(), record.getLevel().getName(), message
 		);
 	}
