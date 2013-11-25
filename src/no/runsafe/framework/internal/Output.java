@@ -229,6 +229,7 @@ public abstract class Output implements IDebug
 		if (!config.contains("debug"))
 		{
 			config.set("debug", "OFF");
+			config.set("split", false);
 			try
 			{
 				config.save(configFile);
@@ -239,6 +240,7 @@ public abstract class Output implements IDebug
 		}
 		DefaultDebugLevel = Level.parse(config.getString("debug").toUpperCase());
 		InternalLogger = Logger.getLogger("Runsafe");
+		InternalLogger.setUseParentHandlers(!config.getBoolean("split"));
 		try
 		{
 			FileHandler logFile = new FileHandler("runsafe.log", true);
