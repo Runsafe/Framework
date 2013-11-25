@@ -2,8 +2,10 @@ package no.runsafe.framework.internal;
 
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.minecraft.RunsafeServer;
+import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import no.runsafe.framework.text.ChatColour;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
@@ -14,11 +16,12 @@ public final class Broadcaster extends Output implements IOutput
 		serverOutput = server;
 	}
 
-	// Broadcasts the supplied String to all players on the event the output handler has
 	@Override
 	public void outputToServer(String message)
 	{
-		serverOutput.broadcastMessage(message);
+		outputToConsole(message, Level.INFO);
+		for(RunsafePlayer player : serverOutput.getOnlinePlayers())
+			player.sendMessage(message);
 	}
 
 	@Override
