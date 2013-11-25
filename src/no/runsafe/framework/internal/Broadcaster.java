@@ -19,7 +19,7 @@ public final class Broadcaster extends Output implements IOutput
 	@Override
 	public void outputToServer(String message)
 	{
-		outputToConsole(message, Level.INFO);
+		writeColoured(message);
 		for(RunsafePlayer player : serverOutput.getOnlinePlayers())
 			player.sendMessage(message);
 	}
