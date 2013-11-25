@@ -9,9 +9,8 @@ import java.util.logging.Logger;
 
 public final class Broadcaster extends Output implements IOutput
 {
-	public Broadcaster(RunsafeServer server, Logger logger)
+	public Broadcaster(RunsafeServer server)
 	{
-		super(logger);
 		serverOutput = server;
 	}
 

@@ -20,9 +20,8 @@ import java.util.logging.Logger;
 
 public abstract class Output implements IDebug
 {
-	Output(Logger consoleLog)
+	Output()
 	{
-		this.consoleLog = consoleLog;
 		debugLevel = DefaultDebugLevel;
 		outputDebugToConsole("Setting debug level to %s", Level.FINE, DefaultDebugLevel.getName());
 	}
@@ -107,8 +106,6 @@ public abstract class Output implements IDebug
 	public void outputToConsole(String message, Level level)
 	{
 		InternalLogger.log(level, message);
-		if (!SplitLog)
-			consoleLog.log(level, message);
 	}
 
 	// Sends the supplied String to the console/log the output handler has if the debug level is high enough
@@ -221,11 +218,9 @@ public abstract class Output implements IDebug
 			outputToConsole(String.format(" - %s: %s", entry.getKey(), entry.getValue()));
 	}
 
-	private final Logger consoleLog;
 	private Level debugLevel;
 	private static final Level DefaultDebugLevel;
 	private static final Logger InternalLogger;
-	private static final boolean SplitLog;
 
 	static
 	{
@@ -234,7 +229,6 @@ public abstract class Output implements IDebug
 		if (!config.contains("debug"))
 		{
 			config.set("debug", "OFF");
-			config.set("split", false);
 			try
 			{
 				config.save(configFile);
@@ -243,7 +237,6 @@ public abstract class Output implements IDebug
 			{
 			}
 		}
-		SplitLog = config.getBoolean("split");
 		DefaultDebugLevel = Level.parse(config.getString("debug").toUpperCase());
 		InternalLogger = Logger.getLogger("RunsafeLog");
 		try
