@@ -227,16 +227,17 @@ public abstract class Output implements IDebug
 		File configFile = new File("runsafe", "output.yml");
 		YamlConfiguration config = YamlConfiguration.loadConfiguration(configFile);
 		if (!config.contains("debug"))
-		{
 			config.set("debug", "OFF");
+		if (!config.contains("split"))
 			config.set("split", false);
-			try
-			{
-				config.save(configFile);
-			}
-			catch (IOException e)
-			{
-			}
+		if (!config.contains("format"))
+			config.set("format", "%1$s %2$s [%3$s] %4$s");
+		try
+		{
+			config.save(configFile);
+		}
+		catch (IOException e)
+		{
 		}
 		DefaultDebugLevel = Level.parse(config.getString("debug").toUpperCase());
 		InternalLogger = Logger.getLogger("Runsafe");
@@ -245,7 +246,7 @@ public abstract class Output implements IDebug
 		{
 			FileHandler logFile = new FileHandler("runsafe.log", true);
 			logFile.setEncoding("UTF-8");
-			logFile.setFormatter(new RunsafeLogFormatter());
+			logFile.setFormatter(new RunsafeLogFormatter(config.getString("format")));
 			InternalLogger.addHandler(logFile);
 		}
 		catch (IOException e)
