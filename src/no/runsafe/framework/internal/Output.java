@@ -8,11 +8,14 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
+import sun.rmi.log.ReliableLog;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -104,6 +107,7 @@ public abstract class Output implements IDebug
 	@Override
 	public void outputToConsole(String message, Level level)
 	{
+		InternalLogger.log(level, message);
 		consoleLog.log(level, message);
 	}
 
@@ -220,6 +224,7 @@ public abstract class Output implements IDebug
 	private final Logger consoleLog;
 	private Level debugLevel;
 	private static final Level DefaultDebugLevel;
+	private static final Logger InternalLogger;
 
 	static
 	{
@@ -228,5 +233,15 @@ public abstract class Output implements IDebug
 		if (!config.contains("debug"))
 			config.set("debug", "OFF");
 		DefaultDebugLevel = Level.parse(config.getString("debug").toUpperCase());
+		InternalLogger = Logger.getLogger("RunsafeLog");
+		try
+		{
+			FileHandler logFile = new FileHandler("runsafe.log", true);
+			logFile.setEncoding("UTF-8");
+			InternalLogger.addHandler(logFile);
+		}
+		catch (IOException e)
+		{
+		}
 	}
 }
