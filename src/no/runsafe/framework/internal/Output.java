@@ -8,14 +8,15 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
-import sun.rmi.log.ReliableLog;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
-import java.util.logging.*;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public abstract class Output implements IDebug
 {
@@ -106,7 +107,8 @@ public abstract class Output implements IDebug
 	public void outputToConsole(String message, Level level)
 	{
 		InternalLogger.log(level, message);
-		consoleLog.log(level, message);
+		if (!SplitLog)
+			consoleLog.log(level, message);
 	}
 
 	// Sends the supplied String to the console/log the output handler has if the debug level is high enough
@@ -223,13 +225,25 @@ public abstract class Output implements IDebug
 	private Level debugLevel;
 	private static final Level DefaultDebugLevel;
 	private static final Logger InternalLogger;
+	private static final boolean SplitLog;
 
 	static
 	{
 		File configFile = new File("runsafe", "output.yml");
 		YamlConfiguration config = YamlConfiguration.loadConfiguration(configFile);
 		if (!config.contains("debug"))
+		{
 			config.set("debug", "OFF");
+			config.set("split", false);
+			try
+			{
+				config.save(configFile);
+			}
+			catch (IOException e)
+			{
+			}
+		}
+		SplitLog = config.getBoolean("split");
 		DefaultDebugLevel = Level.parse(config.getString("debug").toUpperCase());
 		InternalLogger = Logger.getLogger("RunsafeLog");
 		try
