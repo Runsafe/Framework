@@ -27,7 +27,7 @@ public class RunsafeLogFormatter extends SimpleFormatter
 	}
 
 	private final DateTimeFormatter datestamp = new DateTimeFormatterBuilder()
-		.appendYear(4,4).appendLiteral('-').appendMonthOfYear(2).appendDayOfMonth(2)
+		.appendYear(4,4).appendLiteral('-').appendMonthOfYear(2).appendLiteral('-').appendDayOfMonth(2)
 		.toFormatter();
 	private final DateTimeFormatter timestamp = new DateTimeFormatterBuilder()
 		.appendHourOfDay(2).appendLiteral(':').appendMinuteOfHour(2).appendLiteral(':').appendSecondOfMinute(2)
