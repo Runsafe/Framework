@@ -15,9 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.*;
 
 public abstract class Output implements IDebug
 {
@@ -238,6 +236,7 @@ public abstract class Output implements IDebug
 		{
 			FileHandler logFile = new FileHandler("runsafe.log", true);
 			logFile.setEncoding("UTF-8");
+			logFile.setFormatter(new RunsafeLogFormatter());
 			InternalLogger.addHandler(logFile);
 		}
 		catch (IOException e)
