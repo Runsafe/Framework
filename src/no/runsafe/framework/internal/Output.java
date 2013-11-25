@@ -238,7 +238,7 @@ public abstract class Output implements IDebug
 			}
 		}
 		DefaultDebugLevel = Level.parse(config.getString("debug").toUpperCase());
-		InternalLogger = Logger.getLogger("RunsafeLog");
+		InternalLogger = Logger.getLogger("Runsafe");
 		try
 		{
 			FileHandler logFile = new FileHandler("runsafe.log", true);

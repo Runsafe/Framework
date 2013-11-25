@@ -6,7 +6,6 @@ import org.joda.time.format.DateTimeFormatterBuilder;
 import java.util.logging.LogRecord;
 import java.util.logging.SimpleFormatter;
 
-@SuppressWarnings("ThrowableResultOfMethodCallIgnored")
 public class RunsafeLogFormatter extends SimpleFormatter
 {
 	@Override
@@ -22,6 +21,6 @@ public class RunsafeLogFormatter extends SimpleFormatter
 	}
 
 	private final DateTimeFormatter timestamp = new DateTimeFormatterBuilder()
-		.appendHourOfDay(2).appendLiteral(':').appendMinuteOfHour(2)
+		.appendHourOfDay(2).appendLiteral(':').appendMinuteOfHour(2).appendLiteral(':').appendSecondOfMinute(2)
 		.toFormatter();
 }
