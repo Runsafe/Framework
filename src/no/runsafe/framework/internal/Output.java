@@ -29,7 +29,7 @@ public abstract class Output implements IDebug
 	@Override
 	public void writeColoured(String message)
 	{
-		writeColoured(message, Level.INFO);
+		writeColoured(message.replace("%", "%%"), Level.INFO);
 	}
 
 	@Override
