@@ -22,12 +22,14 @@ import java.util.logging.Logger;
 
 public abstract class Output implements IDebug
 {
-	Output(RunsafePlugin plugin)
+	Output(InjectionPlugin plugin)
 	{
 		debugLevel = DefaultDebugLevel;
 		outputDebugToConsole("Setting debug level to %s", Level.FINE, DefaultDebugLevel.getName());
 		if(plugin != null && pluginFormat.containsKey(plugin.getName()))
 			format = (String)pluginFormat.get(plugin.getName());
+		else if(plugin != null && pluginFormat.containsKey("*"))
+			format = String.format((String)pluginFormat.get("*"), plugin.getName());
 		else
 			format = null;
 	}
@@ -246,6 +248,8 @@ public abstract class Output implements IDebug
 			config.set("split", false);
 		if (!config.contains("format"))
 			config.set("format", "%1$s %2$s [%3$s] %4$s");
+		if (!config.contains("pluginformat.*"))
+			config.set("pluginformat.*", "%%1$s %%2$s [%%3$s] [%s] %%4$s");
 		ConfigurationSection plugins = config.getConfigurationSection("pluginformat");
 		pluginFormat = plugins.getValues(false);
 		try

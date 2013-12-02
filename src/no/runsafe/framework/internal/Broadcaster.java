@@ -9,7 +9,7 @@ import no.runsafe.framework.text.ChatColour;
 
 public final class Broadcaster extends Output implements IOutput
 {
-	public Broadcaster(RunsafePlugin plugin, RunsafeServer server)
+	public Broadcaster(InjectionPlugin plugin, RunsafeServer server)
 	{
 		super(plugin);
 		serverOutput = server;

@@ -4,8 +4,8 @@ import no.runsafe.framework.RunsafePlugin;
 
 public final class Debugger extends Output
 {
-	public Debugger(RunsafePlugin plugin)
+	public Debugger()
 	{
-		super(plugin);
+		super(null);
 	}
 }
