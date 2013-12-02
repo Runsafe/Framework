@@ -1,11 +1,13 @@
 package no.runsafe.framework.internal;
 
+import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.internal.wrapper.item.BukkitItemStack;
 import no.runsafe.framework.text.ChatColour;
 import no.runsafe.framework.text.ConsoleColour;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 
@@ -20,10 +22,14 @@ import java.util.logging.Logger;
 
 public abstract class Output implements IDebug
 {
-	Output()
+	Output(RunsafePlugin plugin)
 	{
 		debugLevel = DefaultDebugLevel;
 		outputDebugToConsole("Setting debug level to %s", Level.FINE, DefaultDebugLevel.getName());
+		if(plugin != null && pluginFormat.containsKey(plugin.getName()))
+			format = (String)pluginFormat.get(plugin.getName());
+		else
+			format = null;
 	}
 
 	@Override
@@ -105,7 +111,7 @@ public abstract class Output implements IDebug
 	@Override
 	public void outputToConsole(String message, Level level)
 	{
-		InternalLogger.log(level, message);
+		InternalLogger.log(level, message, this);
 	}
 
 	// Sends the supplied String to the console/log the output handler has if the debug level is high enough
@@ -180,6 +186,11 @@ public abstract class Output implements IDebug
 				dumpData(((BukkitItemStack) object).getRaw());
 	}
 
+	public String getFormat()
+	{
+		return format;
+	}
+
 	private String formatDebugMessage(String message, Level messageLevel, Object... params)
 	{
 		String formatted = String.format(
@@ -219,8 +230,11 @@ public abstract class Output implements IDebug
 	}
 
 	private Level debugLevel;
+	private final String format;
+
 	private static final Level DefaultDebugLevel;
 	private static final Logger InternalLogger;
+	private static final Map<String, Object> pluginFormat;
 
 	static
 	{
@@ -232,6 +246,8 @@ public abstract class Output implements IDebug
 			config.set("split", false);
 		if (!config.contains("format"))
 			config.set("format", "%1$s %2$s [%3$s] %4$s");
+		ConfigurationSection plugins = config.getConfigurationSection("pluginformat");
+		pluginFormat = plugins.getValues(false);
 		try
 		{
 			config.save(configFile);

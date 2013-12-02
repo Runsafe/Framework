@@ -10,15 +10,24 @@ public class RunsafeLogFormatter extends SimpleFormatter
 {
 	public RunsafeLogFormatter(String format)
 	{
-		logFormat = format + "\n";
+		defaultLogFormat = format;
 	}
 
 	@Override
 	public synchronized String format(LogRecord record)
 	{
+		String logFormat = null;
 		String message = formatMessage(record);
+		if(record.getParameters() != null && record.getParameters().length > 0)
+		{
+			 Object param = record.getParameters()[0];
+			if(param instanceof Output)
+				logFormat = ((Output)param).getFormat();
+		}
+		if(logFormat == null)
+			logFormat = defaultLogFormat;
 		return String.format(
-			logFormat,
+			logFormat + "\n",
 			datestamp.print(record.getMillis()),
 			timestamp.print(record.getMillis()),
 			record.getLevel().getName(),
@@ -32,5 +41,5 @@ public class RunsafeLogFormatter extends SimpleFormatter
 	private final DateTimeFormatter timestamp = new DateTimeFormatterBuilder()
 		.appendHourOfDay(2).appendLiteral(':').appendMinuteOfHour(2).appendLiteral(':').appendSecondOfMinute(2)
 		.toFormatter();
-	private final String logFormat;
+	private final String defaultLogFormat;
 }

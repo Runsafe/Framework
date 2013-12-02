@@ -1,7 +1,11 @@
 package no.runsafe.framework.internal;
 
-import java.util.logging.Logger;
+import no.runsafe.framework.RunsafePlugin;
 
 public final class Debugger extends Output
 {
+	public Debugger(RunsafePlugin plugin)
+	{
+		super(plugin);
+	}
 }

@@ -29,7 +29,7 @@ public class RunsafeServer extends BukkitServer
 	public RunsafeServer(Server toWrap)
 	{
 		super(toWrap);
-		debugger = new Debugger();
+		debugger = new Debugger(null);
 	}
 
 	public IDebug getDebugger()

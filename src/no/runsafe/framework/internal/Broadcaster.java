@@ -1,18 +1,17 @@
 package no.runsafe.framework.internal;
 
+import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import no.runsafe.framework.text.ChatColour;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 
 public final class Broadcaster extends Output implements IOutput
 {
-	public Broadcaster(RunsafeServer server)
+	public Broadcaster(RunsafePlugin plugin, RunsafeServer server)
 	{
+		super(plugin);
 		serverOutput = server;
 	}
 
@@ -38,7 +37,7 @@ public final class Broadcaster extends Output implements IOutput
 
 	private void broadcast(String message)
 	{
-		for(RunsafePlayer player : serverOutput.getOnlinePlayers())
+		for (RunsafePlayer player : serverOutput.getOnlinePlayers())
 			player.sendMessage(message);
 	}
 
