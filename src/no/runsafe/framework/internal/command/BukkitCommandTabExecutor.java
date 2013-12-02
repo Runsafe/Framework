@@ -6,6 +6,7 @@ import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.api.command.IPreparedCommand;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
+import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.text.ChatColour;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -80,11 +81,16 @@ public final class BukkitCommandTabExecutor implements TabExecutor
 		IPreparedCommand preparedCommand = preparedCommand(sender, false, args);
 
 		String permission = preparedCommand.getRequiredPermission();
-		if (permission == null || sender.hasPermission(permission))
+		if (!(sender instanceof Player) || permission == null || sender.hasPermission(permission))
 		{
 			String feedback = preparedCommand.execute();
 			if (feedback != null)
-				sender.sendMessage(ChatColour.ToMinecraft(feedback));
+			{
+				if (!(sender instanceof Player))
+					RunsafeServer.Instance.getDebugger().writeColoured(feedback);
+				else
+					sender.sendMessage(ChatColour.ToMinecraft(feedback));
+			}
 		}
 		else
 		{
