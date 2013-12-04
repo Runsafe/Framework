@@ -10,18 +10,11 @@ import no.runsafe.framework.internal.reflection.ReflectionHelper;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.minecraft.event.player.RunsafePlayerPreLoginEvent;
 import no.runsafe.framework.minecraft.networking.RunsafePlayerConnection;
-import org.picocontainer.Startable;
 
 import java.lang.reflect.Field;
 
-public class NetworkAgent implements Startable, IPlayerPreLoginEvent
+public class NetworkAgent implements IPlayerPreLoginEvent
 {
-	/**
-	 * Required by Startable but never used here.
-	 */
-	public NetworkAgent()
-	{}
-
 	public NetworkAgent(IOutput output)
 	{
 		this.output = output;
@@ -52,20 +45,6 @@ public class NetworkAgent implements Startable, IPlayerPreLoginEvent
 			output.warning("Invalid EntityPlayer class found, check framework is up-to-date?");
 		}
 	}
-
-	/**
-	 * Required by Startable but never used here.
-	 */
-	@Override
-	public void start()
-	{}
-
-	/**
-	 * Required by Startable but never used here.
-	 */
-	@Override
-	public void stop()
-	{}
 
 	private IOutput output;
 }
