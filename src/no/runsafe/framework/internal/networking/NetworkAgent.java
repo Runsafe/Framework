@@ -14,17 +14,18 @@ import org.picocontainer.Startable;
 
 import java.lang.reflect.Field;
 
-public class NetworkHook implements Startable, IPlayerPreLoginEvent
+public class NetworkAgent implements Startable, IPlayerPreLoginEvent
 {
 	/**
 	 * Required by Startable but never used here.
 	 */
-	public NetworkHook()
+	public NetworkAgent()
 	{}
 
-	public NetworkHook(IOutput output)
+	public NetworkAgent(IOutput output)
 	{
 		this.output = output;
+		output.write("Network agent online.");
 	}
 
 	@Override
