@@ -2,10 +2,10 @@ package no.runsafe.framework.minecraft.player;
 
 import com.google.common.collect.ImmutableList;
 
+import net.minecraft.server.v1_6_R3.EntityPlayer;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.hook.*;
 import no.runsafe.framework.internal.HookEngine;
-import no.runsafe.framework.internal.packets.PacketHelper;
 import no.runsafe.framework.internal.wrapper.player.BukkitPlayer;
 import no.runsafe.framework.minecraft.*;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
@@ -15,7 +15,7 @@ import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import no.runsafe.framework.text.ChatColour;
 import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.util.Vector;
+import org.bukkit.craftbukkit.v1_6_R3.entity.CraftPlayer;
 import org.joda.time.DateTime;
 
 import javax.annotation.Nonnull;
@@ -346,5 +346,10 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 			return world.getName();
 
 		return "";
+	}
+
+	public EntityPlayer getNMSPlayer()
+	{
+		return ((CraftPlayer) player).getHandle();
 	}
 }
