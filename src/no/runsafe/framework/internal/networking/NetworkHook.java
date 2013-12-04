@@ -7,6 +7,7 @@ import net.minecraft.server.v1_6_R3.PlayerConnection;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.event.player.IPlayerPreLoginEvent;
 import no.runsafe.framework.internal.reflection.ReflectionHelper;
+import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.minecraft.event.player.RunsafePlayerPreLoginEvent;
 import no.runsafe.framework.minecraft.networking.RunsafePlayerConnection;
 import org.picocontainer.Startable;
@@ -31,7 +32,7 @@ public class NetworkHook implements Startable, IPlayerPreLoginEvent
 	{
 		try
 		{
-			EntityPlayer nmsPlayer = event.getPlayer().getNMSPlayer();
+			EntityPlayer nmsPlayer = ObjectUnwrapper.convert(event.getPlayer());
 
 			Field field = ReflectionHelper.getField(nmsPlayer, "playerConnection");
 			field.setAccessible(true);
