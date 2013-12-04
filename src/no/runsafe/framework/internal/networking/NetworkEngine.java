@@ -5,29 +5,20 @@ import net.minecraft.server.v1_6_R3.INetworkManager;
 import net.minecraft.server.v1_6_R3.MinecraftServer;
 import net.minecraft.server.v1_6_R3.PlayerConnection;
 import no.runsafe.framework.api.IOutput;
-import no.runsafe.framework.api.event.player.IPlayerPreLoginEvent;
 import no.runsafe.framework.internal.reflection.ReflectionHelper;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
-import no.runsafe.framework.minecraft.event.player.RunsafePlayerPreLoginEvent;
 import no.runsafe.framework.minecraft.networking.RunsafePlayerConnection;
+import no.runsafe.framework.minecraft.player.RunsafePlayer;
 
 import java.lang.reflect.Field;
 
-public class NetworkAgent implements IPlayerPreLoginEvent
+public class NetworkEngine
 {
-	public NetworkAgent(IOutput output)
+	public static void interceptConnection(RunsafePlayer player, IOutput output)
 	{
-		this.output = output;
-		output.write("Network agent online.");
-	}
-
-	@Override
-	public void OnBeforePlayerLogin(RunsafePlayerPreLoginEvent event)
-	{
-		output.write("Detected player log-in: " + event.getPlayer().getName());
 		try
 		{
-			EntityPlayer nmsPlayer = ObjectUnwrapper.convert(event.getPlayer());
+			EntityPlayer nmsPlayer = ObjectUnwrapper.convert(player);
 
 			Field field = ReflectionHelper.getField(nmsPlayer, "playerConnection");
 			field.setAccessible(true);
@@ -45,6 +36,4 @@ public class NetworkAgent implements IPlayerPreLoginEvent
 			output.warning("Invalid EntityPlayer class found, check framework is up-to-date?");
 		}
 	}
-
-	private IOutput output;
 }
