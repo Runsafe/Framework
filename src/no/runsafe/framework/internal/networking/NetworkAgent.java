@@ -31,6 +31,7 @@ public class NetworkAgent implements Startable, IPlayerPreLoginEvent
 	@Override
 	public void OnBeforePlayerLogin(RunsafePlayerPreLoginEvent event)
 	{
+		output.write("Detected player log-in: " + event.getPlayer().getName());
 		try
 		{
 			EntityPlayer nmsPlayer = ObjectUnwrapper.convert(event.getPlayer());
