@@ -12,6 +12,7 @@ import no.runsafe.framework.internal.database.SchemaUpdater;
 import no.runsafe.framework.internal.database.jdbc.Database;
 import no.runsafe.framework.internal.event.EventEngine;
 import no.runsafe.framework.internal.lua.Environment;
+import no.runsafe.framework.internal.networking.NetworkAgent;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.timer.Scheduler;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -155,6 +156,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		container.addComponent(HookEngine.class);
 		container.addComponent(VersionEngine.class);
 		container.addComponent(Environment.class);
+		container.addComponent(NetworkAgent.class);
 		container.addComponent(PluginFileManager.class);
 	}
 
