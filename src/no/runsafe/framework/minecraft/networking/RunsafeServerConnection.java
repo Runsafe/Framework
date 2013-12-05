@@ -13,7 +13,7 @@ public class RunsafeServerConnection extends DedicatedServerConnection
 		super(server, address, i);
 		this.output = output;
 
-		this.output.info("RunsafeServerConnection successfully interjected.") ;
+		this.output.write("RunsafeServerConnection successfully interjected.") ;
 	}
 
 	private final IOutput output;
