@@ -30,7 +30,7 @@ public class Debug extends Console implements IDebug
 	public final void outputDebugToConsole(String message, Level messageLevel, Object... params)
 	{
 		if (debugLevel != null && messageLevel.intValue() >= debugLevel.intValue())
-			outputToConsole(formatDebugMessage(message, messageLevel, params), Level.INFO);
+			InternalDebugger.log(Level.INFO, formatDebugMessage(message, messageLevel, params), this);
 	}
 
 	// Gets the current debug output level
@@ -94,7 +94,7 @@ public class Debug extends Console implements IDebug
 	{
 		if (debugLevel != null && messageLevel.intValue() >= debugLevel.intValue())
 			if (object instanceof BukkitItemStack)
-				dumpData(((BukkitItemStack) object).getRaw());
+				dumpData(((BukkitItemStack) object).getRaw(), messageLevel);
 	}
 
 	private String formatDebugMessage(String message, Level messageLevel, Object... params)
@@ -113,12 +113,12 @@ public class Debug extends Console implements IDebug
 		return formatted;
 	}
 
-	private void dumpData(ConfigurationSerializable raw)
+	private void dumpData(ConfigurationSerializable raw, Level level)
 	{
-		outputToConsole(String.format("Dumping instance of %s", raw.getClass().getCanonicalName()));
+		outputDebugToConsole("Dumping instance of %s", level, raw.getClass().getCanonicalName());
 		Map<String, Object> values = raw.serialize();
 		for (Map.Entry<String, Object> entry : values.entrySet())
-			outputToConsole(String.format(" - %s: %s", entry.getKey(), entry.getValue()));
+			outputDebugToConsole(" - %s: %s", level, entry.getKey(), entry.getValue());
 	}
 
 	private static String getStackTrace()

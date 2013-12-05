@@ -7,9 +7,9 @@ import org.joda.time.format.DateTimeFormatterBuilder;
 import java.util.logging.LogRecord;
 import java.util.logging.SimpleFormatter;
 
-public class RunsafeLogFormatter extends SimpleFormatter
+public class RunsafeDebugFormatter extends SimpleFormatter
 {
-	public RunsafeLogFormatter(String format)
+	public RunsafeDebugFormatter(String format)
 	{
 		defaultLogFormat = format;
 	}
@@ -23,7 +23,7 @@ public class RunsafeLogFormatter extends SimpleFormatter
 		{
 			Object param = record.getParameters()[0];
 			if (param instanceof IConsole)
-				logFormat = ((IConsole) param).getLogFormat();
+				logFormat = ((IConsole) param).getDebugFormat();
 		}
 		if (logFormat == null)
 			logFormat = defaultLogFormat;

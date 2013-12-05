@@ -4,7 +4,6 @@ import no.runsafe.framework.api.IConsole;
 import no.runsafe.framework.text.ChatColour;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
@@ -18,10 +17,15 @@ public class Console implements IConsole
 {
 	protected Console(InjectionPlugin plugin)
 	{
-		if (plugin != null && pluginFormat.containsKey(plugin.getName()))
-			format = (String) pluginFormat.get(plugin.getName());
-		else if (plugin != null && pluginFormat.containsKey("*"))
-			format = String.format((String) pluginFormat.get("*"), plugin.getName());
+		if (plugin != null && logFormats.containsKey(plugin.getName()))
+			logFormat = (String) logFormats.get(plugin.getName());
+		else if (plugin != null && logFormats.containsKey("*"))
+			logFormat = String.format((String) logFormats.get("*"), plugin.getName());
+
+		if (plugin != null && debugFormats.containsKey(plugin.getName()))
+			debugFormat = (String) debugFormats.get(plugin.getName());
+		else if (plugin != null && debugFormats.containsKey("*"))
+			debugFormat = String.format((String) debugFormats.get("*"), plugin.getName());
 	}
 
 	@Override
@@ -36,15 +40,21 @@ public class Console implements IConsole
 	}
 
 	@Override
+	public void logInformation(String message, Object... params)
+	{
+		writeColoured("&2%s&r", Level.INFO, String.format(message.replace("&r", "&2"), params));
+	}
+
+	@Override
 	public void logWarning(String message, Object... params)
 	{
-		outputToConsole(ChatColour.ToConsole("&e" + String.format(message.replace("&r", "&e"), params) + "&r"), Level.WARNING);
+		writeColoured("&e%s&r", Level.WARNING, String.format(message.replace("&r", "&e"), params));
 	}
 
 	@Override
 	public void logError(String message, Object... params)
 	{
-		outputToConsole(ChatColour.ToConsole("&4" + String.format(message.replace("&r", "&4"), params) + "&r"), Level.SEVERE);
+		writeColoured("&4%s&r", Level.SEVERE, String.format(message.replace("&r", "&4"), params));
 	}
 
 	/**
@@ -62,13 +72,28 @@ public class Console implements IConsole
 		System.exit(1);
 	}
 
+	@Deprecated
 	@Override
-	public void logInformation(String message, Object... params)
+	public void writeColoured(String message)
 	{
-		outputToConsole(ChatColour.ToConsole("&2" + String.format(message.replace("&r", "&2"), params) + "&r"), Level.INFO);
+		writeColoured(message.replace("%", "%%"), Level.INFO);
+	}
+
+	@Deprecated
+	@Override
+	public void writeColoured(String message, Object... params)
+	{
+		writeColoured(message, Level.INFO, params);
+	}
+
+	@Override
+	public void writeColoured(String message, Level level, Object... params)
+	{
+		outputToConsole(ChatColour.ToConsole(String.format(message, params)), level);
 	}
 
 	// Sends the supplied String to the console/log the output handler has
+	@Deprecated
 	@Override
 	public void outputToConsole(String message)
 	{
@@ -83,35 +108,26 @@ public class Console implements IConsole
 	}
 
 	@Override
-	public void writeColoured(String message)
+	public String getLogFormat()
 	{
-		writeColoured(message.replace("%", "%%"), Level.INFO);
+		return logFormat;
 	}
 
 	@Override
-	public void writeColoured(String message, Object... params)
+	public String getDebugFormat()
 	{
-		writeColoured(message, Level.INFO, params);
+		return debugFormat;
 	}
 
-	@Override
-	public void writeColoured(String message, Level level, Object... params)
-	{
-		outputToConsole(ChatColour.ToConsole(String.format(message, params)), level);
-	}
-
-	@Override
-	public String getFormat()
-	{
-		return format;
-	}
-
-	private String format;
+	private String logFormat;
+	private String debugFormat;
 
 	public static final Level DefaultDebugLevel;
 
-	protected static final Map<String, Object> pluginFormat;
+	protected static final Map<String, Object> logFormats;
+	protected static final Map<String, Object> debugFormats;
 	protected static final Logger InternalLogger;
+	protected static final Logger InternalDebugger;
 
 	static
 	{
@@ -121,12 +137,14 @@ public class Console implements IConsole
 			config.set("debug", "OFF");
 		if (!config.contains("split"))
 			config.set("split", false);
-		if (!config.contains("format"))
-			config.set("format", "%1$s %2$s [%3$s] %4$s");
-		if (!config.contains("pluginformat.*"))
-			config.set("pluginformat.*", "%%1$s %%2$s [%%3$s] [%s] %%4$s");
-		ConfigurationSection plugins = config.getConfigurationSection("pluginformat");
-		pluginFormat = plugins.getValues(false);
+		if (!config.contains("format.anonymous"))
+			config.set("format.anonymous", "%1$s %2$s [%3$s] %4$s");
+		if (!config.contains("format.log.*"))
+			config.set("format.log.*", "%%1$s %%2$s [%%3$s] [%s] %%4$s");
+		if (!config.contains("format.debug.*"))
+			config.set("format.debug.*", "%%1$s %%2$s [%%3$s] [%s] %%4$s");
+		logFormats = config.getConfigurationSection("format.log").getValues(false);
+		debugFormats = config.getConfigurationSection("format.debug").getValues(false);
 		try
 		{
 			config.save(configFile);
@@ -135,14 +153,21 @@ public class Console implements IConsole
 		{
 		}
 		DefaultDebugLevel = Level.parse(config.getString("debug").toUpperCase());
-		InternalLogger = Logger.getLogger("Runsafe");
+		InternalLogger = Logger.getLogger("RunsafeLogger");
 		InternalLogger.setUseParentHandlers(!config.getBoolean("split"));
+		InternalDebugger = Logger.getLogger("RunsafeDebugger");
+		InternalDebugger.setUseParentHandlers(!config.getBoolean("split"));
 		try
 		{
 			FileHandler logFile = new FileHandler("runsafe.log", true);
 			logFile.setEncoding("UTF-8");
-			logFile.setFormatter(new RunsafeLogFormatter(config.getString("format")));
+			logFile.setFormatter(new RunsafeLogFormatter(config.getString("format.anonymous")));
 			InternalLogger.addHandler(logFile);
+
+			FileHandler debugFile = new FileHandler("debug.log", true);
+			debugFile.setEncoding("UTF-8");
+			debugFile.setFormatter(new RunsafeDebugFormatter(config.getString("format.anonymous")));
+			InternalDebugger.addHandler(debugFile);
 		}
 		catch (IOException e)
 		{

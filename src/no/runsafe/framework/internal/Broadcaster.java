@@ -15,6 +15,7 @@ public final class Broadcaster extends Debug implements IOutput
 		serverOutput = server;
 	}
 
+	@Deprecated
 	@Override
 	public void outputToServer(String message)
 	{
@@ -25,13 +26,8 @@ public final class Broadcaster extends Debug implements IOutput
 	@Override
 	public void broadcastColoured(String format, Object... params)
 	{
-		broadcastColoured(String.format(format, params));
-	}
-
-	@Override
-	public void broadcastColoured(String message)
-	{
-		writeColoured(message);
+		String message = String.format(format, params);
+		writeColoured(message, Level.INFO);
 		broadcast(ChatColour.ToMinecraft(message));
 	}
 
