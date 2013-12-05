@@ -144,7 +144,8 @@ public class Console implements IConsole
 		YamlConfiguration config = YamlConfiguration.loadConfiguration(configFile);
 		if (!config.contains("debug")) config.set("debug", "OFF");
 		if (!config.contains("split")) config.set("split", false);
-		if (!config.contains("format.anonymous")) config.set("format.anonymous", "%1$s %2$s [%3$s] %4$s");
+		if (!config.contains("format.anonymous.log")) config.set("format.anonymous.log", "%1$s %2$s [%3$s] %4$s");
+		if (!config.contains("format.anonymous.debug")) config.set("format.anonymous.debug", "%1$s %2$s [&oDEBUG&r] %4$s");
 		if (!config.contains("format.log.*")) config.set("format.log.*", "%%1$s %%2$s [%%3$s] [&9%s&r] %%4$s");
 		if (!config.contains("format.debug.*")) config.set("format.debug.*", "%%1$s %%2$s [&oDEBUG&r] [&9%s&r] %%4$s");
 		if (!config.contains("format.level"))
@@ -183,12 +184,12 @@ public class Console implements IConsole
 		{
 			FileHandler logFile = new FileHandler("runsafe.log", true);
 			logFile.setEncoding("UTF-8");
-			logFile.setFormatter(new RunsafeLogFormatter(config.getString("format.anonymous")));
+			logFile.setFormatter(new RunsafeLogFormatter(config.getString("format.anonymous.log")));
 			InternalLogger.addHandler(logFile);
 
 			FileHandler debugFile = new FileHandler("debug.log", true);
 			debugFile.setEncoding("UTF-8");
-			debugFile.setFormatter(new RunsafeDebugFormatter(config.getString("format.anonymous")));
+			debugFile.setFormatter(new RunsafeDebugFormatter(config.getString("format.anonymous.debug")));
 			InternalDebugger.addHandler(debugFile);
 		}
 		catch (IOException e)
