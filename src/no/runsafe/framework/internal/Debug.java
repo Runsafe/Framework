@@ -15,7 +15,12 @@ public class Debug extends Console implements IDebug
 {
 	public Debug()
 	{
-		super(null);
+		this(null);
+	}
+
+	public Debug(InjectionPlugin plugin)
+	{
+		super(plugin);
 		debugLevel = DefaultDebugLevel;
 		outputDebugToConsole("Setting debug level to %s", Level.FINE, DefaultDebugLevel.getName());
 	}
