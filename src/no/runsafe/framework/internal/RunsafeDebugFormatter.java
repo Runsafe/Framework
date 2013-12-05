@@ -9,11 +9,6 @@ import java.util.logging.SimpleFormatter;
 
 public class RunsafeDebugFormatter extends SimpleFormatter
 {
-	public RunsafeDebugFormatter(String format)
-	{
-		defaultLogFormat = format;
-	}
-
 	@Override
 	public synchronized String format(LogRecord record)
 	{
@@ -25,8 +20,6 @@ public class RunsafeDebugFormatter extends SimpleFormatter
 			if (param instanceof IConsole)
 				logFormat = ((IConsole) param).getDebugFormat();
 		}
-		if (logFormat == null)
-			logFormat = defaultLogFormat;
 		return String.format(
 			logFormat + "\n",
 			datestamp.print(record.getMillis()),
@@ -42,5 +35,4 @@ public class RunsafeDebugFormatter extends SimpleFormatter
 	private final DateTimeFormatter timestamp = new DateTimeFormatterBuilder()
 		.appendHourOfDay(2).appendLiteral(':').appendMinuteOfHour(2).appendLiteral(':').appendSecondOfMinute(2)
 		.toFormatter();
-	private final String defaultLogFormat;
 }

@@ -24,10 +24,16 @@ public class Console implements IConsole
 		else if (plugin != null && logFormats.containsKey("*"))
 			logFormat = String.format((String) logFormats.get("*"), plugin.getName());
 
+		if(logFormat == null)
+			logFormat = defaultLogFormat;
+
 		if (plugin != null && debugFormats.containsKey(plugin.getName()))
 			debugFormat = (String) debugFormats.get(plugin.getName());
 		else if (plugin != null && debugFormats.containsKey("*"))
 			debugFormat = String.format((String) debugFormats.get("*"), plugin.getName());
+
+		if(debugFormat == null)
+			debugFormat = defaultDebugFormat;
 	}
 
 	@Override
@@ -112,12 +118,16 @@ public class Console implements IConsole
 	@Override
 	public String getLogFormat()
 	{
+		if(logFormat == null)
+			return null;
 		return ChatColour.ToConsole(logFormat);
 	}
 
 	@Override
 	public String getDebugFormat()
 	{
+		if(debugFormat == null)
+			return null;
 		return ChatColour.ToConsole(debugFormat);
 	}
 
@@ -136,6 +146,8 @@ public class Console implements IConsole
 	protected static final Logger InternalLogger;
 	protected static final Logger InternalDebugger;
 
+	private static final String defaultLogFormat;
+	private static final String defaultDebugFormat;
 	private static Map<Level, String> levelFormat;
 
 	static
@@ -175,6 +187,9 @@ public class Console implements IConsole
 		catch (IOException e)
 		{
 		}
+
+		defaultLogFormat = config.getString("format.anonymous.log");
+		defaultDebugFormat = config.getString("format.anonymous.debug");
 		DefaultDebugLevel = Level.parse(config.getString("debug").toUpperCase());
 		InternalLogger = Logger.getLogger("RunsafeLogger");
 		InternalLogger.setUseParentHandlers(!config.getBoolean("split"));
@@ -184,12 +199,12 @@ public class Console implements IConsole
 		{
 			FileHandler logFile = new FileHandler("runsafe.log", true);
 			logFile.setEncoding("UTF-8");
-			logFile.setFormatter(new RunsafeLogFormatter(config.getString("format.anonymous.log")));
+			logFile.setFormatter(new RunsafeLogFormatter());
 			InternalLogger.addHandler(logFile);
 
 			FileHandler debugFile = new FileHandler("debug.log", true);
 			debugFile.setEncoding("UTF-8");
-			debugFile.setFormatter(new RunsafeDebugFormatter(config.getString("format.anonymous.debug")));
+			debugFile.setFormatter(new RunsafeDebugFormatter());
 			InternalDebugger.addHandler(debugFile);
 		}
 		catch (IOException e)
