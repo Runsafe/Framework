@@ -15,28 +15,13 @@ public class RunsafeServerConnection extends DedicatedServerConnection
 	public RunsafeServerConnection(MinecraftServer server, InetAddress address, int i, IConsole output) throws IOException
 	{
 		super(server, address, i); // We have to do this..
-		super.a(); // Kill the thread DSC just spawned.
+		a(); // Kill the thread DSC just spawned.
 
 		this.output = output;
 		this.output.logInformation("RunsafeServerConnection successfully loaded.");
 
 		thread = new RunsafeServerConnectionThread(this, address, i);
 		thread.start();
-	}
-
-	@Override
-	public void a()
-	{
-		a = false;
-		thread.b();
-		thread.interrupt();
-	}
-
-	@Override
-	public void b()
-	{
-		thread.a();
-		super.b(); // This might cause errors.
 	}
 
 	@Override
