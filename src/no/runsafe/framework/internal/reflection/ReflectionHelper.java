@@ -15,4 +15,11 @@ public class ReflectionHelper
 	{
 		return object.getClass().getDeclaredField(fieldName);
 	}
+
+	public static void setField(Object object, String fieldName, Object value) throws Exception
+	{
+		Field field = getField(object, fieldName);
+		field.setAccessible(true);
+		field.set(object, value);
+	}
 }
