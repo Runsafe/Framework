@@ -31,7 +31,7 @@ public class RunsafeLogFormatter extends SimpleFormatter
 			logFormat + "\n",
 			datestamp.print(record.getMillis()),
 			timestamp.print(record.getMillis()),
-			record.getLevel().getName(),
+			Console.colorize(record.getLevel()),
 			message
 		);
 	}
