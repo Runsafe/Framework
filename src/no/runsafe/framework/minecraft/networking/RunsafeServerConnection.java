@@ -1,16 +1,17 @@
 package no.runsafe.framework.minecraft.networking;
 
 import net.minecraft.server.v1_6_R3.DedicatedServerConnection;
+import net.minecraft.server.v1_6_R3.DedicatedServerConnectionThread;
 import net.minecraft.server.v1_6_R3.MinecraftServer;
 import no.runsafe.framework.api.IConsole;
-import no.runsafe.framework.internal.networking.RunsafeServerConnectionThread;
 
 import java.io.IOException;
 import java.net.InetAddress;
 
 public class RunsafeServerConnection extends DedicatedServerConnection
 {
-	private final RunsafeServerConnectionThread thread;
+	//private final RunsafeServerConnectionThread thread;
+	private final DedicatedServerConnectionThread thread;
 
 	public RunsafeServerConnection(MinecraftServer server, InetAddress address, int i, IConsole output) throws IOException
 	{
@@ -20,7 +21,7 @@ public class RunsafeServerConnection extends DedicatedServerConnection
 		this.output = output;
 		this.output.logInformation("RunsafeServerConnection successfully loaded.");
 
-		thread = new RunsafeServerConnectionThread(this, address, i);
+		thread = new DedicatedServerConnectionThread(this, address, i);
 		thread.start();
 	}
 
