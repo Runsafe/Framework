@@ -5,6 +5,7 @@ public interface IOutput extends IDebug
 	// Broadcasts the supplied String to all players on the event the output handler has
 	void outputToServer(String message);
 
+	@Deprecated
 	void broadcastColoured(String message);
 
 	void broadcastColoured(String format, Object... params);

@@ -36,7 +36,7 @@ public abstract class AsyncCallbackCommand<T> extends ExecutableCommand implemen
 		@Nonnull Map<String, String> params
 	)
 	{
-		console.finer("Preparing AsyncCallback command with %d params and %d args", params.size(), args.length);
+		console.debugFiner("Preparing AsyncCallback command with %d params and %d args", params.size(), args.length);
 		return new PreparedAsynchronousCallbackCommand(executor, stack, args, params);
 	}
 

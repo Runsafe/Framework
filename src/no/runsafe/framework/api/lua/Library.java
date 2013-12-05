@@ -18,7 +18,7 @@ public abstract class Library extends OneArgFunction
 	public final LuaValue call(LuaValue environment)
 	{
 		LuaTable lib = getAPI();
-		RunsafeServer.Instance.getDebugger().fine("Adding module %s to plugin %s LUA API.", module, namespace);
+		RunsafeServer.Instance.getDebugger().debugFine("Adding module %s to plugin %s LUA API.", module, namespace);
 		environment.get(namespace).set(module, getAPI());
 		return lib;
 	}

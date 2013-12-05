@@ -43,7 +43,7 @@ public final class EventEngine implements Startable
 			for (Listener listener : getListeners())
 			{
 				pluginManager.registerEvents(listener, plugin);
-				output.finer("Registered event listener %s", listener.getClass().getName());
+				output.debugFiner("Registered event listener %s", listener.getClass().getName());
 			}
 		}
 	}

@@ -1,13 +1,13 @@
 package no.runsafe.framework.internal;
 
-import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import no.runsafe.framework.text.ChatColour;
 
+import java.util.logging.Level;
 
-public final class Broadcaster extends Output implements IOutput
+public final class Broadcaster extends Debug implements IOutput
 {
 	public Broadcaster(InjectionPlugin plugin, RunsafeServer server)
 	{
@@ -18,7 +18,7 @@ public final class Broadcaster extends Output implements IOutput
 	@Override
 	public void outputToServer(String message)
 	{
-		write(message);
+		outputToConsole(message, Level.INFO);
 		broadcast(message);
 	}
 

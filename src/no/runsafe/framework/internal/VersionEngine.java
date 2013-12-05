@@ -35,7 +35,7 @@ public final class VersionEngine implements Startable
 			if (updater == null || updater.updateFrom(lastVersion))
 				saveCurrentVersion();
 		}
-		output.finer("Plugin version logged.");
+		output.debugFiner("Plugin version logged.");
 	}
 
 	@Override

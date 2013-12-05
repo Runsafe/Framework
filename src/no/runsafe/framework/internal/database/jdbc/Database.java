@@ -102,7 +102,7 @@ public final class Database extends QueryExecutor implements IDatabase
 			if (local) // This should not happen..
 			{
 				output.logException(e);
-				output.logFatal("Error loading local config..");
+				output.logFatal("Error loading local debugConfig..");
 			}
 			config.createSection("database");
 			config.set("database.url", "jdbc:mysql://localhost:3306/minecraft");
@@ -139,7 +139,7 @@ public final class Database extends QueryExecutor implements IDatabase
 
 		accessTime = DateTime.now();
 		conn = DriverManager.getConnection(databaseURL, databaseUsername, databasePassword);
-		output.fine(String.format("Opening connection to %s by %s", databaseURL, databaseUsername));
+		output.debugFine(String.format("Opening connection to %s by %s", databaseURL, databaseUsername));
 	}
 
 	private void close()

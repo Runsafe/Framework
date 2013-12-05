@@ -282,7 +282,7 @@ abstract class QueryExecutor implements IQueryExecutor
 		{
 			PreparedStatement statement = prepare(query);
 			setParams(statement, params);
-			output.finer("Running SQL: %s", statement);
+			output.debugFiner("Running SQL: %s", statement);
 			statement.execute();
 			return true;
 		}
@@ -300,7 +300,7 @@ abstract class QueryExecutor implements IQueryExecutor
 		{
 			PreparedStatement statement = prepare(query);
 			setParams(statement, params);
-			output.finer("Running SQL: %s", statement);
+			output.debugFiner("Running SQL: %s", statement);
 			return statement.executeUpdate();
 		}
 		catch (SQLException e)
@@ -348,7 +348,7 @@ abstract class QueryExecutor implements IQueryExecutor
 	@SuppressWarnings("MethodWithMultipleLoops")
 	ISet getSet(PreparedStatement statement) throws SQLException
 	{
-		output.finer("Running SQL: %s", statement);
+		output.debugFiner("Running SQL: %s", statement);
 		ResultSet result = statement.executeQuery();
 		if (!result.first())
 			return Set.Empty;
@@ -370,7 +370,7 @@ abstract class QueryExecutor implements IQueryExecutor
 
 	List<IValue> getValues(PreparedStatement statement) throws SQLException
 	{
-		output.finer("Running SQL: %s", statement);
+		output.debugFiner("Running SQL: %s", statement);
 		ResultSet result = statement.executeQuery();
 		if (!result.first())
 			return Lists.newArrayList();

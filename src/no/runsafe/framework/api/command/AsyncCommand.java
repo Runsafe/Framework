@@ -44,7 +44,7 @@ public abstract class AsyncCommand extends ExecutableCommand implements CommandS
 		@Nonnull Map<String, String> params
 	)
 	{
-		console.finer("Preparing Async command with %d params and %d args", params.size(), args.length);
+		console.debugFiner("Preparing Async command with %d params and %d args", params.size(), args.length);
 		return new PreparedAsynchronousCommand(executor, stack, args, params);
 	}
 

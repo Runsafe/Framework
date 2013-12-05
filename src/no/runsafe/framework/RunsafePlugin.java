@@ -5,7 +5,6 @@ import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.api.event.IServerReady;
-import no.runsafe.framework.files.PluginDataFile;
 import no.runsafe.framework.files.PluginFileManager;
 import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.command.BukkitCommandTabExecutor;
@@ -75,10 +74,10 @@ public abstract class RunsafePlugin extends InjectionPlugin
 		output = getComponent(IOutput.class);
 		if (debugLevel != null)
 			output.setDebugLevel(debugLevel);
-		output.fine("Standard components added.");
+		output.debugFine("Standard components added.");
 
 		PluginSetup();
-		output.fine("Plugin setup performed.");
+		output.debugFine("Plugin setup performed.");
 
 		output.outputDebugToConsole("Initiation complete", Level.FINE);
 	}

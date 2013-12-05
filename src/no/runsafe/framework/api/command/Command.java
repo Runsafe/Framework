@@ -189,7 +189,7 @@ public class Command implements ICommandHandler
 	@Override
 	public final IPreparedCommand prepare(ICommandExecutor executor, @Nonnull String... args)
 	{
-		console.finer("Preparing command %s %s", name, StringUtils.join(args, " "));
+		console.debugFiner("Preparing command %s %s", name, StringUtils.join(args, " "));
 		return prepareCommand(executor, new HashMap<String, String>(args.length), args, new Stack<ICommandHandler>());
 	}
 
@@ -211,16 +211,16 @@ public class Command implements ICommandHandler
 				? new String[0] :
 				Arrays.copyOfRange(args, myParams.size(), args.length);
 		}
-		console.finer("Command %s has %d parameters and %d args", name, myParams.size(), args.length);
+		console.debugFiner("Command %s has %d parameters and %d args", name, myParams.size(), args.length);
 		if (args.length > 0)
 		{
-			console.finer("Looking for subcommand %s", args[0]);
+			console.debugFiner("Looking for subcommand %s", args[0]);
 			ICommandHandler subCommand = getSubCommand(executor, args[0]);
 			if (subCommand != null && subCommand.isExecutable(executor))
 			{
 				subCommand.setConsole(console);
 				args = Arrays.copyOfRange(args, 1, args.length);
-				console.finer("Preparing subcommand %s", executor.getName());
+				console.debugFiner("Preparing subcommand %s", executor.getName());
 				return subCommand.prepareCommand(executor, params, args, stack);
 			}
 		}
@@ -236,7 +236,7 @@ public class Command implements ICommandHandler
 		@Nonnull Map<String, String> params
 	)
 	{
-		console.finer("Preparing Sync command with %d params and %d args", params.size(), args.length);
+		console.debugFiner("Preparing Sync command with %d params and %d args", params.size(), args.length);
 		return new PreparedSynchronousCommand(executor, stack, args, params);
 	}
 
@@ -248,7 +248,7 @@ public class Command implements ICommandHandler
 	@Override
 	public void setConsole(@Nonnull IOutput console)
 	{
-		console.finer("Setting console on command object.");
+		console.debugFiner("Setting console on command object.");
 		this.console = console;
 	}
 

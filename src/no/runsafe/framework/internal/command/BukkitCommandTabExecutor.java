@@ -63,7 +63,7 @@ public final class BukkitCommandTabExecutor implements TabExecutor
 	@Override
 	public List<String> onTabComplete(CommandSender commandSender, Command command, String alias, String[] args)
 	{
-		logger.fine("Handling tabcomplete for command '%s %s'", alias, Strings.join(args, " "));
+		logger.debugFine("Handling tabcomplete for command '%s %s'", alias, Strings.join(args, " "));
 		Iterable<String> alternatives = tabCompleteCommand(commandSender, args);
 		return alternatives == null ? null : ImmutableList.copyOf(alternatives);
 	}
@@ -72,7 +72,7 @@ public final class BukkitCommandTabExecutor implements TabExecutor
 	{
 		IPreparedCommand preparedCommand = preparedCommand(sender, true, args);
 		Iterable<String> options = preparedCommand.tabComplete(args);
-		logger.fine("Tab completion options to return: %s", options);
+		logger.debugFine("Tab completion options to return: %s", options);
 		return options;
 	}
 

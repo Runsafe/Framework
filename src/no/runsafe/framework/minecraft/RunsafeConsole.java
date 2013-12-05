@@ -2,6 +2,9 @@ package no.runsafe.framework.minecraft;
 
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.command.ICommandExecutor;
+import sun.util.logging.PlatformLogger;
+
+import java.util.logging.Level;
 
 public class RunsafeConsole implements ICommandExecutor
 {
@@ -19,19 +22,19 @@ public class RunsafeConsole implements ICommandExecutor
 	@Override
 	public void sendMessage(String message)
 	{
-		output.write(message);
+		output.logInformation(message);
 	}
 
 	@Override
 	public void sendColouredMessage(String message)
 	{
-		output.writeColoured(message);
+		output.writeColoured(message, Level.INFO);
 	}
 
 	@Override
 	public void sendColouredMessage(String format, Object... params)
 	{
-		output.writeColoured(format, params);
+		output.writeColoured(format, Level.INFO, params);
 	}
 
 	@Override

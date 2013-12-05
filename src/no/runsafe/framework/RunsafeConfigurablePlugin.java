@@ -13,7 +13,7 @@ public abstract class RunsafeConfigurablePlugin extends RunsafePlugin implements
 	@Override
 	public final String getConfigurationPath()
 	{
-		return new File(getDataFolder(), "config.yml").getPath();
+		return new File(getDataFolder(), "debugConfig.yml").getPath();
 	}
 
 	@Override

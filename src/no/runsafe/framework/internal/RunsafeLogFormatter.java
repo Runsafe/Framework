@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal;
 
+import no.runsafe.framework.api.IConsole;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.DateTimeFormatterBuilder;
 
@@ -21,8 +22,8 @@ public class RunsafeLogFormatter extends SimpleFormatter
 		if(record.getParameters() != null && record.getParameters().length > 0)
 		{
 			 Object param = record.getParameters()[0];
-			if(param instanceof Output)
-				logFormat = ((Output)param).getFormat();
+			if(param instanceof IConsole)
+				logFormat = ((IConsole)param).getFormat();
 		}
 		if(logFormat == null)
 			logFormat = defaultLogFormat;

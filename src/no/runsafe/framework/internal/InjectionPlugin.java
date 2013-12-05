@@ -71,7 +71,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	@Override
 	public final void addComponent(Object implOrInstance)
 	{
-		output.finer(
+		output.debugFiner(
 			"Plugin %s added component %s",
 			getName(),
 			implOrInstance instanceof Class<?>
@@ -99,7 +99,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	@Override
 	public final <T> List<T> getComponents(Class<T> type)
 	{
-		output.finer("Got request for all instances of %s", type.getCanonicalName());
+		output.debugFiner("Got request for all instances of %s", type.getCanonicalName());
 		return container.getComponents(type);
 	}
 
@@ -108,17 +108,17 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	{
 		initializePlugin();
 		container.start();
-		output.fine("Plugin initialized.");
+		output.debugFine("Plugin initialized.");
 
 		for (IPluginEnabled impl : getComponents(IPluginEnabled.class))
 			impl.OnPluginEnabled();
-		output.fine("Plugin enabled event executed.");
+		output.debugFine("Plugin enabled event executed.");
 	}
 
 	@Override
 	public final void onDisable()
 	{
-		output.fine("Disabling plugin %s", getName());
+		output.debugFine("Disabling plugin %s", getName());
 		for (IPluginDisabled impl : getComponents(IPluginDisabled.class))
 			impl.OnPluginDisabled();
 	}

@@ -31,13 +31,13 @@ public abstract class RunsafeCustomEvent extends RunsafeInternalEvent
 	@Override
 	public boolean Fire()
 	{
-		RunsafeServer.Instance.getDebugger().finer("Firing custom event %s.", getClass().getName());
+		RunsafeServer.Instance.getDebugger().debugFiner("Firing custom event %s.", getClass().getName());
 		for (IKernel plugin : InjectionPlugin.Instances.values())
 		{
-			RunsafeServer.Instance.getDebugger().finer("Asking %s.", plugin.getClass().getName());
+			RunsafeServer.Instance.getDebugger().debugFiner("Asking %s.", plugin.getClass().getName());
 			for (IPlayerCustomEvent listener : plugin.getComponents(IPlayerCustomEvent.class))
 			{
-				RunsafeServer.Instance.getDebugger().finer("Telling %s.", listener.getClass().getName());
+				RunsafeServer.Instance.getDebugger().debugFiner("Telling %s.", listener.getClass().getName());
 				listener.OnPlayerCustomEvent(this);
 			}
 		}

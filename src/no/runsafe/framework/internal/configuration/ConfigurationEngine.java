@@ -119,7 +119,7 @@ public final class ConfigurationEngine implements Startable
 		{
 			configuration.configFile.options().copyDefaults(true);
 			configuration.save();
-			console.write("Configuration restored to defaults.");
+			console.logInformation("Configuration restored to defaults.");
 			return true;
 		}
 		return false;
@@ -133,7 +133,7 @@ public final class ConfigurationEngine implements Startable
 			{
 				try
 				{
-					console.finer(
+					console.debugFiner(
 						"Notifying subscriber %s about updated configuration.",
 						sub.getClass().getCanonicalName()
 					);

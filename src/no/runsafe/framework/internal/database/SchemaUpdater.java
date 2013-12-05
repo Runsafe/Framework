@@ -8,6 +8,7 @@ import org.picocontainer.Startable;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  * This class handles database schema updates
@@ -103,14 +104,14 @@ public final class SchemaUpdater implements Startable
 	private int executeSchemaChanges(String tableName, int oldRevision, int newRevision, Iterable<String> queries)
 	{
 		ITransaction transaction = database.Isolate();
-		console.write(String.format("Updating table %s from revision %d to revision %d", tableName, oldRevision, newRevision));
+		console.logInformation("Updating table %s from revision %d to revision %d", tableName, oldRevision, newRevision);
 		String sqlQuery = null;
 		for (String sql : queries)
 		{
 			if (!transaction.Execute(sql))
 			{
-				console.writeColoured("Failed executing query:\n%s", sqlQuery);
-				console.writeColoured("&cRolling back transaction..");
+				console.writeColoured("Failed executing query:\n%s", Level.INFO, sqlQuery);
+				console.writeColoured("&cRolling back transaction..", Level.INFO);
 				transaction.Rollback();
 				return oldRevision;
 			}

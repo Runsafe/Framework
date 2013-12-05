@@ -68,7 +68,7 @@ public final class CommandEngine implements Startable
 		else
 		{
 			command.setExecutor(executor);
-			output.finer("Command handler for %s registered with bukkit.", executor.getName());
+			output.debugFiner("Command handler for %s registered with bukkit.", executor.getName());
 		}
 	}
 
