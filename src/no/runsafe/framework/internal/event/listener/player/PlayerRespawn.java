@@ -1,14 +1,14 @@
 package no.runsafe.framework.internal.event.listener.player;
 
+import no.runsafe.framework.api.EventRouterFactory;
+import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IAsyncEvent;
 import no.runsafe.framework.api.event.IRunsafeEvent;
-import no.runsafe.framework.internal.event.listener.EventRouterBase;
-import no.runsafe.framework.api.EventRouterFactory;
 import no.runsafe.framework.api.event.player.IPlayerRespawn;
-import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.internal.event.listener.EventRouterBase;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.RunsafeLocation;
-import no.runsafe.framework.api.IScheduler;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,7 +16,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 
 public final class PlayerRespawn extends EventRouterBase<IPlayerRespawn, PlayerRespawnEvent>
 {
-	PlayerRespawn(IOutput output, IScheduler scheduler, IPlayerRespawn subscriber)
+	PlayerRespawn(IDebug output, IScheduler scheduler, IPlayerRespawn subscriber)
 	{
 		super(output, scheduler, subscriber);
 	}
@@ -54,7 +54,7 @@ public final class PlayerRespawn extends EventRouterBase<IPlayerRespawn, PlayerR
 			}
 
 			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new PlayerRespawn(output, scheduler, (IPlayerRespawn) subscriber);
 			}

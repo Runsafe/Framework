@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.database.jdbc;
 
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.database.ITransaction;
-import no.runsafe.framework.api.IOutput;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -10,7 +10,7 @@ import java.util.logging.Level;
 
 public final class Transaction extends QueryExecutor implements ITransaction
 {
-	Transaction(IOutput output, Connection conn)
+	Transaction(IDebug output, Connection conn)
 	{
 		super(output);
 		this.conn = conn;

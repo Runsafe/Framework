@@ -1,19 +1,19 @@
 package no.runsafe.framework.internal.event.listener.inventory;
 
+import no.runsafe.framework.api.EventRouterFactory;
+import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.inventory.IInventoryPickupItem;
 import no.runsafe.framework.internal.event.listener.EventRouterBase;
-import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.minecraft.event.inventory.RunsafeInventoryPickupItemEvent;
-import no.runsafe.framework.api.IScheduler;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryPickupItemEvent;
 
 public final class InventoryPickupItem extends EventRouterBase<IInventoryPickupItem, InventoryPickupItemEvent>
 {
-	InventoryPickupItem(IOutput output, IScheduler scheduler, IInventoryPickupItem handler)
+	InventoryPickupItem(IDebug output, IScheduler scheduler, IInventoryPickupItem handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class InventoryPickupItem extends EventRouterBase<IInventoryPickupI
 			}
 
 			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new InventoryPickupItem(output, scheduler, (IInventoryPickupItem) subscriber);
 			}

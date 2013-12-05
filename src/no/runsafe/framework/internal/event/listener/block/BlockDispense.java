@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.block;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.block.IBlockDispense;
@@ -16,7 +16,7 @@ import org.bukkit.event.block.BlockDispenseEvent;
 
 public final class BlockDispense extends EventRouterBase<IBlockDispense, BlockDispenseEvent>
 {
-	BlockDispense(IOutput output, IScheduler scheduler, IBlockDispense handler)
+	BlockDispense(IDebug output, IScheduler scheduler, IBlockDispense handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -54,7 +54,7 @@ public final class BlockDispense extends EventRouterBase<IBlockDispense, BlockDi
 			}
 
 			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new BlockDispense(output, scheduler, (IBlockDispense) subscriber);
 			}

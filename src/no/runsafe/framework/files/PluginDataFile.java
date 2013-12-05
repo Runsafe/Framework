@@ -58,8 +58,8 @@ public class PluginDataFile
 		}
 	}
 
-	private File dataFile;
-	private String fileName;
-	private String pluginName;
-	private Logger logger;
+	private final File dataFile;
+	private final String fileName;
+	private final String pluginName;
+	private final Logger logger;
 }

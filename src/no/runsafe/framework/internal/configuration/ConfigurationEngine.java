@@ -3,7 +3,7 @@ package no.runsafe.framework.internal.configuration;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.IConfiguration;
 import no.runsafe.framework.api.IConfigurationFile;
-import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.event.plugin.IConfigurationChanged;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.picocontainer.Startable;
@@ -54,7 +54,7 @@ public final class ConfigurationEngine implements Startable
 	public ConfigurationEngine(
 		RunsafePlugin plugin,
 		Configuration configuration,
-		IOutput output, IConfigurationChanged... subscribers)
+		IDebug output, IConfigurationChanged... subscribers)
 	{
 		console = output;
 		this.subscribers = subscribers;
@@ -151,7 +151,7 @@ public final class ConfigurationEngine implements Startable
 	}
 
 	private final IConfigurationChanged[] subscribers;
-	private final IOutput console;
+	private final IDebug console;
 	private final Configuration configuration;
 	@Nullable
 	private final String configFilePath;

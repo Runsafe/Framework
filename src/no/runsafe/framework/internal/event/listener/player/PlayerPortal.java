@@ -1,19 +1,19 @@
 package no.runsafe.framework.internal.event.listener.player;
 
-import no.runsafe.framework.api.event.IRunsafeEvent;
-import no.runsafe.framework.internal.event.listener.EventRouterBase;
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.event.player.IPlayerPortalEvent;
-import no.runsafe.framework.api.IOutput;
-import no.runsafe.framework.minecraft.event.player.RunsafePlayerPortalEvent;
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.api.event.IRunsafeEvent;
+import no.runsafe.framework.api.event.player.IPlayerPortalEvent;
+import no.runsafe.framework.internal.event.listener.EventRouterBase;
+import no.runsafe.framework.minecraft.event.player.RunsafePlayerPortalEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerPortalEvent;
 
 public final class PlayerPortal extends EventRouterBase<IPlayerPortalEvent, PlayerPortalEvent>
 {
-	PlayerPortal(IOutput output, IScheduler scheduler, IPlayerPortalEvent handler)
+	PlayerPortal(IDebug output, IScheduler scheduler, IPlayerPortalEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class PlayerPortal extends EventRouterBase<IPlayerPortalEvent, Play
 			}
 
 			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new PlayerPortal(output, scheduler, (IPlayerPortalEvent) subscriber);
 			}

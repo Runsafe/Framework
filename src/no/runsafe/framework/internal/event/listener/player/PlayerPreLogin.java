@@ -1,19 +1,19 @@
 package no.runsafe.framework.internal.event.listener.player;
 
-import no.runsafe.framework.api.event.IRunsafeEvent;
-import no.runsafe.framework.internal.event.listener.EventRouterBase;
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.event.player.IPlayerPreLoginEvent;
-import no.runsafe.framework.api.IOutput;
-import no.runsafe.framework.minecraft.event.player.RunsafePlayerPreLoginEvent;
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.api.event.IRunsafeEvent;
+import no.runsafe.framework.api.event.player.IPlayerPreLoginEvent;
+import no.runsafe.framework.internal.event.listener.EventRouterBase;
+import no.runsafe.framework.minecraft.event.player.RunsafePlayerPreLoginEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 
 public final class PlayerPreLogin extends EventRouterBase<IPlayerPreLoginEvent, AsyncPlayerPreLoginEvent>
 {
-	PlayerPreLogin(IOutput output, IScheduler scheduler, IPlayerPreLoginEvent handler)
+	PlayerPreLogin(IDebug output, IScheduler scheduler, IPlayerPreLoginEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class PlayerPreLogin extends EventRouterBase<IPlayerPreLoginEvent, 
 			}
 
 			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new PlayerPreLogin(output, scheduler, (IPlayerPreLoginEvent) subscriber);
 			}

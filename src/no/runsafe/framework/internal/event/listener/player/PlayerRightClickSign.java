@@ -1,13 +1,13 @@
 package no.runsafe.framework.internal.event.listener.player;
 
-import no.runsafe.framework.api.event.IRunsafeEvent;
-import no.runsafe.framework.internal.event.listener.EventRouterBase;
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.event.player.IPlayerRightClickSign;
-import no.runsafe.framework.api.IOutput;
-import no.runsafe.framework.minecraft.block.RunsafeSign;
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.api.event.IRunsafeEvent;
+import no.runsafe.framework.api.event.player.IPlayerRightClickSign;
+import no.runsafe.framework.internal.event.listener.EventRouterBase;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
+import no.runsafe.framework.minecraft.block.RunsafeSign;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Sign;
 import org.bukkit.event.EventHandler;
@@ -17,7 +17,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public final class PlayerRightClickSign extends EventRouterBase<IPlayerRightClickSign, PlayerInteractEvent>
 {
-	PlayerRightClickSign(IOutput output, IScheduler scheduler, IPlayerRightClickSign handler)
+	PlayerRightClickSign(IDebug output, IScheduler scheduler, IPlayerRightClickSign handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -54,7 +54,7 @@ public final class PlayerRightClickSign extends EventRouterBase<IPlayerRightClic
 			}
 
 			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new PlayerRightClickSign(output, scheduler, (IPlayerRightClickSign) subscriber);
 			}

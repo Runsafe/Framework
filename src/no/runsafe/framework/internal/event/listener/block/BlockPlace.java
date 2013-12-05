@@ -1,12 +1,12 @@
 package no.runsafe.framework.internal.event.listener.block;
 
+import no.runsafe.framework.api.EventRouterFactory;
+import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.block.IBlockPlace;
 import no.runsafe.framework.internal.event.listener.EventRouterBase;
-import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.api.IScheduler;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,7 +14,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 
 public final class BlockPlace extends EventRouterBase<IBlockPlace, BlockPlaceEvent>
 {
-	BlockPlace(IOutput output, IScheduler scheduler, IBlockPlace handler)
+	BlockPlace(IDebug output, IScheduler scheduler, IBlockPlace handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -46,7 +46,7 @@ public final class BlockPlace extends EventRouterBase<IBlockPlace, BlockPlaceEve
 			}
 
 			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new BlockPlace(output, scheduler, (IBlockPlace) subscriber);
 			}

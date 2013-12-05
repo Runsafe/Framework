@@ -1,19 +1,19 @@
 package no.runsafe.framework.internal.event.listener.player;
 
-import no.runsafe.framework.api.event.IRunsafeEvent;
-import no.runsafe.framework.internal.event.listener.EventRouterBase;
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.event.player.IPlayerChangedWorldEvent;
-import no.runsafe.framework.api.IOutput;
-import no.runsafe.framework.minecraft.event.player.RunsafePlayerChangedWorldEvent;
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.api.event.IRunsafeEvent;
+import no.runsafe.framework.api.event.player.IPlayerChangedWorldEvent;
+import no.runsafe.framework.internal.event.listener.EventRouterBase;
+import no.runsafe.framework.minecraft.event.player.RunsafePlayerChangedWorldEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 
 public final class PlayerChangedWorld extends EventRouterBase<IPlayerChangedWorldEvent, PlayerChangedWorldEvent>
 {
-	PlayerChangedWorld(IOutput output, IScheduler scheduler, IPlayerChangedWorldEvent handler)
+	PlayerChangedWorld(IDebug output, IScheduler scheduler, IPlayerChangedWorldEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class PlayerChangedWorld extends EventRouterBase<IPlayerChangedWorl
 			}
 
 			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new PlayerChangedWorld(output, scheduler, (IPlayerChangedWorldEvent) subscriber);
 			}

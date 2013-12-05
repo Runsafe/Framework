@@ -36,6 +36,4 @@ public interface IConsole
 	void logInformation(String message, Object... params);
 
 	String getFormat();
-
-	void setFormat(String format);
 }

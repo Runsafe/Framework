@@ -1,19 +1,19 @@
 package no.runsafe.framework.internal.event.listener.entity;
 
+import no.runsafe.framework.api.EventRouterFactory;
+import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.entity.IEntityDeathEvent;
 import no.runsafe.framework.internal.event.listener.EventRouterBase;
-import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDeathEvent;
-import no.runsafe.framework.api.IScheduler;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 
 public final class EntityDeath extends EventRouterBase<IEntityDeathEvent, EntityDeathEvent>
 {
-	EntityDeath(IOutput output, IScheduler scheduler, IEntityDeathEvent handler)
+	EntityDeath(IDebug output, IScheduler scheduler, IEntityDeathEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class EntityDeath extends EventRouterBase<IEntityDeathEvent, Entity
 			}
 
 			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new EntityDeath(output, scheduler, (IEntityDeathEvent) subscriber);
 			}

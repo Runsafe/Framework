@@ -1,6 +1,6 @@
 package no.runsafe.framework.api.command;
 
-import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.command.argument.IArgument;
 
 import javax.annotation.Nonnull;
@@ -17,7 +17,7 @@ public interface ICommandHandler
 	@Nonnull
 	String getDescription();
 
-	void setConsole(@Nonnull IOutput console);
+	void setConsole(@Nonnull IDebug console);
 
 	@Nullable
 	List<String> getParameterOptions(@Nonnull String parameter);

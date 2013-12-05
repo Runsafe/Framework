@@ -1,6 +1,6 @@
 package no.runsafe.framework.internal.database;
 
-import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.database.IDatabase;
 import no.runsafe.framework.api.database.ISchemaChanges;
 import no.runsafe.framework.api.database.ITransaction;
@@ -18,10 +18,11 @@ public final class SchemaUpdater implements Startable
 {
 	/**
 	 * This is needed for pico to not throw exceptions
+	 *
 	 * @param db     The database handler
 	 * @param output The console to log information to
 	 */
-	public SchemaUpdater(IDatabase db, IOutput output)
+	public SchemaUpdater(IDatabase db, IDebug output)
 	{
 		this(db, output, new ISchemaChanges[0]);
 	}
@@ -31,7 +32,7 @@ public final class SchemaUpdater implements Startable
 	 * @param output         The console to log information to
 	 * @param schemaUpdaters Schema updaters
 	 */
-	public SchemaUpdater(IDatabase db, IOutput output, ISchemaChanges... schemaUpdaters)
+	public SchemaUpdater(IDatabase db, IDebug output, ISchemaChanges... schemaUpdaters)
 	{
 		this.schemaUpdaters = schemaUpdaters;
 		database = db;
@@ -121,7 +122,7 @@ public final class SchemaUpdater implements Startable
 	}
 
 	private final IDatabase database;
-	private final IOutput console;
+	private final IDebug console;
 	private final ISchemaChanges[] schemaUpdaters;
 	private static boolean uninitialized = true;
 }

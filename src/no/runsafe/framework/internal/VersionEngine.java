@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal;
 
 import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.IPluginUpdate;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -14,12 +14,12 @@ import java.util.logging.Level;
 
 public final class VersionEngine implements Startable
 {
-	public VersionEngine(RunsafePlugin plugin, IOutput output)
+	public VersionEngine(RunsafePlugin plugin, IDebug output)
 	{
 		this(plugin, output, null);
 	}
 
-	public VersionEngine(RunsafePlugin plugin, IOutput output, IPluginUpdate updater)
+	public VersionEngine(RunsafePlugin plugin, IDebug output, IPluginUpdate updater)
 	{
 		this.plugin = plugin;
 		this.updater = updater;
@@ -99,5 +99,5 @@ public final class VersionEngine implements Startable
 
 	private final RunsafePlugin plugin;
 	private final IPluginUpdate updater;
-	private final IOutput output;
+	private final IDebug output;
 }

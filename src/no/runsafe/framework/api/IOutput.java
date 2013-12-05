@@ -1,6 +1,6 @@
 package no.runsafe.framework.api;
 
-public interface IOutput extends IDebug
+public interface IOutput extends IConsole
 {
 	// Broadcasts the supplied String to all players on the event the output handler has
 	void outputToServer(String message);

@@ -1,19 +1,19 @@
 package no.runsafe.framework.internal.event.listener.inventory;
 
+import no.runsafe.framework.api.EventRouterFactory;
+import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.inventory.IInventory;
 import no.runsafe.framework.internal.event.listener.EventRouterBase;
-import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.minecraft.event.inventory.RunsafeInventoryEvent;
-import no.runsafe.framework.api.IScheduler;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryEvent;
 
 public final class Inventory extends EventRouterBase<IInventory, InventoryEvent>
 {
-	Inventory(IOutput output, IScheduler scheduler, IInventory handler)
+	Inventory(IDebug output, IScheduler scheduler, IInventory handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class Inventory extends EventRouterBase<IInventory, InventoryEvent>
 			}
 
 			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new Inventory(output, scheduler, (IInventory) subscriber);
 			}

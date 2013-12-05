@@ -3,7 +3,7 @@ package no.runsafe.framework.api.command;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.command.argument.IArgument;
 import no.runsafe.framework.internal.command.PreparedSynchronousCommand;
 import no.runsafe.framework.text.ChatColour;
@@ -246,7 +246,7 @@ public class Command implements ICommandHandler
 	 * @param console The console to print debug information to
 	 */
 	@Override
-	public void setConsole(@Nonnull IOutput console)
+	public void setConsole(@Nonnull IDebug console)
 	{
 		console.debugFiner("Setting console on command object.");
 		this.console = console;
@@ -287,7 +287,7 @@ public class Command implements ICommandHandler
 		return checkPermission(executor);
 	}
 
-	private void validate(IArgument[] arguments)
+	private static void validate(IArgument... arguments)
 	{
 		boolean optional = false;
 		boolean whitespace = false;
@@ -360,7 +360,7 @@ public class Command implements ICommandHandler
 		return parameters;
 	}
 
-	protected IOutput console;
+	protected IDebug console;
 	private final ImmutableList<IArgument> argumentList;
 	private final Map<String, ICommandHandler> subCommands = new HashMap<String, ICommandHandler>(0);
 	private final String name;

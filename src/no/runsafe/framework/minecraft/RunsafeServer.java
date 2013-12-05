@@ -5,7 +5,7 @@ import com.google.common.collect.Lists;
 import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.hook.IPlayerLookupService;
 import no.runsafe.framework.api.hook.IPlayerPermissions;
-import no.runsafe.framework.internal.Debugger;
+import no.runsafe.framework.internal.Debug;
 import no.runsafe.framework.internal.HookEngine;
 import no.runsafe.framework.internal.wrapper.BukkitServer;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
@@ -29,7 +29,7 @@ public class RunsafeServer extends BukkitServer
 	public RunsafeServer(Server toWrap)
 	{
 		super(toWrap);
-		debugger = new Debugger();
+		debugger = new Debug();
 	}
 
 	public IDebug getDebugger()
@@ -235,7 +235,7 @@ public class RunsafeServer extends BukkitServer
 	}
 
 	private final ConcurrentHashMap<String, RunsafePlayer> kickingPlayer = new ConcurrentHashMap<String, RunsafePlayer>();
-	private final Debugger debugger;
+	private final IDebug debugger;
 
 	public List<String> getOnlinePlayers(RunsafePlayer context, String playerName)
 	{

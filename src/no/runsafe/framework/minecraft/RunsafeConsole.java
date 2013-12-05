@@ -1,13 +1,13 @@
 package no.runsafe.framework.minecraft;
 
-import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.IConsole;
 import no.runsafe.framework.api.command.ICommandExecutor;
 
 import java.util.logging.Level;
 
 public class RunsafeConsole implements ICommandExecutor
 {
-	public RunsafeConsole(IOutput output)
+	public RunsafeConsole(IConsole output)
 	{
 		this.output = output;
 	}
@@ -42,5 +42,5 @@ public class RunsafeConsole implements ICommandExecutor
 		return true;
 	}
 
-	private final IOutput output;
+	private final IConsole output;
 }

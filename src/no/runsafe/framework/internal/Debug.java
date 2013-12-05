@@ -13,14 +13,11 @@ import java.util.logging.Level;
 
 public class Debug extends Console implements IDebug
 {
-	Debug(InjectionPlugin plugin)
+	public Debug()
 	{
+		super(null);
 		debugLevel = DefaultDebugLevel;
 		outputDebugToConsole("Setting debug level to %s", Level.FINE, DefaultDebugLevel.getName());
-		if (plugin != null && pluginFormat.containsKey(plugin.getName()))
-			setFormat((String) pluginFormat.get(plugin.getName()));
-		else if (plugin != null && pluginFormat.containsKey("*"))
-			setFormat(String.format((String) pluginFormat.get("*"), plugin.getName()));
 	}
 
 	// Sends the supplied String to the console/log the output handler has if the debug level is high enough

@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.database.jdbc;
 
 import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.database.IDatabase;
 import no.runsafe.framework.api.database.ITransaction;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -22,7 +22,7 @@ import java.util.logging.Level;
  */
 public final class Database extends QueryExecutor implements IDatabase
 {
-	public Database(IOutput output, RunsafePlugin plugin)
+	public Database(IDebug output, RunsafePlugin plugin)
 	{
 		super(output);
 		YamlConfiguration config = new YamlConfiguration();
@@ -69,7 +69,7 @@ public final class Database extends QueryExecutor implements IDatabase
 	{
 		try
 		{
-			if (conn == null || accessTime == null || accessTime.isBefore(DateTime.now().minusMinutes(5)) || conn.isClosed())
+			if (conn == null || connectionIsStale() || conn.isClosed())
 				open();
 
 			if (conn != null)
@@ -82,6 +82,11 @@ public final class Database extends QueryExecutor implements IDatabase
 			output.logException(e);
 		}
 		return null;
+	}
+
+	private boolean connectionIsStale()
+	{
+		return accessTime == null || accessTime.isBefore(DateTime.now().minusMinutes(5));
 	}
 
 	private File configure(YamlConfiguration config, RunsafePlugin plugin)

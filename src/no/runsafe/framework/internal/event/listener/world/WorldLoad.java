@@ -1,19 +1,19 @@
 package no.runsafe.framework.internal.event.listener.world;
 
-import no.runsafe.framework.api.event.IRunsafeEvent;
-import no.runsafe.framework.internal.event.listener.EventRouterBase;
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.event.world.IWorldLoad;
-import no.runsafe.framework.api.IOutput;
-import no.runsafe.framework.internal.wrapper.ObjectWrapper;
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.api.event.IRunsafeEvent;
+import no.runsafe.framework.api.event.world.IWorldLoad;
+import no.runsafe.framework.internal.event.listener.EventRouterBase;
+import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldLoadEvent;
 
 public final class WorldLoad extends EventRouterBase<IWorldLoad, WorldLoadEvent>
 {
-	WorldLoad(IOutput output, IScheduler scheduler, IWorldLoad handler)
+	WorldLoad(IDebug output, IScheduler scheduler, IWorldLoad handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class WorldLoad extends EventRouterBase<IWorldLoad, WorldLoadEvent>
 			}
 
 			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new WorldLoad(output, scheduler, (IWorldLoad) subscriber);
 			}

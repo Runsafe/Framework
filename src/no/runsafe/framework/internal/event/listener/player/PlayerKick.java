@@ -1,19 +1,19 @@
 package no.runsafe.framework.internal.event.listener.player;
 
-import no.runsafe.framework.api.event.IRunsafeEvent;
-import no.runsafe.framework.internal.event.listener.EventRouterBase;
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.event.player.IPlayerKickEvent;
-import no.runsafe.framework.api.IOutput;
-import no.runsafe.framework.minecraft.event.player.RunsafePlayerKickEvent;
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.api.event.IRunsafeEvent;
+import no.runsafe.framework.api.event.player.IPlayerKickEvent;
+import no.runsafe.framework.internal.event.listener.EventRouterBase;
+import no.runsafe.framework.minecraft.event.player.RunsafePlayerKickEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerKickEvent;
 
 public final class PlayerKick extends EventRouterBase<IPlayerKickEvent, PlayerKickEvent>
 {
-	PlayerKick(IOutput output, IScheduler scheduler, IPlayerKickEvent handler)
+	PlayerKick(IDebug output, IScheduler scheduler, IPlayerKickEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class PlayerKick extends EventRouterBase<IPlayerKickEvent, PlayerKi
 			}
 
 			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new PlayerKick(output, scheduler, (IPlayerKickEvent) subscriber);
 			}

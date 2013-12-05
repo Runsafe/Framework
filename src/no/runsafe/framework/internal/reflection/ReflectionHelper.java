@@ -2,8 +2,12 @@ package no.runsafe.framework.internal.reflection;
 
 import java.lang.reflect.Field;
 
-public class ReflectionHelper
+public final class ReflectionHelper
 {
+	private ReflectionHelper()
+	{
+	}
+
 	public static Object getFieldObject(Object object, String fieldName) throws Exception
 	{
 		Field field = getField(object, fieldName);

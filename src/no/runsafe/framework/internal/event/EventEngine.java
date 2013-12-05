@@ -2,7 +2,7 @@ package no.runsafe.framework.internal.event;
 
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.internal.event.listener.Factories;
@@ -19,13 +19,13 @@ public final class EventEngine implements Startable
 		factories = new HashMap<Class<? extends IRunsafeEvent>, EventRouterFactory>(0);
 	}
 
-	public EventEngine(IOutput output, IScheduler scheduler, PluginManager manager, RunsafePlugin plugin)
+	public EventEngine(IDebug output, IScheduler scheduler, PluginManager manager, RunsafePlugin plugin)
 	{
 		this(output, scheduler, manager, plugin, new IRunsafeEvent[0]);
 	}
 
 	public EventEngine(
-		IOutput output, IScheduler scheduler, PluginManager manager, RunsafePlugin plugin, IRunsafeEvent... events)
+		IDebug output, IScheduler scheduler, PluginManager manager, RunsafePlugin plugin, IRunsafeEvent... events)
 	{
 		eventSubscribers = events;
 		this.scheduler = scheduler;
@@ -79,7 +79,7 @@ public final class EventEngine implements Startable
 	private static final Map<Class<? extends IRunsafeEvent>, EventRouterFactory> factories;
 	private final IRunsafeEvent[] eventSubscribers;
 	private final IScheduler scheduler;
-	private final IOutput output;
+	private final IDebug output;
 	private final PluginManager pluginManager;
 	private final RunsafePlugin plugin;
 }

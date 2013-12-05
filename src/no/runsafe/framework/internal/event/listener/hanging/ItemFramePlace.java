@@ -1,12 +1,12 @@
 package no.runsafe.framework.internal.event.listener.hanging;
 
+import no.runsafe.framework.api.EventRouterFactory;
+import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.hanging.IItemFramePlaced;
 import no.runsafe.framework.internal.event.listener.EventRouterBase;
-import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.api.IScheduler;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ItemFrame;
@@ -16,7 +16,7 @@ import org.bukkit.event.hanging.HangingPlaceEvent;
 
 public final class ItemFramePlace extends EventRouterBase<IItemFramePlaced, HangingPlaceEvent>
 {
-	ItemFramePlace(IOutput output, IScheduler scheduler, IItemFramePlaced handler)
+	ItemFramePlace(IDebug output, IScheduler scheduler, IItemFramePlaced handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -49,7 +49,7 @@ public final class ItemFramePlace extends EventRouterBase<IItemFramePlaced, Hang
 			}
 
 			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new ItemFramePlace(output, scheduler, (IItemFramePlaced) subscriber);
 			}

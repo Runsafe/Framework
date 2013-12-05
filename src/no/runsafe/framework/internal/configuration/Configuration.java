@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.configuration;
 
 import no.runsafe.framework.api.IConfiguration;
-import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.minecraft.RunsafeWorld;
@@ -14,13 +14,14 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 
 /**
  * This class handles configuration file access
  */
 public final class Configuration implements IConfiguration
 {
-	public Configuration(IOutput console)
+	public Configuration(IDebug console)
 	{
 		this.console = console;
 	}
@@ -174,15 +175,15 @@ public final class Configuration implements IConfiguration
 
 		if (section.contains("world") && section.contains("x") && section.contains("y") && section.contains("z"))
 		{
-			RunsafeWorld world = this.getConfigValueAsWorld(key + ".world");
+			RunsafeWorld world = getConfigValueAsWorld(key + ".world");
 			if (world == null)
 				return null;
 
 			RunsafeLocation location = new RunsafeLocation(
-					world,
-					section.getDouble("x"),
-					section.getDouble("y"),
-					section.getDouble("z")
+				world,
+				section.getDouble("x"),
+				section.getDouble("y"),
+				section.getDouble("z")
 			);
 
 			if (section.contains("yaw"))
@@ -213,13 +214,13 @@ public final class Configuration implements IConfiguration
 			}
 			catch (IOException ex)
 			{
-				console.writeColoured("Unable to save to configuration file: %s", configFilePath);
+				console.writeColoured("Unable to save to configuration file: %s", Level.FINE, configFilePath);
 				console.logException(ex);
 			}
 		}
 	}
 
-	FileConfiguration configFile;
-	String configFilePath;
-	private final IOutput console;
+	protected FileConfiguration configFile;
+	protected String configFilePath;
+	private final IDebug console;
 }

@@ -110,7 +110,7 @@ public class RunsafeLocation extends BukkitLocation
 
 	public void playEffect(WorldEffect effect, int speed, int amount, int range)
 	{
-		this.playEffect(effect, random.nextFloat(), random.nextFloat(), random.nextFloat(), speed, amount, range);
+		playEffect(effect, random.nextFloat(), random.nextFloat(), random.nextFloat(), speed, amount, range);
 	}
 
 	public void playEffect(WorldEffect effect, float offsetX, float offsetY, float offsetZ, int speed, int amount, int range)
@@ -135,7 +135,7 @@ public class RunsafeLocation extends BukkitLocation
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			RunsafeServer.Instance.getDebugger().logException(e);
 		}
 	}
 
@@ -144,5 +144,5 @@ public class RunsafeLocation extends BukkitLocation
 		return location.toVector();
 	}
 
-	private Random random = new Random();
+	private final Random random = new Random();
 }

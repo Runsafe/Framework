@@ -1,12 +1,12 @@
 package no.runsafe.framework.internal.event.listener.inventory;
 
+import no.runsafe.framework.api.EventRouterFactory;
+import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.inventory.IChestClosed;
 import no.runsafe.framework.internal.event.listener.EventRouterBase;
-import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.api.IScheduler;
 import org.bukkit.block.Chest;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,7 +14,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 
 public final class ChestClose extends EventRouterBase<IChestClosed, InventoryCloseEvent>
 {
-	ChestClose(IOutput output, IScheduler scheduler, IChestClosed handler)
+	ChestClose(IDebug output, IScheduler scheduler, IChestClosed handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -48,7 +48,7 @@ public final class ChestClose extends EventRouterBase<IChestClosed, InventoryClo
 			}
 
 			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new ChestClose(output, scheduler, (IChestClosed) subscriber);
 			}

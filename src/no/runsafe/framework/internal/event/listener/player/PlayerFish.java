@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.player;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.player.IPlayerFishEvent;
@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerFishEvent;
 
 public final class PlayerFish extends EventRouterBase<IPlayerFishEvent, PlayerFishEvent>
 {
-	PlayerFish(IOutput output, IScheduler scheduler, IPlayerFishEvent handler)
+	PlayerFish(IDebug output, IScheduler scheduler, IPlayerFishEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class PlayerFish extends EventRouterBase<IPlayerFishEvent, PlayerFi
 			}
 
 			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new PlayerFish(output, scheduler, (IPlayerFishEvent) subscriber);
 			}

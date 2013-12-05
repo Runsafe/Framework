@@ -45,8 +45,8 @@ public enum WorldEffect
 
 	public String getName()
 	{
-		return this.name;
+		return name;
 	}
 
-	private String name;
+	private final String name;
 }

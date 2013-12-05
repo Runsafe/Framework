@@ -53,11 +53,11 @@ public class PacketWorldParticles extends Packet
 		return data;
 	}
 
-	private RunsafeLocation location;
-	private WorldEffect worldEffect;
-	private int speed;
-	private int amount;
-	private int range;
+	private final RunsafeLocation location;
+	private final WorldEffect worldEffect;
+	private final int speed;
+	private final int amount;
+	private final int range;
 	private float offsetX;
 	private float offsetY;
 	private float offsetZ;

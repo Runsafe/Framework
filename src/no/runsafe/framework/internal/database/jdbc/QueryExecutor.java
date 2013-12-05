@@ -2,7 +2,7 @@ package no.runsafe.framework.internal.database.jdbc;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
-import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.database.IQueryExecutor;
 import no.runsafe.framework.api.database.IRow;
 import no.runsafe.framework.api.database.ISet;
@@ -24,7 +24,7 @@ import java.util.List;
 
 abstract class QueryExecutor implements IQueryExecutor
 {
-	QueryExecutor(IOutput output)
+	QueryExecutor(IDebug output)
 	{
 		this.output = output;
 	}
@@ -406,5 +406,5 @@ abstract class QueryExecutor implements IQueryExecutor
 
 	protected abstract Connection getConnection();
 
-	protected final IOutput output;
+	protected final IDebug output;
 }

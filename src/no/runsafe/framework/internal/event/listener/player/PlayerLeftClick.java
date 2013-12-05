@@ -1,14 +1,14 @@
 package no.runsafe.framework.internal.event.listener.player;
 
-import no.runsafe.framework.api.event.IRunsafeEvent;
-import no.runsafe.framework.internal.event.listener.EventRouterBase;
 import no.runsafe.framework.api.EventRouterFactory;
+import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.player.IPlayerLeftClickAirEvent;
 import no.runsafe.framework.api.event.player.IPlayerLeftClickBlockEvent;
 import no.runsafe.framework.api.event.player.IPlayerLeftClickEvent;
-import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.internal.event.listener.EventRouterBase;
 import no.runsafe.framework.minecraft.event.player.RunsafePlayerClickEvent;
-import no.runsafe.framework.api.IScheduler;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -16,7 +16,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public final class PlayerLeftClick extends EventRouterBase<IPlayerLeftClickEvent, PlayerInteractEvent>
 {
-	PlayerLeftClick(IOutput output, IScheduler scheduler, IPlayerLeftClickEvent handler)
+	PlayerLeftClick(IDebug output, IScheduler scheduler, IPlayerLeftClickEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -35,7 +35,7 @@ public final class PlayerLeftClick extends EventRouterBase<IPlayerLeftClickEvent
 		if (!(handler instanceof IPlayerLeftClickAirEvent || handler instanceof IPlayerLeftClickBlockEvent))
 			accept = true;
 
-		if(accept)
+		if (accept)
 			super.acceptEvent(event);
 	}
 
@@ -57,7 +57,7 @@ public final class PlayerLeftClick extends EventRouterBase<IPlayerLeftClickEvent
 			}
 
 			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new PlayerLeftClick(output, scheduler, (IPlayerLeftClickEvent) subscriber);
 			}

@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal;
 
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.IKernel;
-import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.event.plugin.IPluginDisabled;
 import no.runsafe.framework.api.event.plugin.IPluginEnabled;
 import no.runsafe.framework.files.PluginFileManager;
@@ -159,5 +159,5 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	}
 
 	private DefaultPicoContainer container;
-	protected IOutput output;
+	protected IDebug output;
 }

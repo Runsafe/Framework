@@ -14,5 +14,5 @@ public abstract class Packet implements IPacket
 		PacketHelper.sendPacket(player, PacketHelper.stuffPacket(PacketHelper.getPacket(packetName), prepareData()));
 	}
 
-	private String packetName;
+	private final String packetName;
 }

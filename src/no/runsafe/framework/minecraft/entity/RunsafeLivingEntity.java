@@ -3,6 +3,7 @@ package no.runsafe.framework.minecraft.entity;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.entity.BukkitLivingEntity;
+import no.runsafe.framework.internal.wrapper.entity.BukkitProjectile;
 import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
@@ -29,7 +30,7 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 		HashSet<Byte> transparent = new HashSet<Byte>(10);
 		for (Material material : Material.values())
 			if (material.isTransparent())
-				//noinspection NumericCastThatLosesPrecision,UnnecessaryExplicitNumericCast
+				// noinspection NumericCastThatLosesPrecision
 				transparent.add((byte) material.getId());
 		return getTargetBlock(transparent, MAX_DISTANCE);
 	}
@@ -69,8 +70,8 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 
 		RunsafeEntity entity = ObjectWrapper.convert(launched);
 
-		if (entity instanceof RunsafeProjectile)
-			((RunsafeProjectile) entity).setShooter(this);
+		if (entity instanceof BukkitProjectile)
+			((BukkitProjectile) entity).setShooter(this);
 
 		return entity;
 	}

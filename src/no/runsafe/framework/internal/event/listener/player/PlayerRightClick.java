@@ -1,14 +1,14 @@
 package no.runsafe.framework.internal.event.listener.player;
 
-import no.runsafe.framework.api.event.IRunsafeEvent;
-import no.runsafe.framework.internal.event.listener.EventRouterBase;
 import no.runsafe.framework.api.EventRouterFactory;
+import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.player.IPlayerRightClick;
 import no.runsafe.framework.api.event.player.IPlayerRightClickAir;
 import no.runsafe.framework.api.event.player.IPlayerRightClickBlock;
-import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.internal.event.listener.EventRouterBase;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.api.IScheduler;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,7 +17,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public final class PlayerRightClick extends EventRouterBase<IPlayerRightClick, PlayerInteractEvent>
 {
-	PlayerRightClick(IOutput output, IScheduler scheduler, IPlayerRightClick handler)
+	PlayerRightClick(IDebug output, IScheduler scheduler, IPlayerRightClick handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -60,7 +60,7 @@ public final class PlayerRightClick extends EventRouterBase<IPlayerRightClick, P
 			}
 
 			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new PlayerRightClick(output, scheduler, (IPlayerRightClick) subscriber);
 			}

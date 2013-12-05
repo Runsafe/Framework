@@ -16,6 +16,14 @@ import java.util.logging.Logger;
 
 public class Console implements IConsole
 {
+	protected Console(InjectionPlugin plugin)
+	{
+		if (plugin != null && pluginFormat.containsKey(plugin.getName()))
+			format = (String) pluginFormat.get(plugin.getName());
+		else if (plugin != null && pluginFormat.containsKey("*"))
+			format = String.format((String) pluginFormat.get("*"), plugin.getName());
+	}
+
 	@Override
 	public void logException(Exception exception)
 	{
@@ -96,12 +104,6 @@ public class Console implements IConsole
 	public String getFormat()
 	{
 		return format;
-	}
-
-	@Override
-	public void setFormat(String format)
-	{
-		this.format = format;
 	}
 
 	private String format;

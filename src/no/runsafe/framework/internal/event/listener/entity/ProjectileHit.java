@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.entity;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.entity.IProjectileHitEvent;
@@ -13,7 +13,7 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 
 public final class ProjectileHit extends EventRouterBase<IProjectileHitEvent, ProjectileHitEvent>
 {
-	ProjectileHit(IOutput output, IScheduler scheduler, IProjectileHitEvent handler)
+	ProjectileHit(IDebug output, IScheduler scheduler, IProjectileHitEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class ProjectileHit extends EventRouterBase<IProjectileHitEvent, Pr
 			}
 
 			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new ProjectileHit(output, scheduler, (IProjectileHitEvent) subscriber);
 			}

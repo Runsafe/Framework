@@ -1,12 +1,12 @@
 package no.runsafe.framework.internal.event.listener.block;
 
+import no.runsafe.framework.api.EventRouterFactory;
+import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.block.IChestBreak;
 import no.runsafe.framework.internal.event.listener.EventRouterBase;
-import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.api.IScheduler;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Chest;
 import org.bukkit.event.EventHandler;
@@ -15,7 +15,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 
 public final class ChestBreak extends EventRouterBase<IChestBreak, BlockBreakEvent>
 {
-	ChestBreak(IOutput output, IScheduler scheduler, IChestBreak handler)
+	ChestBreak(IDebug output, IScheduler scheduler, IChestBreak handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -48,7 +48,7 @@ public final class ChestBreak extends EventRouterBase<IChestBreak, BlockBreakEve
 			}
 
 			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new ChestBreak(output, scheduler, (IChestBreak) subscriber);
 			}

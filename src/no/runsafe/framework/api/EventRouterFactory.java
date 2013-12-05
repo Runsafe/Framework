@@ -7,5 +7,5 @@ public interface EventRouterFactory
 {
 	Class<? extends IRunsafeEvent> getInterface();
 
-	Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber);
+	Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber);
 }

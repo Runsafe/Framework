@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.command;
 
 import com.google.common.collect.ImmutableList;
-import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.api.command.IPreparedCommand;
@@ -24,7 +24,7 @@ import java.util.List;
  */
 public final class BukkitCommandTabExecutor implements TabExecutor
 {
-	public BukkitCommandTabExecutor(ICommandHandler command, ICommandExecutor console, IOutput logger)
+	public BukkitCommandTabExecutor(ICommandHandler command, ICommandExecutor console, IDebug logger)
 	{
 		this.command = command;
 		this.console = console;
@@ -86,10 +86,10 @@ public final class BukkitCommandTabExecutor implements TabExecutor
 			String feedback = preparedCommand.execute();
 			if (feedback != null)
 			{
-				if (!(sender instanceof Player))
-					RunsafeServer.Instance.getDebugger().writeColoured(feedback);
-				else
+				if (sender instanceof Player)
 					sender.sendMessage(ChatColour.ToMinecraft(feedback));
+				else
+					RunsafeServer.Instance.getDebugger().writeColoured(feedback);
 			}
 		}
 		else
@@ -114,5 +114,5 @@ public final class BukkitCommandTabExecutor implements TabExecutor
 
 	private final ICommandHandler command;
 	private final ICommandExecutor console;
-	private final IOutput logger;
+	private final IDebug logger;
 }

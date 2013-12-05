@@ -1,19 +1,19 @@
 package no.runsafe.framework.internal.event.listener.world;
 
-import no.runsafe.framework.api.event.IRunsafeEvent;
-import no.runsafe.framework.internal.event.listener.EventRouterBase;
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.event.world.IChunkLoad;
-import no.runsafe.framework.api.IOutput;
-import no.runsafe.framework.internal.wrapper.ObjectWrapper;
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.api.event.IRunsafeEvent;
+import no.runsafe.framework.api.event.world.IChunkLoad;
+import no.runsafe.framework.internal.event.listener.EventRouterBase;
+import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.ChunkLoadEvent;
 
 public final class ChunkLoad extends EventRouterBase<IChunkLoad, ChunkLoadEvent>
 {
-	ChunkLoad(IOutput output, IScheduler scheduler, IChunkLoad handler)
+	ChunkLoad(IDebug output, IScheduler scheduler, IChunkLoad handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class ChunkLoad extends EventRouterBase<IChunkLoad, ChunkLoadEvent>
 			}
 
 			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new ChunkLoad(output, scheduler, (IChunkLoad) subscriber);
 			}

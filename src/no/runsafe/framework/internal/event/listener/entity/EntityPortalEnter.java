@@ -1,19 +1,19 @@
 package no.runsafe.framework.internal.event.listener.entity;
 
+import no.runsafe.framework.api.EventRouterFactory;
+import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.entity.IEntityPortalEnterEvent;
 import no.runsafe.framework.internal.event.listener.EventRouterBase;
-import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityPortalEnterEvent;
-import no.runsafe.framework.api.IScheduler;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPortalEnterEvent;
 
 public final class EntityPortalEnter extends EventRouterBase<IEntityPortalEnterEvent, EntityPortalEnterEvent>
 {
-	EntityPortalEnter(IOutput output, IScheduler scheduler, IEntityPortalEnterEvent handler)
+	EntityPortalEnter(IDebug output, IScheduler scheduler, IEntityPortalEnterEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class EntityPortalEnter extends EventRouterBase<IEntityPortalEnterE
 			}
 
 			@Override
-			public Listener getListener(IOutput output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new EntityPortalEnter(output, scheduler, (IEntityPortalEnterEvent) subscriber);
 			}

@@ -15,7 +15,6 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-@SuppressWarnings("UnnecessaryExplicitNumericCast")
 public class Item implements IEnchantable
 {
 	public static final byte AnyData = -1;
@@ -1035,7 +1034,6 @@ public class Item implements IEnchantable
 	public boolean enchanted()
 	{
 		return !(root || material.isBlock() || item == null) && item.enchanted();
-
 	}
 
 	@Override

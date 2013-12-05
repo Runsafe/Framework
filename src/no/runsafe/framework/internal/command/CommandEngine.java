@@ -2,7 +2,7 @@ package no.runsafe.framework.internal.command;
 
 import com.google.common.collect.ImmutableList;
 import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.minecraft.RunsafeConsole;
@@ -35,7 +35,7 @@ public final class CommandEngine implements Startable
 	 * @param commands The commands provided by the plugin
 	 * @param plugin   The plugin
 	 */
-	public CommandEngine(@Nullable IOutput output, @Nonnull RunsafePlugin plugin, @Nonnull ICommandHandler... commands)
+	public CommandEngine(@Nullable IDebug output, @Nonnull RunsafePlugin plugin, @Nonnull ICommandHandler... commands)
 	{
 		this.commands = commands;
 		this.plugin = plugin;
@@ -94,7 +94,7 @@ public final class CommandEngine implements Startable
 	@Nullable
 	private final ICommandExecutor console;
 	@Nullable
-	private final IOutput output;
+	private final IDebug output;
 	@Nonnull
 	private final ICommandHandler[] commands;
 	@Nonnull

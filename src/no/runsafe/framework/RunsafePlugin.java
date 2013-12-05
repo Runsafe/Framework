@@ -1,7 +1,7 @@
 package no.runsafe.framework;
 
 import no.runsafe.framework.api.IConfiguration;
-import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.api.event.IServerReady;
@@ -71,7 +71,7 @@ public abstract class RunsafePlugin extends InjectionPlugin
 
 		scheduleReadyEvent(getComponent(IScheduler.class));
 
-		output = getComponent(IOutput.class);
+		output = getComponent(IDebug.class);
 		if (debugLevel != null)
 			output.setDebugLevel(debugLevel);
 		output.debugFine("Standard components added.");
@@ -101,7 +101,6 @@ public abstract class RunsafePlugin extends InjectionPlugin
 			return;
 
 		// This is actually safe due to how plugins are initialized by bukkit..
-		//noinspection NonThreadSafeLazyInitialization
 		scheduled = scheduler.createSyncTimer(
 			new Runnable()
 			{
@@ -129,5 +128,5 @@ public abstract class RunsafePlugin extends InjectionPlugin
 	}
 
 	private static final Level debugLevel;
-	private static Object scheduled;
+	private static Object scheduled = null;
 }

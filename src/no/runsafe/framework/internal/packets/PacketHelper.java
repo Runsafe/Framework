@@ -52,9 +52,9 @@ public final class PacketHelper
 
 	public static void sendPacket(RunsafePlayer player, Object packet) throws Exception
 	{
-		Object entityPlayer = PacketHelper.getMethod("getHandle", player.getClass(), 0).invoke(player);
+		Object entityPlayer = getMethod("getHandle", player.getClass(), 0).invoke(player);
 		Object playerConnection = entityPlayer.getClass().getField("playerConnection").get(entityPlayer);
-		PacketHelper.getMethod("sendPacket", playerConnection.getClass(), 1).invoke(playerConnection, packet);
+		getMethod("sendPacket", playerConnection.getClass(), 1).invoke(playerConnection, packet);
 	}
 
 	private static final Pattern pattern = Pattern.compile("(\\.)(\\w+)$");
