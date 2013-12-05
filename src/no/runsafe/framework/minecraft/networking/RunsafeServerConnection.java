@@ -2,13 +2,13 @@ package no.runsafe.framework.minecraft.networking;
 
 import net.minecraft.server.v1_6_R3.DedicatedServerConnection;
 import net.minecraft.server.v1_6_R3.MinecraftServer;
-import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.IConsole;
 
 import java.net.InetAddress;
 
 public class RunsafeServerConnection extends DedicatedServerConnection
 {
-	public RunsafeServerConnection(MinecraftServer server, InetAddress address, int i, IDebug output)
+	public RunsafeServerConnection(MinecraftServer server, InetAddress address, int i, IConsole output)
 	{
 		super(server, address, i);
 		this.output = output;
@@ -16,5 +16,5 @@ public class RunsafeServerConnection extends DedicatedServerConnection
 		this.output.logInformation("RunsafeServerConnection successfully interjected.");
 	}
 
-	private final IDebug output;
+	private final IConsole output;
 }
