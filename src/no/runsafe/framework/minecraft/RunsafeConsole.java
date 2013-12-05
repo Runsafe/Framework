@@ -2,7 +2,6 @@ package no.runsafe.framework.minecraft;
 
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.command.ICommandExecutor;
-import sun.util.logging.PlatformLogger;
 
 import java.util.logging.Level;
 
