@@ -12,6 +12,16 @@ public class RunsafeServerConnectionThread extends DedicatedServerConnectionThre
 	public RunsafeServerConnectionThread(ServerConnection connection, InetAddress address, int i, IOutput output) throws IOException
 	{
 		super(connection, address, i);
+		this.output = output;
 		output.logInformation("Runsafe connection thread initialized.");
 	}
+
+	@Override
+	public void run()
+	{
+		super.run();
+		output.logWarning("Connection thread terminated.");
+	}
+
+	private final IOutput output;
 }
