@@ -1,11 +1,13 @@
 package no.runsafe.framework.internal.lua;
 
 import no.runsafe.framework.RunsafePlugin;
+import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.event.IServerReady;
 import no.runsafe.framework.api.lua.Library;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import org.apache.commons.io.FileUtils;
 import org.luaj.vm2.Globals;
+import org.luaj.vm2.LuaError;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.OneArgFunction;
@@ -36,8 +38,16 @@ public class Environment implements Startable, IServerReady
 	@SuppressWarnings("StaticVariableUsedBeforeInitialization")
 	public static void loadFile(String file)
 	{
-		RunsafeServer.Instance.getDebugger().logInformation("Loading script %s", file);
-		global.get("dofile").call(LuaValue.valueOf(file));
+		IDebug debugger = RunsafeServer.Instance.getDebugger();
+		debugger.logInformation("Loading script %s", file);
+		try
+		{
+			global.get("dofile").call(LuaValue.valueOf(file));
+		}
+		catch (LuaError error)
+		{
+			debugger.logException(error);
+		}
 	}
 
 	private static class Bootstrap extends OneArgFunction
