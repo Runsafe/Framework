@@ -17,10 +17,12 @@ import org.picocontainer.Startable;
 import javax.annotation.Nullable;
 import java.io.File;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Environment implements Startable, IServerReady
 {
+	@SuppressWarnings("PublicField")
 	public static Globals global;
 
 	static
@@ -50,22 +52,6 @@ public class Environment implements Startable, IServerReady
 		}
 	}
 
-	private static class Bootstrap extends OneArgFunction
-	{
-		Bootstrap()
-		{
-		}
-
-		@Nullable
-		@Override
-		public LuaValue call(LuaValue env)
-		{
-			global = env.checkglobals();
-			return null;
-		}
-	}
-
-
 	public Environment(RunsafePlugin plugin)
 	{
 		this.plugin = plugin;
@@ -88,7 +74,6 @@ public class Environment implements Startable, IServerReady
 		loadScripts();
 	}
 
-
 	private void loadAPI()
 	{
 		List<Library> libraries = plugin.getComponents(Library.class);
@@ -103,26 +88,41 @@ public class Environment implements Startable, IServerReady
 
 	private void loadScripts()
 	{
-		Collection<File> files = getScripts();
-		if (files != null)
-			for (File script : files)
-				if (script.isFile())
-					loadFile(script.getAbsolutePath());
+		for (File script : getScripts())
+			if (script.isFile())
+				loadFile(script.getAbsolutePath());
 	}
 
-	@Nullable
 	private Collection<File> getScripts()
 	{
 		File data = plugin.getDataFolder();
 		if (!data.exists() || !data.isDirectory())
-			return null;
+			return Collections.emptySet();
 
 		File scripts = new File(data, "lua");
 		if (!scripts.exists() || !scripts.isDirectory())
-			return null;
+			return Collections.emptySet();
 
 		Collection<File> list = FileUtils.listFiles(scripts, new String[]{"lua"}, false);
-		return list == null || list.isEmpty() ? null : list;
+		if (list == null)
+			return Collections.emptySet();
+
+		return list;
+	}
+
+	private static class Bootstrap extends OneArgFunction
+	{
+		Bootstrap()
+		{
+		}
+
+		@Nullable
+		@Override
+		public LuaValue call(LuaValue env)
+		{
+			global = env.checkglobals();
+			return null;
+		}
 	}
 
 	private final RunsafePlugin plugin;
