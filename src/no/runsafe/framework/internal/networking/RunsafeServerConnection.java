@@ -14,7 +14,7 @@ public class RunsafeServerConnection extends ServerConnection
 	public RunsafeServerConnection(MinecraftServer server, InetAddress address, int i, IOutput output) throws IOException
 	{
 		super(server);
-		thread = new DedicatedServerConnectionThread(this, address, i);
+		thread = new RunsafeServerConnectionThread(this, address, i, output);
 		thread.start();
 	}
 

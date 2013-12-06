@@ -16,12 +16,5 @@ public class RunsafeServerConnectionThread extends DedicatedServerConnectionThre
 		output.logInformation("Runsafe connection thread initialized.");
 	}
 
-	@Override
-	public void run()
-	{
-		super.run();
-		output.logWarning("Connection thread terminated.");
-	}
-
 	private final IOutput output;
 }
