@@ -3,7 +3,6 @@ package no.runsafe.framework.minecraft;
 import no.runsafe.framework.api.minecraft.IEnchant;
 import no.runsafe.framework.api.minecraft.IEnchantable;
 import no.runsafe.framework.minecraft.enchantment.RunsafeEnchantment;
-import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import org.bukkit.enchantments.Enchantment;
 
 import javax.annotation.Nullable;
@@ -106,7 +105,7 @@ public class Enchant implements IEnchant
 	@Override
 	public boolean canEnchant(IEnchantable target)
 	{
-		return target instanceof RunsafeMeta && enchant.canEnchantItem((RunsafeMeta) target);
+		return target != null && enchant.canEnchantItem(target);
 	}
 
 	@Override

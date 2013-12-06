@@ -93,6 +93,7 @@ public class RunsafeFakePlayer extends RunsafePlayer
 	{
 	}
 
+	@SuppressWarnings("ReturnOfCollectionOrArrayField")
 	@Override
 	public ImmutableList<String> getGroups()
 	{

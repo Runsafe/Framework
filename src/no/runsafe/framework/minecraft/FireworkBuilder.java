@@ -13,6 +13,9 @@ import java.util.Random;
 
 public class FireworkBuilder
 {
+
+	public static final int HEXADECIMAL = 16;
+
 	public FireworkBuilder Random()
 	{
 		return Random(rng.nextInt(4));
@@ -33,8 +36,8 @@ public class FireworkBuilder
 				.trail(rng.nextBoolean())
 				.flicker(rng.nextBoolean())
 				.with(types[rng.nextInt(types.length - 1)])
-				.withColor(Color.fromRGB(rng.nextInt(255), rng.nextInt(255), rng.nextInt(255)))
-				.withColor(Color.fromRGB(rng.nextInt(255), rng.nextInt(255), rng.nextInt(255)));
+				.withColor(Color.fromRGB(rng.nextInt(Byte.MAX_VALUE), rng.nextInt(Byte.MAX_VALUE), rng.nextInt(Byte.MAX_VALUE)))
+				.withColor(Color.fromRGB(rng.nextInt(Byte.MAX_VALUE), rng.nextInt(Byte.MAX_VALUE), rng.nextInt(Byte.MAX_VALUE)));
 		}
 		return this;
 	}
@@ -99,7 +102,7 @@ public class FireworkBuilder
 
 	public FireworkBuilder Colour(String rgb)
 	{
-		builder = builder.withColor(Color.fromRGB(Integer.parseInt(rgb, 16)));
+		builder = builder.withColor(Color.fromRGB(Integer.parseInt(rgb, HEXADECIMAL)));
 		return this;
 	}
 
@@ -111,7 +114,7 @@ public class FireworkBuilder
 
 	public FireworkBuilder Fade(String rgb)
 	{
-		builder = builder.withFade(Color.fromRGB(Integer.parseInt(rgb, 16)));
+		builder = builder.withFade(Color.fromRGB(Integer.parseInt(rgb, HEXADECIMAL)));
 		return this;
 	}
 
@@ -134,6 +137,7 @@ public class FireworkBuilder
 		return this;
 	}
 
+	@SuppressWarnings({"CastToConcreteClass", "LocalVariableOfConcreteClass"})
 	public RunsafeMeta Create()
 	{
 		RunsafeFirework item = (RunsafeFirework) Item.Special.Crafted.Firework.getItem();

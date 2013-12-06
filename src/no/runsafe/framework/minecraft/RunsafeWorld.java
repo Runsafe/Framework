@@ -24,6 +24,7 @@ public class RunsafeWorld extends BukkitWorld
 		super(RunsafeServer.Instance.getWorld(worldName).getRaw());
 	}
 
+	@SuppressWarnings("InstanceofInterfaces")
 	@Override
 	public boolean equals(Object obj)
 	{

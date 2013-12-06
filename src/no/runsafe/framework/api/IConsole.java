@@ -1,5 +1,6 @@
 package no.runsafe.framework.api;
 
+import javax.annotation.Nullable;
 import java.util.logging.Level;
 
 public interface IConsole
@@ -35,6 +36,8 @@ public interface IConsole
 
 	void logInformation(String message, Object... params);
 
+	@Nullable
 	String getLogFormat();
+	@Nullable
 	String getDebugFormat();
 }

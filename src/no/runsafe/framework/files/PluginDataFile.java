@@ -25,7 +25,6 @@ public class PluginDataFile
 		{
 			fileCheck();
 			BufferedReader reader = new BufferedReader(new FileReader(dataFile));
-
 			while (true)
 			{
 				String line = reader.readLine();
@@ -45,9 +44,6 @@ public class PluginDataFile
 
 	private void fileCheck() throws IOException
 	{
-		if (dataFile == null)
-			throw new IOException("NULL file pointer?");
-
 		if (!dataFile.exists())
 		{
 			if (!dataFile.getParentFile().isDirectory())

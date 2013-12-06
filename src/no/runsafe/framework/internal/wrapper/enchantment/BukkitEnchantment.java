@@ -1,7 +1,8 @@
 package no.runsafe.framework.internal.wrapper.enchantment;
 
 import no.runsafe.framework.api.minecraft.IEnchant;
-import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
+import no.runsafe.framework.api.minecraft.IEnchantable;
+import no.runsafe.framework.internal.wrapper.item.BukkitItemStack;
 import org.bukkit.enchantments.Enchantment;
 
 public abstract class BukkitEnchantment
@@ -47,9 +48,10 @@ public abstract class BukkitEnchantment
 		return !this.enchantment.conflictsWith(enchantment.getEnchant().getRaw());
 	}
 
-	public boolean canEnchantItem(RunsafeMeta target)
+	@SuppressWarnings("CastToConcreteClass")
+	public boolean canEnchantItem(IEnchantable target)
 	{
-		return enchantment.canEnchantItem(target.getRaw());
+		return enchantment.canEnchantItem(((BukkitItemStack) target).getRaw());
 	}
 
 	public Enchantment getRaw()

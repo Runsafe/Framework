@@ -126,15 +126,15 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	@SuppressWarnings("NonThreadSafeLazyInitialization")
 	protected void initializePlugin()
 	{
-		if (container != null)
-			return;
+		if (container == null)
+		{
+			Instances.put(getName(), this);
+			if (RunsafeServer.Instance == null)
+				RunsafeServer.Instance = new RunsafeServer(getServer());
 
-		Instances.put(getName(), this);
-		if (RunsafeServer.Instance == null)
-			RunsafeServer.Instance = new RunsafeServer(getServer());
-
-		container = new DefaultPicoContainer(new Caching());
-		addStandardComponents();
+			container = new DefaultPicoContainer(new Caching());
+			addStandardComponents();
+		}
 	}
 
 	@SuppressWarnings("OverlyCoupledMethod")

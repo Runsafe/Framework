@@ -29,6 +29,7 @@ public final class PlayerRightClickSign extends EventRouterBase<IPlayerRightClic
 		super.acceptEvent(event);
 	}
 
+	@SuppressWarnings("CastToConcreteClass")
 	@Override
 	public boolean onEvent(PlayerInteractEvent event)
 	{
@@ -40,7 +41,6 @@ public final class PlayerRightClickSign extends EventRouterBase<IPlayerRightClic
 			ObjectWrapper.convert(event.getItem()),
 			(RunsafeSign) ObjectWrapper.convert(event.getClickedBlock().getState())
 		);
-
 	}
 
 	public static EventRouterFactory Factory()

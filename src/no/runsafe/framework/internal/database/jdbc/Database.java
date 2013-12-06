@@ -139,9 +139,7 @@ public final class Database extends QueryExecutor implements IDatabase
 
 	private void open() throws SQLException
 	{
-		if (conn != null)
-			close();
-
+		close();
 		accessTime = DateTime.now();
 		conn = DriverManager.getConnection(databaseURL, databaseUsername, databasePassword);
 		output.debugFine(String.format("Opening connection to %s by %s", databaseURL, databaseUsername));
@@ -152,7 +150,8 @@ public final class Database extends QueryExecutor implements IDatabase
 		//noinspection OverlyBroadCatchBlock
 		try
 		{
-			conn.close();
+			if (conn != null)
+				conn.close();
 		}
 		catch (Exception ignored)
 		{

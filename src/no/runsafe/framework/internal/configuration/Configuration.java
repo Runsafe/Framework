@@ -163,6 +163,8 @@ public final class Configuration implements IConfiguration
 		return RunsafeServer.Instance.getWorld(getConfigValueAsString(key));
 	}
 
+	@Nullable
+	@SuppressWarnings("LocalVariableOfConcreteClass")
 	@Override
 	public RunsafeLocation getConfigValueAsLocation(String key)
 	{

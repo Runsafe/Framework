@@ -10,6 +10,7 @@ import java.util.List;
 
 public class RunsafePlayerFakeChatEvent extends RunsafePlayerChatEvent
 {
+	@SuppressWarnings("LocalVariableOfConcreteClass")
 	@Nullable
 	public static String Run(RunsafePlayer player, String message)
 	{

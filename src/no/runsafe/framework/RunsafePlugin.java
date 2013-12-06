@@ -44,6 +44,7 @@ public abstract class RunsafePlugin extends InjectionPlugin
 		debugLevel = consoleDebug;
 	}
 
+	@SuppressWarnings({"CastToConcreteClass", "InstanceofInterfaces", "LocalVariableOfConcreteClass"})
 	@Nullable
 	public static ICommandHandler getPluginCommand(String name)
 	{
@@ -95,26 +96,27 @@ public abstract class RunsafePlugin extends InjectionPlugin
 
 	protected abstract void PluginSetup();
 
+	@SuppressWarnings("NonThreadSafeLazyInitialization")
 	private static void scheduleReadyEvent(IScheduler scheduler)
 	{
-		if (scheduled != null)
-			return;
-
-		// This is actually safe due to how plugins are initialized by bukkit..
-		scheduled = scheduler.createSyncTimer(
-			new Runnable()
-			{
-				@Override
-				public void run()
+		if (scheduled == null)
+		{
+			// This is actually safe due to how plugins are initialized by bukkit..
+			scheduled = scheduler.createSyncTimer(
+				new Runnable()
 				{
-					List<IServerReady> listeners = getPluginAPI(IServerReady.class);
-					if (listeners != null)
-						for (IServerReady listener : listeners)
-							listener.OnServerReady();
-				}
-			},
-			0
-		);
+					@Override
+					public void run()
+					{
+						List<IServerReady> listeners = getPluginAPI(IServerReady.class);
+						if (listeners != null)
+							for (IServerReady listener : listeners)
+								listener.OnServerReady();
+					}
+				},
+				0
+			);
+		}
 	}
 
 	/**

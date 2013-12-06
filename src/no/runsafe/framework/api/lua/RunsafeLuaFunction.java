@@ -6,6 +6,7 @@ import java.util.List;
 
 public abstract class RunsafeLuaFunction extends Function
 {
+	@SuppressWarnings("LocalVariableOfConcreteClass")
 	@Override
 	public Varargs invoke(Varargs args)
 	{

@@ -6,6 +6,7 @@ import no.runsafe.framework.minecraft.WorldEffect;
 
 import java.util.HashMap;
 
+@SuppressWarnings("NumericCastThatLosesPrecision")
 public class PacketWorldParticles extends Packet
 {
 	public PacketWorldParticles(RunsafeLocation location, WorldEffect worldEffect, int speed, int amount, int range)

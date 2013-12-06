@@ -186,6 +186,7 @@ public class RunsafeServer extends BukkitServer
 		player.kick(reason);
 	}
 
+	@SuppressWarnings("LocalVariableOfConcreteClass")
 	@Nullable
 	public RunsafePlayer getKicker(String playerName)
 	{

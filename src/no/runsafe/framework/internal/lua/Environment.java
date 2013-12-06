@@ -24,7 +24,7 @@ public class Environment implements Startable, IServerReady
 	static
 	{
 		JsePlatform.standardGlobals().load(new Bootstrap());
-		File source = new File("plugins/runsafe", "lua");
+		File source = new File("plugins" + File.pathSeparatorChar + "runsafe", "lua");
 		if (source.exists() && source.isDirectory())
 		{
 			Collection<File> scripts = FileUtils.listFiles(source, new String[]{"lua"}, false);

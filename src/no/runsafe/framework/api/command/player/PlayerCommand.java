@@ -17,6 +17,7 @@ public abstract class PlayerCommand extends ExecutableCommand implements IPlayer
 		super(commandName, description, permission, arguments);
 	}
 
+	@SuppressWarnings({"CastToConcreteClass", "InstanceofInterfaces"})
 	@Override
 	public final String OnExecute(ICommandExecutor executor, Map<String, String> parameters)
 	{

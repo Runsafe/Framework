@@ -8,10 +8,11 @@ import java.util.List;
 
 public abstract class LocationFunction extends Function
 {
+	@SuppressWarnings("LocalVariableOfConcreteClass")
 	@Override
 	public Varargs invoke(Varargs args)
 	{
-		RunsafeLocation location = run(VarargsToParameters(args));
+		RunsafeLocation location = run(varargsToParameters(args));
 
 		List<Object> values = new ArrayList<Object>(4);
 		values.add(location.getWorld().getName());

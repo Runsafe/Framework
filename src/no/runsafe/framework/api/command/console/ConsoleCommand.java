@@ -17,6 +17,7 @@ public abstract class ConsoleCommand extends ExecutableCommand implements IConso
 		super(commandName, description, null, arguments);
 	}
 
+	@SuppressWarnings("InstanceofInterfaces")
 	@Override
 	public final String OnExecute(ICommandExecutor executor, Map<String, String> parameters)
 	{

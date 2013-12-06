@@ -57,36 +57,38 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 
 	public void removeBuffs()
 	{
-		if (entity != null)
+		if (livingEntity != null)
 			for (PotionEffect effect : livingEntity.getActivePotionEffects())
 				livingEntity.removePotionEffect(effect.getType());
 	}
 
+	@SuppressWarnings({"CastToConcreteClass", "InstanceofInterfaces", "LocalVariableOfConcreteClass"})
 	private RunsafeEntity Launch(Class<? extends Entity> launch)
 	{
 		Vector velocity = livingEntity.getEyeLocation().getDirection().multiply(2);
 		Entity launched = entity.getWorld().spawn(livingEntity.getEyeLocation().add(velocity), launch);
 		launched.setVelocity(velocity);
 
-		RunsafeEntity entity = ObjectWrapper.convert(launched);
+		RunsafeEntity launchedEntity = ObjectWrapper.convert(launched);
 
-		if (entity instanceof BukkitProjectile)
-			((BukkitProjectile) entity).setShooter(this);
+		if (launchedEntity instanceof BukkitProjectile)
+			((BukkitProjectile) launchedEntity).setShooter(this);
 
-		return entity;
+		return launchedEntity;
 	}
 
+	@SuppressWarnings("LocalVariableOfConcreteClass")
 	@Nullable
 	private RunsafeEntity Fire(Class<? extends Entity> projectile)
 	{
 		if (!Projectile.class.isAssignableFrom(projectile))
 			return null;
 
-		RunsafeEntity entity = ObjectWrapper.convert(livingEntity.launchProjectile(projectile.asSubclass(Projectile.class)));
+		RunsafeEntity projectileEntity = ObjectWrapper.convert(livingEntity.launchProjectile(projectile.asSubclass(Projectile.class)));
 
-		if (entity instanceof Projectile)
-			((Projectile) entity).setShooter(getRaw());
+		if (projectileEntity instanceof Projectile)
+			((Projectile) projectileEntity).setShooter(getRaw());
 
-		return entity;
+		return projectileEntity;
 	}
 }

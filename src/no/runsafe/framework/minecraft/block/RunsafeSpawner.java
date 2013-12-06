@@ -12,6 +12,7 @@ public class RunsafeSpawner extends RunsafeBlock
 		super(toWrap);
 	}
 
+	@SuppressWarnings("CastToConcreteClass")
 	@Override
 	public RunsafeCreatureSpawner getBlockState()
 	{

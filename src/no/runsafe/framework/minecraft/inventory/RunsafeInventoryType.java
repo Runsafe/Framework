@@ -43,6 +43,7 @@ public enum RunsafeInventoryType
 		return InventoryType.valueOf(name());
 	}
 
+	@SuppressWarnings("InnerClassFieldHidesOuterClassField")
 	public enum SlotType
 	{
 		RESULT,

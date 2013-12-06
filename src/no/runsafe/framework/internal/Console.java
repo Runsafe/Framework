@@ -7,32 +7,35 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
+import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.FileHandler;
+import java.util.logging.Formatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@SuppressWarnings("CallToPrintStackTrace")
 public class Console implements IConsole
 {
 	protected Console(InjectionPlugin plugin)
 	{
 		if (plugin != null && logFormats.containsKey(plugin.getName()))
-			logFormat = (String) logFormats.get(plugin.getName());
+			logFormat = logFormats.get(plugin.getName());
 		else if (plugin != null && logFormats.containsKey("*"))
-			logFormat = String.format((String) logFormats.get("*"), plugin.getName());
+			logFormat = String.format(logFormats.get("*"), plugin.getName());
 
-		if(logFormat == null)
+		if (logFormat == null)
 			logFormat = defaultLogFormat;
 
 		if (plugin != null && debugFormats.containsKey(plugin.getName()))
-			debugFormat = (String) debugFormats.get(plugin.getName());
+			debugFormat = debugFormats.get(plugin.getName());
 		else if (plugin != null && debugFormats.containsKey("*"))
-			debugFormat = String.format((String) debugFormats.get("*"), plugin.getName());
+			debugFormat = String.format(debugFormats.get("*"), plugin.getName());
 
-		if(debugFormat == null)
+		if (debugFormat == null)
 			debugFormat = defaultDebugFormat;
 	}
 
@@ -115,18 +118,20 @@ public class Console implements IConsole
 		InternalLogger.log(level, message, this);
 	}
 
+	@Nullable
 	@Override
 	public String getLogFormat()
 	{
-		if(logFormat == null)
+		if (logFormat == null)
 			return null;
 		return ChatColour.ToConsole(logFormat);
 	}
 
+	@Nullable
 	@Override
 	public String getDebugFormat()
 	{
-		if(debugFormat == null)
+		if (debugFormat == null)
 			return null;
 		return ChatColour.ToConsole(debugFormat);
 	}
@@ -136,31 +141,31 @@ public class Console implements IConsole
 		return levelFormat.get(level);
 	}
 
-	private String logFormat;
-	private String debugFormat;
+	private String logFormat = null;
+	private String debugFormat = null;
 
 	public static Level DefaultDebugLevel(String plugin)
 	{
-		if(defaultDebugLevel.containsKey(plugin))
+		if (defaultDebugLevel.containsKey(plugin))
 			return defaultDebugLevel.get(plugin);
 
 		return defaultDebugLevel.get("*");
 	}
 
-	protected static final Map<String, Object> logFormats;
-	protected static final Map<String, Object> debugFormats;
+	protected static final Map<String, String> logFormats;
+	protected static final Map<String, String> debugFormats;
 	protected static final Logger InternalLogger;
 	protected static final Logger InternalDebugger;
 
-	private static final String defaultLogFormat;
-	private static final String defaultDebugFormat;
+	private static String defaultLogFormat;
+	private static String defaultDebugFormat;
 	private static final Map<Level, String> levelFormat;
 	private static final Map<String, Level> defaultDebugLevel;
 
-	static
+	private static YamlConfiguration loadDefaults(File configFile)
 	{
-		File configFile = new File("runsafe", "output.yml");
 		YamlConfiguration config = YamlConfiguration.loadConfiguration(configFile);
+
 		if (!config.contains("debug.*")) config.set("debug.*", "OFF");
 		if (!config.contains("split")) config.set("split", false);
 		if (!config.contains("format.anonymous.log")) config.set("format.anonymous.log", "%1$s %2$s [%3$s] %4$s");
@@ -170,54 +175,96 @@ public class Console implements IConsole
 		if (!config.contains("format.level"))
 		{
 			ConfigurationSection levels = config.createSection("format.level");
-			levels.set(Level.OFF.getName(), "&8"+Level.OFF.getName()+"&r");
-			levels.set(Level.SEVERE.getName(), "&4"+Level.SEVERE.getName()+"&r");
-			levels.set(Level.WARNING.getName(), "&e"+Level.WARNING.getName()+"&r");
-			levels.set(Level.INFO.getName(), "&2"+Level.INFO.getName()+"&r");
-			levels.set(Level.CONFIG.getName(), "&3"+Level.CONFIG.getName()+"&r");
-			levels.set(Level.FINE.getName(), "&a"+Level.FINE.getName()+"&r");
-			levels.set(Level.FINER.getName(), "&a&l"+Level.FINER.getName()+"&r");
-			levels.set(Level.FINEST.getName(), "&a&o"+Level.FINEST.getName()+"&r");
-			levels.set(Level.ALL.getName(), "&f&n"+Level.ALL.getName()+"&r");
+			levels.set(Level.OFF.getName(), "&8" + Level.OFF.getName() + "&r");
+			levels.set(Level.SEVERE.getName(), "&4" + Level.SEVERE.getName() + "&r");
+			levels.set(Level.WARNING.getName(), "&e" + Level.WARNING.getName() + "&r");
+			levels.set(Level.INFO.getName(), "&2" + Level.INFO.getName() + "&r");
+			levels.set(Level.CONFIG.getName(), "&3" + Level.CONFIG.getName() + "&r");
+			levels.set(Level.FINE.getName(), "&a" + Level.FINE.getName() + "&r");
+			levels.set(Level.FINER.getName(), "&a&l" + Level.FINER.getName() + "&r");
+			levels.set(Level.FINEST.getName(), "&a&o" + Level.FINEST.getName() + "&r");
+			levels.set(Level.ALL.getName(), "&f&n" + Level.ALL.getName() + "&r");
 		}
-
-		levelFormat = new HashMap<Level, String>(1);
-		for(Map.Entry<String, Object> format : config.getConfigurationSection("format.level").getValues(false).entrySet())
-			levelFormat.put(Level.parse(format.getKey()), ChatColour.ToConsole((String)format.getValue()));
-
-		logFormats = config.getConfigurationSection("format.log").getValues(false);
-		debugFormats = config.getConfigurationSection("format.debug").getValues(false);
-		defaultDebugLevel = new HashMap<String, Level>(1);
-		for(Map.Entry<String, Object> level : config.getConfigurationSection("debug").getValues(false).entrySet())
-			defaultDebugLevel.put(level.getKey(), Level.parse(((String)level.getValue()).toUpperCase()));
 		try
 		{
 			config.save(configFile);
 		}
 		catch (IOException e)
 		{
+			e.printStackTrace();
+			System.exit(1);
 		}
+		return config;
+	}
+
+	private static void configure()
+	{
+		YamlConfiguration config = loadDefaults(new File("runsafe", "output.yml"));
+
+		levelFormat.putAll(castStringLevel(config.getConfigurationSection("format.level").getValues(false)));
+		logFormats.putAll(castStringMap(config.getConfigurationSection("format.log").getValues(false)));
+		debugFormats.putAll(castStringMap(config.getConfigurationSection("format.debug").getValues(false)));
+		defaultDebugLevel.putAll(castLevelMap(config.getConfigurationSection("debug").getValues(false)));
 
 		defaultLogFormat = config.getString("format.anonymous.log");
 		defaultDebugFormat = config.getString("format.anonymous.debug");
-		InternalLogger = Logger.getLogger("RunsafeLogger");
 		InternalLogger.setUseParentHandlers(!config.getBoolean("split"));
-		InternalDebugger = Logger.getLogger("RunsafeDebugger");
 		InternalDebugger.setUseParentHandlers(!config.getBoolean("split"));
+	}
+
+	private static Map<String, String> castStringMap(Map<String, Object> data)
+	{
+		Map<String, String> cast = new HashMap<String, String>(data.size());
+		for (Map.Entry<String, Object> entry : data.entrySet())
+			cast.put(entry.getKey(), ChatColour.ToConsole(entry.getValue().toString()));
+		return cast;
+	}
+
+	private static Map<String, Level> castLevelMap(Map<String, Object> data)
+	{
+		Map<String, Level> cast = new HashMap<String, Level>(data.size());
+		for (Map.Entry<String, Object> entry : data.entrySet())
+			cast.put(entry.getKey(), Level.parse(entry.getValue().toString().toUpperCase()));
+		return cast;
+	}
+
+	private static Map<Level, String> castStringLevel(Map<String, Object> data)
+	{
+		Map<Level, String> cast = new HashMap<Level, String>(data.size());
+		for (Map.Entry<String, Object> entry : data.entrySet())
+			cast.put(Level.parse(entry.getKey().toUpperCase()), ChatColour.ToConsole(entry.getValue().toString()));
+		return cast;
+	}
+
+	private static void startLogging(Logger log, String outputFile, Formatter formatter)
+	{
 		try
 		{
-			FileHandler logFile = new FileHandler("runsafe.log", true);
+			FileHandler logFile = new FileHandler(outputFile, true);
 			logFile.setEncoding("UTF-8");
 			logFile.setFormatter(new RunsafeLogFormatter());
-			InternalLogger.addHandler(logFile);
-
-			FileHandler debugFile = new FileHandler("debug.log", true);
-			debugFile.setEncoding("UTF-8");
-			debugFile.setFormatter(new RunsafeDebugFormatter());
-			InternalDebugger.addHandler(debugFile);
+			logFile.setFormatter(formatter);
+			log.addHandler(logFile);
 		}
-		catch (IOException e)
+		catch (Exception e)
 		{
+			e.printStackTrace();
+			System.exit(1);
 		}
+	}
+
+	static
+	{
+		levelFormat = new HashMap<Level, String>(1);
+		defaultDebugLevel = new HashMap<String, Level>(1);
+		logFormats = new HashMap<String, String>(1);
+		debugFormats = new HashMap<String, String>(1);
+		InternalLogger = Logger.getLogger("RunsafeLogger");
+		InternalDebugger = Logger.getLogger("RunsafeDebugger");
+
+		configure();
+
+		startLogging(InternalLogger, "runsafe.log", new RunsafeLogFormatter());
+		startLogging(InternalDebugger, "debug.log", new RunsafeDebugFormatter());
 	}
 }

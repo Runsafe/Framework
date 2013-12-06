@@ -28,6 +28,7 @@ public abstract class ConsoleAsyncCallbackCommand<T> extends AsyncCallbackComman
 		return null;
 	}
 
+	@SuppressWarnings("InstanceofInterfaces")
 	@Nullable
 	@Override
 	public final T OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters)

@@ -14,7 +14,7 @@ public class RunsafeLeatherArmor extends BukkitLeatherArmor
 
 	public void RandomColour()
 	{
-		setColor(rng.nextInt(255), rng.nextInt(255), rng.nextInt(255));
+		setColor(rng.nextInt(Byte.MAX_VALUE), rng.nextInt(Byte.MAX_VALUE), rng.nextInt(Byte.MAX_VALUE));
 	}
 
 	private static final Random rng = new Random();

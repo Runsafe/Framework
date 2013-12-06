@@ -23,7 +23,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings("OverlyCoupledClass")
+@SuppressWarnings({"OverlyCoupledClass", "LocalVariableOfConcreteClass"})
 public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 {
 	public RunsafePlayer(OfflinePlayer toWrap)
@@ -334,7 +334,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 	public void heal(double amount)
 	{
 		double heal = getHealth() + amount;
-		setHealth(heal > 20D ? 20D : heal);
+		setHealth(heal);
 	}
 
 	public String getWorldName()

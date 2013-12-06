@@ -132,6 +132,7 @@ public class Item implements IEnchantable
 			{
 			}
 
+			@SuppressWarnings("InnerClassFieldHidesOuterClassField")
 			public static final class Plank
 			{
 				public static final Item Any = new Item(Material.WOOD, true, AnyData);
@@ -183,6 +184,7 @@ public class Item implements IEnchantable
 			}
 		}
 
+		@SuppressWarnings("InnerClassFieldHidesOuterClassField")
 		public static final class Slab
 		{
 			public static final Item AnyWood = new Item(Material.WOOD_STEP, true, AnyData);
@@ -204,6 +206,7 @@ public class Item implements IEnchantable
 			}
 		}
 
+		@SuppressWarnings("InnerClassFieldHidesOuterClassField")
 		public static final class Stairs
 		{
 			public static final Item Oak = new Item(Material.WOOD_STAIRS, true);
@@ -880,6 +883,7 @@ public class Item implements IEnchantable
 			}
 		}
 
+		@SuppressWarnings("InnerClassFieldHidesOuterClassField")
 		public static final class Seed
 		{
 			public static final Item Wheat = new Item(Material.SEEDS, true);
@@ -1017,6 +1021,7 @@ public class Item implements IEnchantable
 		return Drop(location, getStackSize());
 	}
 
+	@SuppressWarnings("LocalVariableOfConcreteClass")
 	public RunsafeItem Drop(RunsafeLocation location, int amount)
 	{
 		RunsafeMeta stack = getItem();

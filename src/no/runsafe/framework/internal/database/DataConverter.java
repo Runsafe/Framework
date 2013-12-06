@@ -10,6 +10,7 @@ import javax.annotation.Nullable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+@SuppressWarnings("ChainOfInstanceofChecks")
 final class DataConverter
 {
 	private DataConverter()
@@ -135,7 +136,7 @@ final class DataConverter
 		return new DateTime(value);
 	}
 
-	@SuppressWarnings({"MethodWithTooManyParameters", "ConstantConditions"})
+	@SuppressWarnings({"MethodWithTooManyParameters", "ConstantConditions", "LocalVariableOfConcreteClass"})
 	@Nullable
 	static RunsafeLocation Location(Object world, Object x, Object y, Object z, Object yaw, Object pitch)
 	{

@@ -41,7 +41,10 @@ public abstract class BukkitLivingEntity extends RunsafeEntity
 
 	public void setHealth(double health)
 	{
-		livingEntity.setHealth(health);
+		if(livingEntity.getMaxHealth() < health)
+			livingEntity.setHealth(livingEntity.getMaxHealth());
+		else
+			livingEntity.setHealth(health);
 	}
 
 	public RunsafeEntityEquipment getEquipment()
@@ -169,13 +172,13 @@ public abstract class BukkitLivingEntity extends RunsafeEntity
 
 	public void addBuff(Buff buff)
 	{
-		if (entity != null)
+		if (livingEntity != null)
 			livingEntity.addPotionEffect(buff.getEffect());
 	}
 
 	public void removeBuff(Buff buff)
 	{
-		if (entity != null)
+		if (livingEntity != null)
 			livingEntity.removePotionEffect(buff.getType());
 	}
 

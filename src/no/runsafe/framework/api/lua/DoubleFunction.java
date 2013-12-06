@@ -8,7 +8,7 @@ public abstract class DoubleFunction extends Function
 	@Override
 	public Varargs invoke(Varargs args)
 	{
-		return varargsOf(new LuaValue[]{valueOf(run(VarargsToParameters(args)))});
+		return varargsOf(new LuaValue[]{valueOf(run(varargsToParameters(args)))});
 	}
 
 	@SuppressWarnings("InstanceMethodNamingConvention")

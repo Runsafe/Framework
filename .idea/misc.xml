@@ -1,7 +1,1389 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="EntryPointsManager">
-    <entry_points version="2.0" />
+    <entry_points version="2.0">
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.text.ANSIRendition no.runsafe.framework.text.ANSIRendition Modify()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.AsyncCallbackCommand AsyncCallbackCommand(java.lang.String name, java.lang.String description, java.lang.String permission, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.command.argument.IArgument... args)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.text.ANSIColour ANSIColour(int colourCode)" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.text.ANSIRendition" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.block.BlockBreak BlockBreak(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.block.IBlockBreak handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.block.BlockBreakListener BlockBreakListener(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.block.IBlockBreakEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.block.BlockDispense BlockDispense(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.block.IBlockDispense handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.block.BlockPlace BlockPlace(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.block.IBlockPlace handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.block.BlockRedstone BlockRedstone(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.block.IBlockRedstone handler)" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.lua.BooleanFunction" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.Broadcaster Broadcaster(no.runsafe.framework.internal.InjectionPlugin plugin, no.runsafe.framework.minecraft.RunsafeServer server)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Buff Buff(org.bukkit.potion.PotionEffectType type, boolean root)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Buff no.runsafe.framework.minecraft.Buff ambient(boolean value)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Buff no.runsafe.framework.minecraft.Buff amplification(int value)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Buff no.runsafe.framework.minecraft.Buff duration(int value)" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Buff.Disease Hunger" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Buff.Disease Disease()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Buff.Utility.DigSpeed Decrease" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Buff.Utility.DigSpeed Increase" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Buff.Utility.DigSpeed DigSpeed()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Buff.Utility.Movement JumpHeight" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Buff.Utility.Movement DecreaseSpeed" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Buff.Utility.Movement IncreaseSpeed" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Buff.Utility.Movement Movement()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Buff.Utility WaterBreathing" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Buff.Utility NightVision" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Buff.Utility Invisibility" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Buff.Utility Utility()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Buff.Resistance Fire" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Buff.Resistance Damage" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Buff.Resistance Resistance()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Buff.Healing Regeneration" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Buff.Healing Instant" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Buff.Healing Healing()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Buff.Combat.Damage Wither" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Buff.Combat.Damage Poison" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Buff.Combat.Damage Instant" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Buff.Combat.Damage Decrease" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Buff.Combat.Damage Increase" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Buff.Combat.Damage Damage()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Buff.Combat Blindness" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Buff.Combat Confusion" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Buff.Combat Combat()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.inventory.BukkitAnvilInventory BukkitAnvilInventory(org.bukkit.inventory.AnvilInventory inventory)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.block.BukkitBlock BukkitBlock(org.bukkit.block.Block toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.block.BukkitBlockState BukkitBlockState(org.bukkit.block.BlockState blockState)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.item.meta.BukkitBook BukkitBook(org.bukkit.inventory.ItemStack toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.block.BukkitBrewingStand BukkitBrewingStand(org.bukkit.block.BrewingStand toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.block.BukkitChest BukkitChest(org.bukkit.block.Chest toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.chunk.BukkitChunk BukkitChunk(org.bukkit.Chunk toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.command.BukkitCommandTabExecutor BukkitCommandTabExecutor(no.runsafe.framework.api.command.ICommandHandler command, no.runsafe.framework.api.command.ICommandExecutor console, no.runsafe.framework.api.IDebug logger)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.block.BukkitCreatureSpawner BukkitCreatureSpawner(org.bukkit.block.CreatureSpawner toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.block.BukkitDispenser BukkitDispenser(org.bukkit.block.Dispenser toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.block.BukkitDoubleChest BukkitDoubleChest(org.bukkit.block.DoubleChest toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.inventory.BukkitDoubleChestInventory BukkitDoubleChestInventory(org.bukkit.inventory.DoubleChestInventory toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.block.BukkitDropper BukkitDropper(org.bukkit.block.Dropper toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.enchantment.BukkitEnchantment BukkitEnchantment(int id)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.enchantment.BukkitEnchantment BukkitEnchantment(org.bukkit.enchantments.Enchantment toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.item.meta.BukkitEnchantmentStorage BukkitEnchantmentStorage(org.bukkit.inventory.ItemStack stack)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.entity.BukkitEntity BukkitEntity(org.bukkit.entity.Entity toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.inventory.BukkitEntityEquipment BukkitEntityEquipment(org.bukkit.inventory.EntityEquipment toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.entity.BukkitFallingBlock BukkitFallingBlock(org.bukkit.entity.FallingBlock toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.item.meta.BukkitFirework BukkitFirework(org.bukkit.inventory.ItemStack stack)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.block.BukkitFurnace BukkitFurnace(org.bukkit.block.Furnace toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.entity.BukkitHanging BukkitHanging(org.bukkit.entity.Hanging toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.block.BukkitHopper BukkitHopper(org.bukkit.block.Hopper toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.entity.BukkitHumanEntity BukkitHumanEntity(org.bukkit.entity.HumanEntity toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.inventory.BukkitInventory BukkitInventory(org.bukkit.inventory.Inventory toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.inventory.BukkitInventoryHolder BukkitInventoryHolder(org.bukkit.inventory.InventoryHolder toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.inventory.BukkitInventoryView BukkitInventoryView(org.bukkit.inventory.InventoryView toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.entity.BukkitItem BukkitItem(org.bukkit.entity.Item toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.entity.BukkitItemFrame BukkitItemFrame(org.bukkit.entity.ItemFrame toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.item.BukkitItemStack BukkitItemStack(org.bukkit.inventory.ItemStack stack)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.block.BukkitJukebox BukkitJukebox(org.bukkit.block.Jukebox toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.item.meta.BukkitLeatherArmor BukkitLeatherArmor(org.bukkit.inventory.ItemStack stack)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.entity.BukkitLivingEntity BukkitLivingEntity(org.bukkit.entity.LivingEntity toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.BukkitLocation BukkitLocation(org.bukkit.Location toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.item.meta.BukkitMap BukkitMap(org.bukkit.inventory.ItemStack stack)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.material.BukkitMaterialData BukkitMaterialData(org.bukkit.material.MaterialData toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.item.meta.BukkitMeta BukkitMeta(org.bukkit.inventory.ItemStack stack)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata BukkitMetadata(org.bukkit.metadata.Metadatable toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.metadata.BukkitMetadataValue BukkitMetadataValue(org.bukkit.metadata.MetadataValue toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.entity.BukkitMinecart BukkitMinecart(org.bukkit.entity.Minecart toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.block.BukkitNoteBlock BukkitNoteBlock(org.bukkit.block.NoteBlock toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.entity.BukkitPainting BukkitPainting(org.bukkit.entity.Painting toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.player.BukkitPlayer BukkitPlayer(org.bukkit.OfflinePlayer toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.inventory.BukkitPlayerInventory BukkitPlayerInventory(org.bukkit.inventory.PlayerInventory toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.item.meta.BukkitPotion BukkitPotion(org.bukkit.inventory.ItemStack stack)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.entity.BukkitProjectile BukkitProjectile(org.bukkit.entity.Projectile toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.inventory.BukkitRecipe BukkitRecipe(org.bukkit.inventory.Recipe toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.BukkitServer BukkitServer(org.bukkit.Server toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.block.BukkitSign BukkitSign(org.bukkit.block.Sign toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.item.meta.BukkitSkull BukkitSkull(org.bukkit.inventory.ItemStack stack)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.BukkitTravelAgent BukkitTravelAgent(org.bukkit.TravelAgent travelAgent)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.entity.BukkitVehicle BukkitVehicle(org.bukkit.entity.Vehicle toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.BukkitWorld BukkitWorld(org.bukkit.World toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.timer.CallbackTimer CallbackTimer(no.runsafe.framework.api.IScheduler scheduler, java.lang.Runnable callback, long delay, long period, boolean asynchronous)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.text.ChatColour java.lang.String Strip(java.lang.String message)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.text.ChatColour ChatColour(char colourCode, org.bukkit.ChatColor bukkitColour, java.lang.String ansiCode)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.block.ChestBreak ChestBreak(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.block.IChestBreak handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.inventory.ChestClose ChestClose(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.inventory.IChestClosed handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.inventory.ChestOpen ChestOpen(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.inventory.IChestOpen handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.world.ChunkLoad ChunkLoad(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.world.IChunkLoad handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.world.ChunkPopulate ChunkPopulate(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.world.IChunkPopulate handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.world.ChunkUnload ChunkUnload(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.world.IChunkUnload handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.Command void addSubCommand(no.runsafe.framework.api.command.ICommandHandler subCommand)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.Command Command(java.lang.String commandName, java.lang.String description, java.lang.String permission, no.runsafe.framework.api.command.argument.IArgument... arguments)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.argument.CommandArgumentSpecification CommandArgumentSpecification(java.lang.String name)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.command.CommandEngine CommandEngine(no.runsafe.framework.api.IDebug output, no.runsafe.framework.RunsafePlugin plugin, no.runsafe.framework.api.command.ICommandHandler... commands)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.command.CommandEngine CommandEngine(no.runsafe.framework.RunsafePlugin plugin)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.configuration.Configuration Configuration(no.runsafe.framework.api.IDebug console)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.configuration.ConfigurationEngine ConfigurationEngine(no.runsafe.framework.RunsafePlugin plugin, no.runsafe.framework.internal.configuration.Configuration configuration, no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.event.plugin.IConfigurationChanged... subscribers)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.configuration.ConfigurationEngine ConfigurationEngine(no.runsafe.framework.RunsafePlugin plugin)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.Console Console(no.runsafe.framework.internal.InjectionPlugin plugin)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.console.ConsoleAsyncCallbackCommand ConsoleAsyncCallbackCommand(java.lang.String name, java.lang.String description, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.command.argument.IArgument... args)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.console.ConsoleAsyncCommand ConsoleAsyncCommand(java.lang.String name, java.lang.String description, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.command.argument.IArgument... args)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.text.ConsoleColour java.lang.String FromMinecraft(java.lang.String message)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.text.ConsoleColour ConsoleColour()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.console.ConsoleCommand ConsoleCommand(java.lang.String commandName, java.lang.String description, no.runsafe.framework.api.command.argument.IArgument... arguments)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.inventory.CraftItem CraftItem(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.inventory.ICraftItem handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.entity.CreatureSpawn CreatureSpawn(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.entity.IMobSpawnerPulsed handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.database.jdbc.Database Database(no.runsafe.framework.api.IDebug output, no.runsafe.framework.RunsafePlugin plugin)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.Debug Debug(no.runsafe.framework.internal.InjectionPlugin plugin)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.Debug Debug()" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.lua.DoubleFunction" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Effect Effect(org.bukkit.Effect effect, int data)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Effect Effect(org.bukkit.Effect effect)" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect MobSpawnerFlames" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect EnderSignal" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect StepSound" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Smoke NorthNorthEast" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Smoke NorthEast" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Smoke EastNorthEast" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Smoke East" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Smoke EastSouthEast" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Smoke SouthEast" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Smoke SouthSouthEast" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Smoke South" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Smoke SouthSouthWest" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Smoke SouthWest" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Smoke WestSouthWest" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Smoke West" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Smoke WestNorthWest" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Smoke NorthWest" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Smoke NorthNorthWest" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Smoke North" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Smoke Down" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Smoke Up" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Effect.Smoke Smoke()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect ZombieDestroyDoor" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect ZombieChewIron" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect ZombieChewWood" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect BlazeShoot" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect GhastShoot" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect GhastShriek" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Record C418_Wait" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Record C418_11" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Record C418_Ward" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Record C418_Strad" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Record C418_Stal" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Record C418_Mellohi" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Record C418_Mall" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Record C418_Far" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Record C418_Chirp" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Record C418_Blocks" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Record C418_Cat" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect.Record C418_13" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Effect.Record Record()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect Extinguish" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect DoorToggle" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect BowFire" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect Click2" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Effect Click1" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Enchant Enchant(org.bukkit.enchantments.Enchantment type, boolean root)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Enchant java.util.List&lt;no.runsafe.framework.api.minecraft.IEnchant&gt; getByTarget(no.runsafe.framework.api.minecraft.IEnchantable target)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Enchant no.runsafe.framework.api.minecraft.IEnchant getByName(java.lang.String name)" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Enchant InfiniteArrows" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Enchant FlameArrow" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Enchant KnockbackArrow" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Enchant ArrowDamage" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Enchant BlockLoot" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Enchant Durability" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Enchant SilkTouch" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Enchant DigSpeed" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Enchant MobLoot" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Enchant Fire" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Enchant Knockback" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Enchant DamageArthropods" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Enchant DamageUndead" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Enchant Damage" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Enchant Thorns" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Enchant WaterWorker" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Enchant WaterBreathing" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Enchant ProjectileProtection" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Enchant ExplosionProtection" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Enchant FallProtection" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Enchant FireProtection" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Enchant EnvironmentalProtection" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.enchantment.EnchantItem EnchantItem(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.enchantment.IEnchantItemEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.entity.EntityChangeBlock EntityChangeBlock(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.entity.IEntityChangeBlockEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.entity.EntityCreatePortal EntityCreatePortal(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.entity.IEntityCreatePortalEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.entity.EntityDamage EntityDamage(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.entity.IEntityDamageEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.entity.EntityDamageByEntity EntityDamageByEntity(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.entity.IEntityDamageByEntityEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.entity.EntityDeath EntityDeath(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.entity.IEntityDeathEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.entity.EntityPortalEnter EntityPortalEnter(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.entity.IEntityPortalEnterEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.entity.EntityShootBow EntityShootBow(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.entity.IEntityShootBowEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.entity.EntityTame EntityTame(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.entity.IEntityTameEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.entity.EntityType no.runsafe.framework.api.minecraft.RunsafeEntityType Get(no.runsafe.framework.minecraft.Item item)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.entity.EntityType EntityType()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.argument.EnumArgument EnumArgument(java.lang.String name, java.lang.Iterable&lt;java.lang.String&gt; values, boolean required)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.argument.EnumArgument EnumArgument(java.lang.String name, java.lang.Enum&lt;?&gt;[] values, boolean required)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.lua.Environment Environment(no.runsafe.framework.RunsafePlugin plugin)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.lua.Environment.Bootstrap Bootstrap()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.EventEngine EventEngine(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, org.bukkit.plugin.PluginManager manager, no.runsafe.framework.RunsafePlugin plugin, no.runsafe.framework.api.event.IRunsafeEvent... events)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.EventEngine EventEngine(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, org.bukkit.plugin.PluginManager manager, no.runsafe.framework.RunsafePlugin plugin)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.EventRouterBase EventRouterBase(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, Wrapper handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Firework no.runsafe.framework.minecraft.FireworkBuilder Fade(byte r, byte g, byte b)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Firework no.runsafe.framework.minecraft.FireworkBuilder Fade(java.lang.String rgb)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Firework no.runsafe.framework.minecraft.FireworkBuilder Colour(byte r, byte g, byte b)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Firework no.runsafe.framework.minecraft.FireworkBuilder Colour(java.lang.String rgb)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Firework no.runsafe.framework.minecraft.FireworkBuilder Flicker(boolean flicker)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Firework no.runsafe.framework.minecraft.FireworkBuilder Flicker()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Firework no.runsafe.framework.minecraft.FireworkBuilder Trail(boolean trail)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Firework no.runsafe.framework.minecraft.FireworkBuilder Trail()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Firework no.runsafe.framework.minecraft.FireworkBuilder Creeper()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Firework no.runsafe.framework.minecraft.FireworkBuilder Burst()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Firework no.runsafe.framework.minecraft.FireworkBuilder Star()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Firework no.runsafe.framework.minecraft.FireworkBuilder LargeBall()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Firework no.runsafe.framework.minecraft.FireworkBuilder Ball()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Firework no.runsafe.framework.minecraft.FireworkBuilder Effect(no.runsafe.framework.minecraft.Firework.EffectType effect)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Firework no.runsafe.framework.minecraft.FireworkBuilder Random(int effects)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Firework no.runsafe.framework.minecraft.FireworkBuilder Random()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Firework.EffectType EffectType(org.bukkit.FireworkEffect.Type type)" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Firework.EffectType Star" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Firework.EffectType Creeper" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Firework.EffectType Burst" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Firework.EffectType LargeBall" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Firework.EffectType Ball" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Firework Firework()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.FireworkBuilder FireworkBuilder()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.timer.ForegroundWorker ForegroundWorker(no.runsafe.framework.api.IScheduler scheduler, long ticks)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.timer.ForegroundWorker ForegroundWorker(no.runsafe.framework.api.IScheduler scheduler)" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.lua.Function" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.lua.FunctionParameters" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.HookEngine HookEngine(no.runsafe.framework.api.hook.IFrameworkHook... hooks)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.HookEngine HookEngine()" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.event.IAsyncEvent" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.ai.IChatResponseTrigger" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.ICommandHandler no.runsafe.framework.api.command.IPreparedCommand prepareCommand(no.runsafe.framework.api.command.ICommandExecutor executor, java.util.Map&lt;java.lang.String,java.lang.String&gt; params, java.lang.String[] args, java.util.Stack&lt;no.runsafe.framework.api.command.ICommandHandler&gt; stack)" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.command.ICommandHandler" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.event.plugin.IConfigurationChanged" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.command.IContextPermissionProvider" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.event.block.IEntityBlockForm" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.event.block.IItemDispensed" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.event.block.IItemDropped" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.event.player.IPlayerLeftClickAirEvent" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.event.player.IPlayerLeftClickBlockEvent" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.event.player.IPlayerRightClickAir" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.event.player.IPlayerRightClickBlock" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.hook.IPlayerSystemBroadcast" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.IPluginUpdate" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.InjectionPlugin T getFirstPluginAPI(java.lang.Class&lt;T&gt; apiType)" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.internal.InjectionPlugin" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.lua.IntegerFunction" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.inventory.Inventory Inventory(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.inventory.IInventory handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.inventory.InventoryClick InventoryClick(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.inventory.IInventoryClick handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.inventory.InventoryClose InventoryClose(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.inventory.IInventoryClosed handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.inventory.InventoryMoveItem InventoryMoveItem(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.inventory.IInventoryMoveItem handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.inventory.InventoryOpen InventoryOpen(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.inventory.IInventoryOpen handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.inventory.InventoryPickupItem InventoryPickupItem(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.inventory.IInventoryPickupItem handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item Item(org.bukkit.Material material, boolean root, byte dataByte)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item Item(org.bukkit.Material material, boolean root)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item no.runsafe.framework.api.minecraft.IEnchantable disenchant(no.runsafe.framework.api.minecraft.IEnchant enchant)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item no.runsafe.framework.api.minecraft.IEnchantable disenchant()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item no.runsafe.framework.api.minecraft.IEnchantable enchant(java.lang.Iterable&lt;no.runsafe.framework.api.minecraft.IEnchant&gt; enchants)" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Special.Crafted EnchantedBook" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Special.Crafted WrittenBook" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Special.Crafted Map" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Special.Crafted Crafted()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Special DragonEgg" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Special Special()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable.DoubleSlab Quartz" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable.DoubleSlab NetherBrick" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable.DoubleSlab StoneBrick" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable.DoubleSlab Brick" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable.DoubleSlab Cobblestone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable.DoubleSlab Plank" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable.DoubleSlab Sandstone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable.DoubleSlab Stone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable.DoubleSlab AnyStone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable.DoubleSlab Jungle" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable.DoubleSlab Birch" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable.DoubleSlab Spruce" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable.DoubleSlab Oak" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable.DoubleSlab AnyWood" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable.DoubleSlab DoubleSlab()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable.Redstone ComparatorOff" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable.Redstone ComparatorOn" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable.Redstone DiodeOff" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable.Redstone DiodeOn" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable.Redstone TorchOff" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable.Redstone Redstone()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable Potato" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable Carrot" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable Skull" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable FlowerPot" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable CommandBlock" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable Tripwire" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable Cocoa" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable EnderPortal" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable Cauldron" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable BrewingStand" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable NetherWart" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable MelonStem" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable PumpkinStem" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable LockedChest" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable CakeBlock" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable Portal" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable SugarCaneBlock" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable GlowingRedstoneOre" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable IronDoorBlock" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable WoodenDoor" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable WallSign" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable Signpost" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable BurningFurnace" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable TilledSoil" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable Crops" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable RedstoneWire" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable MobSpawner" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable Fire" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable MovingPistonArm" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable PistonArm" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable BedBlock" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Unavailable Unavailable()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials.Seed Melon" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials.Seed Pumpkin" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials.Seed Wheat" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Materials.Seed Seed()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials.Dye White" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials.Dye Orange" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials.Dye Magenta" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials.Dye LightBlue" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials.Dye Yellow" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials.Dye Lime" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials.Dye Pink" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials.Dye Gray" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials.Dye LightGray" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials.Dye Cyan" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials.Dye Purple" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials.Dye Blue" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials.Dye Brown" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials.Dye Green" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials.Dye Red" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials.Dye Black" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials.Dye Any" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Materials.Dye Dye()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials Quartz" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials NetherBrick" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials NetherStar" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials Emerald" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials GoldNugget" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials BlazeRod" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials Sugar" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials GlowstoneDust" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials Egg" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials Sugarcane" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials Clay" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials ClayBrick" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials Leather" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials Flint" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials Wheat" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials Gunpowder" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials Feather" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials String" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials Bowl" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials Stick" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials GoldIngot" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials IronIngot" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials Diamond" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials CharCoal" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Materials Coal" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Materials Materials()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Brewing NetherWart" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Brewing Cauldron" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Brewing GlisteringMelon" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Brewing MagmaCream" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Brewing BlazePowder" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Brewing FermentedSpiderEye" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Brewing GlassBottle" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Brewing Potion" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Brewing GhastTear" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Brewing Brewing()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Boots Chainmail" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Boots Gold" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Boots Diamond" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Boots Iron" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Boots Leather" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Boots Boots()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Leggings Chainmail" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Leggings Gold" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Leggings Diamond" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Leggings Iron" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Leggings Leather" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Leggings Leggings()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Chestplate Chainmail" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Chestplate Gold" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Chestplate Diamond" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Chestplate Iron" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Chestplate Leather" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Chestplate Chestplate()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Helmet Chainmail" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Helmet Gold" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Helmet Diamond" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Helmet Iron" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Helmet Leather" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Helmet Helmet()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Sword Gold" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Sword Diamond" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Sword Stone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Sword Iron" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Sword Wood" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Combat.Sword Sword()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat Arrow" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Combat Bow" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Combat Combat()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool.Hoe Gold" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool.Hoe Diamond" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool.Hoe Iron" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool.Hoe Stone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool.Hoe Wood" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Tool.Hoe Hoe()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool.Axe Gold" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool.Axe Diamond" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool.Axe Stone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool.Axe Wood" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool.Axe Iron" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Tool.Axe Axe()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool.Pickaxe Gold" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool.Pickaxe Diamond" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool.Pickaxe Stone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool.Pickaxe Wood" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool.Pickaxe Iron" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Tool.Pickaxe Pickaxe()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool.Shovel Gold" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool.Shovel Diamond" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool.Shovel Stone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool.Shovel Wood" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool.Shovel Iron" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Tool.Shovel Shovel()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool Shears" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool Watch" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool FishingRod" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool Compass" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Tool FlintAndSteel" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Tool Tool()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Food.Unsavory SpiderEye" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Food.Unsavory RottenFlesh" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Food.Unsavory PoisonousPotato" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Food.Unsavory Unsavory()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Food.Golden Carrot" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Food.Golden Apple" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Food.Golden Golden()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Food.Cooked PumpkinPie" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Food.Cooked Potato" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Food.Cooked Chicken" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Food.Cooked Beef" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Food.Cooked Cookie" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Food.Cooked Cake" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Food.Cooked Fish" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Food.Cooked Pork" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Food.Cooked Bread" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Food.Cooked MushroomSoup" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Food.Cooked Cooked()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Food.Meat Chicken" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Food.Meat Beef" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Food.Meat Fish" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Food.Meat Pork" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Food.Meat Meat()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Food.Plant Potato" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Food.Plant Carrot" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Food.Plant Melon" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Food.Plant Apple" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Food.Plant Plant()" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.minecraft.Item.Food" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.Record C418_Wait" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.Record C418_11" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.Record C418_Ward" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.Record C418_Strad" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.Record C418_Stal" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.Record C418_Mellohi" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.Record C418_Mall" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.Record C418_Far" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.Record C418_Chirp" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.Record C418_Blocks" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.Record C418_Cat" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.Record C418_13" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.Record Record()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg Villager" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg Ocelot" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg Mooshroom" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg Wolf" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg Squid" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg Chicken" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg Cow" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg Sheep" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg Pig" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg Witch" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg Bat" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg MagmaCube" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg Blaze" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg Silverfish" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg CaveSpider" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg Enderman" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg ZombiePigman" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg Ghast" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg Slime" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg Zombie" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg Spider" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg Skeleton" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg Creeper" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg Any" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg no.runsafe.framework.minecraft.Item Get(no.runsafe.framework.api.minecraft.RunsafeEntityType type)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.MonsterEgg MonsterEgg()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.Bucket Milk" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.Bucket Lava" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.Bucket Water" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.Bucket Normal" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous.Bucket Bucket()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous FireworkCharge" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous Map" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous BookAndQuill" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous FireCharge" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous ExperienceBottle" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous EyeOfEnder" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous EnderPearl" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous Bone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous Slimeball" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous Book" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous Paper" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous Snowball" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous Beacon" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Miscellaneous Miscellaneous()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Transportation.Minecart Hopper" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Transportation.Minecart Explosive" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Transportation.Minecart Powered" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Transportation.Minecart Storage" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Transportation.Minecart Normal" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Transportation.Minecart Minecart()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Transportation.Rail Activator" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Transportation.Rail Detector" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Transportation.Rail Powered" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Transportation.Rail Normal" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Transportation.Rail Rail()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Transportation CarrotOnAStick" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Transportation Boat" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Transportation Saddle" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Transportation Transportation()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Redstone.PressurePlate Iron" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Redstone.PressurePlate Gold" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Redstone.PressurePlate Wood" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Redstone.PressurePlate Stone" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Redstone.PressurePlate PressurePlate()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Redstone.Piston Normal" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Redstone.Piston Sticky" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Redstone.Piston Piston()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Redstone.Lamp On" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Redstone.Lamp Off" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Redstone.Lamp Lamp()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Redstone TNT" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Redstone DaylightDetector" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Redstone TripwireHook" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Redstone Torch" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Redstone Dust" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Redstone Block" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Redstone Redstone()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Head Creeper" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Head Human" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Head Zombie" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Head WitherSkeleton" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Head Skeleton" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Head Any" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Head Head()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Anvil VeryDamaged" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Anvil SlightlyDamaged" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Anvil Normal" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Anvil Anvil()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.MonsterEgg StoneBrick" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.MonsterEgg Cobblestone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.MonsterEgg Stone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.MonsterEgg Any" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.MonsterEgg MonsterEgg()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Mushroom Huge2" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Mushroom Huge1" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Mushroom Red" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Mushroom Brown" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Mushroom Mushroom()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Leaves Jungle" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Leaves Birch" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Leaves Spruce" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Leaves Oak" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Leaves Leaves()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Sapling Jungle" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Sapling Birch" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Sapling Spruce" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Sapling Oak" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Sapling Any" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Decoration.Sapling Sapling()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration FlowerPot" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration ItemFrame" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration Bed" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration Sign" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration Painting" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration EnderPortalFrame" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration NetherFence" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration LilyPad" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration Vine" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration GlassPane" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration IronBars" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration Fence" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration Jukebox" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration Cactus" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration Snow" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration Ladder" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration Torch" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration Rose" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration Flower" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration DeadBush" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration LongGrass" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Decoration Web" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Decoration Decoration()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Ore Redstone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Ore Quartz" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Ore Emerald" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Ore Diamond" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Ore LapisLazuli" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Ore Coal" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Ore Iron" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.Ore Gold" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.Ore Ore()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Quartz Pillar" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Quartz Chiseled" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Quartz Normal" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Quartz Any" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Quartz Quartz()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.CobbleWall Mossy" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.CobbleWall Normal" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.CobbleWall Any" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.CobbleWall CobbleWall()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.StoneBrick Chiseled" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.StoneBrick Cracked" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.StoneBrick Mossy" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.StoneBrick Normal" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.StoneBrick Any" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.StoneBrick StoneBrick()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Stairs Sandstone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Stairs Quartz" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Stairs NetherBrick" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Stairs StoneBrick" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Stairs Brick" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Stairs Cobblestone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Stairs Jungle" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Stairs Birch" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Stairs Spruce" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Stairs Oak" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Stairs Stairs()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Slab Quartz" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Slab NetherRack" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Slab StoneBrick" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Slab Brick" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Slab Cobblestone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Slab Sandstone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Slab Stone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Slab AnyStone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Slab Jungle" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Slab Birch" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Slab Spruce" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Slab Oak" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Slab AnyWood" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Slab Slab()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wool Black" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wool Red" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wool Green" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wool Brown" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wool Blue" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wool Purple" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wool Cyan" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wool LightGray" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wool Gray" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wool Pink" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wool Lime" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wool Yellow" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wool LightBlue" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wool Magenta" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wool Orange" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wool White" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wool Any" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wool Wool()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Sandstone Smooth" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Sandstone Chiseled" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Sandstone Normal" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Sandstone Any" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Sandstone Sandstone()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wood.Plank Jungle" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wood.Plank Birch" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wood.Plank Spruce" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wood.Plank Oak" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wood.Plank Any" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wood.Plank Plank()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wood Jungle" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wood Birch" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wood Spruce" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wood Oak" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wood Any" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock.Wood Wood()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock CoalBlock" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock Emerald" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock EndStone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock NetherBrick" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock Mycelium" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock Melon" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock JackOLantern" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock Glowstone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock Soulsand" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock Netherrack" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock Pumpkin" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock Clay" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock Snow" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock Ice" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock Diamond" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock Obsidian" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock MossyCobblestone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock Bookshelf" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock Brick" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock IronBlock" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock GoldBlock" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock LapisLazuli" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock Glass" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock Sponge" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock Gravel" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock Sand" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock Bedrock" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock Cobblestone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock Dirt" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock Grass" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock Stone" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item.BuildingBlock BuildingBlock()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item no.runsafe.framework.minecraft.Item get(int type, byte damage)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item no.runsafe.framework.minecraft.Item get(int type)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item no.runsafe.framework.minecraft.Item get(java.lang.String type, byte damage)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item no.runsafe.framework.minecraft.Item get(java.lang.String type)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item no.runsafe.framework.minecraft.Item get(no.runsafe.framework.minecraft.block.RunsafeBlock block)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Item no.runsafe.framework.minecraft.Item get(no.runsafe.framework.minecraft.item.meta.RunsafeMeta itemStack)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.hanging.ItemFramePlace ItemFramePlace(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.hanging.IItemFramePlaced handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.lua.Library Library(no.runsafe.framework.RunsafePlugin plugin, java.lang.String module)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.entity.LivingEntity LivingEntity(org.bukkit.entity.EntityType bukkitType, java.lang.String name)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.entity.LivingEntity LivingEntity(org.bukkit.entity.EntityType bukkitType)" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.lua.LocationFunction" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.entity.NaturalSpawn NaturalSpawn(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.entity.INaturalSpawn handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.ObjectUnwrapper net.minecraft.server.v1_6_R3.World convert(no.runsafe.framework.minecraft.RunsafeWorld world)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.ObjectUnwrapper ObjectUnwrapper()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.ObjectWrapper no.runsafe.framework.minecraft.Item convert(org.bukkit.Material toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.wrapper.ObjectWrapper ObjectWrapper()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.argument.OptionalArgument OptionalArgument(java.lang.String name)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.packets.Packet Packet(java.lang.String packetName)" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.api.packets.PacketWorldParticles range" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.packets.PacketWorldParticles PacketWorldParticles(no.runsafe.framework.minecraft.RunsafeLocation location, no.runsafe.framework.minecraft.WorldEffect worldEffect, int speed, int amount, int range)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.hanging.PaintingPlace PaintingPlace(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.hanging.IPaintingPlaced handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.entity.PassiveEntity PassiveEntity(org.bukkit.entity.EntityType bukkitType)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.argument.PlayerArgument PlayerArgument(java.lang.String name, boolean required)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.argument.PlayerArgument PlayerArgument(boolean required)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.argument.PlayerArgument PlayerArgument()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.player.PlayerAsyncCallbackCommand PlayerAsyncCallbackCommand(java.lang.String name, java.lang.String description, java.lang.String permission, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.command.argument.IArgument... args)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.player.PlayerAsyncCommand PlayerAsyncCommand(java.lang.String name, java.lang.String description, java.lang.String permission, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.command.argument.IArgument... args)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.player.PlayerChangedWorld PlayerChangedWorld(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.player.IPlayerChangedWorldEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.player.PlayerChat PlayerChat(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.player.IPlayerChatEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.player.PlayerCommand PlayerCommand(java.lang.String commandName, java.lang.String description, java.lang.String permission, no.runsafe.framework.api.command.argument.IArgument... arguments)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.player.PlayerCommandPreprocess PlayerCommandPreprocess(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.player.IPlayerCommandPreprocessEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.player.PlayerDamage PlayerDamage(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.player.IPlayerDamageEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.player.PlayerDeath PlayerDeath(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.player.IPlayerDeathEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.player.PlayerDropItem PlayerDropItem(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.player.IPlayerDropItemEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.player.PlayerFish PlayerFish(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.player.IPlayerFishEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.player.PlayerInteract PlayerInteract(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.player.IPlayerInteractEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.player.PlayerInteractEntity PlayerInteractEntity(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.player.IPlayerInteractEntityEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.player.PlayerJoin PlayerJoin(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.player.IPlayerJoinEvent subscriber)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.player.PlayerKick PlayerKick(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.player.IPlayerKickEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.player.PlayerLeftClick PlayerLeftClick(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.player.IPlayerLeftClickEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.argument.PlayerListArgument PlayerListArgument(boolean required)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.player.PlayerLogin PlayerLogin(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.player.IPlayerLoginEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.player.PlayerMove PlayerMove(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.player.IPlayerMove handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.player.PlayerPickupItem PlayerPickupItem(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.player.IPlayerPickupItemEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.player.PlayerPortal PlayerPortal(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.player.IPlayerPortalEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.player.PlayerPortalEvent PlayerPortalEvent(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.player.IPlayerPortal handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.player.PlayerPreLogin PlayerPreLogin(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.player.IPlayerPreLoginEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.player.PlayerQuit PlayerQuit(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.player.IPlayerQuitEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.player.PlayerRespawn PlayerRespawn(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.player.IPlayerRespawn subscriber)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.player.PlayerRightClick PlayerRightClick(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.player.IPlayerRightClick handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.player.PlayerRightClickSign PlayerRightClickSign(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.player.IPlayerRightClickSign handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.player.PlayerTeleport PlayerTeleport(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.player.IPlayerTeleportEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.player.PlayerTeleportEvent PlayerTeleportEvent(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.player.IPlayerTeleport handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.files.PluginDataFile PluginDataFile(no.runsafe.framework.RunsafePlugin plugin, java.lang.String file)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.files.PluginFileManager PluginFileManager(no.runsafe.framework.RunsafePlugin plugin)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.enchantment.PrepareItemEnchant PrepareItemEnchant(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.enchantment.IPrepareItemEnchantEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.command.PreparedAsynchronousCallbackCommand PreparedAsynchronousCallbackCommand(no.runsafe.framework.api.command.ICommandExecutor executor, java.util.Stack&lt;no.runsafe.framework.api.command.ICommandHandler&gt; definingCommand, java.lang.String[] args, java.util.Map&lt;java.lang.String,java.lang.String&gt; parameters)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.command.PreparedAsynchronousCommand PreparedAsynchronousCommand(no.runsafe.framework.api.command.ICommandExecutor executor, java.util.Stack&lt;no.runsafe.framework.api.command.ICommandHandler&gt; definingCommand, java.lang.String[] args, java.util.Map&lt;java.lang.String,java.lang.String&gt; parameters)" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.internal.command.PreparedCommand arguments" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.command.PreparedCommand PreparedCommand(no.runsafe.framework.api.command.ICommandExecutor executor, java.util.Stack&lt;no.runsafe.framework.api.command.ICommandHandler&gt; definingCommand, java.lang.String[] args, java.util.Map&lt;java.lang.String,java.lang.String&gt; parameters)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.command.PreparedSynchronousCommand PreparedSynchronousCommand(no.runsafe.framework.api.command.ICommandExecutor executor, java.util.Stack&lt;no.runsafe.framework.api.command.ICommandHandler&gt; definingCommand, java.lang.String[] args, java.util.Map&lt;java.lang.String,java.lang.String&gt; parameters)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.entity.ProjectileEntity ProjectileEntity(org.bukkit.entity.EntityType bukkitType)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.entity.ProjectileHit ProjectileHit(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.entity.IProjectileHitEvent handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.database.jdbc.QueryExecutor QueryExecutor(no.runsafe.framework.api.IDebug output)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.reflection.ReflectionHelper void setField(java.lang.Object object, java.lang.String fieldName, java.lang.Object value)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.reflection.ReflectionHelper java.lang.Object getFieldObject(java.lang.Object object, java.lang.String fieldName)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.reflection.ReflectionHelper ReflectionHelper()" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.database.Repository" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.argument.RequiredArgument RequiredArgument(java.lang.String name)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.database.Row.EmptyRow EmptyRow()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.database.Row Row(java.util.Map&lt;java.lang.String,java.lang.Object&gt; data)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.player.RunsafeAmbiguousPlayer RunsafeAmbiguousPlayer(java.util.List&lt;no.runsafe.framework.minecraft.player.RunsafePlayer&gt; online)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.player.RunsafeAmbiguousPlayer RunsafeAmbiguousPlayer(org.bukkit.OfflinePlayer toWrap, java.util.List&lt;java.lang.String&gt; ambiguous)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeAnvilInventory RunsafeAnvilInventory(org.bukkit.inventory.AnvilInventory inventory)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.block.RunsafeBlock RunsafeBlock(org.bukkit.block.Block toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.block.RunsafeBlockBreakEvent RunsafeBlockBreakEvent(org.bukkit.event.block.BlockBreakEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.block.RunsafeBlockDispenseEvent RunsafeBlockDispenseEvent(org.bukkit.event.block.BlockDispenseEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.block.RunsafeBlockEvent RunsafeBlockEvent(org.bukkit.event.block.BlockEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.block.RunsafeBlockPlaceEvent RunsafeBlockPlaceEvent(org.bukkit.event.block.BlockPlaceEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.block.RunsafeBlockRedstoneEvent RunsafeBlockRedstoneEvent(org.bukkit.event.block.BlockRedstoneEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.block.RunsafeBlockState RunsafeBlockState(org.bukkit.block.BlockState toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.item.meta.RunsafeBook RunsafeBook(org.bukkit.inventory.ItemStack stack)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.block.RunsafeBrewingStand RunsafeBrewingStand(org.bukkit.block.BrewingStand toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.block.RunsafeCancellableBlockEvent RunsafeCancellableBlockEvent(org.bukkit.event.block.BlockEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafeCancellableCustomEvent RunsafeCancellableCustomEvent(no.runsafe.framework.minecraft.player.RunsafePlayer player, java.lang.String event)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeCancellableEntityEvent RunsafeCancellableEntityEvent(org.bukkit.event.entity.EntityEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.RunsafeCancellableEvent RunsafeCancellableEvent(org.bukkit.event.Event toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.inventory.RunsafeCancellableInventoryEvent RunsafeCancellableInventoryEvent(org.bukkit.event.inventory.InventoryEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafeCancellablePlayerEvent RunsafeCancellablePlayerEvent(org.bukkit.event.player.PlayerEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.block.RunsafeChest RunsafeChest(org.bukkit.block.Chest toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.chunk.RunsafeChunk RunsafeChunk(org.bukkit.Chunk toWrap)" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.RunsafeConfigurablePlugin" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.RunsafeConsole RunsafeConsole(no.runsafe.framework.api.IConsole output)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.inventory.RunsafeCraftItemEvent RunsafeCraftItemEvent(org.bukkit.event.inventory.CraftItemEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.block.RunsafeCreatureSpawner RunsafeCreatureSpawner(org.bukkit.block.CreatureSpawner toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafeCustomEvent RunsafeCustomEvent(no.runsafe.framework.minecraft.player.RunsafePlayer player, java.lang.String event)" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.internal.RunsafeDebugFormatter" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.block.RunsafeDispenser RunsafeDispenser(org.bukkit.block.Dispenser toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.block.RunsafeDoubleChest RunsafeDoubleChest(org.bukkit.block.DoubleChest toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeDoubleChestInventory RunsafeDoubleChestInventory(org.bukkit.inventory.DoubleChestInventory toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.block.RunsafeDropper RunsafeDropper(org.bukkit.block.Dropper toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.enchantment.RunsafeEnchantItemEvent RunsafeEnchantItemEvent(org.bukkit.event.enchantment.EnchantItemEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.enchantment.RunsafeEnchantment RunsafeEnchantment(org.bukkit.enchantments.Enchantment toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.item.meta.RunsafeEnchantmentStorage RunsafeEnchantmentStorage(org.bukkit.inventory.ItemStack stack)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.entity.RunsafeEntity RunsafeEntity(org.bukkit.entity.Entity toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.block.RunsafeEntityBlockFormEvent RunsafeEntityBlockFormEvent(org.bukkit.event.block.EntityBlockFormEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityChangeBlockEvent RunsafeEntityChangeBlockEvent(org.bukkit.event.entity.EntityChangeBlockEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityCreatePortalEvent RunsafeEntityCreatePortalEvent(org.bukkit.event.entity.EntityCreatePortalEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageByEntityEvent RunsafeEntityDamageByEntityEvent(org.bukkit.event.entity.EntityDamageByEntityEvent toWrap)" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent.RunsafeDamageCause THORNS" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent.RunsafeDamageCause FALLING_BLOCK" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent.RunsafeDamageCause WITHER" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent.RunsafeDamageCause MAGIC" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent.RunsafeDamageCause POISON" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent.RunsafeDamageCause STARVATION" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent.RunsafeDamageCause SUICIDE" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent.RunsafeDamageCause LIGHTNING" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent.RunsafeDamageCause VOID" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent.RunsafeDamageCause ENTITY_EXPLOSION" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent.RunsafeDamageCause BLOCK_EXPLOSION" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent.RunsafeDamageCause DROWNING" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent.RunsafeDamageCause LAVA" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent.RunsafeDamageCause MELTING" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent.RunsafeDamageCause FIRE_TICK" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent.RunsafeDamageCause FIRE" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent.RunsafeDamageCause FALL" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent.RunsafeDamageCause SUFFOCATION" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent.RunsafeDamageCause PROJECTILE" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent.RunsafeDamageCause ENTITY_ATTACK" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent.RunsafeDamageCause CONTACT" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent.RunsafeDamageCause" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent RunsafeEntityDamageEvent(org.bukkit.event.entity.EntityDamageEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityDeathEvent RunsafeEntityDeathEvent(org.bukkit.event.entity.EntityDeathEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeEntityEquipment RunsafeEntityEquipment(org.bukkit.inventory.EntityEquipment toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityEvent RunsafeEntityEvent(org.bukkit.event.entity.EntityEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityPortalEnterEvent RunsafeEntityPortalEnterEvent(org.bukkit.event.entity.EntityPortalEnterEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityShootBowEvent RunsafeEntityShootBowEvent(org.bukkit.event.entity.EntityShootBowEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntitySpawnEvent RunsafeEntitySpawnEvent(org.bukkit.event.entity.CreatureSpawnEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeEntityTameEvent RunsafeEntityTameEvent(org.bukkit.event.entity.EntityTameEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.minecraft.RunsafeEntityType no.runsafe.framework.minecraft.entity.RunsafeEntity spawn(no.runsafe.framework.minecraft.RunsafeLocation location)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.minecraft.RunsafeEntityType boolean isSpawnable()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.minecraft.RunsafeEntityType boolean isAlive()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.minecraft.RunsafeEntityType java.lang.String getName()" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.minecraft.RunsafeEntityType" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.RunsafeEvent RunsafeEvent(org.bukkit.event.Event toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.player.RunsafeFakePlayer RunsafeFakePlayer(java.lang.String playerName, java.lang.String... groups)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.entity.RunsafeFallingBlock RunsafeFallingBlock(org.bukkit.entity.FallingBlock toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.item.meta.RunsafeFirework RunsafeFirework(org.bukkit.inventory.ItemStack stack)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.entity.RunsafeFish RunsafeFish(org.bukkit.entity.Fish toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.block.RunsafeFurnace RunsafeFurnace(org.bukkit.block.Furnace toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.entity.RunsafeHanging RunsafeHanging(org.bukkit.entity.Hanging toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.block.RunsafeHopper RunsafeHopper(org.bukkit.block.Hopper toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.entity.RunsafeHumanEntity RunsafeHumanEntity(org.bukkit.entity.HumanEntity toWrap)" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.minecraft.event.RunsafeInternalEvent" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventory RunsafeInventory(org.bukkit.inventory.Inventory toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.inventory.RunsafeInventoryClickEvent RunsafeInventoryClickEvent(org.bukkit.event.inventory.InventoryClickEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.inventory.RunsafeInventoryCloseEvent RunsafeInventoryCloseEvent(org.bukkit.event.inventory.InventoryCloseEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.inventory.RunsafeInventoryEvent RunsafeInventoryEvent(org.bukkit.event.inventory.InventoryEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryHolder RunsafeInventoryHolder(org.bukkit.inventory.InventoryHolder toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.inventory.RunsafeInventoryMoveItemEvent RunsafeInventoryMoveItemEvent(org.bukkit.event.inventory.InventoryMoveItemEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.inventory.RunsafeInventoryPickupItemEvent RunsafeInventoryPickupItemEvent(org.bukkit.event.inventory.InventoryPickupItemEvent toWrap)" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType.SlotType FUEL" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType.SlotType OUTSIDE" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType.SlotType QUICKBAR" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType.SlotType CONTAINER" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType.SlotType ARMOR" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType.SlotType CRAFTING" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType.SlotType RESULT" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType.SlotType" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType java.lang.String getDefaultTitle()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType int getDefaultSize()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType RunsafeInventoryType(int defaultSize, java.lang.String defaultTitle)" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType BEACON" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType ANVIL" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType ENDER_CHEST" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType MERCHANT" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType CREATIVE" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType PLAYER" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType BREWING" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType ENCHANTING" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType CRAFTING" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType WORKBENCH" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType HOPPER" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType FURNACE" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType DISPENSER" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryType CHEST" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeInventoryView RunsafeInventoryView(org.bukkit.inventory.InventoryView toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.entity.RunsafeItem RunsafeItem(org.bukkit.entity.Item toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.entity.RunsafeItemFrame RunsafeItemFrame(org.bukkit.entity.ItemFrame toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.item.RunsafeItemStack java.util.List&lt;no.runsafe.framework.minecraft.item.meta.RunsafeMeta&gt; convert(org.bukkit.inventory.ItemStack... items)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.item.RunsafeItemStack RunsafeItemStack(org.bukkit.inventory.ItemStack stack)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.item.RunsafeItemStack no.runsafe.framework.minecraft.item.meta.RunsafeMeta deserialize(java.util.Map&lt;java.lang.String,java.lang.Object&gt; args)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.block.RunsafeJukebox RunsafeJukebox(org.bukkit.block.Jukebox toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.item.meta.RunsafeLeatherArmor RunsafeLeatherArmor(org.bukkit.inventory.ItemStack stack)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.entity.RunsafeLivingEntity RunsafeLivingEntity(org.bukkit.entity.LivingEntity toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.RunsafeLocation RunsafeLocation(no.runsafe.framework.minecraft.RunsafeWorld world, double x, double y, double z, float yaw, float pitch)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.RunsafeLocation RunsafeLocation(no.runsafe.framework.minecraft.RunsafeWorld world, double x, double y, double z)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.RunsafeLocation RunsafeLocation(org.bukkit.Location toWrap)" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.internal.RunsafeLogFormatter" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.lua.RunsafeLuaFunction" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.item.meta.RunsafeMap RunsafeMap(org.bukkit.inventory.ItemStack stack)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.material.RunsafeMaterialData RunsafeMaterialData(int type, byte data)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.material.RunsafeMaterialData RunsafeMaterialData(int type)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.material.RunsafeMaterialData RunsafeMaterialData(org.bukkit.material.MaterialData toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.item.meta.RunsafeMeta RunsafeMeta(org.bukkit.inventory.ItemStack stack)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.entity.RunsafeMinecart RunsafeMinecart(org.bukkit.entity.Minecart toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.block.RunsafeNoteBlock RunsafeNoteBlock(org.bukkit.block.NoteBlock toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafeOperatorEvent RunsafeOperatorEvent(no.runsafe.framework.minecraft.player.RunsafePlayer player, boolean wasMadeOP)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.networking.RunsafePacketSender RunsafePacketSender(no.runsafe.framework.minecraft.player.RunsafePlayer player)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.entity.RunsafePainting RunsafePainting(org.bukkit.entity.Painting toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.player.RunsafePlayer RunsafePlayer(org.bukkit.OfflinePlayer toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerChangedWorldEvent RunsafePlayerChangedWorldEvent(org.bukkit.event.player.PlayerChangedWorldEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerChatEvent RunsafePlayerChatEvent(org.bukkit.event.player.AsyncPlayerChatEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerClickEvent RunsafePlayerClickEvent(org.bukkit.event.player.PlayerInteractEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerCommandPreprocessEvent RunsafePlayerCommandPreprocessEvent(org.bukkit.event.player.PlayerCommandPreprocessEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerDeathEvent RunsafePlayerDeathEvent(org.bukkit.event.entity.PlayerDeathEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerDropItemEvent RunsafePlayerDropItemEvent(org.bukkit.event.player.PlayerDropItemEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerEvent RunsafePlayerEvent(org.bukkit.event.player.PlayerEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerFakeChatEvent RunsafePlayerFakeChatEvent(no.runsafe.framework.minecraft.player.RunsafePlayer player, java.lang.String message)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerFakeChatEvent void Broadcast(no.runsafe.framework.minecraft.player.RunsafePlayer player, java.lang.String message)" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerFishEvent.State FAILED_ATTEMPT" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerFishEvent.State IN_GROUND" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerFishEvent.State CAUGHT_ENTITY" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerFishEvent.State CAUGHT_FISH" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerFishEvent.State FISHING" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerFishEvent.State" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerFishEvent RunsafePlayerFishEvent(org.bukkit.event.player.PlayerFishEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerInteractEntityEvent RunsafePlayerInteractEntityEvent(org.bukkit.event.player.PlayerInteractEntityEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerInteractEvent RunsafePlayerInteractEvent(org.bukkit.event.player.PlayerInteractEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafePlayerInventory RunsafePlayerInventory(org.bukkit.inventory.PlayerInventory toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerJoinEvent RunsafePlayerJoinEvent(org.bukkit.event.player.PlayerJoinEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerKickEvent RunsafePlayerKickEvent(org.bukkit.event.player.PlayerKickEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerLoginEvent RunsafePlayerLoginEvent(org.bukkit.event.player.PlayerLoginEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerMoveEvent RunsafePlayerMoveEvent(org.bukkit.event.player.PlayerMoveEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerPickupItemEvent RunsafePlayerPickupItemEvent(org.bukkit.event.player.PlayerPickupItemEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerPortalEvent RunsafePlayerPortalEvent(org.bukkit.event.player.PlayerPortalEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerPreLoginEvent RunsafePlayerPreLoginEvent(org.bukkit.event.player.AsyncPlayerPreLoginEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerQuitEvent RunsafePlayerQuitEvent(org.bukkit.event.player.PlayerQuitEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.player.RunsafePlayerTeleportEvent RunsafePlayerTeleportEvent(org.bukkit.event.player.PlayerTeleportEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.RunsafePlugin no.runsafe.framework.api.command.ICommandHandler getPluginCommand(java.lang.String name)" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.RunsafePlugin" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.item.meta.RunsafePotion RunsafePotion(org.bukkit.inventory.ItemStack stack)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.enchantment.RunsafePrepareItemEnchantEvent RunsafePrepareItemEnchantEvent(org.bukkit.event.enchantment.PrepareItemEnchantEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.entity.RunsafeProjectile RunsafeProjectile(org.bukkit.entity.Projectile toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.event.entity.RunsafeProjectileHitEvent RunsafeProjectileHitEvent(org.bukkit.event.entity.ProjectileHitEvent toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.inventory.RunsafeRecipe RunsafeRecipe(org.bukkit.inventory.Recipe toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.RunsafeServer java.util.List&lt;java.lang.String&gt; getGroups()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.RunsafeServer RunsafeServer(org.bukkit.Server toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.networking.RunsafeServerConnection RunsafeServerConnection(net.minecraft.server.v1_6_R3.MinecraftServer server, java.net.InetAddress address, int i, no.runsafe.framework.api.IOutput output)" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.internal.networking.RunsafeServerConnectionThread g" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.internal.networking.RunsafeServerConnectionThread f" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.internal.networking.RunsafeServerConnectionThread output" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.networking.RunsafeServerConnectionThread RunsafeServerConnectionThread(net.minecraft.server.v1_6_R3.ServerConnection connection, java.net.InetAddress address, int i, no.runsafe.framework.api.IOutput output)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.block.RunsafeSign RunsafeSign(org.bukkit.block.Sign toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.item.meta.RunsafeSkull RunsafeSkull(org.bukkit.inventory.ItemStack stack)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.block.RunsafeSpawner RunsafeSpawner(org.bukkit.block.Block toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.RunsafeTravelAgent RunsafeTravelAgent(org.bukkit.TravelAgent travelAgent)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.entity.RunsafeVehicle RunsafeVehicle(org.bukkit.entity.Vehicle toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.RunsafeWorld RunsafeWorld(java.lang.String worldName)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.RunsafeWorld RunsafeWorld(org.bukkit.World toWrap)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.timer.Scheduler Scheduler(org.bukkit.scheduler.BukkitScheduler scheduler, org.bukkit.plugin.java.JavaPlugin plugin)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.database.SchemaUpdater SchemaUpdater(no.runsafe.framework.api.database.IDatabase db, no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.database.ISchemaChanges... schemaUpdaters)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.database.SchemaUpdater SchemaUpdater(no.runsafe.framework.api.database.IDatabase db, no.runsafe.framework.api.IDebug output)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.database.Set.EmptySet EmptySet()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.database.Set Set(java.util.Collection&lt;no.runsafe.framework.internal.database.Row&gt; dataSet)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.block.SignChange SignChange(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.block.ISignChange handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound Sound(org.bukkit.Sound sample)" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.PigZombie Hurt" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.PigZombie Death" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.PigZombie Angry" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.PigZombie Idle" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.PigZombie PigZombie()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Zombie Remedy" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Zombie Disinfect" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Zombie Infect" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Zombie Hurt" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Zombie Death" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Zombie Idle" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Zombie WoodBreak" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Zombie Wood" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Zombie Metal" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Zombie Zombie()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Wolf Whine" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Wolf Walk" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Wolf Shake" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Wolf Pant" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Wolf Hurt" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Wolf Howl" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Wolf Growl" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Wolf Death" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Wolf Bark" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Wolf Wolf()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Wither Spawn" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Wither Shoot" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Wither Idle" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Wither Hurt" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Wither Death" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Wither Wither()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Spider Walk" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Spider Death" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Spider Idle" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Spider Spider()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Slime Walk2" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Slime Walk" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Slime Attack" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Slime Slime()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Skeleton Walk" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Skeleton Hurt" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Skeleton Death" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Skeleton Idle" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Skeleton Skeleton()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Silverfish Walk" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Silverfish Idle" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Silverfish Kill" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Silverfish Hit" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Silverfish Silverfish()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Sheep Walk" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Sheep Shear" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Sheep Idle" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Sheep Sheep()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Pig Walk" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Pig Death" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Pig Idle" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Pig Pig()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.MagmaCube Jump" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.MagmaCube Walk2" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.MagmaCube Walk" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.MagmaCube MagmaCube()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Golem Walk" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Golem Throw" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Golem Hit" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Golem Death" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Golem Golem()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Ghast Moan" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Ghast Fireball" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Ghast Death" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Ghast Charge" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Ghast Scream2" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Ghast Scream" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Ghast Ghast()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Enderman Stare" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Enderman Scream" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Enderman Teleport" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Enderman Idle" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Enderman Hit" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Enderman Death" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Enderman Enderman()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.EnderDragon Flap" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.EnderDragon Hit" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.EnderDragon Growl" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.EnderDragon Death" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.EnderDragon EnderDragon()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Creeper Death" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Creeper Hiss" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Creeper Creeper()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Cow Walk" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Cow Hurt" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Cow Idle" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Cow Cow()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Chicken Walk" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Chicken EggPop" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Chicken Hurt" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Chicken Idle" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Chicken Chicken()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Cat Purreow" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Cat Purr" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Cat Meow" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Cat Hit" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Cat Hiss" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Cat Cat()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Blaze Hit" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Blaze Death" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Blaze Breath" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Blaze Blaze()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Bat Takeoff" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Bat Loop" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Bat Idle" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Bat Hurt" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Bat Death" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Creature.Bat Bat()" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.minecraft.Sound.Creature" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Portal Trigger" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Portal Travel" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Portal Hum" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Portal Portal()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Piston Retract" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Piston Extend" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Piston Piston()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Note Pling" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Note Snare" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Note BassGuitar" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Note Sticks" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Note BassDrum" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Note Piano" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Note Bass" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Note Note()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Minecart Inside" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Minecart Base" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Minecart Minecart()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Item PickUp" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Item Break" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Item Item()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment.Dig Wood" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment.Dig Stone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment.Dig Snow" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment.Dig Sand" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment.Dig Gravel" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment.Dig Grass" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment.Dig Wool" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Environment.Dig Dig()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment.Step Wool" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment.Step Wood" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment.Step Stone" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment.Step Snow" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment.Step Sand" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment.Step Ladder" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment.Step Gravel" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment.Step Grass" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Environment.Step Step()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment Water" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment Swim" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment Splash2" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment Splash" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment LavaBubble" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment Lava" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment Fuse" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment Fizz" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment Ignition" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment Fire" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment Glass" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Environment Explode" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Environment Environment()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Fall Small" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Fall Big" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Fall Fall()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Mechanical.Door Open" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Mechanical.Door Close" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Mechanical.Door Door()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Mechanical WoodClick" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Mechanical Click" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Mechanical Mechanical()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Chest Open" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Chest Close" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Chest Chest()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Player OrbPickup" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Player LevelUp" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Player HurtFlesh" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Player Hurt" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Player Eat" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Player Drink" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Player Burp" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Player Breath" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Player Player()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Arrow Hit" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Arrow Shoot" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Arrow Arrow()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Anvil Use" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Anvil Land" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Anvil Break" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Anvil Anvil()" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Ambiance Thunder" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Ambiance Rain" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.Sound.Ambiance Cave" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound.Ambiance Ambiance()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Sound no.runsafe.framework.minecraft.Sound Get(java.lang.String name)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.world.SpawnChange SpawnChange(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.world.ISpawnChange handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.entity.SpawnEggUsed SpawnEggUsed(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.entity.ISpawnEggUsed handler)" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.lua.StringFunction" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.timer.TimedCache TimedCache(no.runsafe.framework.api.IScheduler scheduler, int timeout)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.timer.TimedCache TimedCache(no.runsafe.framework.api.IScheduler scheduler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.timer.Timer Timer(no.runsafe.framework.api.IScheduler scheduler, boolean async)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.timer.TimerFactory.StateHolder StateHolder(no.runsafe.framework.timer.TimerFactory&lt;T&gt; factory, T state)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.timer.TimerFactory TimerFactory(no.runsafe.framework.api.IScheduler scheduler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.argument.TrailingArgument TrailingArgument(java.lang.String name, boolean required)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.argument.TrailingArgument TrailingArgument(java.lang.String name)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.database.jdbc.Transaction Transaction(no.runsafe.framework.api.IDebug output, java.sql.Connection conn)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.Universe Universe(java.lang.String name)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.database.Value.EmptyValue EmptyValue()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.database.Value Value(java.lang.Object data)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.VersionEngine VersionEngine(no.runsafe.framework.RunsafePlugin plugin, no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IPluginUpdate updater)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.VersionEngine VersionEngine(no.runsafe.framework.RunsafePlugin plugin, no.runsafe.framework.api.IDebug output)" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.lua.VoidFunction" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.timer.Worker Worker(no.runsafe.framework.api.IScheduler scheduler, long ticks)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.timer.Worker Worker(no.runsafe.framework.api.IScheduler scheduler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.argument.WorldArgument WorldArgument(boolean required)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.argument.WorldArgument WorldArgument()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.minecraft.WorldEffect WorldEffect(java.lang.String name)" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect TILECRACK" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect ICONCRACK" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect HAPPY_VILLAGER" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect ANGRY_VILLAGER" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect HEART" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect SLIME" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect SNOW_SHOVEL" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect DRIP_LAVA" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect DRIP_WATER" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect SNOWBALL_POOF" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect RED_DUST" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect CLOUD" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect LARGE_SMOKE" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect SPLASH" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect FOOTSTEP" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect LAVA" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect FLAME" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect EXPLODE" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect ENCHANTMENT_TABLE" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect PORTAL" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect NOTE" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect WITCH_MAGIC" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect INSTANT_SPELL" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect SPELL" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect MOB_SPELL_AMBIENT" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect MOB_SPELL" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect MAGIC_CRIT" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect CRIT" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect TOWN_AURA" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect DEPTH_SUSPEND" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect SUSPEND" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect BUBBLE" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect FIREWORKS_SPARK" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect LARGE_EXPLODE" />
+      <entry_point TYPE="field" FQNAME="no.runsafe.framework.minecraft.WorldEffect HUGE_EXPLOSION" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.world.WorldInit WorldInit(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.world.IWorldInit handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.world.WorldLoad WorldLoad(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.world.IWorldLoad handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.world.WorldSave WorldSave(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.world.IWorldSave handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.internal.event.listener.world.WorldUnload WorldUnload(no.runsafe.framework.api.IDebug output, no.runsafe.framework.api.IScheduler scheduler, no.runsafe.framework.api.event.world.IWorldUnload handler)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.event.CancellableEvent void addCancellationHandle(java.lang.Runnable callback)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.event.CancellableEvent void cancel()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.event.CancellableEvent boolean isCancelled()" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.event.CancellableEvent" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.minecraft.IAnimalTamer java.lang.String getName()" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.minecraft.IAnimalTamer" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.ICommandExecutor void sendColouredMessage(java.lang.String format, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.command.ICommandExecutor void sendMessage(java.lang.String message)" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.command.ICommandExecutor" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IConfiguration void save()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IConfiguration no.runsafe.framework.minecraft.RunsafeLocation getConfigValueAsLocation(java.lang.String key)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IConfiguration no.runsafe.framework.minecraft.RunsafeWorld getConfigValueAsWorld(java.lang.String key)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IConfiguration java.util.Map&lt;java.lang.String,java.util.List&lt;java.lang.Integer&gt;&gt; getConfigSectionsAsIntegerList(java.lang.String key)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IConfiguration java.util.Map&lt;java.lang.String,java.util.List&lt;java.lang.String&gt;&gt; getConfigSectionsAsList(java.lang.String key)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IConfiguration java.util.Map&lt;java.lang.String,java.util.Map&lt;java.lang.String,java.lang.String&gt;&gt; getConfigSectionsAsMap(java.lang.String key)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IConfiguration java.util.Map&lt;java.lang.String,java.lang.Integer&gt; getConfigValuesAsIntegerMap(java.lang.String key)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IConfiguration java.util.Map&lt;java.lang.String,java.lang.String&gt; getConfigValuesAsMap(java.lang.String key)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IConfiguration void setConfigValue(java.lang.String key, java.lang.Object value)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IConfiguration java.util.List&lt;java.lang.Integer&gt; getConfigValueAsIntegerList(java.lang.String key)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IConfiguration java.util.List&lt;java.lang.String&gt; getConfigValueAsList(java.lang.String key)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IConfiguration float getConfigValueAsFloat(java.lang.String key)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IConfiguration double getConfigValueAsDouble(java.lang.String key)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IConfiguration int getConfigValueAsInt(java.lang.String key)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IConfiguration boolean getConfigValueAsBoolean(java.lang.String key)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IConfiguration java.lang.String getConfigValueAsString(java.lang.String key)" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.IConfiguration" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IConsole void logWarning(java.lang.String message, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IConsole void writeColoured(java.lang.String message, java.lang.Object... params)" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.IConsole" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IDebug void debugDump(java.lang.Object object, java.util.logging.Level messageLevel)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IDebug void debugFinest(java.lang.String message, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IDebug void debugConfig(java.lang.String message, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IDebug void debugInfo(java.lang.String message, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IDebug void debugWarning(java.lang.String message, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IDebug void debugSevere(java.lang.String message, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IDebug java.util.logging.Level getDebugLevel()" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.IDebug" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.minecraft.IEnchant boolean canCoexist(no.runsafe.framework.api.minecraft.IEnchant enchantment)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.minecraft.IEnchant int getStartLevel()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.minecraft.IEnchant int getMaxLevel()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.minecraft.IEnchant java.lang.String getName()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.minecraft.IEnchant int getId()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.minecraft.IEnchant no.runsafe.framework.api.minecraft.IEnchant applyTo(no.runsafe.framework.api.minecraft.IEnchantable target)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.minecraft.IEnchant no.runsafe.framework.api.minecraft.IEnchant max()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.minecraft.IEnchant no.runsafe.framework.api.minecraft.IEnchant power(int power)" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.minecraft.IEnchant" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.minecraft.IEnchantable no.runsafe.framework.api.minecraft.IEnchantable enchant(java.lang.Iterable&lt;no.runsafe.framework.api.minecraft.IEnchant&gt; enchants)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.minecraft.IEnchantable no.runsafe.framework.minecraft.item.meta.RunsafeMeta getItem()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.minecraft.IEnchantable no.runsafe.framework.api.minecraft.IEnchantable disenchant(no.runsafe.framework.api.minecraft.IEnchant enchant)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.minecraft.IEnchantable no.runsafe.framework.api.minecraft.IEnchantable disenchant()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.minecraft.IEnchantable boolean enchanted(no.runsafe.framework.api.minecraft.IEnchant enchant)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.minecraft.IEnchantable boolean enchanted()" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.minecraft.IEnchantable" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.event.IFakeableEvent boolean isFake()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.event.IFakeableEvent boolean Fire()" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.event.IFakeableEvent" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.minecraft.IInventoryHolder no.runsafe.framework.minecraft.inventory.RunsafeInventory getInventory()" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.minecraft.IInventoryHolder" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IKernel T getInstance(java.lang.Class&lt;T&gt; type)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IKernel T getComponent(java.lang.Class&lt;T&gt; type)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IKernel void addComponent(java.lang.Object implOrInstance)" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.IKernel" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IOutput void broadcastColoured(java.lang.String format, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IOutput void outputToServer(java.lang.String message)" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.IOutput" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IQueryExecutor no.runsafe.framework.minecraft.RunsafeLocation QueryLocation(java.lang.String query, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IQueryExecutor no.runsafe.framework.minecraft.RunsafeWorld QueryWorld(java.lang.String query, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IQueryExecutor no.runsafe.framework.minecraft.player.RunsafePlayer QueryPlayer(java.lang.String query, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IQueryExecutor org.joda.time.DateTime QueryDateTime(java.lang.String query, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IQueryExecutor java.lang.Float QueryFloat(java.lang.String query, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IQueryExecutor java.lang.Double QueryDouble(java.lang.String query, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IQueryExecutor java.lang.Long QueryLong(java.lang.String query, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IQueryExecutor java.lang.String QueryString(java.lang.String query, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IQueryExecutor java.util.List&lt;no.runsafe.framework.minecraft.RunsafeLocation&gt; QueryLocations(java.lang.String query, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IQueryExecutor java.util.List&lt;no.runsafe.framework.minecraft.RunsafeWorld&gt; QueryWorlds(java.lang.String query, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IQueryExecutor java.util.List&lt;no.runsafe.framework.minecraft.player.RunsafePlayer&gt; QueryPlayers(java.lang.String query, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IQueryExecutor java.util.List&lt;org.joda.time.DateTime&gt; QueryDateTimes(java.lang.String query, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IQueryExecutor java.util.List&lt;java.lang.Float&gt; QueryFloats(java.lang.String query, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IQueryExecutor java.util.List&lt;java.lang.Double&gt; QueryDoubles(java.lang.String query, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IQueryExecutor java.util.List&lt;java.lang.Long&gt; QueryLongs(java.lang.String query, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IQueryExecutor java.util.List&lt;java.lang.Integer&gt; QueryIntegers(java.lang.String query, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IQueryExecutor java.util.List&lt;java.lang.String&gt; QueryStrings(java.lang.String query, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IQueryExecutor no.runsafe.framework.api.database.IRow QueryRow(java.lang.String query, java.lang.Object... params)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IQueryExecutor no.runsafe.framework.api.database.ISet Query(java.lang.String query, java.lang.Object... params)" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.database.IQueryExecutor" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IRow no.runsafe.framework.minecraft.player.RunsafePlayer Player(java.lang.String column)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IRow no.runsafe.framework.minecraft.RunsafeWorld World(java.lang.String column)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IRow no.runsafe.framework.minecraft.RunsafeLocation Location(java.lang.String world, java.lang.String x, java.lang.String y, java.lang.String z, java.lang.String yaw, java.lang.String pitch)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IRow no.runsafe.framework.minecraft.RunsafeLocation Location(java.lang.String world, java.lang.String x, java.lang.String y, java.lang.String z)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IRow org.joda.time.DateTime DateTime(java.lang.String column)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IRow java.lang.Float Float(java.lang.String column)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IRow java.lang.Double Double(java.lang.String column)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IRow java.lang.Long Long(java.lang.String column)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IRow java.lang.Integer Integer(java.lang.String column)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.database.IRow java.lang.String String(java.lang.String column)" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.database.IRow" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IScheduler no.runsafe.framework.api.ITimer createAsyncTimer(java.lang.Runnable func, int seconds)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IScheduler no.runsafe.framework.api.ITimer createAsyncTimer(java.lang.Runnable func, int delay, int period)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IScheduler no.runsafe.framework.api.ITimer createAsyncTimer(java.lang.Runnable func, java.lang.Long ticks)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IScheduler no.runsafe.framework.api.ITimer createSyncTimer(java.lang.Runnable func, int delay, int period)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IScheduler no.runsafe.framework.api.ITimer createSyncTimer(java.lang.Runnable func, java.lang.Long ticks)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IScheduler int startSyncRepeatingTask(java.lang.Runnable func, int delay, int period)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.IScheduler int startSyncTask(java.lang.Runnable func, int seconds)" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.IScheduler" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.ITimer boolean isRunning()" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.ITimer void resetTicks(java.lang.Long ticks)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.ITimer void resetSeconds(int seconds)" />
+      <entry_point TYPE="method" FQNAME="no.runsafe.framework.api.ITimer void cancel()" />
+      <entry_point TYPE="class" FQNAME="no.runsafe.framework.api.ITimer" />
+    </entry_points>
   </component>
   <component name="JavadocGenerationManager">
     <option name="OUTPUT_DIRECTORY" value="D:/jdoc/framework" />

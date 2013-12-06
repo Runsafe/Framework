@@ -10,6 +10,7 @@ import org.luaj.vm2.LuaValue;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("LocalVariableOfConcreteClass")
 public class FunctionParameters
 {
 	public void addParameter(LuaValue value)

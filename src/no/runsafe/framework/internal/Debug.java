@@ -38,62 +38,63 @@ public class Debug extends Console implements IDebug
 
 	// Gets the current debug output level
 	@Override
-	public Level getDebugLevel()
+	public final Level getDebugLevel()
 	{
 		return debugLevel;
 	}
 
 	// Sets the debug output level
 	@Override
-	public void setDebugLevel(Level level)
+	public final void setDebugLevel(Level level)
 	{
 		debugLevel = level;
 	}
 
 	@Override
-	public void debugSevere(String message, Object... params)
+	public final void debugSevere(String message, Object... params)
 	{
 		outputDebugToConsole(message, Level.SEVERE, params);
 	}
 
 	@Override
-	public void debugWarning(String message, Object... params)
+	public final void debugWarning(String message, Object... params)
 	{
 		outputDebugToConsole(message, Level.WARNING, params);
 	}
 
 	@Override
-	public void debugInfo(String message, Object... params)
+	public final void debugInfo(String message, Object... params)
 	{
 		outputDebugToConsole(message, Level.INFO, params);
 	}
 
 	@Override
-	public void debugConfig(String message, Object... params)
+	public final void debugConfig(String message, Object... params)
 	{
 		outputDebugToConsole(message, Level.CONFIG, params);
 	}
 
 	@Override
-	public void debugFine(String message, Object... params)
+	public final void debugFine(String message, Object... params)
 	{
 		outputDebugToConsole(message, Level.FINE, params);
 	}
 
 	@Override
-	public void debugFiner(String message, Object... params)
+	public final void debugFiner(String message, Object... params)
 	{
 		outputDebugToConsole(message, Level.FINER, params);
 	}
 
 	@Override
-	public void debugFinest(String message, Object... params)
+	public final void debugFinest(String message, Object... params)
 	{
 		outputDebugToConsole(message, Level.FINEST, params);
 	}
 
+	@SuppressWarnings({"CastToConcreteClass", "InstanceofInterfaces"})
 	@Override
-	public void debugDump(Object object, Level messageLevel)
+	public final void debugDump(Object object, Level messageLevel)
 	{
 		if (debugLevel != null && messageLevel.intValue() >= debugLevel.intValue())
 			if (object instanceof BukkitItemStack)
@@ -138,5 +139,5 @@ public class Debug extends Console implements IDebug
 		return StringUtils.join(stack, "\n\t");
 	}
 
-	protected Level debugLevel;
+	private Level debugLevel;
 }

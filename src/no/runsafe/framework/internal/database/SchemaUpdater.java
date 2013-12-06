@@ -106,12 +106,11 @@ public final class SchemaUpdater implements Startable
 	{
 		ITransaction transaction = database.Isolate();
 		console.logInformation("Updating table %s from revision %d to revision %d", tableName, oldRevision, newRevision);
-		String sqlQuery = null;
 		for (String sql : queries)
 		{
 			if (!transaction.Execute(sql))
 			{
-				console.writeColoured("Failed executing query:\n%s", Level.INFO, sqlQuery);
+				console.writeColoured("Failed executing query:\n%s", Level.INFO, sql);
 				console.writeColoured("&cRolling back transaction..", Level.INFO);
 				transaction.Rollback();
 				return oldRevision;

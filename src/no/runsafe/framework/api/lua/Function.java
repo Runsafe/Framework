@@ -13,7 +13,8 @@ public abstract class Function extends VarArgFunction
 	@Override
 	public abstract Varargs invoke(Varargs args);
 
-	protected FunctionParameters VarargsToParameters(Varargs args)
+	@SuppressWarnings("LocalVariableOfConcreteClass")
+	protected FunctionParameters varargsToParameters(Varargs args)
 	{
 		FunctionParameters parameters = new FunctionParameters();
 		int currentIndex = 1;
@@ -25,6 +26,7 @@ public abstract class Function extends VarArgFunction
 		return parameters;
 	}
 
+	@SuppressWarnings("ChainOfInstanceofChecks")
 	protected Varargs objectListToVarargs(Iterable<Object> objects)
 	{
 		List<LuaValue> values = new ArrayList<LuaValue>(0);

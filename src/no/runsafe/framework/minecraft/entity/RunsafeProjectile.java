@@ -19,6 +19,7 @@ public class RunsafeProjectile extends BukkitProjectile
 		super(toWrap);
 	}
 
+	@SuppressWarnings("LocalVariableOfConcreteClass")
 	@Nullable
 	public RunsafeBlock getImpaledBlock()
 	{
@@ -33,6 +34,8 @@ public class RunsafeProjectile extends BukkitProjectile
 		return world.getBlockAt(tag.getShort("xTile"), tag.getShort("yTile"), tag.getShort("zTile"));
 	}
 
+	@Nullable
+	@SuppressWarnings({"CastToConcreteClass", "InstanceofInterfaces", "LocalVariableOfConcreteClass"})
 	public RunsafePlayer getShooterPlayer()
 	{
 		RunsafeWorld world = getWorld();

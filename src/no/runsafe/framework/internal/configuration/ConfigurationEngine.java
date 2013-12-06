@@ -15,7 +15,7 @@ import java.io.InputStream;
 /**
  * This class handles basic configuration features of the plugin
  */
-@SuppressWarnings("OverloadedVarargsMethod")
+@SuppressWarnings({"OverloadedVarargsMethod", "LocalVariableOfConcreteClass"})
 public final class ConfigurationEngine implements Startable
 {
 	public IConfiguration loadConfiguration(String fileName)

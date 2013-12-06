@@ -3,6 +3,7 @@ package no.runsafe.framework.internal.packets;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.Bukkit;
 
+import javax.annotation.Nullable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -14,6 +15,7 @@ public final class PacketHelper
 {
 	private PacketHelper(){}
 
+	@Nullable
 	public static String getPackageName()
 	{
 		Matcher match = pattern.matcher(Bukkit.getServer().getClass().getPackage().getName());
@@ -41,6 +43,7 @@ public final class PacketHelper
 		return packet;
 	}
 
+	@Nullable
 	public static Method getMethod(String name, Class<?> c, int params)
 	{
 		for (Method method : c.getMethods())

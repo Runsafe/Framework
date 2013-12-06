@@ -21,6 +21,7 @@ public abstract class ConsoleAsyncCommand extends AsyncCommand implements IConso
 		super(name, description, null, scheduler, args);
 	}
 
+	@SuppressWarnings("InstanceofInterfaces")
 	@Override
 	public final String OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters)
 	{

@@ -71,6 +71,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 		return null;
 	}
 
+	@SuppressWarnings("CastToConcreteClass")
 	@Nullable
 	private Iterable<String> getSuggestions(@Nonnull IArgument param, @Nonnull String... args)
 	{

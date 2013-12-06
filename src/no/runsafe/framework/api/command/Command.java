@@ -126,6 +126,7 @@ public class Command implements ICommandHandler
 	 * @param name     The partial or full subcommand name
 	 * @return The selected subcommand or null if no matches
 	 */
+	@SuppressWarnings("VariableNotUsedInsideIf")
 	@Nullable
 	public final ICommandHandler getSubCommand(ICommandExecutor executor, String name)
 	{

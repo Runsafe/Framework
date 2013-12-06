@@ -3,6 +3,7 @@ package no.runsafe.framework.api;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeWorld;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 
@@ -96,6 +97,7 @@ public interface IConfiguration
 	 * @param path The configuration path.
 	 * @return The RunsafeLocation from the matching value.
 	 */
+	@Nullable
 	RunsafeLocation getConfigValueAsLocation(String key);
 
 	/**

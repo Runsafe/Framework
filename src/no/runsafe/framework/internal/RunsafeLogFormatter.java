@@ -9,6 +9,7 @@ import java.util.logging.SimpleFormatter;
 
 public class RunsafeLogFormatter extends SimpleFormatter
 {
+	@SuppressWarnings("StringConcatenationInFormatCall")
 	@Override
 	public synchronized String format(LogRecord record)
 	{
@@ -21,7 +22,7 @@ public class RunsafeLogFormatter extends SimpleFormatter
 				logFormat = ((IConsole) param).getLogFormat();
 		}
 		return String.format(
-			logFormat + "\n",
+			logFormat + '\n',
 			datestamp.print(record.getMillis()),
 			timestamp.print(record.getMillis()),
 			Console.colorize(record.getLevel()),

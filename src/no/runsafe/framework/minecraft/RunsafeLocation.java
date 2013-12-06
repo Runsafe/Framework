@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+@SuppressWarnings("NumericCastThatLosesPrecision")
 public class RunsafeLocation extends BukkitLocation
 {
 	public RunsafeLocation(Location toWrap)
@@ -94,11 +95,13 @@ public class RunsafeLocation extends BukkitLocation
 		if (z > 0) incrementZ(z); else decrementZ(z);
 	}
 
+	@SuppressWarnings("LocalVariableOfConcreteClass")
 	public List<RunsafePlayer> getPlayersInRange(double range)
 	{
-		List<RunsafePlayer> players = new ArrayList<RunsafePlayer>();
+		List<RunsafePlayer> allPlayers = getWorld().getPlayers();
+		List<RunsafePlayer> players = new ArrayList<RunsafePlayer>(allPlayers.size());
 
-		for (RunsafePlayer player : getWorld().getPlayers())
+		for (RunsafePlayer player : allPlayers)
 		{
 			RunsafeLocation playerLocation = player.getLocation();
 			if (playerLocation != null && playerLocation.distance(this) <= range)
@@ -117,7 +120,7 @@ public class RunsafeLocation extends BukkitLocation
 	{
 		try
 		{
-			HashMap<String, Object> data = new HashMap<String, Object>();
+			HashMap<String, Object> data = new HashMap<String, Object>(9);
 			data.put("a", effect.getName());
 			data.put("b", (float) getX());
 			data.put("c", (float) getY());

@@ -8,7 +8,7 @@ public abstract class IntegerFunction extends Function
 	@Override
 	public Varargs invoke(Varargs args)
 	{
-		return varargsOf(new LuaValue[]{valueOf(run(VarargsToParameters(args)))});
+		return varargsOf(new LuaValue[]{valueOf(run(varargsToParameters(args)))});
 	}
 
 	public abstract Integer run(FunctionParameters parameters);
