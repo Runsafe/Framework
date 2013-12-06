@@ -1,7 +1,6 @@
 package no.runsafe.framework.internal.networking;
 
 import net.minecraft.server.v1_6_R3.DedicatedServer;
-import net.minecraft.server.v1_6_R3.DedicatedServerConnectionThread;
 import net.minecraft.server.v1_6_R3.MinecraftServer;
 import net.minecraft.server.v1_6_R3.ServerConnection;
 import no.runsafe.framework.api.IOutput;
@@ -46,5 +45,5 @@ public class RunsafeServerConnection extends ServerConnection
 		return c();
 	}
 
-	private final DedicatedServerConnectionThread thread;
+	private final RunsafeServerConnectionThread thread;
 }
