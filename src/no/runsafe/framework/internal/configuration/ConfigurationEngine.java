@@ -94,6 +94,7 @@ public final class ConfigurationEngine implements Startable
 		if (configFilePath == null || configurationFile == null || configuration == null)
 			return;
 
+		console.debugFine("Loading configuration from %s", configFilePath);
 		File configFile = new File(configFilePath);
 
 		configuration.configFile = YamlConfiguration.loadConfiguration(configFile);
@@ -105,6 +106,7 @@ public final class ConfigurationEngine implements Startable
 			configuration.configFile.options().copyDefaults(true);
 		}
 		configuration.save();
+		console.debugFine("Updating configuration.");
 		notifySubscribers();
 	}
 

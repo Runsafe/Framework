@@ -139,7 +139,13 @@ public class Console implements IConsole
 	private String logFormat;
 	private String debugFormat;
 
-	public static final Level DefaultDebugLevel;
+	public static Level DefaultDebugLevel(String plugin)
+	{
+		if(defaultDebugLevel.containsKey(plugin))
+			return defaultDebugLevel.get(plugin);
+
+		return defaultDebugLevel.get("*");
+	}
 
 	protected static final Map<String, Object> logFormats;
 	protected static final Map<String, Object> debugFormats;
@@ -148,13 +154,14 @@ public class Console implements IConsole
 
 	private static final String defaultLogFormat;
 	private static final String defaultDebugFormat;
-	private static Map<Level, String> levelFormat;
+	private static final Map<Level, String> levelFormat;
+	private static final Map<String, Level> defaultDebugLevel;
 
 	static
 	{
 		File configFile = new File("runsafe", "output.yml");
 		YamlConfiguration config = YamlConfiguration.loadConfiguration(configFile);
-		if (!config.contains("debug")) config.set("debug", "OFF");
+		if (!config.contains("debug.*")) config.set("debug.*", "OFF");
 		if (!config.contains("split")) config.set("split", false);
 		if (!config.contains("format.anonymous.log")) config.set("format.anonymous.log", "%1$s %2$s [%3$s] %4$s");
 		if (!config.contains("format.anonymous.debug")) config.set("format.anonymous.debug", "%1$s %2$s [&oDEBUG&r] %4$s");
@@ -174,12 +181,15 @@ public class Console implements IConsole
 			levels.set(Level.ALL.getName(), "&f&n"+Level.ALL.getName()+"&r");
 		}
 
-		levelFormat = new HashMap<Level, String>();
+		levelFormat = new HashMap<Level, String>(1);
 		for(Map.Entry<String, Object> format : config.getConfigurationSection("format.level").getValues(false).entrySet())
 			levelFormat.put(Level.parse(format.getKey()), ChatColour.ToConsole((String)format.getValue()));
 
 		logFormats = config.getConfigurationSection("format.log").getValues(false);
 		debugFormats = config.getConfigurationSection("format.debug").getValues(false);
+		defaultDebugLevel = new HashMap<String, Level>(1);
+		for(Map.Entry<String, Object> level : config.getConfigurationSection("debug").getValues(false).entrySet())
+			defaultDebugLevel.put(level.getKey(), Level.parse(((String)level.getValue()).toUpperCase()));
 		try
 		{
 			config.save(configFile);
@@ -190,7 +200,6 @@ public class Console implements IConsole
 
 		defaultLogFormat = config.getString("format.anonymous.log");
 		defaultDebugFormat = config.getString("format.anonymous.debug");
-		DefaultDebugLevel = Level.parse(config.getString("debug").toUpperCase());
 		InternalLogger = Logger.getLogger("RunsafeLogger");
 		InternalLogger.setUseParentHandlers(!config.getBoolean("split"));
 		InternalDebugger = Logger.getLogger("RunsafeDebugger");
