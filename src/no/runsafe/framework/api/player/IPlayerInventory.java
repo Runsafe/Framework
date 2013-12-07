@@ -25,4 +25,24 @@ public interface IPlayerInventory extends IInventoryHolder
 	void updateInventory();
 
 	void openInventory(RunsafeInventory inventory);
+
+	@Nullable
+	RunsafeMeta getHelmet();
+
+	@Nullable
+	RunsafeMeta getChestplate();
+
+	@Nullable
+	RunsafeMeta getLeggings();
+
+	@Nullable
+	RunsafeMeta getBoots();
+
+	void setHelmet(RunsafeMeta itemStack);
+
+	void setChestplate(RunsafeMeta itemStack);
+
+	void setLeggings(RunsafeMeta itemStack);
+
+	void setBoots(RunsafeMeta itemStack);
 }

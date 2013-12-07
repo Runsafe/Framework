@@ -208,6 +208,62 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 	}
 
 	@Nullable
+	public RunsafeMeta getHelmet()
+	{
+		if (player == null)
+			return null;
+		return ObjectWrapper.convert(player.getInventory().getHelmet());
+	}
+
+	@Nullable
+	public RunsafeMeta getChestplate()
+	{
+		if (player == null)
+			return null;
+		return ObjectWrapper.convert(player.getInventory().getChestplate());
+	}
+
+	@Nullable
+	public RunsafeMeta getLeggings()
+	{
+		if (player == null)
+			return null;
+		return ObjectWrapper.convert(player.getInventory().getLeggings());
+	}
+
+	@Nullable
+	public RunsafeMeta getBoots()
+	{
+		if (player == null)
+			return null;
+		return ObjectWrapper.convert(player.getInventory().getBoots());
+	}
+
+	public void setHelmet(RunsafeMeta itemStack)
+	{
+		if (player != null)
+			player.getInventory().setHelmet(itemStack.getRaw());
+	}
+
+	public void setChestplate(RunsafeMeta itemStack)
+	{
+		if (player != null)
+			player.getInventory().setChestplate(itemStack.getRaw());
+	}
+
+	public void setLeggings(RunsafeMeta itemStack)
+	{
+		if (player != null)
+			player.getInventory().setLeggings(itemStack.getRaw());
+	}
+
+	public void setBoots(RunsafeMeta itemStack)
+	{
+		if (player != null)
+			player.getInventory().setBoots(itemStack.getRaw());
+	}
+
+	@Nullable
 	protected final Player player;
 	protected final OfflinePlayer basePlayer;
 }
