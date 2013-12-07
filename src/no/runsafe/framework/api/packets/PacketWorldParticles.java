@@ -16,7 +16,6 @@ public class PacketWorldParticles extends Packet
 		this.worldEffect = worldEffect;
 		this.speed = speed;
 		this.amount = amount;
-		this.range = range;
 		offsetX = (float) location.getX();
 		offsetY = (float) location.getY();
 		offsetZ = (float) location.getZ();
@@ -58,7 +57,6 @@ public class PacketWorldParticles extends Packet
 	private final WorldEffect worldEffect;
 	private final int speed;
 	private final int amount;
-	private final int range;
 	private float offsetX;
 	private float offsetY;
 	private float offsetZ;
