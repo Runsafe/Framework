@@ -3,6 +3,7 @@ package no.runsafe.framework.internal.wrapper.player;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.minecraft.IAnimalTamer;
 import no.runsafe.framework.api.minecraft.IInventoryHolder;
+import no.runsafe.framework.internal.wrapper.IWrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.entity.RunsafeLivingEntity;
@@ -15,7 +16,7 @@ import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
 
-public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolder, IAnimalTamer
+public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolder, IAnimalTamer, IWrapper<OfflinePlayer>
 {
 	public static final int PLAYERLIST_MAXLENGTH = 16;
 
@@ -136,9 +137,15 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 			player.sendMessage(message);
 	}
 
-	public Player getRawPlayer()
+	@Override
+	public Player getRaw()
 	{
 		return player;
+	}
+
+	public OfflinePlayer getBasePlayer()
+	{
+		return basePlayer;
 	}
 
 	@Override

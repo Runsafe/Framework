@@ -3,9 +3,11 @@ package no.runsafe.framework.minecraft.player;
 import com.google.common.collect.ImmutableList;
 import no.runsafe.framework.api.player.IAmbiguousPlayer;
 import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.player.BukkitPlayer;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +22,7 @@ public class RunsafeAmbiguousPlayer extends RunsafePlayer implements IAmbiguousP
 
 	public RunsafeAmbiguousPlayer(List<IPlayer> online)
 	{
-		super(((BukkitPlayer) online.get(0)).getRawPlayer());
+		super((OfflinePlayer) ObjectUnwrapper.convert(online.get(0)));
 		ambiguity = new ArrayList<String>(online.size());
 		for (IPlayer option : online)
 			ambiguity.add(option.getName());

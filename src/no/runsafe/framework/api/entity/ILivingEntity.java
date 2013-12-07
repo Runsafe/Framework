@@ -66,7 +66,7 @@ public interface ILivingEntity extends IEntity
 
 	void setNoDamageTicks(int i);
 
-	IPlayer getKiller();
+	IEntity getKiller();
 
 	void addBuff(Buff buff);
 
