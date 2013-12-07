@@ -8,13 +8,14 @@ import org.bukkit.block.Block;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class RunsafeBlock extends BukkitBlock
+public class RunsafeBlock extends BukkitBlock implements no.runsafe.framework.api.block.IBlock
 {
 	public RunsafeBlock(Block toWrap)
 	{
 		super(toWrap);
 	}
 
+	@Override
 	@SuppressWarnings("InstanceMethodNamingConvention")
 	public boolean is(Item type)
 	{
@@ -22,21 +23,25 @@ public class RunsafeBlock extends BukkitBlock
 			&& (type.getData() == (byte) -1 || getData() == type.getData());
 	}
 
+	@Override
 	public boolean hasInterface()
 	{
 		return RunsafeBlock.interfaceBlocks.contains(getTypeId());
 	}
 
+	@Override
 	public boolean isInteractBlock()
 	{
 		return RunsafeBlock.interactBlocks.contains(getTypeId());
 	}
 
+	@Override
 	public boolean canPassThrough()
 	{
 		return passableBlocks.contains(getTypeId());
 	}
 
+	@Override
 	@SuppressWarnings("EnumSwitchStatementWhichMissesCases")
 	public boolean isHazardous()
 	{
@@ -54,23 +59,27 @@ public class RunsafeBlock extends BukkitBlock
 		}
 	}
 
+	@Override
 	public boolean isAir()
 	{
 		return block.getType() == Item.Unavailable.Air.getType();
 	}
 
+	@Override
 	public boolean isWater()
 	{
 		return block.getType() == Item.Unavailable.Water.getType()
 			|| block.getType() == Item.Unavailable.StationaryWater.getType();
 	}
 
+	@Override
 	public boolean isLava()
 	{
 		return block.getType() == Item.Unavailable.Lava.getType()
 			|| block.getType() == Item.Unavailable.StationaryLava.getType();
 	}
 
+	@Override
 	public boolean isAbleToFall()
 	{
 		return block.getType().hasGravity();
