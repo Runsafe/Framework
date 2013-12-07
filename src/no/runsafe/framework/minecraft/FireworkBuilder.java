@@ -1,8 +1,8 @@
 package no.runsafe.framework.minecraft;
 
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.item.meta.RunsafeFirework;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.inventory.meta.FireworkMeta;
@@ -156,7 +156,7 @@ public class FireworkBuilder
 		firework.getFireworkMeta().addEffect(builder.build());
 	}
 
-	public void Give(RunsafePlayer player)
+	public void Give(IPlayer player)
 	{
 		player.give(Create());
 	}

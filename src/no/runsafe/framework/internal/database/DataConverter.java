@@ -1,9 +1,9 @@
 package no.runsafe.framework.internal.database;
 
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.minecraft.RunsafeWorld;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.joda.time.DateTime;
 
 import javax.annotation.Nullable;
@@ -162,7 +162,7 @@ final class DataConverter
 	}
 
 	@Nullable
-	static RunsafePlayer Player(Object value)
+	static IPlayer Player(Object value)
 	{
 		return value == null ? null : RunsafeServer.Instance.getOfflinePlayerExact(value.toString());
 	}

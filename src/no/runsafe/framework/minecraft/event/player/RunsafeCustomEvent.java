@@ -2,20 +2,20 @@ package no.runsafe.framework.minecraft.event.player;
 
 import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.event.player.IPlayerCustomEvent;
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.minecraft.event.RunsafeInternalEvent;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
 
 public abstract class RunsafeCustomEvent extends RunsafeInternalEvent
 {
-	protected RunsafeCustomEvent(RunsafePlayer player, String event)
+	protected RunsafeCustomEvent(IPlayer player, String event)
 	{
 		this.player = player;
 		this.event = event;
 	}
 
-	public RunsafePlayer getPlayer()
+	public IPlayer getPlayer()
 	{
 		return player;
 	}
@@ -44,6 +44,6 @@ public abstract class RunsafeCustomEvent extends RunsafeInternalEvent
 		return true;
 	}
 
-	private final RunsafePlayer player;
+	private final IPlayer player;
 	private final String event;
 }

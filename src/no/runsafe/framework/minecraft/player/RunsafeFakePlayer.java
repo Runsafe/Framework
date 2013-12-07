@@ -2,13 +2,15 @@ package no.runsafe.framework.minecraft.player;
 
 import com.google.common.collect.ImmutableList;
 import no.runsafe.framework.api.hook.IPlayerPermissions;
+import no.runsafe.framework.api.player.IFakePlayer;
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.HookEngine;
 import no.runsafe.framework.minecraft.RunsafeWorld;
 
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class RunsafeFakePlayer extends RunsafePlayer
+public class RunsafeFakePlayer extends RunsafePlayer implements IFakePlayer
 {
 	public RunsafeFakePlayer(String playerName, String... groups)
 	{
@@ -83,7 +85,7 @@ public class RunsafeFakePlayer extends RunsafePlayer
 	}
 
 	@Override
-	public boolean shouldNotSee(@Nonnull RunsafePlayer target)
+	public boolean shouldNotSee(@Nonnull IPlayer target)
 	{
 		return false;
 	}
@@ -106,6 +108,7 @@ public class RunsafeFakePlayer extends RunsafePlayer
 		return world;
 	}
 
+	@Override
 	public void setWorld(RunsafeWorld world)
 	{
 		this.world = world;

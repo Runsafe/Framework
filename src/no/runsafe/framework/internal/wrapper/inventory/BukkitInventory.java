@@ -1,12 +1,12 @@
 package no.runsafe.framework.internal.wrapper.inventory;
 
 import com.google.common.collect.Lists;
-import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.api.minecraft.IInventoryHolder;
+import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.internal.wrapper.ObjectWrapper;
+import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventoryType;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
-import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -129,7 +129,7 @@ public abstract class BukkitInventory
 		inventory.setMaxStackSize(size);
 	}
 
-	public List<RunsafePlayer> getViewers()
+	public List<IPlayer> getViewers()
 	{
 		return ObjectWrapper.convert(inventory.getViewers());
 	}

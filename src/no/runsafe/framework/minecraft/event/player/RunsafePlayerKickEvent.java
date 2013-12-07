@@ -2,10 +2,10 @@ package no.runsafe.framework.minecraft.event.player;
 
 import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.event.player.IPlayerKickEvent;
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.api.event.IFakeableEvent;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.event.player.PlayerKickEvent;
 
 public class RunsafePlayerKickEvent extends RunsafePlayerEvent implements IFakeableEvent
@@ -54,12 +54,12 @@ public class RunsafePlayerKickEvent extends RunsafePlayerEvent implements IFakea
 		return isFake;
 	}
 
-	public RunsafePlayer getKicker()
+	public IPlayer getKicker()
 	{
 		return kicker;
 	}
 
 	private final PlayerKickEvent event;
-	private final RunsafePlayer kicker;
+	private final IPlayer kicker;
 	private boolean isFake;
 }

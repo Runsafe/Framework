@@ -1,8 +1,8 @@
 package no.runsafe.framework.internal.database;
 
 import no.runsafe.framework.api.database.IValue;
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.RunsafeWorld;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.joda.time.DateTime;
 
 import javax.annotation.Nullable;
@@ -53,7 +53,7 @@ public final class Value implements IValue
 	}
 
 	@Override
-	public RunsafePlayer Player()
+	public IPlayer Player()
 	{
 		return DataConverter.Player(raw);
 	}
@@ -122,7 +122,7 @@ public final class Value implements IValue
 
 		@Override
 		@Nullable
-		public RunsafePlayer Player()
+		public IPlayer Player()
 		{
 			return null;
 		}

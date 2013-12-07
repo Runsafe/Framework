@@ -1,33 +1,33 @@
 package no.runsafe.framework.minecraft.block;
 
-import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.minecraft.entity.LivingEntity;
+import no.runsafe.framework.api.block.ICreatureSpawner;
+import no.runsafe.framework.api.block.ISpawner;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
+import no.runsafe.framework.minecraft.entity.LivingEntity;
 import org.bukkit.block.Block;
 
-public class RunsafeSpawner extends RunsafeBlock implements no.runsafe.framework.api.block.ISpawner
+public class RunsafeSpawner extends RunsafeBlock implements ISpawner
 {
 	public RunsafeSpawner(Block toWrap)
 	{
 		super(toWrap);
 	}
 
-	@SuppressWarnings("CastToConcreteClass")
 	@Override
-	public RunsafeCreatureSpawner getBlockState()
+	public ICreatureSpawner getBlockState()
 	{
-		return (RunsafeCreatureSpawner) super.getBlockState();
+		return (ICreatureSpawner) super.getBlockState();
 	}
 
 	@Override
 	public void setCreature(LivingEntity type)
 	{
-		getBlockState().getRaw().setSpawnedType(type.getRaw());
+		getBlockState().setCreature(type);
 	}
 
 	@Override
 	public RunsafeEntityType getCreature()
 	{
-		return ObjectWrapper.convert(getBlockState().getRaw().getSpawnedType());
+		return getBlockState().getCreature();
 	}
 }

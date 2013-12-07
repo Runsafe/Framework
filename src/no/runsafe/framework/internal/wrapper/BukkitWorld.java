@@ -1,14 +1,13 @@
 package no.runsafe.framework.internal.wrapper;
 
 import no.runsafe.framework.api.block.IBlock;
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.Sound;
 import no.runsafe.framework.minecraft.RunsafeLocation;
-import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.minecraft.entity.RunsafeFallingBlock;
 import no.runsafe.framework.minecraft.entity.RunsafeItem;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import org.bukkit.Effect;
 import org.bukkit.Material;
@@ -18,7 +17,7 @@ import org.bukkit.entity.EntityType;
 
 import java.util.List;
 
-public abstract class BukkitWorld extends BukkitMetadata
+public abstract class BukkitWorld extends BukkitMetadata implements IWrapper<World>
 {
 
 	protected BukkitWorld(World toWrap)
@@ -109,7 +108,7 @@ public abstract class BukkitWorld extends BukkitMetadata
 		world.strikeLightningEffect(location.getRaw());
 	}
 
-	public List<RunsafePlayer> getPlayers()
+	public List<IPlayer> getPlayers()
 	{
 		return ObjectWrapper.convert(world.getPlayers());
 	}

@@ -2,10 +2,10 @@ package no.runsafe.framework.minecraft.event.player;
 
 import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.event.player.IPlayerChatEvent;
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.api.event.IFakeableEvent;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
@@ -42,12 +42,12 @@ public class RunsafePlayerChatEvent extends RunsafeCancellablePlayerEvent implem
 	}
 
 	@Override
-	public RunsafePlayer getPlayer()
+	public IPlayer getPlayer()
 	{
 		return ObjectWrapper.convert((OfflinePlayer) event.getPlayer());
 	}
 
-	public List<RunsafePlayer> getRecipients()
+	public List<IPlayer> getRecipients()
 	{
 		return ObjectWrapper.convert(event.getRecipients());
 	}

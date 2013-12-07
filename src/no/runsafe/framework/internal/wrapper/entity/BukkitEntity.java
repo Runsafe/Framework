@@ -1,15 +1,16 @@
 package no.runsafe.framework.internal.wrapper.entity;
 
+import no.runsafe.framework.api.minecraft.RunsafeEntityType;
+import no.runsafe.framework.internal.wrapper.IWrapper;
+import no.runsafe.framework.internal.wrapper.ObjectWrapper;
+import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.entity.EntityType;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
-import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageByEntityEvent;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent;
-import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import org.bukkit.Chunk;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -196,7 +197,7 @@ public abstract class BukkitEntity extends BukkitMetadata
 
 	private void dismountBeforeTeleport()
 	{
-		if(entity.getVehicle() != null)
+		if (entity.getVehicle() != null)
 			entity.getVehicle().eject();
 	}
 

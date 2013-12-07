@@ -1,8 +1,8 @@
 package no.runsafe.framework.minecraft.event.player;
 
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.minecraft.event.RunsafeEvent;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 
 import java.net.InetAddress;
@@ -15,7 +15,7 @@ public class RunsafePlayerPreLoginEvent extends RunsafeEvent
 		event = toWrap;
 	}
 
-	public RunsafePlayer getPlayer()
+	public IPlayer getPlayer()
 	{
 		return RunsafeServer.Instance.getOfflinePlayerExact(event.getName());
 	}

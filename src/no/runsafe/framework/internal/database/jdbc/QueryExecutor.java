@@ -7,12 +7,12 @@ import no.runsafe.framework.api.database.IQueryExecutor;
 import no.runsafe.framework.api.database.IRow;
 import no.runsafe.framework.api.database.ISet;
 import no.runsafe.framework.api.database.IValue;
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.database.Row;
 import no.runsafe.framework.internal.database.Set;
 import no.runsafe.framework.internal.database.Value;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeWorld;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.joda.time.DateTime;
 import org.joda.time.ReadableInstant;
 
@@ -171,14 +171,14 @@ abstract class QueryExecutor implements IQueryExecutor
 	}
 
 	@Override
-	public List<RunsafePlayer> QueryPlayers(String query, Object... params)
+	public List<IPlayer> QueryPlayers(String query, Object... params)
 	{
 		return Lists.transform(
 			QueryColumn(query, params),
-			new Function<IValue, RunsafePlayer>()
+			new Function<IValue, IPlayer>()
 			{
 				@Override
-				public RunsafePlayer apply(@Nullable IValue value)
+				public IPlayer apply(@Nullable IValue value)
 				{
 					assert value != null;
 					return value.Player();
@@ -258,7 +258,7 @@ abstract class QueryExecutor implements IQueryExecutor
 	}
 
 	@Override
-	public RunsafePlayer QueryPlayer(String query, Object... params)
+	public IPlayer QueryPlayer(String query, Object... params)
 	{
 		return QueryValue(query, params).Player();
 	}

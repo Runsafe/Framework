@@ -1,9 +1,10 @@
 package no.runsafe.framework.internal.wrapper;
 
-import no.runsafe.framework.api.block.IBlock;
+import com.google.common.collect.Lists;
 import no.runsafe.framework.api.minecraft.IAnimalTamer;
 import no.runsafe.framework.api.minecraft.IInventoryHolder;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.wrapper.item.BukkitItemStack;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import no.runsafe.framework.internal.wrapper.player.BukkitPlayer;
@@ -62,7 +63,7 @@ public final class ObjectWrapper
 
 	@Nullable
 	@SuppressWarnings("unchecked")
-	public static <Wrapper extends BukkitPlayer, Raw extends OfflinePlayer> List<Wrapper> convert(Raw... toWrap)
+	public static <Wrapper extends IPlayer, Raw extends OfflinePlayer> List<Wrapper> convert(Raw... toWrap)
 	{
 		if (toWrap == null)
 			return null;

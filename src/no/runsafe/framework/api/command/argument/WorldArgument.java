@@ -2,9 +2,9 @@ package no.runsafe.framework.api.command.argument;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.minecraft.RunsafeWorld;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -35,7 +35,7 @@ public class WorldArgument extends CommandArgumentSpecification implements ITabC
 	}
 
 	@Override
-	public List<String> getAlternatives(RunsafePlayer executor, String partial)
+	public List<String> getAlternatives(IPlayer executor, String partial)
 	{
 		return Lists.transform(
 			RunsafeServer.Instance.getWorlds(),

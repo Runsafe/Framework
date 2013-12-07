@@ -1,7 +1,7 @@
 package no.runsafe.framework.api.command.argument;
 
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.RunsafeServer;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
 
 import java.util.List;
 
@@ -37,7 +37,7 @@ public class PlayerArgument extends CommandArgumentSpecification implements ITab
 	}
 
 	@Override
-	public List<String> getAlternatives(RunsafePlayer executor, String partial)
+	public List<String> getAlternatives(IPlayer executor, String partial)
 	{
 		return RunsafeServer.Instance.getOnlinePlayers(executor, partial);
 	}

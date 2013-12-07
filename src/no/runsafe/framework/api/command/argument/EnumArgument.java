@@ -1,7 +1,7 @@
 package no.runsafe.framework.api.command.argument;
 
 import com.google.common.collect.ImmutableList;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
+import no.runsafe.framework.api.player.IPlayer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +38,7 @@ public class EnumArgument extends CommandArgumentSpecification implements ITabCo
 	}
 
 	@Override
-	public List<String> getAlternatives(RunsafePlayer executor, String partial)
+	public List<String> getAlternatives(IPlayer executor, String partial)
 	{
 		//noinspection ReturnOfCollectionOrArrayField
 		return alternatives;

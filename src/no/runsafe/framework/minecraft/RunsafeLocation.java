@@ -1,5 +1,6 @@
 package no.runsafe.framework.minecraft;
 
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.packets.PacketHelper;
 import no.runsafe.framework.internal.wrapper.BukkitLocation;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
@@ -96,12 +97,12 @@ public class RunsafeLocation extends BukkitLocation
 	}
 
 	@SuppressWarnings("LocalVariableOfConcreteClass")
-	public List<RunsafePlayer> getPlayersInRange(double range)
+	public List<IPlayer> getPlayersInRange(double range)
 	{
-		List<RunsafePlayer> allPlayers = getWorld().getPlayers();
-		List<RunsafePlayer> players = new ArrayList<RunsafePlayer>(allPlayers.size());
+		List<IPlayer> allPlayers = getWorld().getPlayers();
+		List<IPlayer> players = new ArrayList<IPlayer>(allPlayers.size());
 
-		for (RunsafePlayer player : allPlayers)
+		for (IPlayer player : allPlayers)
 		{
 			RunsafeLocation playerLocation = player.getLocation();
 			if (playerLocation != null && playerLocation.distance(this) <= range)
@@ -133,7 +134,7 @@ public class RunsafeLocation extends BukkitLocation
 
 			Object packet = PacketHelper.stuffPacket(PacketHelper.getPacket("Packet63WorldParticles"), data);
 
-			for (RunsafePlayer player : getPlayersInRange(range))
+			for (IPlayer player : getPlayersInRange(range))
 					PacketHelper.sendPacket(player, packet);
 		}
 		catch (Exception e)

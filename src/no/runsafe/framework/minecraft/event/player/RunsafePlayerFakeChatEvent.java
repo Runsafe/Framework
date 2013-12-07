@@ -1,7 +1,7 @@
 package no.runsafe.framework.minecraft.event.player;
 
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.RunsafeServer;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ public class RunsafePlayerFakeChatEvent extends RunsafePlayerChatEvent
 {
 	@SuppressWarnings("LocalVariableOfConcreteClass")
 	@Nullable
-	public static String Run(RunsafePlayer player, String message)
+	public static String Run(IPlayer player, String message)
 	{
 		RunsafePlayerFakeChatEvent event = new RunsafePlayerFakeChatEvent(player, message);
 		if (!event.Fire())
@@ -21,14 +21,14 @@ public class RunsafePlayerFakeChatEvent extends RunsafePlayerChatEvent
 		return String.format(event.format, event.player.getName(), event.message);
 	}
 
-	public static void Broadcast(RunsafePlayer player, String message)
+	public static void Broadcast(IPlayer player, String message)
 	{
 		String result = Run(player, message);
 		if (result != null)
 			RunsafeServer.Instance.broadcastMessage(result);
 	}
 
-	public RunsafePlayerFakeChatEvent(RunsafePlayer player, String message)
+	public RunsafePlayerFakeChatEvent(IPlayer player, String message)
 	{
 		super(null);
 		this.player = player;
@@ -60,14 +60,14 @@ public class RunsafePlayerFakeChatEvent extends RunsafePlayerChatEvent
 	}
 
 	@Override
-	public RunsafePlayer getPlayer()
+	public IPlayer getPlayer()
 	{
 		return player;
 	}
 
 	@Override
 	@Nullable
-	public List<RunsafePlayer> getRecipients()
+	public List<IPlayer> getRecipients()
 	{
 		return null;
 	}
@@ -97,7 +97,7 @@ public class RunsafePlayerFakeChatEvent extends RunsafePlayerChatEvent
 	}
 
 	private Collection<Runnable> cancellationCallbacks;
-	private final RunsafePlayer player;
+	private final IPlayer player;
 	private String message;
 	private String format = "<%1$s> %2$s";
 	private boolean cancelled;

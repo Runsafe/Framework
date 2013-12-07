@@ -1,12 +1,15 @@
 package no.runsafe.framework.minecraft.player;
 
 import com.google.common.collect.ImmutableList;
-
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.hook.*;
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.HookEngine;
 import no.runsafe.framework.internal.wrapper.player.BukkitPlayer;
-import no.runsafe.framework.minecraft.*;
+import no.runsafe.framework.minecraft.Item;
+import no.runsafe.framework.minecraft.RunsafeLocation;
+import no.runsafe.framework.minecraft.RunsafeWorld;
+import no.runsafe.framework.minecraft.Universe;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.event.player.RunsafeOperatorEvent;
 import no.runsafe.framework.minecraft.inventory.RunsafePlayerInventory;
@@ -24,13 +27,14 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings({"OverlyCoupledClass", "LocalVariableOfConcreteClass"})
-public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
+public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor, IPlayer
 {
 	public RunsafePlayer(OfflinePlayer toWrap)
 	{
 		super(toWrap);
 	}
 
+	@Override
 	public String getPrettyName()
 	{
 		List<IPlayerNameDecorator> decoratorHooks = HookEngine.hookContainer.getComponents(IPlayerNameDecorator.class);
@@ -41,8 +45,9 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		return name;
 	}
 
+	@Override
 	@Nullable
-	public String getLastSeen(RunsafePlayer checker)
+	public String getLastSeen(IPlayer checker)
 	{
 		List<IPlayerSeen> seenHooks = HookEngine.hookContainer.getComponents(IPlayerSeen.class);
 		if (!seenHooks.isEmpty())
@@ -51,6 +56,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		return null;
 	}
 
+	@Override
 	public boolean isNew()
 	{
 		List<IPlayerSessionDataProvider> dataHooks = HookEngine.hookContainer.getComponents(IPlayerSessionDataProvider.class);
@@ -64,33 +70,39 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		return false;
 	}
 
+	@Override
 	public void OP()
 	{
 		basePlayer.setOp(true);
 		new RunsafeOperatorEvent(this, true).Fire();
 	}
 
+	@Override
 	public void deOP()
 	{
 		basePlayer.setOp(false);
 		new RunsafeOperatorEvent(this, false).Fire();
 	}
 
+	@Override
 	public boolean isSurvivalist()
 	{
 		return player != null && player.getGameMode() == GameMode.SURVIVAL;
 	}
 
+	@Override
 	public boolean isCreative()
 	{
 		return player != null && player.getGameMode() == GameMode.CREATIVE;
 	}
 
+	@Override
 	public boolean isAdventurer()
 	{
 		return player != null && player.getGameMode() == GameMode.ADVENTURE;
 	}
 
+	@Override
 	public void teleport(RunsafeWorld world, double x, double y, double z)
 	{
 		RunsafeLocation target = new RunsafeLocation(world, x, y, z);
@@ -100,6 +112,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		teleport(target);
 	}
 
+	@Override
 	public Map<String, String> getData()
 	{
 		List<IPlayerDataProvider> dataHooks = HookEngine.hookContainer.getComponents(IPlayerDataProvider.class);
@@ -113,6 +126,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		return results;
 	}
 
+	@Override
 	@SuppressWarnings("HardcodedFileSeparator")
 	public Map<String, String> getBasicData()
 	{
@@ -135,6 +149,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		return data;
 	}
 
+	@Override
 	@Nullable
 	public DateTime lastLogout()
 	{
@@ -151,6 +166,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		return logout;
 	}
 
+	@Override
 	@Nullable
 	public String getBanReason()
 	{
@@ -166,6 +182,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		return null;
 	}
 
+	@Override
 	@Nullable
 	public String getDataValue(String key)
 	{
@@ -176,12 +193,13 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 	}
 
 	@Deprecated
-	public boolean canSee(RunsafePlayer target)
+	public boolean canSee(IPlayer target)
 	{
 		return !shouldNotSee(target);
 	}
 
-	public boolean shouldNotSee(@Nonnull RunsafePlayer target)
+	@Override
+	public boolean shouldNotSee(@Nonnull IPlayer target)
 	{
 		//noinspection ConstantConditions
 		if (getName().equals(target.getName()))
@@ -197,6 +215,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		return false;
 	}
 
+	@Override
 	public boolean isVanished()
 	{
 		List<IPlayerVisibility> visibilityHooks = HookEngine.hookContainer.getComponents(IPlayerVisibility.class);
@@ -208,6 +227,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		return false;
 	}
 
+	@Override
 	public boolean isPvPFlagged()
 	{
 		List<IPlayerPvPFlag> pvpFlagHooks = HookEngine.hookContainer.getComponents(IPlayerPvPFlag.class);
@@ -219,6 +239,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		return true;
 	}
 
+	@Override
 	public ImmutableList<String> getGroups()
 	{
 		List<String> result = new ArrayList<String>(5);
@@ -233,6 +254,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		return ImmutableList.copyOf(result);
 	}
 
+	@Override
 	public boolean setGroup(String group)
 	{
 		for (IPlayerPermissions hook : HookEngine.hookContainer.getComponents(IPlayerPermissions.class))
@@ -241,6 +263,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		return false;
 	}
 
+	@Override
 	public boolean canBuildNow()
 	{
 		List<IPlayerBuildPermission> buildPermissionHooks =
@@ -253,6 +276,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		return true;
 	}
 
+	@Override
 	public void give(RunsafeMeta... items)
 	{
 		if (player == null || items == null || items.length < 1)
@@ -265,6 +289,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		}
 	}
 
+	@Override
 	public void removeItem(Item itemType, int amount)
 	{
 		RunsafePlayerInventory inventory = getInventory();
@@ -275,11 +300,13 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		}
 	}
 
+	@Override
 	public void removeItem(Item itemType)
 	{
 		removeItem(itemType, itemType.getStackSize());
 	}
 
+	@Override
 	@Nullable
 	public Universe getUniverse()
 	{
@@ -287,12 +314,14 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 		return world == null ? null : world.getUniverse();
 	}
 
+	@Override
 	public boolean isInUniverse(String universeName)
 	{
 		Universe universe = getUniverse();
 		return universe != null && universe.getName().equals(universeName);
 	}
 
+	@Override
 	public void clearInventory()
 	{
 		if (player == null)
@@ -303,6 +332,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 	}
 
 	@Override
+	@Deprecated
 	public void sendColouredMessage(String message)
 	{
 		if (message != null)
@@ -312,9 +342,11 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 	@Override
 	public void sendColouredMessage(String format, Object... params)
 	{
-		sendColouredMessage(String.format(format, params));
+		if (format != null)
+			sendMessage(ChatColour.ToMinecraft(String.format(format, params)));
 	}
 
+	@Override
 	public void throwToPoint(RunsafeLocation location)
 	{
 		RunsafeLocation playerLocation = getLocation();
@@ -323,6 +355,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 			setVelocity(location.toVector().subtract(playerLocation.toVector()));
 	}
 
+	@Override
 	public void throwFromPoint(RunsafeLocation location)
 	{
 		RunsafeLocation playerLocation = getLocation();
@@ -331,12 +364,14 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor
 			setVelocity(playerLocation.toVector().subtract(location.toVector()));
 	}
 
+	@Override
 	public void heal(double amount)
 	{
 		double heal = getHealth() + amount;
 		setHealth(heal);
 	}
 
+	@Override
 	public String getWorldName()
 	{
 		RunsafeWorld world = getWorld();

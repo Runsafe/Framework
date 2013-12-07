@@ -1,13 +1,16 @@
 package no.runsafe.framework.minecraft.player;
 
 import com.google.common.collect.ImmutableList;
+import no.runsafe.framework.api.player.IAmbiguousPlayer;
+import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.internal.wrapper.player.BukkitPlayer;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.OfflinePlayer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RunsafeAmbiguousPlayer extends RunsafePlayer
+public class RunsafeAmbiguousPlayer extends RunsafePlayer implements IAmbiguousPlayer
 {
 	public RunsafeAmbiguousPlayer(OfflinePlayer toWrap, List<String> ambiguous)
 	{
@@ -15,14 +18,15 @@ public class RunsafeAmbiguousPlayer extends RunsafePlayer
 		ambiguity = ambiguous;
 	}
 
-	public RunsafeAmbiguousPlayer(List<RunsafePlayer> online)
+	public RunsafeAmbiguousPlayer(List<IPlayer> online)
 	{
-		super(online.get(0).getRawPlayer());
+		super(((BukkitPlayer) online.get(0)).getRawPlayer());
 		ambiguity = new ArrayList<String>(online.size());
-		for (RunsafePlayer option : online)
+		for (IPlayer option : online)
 			ambiguity.add(option.getName());
 	}
 
+	@Override
 	public Iterable<String> getAmbiguity()
 	{
 		return ImmutableList.copyOf(ambiguity);

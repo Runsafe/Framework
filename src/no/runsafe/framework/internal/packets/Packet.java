@@ -1,6 +1,6 @@
 package no.runsafe.framework.internal.packets;
 
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
+import no.runsafe.framework.api.player.IPlayer;
 
 public abstract class Packet implements IPacket
 {
@@ -9,7 +9,7 @@ public abstract class Packet implements IPacket
 		this.packetName = packetName;
 	}
 
-	public void send(RunsafePlayer player) throws Exception
+	public void send(IPlayer player) throws Exception
 	{
 		PacketHelper.sendPacket(player, PacketHelper.stuffPacket(PacketHelper.getPacket(packetName), prepareData()));
 	}

@@ -3,6 +3,7 @@ package no.runsafe.framework.api.command.player;
 import no.runsafe.framework.api.command.ExecutableCommand;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.argument.IArgument;
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 
 import java.util.Map;
@@ -22,7 +23,7 @@ public abstract class PlayerCommand extends ExecutableCommand implements IPlayer
 	public final String OnExecute(ICommandExecutor executor, Map<String, String> parameters)
 	{
 		if (executor instanceof RunsafePlayer)
-			return OnExecute((RunsafePlayer) executor, parameters);
+			return OnExecute((IPlayer) executor, parameters);
 
 		return "This command cannot be used from the console.";
 	}

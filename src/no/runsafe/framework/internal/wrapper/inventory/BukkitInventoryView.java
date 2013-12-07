@@ -1,8 +1,8 @@
 package no.runsafe.framework.internal.wrapper.inventory;
 
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventoryType;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.inventory.InventoryView;
 
@@ -13,7 +13,7 @@ public abstract class BukkitInventoryView
 		inventoryView = toWrap;
 	}
 
-	public RunsafePlayer getPlayer()
+	public IPlayer getPlayer()
 	{
 		return ObjectWrapper.convert(inventoryView.getPlayer());
 	}

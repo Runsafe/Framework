@@ -1,6 +1,6 @@
 package no.runsafe.framework.api.command.player;
 
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
+import no.runsafe.framework.api.player.IPlayer;
 
 import java.util.Map;
 
@@ -13,5 +13,5 @@ public interface IPlayerAsyncCallbackExecute<T> extends IPlayerExecute
 	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
 	 * @return Message to show to the user running the command
 	 */
-	T OnAsyncExecute(RunsafePlayer executor, Map<String, String> parameters);
+	T OnAsyncExecute(IPlayer executor, Map<String, String> parameters);
 }

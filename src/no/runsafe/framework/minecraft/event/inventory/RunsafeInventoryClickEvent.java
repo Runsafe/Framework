@@ -1,8 +1,8 @@
 package no.runsafe.framework.minecraft.event.inventory;
 
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 
@@ -24,7 +24,7 @@ public class RunsafeInventoryClickEvent extends RunsafeCancellableInventoryEvent
 		return ObjectWrapper.convert(event.getCursor());
 	}
 
-	public RunsafePlayer getWhoClicked()
+	public IPlayer getWhoClicked()
 	{
 		return ObjectWrapper.convert(event.getWhoClicked());
 	}

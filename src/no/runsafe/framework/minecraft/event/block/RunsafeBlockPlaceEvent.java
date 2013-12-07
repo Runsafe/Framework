@@ -1,8 +1,8 @@
 package no.runsafe.framework.minecraft.event.block;
 
 import no.runsafe.framework.api.block.IBlock;
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.block.BlockPlaceEvent;
 
@@ -41,7 +41,7 @@ public class RunsafeBlockPlaceEvent extends RunsafeCancellableBlockEvent
 		return ObjectWrapper.convert(event.getBlockPlaced());
 	}
 
-	public RunsafePlayer getPlayer()
+	public IPlayer getPlayer()
 	{
 		return ObjectWrapper.convert((OfflinePlayer) event.getPlayer());
 	}

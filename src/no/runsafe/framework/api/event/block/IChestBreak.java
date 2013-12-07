@@ -1,8 +1,8 @@
 package no.runsafe.framework.api.event.block;
 
+import no.runsafe.framework.api.block.IChest;
 import no.runsafe.framework.api.event.IRunsafeEvent;
-import no.runsafe.framework.minecraft.block.RunsafeChest;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
+import no.runsafe.framework.api.player.IPlayer;
 
 public interface IChestBreak extends IRunsafeEvent
 {
@@ -13,5 +13,5 @@ public interface IChestBreak extends IRunsafeEvent
 	 * @param chest  The chest which was broken
 	 * @return If not an async event, whether to allow the event
 	 */
-	boolean OnChestBreak(RunsafePlayer player, RunsafeChest chest);
+	boolean OnChestBreak(IPlayer player, IChest chest);
 }

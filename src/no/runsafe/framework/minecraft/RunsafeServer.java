@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.hook.IPlayerLookupService;
 import no.runsafe.framework.api.hook.IPlayerPermissions;
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.Debug;
 import no.runsafe.framework.internal.HookEngine;
 import no.runsafe.framework.internal.wrapper.BukkitServer;
@@ -54,7 +55,7 @@ public class RunsafeServer extends BukkitServer
 	}
 
 	@Nullable
-	public RunsafePlayer getPlayer(String playerName)
+	public IPlayer getPlayer(String playerName)
 	{
 		if (playerName == null)
 			return null;
@@ -75,7 +76,7 @@ public class RunsafeServer extends BukkitServer
 	}
 
 	@Nullable
-	public RunsafePlayer getOnlinePlayer(RunsafePlayer context, String playerName)
+	public IPlayer getOnlinePlayer(IPlayer context, String playerName)
 	{
 		if (playerName == null)
 			return null;
@@ -84,7 +85,7 @@ public class RunsafeServer extends BukkitServer
 		if (exact != null && exact.isOnline())
 			return new RunsafePlayer(exact);
 
-		List<RunsafePlayer> online = filterPlayers(context, getOnlinePlayers(playerName));
+		List<IPlayer> online = filterPlayers(context, getOnlinePlayers(playerName));
 		if (online == null || online.isEmpty())
 			return null;
 
@@ -95,7 +96,7 @@ public class RunsafeServer extends BukkitServer
 	}
 
 	@Nullable
-	public List<RunsafePlayer> getOnlinePlayers(String playerName)
+	public List<IPlayer> getOnlinePlayers(String playerName)
 	{
 		if (playerName == null)
 			return null;
@@ -110,7 +111,7 @@ public class RunsafeServer extends BukkitServer
 	}
 
 	@Nullable
-	public RunsafePlayer getPlayerExact(String playerName)
+	public IPlayer getPlayerExact(String playerName)
 	{
 		if (playerName == null)
 			return null;
@@ -153,20 +154,20 @@ public class RunsafeServer extends BukkitServer
 		return hits;
 	}
 
-	public static List<RunsafePlayer> filterPlayers(RunsafePlayer context, List<RunsafePlayer> players)
+	public static List<IPlayer> filterPlayers(IPlayer context, List<IPlayer> players)
 	{
 		if (context == null || players == null)
 			return players;
 
-		List<RunsafePlayer> filtered = new ArrayList<RunsafePlayer>(players.size());
-		for (RunsafePlayer player : players)
+		List<IPlayer> filtered = new ArrayList<IPlayer>(players.size());
+		for (IPlayer player : players)
 			if (context.shouldNotSee(player))
 				filtered.add(player);
 		filtered.removeAll(filtered);
 		return filtered;
 	}
 
-	public void banPlayer(RunsafePlayer banner, RunsafePlayer player, String reason)
+	public void banPlayer(IPlayer banner, IPlayer player, String reason)
 	{
 		if (player == null)
 			return;
@@ -177,7 +178,7 @@ public class RunsafeServer extends BukkitServer
 		player.kick(reason);
 	}
 
-	public void kickPlayer(RunsafePlayer kicker, RunsafePlayer player, String reason)
+	public void kickPlayer(IPlayer kicker, IPlayer player, String reason)
 	{
 		if (player == null)
 			return;
@@ -188,13 +189,13 @@ public class RunsafeServer extends BukkitServer
 
 	@SuppressWarnings("LocalVariableOfConcreteClass")
 	@Nullable
-	public RunsafePlayer getKicker(String playerName)
+	public IPlayer getKicker(String playerName)
 	{
 		if (playerName == null || playerName.isEmpty())
 			return null;
 		if (kickingPlayer.containsKey(playerName))
 		{
-			RunsafePlayer kicker = kickingPlayer.get(playerName);
+			IPlayer kicker = kickingPlayer.get(playerName);
 			kickingPlayer.remove(playerName);
 			return kicker;
 		}
@@ -211,12 +212,12 @@ public class RunsafeServer extends BukkitServer
 		return false;
 	}
 
-	public List<RunsafePlayer> getPlayersWithPermission(String permission)
+	public List<IPlayer> getPlayersWithPermission(String permission)
 	{
 		if (permission == null || permission.isEmpty())
 			return Lists.newArrayList();
 
-		List<RunsafePlayer> results = new ArrayList<RunsafePlayer>(server.getOnlinePlayers().length);
+		List<IPlayer> results = new ArrayList<IPlayer>(server.getOnlinePlayers().length);
 		for (Player player : server.getOnlinePlayers())
 			if (player.hasPermission(permission))
 				results.add(ObjectWrapper.convert((OfflinePlayer) player));
@@ -235,17 +236,17 @@ public class RunsafeServer extends BukkitServer
 		return (T) plugin;
 	}
 
-	private final ConcurrentHashMap<String, RunsafePlayer> kickingPlayer = new ConcurrentHashMap<String, RunsafePlayer>();
+	private final ConcurrentHashMap<String, IPlayer> kickingPlayer = new ConcurrentHashMap<String, IPlayer>();
 	private final IDebug debugger;
 
-	public List<String> getOnlinePlayers(RunsafePlayer context, String playerName)
+	public List<String> getOnlinePlayers(IPlayer context, String playerName)
 	{
-		List<RunsafePlayer> matches = playerName == null || playerName.isEmpty() ? getOnlinePlayers() : matchPlayer(playerName);
+		List<IPlayer> matches = playerName == null || playerName.isEmpty() ? getOnlinePlayers() : matchPlayer(playerName);
 		if (matches == null || matches.isEmpty())
 			return Lists.newArrayList();
 
 		List<String> players = new ArrayList<String>(matches.size());
-		for (RunsafePlayer player : matches)
+		for (IPlayer player : matches)
 		{
 			if (context.shouldNotSee(player))
 				continue;

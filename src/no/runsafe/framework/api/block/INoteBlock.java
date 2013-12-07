@@ -1,6 +1,6 @@
 package no.runsafe.framework.api.block;
 
-import no.runsafe.framework.api.metadata.IMetadata;
+import no.runsafe.framework.api.block.IBlockState;
 
 public interface INoteBlock extends IBlockState
 {

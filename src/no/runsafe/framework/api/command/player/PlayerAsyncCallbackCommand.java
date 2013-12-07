@@ -4,6 +4,7 @@ import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.command.AsyncCallbackCommand;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.argument.IArgument;
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.RunsafeConsole;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 
@@ -27,7 +28,7 @@ public abstract class PlayerAsyncCallbackCommand<T> extends AsyncCallbackCommand
 	{
 		if (executor instanceof RunsafeConsole)
 			return "This command cannot be used from the console.";
-		return OnExecute((RunsafePlayer) executor, parameters);
+		return OnExecute((IPlayer) executor, parameters);
 	}
 
 	@Override
@@ -35,7 +36,7 @@ public abstract class PlayerAsyncCallbackCommand<T> extends AsyncCallbackCommand
 	public final T OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters)
 	{
 		if (executor instanceof RunsafePlayer)
-			return OnAsyncExecute((RunsafePlayer) executor, parameters);
+			return OnAsyncExecute((IPlayer) executor, parameters);
 		return null;
 	}
 
@@ -48,7 +49,7 @@ public abstract class PlayerAsyncCallbackCommand<T> extends AsyncCallbackCommand
 	 */
 	@Override
 	@Nullable
-	public String OnExecute(RunsafePlayer executor, Map<String, String> parameters)
+	public String OnExecute(IPlayer executor, Map<String, String> parameters)
 	{
 		return null;
 	}

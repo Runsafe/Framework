@@ -1,10 +1,10 @@
 package no.runsafe.framework.minecraft.event.inventory;
 
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.event.RunsafeEvent;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventoryView;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.inventory.InventoryEvent;
 
@@ -24,9 +24,9 @@ public class RunsafeInventoryEvent extends RunsafeEvent
 		return ObjectWrapper.convert(event.getInventory());
 	}
 
-	public List<RunsafePlayer> getViewers()
+	public List<IPlayer> getViewers()
 	{
-		List<RunsafePlayer> runsafeHumanEntities = new ArrayList<RunsafePlayer>(event.getViewers().size());
+		List<IPlayer> runsafeHumanEntities = new ArrayList<IPlayer>(event.getViewers().size());
 		for (HumanEntity humanEntity : event.getViewers())
 			runsafeHumanEntities.add(ObjectWrapper.convert(humanEntity));
 

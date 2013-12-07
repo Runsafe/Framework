@@ -1,11 +1,12 @@
 package no.runsafe.framework.internal.wrapper.entity;
 
+import no.runsafe.framework.internal.wrapper.IWrapper;
+import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.entity.RunsafeHanging;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
-import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.entity.ItemFrame;
 
-public abstract class BukkitItemFrame extends RunsafeHanging
+public abstract class BukkitItemFrame extends RunsafeHanging implements IWrapper<ItemFrame>
 {
 	protected BukkitItemFrame(ItemFrame toWrap)
 	{

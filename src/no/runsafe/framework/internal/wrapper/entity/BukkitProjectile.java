@@ -1,12 +1,13 @@
 package no.runsafe.framework.internal.wrapper.entity;
 
+import no.runsafe.framework.internal.wrapper.IWrapper;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.minecraft.entity.RunsafeLivingEntity;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.entity.Projectile;
 import org.bukkit.util.Vector;
 
-public abstract class BukkitProjectile extends RunsafeEntity
+public abstract class BukkitProjectile extends RunsafeEntity implements IWrapper<Projectile>
 {
 	protected BukkitProjectile(Projectile toWrap)
 	{

@@ -1,14 +1,14 @@
 package no.runsafe.framework.minecraft.event.player;
 
 import no.runsafe.framework.api.event.CancellableEvent;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
+import no.runsafe.framework.api.player.IPlayer;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 public abstract class RunsafeCancellableCustomEvent extends RunsafeCustomEvent implements CancellableEvent
 {
-	protected RunsafeCancellableCustomEvent(RunsafePlayer player, String event)
+	protected RunsafeCancellableCustomEvent(IPlayer player, String event)
 	{
 		super(player, event);
 	}

@@ -2,19 +2,19 @@ package no.runsafe.framework.minecraft.event.player;
 
 import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.event.player.IPlayerOperatorEvent;
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.minecraft.event.RunsafeInternalEvent;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
 
 public class RunsafeOperatorEvent extends RunsafeInternalEvent
 {
-	public RunsafeOperatorEvent(RunsafePlayer player, boolean wasMadeOP)
+	public RunsafeOperatorEvent(IPlayer player, boolean wasMadeOP)
 	{
 		this.player = player;
 		op = wasMadeOP;
 	}
 
-	public RunsafePlayer getPlayer()
+	public IPlayer getPlayer()
 	{
 		return player;
 	}
@@ -34,6 +34,6 @@ public class RunsafeOperatorEvent extends RunsafeInternalEvent
 		return true;
 	}
 
-	private final RunsafePlayer player;
+	private final IPlayer player;
 	private final boolean op;
 }

@@ -1,6 +1,6 @@
 package no.runsafe.framework.internal.packets;
 
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
+import no.runsafe.framework.api.player.IPlayer;
 import org.bukkit.Bukkit;
 
 import javax.annotation.Nullable;
@@ -53,7 +53,7 @@ public final class PacketHelper
 		return null;
 	}
 
-	public static void sendPacket(RunsafePlayer player, Object packet) throws Exception
+	public static void sendPacket(IPlayer player, Object packet) throws Exception
 	{
 		Object entityPlayer = getMethod("getHandle", player.getClass(), 0).invoke(player);
 		Object playerConnection = entityPlayer.getClass().getField("playerConnection").get(entityPlayer);

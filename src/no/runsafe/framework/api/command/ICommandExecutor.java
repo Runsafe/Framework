@@ -6,6 +6,7 @@ public interface ICommandExecutor
 
 	void sendMessage(String message);
 
+	@Deprecated
 	void sendColouredMessage(String message);
 
 	void sendColouredMessage(String format, Object... params);

@@ -1,7 +1,7 @@
 package no.runsafe.framework.minecraft.event.inventory;
 
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 
 public class RunsafeInventoryCloseEvent extends RunsafeInventoryEvent
@@ -12,7 +12,7 @@ public class RunsafeInventoryCloseEvent extends RunsafeInventoryEvent
 		event = toWrap;
 	}
 
-	public RunsafePlayer getPlayer()
+	public IPlayer getPlayer()
 	{
 		return ObjectWrapper.convert(event.getPlayer());
 	}

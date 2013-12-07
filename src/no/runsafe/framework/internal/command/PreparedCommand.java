@@ -7,7 +7,7 @@ import no.runsafe.framework.api.command.IContextPermissionProvider;
 import no.runsafe.framework.api.command.IPreparedCommand;
 import no.runsafe.framework.api.command.argument.IArgument;
 import no.runsafe.framework.api.command.argument.ITabComplete;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
+import no.runsafe.framework.api.player.IPlayer;
 import org.apache.commons.lang.StringUtils;
 
 import javax.annotation.Nonnull;
@@ -77,7 +77,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 	{
 		List<String> matches;
 		if (param instanceof ITabComplete)
-			matches = ((ITabComplete) param).getAlternatives((RunsafePlayer) executor, args[args.length - 1]);
+			matches = ((ITabComplete) param).getAlternatives((IPlayer) executor, args[args.length - 1]);
 
 		else
 		{

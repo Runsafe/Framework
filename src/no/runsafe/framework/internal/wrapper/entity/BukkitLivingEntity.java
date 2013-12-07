@@ -1,12 +1,11 @@
 package no.runsafe.framework.internal.wrapper.entity;
 
 import no.runsafe.framework.api.block.IBlock;
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.Buff;
 import no.runsafe.framework.minecraft.inventory.RunsafeEntityEquipment;
 import no.runsafe.framework.minecraft.RunsafeLocation;
-import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.LivingEntity;
@@ -166,7 +165,7 @@ public abstract class BukkitLivingEntity extends RunsafeEntity
 		livingEntity.setNoDamageTicks(i);
 	}
 
-	public RunsafePlayer getKiller()
+	public IPlayer getKiller()
 	{
 		return ObjectWrapper.convert((OfflinePlayer) livingEntity.getKiller());
 	}

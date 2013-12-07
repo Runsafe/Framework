@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.wrapper;
 
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventoryHolder;
@@ -63,7 +64,7 @@ public abstract class BukkitServer
 		return server.getAllowNether();
 	}
 
-	public List<RunsafePlayer> getBannedPlayers()
+	public List<IPlayer> getBannedPlayers()
 	{
 		return ObjectWrapper.convert(server.getBannedPlayers());
 	}
@@ -114,16 +115,16 @@ public abstract class BukkitServer
 	}
 
 	@Nullable
-	public RunsafePlayer getOfflinePlayerExact(String playerName)
+	public IPlayer getOfflinePlayerExact(String playerName)
 	{
 		if (playerName == null || playerName.isEmpty())
 			return null;
 		return new RunsafePlayer(server.getOfflinePlayer(playerName));
 	}
 
-	public List<RunsafePlayer> getOfflinePlayers()
+	public List<IPlayer> getOfflinePlayers()
 	{
-		return ObjectWrapper.convert(server.getOfflinePlayers());
+		return ObjectWrapper.convert((OfflinePlayer[]) server.getOfflinePlayers());
 	}
 
 	public boolean getOnlineMode()
@@ -131,12 +132,12 @@ public abstract class BukkitServer
 		return server.getOnlineMode();
 	}
 
-	public List<RunsafePlayer> getOnlinePlayers()
+	public List<IPlayer> getOnlinePlayers()
 	{
 		return ObjectWrapper.convert((OfflinePlayer[]) server.getOnlinePlayers());
 	}
 
-	public List<RunsafePlayer> getOperators()
+	public List<IPlayer> getOperators()
 	{
 		return ObjectWrapper.convert(server.getOperators());
 	}
@@ -181,13 +182,13 @@ public abstract class BukkitServer
 		return server.getViewDistance();
 	}
 
-	public List<RunsafePlayer> getWhitelistedPlayers()
+	public List<IPlayer> getWhitelistedPlayers()
 	{
 		return ObjectWrapper.convert(server.getWhitelistedPlayers());
 	}
 
 	@Nullable
-	public List<RunsafePlayer> matchPlayer(String playerName)
+	public List<IPlayer> matchPlayer(String playerName)
 	{
 		if (playerName == null || playerName.isEmpty())
 			return null;

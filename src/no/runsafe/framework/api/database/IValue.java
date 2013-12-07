@@ -1,7 +1,7 @@
 package no.runsafe.framework.api.database;
 
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.RunsafeWorld;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.joda.time.DateTime;
 
 public interface IValue extends IResult
@@ -12,6 +12,6 @@ public interface IValue extends IResult
 	Double Double();
 	Float Float();
 	DateTime DateTime();
-	RunsafePlayer Player();
+	IPlayer Player();
 	RunsafeWorld World();
 }
