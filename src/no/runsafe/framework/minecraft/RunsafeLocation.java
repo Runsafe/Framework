@@ -1,17 +1,15 @@
 package no.runsafe.framework.minecraft;
 
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.internal.packets.PacketHelper;
 import no.runsafe.framework.internal.wrapper.BukkitLocation;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
+import no.runsafe.framework.minecraft.packets.PacketWorldParticles;
+import no.runsafe.framework.minecraft.packets.WorldParticleOffset;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 
 @SuppressWarnings("NumericCastThatLosesPrecision")
 public class RunsafeLocation extends BukkitLocation
@@ -114,39 +112,19 @@ public class RunsafeLocation extends BukkitLocation
 
 	public void playEffect(WorldEffect effect, int speed, int amount, int range)
 	{
-		playEffect(effect, random.nextFloat(), random.nextFloat(), random.nextFloat(), speed, amount, range);
+		playEffect(effect, new WorldParticleOffset(), speed, amount, range);
 	}
 
-	public void playEffect(WorldEffect effect, float offsetX, float offsetY, float offsetZ, int speed, int amount, int range)
+	@SuppressWarnings("LocalVariableOfConcreteClass")
+	public void playEffect(WorldEffect effect, WorldParticleOffset offset, int speed, int amount, int range)
 	{
-		try
-		{
-			HashMap<String, Object> data = new HashMap<String, Object>(9);
-			data.put("a", effect.getName());
-			data.put("b", (float) getX());
-			data.put("c", (float) getY());
-			data.put("d", (float) getZ());
-			data.put("e", offsetX);
-			data.put("f", offsetY);
-			data.put("g", offsetZ);
-			data.put("h", speed);
-			data.put("i", amount);
-
-			Object packet = PacketHelper.stuffPacket(PacketHelper.getPacket("Packet63WorldParticles"), data);
-
-			for (IPlayer player : getPlayersInRange(range))
-					PacketHelper.sendPacket(player, packet);
-		}
-		catch (Exception e)
-		{
-			RunsafeServer.Instance.getDebugger().logException(e);
-		}
+		PacketWorldParticles packet = new PacketWorldParticles(effect, this, offset, speed, amount);
+		for (IPlayer player : getPlayersInRange(range))
+			packet.send(player);
 	}
 
 	public Vector toVector()
 	{
 		return location.toVector();
 	}
-
-	private final Random random = new Random();
 }
