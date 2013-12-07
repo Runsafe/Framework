@@ -36,6 +36,7 @@ public class RunsafeNetworkListener implements Runnable
 	@Override
 	public void run()
 	{
+		output.logInformation("RunsafeNetworkListener running.");
 		while (running)
 		{
 			try
