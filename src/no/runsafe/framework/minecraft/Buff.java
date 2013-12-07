@@ -1,10 +1,14 @@
 package no.runsafe.framework.minecraft;
 
+import no.runsafe.framework.api.entity.ILivingEntity;
 import no.runsafe.framework.internal.Minecraft;
-import no.runsafe.framework.minecraft.entity.RunsafeLivingEntity;
+import no.runsafe.framework.internal.wrapper.IWrapper;
+import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
+import no.runsafe.framework.minecraft.entity.LivingEntity;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+@SuppressWarnings("unchecked")
 public class Buff
 {
 	@SuppressWarnings("StaticVariableOfConcreteClass")
@@ -133,9 +137,9 @@ public class Buff
 		return this;
 	}
 
-	public Buff applyTo(RunsafeLivingEntity entity)
+	public Buff applyTo(ILivingEntity entity)
 	{
-		getEffect().apply(entity.getRaw());
+		getEffect().apply(ObjectUnwrapper.convert((IWrapper<org.bukkit.entity.LivingEntity>) entity));
 		return this;
 	}
 
