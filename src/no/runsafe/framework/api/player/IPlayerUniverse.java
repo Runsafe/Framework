@@ -10,6 +10,5 @@ public interface IPlayerUniverse
 	@Nullable
 	Universe getUniverse();
 	boolean isInUniverse(String universeName);
-	RunsafeWorld getWorld();
 	String getWorldName();
 }

@@ -3,13 +3,14 @@ package no.runsafe.framework.minecraft.entity;
 import no.runsafe.framework.internal.wrapper.entity.BukkitEntity;
 import org.bukkit.entity.Entity;
 
-public class RunsafeEntity extends BukkitEntity
+public class RunsafeEntity extends BukkitEntity implements no.runsafe.framework.api.entity.IEntity
 {
 	public RunsafeEntity(Entity toWrap)
 	{
 		super(toWrap);
 	}
 
+	@Override
 	public void strikeWithLightning(boolean effectOnly)
 	{
 		if (effectOnly)
@@ -18,6 +19,7 @@ public class RunsafeEntity extends BukkitEntity
 			entity.getWorld().strikeLightning(entity.getLocation());
 	}
 
+	@Override
 	public void explode(float power, boolean setFire, boolean breakBlocks)
 	{
 		entity.getWorld().createExplosion(

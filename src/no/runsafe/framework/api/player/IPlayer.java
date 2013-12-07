@@ -1,9 +1,10 @@
 package no.runsafe.framework.api.player;
 
+import no.runsafe.framework.api.entity.ILivingEntity;
 import no.runsafe.framework.api.minecraft.IAnimalTamer;
 
 public interface IPlayer extends
-	IServerOperator, IAnimalTamer, IPlayerGameplay, IPlayerInventory, IPlayerKinematics,
+	ILivingEntity, IServerOperator, IAnimalTamer, IPlayerGameplay, IPlayerInventory, IPlayerKinematics,
 	IPlayerPermissions, IPlayerControl, IPlayerVisibility, IPlayerUniverse, IPlayerNotification
 {
 	String getPrettyName();

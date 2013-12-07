@@ -16,7 +16,7 @@ import org.bukkit.util.Vector;
 import javax.annotation.Nullable;
 import java.util.HashSet;
 
-public class RunsafeLivingEntity extends BukkitLivingEntity
+public class RunsafeLivingEntity extends BukkitLivingEntity implements no.runsafe.framework.api.entity.ILivingEntity
 {
 	public static final int MAX_DISTANCE = 300;
 
@@ -25,6 +25,7 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 		super(toWrap);
 	}
 
+	@Override
 	public IBlock getTarget()
 	{
 		HashSet<Byte> transparent = new HashSet<Byte>(10);
@@ -40,6 +41,7 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 		return Fire(EntityType.fromName(projectileType).getEntityClass());
 	}
 
+	@Override
 	public RunsafeEntity Fire(ProjectileEntity projectileType)
 	{
 		return Fire(projectileType.getEntityType());
@@ -50,11 +52,13 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 		return Launch(EntityType.fromName(entityType).getEntityClass());
 	}
 
+	@Override
 	public RunsafeEntity Launch(RunsafeEntityType entityType)
 	{
 		return Launch(entityType.getEntityType());
 	}
 
+	@Override
 	public void removeBuffs()
 	{
 		if (livingEntity != null)

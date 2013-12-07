@@ -1,14 +1,15 @@
 package no.runsafe.framework.internal.wrapper.entity;
 
+import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.internal.wrapper.IWrapper;
+import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.entity.EntityType;
-import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageByEntityEvent;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent;
 import org.bukkit.Chunk;
@@ -21,6 +22,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
+@SuppressWarnings("unchecked")
 public abstract class BukkitEntity extends BukkitMetadata
 {
 	protected BukkitEntity(Entity toWrap)
@@ -61,13 +63,13 @@ public abstract class BukkitEntity extends BukkitMetadata
 		return entity.teleport(location.getRaw());
 	}
 
-	public boolean teleport(RunsafeEntity entity)
+	public boolean teleport(IEntity entity)
 	{
 		dismountBeforeTeleport();
-		return this.entity.teleport(entity.getRaw());
+		return this.entity.teleport(ObjectUnwrapper.convert((IWrapper<Entity>)entity));
 	}
 
-	public List<RunsafeEntity> getNearbyEntities(double x, double y, double z)
+	public List<IEntity> getNearbyEntities(double x, double y, double z)
 	{
 		return ObjectWrapper.convert(entity.getNearbyEntities(x, y, z));
 	}
@@ -108,16 +110,16 @@ public abstract class BukkitEntity extends BukkitMetadata
 	}
 
 	@Nullable
-	public RunsafeEntity getPassenger()
+	public IEntity getPassenger()
 	{
 		if (entity == null)
 			return null;
 		return ObjectWrapper.convert(entity.getPassenger());
 	}
 
-	public boolean setPassenger(RunsafeEntity entity)
+	public boolean setPassenger(IEntity entity)
 	{
-		return this.entity.setPassenger(entity.getRaw());
+		return this.entity.setPassenger(ObjectUnwrapper.convert((IWrapper<Entity>) entity));
 	}
 
 	public boolean isEmpty()
@@ -180,7 +182,7 @@ public abstract class BukkitEntity extends BukkitMetadata
 		return entity.leaveVehicle();
 	}
 
-	public RunsafeEntity getVehicle()
+	public IEntity getVehicle()
 	{
 		return ObjectWrapper.convert(entity.getVehicle());
 	}
