@@ -46,6 +46,11 @@ public final class EntityType
 		return convert(org.bukkit.entity.EntityType.fromId(id));
 	}
 
+	public static RunsafeEntityType Get(String name)
+	{
+		return convert(org.bukkit.entity.EntityType.valueOf(name));
+	}
+
 	private static final Map<org.bukkit.entity.EntityType, RunsafeEntityType> types =
 		new EnumMap<org.bukkit.entity.EntityType, RunsafeEntityType>(org.bukkit.entity.EntityType.class);
 }
