@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.wrapper;
 
+import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.minecraft.RunsafeWorld;
-import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
@@ -94,7 +94,7 @@ public abstract class BukkitLocation
 		return ObjectWrapper.convert(location.getChunk());
 	}
 
-	public RunsafeBlock getBlock()
+	public IBlock getBlock()
 	{
 		return ObjectWrapper.convert(location.getBlock());
 	}

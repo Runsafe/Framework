@@ -1,10 +1,10 @@
 package no.runsafe.framework.internal.wrapper.player;
 
+import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.minecraft.IAnimalTamer;
 import no.runsafe.framework.api.minecraft.IInventoryHolder;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.RunsafeLocation;
-import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import no.runsafe.framework.minecraft.entity.RunsafeLivingEntity;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
 import no.runsafe.framework.minecraft.inventory.RunsafePlayerInventory;
@@ -113,9 +113,9 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 			player.setLevel(level);
 	}
 
-	public void sendBlockChange(RunsafeBlock block, byte data)
+	public void sendBlockChange(IBlock block, byte data)
 	{
-		sendBlockChange(block.getLocation(), block.getTypeId(), data);
+		sendBlockChange(block.getLocation(), block.getMaterial().getTypeID(), data);
 	}
 
 	public void sendBlockChange(RunsafeLocation location, int itemId, byte data)

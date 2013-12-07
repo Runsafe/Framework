@@ -1,7 +1,7 @@
 package no.runsafe.framework.minecraft.event.enchantment;
 
+import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import no.runsafe.framework.minecraft.enchantment.RunsafeEnchantment;
 import no.runsafe.framework.minecraft.event.inventory.RunsafeCancellableInventoryEvent;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
@@ -26,7 +26,7 @@ public class RunsafeEnchantItemEvent extends RunsafeCancellableInventoryEvent
 		return ObjectWrapper.convert((OfflinePlayer) event.getEnchanter());
 	}
 
-	public RunsafeBlock getEnchantBlock()
+	public IBlock getEnchantBlock()
 	{
 		return ObjectWrapper.convert(event.getEnchantBlock());
 	}

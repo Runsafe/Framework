@@ -1,5 +1,6 @@
 package no.runsafe.framework.minecraft.block;
 
+import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.internal.wrapper.block.BukkitBlock;
 import no.runsafe.framework.minecraft.Item;
 import org.bukkit.Material;
@@ -8,7 +9,7 @@ import org.bukkit.block.Block;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class RunsafeBlock extends BukkitBlock implements no.runsafe.framework.api.block.IBlock
+public class RunsafeBlock extends BukkitBlock implements IBlock
 {
 	public RunsafeBlock(Block toWrap)
 	{

@@ -1,7 +1,7 @@
 package no.runsafe.framework.api.event.block;
 
+import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.event.IRunsafeEvent;
-import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 
 public interface IBlockBreak extends IRunsafeEvent
@@ -13,5 +13,5 @@ public interface IBlockBreak extends IRunsafeEvent
 	 * @param block  The block which was broken
 	 * @return If not an async event, whether to allow the event
 	 */
-	boolean OnBlockBreak(RunsafePlayer player, RunsafeBlock block);
+	boolean OnBlockBreak(RunsafePlayer player, IBlock block);
 }

@@ -5,7 +5,7 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.List;
 
-public class BukkitMetadata
+public class BukkitMetadata implements no.runsafe.framework.api.metadata.IMetadata
 {
 	public BukkitMetadata(Metadatable toWrap)
 	{
@@ -22,6 +22,7 @@ public class BukkitMetadata
 		return BukkitMetadataValue.convert(meta.getMetadata(s));
 	}
 
+	@Override
 	public boolean hasMetadata(String s)
 	{
 		return meta.hasMetadata(s);

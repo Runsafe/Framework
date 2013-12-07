@@ -14,6 +14,11 @@ public abstract class BukkitDropper extends RunsafeBlockState implements IInvent
 		dropper = toWrap;
 	}
 
+	public void drop()
+	{
+		dropper.drop();
+	}
+
 	@Override
 	public Dropper getRaw()
 	{

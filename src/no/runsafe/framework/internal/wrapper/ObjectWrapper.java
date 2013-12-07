@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.wrapper;
 
+import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.minecraft.IAnimalTamer;
 import no.runsafe.framework.api.minecraft.IInventoryHolder;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;

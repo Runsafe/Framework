@@ -1,8 +1,8 @@
 package no.runsafe.framework.minecraft.event.player;
 
-import no.runsafe.framework.minecraft.block.RunsafeBlock;
-import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
+import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
+import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class RunsafePlayerClickEvent extends RunsafeCancellablePlayerEvent
@@ -13,7 +13,7 @@ public class RunsafePlayerClickEvent extends RunsafeCancellablePlayerEvent
 		event = toWrap;
 	}
 
-	public RunsafeBlock getBlock()
+	public IBlock getBlock()
 	{
 		return ObjectWrapper.convert(event.getClickedBlock());
 	}

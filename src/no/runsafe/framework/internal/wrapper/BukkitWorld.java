@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.wrapper;
 
+import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.minecraft.Sound;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.block.RunsafeBlock;
@@ -31,14 +32,14 @@ public abstract class BukkitWorld extends BukkitMetadata
 		return world.getName();
 	}
 
-	public RunsafeBlock getBlockAt(RunsafeLocation location)
+	public IBlock getBlockAt(RunsafeLocation location)
 	{
-		return new RunsafeBlock(world.getBlockAt(location.getRaw()));
+		return ObjectWrapper.convert(world.getBlockAt(location.getRaw()));
 	}
 
-	public RunsafeBlock getBlockAt(int x, int y, int z)
+	public IBlock getBlockAt(int x, int y, int z)
 	{
-		return new RunsafeBlock(world.getBlockAt(x, y, z));
+		return ObjectWrapper.convert(world.getBlockAt(x, y, z));
 	}
 
 	public int getBlockTypeIdAt(RunsafeLocation location)

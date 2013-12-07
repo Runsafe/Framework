@@ -1,7 +1,7 @@
 package no.runsafe.framework.api.event.block;
 
+import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.event.IRunsafeEvent;
-import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 
 public interface IBlockDispense extends IRunsafeEvent
@@ -13,5 +13,5 @@ public interface IBlockDispense extends IRunsafeEvent
 	 * @param item  The item being dispensed
 	 * @return If not an async event, whether to allow the event
 	 */
-	boolean OnBlockDispense(RunsafeBlock block, RunsafeMeta item);
+	boolean OnBlockDispense(IBlock block, RunsafeMeta item);
 }

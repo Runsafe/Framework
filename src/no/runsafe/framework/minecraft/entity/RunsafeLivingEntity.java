@@ -1,10 +1,10 @@
 package no.runsafe.framework.minecraft.entity;
 
+import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.entity.BukkitLivingEntity;
 import no.runsafe.framework.internal.wrapper.entity.BukkitProjectile;
-import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -25,7 +25,7 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 		super(toWrap);
 	}
 
-	public RunsafeBlock getTarget()
+	public IBlock getTarget()
 	{
 		HashSet<Byte> transparent = new HashSet<Byte>(10);
 		for (Material material : Material.values())

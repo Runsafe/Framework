@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.wrapper.entity;
 
+import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.minecraft.Buff;
 import no.runsafe.framework.minecraft.inventory.RunsafeEntityEquipment;
 import no.runsafe.framework.minecraft.RunsafeLocation;
@@ -72,17 +73,17 @@ public abstract class BukkitLivingEntity extends RunsafeEntity
 		return ObjectWrapper.convert(livingEntity.getEyeLocation());
 	}
 
-	public List<RunsafeBlock> getLineOfSight(HashSet<Byte> transparent, int maxDistance)
+	public List<IBlock> getLineOfSight(HashSet<Byte> transparent, int maxDistance)
 	{
 		return ObjectWrapper.convert(livingEntity.getLineOfSight(transparent, maxDistance));
 	}
 
-	public RunsafeBlock getTargetBlock(HashSet<Byte> transparent, int maxDistance)
+	public IBlock getTargetBlock(HashSet<Byte> transparent, int maxDistance)
 	{
 		return ObjectWrapper.convert(livingEntity.getTargetBlock(transparent, maxDistance));
 	}
 
-	public List<RunsafeBlock> getLastTwoTargetBlocks(HashSet<Byte> transparent, int maxDistance)
+	public List<IBlock> getLastTwoTargetBlocks(HashSet<Byte> transparent, int maxDistance)
 	{
 		return ObjectWrapper.convert(livingEntity.getLastTwoTargetBlocks(transparent, maxDistance));
 	}

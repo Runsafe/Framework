@@ -1,8 +1,8 @@
 package no.runsafe.framework.minecraft;
 
+import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.minecraft.IEnchant;
 import no.runsafe.framework.api.minecraft.IEnchantable;
-import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.minecraft.entity.RunsafeItem;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
@@ -26,7 +26,7 @@ public class Item implements IEnchantable
 	}
 
 	@Nullable
-	public static Item get(RunsafeBlock block)
+	public static Item get(IBlock block)
 	{
 		return block == null ? null : block.getMaterial();
 	}
@@ -1029,9 +1029,9 @@ public class Item implements IEnchantable
 		return location.getWorld().dropItem(location, stack);
 	}
 
-	public RunsafeBlock Place(RunsafeLocation location)
+	public IBlock Place(RunsafeLocation location)
 	{
-		location.getBlock().setTypeId(getTypeID());
+		location.getBlock().set(this);
 		return location.getBlock();
 	}
 

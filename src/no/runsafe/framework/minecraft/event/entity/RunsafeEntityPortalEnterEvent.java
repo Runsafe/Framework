@@ -1,8 +1,8 @@
 package no.runsafe.framework.minecraft.event.entity;
 
+import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.RunsafeLocation;
-import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import org.bukkit.event.entity.EntityPortalEnterEvent;
 
 public class RunsafeEntityPortalEnterEvent extends RunsafeEntityEvent
@@ -18,7 +18,7 @@ public class RunsafeEntityPortalEnterEvent extends RunsafeEntityEvent
 		return ObjectWrapper.convert(event.getLocation());
 	}
 
-	public RunsafeBlock getBlock()
+	public IBlock getBlock()
 	{
 		return getLocation().getBlock();
 	}

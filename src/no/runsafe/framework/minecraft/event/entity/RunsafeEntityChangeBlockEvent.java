@@ -1,8 +1,8 @@
 package no.runsafe.framework.minecraft.event.entity;
 
+import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.Item;
-import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 
 public class RunsafeEntityChangeBlockEvent extends RunsafeCancellableEntityEvent
@@ -13,7 +13,7 @@ public class RunsafeEntityChangeBlockEvent extends RunsafeCancellableEntityEvent
 		event = toWrap;
 	}
 
-	public RunsafeBlock getBlock()
+	public IBlock getBlock()
 	{
 		return ObjectWrapper.convert(event.getBlock());
 	}

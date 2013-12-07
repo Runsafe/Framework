@@ -3,10 +3,10 @@ package no.runsafe.framework.minecraft.entity;
 import net.minecraft.server.v1_6_R3.EntityArrow;
 import net.minecraft.server.v1_6_R3.IProjectile;
 import net.minecraft.server.v1_6_R3.NBTTagCompound;
+import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.entity.BukkitProjectile;
 import no.runsafe.framework.minecraft.RunsafeWorld;
-import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.entity.Projectile;
 
@@ -21,7 +21,7 @@ public class RunsafeProjectile extends BukkitProjectile
 
 	@SuppressWarnings("LocalVariableOfConcreteClass")
 	@Nullable
-	public RunsafeBlock getImpaledBlock()
+	public IBlock getImpaledBlock()
 	{
 		IProjectile minecraftProjectile = ObjectUnwrapper.convert(this);
 		RunsafeWorld world = getWorld();

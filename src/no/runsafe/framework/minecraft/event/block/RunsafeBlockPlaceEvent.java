@@ -1,7 +1,7 @@
 package no.runsafe.framework.minecraft.event.block;
 
+import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -26,17 +26,17 @@ public class RunsafeBlockPlaceEvent extends RunsafeCancellableBlockEvent
 	}
 
 	@Override
-	public RunsafeBlock getBlock()
+	public IBlock getBlock()
 	{
 		return ObjectWrapper.convert(event.getBlock());
 	}
 
-	public RunsafeBlock getBlockAgainst()
+	public IBlock getBlockAgainst()
 	{
 		return ObjectWrapper.convert(event.getBlockAgainst());
 	}
 
-	public RunsafeBlock getBlockPlaced()
+	public IBlock getBlockPlaced()
 	{
 		return ObjectWrapper.convert(event.getBlockPlaced());
 	}
