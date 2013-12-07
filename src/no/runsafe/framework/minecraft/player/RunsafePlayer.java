@@ -332,14 +332,6 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor, IPl
 	}
 
 	@Override
-	@Deprecated
-	public void sendColouredMessage(String message)
-	{
-		if (message != null)
-			sendMessage(ChatColour.ToMinecraft(message));
-	}
-
-	@Override
 	public void sendColouredMessage(String format, Object... params)
 	{
 		if (format != null)

@@ -25,12 +25,6 @@ public class RunsafeConsole implements ICommandExecutor
 	}
 
 	@Override
-	public void sendColouredMessage(String message)
-	{
-		output.writeColoured(message, Level.INFO);
-	}
-
-	@Override
 	public void sendColouredMessage(String format, Object... params)
 	{
 		output.writeColoured(format, Level.INFO, params);
