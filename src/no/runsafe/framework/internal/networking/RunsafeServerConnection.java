@@ -10,40 +10,44 @@ import java.net.InetAddress;
 
 public class RunsafeServerConnection extends ServerConnection
 {
-	public RunsafeServerConnection(MinecraftServer server, InetAddress address, int i, IOutput output) throws IOException
+	public RunsafeServerConnection(MinecraftServer server, InetAddress address, int port, IOutput output) throws IOException
 	{
 		super(server);
-		thread = new RunsafeServerConnectionThread(this, address, i, output);
-		thread.start();
+
+		listener = new RunsafeNetworkListener(server, output, address, port); // Create a new listener.
+		new Thread(listener).start(); // Create a thread for our listener and start it.
 	}
 
+	public void stop()
+	{
+		listener.stopRunning(); // Force the listener to stop.
+	}
+
+	@Override
 	public void a()
 	{
 		super.a();
-		thread.b();
-		thread.interrupt();
+		stop(); // Hammer-time.
 	}
 
+	@Override
 	public void b()
 	{
-		thread.a();
+		listener.processConnections(); // Check over our connections.
 		super.b();
 	}
 
-	public DedicatedServer c()
+	// Why is this .. ?
+	public DedicatedServer getDedicatedServer()
 	{
 		return (DedicatedServer) super.d();
 	}
 
-	public void a(InetAddress address)
-	{
-		thread.a(address);
-	}
-
+	@Override
 	public MinecraftServer d()
 	{
-		return c();
+		return getDedicatedServer();
 	}
 
-	private final RunsafeServerConnectionThread thread;
+	private final RunsafeNetworkListener listener;
 }
