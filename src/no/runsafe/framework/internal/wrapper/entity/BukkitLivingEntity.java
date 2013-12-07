@@ -1,13 +1,16 @@
 package no.runsafe.framework.internal.wrapper.entity;
 
 import no.runsafe.framework.api.block.IBlock;
+import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.minecraft.Buff;
 import no.runsafe.framework.minecraft.inventory.RunsafeEntityEquipment;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 
 import java.util.HashSet;
@@ -118,13 +121,13 @@ public abstract class BukkitLivingEntity extends RunsafeEntity
 		livingEntity.damage(damage);
 	}
 
-	public void damage(double damage, RunsafeEntity source)
+	public void damage(double damage, IEntity source)
 	{
-		livingEntity.damage(damage, source.getRaw());
+		livingEntity.damage(damage, (Entity)ObjectUnwrapper.convert(source));
 	}
 
 	@Deprecated
-	public void damage(int damage, RunsafeEntity source)
+	public void damage(int damage, IEntity source)
 	{
 		damage((double) damage, source);
 	}

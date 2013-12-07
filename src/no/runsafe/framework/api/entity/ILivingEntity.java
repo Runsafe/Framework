@@ -52,7 +52,7 @@ public interface ILivingEntity extends IEntity
 
 	void damage(double damage);
 
-	void damage(double damage, RunsafeEntity source);
+	void damage(double damage, IEntity source);
 
 	int getMaximumNoDamageTicks();
 

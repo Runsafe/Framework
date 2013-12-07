@@ -1,6 +1,7 @@
 package no.runsafe.framework.minecraft.entity;
 
 import no.runsafe.framework.api.block.IBlock;
+import no.runsafe.framework.api.entity.ILivingEntity;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.entity.BukkitLivingEntity;
@@ -16,7 +17,7 @@ import org.bukkit.util.Vector;
 import javax.annotation.Nullable;
 import java.util.HashSet;
 
-public class RunsafeLivingEntity extends BukkitLivingEntity implements no.runsafe.framework.api.entity.ILivingEntity
+public class RunsafeLivingEntity extends BukkitLivingEntity implements ILivingEntity
 {
 	public static final int MAX_DISTANCE = 300;
 
