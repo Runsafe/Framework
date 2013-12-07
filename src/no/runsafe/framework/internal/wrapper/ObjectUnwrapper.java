@@ -49,6 +49,12 @@ public final class ObjectUnwrapper
 		return ((CraftWorld) world.getRaw()).getHandle();
 	}
 
+	@SuppressWarnings("unchecked")
+	public static <T> T convert(Object wrapper)
+	{
+		return ((IWrapper<T>)wrapper).getRaw();
+	}
+
 	public static <T extends Object> T convert(IWrapper<T> wrapper)
 	{
 		return wrapper.getRaw();

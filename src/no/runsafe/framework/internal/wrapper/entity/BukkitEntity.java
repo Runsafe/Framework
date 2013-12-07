@@ -2,7 +2,6 @@ package no.runsafe.framework.internal.wrapper.entity;
 
 import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
-import no.runsafe.framework.internal.wrapper.IWrapper;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
@@ -22,7 +21,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-@SuppressWarnings("unchecked")
 public abstract class BukkitEntity extends BukkitMetadata
 {
 	protected BukkitEntity(Entity toWrap)
@@ -66,7 +64,7 @@ public abstract class BukkitEntity extends BukkitMetadata
 	public boolean teleport(IEntity entity)
 	{
 		dismountBeforeTeleport();
-		return this.entity.teleport(ObjectUnwrapper.convert((IWrapper<Entity>)entity));
+		return this.entity.teleport((Entity) ObjectUnwrapper.convert(entity));
 	}
 
 	public List<IEntity> getNearbyEntities(double x, double y, double z)
@@ -119,7 +117,7 @@ public abstract class BukkitEntity extends BukkitMetadata
 
 	public boolean setPassenger(IEntity entity)
 	{
-		return this.entity.setPassenger(ObjectUnwrapper.convert((IWrapper<Entity>) entity));
+		return this.entity.setPassenger((Entity) ObjectUnwrapper.convert(entity));
 	}
 
 	public boolean isEmpty()
