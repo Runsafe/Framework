@@ -16,7 +16,7 @@ public abstract class BukkitBlock extends BukkitMetadata
 		block = toWrap;
 	}
 
-	public int getData()
+	public byte getData()
 	{
 		return block.getData();
 	}
