@@ -1,16 +1,11 @@
 package no.runsafe.framework.internal.wrapper;
 
-import net.minecraft.server.v1_6_R3.Entity;
-import net.minecraft.server.v1_6_R3.EntityPlayer;
-import net.minecraft.server.v1_6_R3.IProjectile;
-import net.minecraft.server.v1_6_R3.World;
-import net.minecraft.v1_6_R3.org.bouncycastle.jcajce.provider.asymmetric.ec.SignatureSpi;
+import net.minecraft.server.v1_6_R3.*;
 import no.runsafe.framework.internal.wrapper.player.BukkitPlayer;
-import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.minecraft.entity.RunsafeProjectile;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
-import org.bukkit.OfflinePlayer;
+import org.bukkit.*;
 import org.bukkit.craftbukkit.v1_6_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_6_R3.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_6_R3.entity.CraftPlayer;
@@ -44,11 +39,6 @@ public final class ObjectUnwrapper
 	public static IProjectile convert(RunsafeProjectile projectile)
 	{
 		return ((CraftProjectile) projectile.getRaw()).getHandle();
-	}
-
-	public static World convert(RunsafeWorld world)
-	{
-		return ((CraftWorld) world.getRaw()).getHandle();
 	}
 
 	@SuppressWarnings("unchecked")

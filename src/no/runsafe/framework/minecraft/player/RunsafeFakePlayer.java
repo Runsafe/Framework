@@ -1,11 +1,11 @@
 package no.runsafe.framework.minecraft.player;
 
 import com.google.common.collect.ImmutableList;
+import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.hook.IPlayerPermissions;
 import no.runsafe.framework.api.player.IFakePlayer;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.HookEngine;
-import no.runsafe.framework.minecraft.RunsafeWorld;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -103,13 +103,13 @@ public class RunsafeFakePlayer extends RunsafePlayer implements IFakePlayer
 	}
 
 	@Override
-	public RunsafeWorld getWorld()
+	public IWorld getWorld()
 	{
 		return world;
 	}
 
 	@Override
-	public void setWorld(RunsafeWorld world)
+	public void setWorld(IWorld world)
 	{
 		this.world = world;
 	}
@@ -117,5 +117,5 @@ public class RunsafeFakePlayer extends RunsafePlayer implements IFakePlayer
 	private final String name;
 	private final ImmutableList<String> groups;
 	private boolean isOp;
-	private RunsafeWorld world;
+	private IWorld world;
 }

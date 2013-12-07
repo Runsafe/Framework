@@ -2,9 +2,9 @@ package no.runsafe.framework.internal.configuration;
 
 import no.runsafe.framework.api.IConfiguration;
 import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeServer;
-import no.runsafe.framework.minecraft.RunsafeWorld;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -158,7 +158,7 @@ public final class Configuration implements IConfiguration
 	}
 
 	@Override
-	public RunsafeWorld getConfigValueAsWorld(String key)
+	public IWorld getConfigValueAsWorld(String key)
 	{
 		return RunsafeServer.Instance.getWorld(getConfigValueAsString(key));
 	}
@@ -177,7 +177,7 @@ public final class Configuration implements IConfiguration
 
 		if (section.contains("world") && section.contains("x") && section.contains("y") && section.contains("z"))
 		{
-			RunsafeWorld world = getConfigValueAsWorld(key + ".world");
+			IWorld world = getConfigValueAsWorld(key + ".world");
 			if (world == null)
 				return null;
 

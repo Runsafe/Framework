@@ -18,6 +18,7 @@ import org.bukkit.entity.Player;
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  * This class sits between bukkit and the command objects, routing the commands through to the framework objects.
@@ -89,7 +90,7 @@ public final class BukkitCommandTabExecutor implements TabExecutor
 				if (sender instanceof Player)
 					sender.sendMessage(ChatColour.ToMinecraft(feedback));
 				else
-					RunsafeServer.Instance.getDebugger().writeColoured(feedback);
+					RunsafeServer.Instance.getDebugger().writeColoured(feedback, Level.INFO);
 			}
 		}
 		else

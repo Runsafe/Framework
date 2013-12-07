@@ -1,9 +1,9 @@
 package no.runsafe.framework.api.lua;
 
+import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeServer;
-import no.runsafe.framework.minecraft.RunsafeWorld;
 import org.luaj.vm2.LuaError;
 import org.luaj.vm2.LuaValue;
 
@@ -75,9 +75,9 @@ public class FunctionParameters
 		return player;
 	}
 
-	public RunsafeWorld getWorld(int index)
+	public IWorld getWorld(int index)
 	{
-		RunsafeWorld world = RunsafeServer.Instance.getWorld(getString(index));
+		IWorld world = RunsafeServer.Instance.getWorld(getString(index));
 		if (world == null)
 			throw new LuaError(String.format("CommandArgumentSpecification %s at index %d is not a valid world.", getString(index), index));
 

@@ -1,9 +1,10 @@
 package no.runsafe.framework.minecraft.entity;
 
+import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.internal.wrapper.entity.BukkitEntity;
 import org.bukkit.entity.Entity;
 
-public class RunsafeEntity extends BukkitEntity implements no.runsafe.framework.api.entity.IEntity
+public class RunsafeEntity extends BukkitEntity implements IEntity
 {
 	public RunsafeEntity(Entity toWrap)
 	{

@@ -148,8 +148,8 @@ public class FireworkBuilder
 
 	public void Fire(RunsafeLocation location)
 	{
-		org.bukkit.entity.Firework firework = location.getWorld().getRaw()
-			.spawn(location.getRaw(), org.bukkit.entity.Firework.class);
+		org.bukkit.entity.Firework firework =
+			((RunsafeWorld)location.getWorld()).spawn(location, org.bukkit.entity.Firework.class);
 		firework.getFireworkMeta().setPower(power);
 		if (!effects.isEmpty())
 			firework.getFireworkMeta().addEffects(effects);

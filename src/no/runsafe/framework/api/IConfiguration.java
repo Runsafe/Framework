@@ -1,7 +1,6 @@
 package no.runsafe.framework.api;
 
 import no.runsafe.framework.minecraft.RunsafeLocation;
-import no.runsafe.framework.minecraft.RunsafeWorld;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -89,9 +88,9 @@ public interface IConfiguration
 
 	/**
 	 * @param path The configuration key
-	 * @return The RunsafeWorld with the matching name for the value.
+	 * @return The IWorld with the matching name for the value.
 	 */
-	RunsafeWorld getConfigValueAsWorld(String key);
+	IWorld getConfigValueAsWorld(String key);
 
 	/**
 	 * @param path The configuration path.

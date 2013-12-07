@@ -1,9 +1,9 @@
 package no.runsafe.framework.internal.database;
 
+import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeServer;
-import no.runsafe.framework.minecraft.RunsafeWorld;
 import org.joda.time.DateTime;
 
 import javax.annotation.Nullable;
@@ -140,7 +140,7 @@ final class DataConverter
 	@Nullable
 	static RunsafeLocation Location(Object world, Object x, Object y, Object z, Object yaw, Object pitch)
 	{
-		RunsafeWorld targetWorld = World(world);
+		IWorld targetWorld = World(world);
 		if (targetWorld == null)
 			return null;
 
@@ -154,7 +154,7 @@ final class DataConverter
 	}
 
 	@Nullable
-	static RunsafeWorld World(Object value)
+	static IWorld World(Object value)
 	{
 		if (value == null)
 			return null;

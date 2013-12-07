@@ -1,6 +1,7 @@
 package no.runsafe.framework.minecraft;
 
 import com.google.common.collect.Lists;
+import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.hook.IUniverseMapper;
 import no.runsafe.framework.internal.HookEngine;
 
@@ -21,10 +22,10 @@ public class Universe
 	}
 
 	@SuppressWarnings("MethodWithMultipleLoops")
-	public List<RunsafeWorld> getWorlds()
+	public List<IWorld> getWorlds()
 	{
 		List<IUniverseMapper> dataHooks = HookEngine.hookContainer.getComponents(IUniverseMapper.class);
-		Map<String, RunsafeWorld> worlds = new HashMap<String, RunsafeWorld>(RunsafeServer.Instance.getWorlds().size());
+		Map<String, IWorld> worlds = new HashMap<String, IWorld>(RunsafeServer.Instance.getWorlds().size());
 		for (IUniverseMapper mapper : dataHooks)
 		{
 			for (String world : mapper.GetWorlds(name))

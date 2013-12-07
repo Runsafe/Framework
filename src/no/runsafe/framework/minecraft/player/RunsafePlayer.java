@@ -1,6 +1,7 @@
 package no.runsafe.framework.minecraft.player;
 
 import com.google.common.collect.ImmutableList;
+import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.hook.*;
 import no.runsafe.framework.api.player.IPlayer;
@@ -103,7 +104,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor, IPl
 	}
 
 	@Override
-	public void teleport(RunsafeWorld world, double x, double y, double z)
+	public void teleport(IWorld world, double x, double y, double z)
 	{
 		RunsafeLocation target = new RunsafeLocation(world, x, y, z);
 		RunsafeChunk chunk = target.getChunk();
@@ -310,7 +311,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor, IPl
 	@Nullable
 	public Universe getUniverse()
 	{
-		RunsafeWorld world = getWorld();
+		IWorld world = getWorld();
 		return world == null ? null : world.getUniverse();
 	}
 
@@ -366,7 +367,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor, IPl
 	@Override
 	public String getWorldName()
 	{
-		RunsafeWorld world = getWorld();
+		IWorld world = getWorld();
 		if (world != null)
 			return world.getName();
 

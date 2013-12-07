@@ -1,10 +1,10 @@
 package no.runsafe.framework.internal.wrapper;
 
 import no.runsafe.framework.api.block.IBlock;
+import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.Sound;
 import no.runsafe.framework.minecraft.RunsafeLocation;
-import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.minecraft.entity.RunsafeFallingBlock;
 import no.runsafe.framework.minecraft.entity.RunsafeItem;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
@@ -93,12 +93,12 @@ public abstract class BukkitWorld extends BukkitMetadata implements IWrapper<Wor
 		return world.getMaxHeight();
 	}
 
-	public RunsafeEntity spawnCreature(RunsafeLocation location, String type)
+	public IEntity spawnCreature(RunsafeLocation location, String type)
 	{
 		return ObjectWrapper.convert(world.spawnEntity(location.getRaw(), EntityType.fromName(type)));
 	}
 
-	public RunsafeEntity spawnCreature(RunsafeLocation location, int id)
+	public IEntity spawnCreature(RunsafeLocation location, int id)
 	{
 		return ObjectWrapper.convert(world.spawnEntity(location.getRaw(), EntityType.fromId(id)));
 	}
@@ -113,7 +113,7 @@ public abstract class BukkitWorld extends BukkitMetadata implements IWrapper<Wor
 		return ObjectWrapper.convert(world.getPlayers());
 	}
 
-	public List<RunsafeEntity> getEntities()
+	public List<IEntity> getEntities()
 	{
 		return ObjectWrapper.convert(world.getEntities());
 	}

@@ -3,6 +3,7 @@ package no.runsafe.framework.minecraft.entity;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.RunsafeLocation;
+import no.runsafe.framework.minecraft.RunsafeWorld;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 
@@ -65,7 +66,7 @@ public enum PassiveEntity implements RunsafeEntityType
 	@Override
 	public RunsafeEntity spawn(RunsafeLocation location)
 	{
-		return ObjectWrapper.convert(location.getWorld().spawn(location, type.getEntityClass()));
+		return ObjectWrapper.convert(((RunsafeWorld)location.getWorld()).spawn(location, type.getEntityClass()));
 	}
 
 	private final EntityType type;

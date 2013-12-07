@@ -2,9 +2,9 @@ package no.runsafe.framework.api.command.argument;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
+import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.RunsafeServer;
-import no.runsafe.framework.minecraft.RunsafeWorld;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -39,13 +39,13 @@ public class WorldArgument extends CommandArgumentSpecification implements ITabC
 	{
 		return Lists.transform(
 			RunsafeServer.Instance.getWorlds(),
-			new Function<RunsafeWorld, String>()
+			new Function<IWorld, String>()
 			{
 				@Override
-				public String apply(@Nullable RunsafeWorld runsafeWorld)
+				public String apply(@Nullable IWorld IWorld)
 				{
-					assert runsafeWorld != null;
-					return runsafeWorld.getName();
+					assert IWorld != null;
+					return IWorld.getName();
 				}
 			}
 		);

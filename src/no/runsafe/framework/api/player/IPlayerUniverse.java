@@ -1,6 +1,5 @@
 package no.runsafe.framework.api.player;
 
-import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.Universe;
 
 import javax.annotation.Nullable;

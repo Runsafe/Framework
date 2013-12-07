@@ -4,7 +4,6 @@ import no.runsafe.framework.api.entity.ILivingEntity;
 import no.runsafe.framework.internal.Minecraft;
 import no.runsafe.framework.internal.wrapper.IWrapper;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
-import no.runsafe.framework.minecraft.entity.LivingEntity;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 

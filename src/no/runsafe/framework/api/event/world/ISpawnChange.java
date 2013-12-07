@@ -1,10 +1,10 @@
 package no.runsafe.framework.api.event.world;
 
+import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.minecraft.RunsafeLocation;
-import no.runsafe.framework.minecraft.RunsafeWorld;
 
 public interface ISpawnChange extends IRunsafeEvent
 {
-	void OnSpawnChange(RunsafeWorld world, RunsafeLocation from);
+	void OnSpawnChange(IWorld world, RunsafeLocation from);
 }

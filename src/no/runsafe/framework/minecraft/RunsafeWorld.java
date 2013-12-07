@@ -1,5 +1,6 @@
 package no.runsafe.framework.minecraft;
 
+import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.hook.IUniverseMapper;
 import no.runsafe.framework.internal.HookEngine;
 import no.runsafe.framework.internal.wrapper.BukkitWorld;
@@ -11,17 +12,11 @@ import org.bukkit.entity.Entity;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class RunsafeWorld extends BukkitWorld
+public class RunsafeWorld extends BukkitWorld implements IWorld
 {
 	public RunsafeWorld(World toWrap)
 	{
 		super(toWrap);
-	}
-
-	public RunsafeWorld(String worldName)
-	{
-		//noinspection ConstantConditions
-		super(RunsafeServer.Instance.getWorld(worldName).getRaw());
 	}
 
 	@SuppressWarnings("InstanceofInterfaces")
@@ -37,6 +32,7 @@ public class RunsafeWorld extends BukkitWorld
 		return getName().hashCode();
 	}
 
+	@Override
 	@Nullable
 	public RunsafeEntity getEntityById(int id)
 	{
@@ -46,11 +42,13 @@ public class RunsafeWorld extends BukkitWorld
 		return null;
 	}
 
+	@Override
 	public boolean isUniverse(String name)
 	{
 		return getUniverse().getName().equalsIgnoreCase(name);
 	}
 
+	@Override
 	public Universe getUniverse()
 	{
 		if (universe != null)
@@ -68,16 +66,19 @@ public class RunsafeWorld extends BukkitWorld
 		return new Universe(getName());
 	}
 
-	public boolean IsConnected(RunsafeWorld world)
+	@Override
+	public boolean isConnected(IWorld world)
 	{
 		return getUniverse().getName().equals(world.getUniverse().getName());
 	}
 
+	@Override
 	public RunsafeLocation getLocation(Double x, Double y, Double z)
 	{
 		return getLocation(x, y, z, null, null);
 	}
 
+	@Override
 	@Nullable
 	public RunsafeLocation getLocation(Double x, Double y, Double z, Float yaw, Float pitch)
 	{
@@ -90,7 +91,8 @@ public class RunsafeWorld extends BukkitWorld
 		return new RunsafeLocation(this, x, y, z, yaw, pitch);
 	}
 
-	public boolean isWorld(RunsafeWorld world)
+	@Override
+	public boolean isWorld(IWorld world)
 	{
 		return getName().equals(world.getName());
 	}

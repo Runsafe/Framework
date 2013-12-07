@@ -1,9 +1,9 @@
 package no.runsafe.framework.internal.database;
 
+import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.database.IRow;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.RunsafeLocation;
-import no.runsafe.framework.minecraft.RunsafeWorld;
 import org.joda.time.DateTime;
 
 import javax.annotation.Nullable;
@@ -74,7 +74,7 @@ public final class Row implements IRow
 	}
 
 	@Override
-	public RunsafeWorld World(String column)
+	public IWorld World(String column)
 	{
 		return DataConverter.World(getValue(column));
 	}
@@ -173,7 +173,7 @@ public final class Row implements IRow
 
 		@Override
 		@Nullable
-		public RunsafeWorld World(String column)
+		public IWorld World(String column)
 		{
 			return null;
 		}

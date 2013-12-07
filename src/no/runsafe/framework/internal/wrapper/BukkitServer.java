@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.wrapper;
 
+import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventoryHolder;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventoryType;
@@ -197,7 +197,7 @@ public abstract class BukkitServer
 	}
 
 	@Nullable
-	public RunsafeWorld getWorld(String worldName)
+	public IWorld getWorld(String worldName)
 	{
 		if (worldName == null || worldName.isEmpty())
 			return null;
@@ -206,7 +206,7 @@ public abstract class BukkitServer
 	}
 
 	@Nullable
-	public RunsafeWorld getWorld(UUID uid)
+	public IWorld getWorld(UUID uid)
 	{
 		if (uid == null)
 			return null;
@@ -214,7 +214,7 @@ public abstract class BukkitServer
 		return ObjectWrapper.convert(server.getWorld(uid));
 	}
 
-	public List<RunsafeWorld> getWorlds()
+	public List<IWorld> getWorlds()
 	{
 		return ObjectWrapper.convert(server.getWorlds());
 	}
@@ -274,7 +274,7 @@ public abstract class BukkitServer
 		return !(worldName == null || worldName.isEmpty()) && server.unloadWorld(worldName, save);
 	}
 
-	public boolean unloadWorld(RunsafeWorld world, boolean save)
+	public boolean unloadWorld(IWorld world, boolean save)
 	{
 		return world != null && unloadWorld(world.getName(), save);
 	}

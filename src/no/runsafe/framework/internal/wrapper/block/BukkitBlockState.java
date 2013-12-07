@@ -1,8 +1,8 @@
 package no.runsafe.framework.internal.wrapper.block;
 
+import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.RunsafeLocation;
-import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
@@ -52,7 +52,7 @@ public abstract class BukkitBlockState extends BukkitMetadata
 		return blockState.getTypeId();
 	}
 
-	public RunsafeWorld getWorld()
+	public IWorld getWorld()
 	{
 		return ObjectWrapper.convert(blockState.getWorld());
 	}

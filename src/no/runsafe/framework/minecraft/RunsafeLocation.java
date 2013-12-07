@@ -1,11 +1,14 @@
 package no.runsafe.framework.minecraft;
 
+import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.wrapper.BukkitLocation;
+import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.packets.PacketWorldParticles;
 import no.runsafe.framework.minecraft.packets.WorldParticleOffset;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
@@ -19,15 +22,15 @@ public class RunsafeLocation extends BukkitLocation
 		super(toWrap);
 	}
 
-	public RunsafeLocation(RunsafeWorld world, double x, double y, double z)
+	public RunsafeLocation(IWorld world, double x, double y, double z)
 	{
-		super(new Location(world.getRaw(), x, y, z));
+		super(new Location((World) ObjectUnwrapper.convert(world), x, y, z));
 	}
 
 	@SuppressWarnings("ConstructorWithTooManyParameters")
-	public RunsafeLocation(RunsafeWorld world, double x, double y, double z, float yaw, float pitch)
+	public RunsafeLocation(IWorld world, double x, double y, double z, float yaw, float pitch)
 	{
-		super(new Location(world.getRaw(), x, y, z, yaw, pitch));
+		super(new Location((World) ObjectUnwrapper.convert(world), x, y, z, yaw, pitch));
 	}
 
 	@SuppressWarnings("InstanceMethodNamingConvention")
@@ -89,9 +92,12 @@ public class RunsafeLocation extends BukkitLocation
 
 	public void offset(double x, double y, double z)
 	{
-		if (x > 0) incrementX(x); else decrementX(x);
-		if (y > 0) incrementY(y); else decrementY(y);
-		if (z > 0) incrementZ(z); else decrementZ(z);
+		if (x > 0) incrementX(x);
+		else decrementX(x);
+		if (y > 0) incrementY(y);
+		else decrementY(y);
+		if (z > 0) incrementZ(z);
+		else decrementZ(z);
 	}
 
 	@SuppressWarnings("LocalVariableOfConcreteClass")

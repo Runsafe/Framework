@@ -3,6 +3,7 @@ package no.runsafe.framework.internal.database.jdbc;
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.database.IQueryExecutor;
 import no.runsafe.framework.api.database.IRow;
 import no.runsafe.framework.api.database.ISet;
@@ -12,7 +13,6 @@ import no.runsafe.framework.internal.database.Row;
 import no.runsafe.framework.internal.database.Set;
 import no.runsafe.framework.internal.database.Value;
 import no.runsafe.framework.minecraft.RunsafeLocation;
-import no.runsafe.framework.minecraft.RunsafeWorld;
 import org.joda.time.DateTime;
 import org.joda.time.ReadableInstant;
 
@@ -188,14 +188,14 @@ abstract class QueryExecutor implements IQueryExecutor
 	}
 
 	@Override
-	public List<RunsafeWorld> QueryWorlds(String query, Object... params)
+	public List<IWorld> QueryWorlds(String query, Object... params)
 	{
 		return Lists.transform(
 			QueryColumn(query, params),
-			new Function<IValue, RunsafeWorld>()
+			new Function<IValue, IWorld>()
 			{
 				@Override
-				public RunsafeWorld apply(@Nullable IValue value)
+				public IWorld apply(@Nullable IValue value)
 				{
 					assert value != null;
 					return value.World();
@@ -264,7 +264,7 @@ abstract class QueryExecutor implements IQueryExecutor
 	}
 
 	@Override
-	public RunsafeWorld QueryWorld(String query, Object... params)
+	public IWorld QueryWorld(String query, Object... params)
 	{
 		return QueryValue(query, params).World();
 	}

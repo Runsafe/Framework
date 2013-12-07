@@ -3,7 +3,9 @@ package no.runsafe.framework.minecraft.entity;
 import net.minecraft.server.v1_6_R3.EntityArrow;
 import net.minecraft.server.v1_6_R3.IProjectile;
 import net.minecraft.server.v1_6_R3.NBTTagCompound;
+import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.block.IBlock;
+import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.entity.BukkitProjectile;
@@ -25,7 +27,7 @@ public class RunsafeProjectile extends BukkitProjectile
 	public IBlock getImpaledBlock()
 	{
 		IProjectile minecraftProjectile = ObjectUnwrapper.convert(this);
-		RunsafeWorld world = getWorld();
+		IWorld world = getWorld();
 		if (!(minecraftProjectile instanceof EntityArrow) || world == null)
 			return null;
 
@@ -39,14 +41,14 @@ public class RunsafeProjectile extends BukkitProjectile
 	@SuppressWarnings({"CastToConcreteClass", "InstanceofInterfaces", "LocalVariableOfConcreteClass"})
 	public IPlayer getShooterPlayer()
 	{
-		RunsafeWorld world = getWorld();
+		IWorld world = getWorld();
 		RunsafeLivingEntity shooter = getShooter();
 
 		if (world != null && shooter != null)
 		{
-			RunsafeEntity shooterEntity = world.getEntityById(shooter.getEntityId());
+			IEntity shooterEntity = world.getEntityById(shooter.getEntityId());
 
-			if (shooterEntity instanceof RunsafePlayer)
+			if (shooterEntity instanceof IPlayer)
 				return (IPlayer) shooterEntity;
 		}
 
