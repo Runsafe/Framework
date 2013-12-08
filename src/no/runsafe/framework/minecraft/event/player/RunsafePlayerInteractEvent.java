@@ -1,5 +1,6 @@
 package no.runsafe.framework.minecraft.event.player;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.Item;
@@ -62,7 +63,7 @@ public class RunsafePlayerInteractEvent extends RunsafeCancellablePlayerEvent
 		event.getPlayer().getInventory().remove(event.getItem());
 	}
 
-	public RunsafeLocation getTargetBlock()
+	public ILocation getTargetBlock()
 	{
 		BlockFace face = event.getBlockFace();
 		return new RunsafeLocation(

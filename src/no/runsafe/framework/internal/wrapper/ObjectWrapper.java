@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.wrapper;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.minecraft.IAnimalTamer;
 import no.runsafe.framework.api.minecraft.IInventoryHolder;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
@@ -417,7 +418,7 @@ public final class ObjectWrapper
 	}
 
 	@Nullable
-	public static RunsafeLocation convert(Location toWrap)
+	public static ILocation convert(Location toWrap)
 	{
 		if (toWrap == null)
 			return null;

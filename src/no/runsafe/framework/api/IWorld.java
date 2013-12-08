@@ -4,7 +4,6 @@ import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.metadata.IMetadata;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.Sound;
 import no.runsafe.framework.minecraft.Universe;
 import no.runsafe.framework.minecraft.entity.RunsafeItem;
@@ -24,42 +23,42 @@ public interface IWorld extends IMetadata
 
 	boolean isConnected(IWorld world);
 
-	RunsafeLocation getLocation(Double x, Double y, Double z);
+	ILocation getLocation(Double x, Double y, Double z);
 
 	@Nullable
-	RunsafeLocation getLocation(Double x, Double y, Double z, Float yaw, Float pitch);
+	ILocation getLocation(Double x, Double y, Double z, Float yaw, Float pitch);
 
 	boolean isWorld(IWorld world);
 
 	String getName();
 
-	IBlock getBlockAt(RunsafeLocation location);
+	IBlock getBlockAt(ILocation location);
 
 	IBlock getBlockAt(int x, int y, int z);
 
-	int getBlockTypeIdAt(RunsafeLocation location);
+	int getBlockTypeIdAt(ILocation location);
 
 	int getBlockTypeIdAt(int x, int y, int z);
 
-	RunsafeItem dropItem(RunsafeLocation location, RunsafeMeta itemStack);
+	RunsafeItem dropItem(ILocation location, RunsafeMeta itemStack);
 
-	void strikeLightning(RunsafeLocation location);
+	void strikeLightning(ILocation location);
 
-	void createExplosion(RunsafeLocation location, float power, boolean setFire);
+	void createExplosion(ILocation location, float power, boolean setFire);
 
-	void createExplosion(RunsafeLocation location, float power, boolean setFire, boolean breakBlocks);
+	void createExplosion(ILocation location, float power, boolean setFire, boolean breakBlocks);
 
 	int getMaxHeight();
 
-	IEntity spawnCreature(RunsafeLocation location, String type);
+	IEntity spawnCreature(ILocation location, String type);
 
-	IEntity spawnCreature(RunsafeLocation location, int id);
+	IEntity spawnCreature(ILocation location, int id);
 
-	void strikeLightningEffect(RunsafeLocation location);
+	void strikeLightningEffect(ILocation location);
 
 	List<IPlayer> getPlayers();
 
 	List<IEntity> getEntities();
 
-	void playSound(RunsafeLocation location, Sound sound, float volume, float pitch);
+	void playSound(ILocation location, Sound sound, float volume, float pitch);
 }

@@ -1,7 +1,9 @@
 package no.runsafe.framework.minecraft.event.player;
 
+import no.runsafe.framework.api.ILocation;
+import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.minecraft.RunsafeLocation;
+import org.bukkit.Location;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 public class RunsafePlayerMoveEvent extends RunsafeCancellablePlayerEvent
@@ -12,24 +14,24 @@ public class RunsafePlayerMoveEvent extends RunsafeCancellablePlayerEvent
 		event = toWrap;
 	}
 
-	public RunsafeLocation getFrom()
+	public ILocation getFrom()
 	{
 		return ObjectWrapper.convert(event.getFrom());
 	}
 
-	public void setFrom(RunsafeLocation location)
+	public void setFrom(ILocation location)
 	{
-		event.setFrom(location.getRaw());
+		event.setFrom((Location) ObjectUnwrapper.convert(location));
 	}
 
-	public RunsafeLocation getTo()
+	public ILocation getTo()
 	{
 		return ObjectWrapper.convert(event.getTo());
 	}
 
-	public void setTo(RunsafeLocation location)
+	public void setTo(ILocation location)
 	{
-		event.setTo(location.getRaw());
+		event.setTo((Location) ObjectUnwrapper.convert(location));
 	}
 
 	private final PlayerMoveEvent event;

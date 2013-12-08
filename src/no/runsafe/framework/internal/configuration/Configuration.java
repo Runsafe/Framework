@@ -2,6 +2,7 @@ package no.runsafe.framework.internal.configuration;
 
 import no.runsafe.framework.api.IConfiguration;
 import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeServer;
@@ -166,7 +167,7 @@ public final class Configuration implements IConfiguration
 	@Nullable
 	@SuppressWarnings("LocalVariableOfConcreteClass")
 	@Override
-	public RunsafeLocation getConfigValueAsLocation(String key)
+	public ILocation getConfigValueAsLocation(String key)
 	{
 		if (configFile == null)
 			return null;
@@ -181,7 +182,7 @@ public final class Configuration implements IConfiguration
 			if (world == null)
 				return null;
 
-			RunsafeLocation location = new RunsafeLocation(
+			ILocation location = new RunsafeLocation(
 				world,
 				section.getDouble("x"),
 				section.getDouble("y"),

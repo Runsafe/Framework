@@ -3,6 +3,7 @@ package no.runsafe.framework.internal.database.jdbc;
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.database.IQueryExecutor;
 import no.runsafe.framework.api.database.IRow;
@@ -12,7 +13,6 @@ import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.database.Row;
 import no.runsafe.framework.internal.database.Set;
 import no.runsafe.framework.internal.database.Value;
-import no.runsafe.framework.minecraft.RunsafeLocation;
 import org.joda.time.DateTime;
 import org.joda.time.ReadableInstant;
 
@@ -205,14 +205,14 @@ abstract class QueryExecutor implements IQueryExecutor
 	}
 
 	@Override
-	public List<RunsafeLocation> QueryLocations(String query, Object... params)
+	public List<ILocation> QueryLocations(String query, Object... params)
 	{
 		return Lists.transform(
 			Query(query, params),
-			new Function<IRow, RunsafeLocation>()
+			new Function<IRow, ILocation>()
 			{
 				@Override
-				public RunsafeLocation apply(@Nullable IRow row)
+				public ILocation apply(@Nullable IRow row)
 				{
 					assert row != null;
 					return row.Location();
@@ -270,7 +270,7 @@ abstract class QueryExecutor implements IQueryExecutor
 	}
 
 	@Override
-	public RunsafeLocation QueryLocation(String query, Object... params)
+	public ILocation QueryLocation(String query, Object... params)
 	{
 		return QueryRow(query, params).Location();
 	}

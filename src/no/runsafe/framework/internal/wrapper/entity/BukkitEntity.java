@@ -1,18 +1,18 @@
 package no.runsafe.framework.internal.wrapper.entity;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
-import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeServer;
+import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.entity.EntityType;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageByEntityEvent;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent;
-import org.bukkit.Chunk;
-import org.bukkit.World;
+import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -37,7 +37,7 @@ public abstract class BukkitEntity extends BukkitMetadata
 	}
 
 	@Nullable
-	public RunsafeLocation getLocation()
+	public ILocation getLocation()
 	{
 		if (entity == null)
 			return null;
@@ -52,14 +52,14 @@ public abstract class BukkitEntity extends BukkitMetadata
 		return ObjectWrapper.convert(entity.getWorld());
 	}
 
-	public boolean teleport(RunsafeLocation location)
+	public boolean teleport(ILocation location)
 	{
-		Chunk targetChunk = ((World) ObjectUnwrapper.convert(location.getWorld())).getChunkAt(location.getRaw());
-		if (!targetChunk.isLoaded())
+		RunsafeChunk targetChunk = location.getChunk();
+		if (targetChunk.isUnloaded())
 			targetChunk.load();
 
 		dismountBeforeTeleport();
-		return entity.teleport(location.getRaw());
+		return entity.teleport((Location) ObjectUnwrapper.convert(location));
 	}
 
 	public boolean teleport(IEntity entity)

@@ -1,16 +1,18 @@
 package no.runsafe.framework.internal.wrapper.player;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.minecraft.IAnimalTamer;
 import no.runsafe.framework.api.minecraft.IInventoryHolder;
 import no.runsafe.framework.internal.wrapper.IWrapper;
+import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.entity.RunsafeLivingEntity;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
 import no.runsafe.framework.minecraft.inventory.RunsafePlayerInventory;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
@@ -119,10 +121,10 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 		sendBlockChange(block.getLocation(), block.getMaterial().getTypeID(), data);
 	}
 
-	public void sendBlockChange(RunsafeLocation location, int itemId, byte data)
+	public void sendBlockChange(ILocation location, int itemId, byte data)
 	{
 		if (player != null)
-			player.sendBlockChange(location.getRaw(), itemId, data);
+			player.sendBlockChange((Location) ObjectUnwrapper.convert(location), itemId, data);
 	}
 
 	@Nullable

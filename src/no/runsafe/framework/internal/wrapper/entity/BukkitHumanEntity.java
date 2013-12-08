@@ -1,14 +1,16 @@
 package no.runsafe.framework.internal.wrapper.entity;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.minecraft.IAnimalTamer;
-import no.runsafe.framework.minecraft.RunsafeLocation;
+import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
+import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventoryView;
 import no.runsafe.framework.minecraft.inventory.RunsafePlayerInventory;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
-import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.entity.HumanEntity;
 
 public abstract class BukkitHumanEntity extends RunsafeEntity implements IAnimalTamer
@@ -45,14 +47,14 @@ public abstract class BukkitHumanEntity extends RunsafeEntity implements IAnimal
 		return ObjectWrapper.convert(humanEntity.openInventory(inventory.getRaw()));
 	}
 
-	public RunsafeInventoryView openWorkbench(RunsafeLocation location, boolean force)
+	public RunsafeInventoryView openWorkbench(ILocation location, boolean force)
 	{
-		return ObjectWrapper.convert(humanEntity.openWorkbench(location.getRaw(), force));
+		return ObjectWrapper.convert(humanEntity.openWorkbench((Location) ObjectUnwrapper.convert(location), force));
 	}
 
-	public RunsafeInventoryView openEnchanting(RunsafeLocation location, boolean force)
+	public RunsafeInventoryView openEnchanting(ILocation location, boolean force)
 	{
-		return ObjectWrapper.convert(humanEntity.openEnchanting(location.getRaw(), force));
+		return ObjectWrapper.convert(humanEntity.openEnchanting((Location) ObjectUnwrapper.convert(location), force));
 	}
 
 	public void openInventory(RunsafeInventoryView inventory)

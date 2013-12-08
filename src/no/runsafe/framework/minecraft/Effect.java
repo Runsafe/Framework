@@ -1,5 +1,7 @@
 package no.runsafe.framework.minecraft;
 
+import no.runsafe.framework.api.ILocation;
+import no.runsafe.framework.internal.wrapper.BukkitWorld;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
@@ -71,21 +73,21 @@ public class Effect
 	public static final Effect MobSpawnerFlames = new Effect(org.bukkit.Effect.MOBSPAWNER_FLAMES);
 
 
-	public void Play(RunsafeLocation location)
+	public void Play(ILocation location)
 	{
 		if (effect == org.bukkit.Effect.STEP_SOUND)
-			location.getRaw().getWorld().playEffect(location.getRaw(), effect, location.getRaw().getBlock().getType());
+			((BukkitWorld) location.getWorld()).playEffect(location, effect, location.getBlock().getData());
 		else
-			location.getRaw().getWorld().playEffect(location.getRaw(), effect, data);
+			((BukkitWorld) location.getWorld()).playEffect(location, effect, data);
 	}
 
-	public void Play(RunsafeLocation location, int radius)
-	{
-		if (effect == org.bukkit.Effect.STEP_SOUND)
-			location.getRaw().getWorld().playEffect(location.getRaw(), effect, location.getRaw().getBlock().getType(), radius);
-		else
-			location.getRaw().getWorld().playEffect(location.getRaw(), effect, data, radius);
-	}
+//	public void Play(ILocation location, int radius)
+//	{
+//		if (effect == org.bukkit.Effect.STEP_SOUND)
+//			((BukkitWorld) location.getWorld()).playEffect(location, effect, location.getRaw().getBlock().getType(), radius);
+//		else
+//			((BukkitWorld) location.getWorld()).playEffect(location, effect, data, radius);
+//	}
 
 	private Effect(org.bukkit.Effect effect)
 	{

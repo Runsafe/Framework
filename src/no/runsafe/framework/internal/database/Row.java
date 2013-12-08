@@ -1,9 +1,9 @@
 package no.runsafe.framework.internal.database;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.database.IRow;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.minecraft.RunsafeLocation;
 import org.joda.time.DateTime;
 
 import javax.annotation.Nullable;
@@ -55,20 +55,20 @@ public final class Row implements IRow
 	}
 
 	@Override
-	public RunsafeLocation Location()
+	public ILocation Location()
 	{
 		return Location("world", "x", "y", "z", "yaw", "pitch");
 	}
 
 	@Override
-	public RunsafeLocation Location(String world, String x, String y, String z)
+	public ILocation Location(String world, String x, String y, String z)
 	{
 		return Location(world, x, y, z, "yaw", "pitch");
 	}
 
 	@SuppressWarnings("MethodWithTooManyParameters")
 	@Override
-	public RunsafeLocation Location(String world, String x, String y, String z, String yaw, String pitch)
+	public ILocation Location(String world, String x, String y, String z, String yaw, String pitch)
 	{
 		return DataConverter.Location(getValue(world), getValue(x), getValue(y), getValue(z), getValue(yaw), getValue(pitch));
 	}
@@ -151,14 +151,14 @@ public final class Row implements IRow
 
 		@Override
 		@Nullable
-		public RunsafeLocation Location()
+		public ILocation Location()
 		{
 			return null;
 		}
 
 		@Override
 		@Nullable
-		public RunsafeLocation Location(String world, String x, String y, String z)
+		public ILocation Location(String world, String x, String y, String z)
 		{
 			return null;
 		}
@@ -166,7 +166,7 @@ public final class Row implements IRow
 		@SuppressWarnings("MethodWithTooManyParameters")
 		@Override
 		@Nullable
-		public RunsafeLocation Location(String world, String x, String y, String z, String yaw, String pitch)
+		public ILocation Location(String world, String x, String y, String z, String yaw, String pitch)
 		{
 			return null;
 		}

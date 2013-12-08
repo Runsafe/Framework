@@ -1,12 +1,12 @@
 package no.runsafe.framework.internal.wrapper.entity;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.minecraft.Buff;
 import no.runsafe.framework.minecraft.inventory.RunsafeEntityEquipment;
-import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.OfflinePlayer;
@@ -70,7 +70,7 @@ public abstract class BukkitLivingEntity extends RunsafeEntity
 		return livingEntity.getEyeHeight(b);
 	}
 
-	public RunsafeLocation getEyeLocation()
+	public ILocation getEyeLocation()
 	{
 		return ObjectWrapper.convert(livingEntity.getEyeLocation());
 	}

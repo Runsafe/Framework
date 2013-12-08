@@ -1,6 +1,7 @@
 package no.runsafe.framework.internal.wrapper;
 
-import no.runsafe.framework.minecraft.RunsafeLocation;
+import no.runsafe.framework.api.ILocation;
+import org.bukkit.Location;
 import org.bukkit.TravelAgent;
 
 public abstract class BukkitTravelAgent
@@ -10,19 +11,19 @@ public abstract class BukkitTravelAgent
 		this.travelAgent = travelAgent;
 	}
 
-	public boolean createPortal(RunsafeLocation location)
+	public boolean createPortal(ILocation location)
 	{
-		return travelAgent.createPortal(location.getRaw());
+		return travelAgent.createPortal((Location) ObjectUnwrapper.convert(location));
 	}
 
-	public RunsafeLocation findOrCreate(RunsafeLocation location)
+	public ILocation findOrCreate(ILocation location)
 	{
-		return ObjectWrapper.convert(travelAgent.findOrCreate(location.getRaw()));
+		return ObjectWrapper.convert(travelAgent.findOrCreate((Location) ObjectUnwrapper.convert(location)));
 	}
 
-	public RunsafeLocation findPortal(RunsafeLocation location)
+	public ILocation findPortal(ILocation location)
 	{
-		return ObjectWrapper.convert(travelAgent.findPortal(location.getRaw()));
+		return ObjectWrapper.convert(travelAgent.findPortal((Location) ObjectUnwrapper.convert(location)));
 	}
 
 	public boolean getCanCreatePortal()

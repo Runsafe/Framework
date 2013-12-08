@@ -1,5 +1,6 @@
 package no.runsafe.framework.minecraft;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.hook.IUniverseMapper;
 import no.runsafe.framework.internal.HookEngine;
@@ -73,14 +74,14 @@ public class RunsafeWorld extends BukkitWorld implements IWorld
 	}
 
 	@Override
-	public RunsafeLocation getLocation(Double x, Double y, Double z)
+	public ILocation getLocation(Double x, Double y, Double z)
 	{
 		return getLocation(x, y, z, null, null);
 	}
 
 	@Override
 	@Nullable
-	public RunsafeLocation getLocation(Double x, Double y, Double z, Float yaw, Float pitch)
+	public ILocation getLocation(Double x, Double y, Double z, Float yaw, Float pitch)
 	{
 		if (x == null || y == null || z == null)
 			return null;

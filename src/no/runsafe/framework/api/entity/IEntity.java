@@ -1,8 +1,8 @@
 package no.runsafe.framework.api.entity;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
-import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent;
 import org.bukkit.util.Vector;
@@ -18,12 +18,12 @@ public interface IEntity
 	void explode(float power, boolean setFire, boolean breakBlocks);
 
 	@Nullable
-	RunsafeLocation getLocation();
+	ILocation getLocation();
 
 	@Nullable
 	IWorld getWorld();
 
-	boolean teleport(RunsafeLocation location);
+	boolean teleport(ILocation location);
 
 	boolean teleport(IEntity entity);
 

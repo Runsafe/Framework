@@ -1,11 +1,11 @@
 package no.runsafe.framework.internal.wrapper.block;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.block.IBlockState;
-import no.runsafe.framework.minecraft.Item;
-import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
+import no.runsafe.framework.minecraft.Item;
 import org.bukkit.block.Block;
 
 public class BukkitBlock extends BukkitMetadata
@@ -52,7 +52,7 @@ public class BukkitBlock extends BukkitMetadata
 		return ObjectWrapper.convert(block.getWorld());
 	}
 
-	public RunsafeLocation getLocation()
+	public ILocation getLocation()
 	{
 		return ObjectWrapper.convert(block.getLocation());
 	}

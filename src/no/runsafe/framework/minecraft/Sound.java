@@ -1,5 +1,6 @@
 package no.runsafe.framework.minecraft;
 
+import no.runsafe.framework.api.ILocation;
 import org.bukkit.Location;
 
 import java.util.HashMap;
@@ -474,15 +475,14 @@ public class Sound
 		}
 	}
 
-	public void Play(RunsafeLocation location)
+	public void Play(ILocation location)
 	{
 		Play(location, 1, 1);
 	}
 
-	public void Play(RunsafeLocation location, float volume, float pitch)
+	public void Play(ILocation location, float volume, float pitch)
 	{
-		Location loc = location.getRaw();
-		loc.getWorld().playSound(loc, sample, volume, pitch);
+		location.getWorld().playSound(location, this, volume, pitch);
 	}
 
 	public org.bukkit.Sound getSound()

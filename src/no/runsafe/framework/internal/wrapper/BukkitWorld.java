@@ -1,15 +1,16 @@
 package no.runsafe.framework.internal.wrapper;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import no.runsafe.framework.minecraft.Sound;
-import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.entity.RunsafeFallingBlock;
 import no.runsafe.framework.minecraft.entity.RunsafeItem;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
-import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import org.bukkit.Effect;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
@@ -31,9 +32,9 @@ public abstract class BukkitWorld extends BukkitMetadata implements IWrapper<Wor
 		return world.getName();
 	}
 
-	public IBlock getBlockAt(RunsafeLocation location)
+	public IBlock getBlockAt(ILocation location)
 	{
-		return ObjectWrapper.convert(world.getBlockAt(location.getRaw()));
+		return ObjectWrapper.convert(world.getBlockAt((Location) ObjectUnwrapper.convert(location)));
 	}
 
 	public IBlock getBlockAt(int x, int y, int z)
@@ -41,9 +42,9 @@ public abstract class BukkitWorld extends BukkitMetadata implements IWrapper<Wor
 		return ObjectWrapper.convert(world.getBlockAt(x, y, z));
 	}
 
-	public int getBlockTypeIdAt(RunsafeLocation location)
+	public int getBlockTypeIdAt(ILocation location)
 	{
-		return world.getBlockTypeIdAt(location.getRaw());
+		return world.getBlockTypeIdAt((Location) ObjectUnwrapper.convert(location));
 	}
 
 	public int getBlockTypeIdAt(int x, int y, int z)
@@ -51,22 +52,22 @@ public abstract class BukkitWorld extends BukkitMetadata implements IWrapper<Wor
 		return world.getBlockTypeIdAt(x, y, z);
 	}
 
-	public RunsafeItem dropItem(RunsafeLocation location, RunsafeMeta itemStack)
+	public RunsafeItem dropItem(ILocation location, RunsafeMeta itemStack)
 	{
-		return new RunsafeItem(world.dropItem(location.getRaw(), itemStack.getRaw()));
+		return new RunsafeItem(world.dropItem((Location) ObjectUnwrapper.convert(location), itemStack.getRaw()));
 	}
 
-	public void strikeLightning(RunsafeLocation location)
+	public void strikeLightning(ILocation location)
 	{
-		world.strikeLightning(location.getRaw());
+		world.strikeLightning((Location) ObjectUnwrapper.convert(location));
 	}
 
-	public void createExplosion(RunsafeLocation location, float power, boolean setFire)
+	public void createExplosion(ILocation location, float power, boolean setFire)
 	{
-		world.createExplosion(location.getRaw(), power, setFire);
+		world.createExplosion((Location) ObjectUnwrapper.convert(location), power, setFire);
 	}
 
-	public void createExplosion(RunsafeLocation location, float power, boolean setFire, boolean breakBlocks)
+	public void createExplosion(ILocation location, float power, boolean setFire, boolean breakBlocks)
 	{
 		world.createExplosion(location.getX(), location.getY(), location.getZ(), power, setFire, breakBlocks);
 	}
@@ -77,9 +78,9 @@ public abstract class BukkitWorld extends BukkitMetadata implements IWrapper<Wor
 		world.createExplosion(x, y, z, power, setFire, breakBlocks);
 	}
 
-	public RunsafeFallingBlock spawnFallingBlock(RunsafeLocation location, Material material, Byte blockData)
+	public RunsafeFallingBlock spawnFallingBlock(ILocation location, Material material, Byte blockData)
 	{
-		return ObjectWrapper.convert(world.spawnFallingBlock(location.getRaw(), material, blockData));
+		return ObjectWrapper.convert(world.spawnFallingBlock((Location) ObjectUnwrapper.convert(location), material, blockData));
 	}
 
 	@Override
@@ -93,19 +94,19 @@ public abstract class BukkitWorld extends BukkitMetadata implements IWrapper<Wor
 		return world.getMaxHeight();
 	}
 
-	public IEntity spawnCreature(RunsafeLocation location, String type)
+	public IEntity spawnCreature(ILocation location, String type)
 	{
-		return ObjectWrapper.convert(world.spawnEntity(location.getRaw(), EntityType.fromName(type)));
+		return ObjectWrapper.convert(world.spawnEntity((Location) ObjectUnwrapper.convert(location), EntityType.fromName(type)));
 	}
 
-	public IEntity spawnCreature(RunsafeLocation location, int id)
+	public IEntity spawnCreature(ILocation location, int id)
 	{
-		return ObjectWrapper.convert(world.spawnEntity(location.getRaw(), EntityType.fromId(id)));
+		return ObjectWrapper.convert(world.spawnEntity((Location) ObjectUnwrapper.convert(location), EntityType.fromId(id)));
 	}
 
-	public void strikeLightningEffect(RunsafeLocation location)
+	public void strikeLightningEffect(ILocation location)
 	{
-		world.strikeLightningEffect(location.getRaw());
+		world.strikeLightningEffect((Location) ObjectUnwrapper.convert(location));
 	}
 
 	public List<IPlayer> getPlayers()
@@ -118,19 +119,19 @@ public abstract class BukkitWorld extends BukkitMetadata implements IWrapper<Wor
 		return ObjectWrapper.convert(world.getEntities());
 	}
 
-	public <T extends Entity> T spawn(RunsafeLocation location, Class<T> mob)
+	public <T extends Entity> T spawn(ILocation location, Class<T> mob)
 	{
-		return world.spawn(location.getRaw(), mob);
+		return world.spawn((Location) ObjectUnwrapper.convert(location), mob);
 	}
 
-	public void playEffect(RunsafeLocation location, Effect effect, int data)
+	public void playEffect(ILocation location, Effect effect, int data)
 	{
-		world.playEffect(location.getRaw(), effect, data);
+		world.playEffect((Location) ObjectUnwrapper.convert(location), effect, data);
 	}
 
-	public void playSound(RunsafeLocation location, Sound sound, float volume, float pitch)
+	public void playSound(ILocation location, Sound sound, float volume, float pitch)
 	{
-		world.playSound(location.getRaw(), sound.getSound(), volume, pitch);
+		world.playSound((Location) ObjectUnwrapper.convert(location), sound.getSound(), volume, pitch);
 	}
 
 	protected final World world;

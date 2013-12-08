@@ -1,9 +1,9 @@
 package no.runsafe.framework.api.block;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.metadata.IMetadata;
 import no.runsafe.framework.minecraft.Item;
-import no.runsafe.framework.minecraft.RunsafeLocation;
 
 @SuppressWarnings("InstanceMethodNamingConvention")
 public interface IBlock extends IMetadata
@@ -11,7 +11,7 @@ public interface IBlock extends IMetadata
 	void set(Item type);
 	IWorld getWorld();
 	IBlockState getBlockState();
-	RunsafeLocation getLocation();
+	ILocation getLocation();
 	Item getMaterial();
 	void setMaterial(Item material);
 	void breakNaturally();

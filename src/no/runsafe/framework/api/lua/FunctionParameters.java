@@ -1,5 +1,6 @@
 package no.runsafe.framework.api.lua;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.RunsafeLocation;
@@ -84,12 +85,12 @@ public class FunctionParameters
 		return world;
 	}
 
-	public RunsafeLocation getLocation(int index)
+	public ILocation getLocation(int index)
 	{
 		return getLocation(index, false);
 	}
 
-	public RunsafeLocation getLocation(int index, boolean hasPitchAndYaw)
+	public ILocation getLocation(int index, boolean hasPitchAndYaw)
 	{
 		float yaw = hasPitchAndYaw ? getFloat(index + 4) : 0.0f;
 		float pitch = hasPitchAndYaw ? getFloat(index + 5) : 0.0f;

@@ -1,5 +1,6 @@
 package no.runsafe.framework.minecraft;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.minecraft.IEnchant;
 import no.runsafe.framework.api.minecraft.IEnchantable;
@@ -1016,20 +1017,20 @@ public class Item implements IEnchantable
 		return data;
 	}
 
-	public RunsafeItem Drop(RunsafeLocation location)
+	public RunsafeItem Drop(ILocation location)
 	{
 		return Drop(location, getStackSize());
 	}
 
 	@SuppressWarnings("LocalVariableOfConcreteClass")
-	public RunsafeItem Drop(RunsafeLocation location, int amount)
+	public RunsafeItem Drop(ILocation location, int amount)
 	{
 		RunsafeMeta stack = getItem();
 		stack.setAmount(amount);
 		return location.getWorld().dropItem(location, stack);
 	}
 
-	public IBlock Place(RunsafeLocation location)
+	public IBlock Place(ILocation location)
 	{
 		location.getBlock().set(this);
 		return location.getBlock();

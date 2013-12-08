@@ -1,7 +1,7 @@
 package no.runsafe.framework.api.player;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.block.IBlock;
-import no.runsafe.framework.minecraft.RunsafeLocation;
 
 public interface IPlayerNotification
 {
@@ -9,5 +9,5 @@ public interface IPlayerNotification
 
 	void sendBlockChange(IBlock block, byte data);
 
-	void sendBlockChange(RunsafeLocation location, int itemId, byte data);
+	void sendBlockChange(ILocation location, int itemId, byte data);
 }

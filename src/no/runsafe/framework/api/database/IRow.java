@@ -1,8 +1,8 @@
 package no.runsafe.framework.api.database;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.minecraft.RunsafeLocation;
 import org.joda.time.DateTime;
 
 public interface IRow extends IResult
@@ -13,10 +13,10 @@ public interface IRow extends IResult
 	Double Double(String column);
 	Float Float(String column);
 	DateTime DateTime(String column);
-	RunsafeLocation Location();
-	RunsafeLocation Location(String world, String x, String y, String z);
+	ILocation Location();
+	ILocation Location(String world, String x, String y, String z);
 	@SuppressWarnings("MethodWithTooManyParameters")
-	RunsafeLocation Location(String world, String x, String y, String z, String yaw, String pitch);
+	ILocation Location(String world, String x, String y, String z, String yaw, String pitch);
 	IWorld World(String column);
 	IPlayer Player(String column);
 }

@@ -1,6 +1,6 @@
 package no.runsafe.framework.api.minecraft;
 
-import no.runsafe.framework.minecraft.RunsafeLocation;
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -17,7 +17,7 @@ public interface RunsafeEntityType
 
 	boolean isSpawnable();
 
-	RunsafeEntity spawn(RunsafeLocation location);
+	RunsafeEntity spawn(ILocation location);
 
 	EntityType getRaw();
 }

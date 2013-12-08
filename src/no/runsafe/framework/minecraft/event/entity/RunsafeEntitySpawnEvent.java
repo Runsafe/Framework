@@ -1,7 +1,7 @@
 package no.runsafe.framework.minecraft.event.entity;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.entity.RunsafeLivingEntity;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 
@@ -23,7 +23,7 @@ public class RunsafeEntitySpawnEvent extends RunsafeCancellableEntityEvent
 		return event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.SPAWNER_EGG;
 	}
 
-	public RunsafeLocation getLocation()
+	public ILocation getLocation()
 	{
 		return ObjectWrapper.convert(event.getLocation());
 	}

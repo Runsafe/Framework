@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.wrapper;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.minecraft.RunsafeWorld;
@@ -8,7 +9,7 @@ import org.bukkit.Location;
 import org.bukkit.util.Vector;
 
 @SuppressWarnings("InstanceMethodNamingConvention")
-public abstract class BukkitLocation
+public abstract class BukkitLocation implements IWrapper<Location>
 {
 	protected BukkitLocation(Location toWrap)
 	{
@@ -85,6 +86,7 @@ public abstract class BukkitLocation
 		return location.getBlockZ();
 	}
 
+	@Override
 	public Location getRaw()
 	{
 		return location;
@@ -105,27 +107,27 @@ public abstract class BukkitLocation
 		return location.getDirection();
 	}
 
-	public BukkitLocation add(BukkitLocation vec)
+	public ILocation add(ILocation vec)
 	{
-		return ObjectWrapper.convert(location.add(vec.location));
+		return ObjectWrapper.convert(location.add((Location) ObjectUnwrapper.convert(vec)));
 	}
 
-	public BukkitLocation add(double x, double y, double z)
+	public ILocation add(double x, double y, double z)
 	{
 		return ObjectWrapper.convert(location.add(x, y, z));
 	}
 
-	public BukkitLocation subtract(BukkitLocation vec)
+	public ILocation subtract(ILocation vec)
 	{
-		return ObjectWrapper.convert(location.subtract(vec.location));
+		return ObjectWrapper.convert(location.subtract((Location) ObjectUnwrapper.convert(vec)));
 	}
 
-	public BukkitLocation subtract(Vector vec)
+	public ILocation subtract(Vector vec)
 	{
 		return ObjectWrapper.convert(location.subtract(vec));
 	}
 
-	public BukkitLocation subtract(double x, double y, double z)
+	public ILocation subtract(double x, double y, double z)
 	{
 		return ObjectWrapper.convert(location.subtract(x, y, z));
 	}
@@ -140,27 +142,32 @@ public abstract class BukkitLocation
 		return location.lengthSquared();
 	}
 
-	public double distance(BukkitLocation location)
+	public double distance(ILocation location)
 	{
-		if (!location.getWorld().getName().equals(location.location.getWorld().getName()))
+		if (!location.getWorld().getName().equals(((Location) ObjectUnwrapper.convert(location)).getWorld().getName()))
 			return Double.NaN;
 
-		return this.location.distance(location.location);
+		return this.location.distance((Location) ObjectUnwrapper.convert(location));
 	}
 
-	public double distanceSquared(BukkitLocation location)
+	public double distanceSquared(ILocation location)
 	{
-		return this.location.distanceSquared(location.location);
+		return this.location.distanceSquared((Location) ObjectUnwrapper.convert(location));
 	}
 
-	public BukkitLocation multiply(double factor)
+	public ILocation multiply(double factor)
 	{
 		return ObjectWrapper.convert(location.multiply(factor));
 	}
 
-	public BukkitLocation zero()
+	public ILocation zero()
 	{
 		return ObjectWrapper.convert(location.zero());
+	}
+
+	public Vector toVector()
+	{
+		return location.toVector();
 	}
 
 	protected final Location location;

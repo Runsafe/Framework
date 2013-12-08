@@ -1,6 +1,6 @@
 package no.runsafe.framework.api.lua;
 
-import no.runsafe.framework.minecraft.RunsafeLocation;
+import no.runsafe.framework.api.ILocation;
 import org.luaj.vm2.Varargs;
 
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ public abstract class LocationFunction extends Function
 	@Override
 	public Varargs invoke(Varargs args)
 	{
-		RunsafeLocation location = run(varargsToParameters(args));
+		ILocation location = run(varargsToParameters(args));
 
 		List<Object> values = new ArrayList<Object>(4);
 		values.add(location.getWorld().getName());
@@ -23,5 +23,5 @@ public abstract class LocationFunction extends Function
 	}
 
 	@SuppressWarnings("InstanceMethodNamingConvention")
-	public abstract RunsafeLocation run(FunctionParameters parameters);
+	public abstract ILocation run(FunctionParameters parameters);
 }

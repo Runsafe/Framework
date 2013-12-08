@@ -1,12 +1,12 @@
 package no.runsafe.framework.minecraft.packets;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.internal.networking.NetworkPacket;
-import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.WorldEffect;
 
 public final class PacketWorldParticles extends NetworkPacket
 {
-	public PacketWorldParticles(WorldEffect effect, RunsafeLocation location, WorldParticleOffset offset, int speed, int amount)
+	public PacketWorldParticles(WorldEffect effect, ILocation location, WorldParticleOffset offset, int speed, int amount)
 	{
 		setData("a", effect.getName());
 		setData("b", (float) location.getX());

@@ -1,9 +1,9 @@
 package no.runsafe.framework.api.entity;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.minecraft.Buff;
-import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.entity.ProjectileEntity;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.minecraft.inventory.RunsafeEntityEquipment;
@@ -33,7 +33,7 @@ public interface ILivingEntity extends IEntity
 
 	double getEyeHeight(boolean b);
 
-	RunsafeLocation getEyeLocation();
+	ILocation getEyeLocation();
 
 	List<IBlock> getLineOfSight(HashSet<Byte> transparent, int maxDistance);
 

@@ -1,15 +1,16 @@
 package no.runsafe.framework.minecraft.player;
 
 import com.google.common.collect.ImmutableList;
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.hook.*;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.HookEngine;
+import no.runsafe.framework.internal.wrapper.BukkitLocation;
 import no.runsafe.framework.internal.wrapper.player.BukkitPlayer;
 import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.RunsafeLocation;
-import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.Universe;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.event.player.RunsafeOperatorEvent;
@@ -106,7 +107,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor, IPl
 	@Override
 	public void teleport(IWorld world, double x, double y, double z)
 	{
-		RunsafeLocation target = new RunsafeLocation(world, x, y, z);
+		ILocation target = new RunsafeLocation(world, x, y, z);
 		RunsafeChunk chunk = target.getChunk();
 		if (chunk.isUnloaded())
 			chunk.load();
@@ -340,21 +341,21 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor, IPl
 	}
 
 	@Override
-	public void throwToPoint(RunsafeLocation location)
+	public void throwToPoint(ILocation location)
 	{
-		RunsafeLocation playerLocation = getLocation();
+		ILocation playerLocation = getLocation();
 
 		if (playerLocation != null)
-			setVelocity(location.toVector().subtract(playerLocation.toVector()));
+			setVelocity(((BukkitLocation) location).toVector().subtract(((BukkitLocation) playerLocation).toVector()));
 	}
 
 	@Override
-	public void throwFromPoint(RunsafeLocation location)
+	public void throwFromPoint(ILocation location)
 	{
-		RunsafeLocation playerLocation = getLocation();
+		ILocation playerLocation = getLocation();
 
 		if (playerLocation != null)
-			setVelocity(playerLocation.toVector().subtract(location.toVector()));
+			setVelocity(((BukkitLocation) playerLocation).toVector().subtract(((BukkitLocation) location).toVector()));
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.database;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.RunsafeLocation;
@@ -138,7 +139,7 @@ final class DataConverter
 
 	@SuppressWarnings({"MethodWithTooManyParameters", "ConstantConditions", "LocalVariableOfConcreteClass"})
 	@Nullable
-	static RunsafeLocation Location(Object world, Object x, Object y, Object z, Object yaw, Object pitch)
+	static ILocation Location(Object world, Object x, Object y, Object z, Object yaw, Object pitch)
 	{
 		IWorld targetWorld = World(world);
 		if (targetWorld == null)

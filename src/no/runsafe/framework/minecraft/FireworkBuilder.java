@@ -1,5 +1,6 @@
 package no.runsafe.framework.minecraft;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.item.meta.RunsafeFirework;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
@@ -146,10 +147,10 @@ public class FireworkBuilder
 		return item;
 	}
 
-	public void Fire(RunsafeLocation location)
+	public void Fire(ILocation location)
 	{
 		org.bukkit.entity.Firework firework =
-			((RunsafeWorld)location.getWorld()).spawn(location, org.bukkit.entity.Firework.class);
+			((RunsafeWorld) location.getWorld()).spawn(location, org.bukkit.entity.Firework.class);
 		firework.getFireworkMeta().setPower(power);
 		if (!effects.isEmpty())
 			firework.getFireworkMeta().addEffects(effects);
