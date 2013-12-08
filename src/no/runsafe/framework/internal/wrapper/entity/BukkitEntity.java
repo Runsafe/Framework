@@ -107,7 +107,7 @@ public abstract class BukkitEntity extends BukkitMetadata
 	@Deprecated
 	public IServer getServer()
 	{
-		return RunsafeServer.Instance;
+		return RunsafeServer.InternalAPI;
 	}
 
 	@Nullable

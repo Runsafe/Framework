@@ -159,12 +159,12 @@ final class DataConverter
 	{
 		if (value == null)
 			return null;
-		return RunsafeServer.Instance.getWorld(value.toString());
+		return RunsafeServer.InternalAPI.getWorld(value.toString());
 	}
 
 	@Nullable
 	static IPlayer Player(Object value)
 	{
-		return value == null ? null : RunsafeServer.Instance.getOfflinePlayerExact(value.toString());
+		return value == null ? null : RunsafeServer.InternalAPI.getOfflinePlayerExact(value.toString());
 	}
 }

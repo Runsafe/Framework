@@ -38,7 +38,7 @@ public class WorldArgument extends CommandArgumentSpecification implements ITabC
 	public List<String> getAlternatives(IPlayer executor, String partial)
 	{
 		return Lists.transform(
-			RunsafeServer.Instance.getWorlds(),
+			RunsafeServer.InternalAPI.getWorlds(),
 			new Function<IWorld, String>()
 			{
 				@Override

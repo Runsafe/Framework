@@ -77,8 +77,6 @@ public interface IServer
 
 	Set<String> getIpBans();
 
-	Logger getLogger();
-
 	int getMaxPlayers();
 
 	String getName();

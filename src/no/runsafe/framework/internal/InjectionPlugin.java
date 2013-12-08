@@ -129,8 +129,8 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		if (container == null)
 		{
 			Instances.put(getName(), this);
-			if (RunsafeServer.Instance == null)
-				RunsafeServer.Instance = new RunsafeServer(getServer());
+			if (RunsafeServer.InternalAPI == null)
+				RunsafeServer.InternalAPI = new RunsafeServer(getServer());
 
 			container = new DefaultPicoContainer(new Caching());
 			addStandardComponents();

@@ -27,7 +27,11 @@ import java.util.concurrent.ConcurrentHashMap;
 public class RunsafeServer extends BukkitServer implements IServer
 {
 	@Deprecated
-	public static IServer Instance;
+	/**
+	 * Entrypoint for internal framework usage only.
+	 * Use injection to get IServer from plugins!
+	 */
+	public static IServer InternalAPI;
 
 	public RunsafeServer(Server toWrap)
 	{

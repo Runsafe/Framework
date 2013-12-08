@@ -19,6 +19,6 @@ public class RunsafeSkull extends BukkitSkull
 
 	public IPlayer getPlayer()
 	{
-		return RunsafeServer.Instance.getOfflinePlayerExact(getOwner());
+		return RunsafeServer.InternalAPI.getOfflinePlayerExact(getOwner());
 	}
 }

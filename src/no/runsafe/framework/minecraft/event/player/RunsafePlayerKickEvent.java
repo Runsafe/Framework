@@ -14,7 +14,7 @@ public class RunsafePlayerKickEvent extends RunsafePlayerEvent implements IFakea
 	{
 		super(toWrap);
 		event = toWrap;
-		kicker = RunsafeServer.Instance.getKicker(toWrap.getPlayer().getName());
+		kicker = RunsafeServer.InternalAPI.getKicker(toWrap.getPlayer().getName());
 	}
 
 	public String getLeaveMessage()

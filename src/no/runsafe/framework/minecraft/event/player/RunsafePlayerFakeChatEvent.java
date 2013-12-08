@@ -25,7 +25,7 @@ public class RunsafePlayerFakeChatEvent extends RunsafePlayerChatEvent
 	{
 		String result = Run(player, message);
 		if (result != null)
-			RunsafeServer.Instance.broadcastMessage(result);
+			RunsafeServer.InternalAPI.broadcastMessage(result);
 	}
 
 	public RunsafePlayerFakeChatEvent(IPlayer player, String message)

@@ -17,7 +17,7 @@ public class RunsafePlayerPreLoginEvent extends RunsafeEvent
 
 	public IPlayer getPlayer()
 	{
-		return RunsafeServer.Instance.getOfflinePlayerExact(event.getName());
+		return RunsafeServer.InternalAPI.getOfflinePlayerExact(event.getName());
 	}
 
 	public String getName()

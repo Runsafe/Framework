@@ -25,12 +25,12 @@ public class Universe
 	public List<IWorld> getWorlds()
 	{
 		List<IUniverseMapper> dataHooks = HookEngine.hookContainer.getComponents(IUniverseMapper.class);
-		Map<String, IWorld> worlds = new HashMap<String, IWorld>(RunsafeServer.Instance.getWorlds().size());
+		Map<String, IWorld> worlds = new HashMap<String, IWorld>(RunsafeServer.InternalAPI.getWorlds().size());
 		for (IUniverseMapper mapper : dataHooks)
 		{
 			for (String world : mapper.GetWorlds(name))
 				if (!worlds.containsKey(world))
-					worlds.put(world, RunsafeServer.Instance.getWorld(world));
+					worlds.put(world, RunsafeServer.InternalAPI.getWorld(world));
 		}
 		return Lists.newArrayList(worlds.values());
 	}

@@ -69,7 +69,7 @@ public class FunctionParameters
 
 	public IPlayer getPlayer(int index)
 	{
-		IPlayer player = RunsafeServer.Instance.getOfflinePlayerExact(getString(index));
+		IPlayer player = RunsafeServer.InternalAPI.getOfflinePlayerExact(getString(index));
 		if (player == null)
 			throw new LuaError(String.format("CommandArgumentSpecification %s at index %d is not a valid player.", getString(index), index));
 
@@ -78,7 +78,7 @@ public class FunctionParameters
 
 	public IWorld getWorld(int index)
 	{
-		IWorld world = RunsafeServer.Instance.getWorld(getString(index));
+		IWorld world = RunsafeServer.InternalAPI.getWorld(getString(index));
 		if (world == null)
 			throw new LuaError(String.format("CommandArgumentSpecification %s at index %d is not a valid world.", getString(index), index));
 

@@ -161,7 +161,7 @@ public final class Configuration implements IConfiguration
 	@Override
 	public IWorld getConfigValueAsWorld(String key)
 	{
-		return RunsafeServer.Instance.getWorld(getConfigValueAsString(key));
+		return RunsafeServer.InternalAPI.getWorld(getConfigValueAsString(key));
 	}
 
 	@Nullable
