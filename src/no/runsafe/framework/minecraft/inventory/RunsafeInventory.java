@@ -1,5 +1,6 @@
 package no.runsafe.framework.minecraft.inventory;
 
+import no.runsafe.framework.internal.Debug;
 import no.runsafe.framework.internal.wrapper.inventory.BukkitInventory;
 import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.RunsafeServer;
@@ -78,7 +79,7 @@ public class RunsafeInventory extends BukkitInventory
 		}
 		catch (InvalidConfigurationException e)
 		{
-			RunsafeServer.Instance.getLogger().warning(ExceptionUtils.getFullStackTrace(e));
+			Debug.Global().logException(e);
 		}
 	}
 }
