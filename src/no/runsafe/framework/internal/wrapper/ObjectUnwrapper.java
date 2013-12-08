@@ -1,15 +1,18 @@
 package no.runsafe.framework.internal.wrapper;
 
-import net.minecraft.server.v1_6_R3.*;
+import net.minecraft.server.v1_6_R3.Entity;
+import net.minecraft.server.v1_6_R3.EntityPlayer;
+import net.minecraft.server.v1_6_R3.EntityProjectile;
+import no.runsafe.framework.api.entity.IEntity;
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.wrapper.player.BukkitPlayer;
-import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.minecraft.entity.RunsafeProjectile;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
-import org.bukkit.*;
-import org.bukkit.craftbukkit.v1_6_R3.CraftWorld;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.craftbukkit.v1_6_R3.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_6_R3.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_6_R3.entity.CraftProjectile;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 
 import javax.annotation.Nullable;
 
@@ -21,30 +24,37 @@ public final class ObjectUnwrapper
 	}
 
 	@Nullable
-	public static EntityPlayer convert(RunsafePlayer player)
+	public static EntityPlayer getMinecraft(IPlayer player)
 	{
-		if (player == null)
+		Player bukkit = convert(player);
+		if (bukkit == null)
 			return null;
-		return ((CraftPlayer) player.getRaw()).getHandle();
+		return ((CraftPlayer) bukkit).getHandle();
 	}
 
 	@Nullable
-	public static Entity convert(RunsafeEntity entity)
+	public static Entity getMinecraft(IEntity entity)
 	{
-		if (entity == null)
+		org.bukkit.entity.Entity bukkit = convert(entity);
+		if (bukkit == null)
 			return null;
-		return ((CraftEntity) entity.getRaw()).getHandle();
+		return ((CraftEntity) bukkit).getHandle();
 	}
 
-	public static IProjectile convert(RunsafeProjectile projectile)
+	@Nullable
+	public static EntityProjectile getMinecraft(RunsafeProjectile projectile)
 	{
-		return ((CraftProjectile) projectile.getRaw()).getHandle();
+		Projectile bukkit = convert(projectile);
+		if (bukkit == null)
+			return null;
+		return ((CraftProjectile) bukkit).getHandle();
 	}
 
 	@SuppressWarnings("unchecked")
+	@Nullable
 	public static <T> T convert(Object wrapper)
 	{
-		return ((IWrapper<T>)wrapper).getRaw();
+		return convert((IWrapper<T>) wrapper);
 	}
 
 	public static OfflinePlayer convert(BukkitPlayer player)
@@ -52,6 +62,7 @@ public final class ObjectUnwrapper
 		return player.getBasePlayer();
 	}
 
+	@Nullable
 	public static <T extends Object> T convert(IWrapper<T> wrapper)
 	{
 		return wrapper.getRaw();
