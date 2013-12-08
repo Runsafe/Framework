@@ -3,6 +3,7 @@ package no.runsafe.framework.minecraft;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.hook.IPlayerLookupService;
 import no.runsafe.framework.api.hook.IPlayerPermissions;
 import no.runsafe.framework.api.player.IPlayer;
@@ -23,9 +24,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class RunsafeServer extends BukkitServer
+public class RunsafeServer extends BukkitServer implements IServer
 {
-	public static RunsafeServer Instance;
+	@Deprecated
+	public static IServer Instance;
 
 	public RunsafeServer(Server toWrap)
 	{
@@ -33,6 +35,8 @@ public class RunsafeServer extends BukkitServer
 		debugger = new Debug();
 	}
 
+	@Deprecated
+	@Override
 	public IDebug getDebugger()
 	{
 		return debugger;
@@ -54,6 +58,7 @@ public class RunsafeServer extends BukkitServer
 		return groups;
 	}
 
+	@Override
 	@Nullable
 	public IPlayer getPlayer(String playerName)
 	{
@@ -75,6 +80,7 @@ public class RunsafeServer extends BukkitServer
 		return new RunsafeAmbiguousPlayer(server.getOfflinePlayer(hits.get(0)), hits);
 	}
 
+	@Override
 	@Nullable
 	public IPlayer getOnlinePlayer(IPlayer context, String playerName)
 	{
@@ -95,6 +101,7 @@ public class RunsafeServer extends BukkitServer
 		return new RunsafeAmbiguousPlayer(online);
 	}
 
+	@Override
 	@Nullable
 	public List<IPlayer> getOnlinePlayers(String playerName)
 	{
@@ -110,6 +117,7 @@ public class RunsafeServer extends BukkitServer
 		return ObjectWrapper.convert(players);
 	}
 
+	@Override
 	@Nullable
 	public IPlayer getPlayerExact(String playerName)
 	{
@@ -167,6 +175,7 @@ public class RunsafeServer extends BukkitServer
 		return filtered;
 	}
 
+	@Override
 	public void banPlayer(IPlayer banner, IPlayer player, String reason)
 	{
 		if (player == null)
@@ -178,6 +187,7 @@ public class RunsafeServer extends BukkitServer
 		player.kick(reason);
 	}
 
+	@Override
 	public void kickPlayer(IPlayer kicker, IPlayer player, String reason)
 	{
 		if (player == null)
@@ -187,6 +197,7 @@ public class RunsafeServer extends BukkitServer
 		player.kick(reason);
 	}
 
+	@Override
 	@SuppressWarnings("LocalVariableOfConcreteClass")
 	@Nullable
 	public IPlayer getKicker(String playerName)
@@ -202,6 +213,7 @@ public class RunsafeServer extends BukkitServer
 		return null;
 	}
 
+	@Override
 	public boolean someoneHasPermission(String permission)
 	{
 		if (permission == null || permission.isEmpty())
@@ -212,6 +224,7 @@ public class RunsafeServer extends BukkitServer
 		return false;
 	}
 
+	@Override
 	public List<IPlayer> getPlayersWithPermission(String permission)
 	{
 		if (permission == null || permission.isEmpty())
@@ -224,6 +237,7 @@ public class RunsafeServer extends BukkitServer
 		return results;
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	@Nullable
 	public <T extends Plugin> T getPlugin(String pluginName)
@@ -239,6 +253,7 @@ public class RunsafeServer extends BukkitServer
 	private final ConcurrentHashMap<String, IPlayer> kickingPlayer = new ConcurrentHashMap<String, IPlayer>();
 	private final IDebug debugger;
 
+	@Override
 	public List<String> getOnlinePlayers(IPlayer context, String playerName)
 	{
 		List<IPlayer> matches = playerName == null || playerName.isEmpty() ? getOnlinePlayers() : matchPlayer(playerName);

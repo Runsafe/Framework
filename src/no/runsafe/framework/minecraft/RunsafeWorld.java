@@ -20,11 +20,10 @@ public class RunsafeWorld extends BukkitWorld implements IWorld
 		super(toWrap);
 	}
 
-	@SuppressWarnings("InstanceofInterfaces")
 	@Override
 	public boolean equals(Object obj)
 	{
-		return obj instanceof RunsafeWorld && getName().equals(((BukkitWorld) obj).getName());
+		return obj instanceof IWorld && getName().equals(((IWorld) obj).getName());
 	}
 
 	@Override

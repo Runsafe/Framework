@@ -5,6 +5,7 @@ import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.api.command.IPreparedCommand;
+import no.runsafe.framework.internal.Debug;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.text.ChatColour;
@@ -90,7 +91,7 @@ public final class BukkitCommandTabExecutor implements TabExecutor
 				if (sender instanceof Player)
 					sender.sendMessage(ChatColour.ToMinecraft(feedback));
 				else
-					RunsafeServer.Instance.getDebugger().writeColoured(feedback, Level.INFO);
+					Debug.Global().writeColoured(feedback, Level.INFO);
 			}
 		}
 		else

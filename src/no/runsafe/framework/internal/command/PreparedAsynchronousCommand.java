@@ -2,7 +2,7 @@ package no.runsafe.framework.internal.command;
 
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.command.*;
-import no.runsafe.framework.minecraft.RunsafeServer;
+import no.runsafe.framework.internal.Debug;
 
 import java.util.Map;
 import java.util.Stack;
@@ -60,7 +60,7 @@ public final class PreparedAsynchronousCommand extends PreparedCommand
 					}
 					catch (Exception e)
 					{
-						RunsafeServer.Instance.getDebugger().logException(e);
+						Debug.Global().logException(e);
 					}
 				}
 			},

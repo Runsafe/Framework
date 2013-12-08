@@ -13,6 +13,11 @@ import java.util.logging.Level;
 
 public class Debug extends Console implements IDebug
 {
+	public static IDebug Global()
+	{
+		return globalDebugger;
+	}
+
 	public Debug()
 	{
 		this(null);
@@ -140,4 +145,5 @@ public class Debug extends Console implements IDebug
 	}
 
 	private Level debugLevel;
+	private static final IDebug globalDebugger = new Debug(null);
 }

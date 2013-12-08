@@ -1,6 +1,7 @@
 package no.runsafe.framework.internal.wrapper.entity;
 
 import no.runsafe.framework.api.ILocation;
+import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
@@ -103,7 +104,7 @@ public abstract class BukkitEntity extends BukkitMetadata
 		return entity.isDead();
 	}
 
-	public RunsafeServer getServer()
+	public IServer getServer()
 	{
 		return RunsafeServer.Instance;
 	}

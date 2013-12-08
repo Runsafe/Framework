@@ -4,7 +4,7 @@ import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.event.IServerReady;
 import no.runsafe.framework.api.lua.Library;
-import no.runsafe.framework.minecraft.RunsafeServer;
+import no.runsafe.framework.internal.Debug;
 import org.apache.commons.io.FileUtils;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaError;
@@ -40,7 +40,7 @@ public class Environment implements Startable, IServerReady
 	@SuppressWarnings("StaticVariableUsedBeforeInitialization")
 	public static void loadFile(String file)
 	{
-		IDebug debugger = RunsafeServer.Instance.getDebugger();
+		IDebug debugger = Debug.Global();
 		debugger.logInformation("Loading script %s", file);
 		try
 		{
@@ -79,7 +79,7 @@ public class Environment implements Startable, IServerReady
 		List<Library> libraries = plugin.getComponents(Library.class);
 		if (!libraries.isEmpty())
 		{
-			RunsafeServer.Instance.getDebugger().debugFine("Adding plugin namespace %s to LUA environment", plugin.getName());
+			Debug.Global().debugFine("Adding plugin namespace %s to LUA environment", plugin.getName());
 			global.set(plugin.getName(), new LuaTable());
 			for (Library library : libraries)
 				global.load(library);

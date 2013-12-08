@@ -1,15 +1,15 @@
 package no.runsafe.framework.internal;
 
 import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.text.ChatColour;
 
 import java.util.logging.Level;
 
 public final class Broadcaster extends Debug implements IOutput
 {
-	public Broadcaster(InjectionPlugin plugin, RunsafeServer server)
+	public Broadcaster(InjectionPlugin plugin, IServer server)
 	{
 		super(plugin);
 		serverOutput = server;
@@ -37,5 +37,5 @@ public final class Broadcaster extends Debug implements IOutput
 			player.sendColouredMessage(message);
 	}
 
-	private final RunsafeServer serverOutput;
+	private final IServer serverOutput;
 }

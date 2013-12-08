@@ -3,8 +3,8 @@ package no.runsafe.framework.minecraft.event.player;
 import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.event.player.IPlayerCustomEvent;
 import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.internal.Debug;
 import no.runsafe.framework.internal.InjectionPlugin;
-import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.minecraft.event.RunsafeInternalEvent;
 
 public abstract class RunsafeCustomEvent extends RunsafeInternalEvent
@@ -31,13 +31,13 @@ public abstract class RunsafeCustomEvent extends RunsafeInternalEvent
 	@Override
 	public boolean Fire()
 	{
-		RunsafeServer.Instance.getDebugger().debugFiner("Firing custom event %s.", getClass().getName());
+		Debug.Global().debugFiner("Firing custom event %s.", getClass().getName());
 		for (IKernel plugin : InjectionPlugin.Instances.values())
 		{
-			RunsafeServer.Instance.getDebugger().debugFiner("Asking %s.", plugin.getClass().getName());
+			Debug.Global().debugFiner("Asking %s.", plugin.getClass().getName());
 			for (IPlayerCustomEvent listener : plugin.getComponents(IPlayerCustomEvent.class))
 			{
-				RunsafeServer.Instance.getDebugger().debugFiner("Telling %s.", listener.getClass().getName());
+				Debug.Global().debugFiner("Telling %s.", listener.getClass().getName());
 				listener.OnPlayerCustomEvent(this);
 			}
 		}
