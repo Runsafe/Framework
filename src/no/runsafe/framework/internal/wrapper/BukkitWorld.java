@@ -134,5 +134,21 @@ public abstract class BukkitWorld extends BukkitMetadata implements IWrapper<Wor
 		world.playSound((Location) ObjectUnwrapper.convert(location), sound.getSound(), volume, pitch);
 	}
 
+	public boolean isNormal()
+	{
+		return world.getEnvironment() == World.Environment.NORMAL;
+	}
+
+	public boolean isNether()
+	{
+		return world.getEnvironment() == World.Environment.NETHER;
+
+	}
+
+	public boolean isTheEnd()
+	{
+		return world.getEnvironment() == World.Environment.THE_END;
+	}
+
 	protected final World world;
 }

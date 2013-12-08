@@ -61,4 +61,10 @@ public interface IWorld extends IMetadata
 	List<IEntity> getEntities();
 
 	void playSound(ILocation location, Sound sound, float volume, float pitch);
+
+	boolean isNormal();
+
+	boolean isNether();
+
+	boolean isTheEnd();
 }

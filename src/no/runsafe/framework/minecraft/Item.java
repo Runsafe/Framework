@@ -15,6 +15,8 @@ import org.bukkit.material.MaterialData;
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Item implements IEnchantable
 {
@@ -49,9 +51,18 @@ public class Item implements IEnchantable
 	@Nullable
 	public static Item get(String type)
 	{
+		Matcher id = materialId.matcher(type);
+		if (id.matches())
+			return getItem(Material.getMaterial(Integer.valueOf(id.group(1))), Byte.valueOf(id.group(2)));
 		Material material = Material.getMaterial(type);
 		if (material == null)
+			for (Material candidate : Material.values())
+				if (candidate.name().replace("_", "").equalsIgnoreCase(type))
+					return getItem(candidate, (byte) 0);
+
+		if (material == null)
 			return null;
+
 		return getItem(material, (byte) 0);
 	}
 
@@ -1145,6 +1156,7 @@ public class Item implements IEnchantable
 	}
 
 	private static final Map<String, Item> items = new HashMap<String, Item>(Material.values().length);
+	private static final Pattern materialId = Pattern.compile("^-?(\\d+)(\\.\\d+)?$");
 	private final Material material;
 	private final boolean root;
 	@Nullable
