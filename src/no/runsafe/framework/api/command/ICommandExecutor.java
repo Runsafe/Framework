@@ -6,4 +6,5 @@ public interface ICommandExecutor
 	void sendMessage(String message);
 	void sendColouredMessage(String format, Object... params);
 	boolean hasPermission(String permission);
+	boolean performCommand(String command);
 }
