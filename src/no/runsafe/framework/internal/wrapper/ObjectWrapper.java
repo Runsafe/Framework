@@ -350,6 +350,9 @@ public final class ObjectWrapper
 		if (toWrap instanceof Item)
 			return convert((Item) toWrap);
 
+		if (toWrap instanceof Explosive)
+			return convert((Explosive) toWrap);
+
 		return new RunsafeEntity(toWrap);
 	}
 
@@ -431,6 +434,14 @@ public final class ObjectWrapper
 		if (toWrap == null)
 			return null;
 		return new RunsafeItem(toWrap);
+	}
+
+	@Nullable
+	public static RunsafeExplosive convert(Explosive toWrap)
+	{
+		if (toWrap == null)
+			return null;
+		return new RunsafeExplosive(toWrap);
 	}
 
 	@Nullable
