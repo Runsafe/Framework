@@ -25,7 +25,12 @@ public final class ObjectUnwrapper
 	{
 		if (player == null)
 			return null;
-		return ((CraftPlayer) player.getRaw()).getHandle();
+
+		CraftPlayer craftPlayer = (CraftPlayer) player.getRaw();
+		if (craftPlayer == null)
+			return null;
+
+		return craftPlayer.getHandle();
 	}
 
 	@Nullable
