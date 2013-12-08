@@ -1,7 +1,5 @@
 package no.runsafe.framework.api.hook;
 
-import no.runsafe.framework.minecraft.RunsafeServer;
-
 import java.util.List;
 
 public interface IPlayerLookupService extends IFrameworkHook
