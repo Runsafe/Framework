@@ -17,6 +17,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
+import java.net.InetSocketAddress;
 
 public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolder, IAnimalTamer, IWrapper<OfflinePlayer>
 {
@@ -264,6 +265,15 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 		if (player != null)
 			player.getInventory().setBoots(itemStack.getRaw());
 	}
+
+	@Nullable
+	public InetSocketAddress getAddress()
+	{
+		if (player == null)
+			return null;
+		return player.getAddress();
+	}
+
 
 	@Nullable
 	protected final Player player;
