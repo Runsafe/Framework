@@ -13,6 +13,7 @@ public class RunsafePendingConnection extends PendingConnection
 		super(server, socket, s);
 	}
 
+	// We override this function to remove "lost connection" spam.
 	@Override
 	public void a(String s, Object[] aobject)
 	{
