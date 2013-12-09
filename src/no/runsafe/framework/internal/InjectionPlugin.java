@@ -1,9 +1,9 @@
 package no.runsafe.framework.internal;
 
-import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.event.plugin.IPluginDisabled;
 import no.runsafe.framework.api.event.plugin.IPluginEnabled;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.files.PluginFileManager;
 import no.runsafe.framework.internal.command.CommandEngine;
 import no.runsafe.framework.internal.configuration.Configuration;
@@ -12,6 +12,8 @@ import no.runsafe.framework.internal.database.SchemaUpdater;
 import no.runsafe.framework.internal.database.jdbc.Database;
 import no.runsafe.framework.internal.event.EventEngine;
 import no.runsafe.framework.internal.log.Broadcaster;
+import no.runsafe.framework.internal.log.Debug;
+import no.runsafe.framework.internal.log.Protocol;
 import no.runsafe.framework.internal.lua.Environment;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.timer.Scheduler;
@@ -148,6 +150,8 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		container.addComponent(getLogger());
 		container.addComponent(Configuration.class);
 		container.addComponent(Broadcaster.class);
+		container.addComponent(Debug.class);
+		container.addComponent(Protocol.class);
 		container.addComponent(Database.class);
 		container.addComponent(new Scheduler(getServer().getScheduler(), this));
 		container.addComponent(SchemaUpdater.class);

@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.entity;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.entity.IEntityDamageEvent;
@@ -13,7 +13,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 
 public final class EntityDamage extends EventRouterBase<IEntityDamageEvent, EntityDamageEvent>
 {
-	EntityDamage(IDebug output, IScheduler scheduler, IEntityDamageEvent handler)
+	EntityDamage(IConsole output, IScheduler scheduler, IEntityDamageEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class EntityDamage extends EventRouterBase<IEntityDamageEvent, Enti
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new EntityDamage(output, scheduler, (IEntityDamageEvent) subscriber);
 			}

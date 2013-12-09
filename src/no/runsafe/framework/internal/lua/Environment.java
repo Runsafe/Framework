@@ -1,9 +1,10 @@
 package no.runsafe.framework.internal.lua;
 
 import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.event.IServerReady;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.lua.Library;
+import no.runsafe.framework.internal.log.Console;
 import no.runsafe.framework.internal.log.Debug;
 import org.apache.commons.io.FileUtils;
 import org.luaj.vm2.Globals;
@@ -40,15 +41,15 @@ public class Environment implements Startable, IServerReady
 	@SuppressWarnings("StaticVariableUsedBeforeInitialization")
 	public static void loadFile(String file)
 	{
-		IDebug debugger = Debug.Global();
-		debugger.logInformation("Loading script %s", file);
+		IConsole console = Console.Global();
+		console.logInformation("Loading script %s", file);
 		try
 		{
 			global.get("dofile").call(LuaValue.valueOf(file));
 		}
 		catch (LuaError error)
 		{
-			debugger.logException(error);
+			console.logException(error);
 		}
 	}
 

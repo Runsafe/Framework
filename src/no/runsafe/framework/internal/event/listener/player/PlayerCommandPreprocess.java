@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.player;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.player.IPlayerCommandPreprocessEvent;
@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 public final class PlayerCommandPreprocess extends EventRouterBase<IPlayerCommandPreprocessEvent, PlayerCommandPreprocessEvent>
 {
-	PlayerCommandPreprocess(IDebug output, IScheduler scheduler, IPlayerCommandPreprocessEvent handler)
+	PlayerCommandPreprocess(IConsole output, IScheduler scheduler, IPlayerCommandPreprocessEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -44,7 +44,7 @@ public final class PlayerCommandPreprocess extends EventRouterBase<IPlayerComman
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new PlayerCommandPreprocess(output, scheduler, (IPlayerCommandPreprocessEvent) subscriber);
 			}

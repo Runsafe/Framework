@@ -2,9 +2,10 @@ package no.runsafe.framework.internal.event;
 
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
+import no.runsafe.framework.api.log.IConsole;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.internal.event.listener.Factories;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
@@ -19,17 +20,18 @@ public final class EventEngine implements Startable
 		factories = new HashMap<Class<? extends IRunsafeEvent>, EventRouterFactory>(0);
 	}
 
-	public EventEngine(IDebug output, IScheduler scheduler, PluginManager manager, RunsafePlugin plugin)
+	public EventEngine(IConsole output, IScheduler scheduler, PluginManager manager, RunsafePlugin plugin, IDebug debug)
 	{
-		this(output, scheduler, manager, plugin, new IRunsafeEvent[0]);
+		this(output, scheduler, manager, plugin, debug, new IRunsafeEvent[0]);
 	}
 
 	public EventEngine(
-		IDebug output, IScheduler scheduler, PluginManager manager, RunsafePlugin plugin, IRunsafeEvent... events)
+		IConsole output, IScheduler scheduler, PluginManager manager, RunsafePlugin plugin, IDebug debug, IRunsafeEvent... events)
 	{
 		eventSubscribers = events;
 		this.scheduler = scheduler;
 		this.output = output;
+		this.debug = debug;
 		pluginManager = manager;
 		this.plugin = plugin;
 	}
@@ -43,7 +45,7 @@ public final class EventEngine implements Startable
 			for (Listener listener : getListeners())
 			{
 				pluginManager.registerEvents(listener, plugin);
-				output.debugFiner("Registered event listener %s", listener.getClass().getName());
+				debug.debugFiner("Registered event listener %s", listener.getClass().getName());
 			}
 		}
 	}
@@ -79,7 +81,8 @@ public final class EventEngine implements Startable
 	private static final Map<Class<? extends IRunsafeEvent>, EventRouterFactory> factories;
 	private final IRunsafeEvent[] eventSubscribers;
 	private final IScheduler scheduler;
-	private final IDebug output;
+	private final IConsole output;
+	private final IDebug debug;
 	private final PluginManager pluginManager;
 	private final RunsafePlugin plugin;
 }

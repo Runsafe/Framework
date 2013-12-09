@@ -1,9 +1,10 @@
 package no.runsafe.framework.internal.database.jdbc;
 
 import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.database.IDatabase;
 import no.runsafe.framework.api.database.ITransaction;
+import no.runsafe.framework.api.log.IConsole;
+import no.runsafe.framework.api.log.IDebug;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.joda.time.DateTime;
@@ -22,9 +23,9 @@ import java.util.logging.Level;
  */
 public final class Database extends QueryExecutor implements IDatabase
 {
-	public Database(IDebug output, RunsafePlugin plugin)
+	public Database(IDebug output, IConsole console, RunsafePlugin plugin)
 	{
-		super(output);
+		super(console, output);
 		YamlConfiguration config = new YamlConfiguration();
 		File location = configure(config, plugin);
 
@@ -35,12 +36,12 @@ public final class Database extends QueryExecutor implements IDatabase
 		try
 		{
 			if (QueryRow("SELECT VERSION()") == null)
-				output.logFatal("Unable to connect to MySQL - Verify %s!", location);
+				console.logFatal("Unable to connect to MySQL - Verify %s!", location);
 		}
 		catch (Exception e)
 		{
-			output.logException(e);
-			output.logFatal("An error occurred while testing the MySQL connection - Verify %s!", location);
+			console.logException(e);
+			console.logFatal("An error occurred while testing the MySQL connection - Verify %s!", location);
 		}
 	}
 
@@ -54,7 +55,7 @@ public final class Database extends QueryExecutor implements IDatabase
 			if (connection == null)
 				return null;
 			connection.setAutoCommit(false);
-			return new Transaction(output, connection);
+			return new Transaction(output, debugger, connection);
 		}
 		catch (SQLException e)
 		{
@@ -142,7 +143,7 @@ public final class Database extends QueryExecutor implements IDatabase
 		close();
 		accessTime = DateTime.now();
 		conn = DriverManager.getConnection(databaseURL, databaseUsername, databasePassword);
-		output.debugFine(String.format("Opening connection to %s by %s", databaseURL, databaseUsername));
+		debugger.debugFine(String.format("Opening connection to %s by %s", databaseURL, databaseUsername));
 	}
 
 	private void close()

@@ -1,6 +1,6 @@
 package no.runsafe.framework.minecraft.inventory;
 
-import no.runsafe.framework.internal.log.Debug;
+import no.runsafe.framework.internal.log.Console;
 import no.runsafe.framework.internal.wrapper.inventory.BukkitPlayerInventory;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -53,7 +53,7 @@ public class RunsafePlayerInventory extends BukkitPlayerInventory
 		}
 		catch (InvalidConfigurationException e)
 		{
-			Debug.Global().logException(e);
+			Console.Global().logException(e);
 		}
 	}
 }

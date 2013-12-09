@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.entity;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.entity.IEntityPortalEnterEvent;
@@ -13,7 +13,7 @@ import org.bukkit.event.entity.EntityPortalEnterEvent;
 
 public final class EntityPortalEnter extends EventRouterBase<IEntityPortalEnterEvent, EntityPortalEnterEvent>
 {
-	EntityPortalEnter(IDebug output, IScheduler scheduler, IEntityPortalEnterEvent handler)
+	EntityPortalEnter(IConsole output, IScheduler scheduler, IEntityPortalEnterEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class EntityPortalEnter extends EventRouterBase<IEntityPortalEnterE
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new EntityPortalEnter(output, scheduler, (IEntityPortalEnterEvent) subscriber);
 			}

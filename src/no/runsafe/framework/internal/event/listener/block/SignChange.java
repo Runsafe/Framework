@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.block;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.block.ISignChange;
@@ -14,7 +14,7 @@ import org.bukkit.event.block.SignChangeEvent;
 
 public final class SignChange extends EventRouterBase<ISignChange, SignChangeEvent>
 {
-	SignChange(IDebug output, IScheduler scheduler, ISignChange handler)
+	SignChange(IConsole output, IScheduler scheduler, ISignChange handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -47,7 +47,7 @@ public final class SignChange extends EventRouterBase<ISignChange, SignChangeEve
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new SignChange(output, scheduler, (ISignChange) subscriber);
 			}

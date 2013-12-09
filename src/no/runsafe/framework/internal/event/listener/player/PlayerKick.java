@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.player;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.player.IPlayerKickEvent;
@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerKickEvent;
 
 public final class PlayerKick extends EventRouterBase<IPlayerKickEvent, PlayerKickEvent>
 {
-	PlayerKick(IDebug output, IScheduler scheduler, IPlayerKickEvent handler)
+	PlayerKick(IConsole output, IScheduler scheduler, IPlayerKickEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class PlayerKick extends EventRouterBase<IPlayerKickEvent, PlayerKi
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new PlayerKick(output, scheduler, (IPlayerKickEvent) subscriber);
 			}

@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.entity;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.entity.INaturalSpawn;
@@ -13,7 +13,7 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 
 public final class NaturalSpawn extends EventRouterBase<INaturalSpawn, CreatureSpawnEvent>
 {
-	NaturalSpawn(IDebug output, IScheduler scheduler, INaturalSpawn handler)
+	NaturalSpawn(IConsole output, IScheduler scheduler, INaturalSpawn handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -46,7 +46,7 @@ public final class NaturalSpawn extends EventRouterBase<INaturalSpawn, CreatureS
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new NaturalSpawn(output, scheduler, (INaturalSpawn) subscriber);
 			}

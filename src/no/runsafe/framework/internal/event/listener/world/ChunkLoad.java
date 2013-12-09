@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.world;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.world.IChunkLoad;
@@ -13,7 +13,7 @@ import org.bukkit.event.world.ChunkLoadEvent;
 
 public final class ChunkLoad extends EventRouterBase<IChunkLoad, ChunkLoadEvent>
 {
-	ChunkLoad(IDebug output, IScheduler scheduler, IChunkLoad handler)
+	ChunkLoad(IConsole output, IScheduler scheduler, IChunkLoad handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class ChunkLoad extends EventRouterBase<IChunkLoad, ChunkLoadEvent>
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new ChunkLoad(output, scheduler, (IChunkLoad) subscriber);
 			}

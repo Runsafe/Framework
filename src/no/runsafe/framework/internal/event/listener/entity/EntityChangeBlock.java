@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.entity;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.entity.IEntityChangeBlockEvent;
@@ -13,7 +13,7 @@ import org.bukkit.event.entity.EntityChangeBlockEvent;
 
 public final class EntityChangeBlock extends EventRouterBase<IEntityChangeBlockEvent, EntityChangeBlockEvent>
 {
-	EntityChangeBlock(IDebug output, IScheduler scheduler, IEntityChangeBlockEvent handler)
+	EntityChangeBlock(IConsole output, IScheduler scheduler, IEntityChangeBlockEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class EntityChangeBlock extends EventRouterBase<IEntityChangeBlockE
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new EntityChangeBlock(output, scheduler, (IEntityChangeBlockEvent) subscriber);
 			}

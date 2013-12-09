@@ -3,8 +3,9 @@ package no.runsafe.framework.internal.configuration;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.IConfiguration;
 import no.runsafe.framework.api.IConfigurationFile;
-import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.event.plugin.IConfigurationChanged;
+import no.runsafe.framework.api.log.IConsole;
+import no.runsafe.framework.api.log.IDebug;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.picocontainer.Startable;
 
@@ -38,11 +39,12 @@ public final class ConfigurationEngine implements Startable
 	/**
 	 * This is needed for pico to not throw exceptions
 	 *
-	 * @param plugin The plugin
+	 * @param plugin   The plugin
+	 * @param debugger
 	 */
 	public ConfigurationEngine(RunsafePlugin plugin)
 	{
-		this(plugin, null, null);
+		this(plugin, null, null, null);
 	}
 
 	/**
@@ -54,9 +56,10 @@ public final class ConfigurationEngine implements Startable
 	public ConfigurationEngine(
 		RunsafePlugin plugin,
 		Configuration configuration,
-		IDebug output, IConfigurationChanged... subscribers)
+		IConsole output, IDebug debug, IConfigurationChanged... subscribers)
 	{
 		console = output;
+		debugger = debug;
 		this.subscribers = subscribers;
 		this.configuration = configuration;
 		if (plugin instanceof IConfigurationFile)
@@ -94,7 +97,7 @@ public final class ConfigurationEngine implements Startable
 		if (configFilePath == null || configurationFile == null || configuration == null)
 			return;
 
-		console.debugFine("Loading configuration from %s", configFilePath);
+		debugger.debugFine("Loading configuration from %s", configFilePath);
 		File configFile = new File(configFilePath);
 
 		configuration.configFile = YamlConfiguration.loadConfiguration(configFile);
@@ -106,7 +109,7 @@ public final class ConfigurationEngine implements Startable
 			configuration.configFile.options().copyDefaults(true);
 		}
 		configuration.save();
-		console.debugFine("Updating configuration.");
+		debugger.debugFine("Updating configuration.");
 		notifySubscribers();
 	}
 
@@ -135,7 +138,7 @@ public final class ConfigurationEngine implements Startable
 			{
 				try
 				{
-					console.debugFiner(
+					debugger.debugFiner(
 						"Notifying subscriber %s about updated configuration.",
 						sub.getClass().getCanonicalName()
 					);
@@ -146,14 +149,13 @@ public final class ConfigurationEngine implements Startable
 					console.logException(e);
 				}
 			}
-			console.outputToConsole(
-				String.format("Configuration change notifications sent to %d modules.", subscribers.length)
-			);
+			console.logInformation("Configuration change notifications sent to %d modules.", subscribers.length);
 		}
 	}
 
 	private final IConfigurationChanged[] subscribers;
-	private final IDebug console;
+	private final IConsole console;
+	private final IDebug debugger;
 	private final Configuration configuration;
 	@Nullable
 	private final String configFilePath;

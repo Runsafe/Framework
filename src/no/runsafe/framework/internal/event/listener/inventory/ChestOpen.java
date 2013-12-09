@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.inventory;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.inventory.IChestOpen;
@@ -14,7 +14,7 @@ import org.bukkit.event.inventory.InventoryOpenEvent;
 
 public final class ChestOpen extends EventRouterBase<IChestOpen, InventoryOpenEvent>
 {
-	ChestOpen(IDebug output, IScheduler scheduler, IChestOpen handler)
+	ChestOpen(IConsole output, IScheduler scheduler, IChestOpen handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -47,7 +47,7 @@ public final class ChestOpen extends EventRouterBase<IChestOpen, InventoryOpenEv
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new ChestOpen(output, scheduler, (IChestOpen) subscriber);
 			}

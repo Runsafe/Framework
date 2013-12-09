@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.logging.Level;
 
-public class Debug extends Console implements IDebug
+public class Debug extends Log implements IDebug
 {
 	public static IDebug Global()
 	{

@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.entity;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.entity.IEntityTameEvent;
@@ -13,7 +13,7 @@ import org.bukkit.event.entity.EntityTameEvent;
 
 public final class EntityTame extends EventRouterBase<IEntityTameEvent, EntityTameEvent>
 {
-	EntityTame(IDebug output, IScheduler scheduler, IEntityTameEvent handler)
+	EntityTame(IConsole output, IScheduler scheduler, IEntityTameEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class EntityTame extends EventRouterBase<IEntityTameEvent, EntityTa
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new EntityTame(output, scheduler, (IEntityTameEvent) subscriber);
 			}

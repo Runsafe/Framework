@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.player;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.player.IPlayerDeathEvent;
@@ -13,7 +13,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 
 public final class PlayerDeath extends EventRouterBase<IPlayerDeathEvent, PlayerDeathEvent>
 {
-	PlayerDeath(IDebug output, IScheduler scheduler, IPlayerDeathEvent handler)
+	PlayerDeath(IConsole output, IScheduler scheduler, IPlayerDeathEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class PlayerDeath extends EventRouterBase<IPlayerDeathEvent, Player
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new PlayerDeath(output, scheduler, (IPlayerDeathEvent) subscriber);
 			}

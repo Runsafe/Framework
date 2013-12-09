@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.player;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.player.IPlayerPickupItemEvent;
@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerPickupItemEvent;
 
 public final class PlayerPickupItem extends EventRouterBase<IPlayerPickupItemEvent, PlayerPickupItemEvent>
 {
-	PlayerPickupItem(IDebug output, IScheduler scheduler, IPlayerPickupItemEvent handler)
+	PlayerPickupItem(IConsole output, IScheduler scheduler, IPlayerPickupItemEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class PlayerPickupItem extends EventRouterBase<IPlayerPickupItemEve
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new PlayerPickupItem(output, scheduler, (IPlayerPickupItemEvent) subscriber);
 			}

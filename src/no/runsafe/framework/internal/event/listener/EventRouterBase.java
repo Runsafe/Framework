@@ -1,9 +1,9 @@
 package no.runsafe.framework.internal.event.listener;
 
-import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IAsyncEvent;
 import no.runsafe.framework.api.event.IRunsafeEvent;
+import no.runsafe.framework.api.log.IConsole;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
@@ -11,7 +11,7 @@ import org.bukkit.event.player.PlayerEvent;
 
 public abstract class EventRouterBase<Wrapper extends IRunsafeEvent, EventType extends Event> implements Listener
 {
-	protected EventRouterBase(IDebug output, IScheduler scheduler, Wrapper handler)
+	protected EventRouterBase(IConsole output, IScheduler scheduler, Wrapper handler)
 	{
 		console = output;
 		this.scheduler = scheduler;
@@ -77,5 +77,5 @@ public abstract class EventRouterBase<Wrapper extends IRunsafeEvent, EventType e
 	private final IScheduler scheduler;
 	protected final Wrapper handler;
 	private final boolean isAsync;
-	private final IDebug console;
+	private final IConsole console;
 }

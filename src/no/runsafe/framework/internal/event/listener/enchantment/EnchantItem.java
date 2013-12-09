@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.enchantment;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.enchantment.IEnchantItemEvent;
@@ -13,7 +13,7 @@ import org.bukkit.event.enchantment.EnchantItemEvent;
 
 public final class EnchantItem extends EventRouterBase<IEnchantItemEvent, EnchantItemEvent>
 {
-	EnchantItem(IDebug output, IScheduler scheduler, IEnchantItemEvent handler)
+	EnchantItem(IConsole output, IScheduler scheduler, IEnchantItemEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class EnchantItem extends EventRouterBase<IEnchantItemEvent, Enchan
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new EnchantItem(output, scheduler, (IEnchantItemEvent) subscriber);
 			}

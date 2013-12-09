@@ -1,6 +1,7 @@
 package no.runsafe.framework.internal.event.listener.entity;
 
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.entity.IEntityShootBowEvent;
 import no.runsafe.framework.internal.event.listener.EventRouterBase;
@@ -13,7 +14,7 @@ import org.bukkit.event.entity.EntityShootBowEvent;
 
 public final class EntityShootBow extends EventRouterBase<IEntityShootBowEvent, EntityShootBowEvent>
 {
-	EntityShootBow(IDebug output, IScheduler scheduler, IEntityShootBowEvent handler)
+	EntityShootBow(IConsole output, IScheduler scheduler, IEntityShootBowEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +44,7 @@ public final class EntityShootBow extends EventRouterBase<IEntityShootBowEvent, 
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new EntityShootBow(output, scheduler, (IEntityShootBowEvent) subscriber);
 			}

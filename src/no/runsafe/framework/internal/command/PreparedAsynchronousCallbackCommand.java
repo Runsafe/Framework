@@ -2,7 +2,7 @@ package no.runsafe.framework.internal.command;
 
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.command.*;
-import no.runsafe.framework.internal.log.Debug;
+import no.runsafe.framework.internal.log.Console;
 
 import java.util.Map;
 import java.util.Stack;
@@ -56,7 +56,7 @@ public final class PreparedAsynchronousCallbackCommand extends PreparedCommand
 										}
 										catch (Exception e)
 										{
-											Debug.Global().logException(e);
+											Console.Global().logException(e);
 										}
 									}
 								}, 1L
@@ -64,7 +64,7 @@ public final class PreparedAsynchronousCallbackCommand extends PreparedCommand
 						}
 						catch (Exception e)
 						{
-							Debug.Global().logException(e);
+							Console.Global().logException(e);
 						}
 					}
 				},

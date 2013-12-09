@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.player;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.player.IPlayerLeftClickAirEvent;
@@ -16,7 +16,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public final class PlayerLeftClick extends EventRouterBase<IPlayerLeftClickEvent, PlayerInteractEvent>
 {
-	PlayerLeftClick(IDebug output, IScheduler scheduler, IPlayerLeftClickEvent handler)
+	PlayerLeftClick(IConsole output, IScheduler scheduler, IPlayerLeftClickEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -57,7 +57,7 @@ public final class PlayerLeftClick extends EventRouterBase<IPlayerLeftClickEvent
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new PlayerLeftClick(output, scheduler, (IPlayerLeftClickEvent) subscriber);
 			}

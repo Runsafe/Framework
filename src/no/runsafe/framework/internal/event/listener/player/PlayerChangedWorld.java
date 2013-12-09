@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.player;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.player.IPlayerChangedWorldEvent;
@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 
 public final class PlayerChangedWorld extends EventRouterBase<IPlayerChangedWorldEvent, PlayerChangedWorldEvent>
 {
-	PlayerChangedWorld(IDebug output, IScheduler scheduler, IPlayerChangedWorldEvent handler)
+	PlayerChangedWorld(IConsole output, IScheduler scheduler, IPlayerChangedWorldEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class PlayerChangedWorld extends EventRouterBase<IPlayerChangedWorl
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new PlayerChangedWorld(output, scheduler, (IPlayerChangedWorldEvent) subscriber);
 			}

@@ -1,11 +1,11 @@
 package no.runsafe.framework.internal.command;
 
 import com.google.common.collect.ImmutableList;
-import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.api.command.IPreparedCommand;
-import no.runsafe.framework.internal.log.Debug;
+import no.runsafe.framework.api.log.IConsole;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.text.ChatColour;
 import org.bukkit.OfflinePlayer;
@@ -25,11 +25,12 @@ import java.util.logging.Level;
  */
 public final class BukkitCommandTabExecutor implements TabExecutor
 {
-	public BukkitCommandTabExecutor(ICommandHandler command, ICommandExecutor console, IDebug logger)
+	public BukkitCommandTabExecutor(ICommandHandler command, ICommandExecutor console, IDebug debug, IConsole consoleLog)
 	{
 		this.command = command;
 		this.console = console;
-		this.logger = logger;
+		this.debugger = debug;
+		this.consoleLog = consoleLog;
 	}
 
 	public String getName()
@@ -53,7 +54,7 @@ public final class BukkitCommandTabExecutor implements TabExecutor
 		}
 		catch (Exception e)
 		{
-			logger.logException(e);
+			consoleLog.logException(e);
 			if (sender != null)
 				sender.sendMessage(ChatColour.ToMinecraft("&cCommand threw an exception!"));
 		}
@@ -64,7 +65,7 @@ public final class BukkitCommandTabExecutor implements TabExecutor
 	@Override
 	public List<String> onTabComplete(CommandSender commandSender, Command command, String alias, String[] args)
 	{
-		logger.debugFine("Handling tabcomplete for command '%s %s'", alias, Strings.join(args, " "));
+		debugger.debugFine("Handling tabcomplete for command '%s %s'", alias, Strings.join(args, " "));
 		Iterable<String> alternatives = tabCompleteCommand(commandSender, args);
 		return alternatives == null ? null : ImmutableList.copyOf(alternatives);
 	}
@@ -73,7 +74,7 @@ public final class BukkitCommandTabExecutor implements TabExecutor
 	{
 		IPreparedCommand preparedCommand = preparedCommand(sender, true, args);
 		Iterable<String> options = preparedCommand.tabComplete(args);
-		logger.debugFine("Tab completion options to return: %s", options);
+		debugger.debugFine("Tab completion options to return: %s", options);
 		return options;
 	}
 
@@ -90,7 +91,7 @@ public final class BukkitCommandTabExecutor implements TabExecutor
 				if (sender instanceof Player)
 					sender.sendMessage(ChatColour.ToMinecraft(feedback));
 				else
-					Debug.Global().writeColoured(feedback, Level.INFO);
+					debugger.debugFine(feedback, Level.INFO);
 			}
 		}
 		else
@@ -115,5 +116,6 @@ public final class BukkitCommandTabExecutor implements TabExecutor
 
 	private final ICommandHandler command;
 	private final ICommandExecutor console;
-	private final IDebug logger;
+	private final IDebug debugger;
+	private final IConsole consoleLog;
 }

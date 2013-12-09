@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.world;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.world.IWorldUnload;
@@ -13,7 +13,7 @@ import org.bukkit.event.world.WorldUnloadEvent;
 
 public final class WorldUnload extends EventRouterBase<IWorldUnload, WorldUnloadEvent>
 {
-	WorldUnload(IDebug output, IScheduler scheduler, IWorldUnload handler)
+	WorldUnload(IConsole output, IScheduler scheduler, IWorldUnload handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class WorldUnload extends EventRouterBase<IWorldUnload, WorldUnload
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new WorldUnload(output, scheduler, (IWorldUnload) subscriber);
 			}

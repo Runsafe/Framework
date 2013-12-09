@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.inventory;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.inventory.IInventoryPickupItem;
@@ -13,7 +13,7 @@ import org.bukkit.event.inventory.InventoryPickupItemEvent;
 
 public final class InventoryPickupItem extends EventRouterBase<IInventoryPickupItem, InventoryPickupItemEvent>
 {
-	InventoryPickupItem(IDebug output, IScheduler scheduler, IInventoryPickupItem handler)
+	InventoryPickupItem(IConsole output, IScheduler scheduler, IInventoryPickupItem handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class InventoryPickupItem extends EventRouterBase<IInventoryPickupI
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new InventoryPickupItem(output, scheduler, (IInventoryPickupItem) subscriber);
 			}

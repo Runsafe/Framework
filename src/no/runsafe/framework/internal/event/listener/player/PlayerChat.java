@@ -1,6 +1,6 @@
 package no.runsafe.framework.internal.event.listener.player;
 
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.internal.event.listener.EventRouterBase;
 import no.runsafe.framework.api.EventRouterFactory;
@@ -13,7 +13,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 public final class PlayerChat extends EventRouterBase<IPlayerChatEvent, AsyncPlayerChatEvent>
 {
-	PlayerChat(IDebug output, IScheduler scheduler, IPlayerChatEvent handler)
+	PlayerChat(IConsole output, IScheduler scheduler, IPlayerChatEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -44,7 +44,7 @@ public final class PlayerChat extends EventRouterBase<IPlayerChatEvent, AsyncPla
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new PlayerChat(output, scheduler, (IPlayerChatEvent) subscriber);
 			}

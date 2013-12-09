@@ -1,6 +1,7 @@
 package no.runsafe.framework.internal.configuration;
 
 import no.runsafe.framework.api.IConfiguration;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
@@ -22,7 +23,7 @@ import java.util.logging.Level;
  */
 public final class Configuration implements IConfiguration
 {
-	public Configuration(IDebug console)
+	public Configuration(IConsole console)
 	{
 		this.console = console;
 	}
@@ -217,7 +218,7 @@ public final class Configuration implements IConfiguration
 			}
 			catch (IOException ex)
 			{
-				console.writeColoured("Unable to save to configuration file: %s", Level.FINE, configFilePath);
+				console.logError("Unable to save to configuration file: %s", Level.FINE, configFilePath);
 				console.logException(ex);
 			}
 		}
@@ -225,5 +226,5 @@ public final class Configuration implements IConfiguration
 
 	protected FileConfiguration configFile;
 	protected String configFilePath;
-	private final IDebug console;
+	private final IConsole console;
 }

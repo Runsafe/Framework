@@ -1,6 +1,7 @@
 package no.runsafe.framework.internal.log;
 
 import no.runsafe.framework.api.log.IConsole;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.text.ChatColour;
 import org.apache.commons.lang.StringUtils;
@@ -11,6 +12,11 @@ import java.util.logging.Level;
 @SuppressWarnings("CallToPrintStackTrace")
 public class Console extends Log implements IConsole
 {
+	public static IConsole Global()
+	{
+		return globalConsole;
+	}
+
 	protected Console(InjectionPlugin plugin)
 	{
 		super(plugin);
@@ -94,4 +100,6 @@ public class Console extends Log implements IConsole
 	{
 		Logs.get("Console").log(level, message, this);
 	}
+
+	private static final IConsole globalConsole = new Console(null);
 }

@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.block;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.block.IBlockBreakEvent;
@@ -13,7 +13,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 
 public final class BlockBreakListener extends EventRouterBase<IBlockBreakEvent, BlockBreakEvent>
 {
-	BlockBreakListener(IDebug output, IScheduler scheduler, IBlockBreakEvent handler)
+	BlockBreakListener(IConsole output, IScheduler scheduler, IBlockBreakEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class BlockBreakListener extends EventRouterBase<IBlockBreakEvent, 
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new BlockBreakListener(output, scheduler, (IBlockBreakEvent) subscriber);
 			}

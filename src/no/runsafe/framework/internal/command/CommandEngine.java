@@ -2,9 +2,10 @@ package no.runsafe.framework.internal.command;
 
 import com.google.common.collect.ImmutableList;
 import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.ICommandHandler;
+import no.runsafe.framework.api.log.IConsole;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.minecraft.RunsafeConsole;
 import org.bukkit.command.PluginCommand;
 import org.picocontainer.Startable;
@@ -27,20 +28,22 @@ public final class CommandEngine implements Startable
 	 */
 	public CommandEngine(@Nonnull RunsafePlugin plugin)
 	{
-		this(null, plugin);
+		this(null, plugin, null);
 	}
 
 	/**
 	 * @param output   The console to output debug information to
-	 * @param commands The commands provided by the plugin
 	 * @param plugin   The plugin
+	 * @param debugger
+	 * @param commands The commands provided by the plugin
 	 */
-	public CommandEngine(@Nullable IDebug output, @Nonnull RunsafePlugin plugin, @Nonnull ICommandHandler... commands)
+	public CommandEngine(@Nullable IConsole output, @Nonnull RunsafePlugin plugin, IDebug debugger, @Nonnull ICommandHandler... commands)
 	{
 		this.commands = commands;
 		this.plugin = plugin;
+		this.output = debugger;
 		console = new RunsafeConsole(output);
-		this.output = output;
+		consoleLog = output;
 	}
 
 	/**
@@ -62,9 +65,10 @@ public final class CommandEngine implements Startable
 
 	private void hookCommand(PluginCommand command, BukkitCommandTabExecutor executor)
 	{
+		assert console != null;
 		assert output != null;
 		if (command == null)
-			output.logError("Command not found: %s - does it exist in plugin.yml?", executor.getName());
+			console.sendColouredMessage("Command not found: %s - does it exist in plugin.yml?", executor.getName());
 		else
 		{
 			command.setExecutor(executor);
@@ -86,15 +90,15 @@ public final class CommandEngine implements Startable
 		for (ICommandHandler command : commands)
 		{
 			command.setConsole(output);
-			handlers.add(new BukkitCommandTabExecutor(command, console, output));
+			handlers.add(new BukkitCommandTabExecutor(command, console, output, consoleLog));
 		}
 		return handlers;
 	}
 
 	@Nullable
 	private final ICommandExecutor console;
-	@Nullable
 	private final IDebug output;
+	private final IConsole consoleLog;
 	@Nonnull
 	private final ICommandHandler[] commands;
 	@Nonnull

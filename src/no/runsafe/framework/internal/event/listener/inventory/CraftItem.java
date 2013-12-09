@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.inventory;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.inventory.ICraftItem;
@@ -13,7 +13,7 @@ import org.bukkit.event.inventory.CraftItemEvent;
 
 public final class CraftItem extends EventRouterBase<ICraftItem, CraftItemEvent>
 {
-	CraftItem(IDebug output, IScheduler scheduler, ICraftItem handler)
+	CraftItem(IConsole output, IScheduler scheduler, ICraftItem handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class CraftItem extends EventRouterBase<ICraftItem, CraftItemEvent>
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new CraftItem(output, scheduler, (ICraftItem) subscriber);
 			}

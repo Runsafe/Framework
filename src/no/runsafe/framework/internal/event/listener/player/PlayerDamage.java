@@ -1,10 +1,10 @@
 package no.runsafe.framework.internal.event.listener.player;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.player.IPlayerDamageEvent;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.internal.event.listener.EventRouterBase;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent;
@@ -16,7 +16,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 
 public final class PlayerDamage extends EventRouterBase<IPlayerDamageEvent, EntityDamageEvent>
 {
-	PlayerDamage(IDebug output, IScheduler scheduler, IPlayerDamageEvent handler)
+	PlayerDamage(IConsole output, IScheduler scheduler, IPlayerDamageEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -50,7 +50,7 @@ public final class PlayerDamage extends EventRouterBase<IPlayerDamageEvent, Enti
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new PlayerDamage(output, scheduler, (IPlayerDamageEvent) subscriber);
 			}

@@ -2,7 +2,7 @@ package no.runsafe.framework.api.log;
 
 import java.util.logging.Level;
 
-public interface IDebug extends IConsole
+public interface IDebug
 {
 	// Sends the supplied String to the console/log the output handler has if the debug level is high enough
 	void outputDebugToConsole(String message, Level messageLevel, Object... params);

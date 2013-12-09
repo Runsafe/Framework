@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.inventory;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.inventory.IInventoryMoveItem;
@@ -13,7 +13,7 @@ import org.bukkit.event.inventory.InventoryMoveItemEvent;
 
 public final class InventoryMoveItem extends EventRouterBase<IInventoryMoveItem, InventoryMoveItemEvent>
 {
-	InventoryMoveItem(IDebug output, IScheduler scheduler, IInventoryMoveItem handler)
+	InventoryMoveItem(IConsole output, IScheduler scheduler, IInventoryMoveItem handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class InventoryMoveItem extends EventRouterBase<IInventoryMoveItem,
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new InventoryMoveItem(output, scheduler, (IInventoryMoveItem) subscriber);
 			}

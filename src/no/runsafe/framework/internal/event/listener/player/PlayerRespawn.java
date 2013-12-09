@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.player;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IAsyncEvent;
@@ -18,7 +18,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 
 public final class PlayerRespawn extends EventRouterBase<IPlayerRespawn, PlayerRespawnEvent>
 {
-	PlayerRespawn(IDebug output, IScheduler scheduler, IPlayerRespawn subscriber)
+	PlayerRespawn(IConsole output, IScheduler scheduler, IPlayerRespawn subscriber)
 	{
 		super(output, scheduler, subscriber);
 	}
@@ -57,7 +57,7 @@ public final class PlayerRespawn extends EventRouterBase<IPlayerRespawn, PlayerR
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new PlayerRespawn(output, scheduler, (IPlayerRespawn) subscriber);
 			}

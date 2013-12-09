@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.database;
 
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.database.IDatabase;
 import no.runsafe.framework.api.database.ISchemaChanges;
@@ -22,7 +23,7 @@ public final class SchemaUpdater implements Startable
 	 * @param db     The database handler
 	 * @param output The console to log information to
 	 */
-	public SchemaUpdater(IDatabase db, IDebug output)
+	public SchemaUpdater(IDatabase db, IConsole output)
 	{
 		this(db, output, new ISchemaChanges[0]);
 	}
@@ -32,7 +33,7 @@ public final class SchemaUpdater implements Startable
 	 * @param output         The console to log information to
 	 * @param schemaUpdaters Schema updaters
 	 */
-	public SchemaUpdater(IDatabase db, IDebug output, ISchemaChanges... schemaUpdaters)
+	public SchemaUpdater(IDatabase db, IConsole output, ISchemaChanges... schemaUpdaters)
 	{
 		this.schemaUpdaters = schemaUpdaters;
 		database = db;
@@ -121,7 +122,7 @@ public final class SchemaUpdater implements Startable
 	}
 
 	private final IDatabase database;
-	private final IDebug console;
+	private final IConsole console;
 	private final ISchemaChanges[] schemaUpdaters;
 	private static boolean uninitialized = true;
 }

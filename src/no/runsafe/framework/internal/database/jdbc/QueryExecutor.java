@@ -2,13 +2,14 @@ package no.runsafe.framework.internal.database.jdbc;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
-import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.database.IQueryExecutor;
 import no.runsafe.framework.api.database.IRow;
 import no.runsafe.framework.api.database.ISet;
 import no.runsafe.framework.api.database.IValue;
+import no.runsafe.framework.api.log.IConsole;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.database.Row;
 import no.runsafe.framework.internal.database.Set;
@@ -24,9 +25,10 @@ import java.util.List;
 
 abstract class QueryExecutor implements IQueryExecutor
 {
-	QueryExecutor(IDebug output)
+	QueryExecutor(IConsole output, IDebug debugger)
 	{
 		this.output = output;
+		this.debugger = debugger;
 	}
 
 	@Override
@@ -282,7 +284,7 @@ abstract class QueryExecutor implements IQueryExecutor
 		{
 			PreparedStatement statement = prepare(query);
 			setParams(statement, params);
-			output.debugFiner("Running SQL: %s", statement);
+			debugger.debugFiner("Running SQL: %s", statement);
 			statement.execute();
 			return true;
 		}
@@ -300,7 +302,7 @@ abstract class QueryExecutor implements IQueryExecutor
 		{
 			PreparedStatement statement = prepare(query);
 			setParams(statement, params);
-			output.debugFiner("Running SQL: %s", statement);
+			debugger.debugFiner("Running SQL: %s", statement);
 			return statement.executeUpdate();
 		}
 		catch (SQLException e)
@@ -348,7 +350,7 @@ abstract class QueryExecutor implements IQueryExecutor
 	@SuppressWarnings("MethodWithMultipleLoops")
 	ISet getSet(PreparedStatement statement) throws SQLException
 	{
-		output.debugFiner("Running SQL: %s", statement);
+		debugger.debugFiner("Running SQL: %s", statement);
 		ResultSet result = statement.executeQuery();
 		if (!result.first())
 			return Set.Empty;
@@ -370,7 +372,7 @@ abstract class QueryExecutor implements IQueryExecutor
 
 	List<IValue> getValues(PreparedStatement statement) throws SQLException
 	{
-		output.debugFiner("Running SQL: %s", statement);
+		debugger.debugFiner("Running SQL: %s", statement);
 		ResultSet result = statement.executeQuery();
 		if (!result.first())
 			return Lists.newArrayList();
@@ -406,5 +408,6 @@ abstract class QueryExecutor implements IQueryExecutor
 
 	protected abstract Connection getConnection();
 
-	protected final IDebug output;
+	protected final IConsole output;
+	protected final IDebug debugger;
 }

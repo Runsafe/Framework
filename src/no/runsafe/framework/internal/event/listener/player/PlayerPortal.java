@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.player;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.player.IPlayerPortalEvent;
@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerPortalEvent;
 
 public final class PlayerPortal extends EventRouterBase<IPlayerPortalEvent, PlayerPortalEvent>
 {
-	PlayerPortal(IDebug output, IScheduler scheduler, IPlayerPortalEvent handler)
+	PlayerPortal(IConsole output, IScheduler scheduler, IPlayerPortalEvent handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -43,7 +43,7 @@ public final class PlayerPortal extends EventRouterBase<IPlayerPortalEvent, Play
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new PlayerPortal(output, scheduler, (IPlayerPortalEvent) subscriber);
 			}

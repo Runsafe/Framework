@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.event.listener.world;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.world.ISpawnChange;
@@ -13,7 +13,7 @@ import org.bukkit.event.world.SpawnChangeEvent;
 
 public final class SpawnChange extends EventRouterBase<ISpawnChange, SpawnChangeEvent>
 {
-	SpawnChange(IDebug output, IScheduler scheduler, ISpawnChange handler)
+	SpawnChange(IConsole output, IScheduler scheduler, ISpawnChange handler)
 	{
 		super(output, scheduler, handler);
 	}
@@ -46,7 +46,7 @@ public final class SpawnChange extends EventRouterBase<ISpawnChange, SpawnChange
 			}
 
 			@Override
-			public Listener getListener(IDebug output, IScheduler scheduler, IRunsafeEvent subscriber)
+			public Listener getListener(IConsole output, IScheduler scheduler, IRunsafeEvent subscriber)
 			{
 				return new SpawnChange(output, scheduler, (ISpawnChange) subscriber);
 			}
