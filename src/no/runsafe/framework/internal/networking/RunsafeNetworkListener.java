@@ -11,6 +11,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public class RunsafeNetworkListener implements Runnable
@@ -42,7 +43,7 @@ public class RunsafeNetworkListener implements Runnable
 			try
 			{
 				Socket socket = serverSocket.accept();
-				addConnection(new RunsafePendingConnection(server, socket, getNewConnectionName()));
+				addConnection(new RunsafePendingConnection(server, socket, getNewConnectionName(), output));
 			}
 			catch (IOException exception)
 			{
@@ -68,6 +69,7 @@ public class RunsafeNetworkListener implements Runnable
 		return "Connection #" + connectionCount;
 	}
 
+	@SuppressWarnings({"LocalVariableOfConcreteClass", "CastToConcreteClass"})
 	public void processConnections()
 	{
 		synchronized (connections)
@@ -77,7 +79,7 @@ public class RunsafeNetworkListener implements Runnable
 			for (int i = 0; i < connections.size(); ++i)
 			{
 				// Get the connection as a pending connection.
-				PendingConnection connection = (PendingConnection) connections.get(i);
+				RunsafePendingConnection connection = (RunsafePendingConnection) connections.get(i);
 
 				try
 				{

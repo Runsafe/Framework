@@ -1,6 +1,6 @@
 package no.runsafe.framework.api.event;
 
-import no.runsafe.framework.minecraft.event.RunsafeNetworkEvent;
+import no.runsafe.framework.minecraft.event.networking.RunsafeNetworkEvent;
 
 public interface INetworkEvent
 {
