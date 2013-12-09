@@ -1,7 +1,7 @@
 package no.runsafe.framework.api.lua;
 
 import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.internal.Debug;
+import no.runsafe.framework.internal.log.Debug;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.OneArgFunction;

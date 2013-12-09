@@ -1,13 +1,14 @@
-package no.runsafe.framework.internal;
+package no.runsafe.framework.internal.log;
 
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.text.ChatColour;
 
 import java.util.logging.Level;
 
-public final class Broadcaster extends Debug implements IOutput
+public final class Broadcaster extends Console implements IOutput
 {
 	public Broadcaster(InjectionPlugin plugin, IServer server)
 	{

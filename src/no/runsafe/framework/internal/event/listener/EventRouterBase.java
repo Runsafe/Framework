@@ -1,6 +1,6 @@
 package no.runsafe.framework.internal.event.listener;
 
-import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IAsyncEvent;
 import no.runsafe.framework.api.event.IRunsafeEvent;

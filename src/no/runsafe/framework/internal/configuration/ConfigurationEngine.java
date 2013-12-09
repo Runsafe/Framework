@@ -3,7 +3,7 @@ package no.runsafe.framework.internal.configuration;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.IConfiguration;
 import no.runsafe.framework.api.IConfigurationFile;
-import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.event.plugin.IConfigurationChanged;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.picocontainer.Startable;

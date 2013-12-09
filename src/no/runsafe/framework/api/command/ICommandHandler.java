@@ -1,6 +1,6 @@
 package no.runsafe.framework.api.command;
 
-import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.command.argument.IArgument;
 
 import javax.annotation.Nonnull;

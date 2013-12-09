@@ -1,9 +1,7 @@
 package no.runsafe.framework.minecraft.inventory;
 
-import no.runsafe.framework.internal.Debug;
-import no.runsafe.framework.minecraft.RunsafeServer;
+import no.runsafe.framework.internal.log.Debug;
 import no.runsafe.framework.internal.wrapper.inventory.BukkitPlayerInventory;
-import org.apache.commons.lang.exception.ExceptionUtils;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;

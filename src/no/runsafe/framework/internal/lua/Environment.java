@@ -1,10 +1,10 @@
 package no.runsafe.framework.internal.lua;
 
 import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.event.IServerReady;
 import no.runsafe.framework.api.lua.Library;
-import no.runsafe.framework.internal.Debug;
+import no.runsafe.framework.internal.log.Debug;
 import org.apache.commons.io.FileUtils;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaError;

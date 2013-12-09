@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.configuration;
 
 import no.runsafe.framework.api.IConfiguration;
-import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.minecraft.RunsafeLocation;

@@ -2,12 +2,12 @@ package no.runsafe.framework.minecraft;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.hook.IPlayerLookupService;
 import no.runsafe.framework.api.hook.IPlayerPermissions;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.internal.Debug;
+import no.runsafe.framework.internal.log.Debug;
 import no.runsafe.framework.internal.HookEngine;
 import no.runsafe.framework.internal.wrapper.BukkitServer;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;

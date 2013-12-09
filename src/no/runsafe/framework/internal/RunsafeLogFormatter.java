@@ -1,6 +1,7 @@
 package no.runsafe.framework.internal;
 
-import no.runsafe.framework.api.IConsole;
+import no.runsafe.framework.api.log.IConsole;
+import no.runsafe.framework.internal.log.Console;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.DateTimeFormatterBuilder;
 

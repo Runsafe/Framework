@@ -1,6 +1,6 @@
 package no.runsafe.framework.internal;
 
-import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.event.plugin.IPluginDisabled;
 import no.runsafe.framework.api.event.plugin.IPluginEnabled;
@@ -11,6 +11,7 @@ import no.runsafe.framework.internal.configuration.ConfigurationEngine;
 import no.runsafe.framework.internal.database.SchemaUpdater;
 import no.runsafe.framework.internal.database.jdbc.Database;
 import no.runsafe.framework.internal.event.EventEngine;
+import no.runsafe.framework.internal.log.Broadcaster;
 import no.runsafe.framework.internal.lua.Environment;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.timer.Scheduler;

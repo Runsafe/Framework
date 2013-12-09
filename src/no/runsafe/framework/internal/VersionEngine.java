@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal;
 
 import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.IPluginUpdate;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;

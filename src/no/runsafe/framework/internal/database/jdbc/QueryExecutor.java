@@ -2,7 +2,7 @@ package no.runsafe.framework.internal.database.jdbc;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
-import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.database.IQueryExecutor;

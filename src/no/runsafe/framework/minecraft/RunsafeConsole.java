@@ -1,6 +1,6 @@
 package no.runsafe.framework.minecraft;
 
-import no.runsafe.framework.api.IConsole;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import org.apache.commons.lang.NotImplementedException;
 

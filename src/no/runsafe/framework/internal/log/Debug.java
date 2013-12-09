@@ -1,6 +1,7 @@
-package no.runsafe.framework.internal;
+package no.runsafe.framework.internal.log;
 
-import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.wrapper.item.BukkitItemStack;
 import no.runsafe.framework.text.ConsoleColour;
 import org.apache.commons.lang.StringUtils;
@@ -38,7 +39,7 @@ public class Debug extends Console implements IDebug
 	public final void outputDebugToConsole(String message, Level messageLevel, Object... params)
 	{
 		if (debugLevel != null && messageLevel.intValue() >= debugLevel.intValue())
-			InternalDebugger.log(Level.INFO, formatDebugMessage(message, messageLevel, params), this);
+			Logs.get("Debug").log(Level.INFO, formatDebugMessage(message, messageLevel, params), this);
 	}
 
 	// Gets the current debug output level

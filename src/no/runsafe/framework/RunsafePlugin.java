@@ -1,7 +1,7 @@
 package no.runsafe.framework;
 
 import no.runsafe.framework.api.IConfiguration;
-import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.api.event.IServerReady;

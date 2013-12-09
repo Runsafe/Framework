@@ -2,7 +2,7 @@ package no.runsafe.framework.minecraft.event;
 
 import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.event.INetworkEvent;
-import no.runsafe.framework.internal.Debug;
+import no.runsafe.framework.internal.log.Debug;
 import no.runsafe.framework.internal.InjectionPlugin;
 
 public abstract class RunsafeNetworkEvent extends RunsafeInternalEvent

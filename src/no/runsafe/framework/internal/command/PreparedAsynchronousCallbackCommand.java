@@ -2,7 +2,7 @@ package no.runsafe.framework.internal.command;
 
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.command.*;
-import no.runsafe.framework.internal.Debug;
+import no.runsafe.framework.internal.log.Debug;
 
 import java.util.Map;
 import java.util.Stack;

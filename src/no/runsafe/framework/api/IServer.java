@@ -1,7 +1,6 @@
 package no.runsafe.framework.api;
 
-import no.runsafe.framework.api.IDebug;
-import no.runsafe.framework.api.IWorld;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventoryHolder;
@@ -14,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
-import java.util.logging.Logger;
 
 public interface IServer
 {

@@ -1,11 +1,11 @@
 package no.runsafe.framework.internal.command;
 
 import com.google.common.collect.ImmutableList;
-import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.api.command.IPreparedCommand;
-import no.runsafe.framework.internal.Debug;
+import no.runsafe.framework.internal.log.Debug;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.text.ChatColour;
 import org.bukkit.OfflinePlayer;

@@ -2,7 +2,7 @@ package no.runsafe.framework.internal.command;
 
 import com.google.common.collect.ImmutableList;
 import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.minecraft.RunsafeConsole;

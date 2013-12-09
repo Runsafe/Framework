@@ -1,4 +1,4 @@
-package no.runsafe.framework.api;
+package no.runsafe.framework.api.log;
 
 import java.util.logging.Level;
 

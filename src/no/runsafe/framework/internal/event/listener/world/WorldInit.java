@@ -1,6 +1,6 @@
 package no.runsafe.framework.internal.event.listener.world;
 
-import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.internal.event.listener.EventRouterBase;
 import no.runsafe.framework.api.EventRouterFactory;

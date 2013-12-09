@@ -2,7 +2,7 @@ package no.runsafe.framework.internal.event;
 
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.internal.event.listener.Factories;

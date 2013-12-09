@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.database.jdbc;
 
 import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.database.IDatabase;
 import no.runsafe.framework.api.database.ITransaction;
 import org.bukkit.configuration.InvalidConfigurationException;

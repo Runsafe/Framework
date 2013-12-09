@@ -1,6 +1,7 @@
 package no.runsafe.framework.api;
 
 import no.runsafe.framework.api.event.IRunsafeEvent;
+import no.runsafe.framework.api.log.IDebug;
 import org.bukkit.event.Listener;
 
 public interface EventRouterFactory
