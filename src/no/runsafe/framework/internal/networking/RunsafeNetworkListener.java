@@ -42,7 +42,7 @@ public class RunsafeNetworkListener implements Runnable
 			try
 			{
 				Socket socket = serverSocket.accept();
-				addConnection(new PendingConnection(server, socket, getNewConnectionName()));
+				addConnection(new RunsafePendingConnection(server, socket, getNewConnectionName()));
 			}
 			catch (IOException exception)
 			{
