@@ -15,10 +15,10 @@ public abstract class NetworkPacket implements IPacket
 	@Override
 	public void send(IPlayer player)
 	{
-		EntityPlayer rawPlayer = ObjectUnwrapper.convert(player);
+		EntityPlayer rawPlayer = ObjectUnwrapper.getMinecraft(player);
 		Packet packet = getNMSPacket();
 
-		if (packet != null)
+		if (packet != null && rawPlayer != null)
 			rawPlayer.playerConnection.sendPacket(getNMSPacket());
 	}
 
