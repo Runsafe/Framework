@@ -128,50 +128,6 @@ public class RunsafePendingConnection extends PendingConnection
 		b = true;
 	}
 
-	@Override
-	public void a(Packet254GetInfo packet)
-	{
-		if(networkManager.getSocket() == null)
-			return;
-
-		try
-		{
-			PlayerList playerlist = server.getPlayerList();
-			String response = null;
-			ServerListPingEvent pingEvent = CraftEventFactory.callServerListPingEvent(server.server, getSocket().getInetAddress(), server.getMotd(), playerlist.getPlayerCount(), playerlist.getMaxPlayers());
-
-			if(packet.d())
-			{
-				response = new StringBuilder(0).append(pingEvent.getMotd()).append('\247').append(playerlist.getPlayerCount()).append('\247').append(pingEvent.getMaxPlayers()).toString();
-			}
-			else
-			{
-				Object[] list = {
-						1, CURRENT_VERSION, server.getVersion(), pingEvent.getMotd(), playerlist.getPlayerCount(), pingEvent.getMaxPlayers()
-				};
-				StringBuilder builder = new StringBuilder(0);
-
-				for (Object node : list)
-				{
-					if (builder.length() == 0)
-						builder.append(builder.length() == 0 ? '\247' : '\0');
-
-					builder.append(StringUtils.replace(node.toString(), "\0", ""));
-				}
-				response = builder.toString();
-			}
-
-			networkManager.queue(new Packet255KickDisconnect(response));
-			networkManager.d();
-
-			b = true;
-		}
-		catch (Exception exception)
-		{
-			output.logException(exception);
-		}
-	}
-
 	public String getLoginKey()
 	{
 		return loginKey;
