@@ -91,7 +91,7 @@ public final class BukkitCommandTabExecutor implements TabExecutor
 				if (sender instanceof Player)
 					sender.sendMessage(ChatColour.ToMinecraft(feedback));
 				else
-					debugger.debugFine(feedback, Level.INFO);
+					console.sendColouredMessage(feedback);
 			}
 		}
 		else
