@@ -1,8 +1,6 @@
 package no.runsafe.framework.api;
 
-import no.runsafe.framework.api.log.IConsole;
-
-public interface IOutput extends IConsole
+public interface IOutput
 {
 	// Broadcasts the supplied String to all players on the event the output handler has
 	@Deprecated

@@ -8,7 +8,7 @@ import no.runsafe.framework.text.ChatColour;
 
 import java.util.logging.Level;
 
-public final class Broadcaster extends Console implements IOutput
+public final class Broadcaster extends Log implements IOutput
 {
 	public Broadcaster(InjectionPlugin plugin, IServer server)
 	{
@@ -20,7 +20,7 @@ public final class Broadcaster extends Console implements IOutput
 	@Override
 	public void outputToServer(String message)
 	{
-		outputToConsole(message, Level.INFO);
+		writeLog(Level.INFO, message);
 		broadcast(message);
 	}
 
@@ -28,7 +28,7 @@ public final class Broadcaster extends Console implements IOutput
 	public void broadcastColoured(String format, Object... params)
 	{
 		String message = String.format(format, params);
-		writeColoured(message, Level.INFO);
+		writeLog(Level.INFO, message);
 		broadcast(ChatColour.ToMinecraft(message));
 	}
 

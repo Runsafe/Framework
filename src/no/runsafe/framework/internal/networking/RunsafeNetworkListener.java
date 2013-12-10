@@ -4,6 +4,7 @@ import net.minecraft.server.v1_6_R3.Connection;
 import net.minecraft.server.v1_6_R3.MinecraftServer;
 import net.minecraft.server.v1_6_R3.PendingConnection;
 import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.log.IConsole;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -16,7 +17,7 @@ import java.util.List;
 
 public class RunsafeNetworkListener implements Runnable
 {
-	public RunsafeNetworkListener(MinecraftServer server, IOutput output, InetAddress address, int port)
+	public RunsafeNetworkListener(MinecraftServer server, IConsole output, InetAddress address, int port)
 	{
 		this.output = output;
 		this.server = server;
@@ -131,7 +132,7 @@ public class RunsafeNetworkListener implements Runnable
 	}
 
 	private volatile boolean running = true;
-	private final IOutput output;
+	private final IConsole output;
 	private final MinecraftServer server;
 	private ServerSocket serverSocket;
 	private int connectionCount;

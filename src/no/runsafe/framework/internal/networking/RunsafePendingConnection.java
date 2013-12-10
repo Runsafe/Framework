@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.networking;
 
 import net.minecraft.server.v1_6_R3.*;
-import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.minecraft.event.networking.RunsafeLoginVerifiedEvent;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.craftbukkit.v1_6_R3.event.CraftEventFactory;
@@ -18,7 +18,7 @@ import java.util.Random;
 @SuppressWarnings("ParameterNameDiffersFromOverriddenParameter")
 public class RunsafePendingConnection extends PendingConnection
 {
-	public RunsafePendingConnection(MinecraftServer server, Socket socket, String s, IOutput output) throws IOException
+	public RunsafePendingConnection(MinecraftServer server, Socket socket, String s, IConsole output) throws IOException
 	{
 		super(server, socket, s);
 		this.server = server;
@@ -132,7 +132,7 @@ public class RunsafePendingConnection extends PendingConnection
 	@Override
 	public void a(Packet254GetInfo packet)
 	{
-		if(networkManager.getSocket() == null)
+		if (networkManager.getSocket() == null)
 			return;
 
 		try
@@ -141,14 +141,14 @@ public class RunsafePendingConnection extends PendingConnection
 			String response;
 			ServerListPingEvent pingEvent = CraftEventFactory.callServerListPingEvent(server.server, getSocket().getInetAddress(), server.getMotd(), playerlist.getPlayerCount(), playerlist.getMaxPlayers());
 
-			if(packet.d())
+			if (packet.d())
 			{
 				response = new StringBuilder(0).append(pingEvent.getMotd()).append('\247').append(playerlist.getPlayerCount()).append('\247').append(pingEvent.getMaxPlayers()).toString();
 			}
 			else
 			{
 				Object[] list = {
-						1, CURRENT_VERSION, server.getVersion(), pingEvent.getMotd(), playerlist.getPlayerCount(), pingEvent.getMaxPlayers()
+					1, CURRENT_VERSION, server.getVersion(), pingEvent.getMotd(), playerlist.getPlayerCount(), pingEvent.getMaxPlayers()
 				};
 				StringBuilder builder = new StringBuilder(0);
 
@@ -204,7 +204,7 @@ public class RunsafePendingConnection extends PendingConnection
 	}
 
 	// Checked
-	protected final IOutput output;
+	protected final IConsole output;
 	protected byte[] keyByte; // d
 	protected static final int TIMEOUT = 600;
 	protected static final int CURRENT_VERSION = 78;

@@ -3,14 +3,14 @@ package no.runsafe.framework.internal.networking;
 import net.minecraft.server.v1_6_R3.DedicatedServer;
 import net.minecraft.server.v1_6_R3.MinecraftServer;
 import net.minecraft.server.v1_6_R3.ServerConnection;
-import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.log.IConsole;
 
 import java.io.IOException;
 import java.net.InetAddress;
 
 public class RunsafeServerConnection extends ServerConnection
 {
-	public RunsafeServerConnection(MinecraftServer server, InetAddress address, int port, IOutput output) throws IOException
+	public RunsafeServerConnection(MinecraftServer server, InetAddress address, int port, IConsole output) throws IOException
 	{
 		super(server);
 
