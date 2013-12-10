@@ -73,10 +73,12 @@ public abstract class Log implements ILogFormatProvider
 		if (!config.contains("debug.*")) config.set("debug.*", "OFF");
 		if (!config.contains("split")) config.set("split", false);
 		if (!config.contains("format.anonymous.Console")) config.set("format.anonymous.Console", "%1$s %2$s [%3$s] %4$s");
+		if (!config.contains("format.anonymous.Broadcaster")) config.set("format.anonymous.Broadcaster", "%1$s %2$s [%3$s] %4$s");
 		if (!config.contains("format.anonymous.Debug")) config.set("format.anonymous.Debug", "%1$s %2$s [&oDEBUG&r] %4$s");
 		if (!config.contains("format.anonymous.Protocol"))
 			config.set("format.anonymous.Protocol", "%1$s %2$s [&nNET&r] %4$s");
 		if (!config.contains("format.Console.*")) config.set("format.Console.*", "%%1$s %%2$s [%%3$s] [&9%s&r] %%4$s");
+		if (!config.contains("format.Broadcaster.*")) config.set("format.Broadcaster.*", "%%1$s %%2$s [%%3$s] [&9%s&r] %%4$s");
 		if (!config.contains("format.Debug.*")) config.set("format.Debug.*", "%%1$s %%2$s [&oDEBUG&r] [&9%s&r] %%4$s");
 		if (!config.contains("format.Protocol.*")) config.set("format.Protocol.*", "%%1$s %%2$s [&nNET&r] [&9%s&r] %%4$s");
 		if (!config.contains("format.level"))
@@ -168,6 +170,7 @@ public abstract class Log implements ILogFormatProvider
 		logFormats = new HashMap<String, Map<String, String>>(3);
 		Logs = new HashMap<String, Logger>(3);
 		Logs.put("Console", Logger.getLogger("RunsafeLogger"));
+		Logs.put("Broadcaster", Logger.getLogger("RunsafeBroadcaster"));
 		Logs.put("Debug", Logger.getLogger("RunsafeDebugger"));
 		Logs.put("Protocol", Logger.getLogger("RunsafeProtocol"));
 
@@ -176,6 +179,7 @@ public abstract class Log implements ILogFormatProvider
 		try
 		{
 			startLogging(Logs.get("Console"), "runsafe.log", new RunsafeLogFormatter());
+			startLogging(Logs.get("Broadcaster"), "broadcast.log", new RunsafeLogFormatter());
 			startLogging(Logs.get("Debug"), "debug.log", new RunsafeLogFormatter());
 			startLogging(Logs.get("Protocol"), "protocol.log", new RunsafeLogFormatter());
 		}
