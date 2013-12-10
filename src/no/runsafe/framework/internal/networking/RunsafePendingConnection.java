@@ -124,9 +124,9 @@ public class RunsafePendingConnection extends PendingConnection
 			EntityPlayer processedPlayer = playerList.processLogin(player);
 			if (processedPlayer != null)
 				playerList.a(networkManager, processedPlayer);
-
-			b = true;
 		}
+
+		b = true;
 	}
 
 	@Override
