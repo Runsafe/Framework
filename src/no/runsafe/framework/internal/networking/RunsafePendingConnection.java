@@ -131,7 +131,7 @@ public class RunsafePendingConnection extends PendingConnection
 		try
 		{
 			PlayerList playerlist = server.getPlayerList();
-			String response = null;
+			String response;
 			ServerListPingEvent pingEvent = CraftEventFactory.callServerListPingEvent(server.server, getSocket().getInetAddress(), server.getMotd(), playerlist.getPlayerCount(), playerlist.getMaxPlayers());
 
 			if(packet.d())
