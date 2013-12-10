@@ -2,6 +2,7 @@ package no.runsafe.framework.internal.networking;
 
 import net.minecraft.server.v1_6_R3.*;
 import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.minecraft.event.networking.RunsafeLoginVerifiedEvent;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.craftbukkit.v1_6_R3.event.CraftEventFactory;
 import org.bukkit.event.server.ServerListPingEvent;
@@ -47,6 +48,14 @@ public class RunsafePendingConnection extends PendingConnection
 	@Override
 	public void a(Packet2Handshake packet)
 	{
+		RunsafeLoginVerifiedEvent event = new RunsafeLoginVerifiedEvent(playerName);
+		event.Fire();
+
+		if (event.isCancelled())
+			return;
+
+		playerName = event.getPlayerName();
+
 		if (playerName != null)
 		{
 			disconnect("Duplicate handshake, go away!");
