@@ -42,7 +42,7 @@ public abstract class Log
 	public String getLogFormat()
 	{
 		if (logFormat == null)
-			return null;
+			return "%1$s %2$s [%3$s] %4$s";
 		return ChatColour.ToConsole(logFormat);
 	}
 
@@ -50,7 +50,7 @@ public abstract class Log
 	public String getDebugFormat()
 	{
 		if (debugFormat == null)
-			return null;
+			return "%1$s %2$s [%3$s] %4$s";
 		return ChatColour.ToConsole(debugFormat);
 	}
 

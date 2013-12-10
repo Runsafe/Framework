@@ -66,7 +66,6 @@ public final class CommandEngine implements Startable
 	private void hookCommand(PluginCommand command, BukkitCommandTabExecutor executor)
 	{
 		assert console != null;
-		assert output != null;
 		if (command == null)
 			console.sendColouredMessage("Command not found: %s - does it exist in plugin.yml?", executor.getName());
 		else
