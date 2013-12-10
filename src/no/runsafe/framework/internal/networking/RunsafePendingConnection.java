@@ -48,14 +48,6 @@ public class RunsafePendingConnection extends PendingConnection
 	@Override
 	public void a(Packet2Handshake packet)
 	{
-		RunsafeLoginVerifiedEvent event = new RunsafeLoginVerifiedEvent(playerName);
-		event.Fire();
-
-		if (event.isCancelled())
-			return;
-
-		playerName = event.getPlayerName();
-
 		if (playerName != null)
 		{
 			disconnect("Duplicate handshake, go away!");
@@ -64,6 +56,7 @@ public class RunsafePendingConnection extends PendingConnection
 
 		hostname = String.format("%s:%s", packet.c, packet.d);
 		playerName = packet.f(); // Grab the players name.
+
 		if (!playerName.equals(StripColor.a(playerName)))
 		{
 			disconnect("What kind of a name is that? Go away.");
@@ -76,6 +69,12 @@ public class RunsafePendingConnection extends PendingConnection
 			loginKey = server.getOnlineMode() ? Long.toString(random.nextLong(), LOGIN_KEY_RADIX) : "-";
 			keyByte = new byte[4];
 			random.nextBytes(keyByte);
+
+			RunsafeLoginVerifiedEvent event = new RunsafeLoginVerifiedEvent(playerName);
+			event.Fire();
+
+			playerName = event.getPlayerName();
+
 			networkManager.queue(new Packet253KeyRequest(loginKey, key, keyByte));
 		}
 		else

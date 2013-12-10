@@ -1,6 +1,6 @@
 package no.runsafe.framework.minecraft.event.networking;
 
-public class RunsafeLoginVerifiedEvent extends RunsafeCancellableNetworkEvent
+public class RunsafeLoginVerifiedEvent extends RunsafeNetworkEvent
 {
 	public RunsafeLoginVerifiedEvent(String playerName)
 	{
