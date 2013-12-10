@@ -20,12 +20,12 @@ public abstract class Log implements ILogFormatProvider
 {
 	protected Log(InjectionPlugin plugin)
 	{
+		logType = getClass().getSimpleName();
 		if (plugin != null && logFormats.get(logType).containsKey(plugin.getName()))
 			logFormat = logFormats.get(logType).get(plugin.getName());
 		else if (plugin != null && logFormats.get(logType).containsKey("*"))
 			logFormat = String.format(logFormats.get(logType).get("*"), plugin.getName());
-
-		if (logFormat == null)
+		else
 			logFormat = defaultLogFormat.get(logType);
 	}
 
@@ -43,8 +43,8 @@ public abstract class Log implements ILogFormatProvider
 		return ChatColour.ToConsole(logFormat);
 	}
 
-	private String logType = getClass().getSimpleName();
-	private String logFormat = null;
+	private final String logType;
+	private final String logFormat;
 
 	public static Level DefaultDebugLevel(String plugin)
 	{
