@@ -50,6 +50,6 @@ public class Protocol extends Log implements IProtocol
 
 	protected void outputToConsole(String message, Level level)
 	{
-		Logs.get("Protocol").log(level, message, this);
+		writeLog(level, message);
 	}
 }

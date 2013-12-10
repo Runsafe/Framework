@@ -1,7 +1,6 @@
 package no.runsafe.framework.internal.log;
 
 import no.runsafe.framework.api.log.IConsole;
-import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.text.ChatColour;
 import org.apache.commons.lang.StringUtils;
@@ -98,7 +97,7 @@ public class Console extends Log implements IConsole
 	@Override
 	public void outputToConsole(String message, Level level)
 	{
-		Logs.get("Console").log(level, message, this);
+		writeLog(level, message);
 	}
 
 	private static final IConsole globalConsole = new Console(null);

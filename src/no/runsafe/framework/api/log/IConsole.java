@@ -35,9 +35,4 @@ public interface IConsole
 	void logFatal(String message, Object... params);
 
 	void logInformation(String message, Object... params);
-
-	@Nullable
-	String getLogFormat();
-	@Nullable
-	String getDebugFormat();
 }

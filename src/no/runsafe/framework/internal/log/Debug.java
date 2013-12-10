@@ -39,7 +39,7 @@ public class Debug extends Log implements IDebug
 	public final void outputDebugToConsole(String message, Level messageLevel, Object... params)
 	{
 		if (debugLevel != null && messageLevel.intValue() >= debugLevel.intValue())
-			Logs.get("Debug").log(Level.INFO, formatDebugMessage(message, messageLevel, params), this);
+			writeLog(Level.INFO, formatDebugMessage(message, messageLevel, params));
 	}
 
 	// Gets the current debug output level
