@@ -136,7 +136,7 @@ public class RunsafePendingConnection extends PendingConnection
 
 			if(packet.d())
 			{
-				response = new StringBuilder(0).append(pingEvent.getMotd()).append("\247").append(playerlist.getPlayerCount()).append("\247").append(pingEvent.getMaxPlayers()).toString();
+				response = new StringBuilder(0).append(pingEvent.getMotd()).append('\247').append(playerlist.getPlayerCount()).append('\247').append(pingEvent.getMaxPlayers()).toString();
 			}
 			else
 			{
@@ -147,9 +147,7 @@ public class RunsafePendingConnection extends PendingConnection
 
 				for (Object node : list)
 				{
-					if (builder.length() == 0)
-						builder.append(builder.length() == 0 ? '\247' : '\0');
-
+					builder.append(builder.length() == 0 ? '\247' : '\0');
 					builder.append(StringUtils.replace(node.toString(), "\0", ""));
 				}
 				response = builder.toString();
