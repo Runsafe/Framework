@@ -119,12 +119,12 @@ public class RunsafePendingConnection extends PendingConnection
 		PlayerList playerList = server.getPlayerList();
 		EntityPlayer player = playerList.attemptLogin(this, playerName, hostname);
 
-		if (player != null)
-		{
-			EntityPlayer processedPlayer = playerList.processLogin(player);
-			if (processedPlayer != null)
-				playerList.a(networkManager, processedPlayer);
-		}
+		if (player == null)
+			return;
+
+		EntityPlayer processedPlayer = playerList.processLogin(player);
+		if (processedPlayer != null)
+			playerList.a(networkManager, processedPlayer);
 
 		b = true;
 	}
