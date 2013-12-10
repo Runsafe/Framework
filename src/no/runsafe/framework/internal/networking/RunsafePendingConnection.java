@@ -69,12 +69,6 @@ public class RunsafePendingConnection extends PendingConnection
 			loginKey = server.getOnlineMode() ? Long.toString(random.nextLong(), LOGIN_KEY_RADIX) : "-";
 			keyByte = new byte[4];
 			random.nextBytes(keyByte);
-
-			RunsafeLoginVerifiedEvent event = new RunsafeLoginVerifiedEvent(playerName);
-			event.Fire();
-
-			playerName = event.getPlayerName();
-
 			networkManager.queue(new Packet253KeyRequest(loginKey, key, keyByte));
 		}
 		else
@@ -117,6 +111,11 @@ public class RunsafePendingConnection extends PendingConnection
 	@Override
 	public void e()
 	{
+		RunsafeLoginVerifiedEvent event = new RunsafeLoginVerifiedEvent(playerName);
+		event.Fire();
+
+		playerName = event.getPlayerName();
+
 		PlayerList playerList = server.getPlayerList();
 		EntityPlayer player = playerList.attemptLogin(this, playerName, hostname);
 
