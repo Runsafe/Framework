@@ -9,14 +9,14 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 import java.util.logging.Level;
 
 @SuppressWarnings("CallToPrintStackTrace")
-public class Console extends Log implements IConsole
+public final class Console extends LoggingBase implements IConsole
 {
 	public static IConsole Global()
 	{
 		return globalConsole;
 	}
 
-	protected Console(InjectionPlugin plugin)
+	public Console(InjectionPlugin plugin)
 	{
 		super(plugin);
 	}

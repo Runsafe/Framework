@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.logging.Level;
 
-public class Debug extends Log implements IDebug
+public final class Debug extends LoggingBase implements IDebug
 {
 	public static IDebug Global()
 	{
@@ -36,7 +36,7 @@ public class Debug extends Log implements IDebug
 
 	// Sends the supplied String to the console/log the output handler has if the debug level is high enough
 	@Override
-	public final void outputDebugToConsole(String message, Level messageLevel, Object... params)
+	public void outputDebugToConsole(String message, Level messageLevel, Object... params)
 	{
 		if (debugLevel != null && messageLevel.intValue() >= debugLevel.intValue())
 			writeLog(Level.INFO, formatDebugMessage(message, messageLevel, params));
@@ -44,63 +44,63 @@ public class Debug extends Log implements IDebug
 
 	// Gets the current debug output level
 	@Override
-	public final Level getDebugLevel()
+	public Level getDebugLevel()
 	{
 		return debugLevel;
 	}
 
 	// Sets the debug output level
 	@Override
-	public final void setDebugLevel(Level level)
+	public void setDebugLevel(Level level)
 	{
 		debugLevel = level;
 	}
 
 	@Override
-	public final void debugSevere(String message, Object... params)
+	public void debugSevere(String message, Object... params)
 	{
 		outputDebugToConsole(message, Level.SEVERE, params);
 	}
 
 	@Override
-	public final void debugWarning(String message, Object... params)
+	public void debugWarning(String message, Object... params)
 	{
 		outputDebugToConsole(message, Level.WARNING, params);
 	}
 
 	@Override
-	public final void debugInfo(String message, Object... params)
+	public void debugInfo(String message, Object... params)
 	{
 		outputDebugToConsole(message, Level.INFO, params);
 	}
 
 	@Override
-	public final void debugConfig(String message, Object... params)
+	public void debugConfig(String message, Object... params)
 	{
 		outputDebugToConsole(message, Level.CONFIG, params);
 	}
 
 	@Override
-	public final void debugFine(String message, Object... params)
+	public void debugFine(String message, Object... params)
 	{
 		outputDebugToConsole(message, Level.FINE, params);
 	}
 
 	@Override
-	public final void debugFiner(String message, Object... params)
+	public void debugFiner(String message, Object... params)
 	{
 		outputDebugToConsole(message, Level.FINER, params);
 	}
 
 	@Override
-	public final void debugFinest(String message, Object... params)
+	public void debugFinest(String message, Object... params)
 	{
 		outputDebugToConsole(message, Level.FINEST, params);
 	}
 
 	@SuppressWarnings({"CastToConcreteClass", "InstanceofInterfaces"})
 	@Override
-	public final void debugDump(Object object, Level messageLevel)
+	public void debugDump(Object object, Level messageLevel)
 	{
 		if (debugLevel != null && messageLevel.intValue() >= debugLevel.intValue())
 			if (object instanceof BukkitItemStack)

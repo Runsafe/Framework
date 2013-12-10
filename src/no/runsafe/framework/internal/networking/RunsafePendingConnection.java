@@ -41,7 +41,7 @@ public class RunsafePendingConnection extends PendingConnection
 	@Override
 	public void disconnect(String message)
 	{
-		// ToDo: Log disconnect.
+		// ToDo: LoggingBase disconnect.
 		networkManager.queue(new Packet255KickDisconnect(message));
 	}
 

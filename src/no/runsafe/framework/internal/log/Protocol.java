@@ -7,9 +7,9 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 
 import java.util.logging.Level;
 
-public class Protocol extends Log implements IProtocol
+public final class Protocol extends LoggingBase implements IProtocol
 {
-	protected Protocol(InjectionPlugin plugin)
+	public Protocol(InjectionPlugin plugin)
 	{
 		super(plugin);
 	}
@@ -43,12 +43,12 @@ public class Protocol extends Log implements IProtocol
 		writeColoured("&4%s&r", Level.SEVERE, String.format(message.replace("&r", "&4"), params));
 	}
 
-	protected void writeColoured(String message, Level level, Object... params)
+	private void writeColoured(String message, Level level, Object... params)
 	{
 		outputToConsole(ChatColour.ToConsole(String.format(message, params)), level);
 	}
 
-	protected void outputToConsole(String message, Level level)
+	private void outputToConsole(String message, Level level)
 	{
 		writeLog(level, message);
 	}

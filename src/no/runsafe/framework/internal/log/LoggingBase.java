@@ -16,9 +16,9 @@ import java.util.logging.Formatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public abstract class Log implements ILogFormatProvider
+public abstract class LoggingBase implements ILogFormatProvider
 {
-	protected Log(InjectionPlugin plugin)
+	protected LoggingBase(InjectionPlugin plugin)
 	{
 		logType = getClass().getSimpleName();
 		if (plugin != null && logFormats.get(logType).containsKey(plugin.getName()))

@@ -8,7 +8,7 @@ import no.runsafe.framework.text.ChatColour;
 
 import java.util.logging.Level;
 
-public final class Broadcaster extends Log implements IOutput
+public final class Broadcaster extends LoggingBase implements IOutput
 {
 	public Broadcaster(InjectionPlugin plugin, IServer server)
 	{
