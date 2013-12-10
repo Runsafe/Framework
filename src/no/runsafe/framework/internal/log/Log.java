@@ -78,6 +78,7 @@ public abstract class Log
 	private static String defaultDebugFormat;
 	private static final Map<Level, String> levelFormat;
 	private static final Map<String, Level> defaultDebugLevel;
+	private static final File logFolder = new File("logs");
 
 	private static YamlConfiguration loadDefaults(File configFile)
 	{
@@ -126,7 +127,7 @@ public abstract class Log
 		defaultLogFormat = config.getString("format.anonymous.log");
 		defaultDebugFormat = config.getString("format.anonymous.debug");
 		boolean sendToBukkit = !config.getBoolean("split");
-		for(Logger log : Logs.values())
+		for (Logger log : Logs.values())
 			log.setUseParentHandlers(sendToBukkit);
 	}
 
@@ -154,22 +155,21 @@ public abstract class Log
 		return cast;
 	}
 
-	private static void startLogging(Logger log, String outputFile, Formatter formatter)
+	private static void startLogging(Logger log, String outputFile, Formatter formatter) throws IOException
 	{
-		try
-		{
-			FileHandler logFile = new FileHandler(new File("logs", outputFile).getPath(), true);
-			logFile.setEncoding("UTF-8");
-			logFile.setFormatter(new RunsafeLogFormatter());
-			logFile.setFormatter(formatter);
-			log.addHandler(logFile);
-		}
-		// If this fails, we can't log the normal way, so we panic!
-		catch (Exception e)
-		{
-			e.printStackTrace();
-			System.exit(1);
-		}
+		if (!logFolder.exists())
+			if (!logFolder.mkdir())
+				throw new IOException("Unable to create logging directory");
+
+		File logFile = new File(logFolder, outputFile);
+		if (!logFile.exists())
+			if (!logFile.createNewFile())
+				throw new IOException("Unable to create logfile " + logFile.getPath());
+
+		FileHandler logWriter = new FileHandler(logFile.getPath(), true);
+		logWriter.setEncoding("UTF-8");
+		logWriter.setFormatter(formatter);
+		log.addHandler(logWriter);
 	}
 
 	static
@@ -185,8 +185,17 @@ public abstract class Log
 
 		configure();
 
-		startLogging(Logs.get("Console"), "runsafe.log", new RunsafeLogFormatter());
-		startLogging(Logs.get("Debug"), "debug.log", new RunsafeDebugFormatter());
-		startLogging(Logs.get("Protocol"), "protocol.log", new RunsafeDebugFormatter());
+		try
+		{
+			startLogging(Logs.get("Console"), "runsafe.log", new RunsafeLogFormatter());
+			startLogging(Logs.get("Debug"), "debug.log", new RunsafeDebugFormatter());
+			startLogging(Logs.get("Protocol"), "protocol.log", new RunsafeDebugFormatter());
+		}
+		// If this fails, we can't log the normal way, so we panic!
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			System.exit(1);
+		}
 	}
 }
