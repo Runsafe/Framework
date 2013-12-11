@@ -6,6 +6,7 @@ import no.runsafe.framework.api.event.plugin.IPluginEnabled;
 import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.files.PluginFileManager;
 import no.runsafe.framework.internal.command.CommandEngine;
+import no.runsafe.framework.internal.configuration.Configuration;
 import no.runsafe.framework.internal.configuration.ConfigurationEngine;
 import no.runsafe.framework.internal.database.SchemaUpdater;
 import no.runsafe.framework.internal.database.jdbc.Database;
@@ -161,8 +162,8 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		container.addComponent(ConfigurationEngine.class);
 //		container.addComponent(getServer().getPluginManager());
 //		container.addComponent(new RunsafeServer(getServer()));
-//		container.addComponent(getLogger());
-//		container.addComponent(Configuration.class);
+		container.addComponent(getLogger());
+		container.addComponent(Configuration.class);
 		container.addComponent(Console.class);
 		container.addComponent(Broadcaster.class);
 		container.addComponent(Debug.class);
