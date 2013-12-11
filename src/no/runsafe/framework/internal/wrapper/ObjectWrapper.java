@@ -7,6 +7,7 @@ import no.runsafe.framework.api.minecraft.IAnimalTamer;
 import no.runsafe.framework.api.minecraft.IInventoryHolder;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.internal.log.Console;
 import no.runsafe.framework.internal.wrapper.block.BukkitBlockState;
 import no.runsafe.framework.internal.wrapper.item.BukkitItemStack;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
@@ -171,6 +172,7 @@ public final class ObjectWrapper
 		return new BukkitMetadata(toWrap);
 	}
 
+	@SuppressWarnings({"OverlyComplexMethod", "OverlyCoupledMethod"})
 	@Nullable
 	public static IBlock convert(Block toWrap)
 	{
@@ -211,7 +213,9 @@ public final class ObjectWrapper
 		if (state instanceof Sign)
 			return new RunsafeSign(toWrap, (Sign) state);
 
-		return new BukkitBlockState(toWrap, state);
+		Console.Global().logWarning("Unknown block state %s", state.getClass().getCanonicalName());
+
+		return null;
 	}
 
 	@SuppressWarnings("OverlyComplexMethod")

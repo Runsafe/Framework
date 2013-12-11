@@ -372,6 +372,6 @@ public enum LegacyMaterial
 		legacyMaterialMap.put(material, id);
 	}
 
-	private static final Map<Integer, Material> legacyIdMap = new HashMap<Integer, Material>(Material.values().length);
+	private static final Map<Integer, Material> legacyIdMap = new HashMap<Integer, Material>(0);
 	private static final Map<Material, Integer> legacyMaterialMap = new EnumMap<Material, Integer>(Material.class);
 }

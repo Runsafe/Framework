@@ -11,9 +11,9 @@ import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 
-public class BukkitBlockState extends RunsafeBlock
+public abstract class BukkitBlockState extends RunsafeBlock
 {
-	public BukkitBlockState(Block toWrap, BlockState state)
+	protected BukkitBlockState(Block toWrap, BlockState state)
 	{
 		super(toWrap);
 		blockState = state;
