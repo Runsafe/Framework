@@ -346,6 +346,8 @@ public enum LegacyMaterial
 
 	LegacyMaterial(Integer id, Material material)
 	{
+		if (material == null || id == null)
+			return;
 		add(id, material);
 	}
 
