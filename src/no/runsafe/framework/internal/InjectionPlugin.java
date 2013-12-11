@@ -6,6 +6,7 @@ import no.runsafe.framework.api.event.plugin.IPluginEnabled;
 import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.files.PluginFileManager;
 import no.runsafe.framework.internal.command.CommandEngine;
+import no.runsafe.framework.internal.configuration.Configuration;
 import no.runsafe.framework.internal.configuration.ConfigurationEngine;
 import no.runsafe.framework.internal.database.SchemaUpdater;
 import no.runsafe.framework.internal.database.jdbc.Database;
@@ -34,12 +35,6 @@ import java.util.Map;
 public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 {
 	public static final Map<String, InjectionPlugin> Instances = new HashMap<String, InjectionPlugin>(1);
-
-	@SuppressWarnings({"ThisEscapedInObjectConstruction", "OverlyCoupledMethod"})
-	protected InjectionPlugin()
-	{
-		container = new DefaultPicoContainer(new Caching());
-	}
 
 	/**
 	 * get the first implementation of a given API from any plugin
@@ -134,33 +129,37 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 
 	protected void initializePlugin()
 	{
-		if (uninitialized)
+		if (container == null)
+		{
+			container = new DefaultPicoContainer(new Caching());
 			addStandardComponents();
+		}
 	}
 
+	@SuppressWarnings("OverlyCoupledMethod")
 	private void addStandardComponents()
 	{
-		container.addComponent(getServer().getPluginManager());
-		container.addComponent(new Scheduler(getServer().getScheduler(), this));
-		container.addComponent(new RunsafeServer(getServer()));
-		container.addComponent(EventEngine.class);
 		container.addComponent(this);
 		container.addComponent(ConfigurationEngine.class);
+		container.addComponent(getServer().getPluginManager());
+		container.addComponent(new RunsafeServer(getServer()));
+		container.addComponent(getLogger());
+		container.addComponent(Configuration.class);
 		container.addComponent(Console.class);
 		container.addComponent(Broadcaster.class);
 		container.addComponent(Debug.class);
 		container.addComponent(Protocol.class);
 		container.addComponent(Database.class);
+		container.addComponent(new Scheduler(getServer().getScheduler(), this));
 		container.addComponent(SchemaUpdater.class);
+		container.addComponent(EventEngine.class);
 		container.addComponent(CommandEngine.class);
 		container.addComponent(HookEngine.class);
 		container.addComponent(VersionEngine.class);
 		container.addComponent(Environment.class);
 		container.addComponent(PluginFileManager.class);
-		uninitialized = false;
 	}
 
-	private final DefaultPicoContainer container;
-	private boolean uninitialized = true;
+	private DefaultPicoContainer container;
 	protected IDebug output;
 }
