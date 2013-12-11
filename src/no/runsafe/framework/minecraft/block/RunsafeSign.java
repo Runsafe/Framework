@@ -12,13 +12,13 @@ public class RunsafeSign extends BukkitSign implements ISign
 	}
 
 	@Override
-	public void setLines(String... arguments)
+	public void setLines(Object... arguments)
 	{
 		int index = 0;
-		for (String line : arguments)
+		for (Object line : arguments)
 		{
 			if (index > 4) break;
-			setLine(index, line);
+			setLine(index, line.toString());
 			index++;
 		}
 	}

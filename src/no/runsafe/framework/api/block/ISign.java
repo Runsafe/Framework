@@ -5,5 +5,5 @@ public interface ISign
 	String[] getLines();
 	String getLine(int i);
 	void setLine(int i, String s);
-	void setLines(String... arguments);
+	void setLines(Object... arguments);
 }
