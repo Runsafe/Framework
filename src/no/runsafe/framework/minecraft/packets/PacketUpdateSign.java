@@ -1,11 +1,11 @@
 package no.runsafe.framework.minecraft.packets;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.internal.networking.NetworkPacket;
-import no.runsafe.framework.minecraft.RunsafeLocation;
 
 public class PacketUpdateSign extends NetworkPacket
 {
-	public PacketUpdateSign(RunsafeLocation location, String... lines)
+	public PacketUpdateSign(ILocation location, String... lines)
 	{
 		this(location.getBlockX(), location.getBlockY(), location.getBlockZ(), lines);
 	}
