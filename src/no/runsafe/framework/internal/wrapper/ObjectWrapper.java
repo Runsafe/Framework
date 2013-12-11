@@ -213,9 +213,7 @@ public final class ObjectWrapper
 		if (state instanceof Sign)
 			return new RunsafeSign(toWrap, (Sign) state);
 
-		Console.Global().logWarning("Unknown block state %s", state.getClass().getCanonicalName());
-
-		return null;
+		return new BukkitBlockState(toWrap, state);
 	}
 
 	@SuppressWarnings("OverlyComplexMethod")
@@ -252,9 +250,7 @@ public final class ObjectWrapper
 		if (toWrap instanceof Dropper)
 			return convert((Dropper) toWrap);
 
-		Console.Global().logWarning("Unknown block state %s", toWrap.getClass().getCanonicalName());
-
-		return null;
+		return new BukkitBlockState(null, toWrap);
 	}
 
 	@Nullable
