@@ -2,10 +2,8 @@ package no.runsafe.framework.internal;
 
 import org.bukkit.Material;
 
-import javax.annotation.Nullable;
-import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public enum LegacyMaterial
 {
@@ -351,10 +349,9 @@ public enum LegacyMaterial
 		add(id, material);
 	}
 
-	private static final Map<Integer, Material> legacyIdMap = new HashMap<Integer, Material>(0);
-	private static final Map<Material, Integer> legacyMaterialMap = new EnumMap<Material, Integer>(Material.class);
+	private static final Map<Integer, Material> legacyIdMap = new ConcurrentHashMap<Integer, Material>();
+	private static final Map<Material, Integer> legacyMaterialMap = new ConcurrentHashMap<Material, Integer>();
 
-	@Nullable
 	public static Material getById(int id)
 	{
 		if (legacyIdMap.containsKey(id))
@@ -373,6 +370,11 @@ public enum LegacyMaterial
 
 	private static void add(Integer id, Material material)
 	{
+		if (material == null || id == null)
+			return;
+		if (legacyMaterialMap == null || legacyIdMap == null)
+			return;
+
 		legacyIdMap.put(id, material);
 		legacyMaterialMap.put(material, id);
 	}
