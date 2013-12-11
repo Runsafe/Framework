@@ -28,7 +28,7 @@ public final class Broadcaster extends LoggingBase implements IOutput
 	public void broadcastColoured(String format, Object... params)
 	{
 		String message = String.format(format, params);
-		writeLog(Level.INFO, message);
+		writeLog(Level.INFO, ChatColour.ToConsole(message));
 		broadcast(ChatColour.ToMinecraft(message));
 	}
 
