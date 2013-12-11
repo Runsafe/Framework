@@ -1,18 +1,16 @@
 package no.runsafe.framework;
 
 import no.runsafe.framework.api.IConfiguration;
-import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.api.event.IServerReady;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.files.PluginFileManager;
 import no.runsafe.framework.internal.InjectionPlugin;
-import no.runsafe.framework.internal.LegacyMaterial;
 import no.runsafe.framework.internal.command.BukkitCommandTabExecutor;
 import no.runsafe.framework.internal.configuration.ConfigurationEngine;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
-import org.bukkit.configuration.file.YamlConfiguration;
 
 import javax.annotation.Nullable;
 import java.io.File;
@@ -22,29 +20,6 @@ import java.util.logging.Level;
 
 public abstract class RunsafePlugin extends InjectionPlugin
 {
-	static
-	{
-		Level consoleDebug = null;
-		File globalConfig = new File("runsafe", "global.yml");
-		if (globalConfig.exists())
-		{
-			//noinspection OverlyBroadCatchBlock
-			try
-			{
-				YamlConfiguration global = new YamlConfiguration();
-				global.load(globalConfig);
-				String debug = (String) global.get("debug");
-				if (debug != null)
-					consoleDebug = Level.parse(debug);
-			}
-			catch (Exception ignored)
-			{
-				consoleDebug = Level.OFF;
-			}
-		}
-		debugLevel = consoleDebug;
-	}
-
 	@SuppressWarnings({"CastToConcreteClass", "InstanceofInterfaces", "LocalVariableOfConcreteClass"})
 	@Nullable
 	public static ICommandHandler getPluginCommand(String name)
@@ -70,16 +45,13 @@ public abstract class RunsafePlugin extends InjectionPlugin
 	{
 		super.initializePlugin();
 
-		scheduleReadyEvent(getComponent(IScheduler.class));
-
 		output = getComponent(IDebug.class);
-		if (debugLevel != null)
-			output.setDebugLevel(debugLevel);
 		output.debugFine("Standard components added.");
 
 		PluginSetup();
 		output.debugFine("Plugin setup performed.");
 
+		scheduleReadyEvent();
 		output.outputDebugToConsole("Initiation complete", Level.FINE);
 	}
 
@@ -97,26 +69,22 @@ public abstract class RunsafePlugin extends InjectionPlugin
 	protected abstract void PluginSetup();
 
 	@SuppressWarnings("NonThreadSafeLazyInitialization")
-	private static void scheduleReadyEvent(IScheduler scheduler)
+	private void scheduleReadyEvent()
 	{
-		if (scheduled == null)
-		{
-			// This is actually safe due to how plugins are initialized by bukkit..
-			scheduled = scheduler.createSyncTimer(
+		final List<IServerReady> listeners = getComponents(IServerReady.class);
+		if (listeners != null && !listeners.isEmpty())
+			getComponent(IScheduler.class).createSyncTimer(
 				new Runnable()
 				{
 					@Override
 					public void run()
 					{
-						List<IServerReady> listeners = getPluginAPI(IServerReady.class);
-						if (listeners != null)
-							for (IServerReady listener : listeners)
-								listener.OnServerReady();
+						for (IServerReady listener : listeners)
+							listener.OnServerReady();
 					}
 				},
 				0
 			);
-		}
 	}
 
 	/**
@@ -128,7 +96,4 @@ public abstract class RunsafePlugin extends InjectionPlugin
 	{
 		return getComponent(PluginFileManager.class);
 	}
-
-	private static final Level debugLevel;
-	private static Object scheduled = null;
 }
