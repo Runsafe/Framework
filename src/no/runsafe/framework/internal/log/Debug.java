@@ -54,6 +54,7 @@ public final class Debug extends LoggingBase implements IDebug
 	public void setDebugLevel(Level level)
 	{
 		debugLevel = level;
+		writeLog(Level.INFO, String.format("Debug level is now %s", level.getName()));
 	}
 
 	@Override
