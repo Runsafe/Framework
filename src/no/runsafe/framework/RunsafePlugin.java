@@ -7,6 +7,7 @@ import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.api.event.IServerReady;
 import no.runsafe.framework.files.PluginFileManager;
 import no.runsafe.framework.internal.InjectionPlugin;
+import no.runsafe.framework.internal.LegacyMaterial;
 import no.runsafe.framework.internal.command.BukkitCommandTabExecutor;
 import no.runsafe.framework.internal.configuration.ConfigurationEngine;
 import org.bukkit.command.CommandExecutor;
@@ -76,6 +77,10 @@ public abstract class RunsafePlugin extends InjectionPlugin
 		if (debugLevel != null)
 			output.setDebugLevel(debugLevel);
 		output.debugFine("Standard components added.");
+
+		// Temporary to generate some code..
+		getInstance(LegacyMaterial.class).generate();
+		System.exit(2);
 
 		PluginSetup();
 		output.debugFine("Plugin setup performed.");
