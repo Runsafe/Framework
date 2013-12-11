@@ -14,7 +14,7 @@ public class LegacyMaterial
 	{
 		for (Material material : Material.values())
 		{
-			console.logInformation(String.format("%s(%d, Material.%s", material.getId(), material.name()));
+			console.logInformation(String.format("%2$s(%1$d, Material.%2$s", material.getId(), material.name()));
 		}
 	}
 	private final IConsole console;
