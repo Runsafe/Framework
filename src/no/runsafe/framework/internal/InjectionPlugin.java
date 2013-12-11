@@ -131,6 +131,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	{
 		if (container == null)
 		{
+			Instances.put(getName(), this);
 			container = new DefaultPicoContainer(new Caching());
 			addStandardComponents();
 		}
