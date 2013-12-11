@@ -5,12 +5,12 @@ import no.runsafe.framework.minecraft.RunsafeLocation;
 
 public class PacketUpdateSign extends NetworkPacket
 {
-	public PacketUpdateSign(RunsafeLocation location, String[] lines)
+	public PacketUpdateSign(RunsafeLocation location, String... lines)
 	{
 		this(location.getBlockX(), location.getBlockY(), location.getBlockZ(), lines);
 	}
 
-	public PacketUpdateSign(int x, int y, int z, String[] lines)
+	public PacketUpdateSign(int x, int y, int z, String... lines)
 	{
 		setData("x", x);
 		setData("y", y);
