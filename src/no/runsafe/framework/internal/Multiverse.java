@@ -20,7 +20,7 @@ public class Multiverse implements Startable
 	@Nullable
 	public static Universe getByName(String name)
 	{
-		if (universes.containsKey(name))
+		if (name != null && universes.containsKey(name))
 			return universes.get(name);
 		return null;
 	}
@@ -39,8 +39,11 @@ public class Multiverse implements Startable
 		return server.getWorlds();
 	}
 
+	@Nullable
 	public static IWorld getWorld(String name)
 	{
+		if (name == null)
+			return null;
 		return server.getWorld(name);
 	}
 

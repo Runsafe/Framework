@@ -6,7 +6,6 @@ import no.runsafe.framework.api.event.plugin.IPluginEnabled;
 import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.files.PluginFileManager;
 import no.runsafe.framework.internal.command.CommandEngine;
-import no.runsafe.framework.internal.configuration.Configuration;
 import no.runsafe.framework.internal.configuration.ConfigurationEngine;
 import no.runsafe.framework.internal.database.SchemaUpdater;
 import no.runsafe.framework.internal.database.jdbc.Database;
@@ -35,6 +34,11 @@ import java.util.Map;
 public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 {
 	public static final Map<String, InjectionPlugin> Instances = new HashMap<String, InjectionPlugin>(1);
+
+	protected InjectionPlugin()
+	{
+		container = new DefaultPicoContainer(new Caching(), globalContainer);
+	}
 
 	/**
 	 * get the first implementation of a given API from any plugin
@@ -129,12 +133,24 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 
 	protected void initializePlugin()
 	{
-		if (container == null)
+		if (uninitialized)
+		{
+			bootStrap();
+		}
+		if (!Instances.containsKey(getName()))
 		{
 			Instances.put(getName(), this);
-			container = new DefaultPicoContainer(new Caching());
 			addStandardComponents();
 		}
+	}
+
+	private void bootStrap()
+	{
+		globalContainer.addComponent(getServer().getPluginManager());
+		globalContainer.addComponent(new RunsafeServer(getServer()));
+		globalContainer.addComponent(Multiverse.class);
+		globalContainer.addComponent(Player.class);
+		uninitialized = false;
 	}
 
 	@SuppressWarnings("OverlyCoupledMethod")
@@ -142,10 +158,10 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	{
 		container.addComponent(this);
 		container.addComponent(ConfigurationEngine.class);
-		container.addComponent(getServer().getPluginManager());
-		container.addComponent(new RunsafeServer(getServer()));
-		container.addComponent(getLogger());
-		container.addComponent(Configuration.class);
+//		container.addComponent(getServer().getPluginManager());
+//		container.addComponent(new RunsafeServer(getServer()));
+//		container.addComponent(getLogger());
+//		container.addComponent(Configuration.class);
 		container.addComponent(Console.class);
 		container.addComponent(Broadcaster.class);
 		container.addComponent(Debug.class);
@@ -161,6 +177,8 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		container.addComponent(PluginFileManager.class);
 	}
 
+	private static final DefaultPicoContainer globalContainer = new DefaultPicoContainer(new Caching());
+	private static boolean uninitialized = true;
 	private DefaultPicoContainer container;
 	protected IDebug output;
 }
