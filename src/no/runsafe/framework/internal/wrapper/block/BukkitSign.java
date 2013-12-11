@@ -26,11 +26,5 @@ public abstract class BukkitSign extends RunsafeBlockState
 		sign.setLine(i, s);
 	}
 
-	@Override
-	public Sign getRaw()
-	{
-		return sign;
-	}
-
 	protected final Sign sign;
 }

@@ -15,12 +15,6 @@ public abstract class BukkitHopper extends RunsafeBlockState implements IInvento
 	}
 
 	@Override
-	public Hopper getRaw()
-	{
-		return hopper;
-	}
-
-	@Override
 	public RunsafeInventory getInventory()
 	{
 		return ObjectWrapper.convert(hopper.getInventory());

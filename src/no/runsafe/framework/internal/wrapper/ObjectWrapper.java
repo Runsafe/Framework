@@ -1,6 +1,8 @@
 package no.runsafe.framework.internal.wrapper;
 
 import no.runsafe.framework.api.ILocation;
+import no.runsafe.framework.api.block.IBlock;
+import no.runsafe.framework.api.metadata.IMetadata;
 import no.runsafe.framework.api.minecraft.IAnimalTamer;
 import no.runsafe.framework.api.minecraft.IInventoryHolder;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
@@ -147,30 +149,8 @@ public final class ObjectWrapper
 		return new RunsafeMaterialData(toWrap);
 	}
 
-//	public static List<RunsafePlayer> convert(OfflinePlayer[] toWrap)
-//	{
-//		if (toWrap == null)
-//			return null;
-//
-//		List<RunsafePlayer> results = new ArrayList<RunsafePlayer>();
-//		for (OfflinePlayer player : toWrap)
-//			results.add(new RunsafePlayer(player));
-//		return results;
-//	}
-
-//	public static List<RunsafePlayer> convert(Iterable<? extends OfflinePlayer> toWrap)
-//	{
-//		if (toWrap == null)
-//			return null;
-//
-//		List<RunsafePlayer> results = new ArrayList<RunsafePlayer>();
-//		for (OfflinePlayer player : toWrap)
-//			results.add(new RunsafePlayer(player));
-//		return results;
-//	}
-
 	@Nullable
-	public static BukkitMetadata convert(Metadatable toWrap)
+	public static IMetadata convert(Metadatable toWrap)
 	{
 		if (toWrap == null)
 			return null;
@@ -191,13 +171,16 @@ public final class ObjectWrapper
 	}
 
 	@Nullable
-	public static RunsafeBlock convert(Block toWrap)
+	public static IBlock convert(Block toWrap)
 	{
 		if (toWrap == null)
 			return null;
-		if (toWrap.getState() != null && toWrap.getState() instanceof CreatureSpawner)
-			return new RunsafeSpawner(toWrap);
-		return new RunsafeBlock(toWrap);
+
+		BlockState state = toWrap.getState();
+		if(state == null)
+			return new RunsafeBlock(toWrap);
+
+		return convert(state);
 	}
 
 	@SuppressWarnings("OverlyComplexMethod")

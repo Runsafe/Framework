@@ -25,11 +25,5 @@ public abstract class BukkitChest extends RunsafeBlockState implements IInventor
 		return getInventory();
 	}
 
-	@Override
-	public Chest getRaw()
-	{
-		return chest;
-	}
-
 	protected final Chest chest;
 }

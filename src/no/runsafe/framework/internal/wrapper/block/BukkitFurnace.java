@@ -40,11 +40,5 @@ public abstract class BukkitFurnace extends RunsafeBlockState implements IInvent
 		return ObjectWrapper.convert(furnace.getInventory());
 	}
 
-	@Override
-	public Furnace getRaw()
-	{
-		return furnace;
-	}
-
 	protected final Furnace furnace;
 }

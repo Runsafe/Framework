@@ -1,6 +1,6 @@
 package no.runsafe.framework.api.block;
 
-public interface ISign extends IBlockState
+public interface ISign extends IBlockState, IBlock
 {
 	String[] getLines();
 	String getLine(int i);

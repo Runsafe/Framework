@@ -33,11 +33,5 @@ public abstract class BukkitCreatureSpawner extends RunsafeBlockState
 		return EntityType.convert(spawner.getSpawnedType());
 	}
 
-	@Override
-	public CreatureSpawner getRaw()
-	{
-		return spawner;
-	}
-
 	protected final CreatureSpawner spawner;
 }

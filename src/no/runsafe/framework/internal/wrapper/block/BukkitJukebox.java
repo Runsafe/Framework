@@ -32,11 +32,5 @@ public abstract class BukkitJukebox extends RunsafeBlockState
 		return jukebox.eject();
 	}
 
-	@Override
-	public Jukebox getRaw()
-	{
-		return jukebox;
-	}
-
 	protected final Jukebox jukebox;
 }

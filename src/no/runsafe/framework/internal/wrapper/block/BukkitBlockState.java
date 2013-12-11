@@ -2,18 +2,18 @@ package no.runsafe.framework.internal.wrapper.block;
 
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
+import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.Item;
+import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
-import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import org.bukkit.block.BlockState;
 
-public abstract class BukkitBlockState extends BukkitMetadata
+public abstract class BukkitBlockState extends RunsafeBlock
 {
 	protected BukkitBlockState(BlockState blockState)
 	{
-		super(blockState);
+		super(blockState.getBlock());
 		this.blockState = blockState;
 	}
 
@@ -90,12 +90,6 @@ public abstract class BukkitBlockState extends BukkitMetadata
 	public void update()
 	{
 		blockState.update();
-	}
-
-	@Override
-	public BlockState getRaw()
-	{
-		return blockState;
 	}
 
 	protected final BlockState blockState;

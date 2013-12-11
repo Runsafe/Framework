@@ -25,11 +25,5 @@ public abstract class BukkitDispenser extends RunsafeBlockState implements IInve
 		return ObjectWrapper.convert(dispenser.getInventory());
 	}
 
-	@Override
-	public Dispenser getRaw()
-	{
-		return dispenser;
-	}
-
 	protected final Dispenser dispenser;
 }

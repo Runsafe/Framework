@@ -36,11 +36,5 @@ public abstract class BukkitNoteBlock extends RunsafeBlockState
 
 //	public boolean play(Instrument instrument, Note note)
 
-	@Override
-	public NoteBlock getRaw()
-	{
-		return noteBlock;
-	}
-
 	protected final NoteBlock noteBlock;
 }

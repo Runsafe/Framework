@@ -1,6 +1,6 @@
 package no.runsafe.framework.api.block;
 
-public interface INoteBlock extends IBlockState
+public interface INoteBlock extends IBlockState, IBlock
 {
 	byte getRawNote();
 	void setRawNote(byte b);

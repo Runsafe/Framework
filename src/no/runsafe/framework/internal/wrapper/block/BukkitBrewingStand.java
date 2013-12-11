@@ -30,11 +30,5 @@ public abstract class BukkitBrewingStand extends RunsafeBlockState implements II
 		return ObjectWrapper.convert(stand.getInventory());
 	}
 
-	@Override
-	public BrewingStand getRaw()
-	{
-		return stand;
-	}
-
 	protected final BrewingStand stand;
 }
