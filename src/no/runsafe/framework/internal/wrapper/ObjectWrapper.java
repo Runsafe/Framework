@@ -252,7 +252,9 @@ public final class ObjectWrapper
 		if (toWrap instanceof Dropper)
 			return convert((Dropper) toWrap);
 
-		return new BukkitBlockState(null, toWrap);
+		Console.Global().logWarning("Unknown block state %s", toWrap.getClass().getCanonicalName());
+
+		return null;
 	}
 
 	@Nullable
