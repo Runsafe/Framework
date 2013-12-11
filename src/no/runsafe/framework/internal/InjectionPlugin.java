@@ -138,10 +138,10 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 			bootStrap();
 		}
 		if (!Instances.containsKey(getName()))
-		{
 			Instances.put(getName(), this);
+
+		if (instanceUnconfigured)
 			addStandardComponents();
-		}
 	}
 
 	private void bootStrap()
@@ -176,10 +176,12 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		container.addComponent(VersionEngine.class);
 		container.addComponent(Environment.class);
 		container.addComponent(PluginFileManager.class);
+		instanceUnconfigured = false;
 	}
 
 	private static final DefaultPicoContainer globalContainer = new DefaultPicoContainer(new Caching());
 	private static boolean uninitialized = true;
 	private DefaultPicoContainer container;
+	private boolean instanceUnconfigured = true;
 	protected IDebug output;
 }
