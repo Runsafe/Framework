@@ -10,8 +10,8 @@ public interface IBlock extends IMetadata
 {
 	void set(Item type);
 	IWorld getWorld();
-	@Deprecated
-	IBlockState getBlockState();
+//	@Deprecated
+//	IBlockState getBlockState();
 	ILocation getLocation();
 	Item getMaterial();
 	void setMaterial(Item material);

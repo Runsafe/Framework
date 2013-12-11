@@ -3,7 +3,7 @@ package no.runsafe.framework.internal.wrapper.chunk;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.minecraft.block.RunsafeBlockState;
+import no.runsafe.framework.internal.wrapper.block.BukkitBlockState;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import org.bukkit.Chunk;
 
@@ -43,7 +43,7 @@ public abstract class BukkitChunk
 		return ObjectWrapper.convert(chunk.getEntities());
 	}
 
-	public List<RunsafeBlockState> getTileEntities()
+	public List<BukkitBlockState> getTileEntities()
 	{
 		return ObjectWrapper.convert(chunk.getTileEntities());
 	}

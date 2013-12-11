@@ -1,16 +1,16 @@
 package no.runsafe.framework.internal.wrapper.block;
 
-import no.runsafe.framework.minecraft.block.RunsafeBlockState;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.minecraft.entity.EntityType;
+import org.bukkit.block.Block;
 import org.bukkit.block.CreatureSpawner;
 
-public abstract class BukkitCreatureSpawner extends RunsafeBlockState
+public abstract class BukkitCreatureSpawner extends BukkitBlockState
 {
-	protected BukkitCreatureSpawner(CreatureSpawner toWrap)
+	protected BukkitCreatureSpawner(Block toWrap, CreatureSpawner state)
 	{
-		super(toWrap);
-		spawner = toWrap;
+		super(toWrap, state);
+		spawner = state;
 	}
 
 	public int getDelay()

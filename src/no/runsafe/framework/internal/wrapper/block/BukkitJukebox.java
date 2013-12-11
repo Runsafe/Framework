@@ -1,15 +1,15 @@
 package no.runsafe.framework.internal.wrapper.block;
 
 import no.runsafe.framework.minecraft.Item;
-import no.runsafe.framework.minecraft.block.RunsafeBlockState;
+import org.bukkit.block.Block;
 import org.bukkit.block.Jukebox;
 
-public abstract class BukkitJukebox extends RunsafeBlockState
+public abstract class BukkitJukebox extends BukkitBlockState
 {
-	protected BukkitJukebox(Jukebox toWrap)
+	protected BukkitJukebox(Block toWrap, Jukebox state)
 	{
-		super(toWrap);
-		jukebox = toWrap;
+		super(toWrap, state);
+		jukebox = state;
 	}
 
 	public Item getPlaying()

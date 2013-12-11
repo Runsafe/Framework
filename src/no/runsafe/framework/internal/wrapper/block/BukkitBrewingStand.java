@@ -1,17 +1,17 @@
 package no.runsafe.framework.internal.wrapper.block;
 
-import no.runsafe.framework.minecraft.block.RunsafeBlockState;
 import no.runsafe.framework.api.minecraft.IInventoryHolder;
-import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
+import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
+import org.bukkit.block.Block;
 import org.bukkit.block.BrewingStand;
 
-public abstract class BukkitBrewingStand extends RunsafeBlockState implements IInventoryHolder
+public abstract class BukkitBrewingStand extends BukkitBlockState implements IInventoryHolder
 {
-	protected BukkitBrewingStand(BrewingStand toWrap)
+	protected BukkitBrewingStand(Block toWrap, BrewingStand state)
 	{
-		super(toWrap);
-		stand = toWrap;
+		super(toWrap, state);
+		stand = (BrewingStand) toWrap.getState();
 	}
 
 	public int getBrewingTime()

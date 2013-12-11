@@ -27,11 +27,11 @@ public class BukkitBlock extends BukkitMetadata
 		block.setData(data);
 	}
 
-	@Deprecated
-	public IBlockState getBlockState()
-	{
-		return ObjectWrapper.convert(block.getState());
-	}
+//	@Deprecated
+//	public IBlockState getBlockState()
+//	{
+//		return ObjectWrapper.convert(block.getState());
+//	}
 
 	@SuppressWarnings("InstanceMethodNamingConvention")
 	public void set(Item type)

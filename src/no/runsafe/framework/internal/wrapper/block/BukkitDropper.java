@@ -1,17 +1,17 @@
 package no.runsafe.framework.internal.wrapper.block;
 
-import no.runsafe.framework.minecraft.block.RunsafeBlockState;
 import no.runsafe.framework.api.minecraft.IInventoryHolder;
-import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
+import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
+import org.bukkit.block.Block;
 import org.bukkit.block.Dropper;
 
-public abstract class BukkitDropper extends RunsafeBlockState implements IInventoryHolder
+public abstract class BukkitDropper extends BukkitBlockState implements IInventoryHolder
 {
-	protected BukkitDropper(Dropper toWrap)
+	protected BukkitDropper(Block toWrap, Dropper state)
 	{
-		super(toWrap);
-		dropper = toWrap;
+		super(toWrap, state);
+		dropper = (Dropper) toWrap.getState();
 	}
 
 	public void drop()

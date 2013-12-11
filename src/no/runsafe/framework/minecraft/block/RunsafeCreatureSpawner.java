@@ -5,14 +5,15 @@ import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.block.BukkitCreatureSpawner;
 import no.runsafe.framework.minecraft.entity.LivingEntity;
+import org.bukkit.block.Block;
 import org.bukkit.block.CreatureSpawner;
 
 public class RunsafeCreatureSpawner extends BukkitCreatureSpawner implements ICreatureSpawner
 {
-	public RunsafeCreatureSpawner(CreatureSpawner toWrap)
+	public RunsafeCreatureSpawner(Block toWrap, CreatureSpawner state)
 	{
-		super(toWrap);
-		spawner = toWrap;
+		super(toWrap, state);
+		spawner = state;
 	}
 
 	@Override

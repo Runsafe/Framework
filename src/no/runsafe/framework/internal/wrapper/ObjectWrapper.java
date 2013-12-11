@@ -7,6 +7,7 @@ import no.runsafe.framework.api.minecraft.IAnimalTamer;
 import no.runsafe.framework.api.minecraft.IInventoryHolder;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.internal.wrapper.block.BukkitBlockState;
 import no.runsafe.framework.internal.wrapper.item.BukkitItemStack;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import no.runsafe.framework.minecraft.RunsafeLocation;
@@ -177,15 +178,45 @@ public final class ObjectWrapper
 			return null;
 
 		BlockState state = toWrap.getState();
-		if(state == null)
+		if (state == null)
 			return new RunsafeBlock(toWrap);
 
-		return convert(state);
+		if (state instanceof BrewingStand)
+			return new RunsafeBrewingStand(toWrap, (BrewingStand) state);
+
+		if (state instanceof CreatureSpawner)
+			return new RunsafeCreatureSpawner(toWrap, (CreatureSpawner) state);
+
+		if (state instanceof Dispenser)
+			return new RunsafeDispenser(toWrap, (Dispenser) state);
+
+//		if(state instanceof DoubleChest)
+//			return new RunsafeDoubleChest(toWrap);
+
+		if (state instanceof Dropper)
+			return new RunsafeDropper(toWrap, (Dropper) state);
+
+		if (state instanceof Furnace)
+			return new RunsafeFurnace(toWrap, (Furnace) state);
+
+		if (state instanceof Hopper)
+			return new RunsafeHopper(toWrap, (Hopper) state);
+
+		if (state instanceof Jukebox)
+			return new RunsafeJukebox(toWrap, (Jukebox) state);
+
+		if (state instanceof NoteBlock)
+			return new RunsafeNoteBlock(toWrap, (NoteBlock) state);
+
+		if (state instanceof Sign)
+			return new RunsafeSign(toWrap, (Sign) state);
+
+		return new BukkitBlockState(toWrap, state);
 	}
 
 	@SuppressWarnings("OverlyComplexMethod")
 	@Nullable
-	public static RunsafeBlockState convert(BlockState toWrap)
+	public static BukkitBlockState convert(BlockState toWrap)
 	{
 		if (toWrap == null)
 			return null;
@@ -217,7 +248,7 @@ public final class ObjectWrapper
 		if (toWrap instanceof Dropper)
 			return convert((Dropper) toWrap);
 
-		return new RunsafeBlockState(toWrap);
+		return new BukkitBlockState(null, toWrap);
 	}
 
 	@Nullable
@@ -225,7 +256,7 @@ public final class ObjectWrapper
 	{
 		if (toWrap == null)
 			return null;
-		return new RunsafeBrewingStand(toWrap);
+		return new RunsafeBrewingStand(null, toWrap);
 	}
 
 	@Nullable
@@ -233,7 +264,7 @@ public final class ObjectWrapper
 	{
 		if (toWrap == null)
 			return null;
-		return new RunsafeChest(toWrap);
+		return new RunsafeChest(null, toWrap);
 	}
 
 	@Nullable
@@ -249,7 +280,7 @@ public final class ObjectWrapper
 	{
 		if (toWrap == null)
 			return null;
-		return new RunsafeCreatureSpawner(toWrap);
+		return new RunsafeCreatureSpawner(null, toWrap);
 	}
 
 	@Nullable
@@ -257,7 +288,7 @@ public final class ObjectWrapper
 	{
 		if (toWrap == null)
 			return null;
-		return new RunsafeDispenser(toWrap);
+		return new RunsafeDispenser(null, toWrap);
 	}
 
 	@Nullable
@@ -273,7 +304,7 @@ public final class ObjectWrapper
 	{
 		if (toWrap == null)
 			return null;
-		return new RunsafeFurnace(toWrap);
+		return new RunsafeFurnace(null, toWrap);
 	}
 
 	@Nullable
@@ -281,7 +312,7 @@ public final class ObjectWrapper
 	{
 		if (toWrap == null)
 			return null;
-		return new RunsafeJukebox(toWrap);
+		return new RunsafeJukebox(null, toWrap);
 	}
 
 	@Nullable
@@ -298,7 +329,7 @@ public final class ObjectWrapper
 	{
 		if (toWrap == null)
 			return null;
-		return new RunsafeNoteBlock(toWrap);
+		return new RunsafeNoteBlock(null, toWrap);
 	}
 
 	@Nullable
@@ -306,7 +337,7 @@ public final class ObjectWrapper
 	{
 		if (toWrap == null)
 			return null;
-		return new RunsafeSign(toWrap);
+		return new RunsafeSign(null, toWrap);
 	}
 
 	@Nullable
@@ -485,7 +516,7 @@ public final class ObjectWrapper
 		if (toWrap == null)
 			return null;
 
-		return new RunsafeHopper(toWrap);
+		return new RunsafeHopper(null, toWrap);
 	}
 
 	@Nullable
@@ -494,7 +525,7 @@ public final class ObjectWrapper
 		if (toWrap == null)
 			return null;
 
-		return new RunsafeDropper(toWrap);
+		return new RunsafeDropper(null, toWrap);
 	}
 
 	@Nullable

@@ -1,14 +1,14 @@
 package no.runsafe.framework.internal.wrapper.block;
 
-import no.runsafe.framework.minecraft.block.RunsafeBlockState;
+import org.bukkit.block.Block;
 import org.bukkit.block.NoteBlock;
 
-public abstract class BukkitNoteBlock extends RunsafeBlockState
+public abstract class BukkitNoteBlock extends BukkitBlockState
 {
-	protected BukkitNoteBlock(NoteBlock toWrap)
+	protected BukkitNoteBlock(Block toWrap, NoteBlock state)
 	{
-		super(toWrap);
-		noteBlock = toWrap;
+		super(toWrap, state);
+		noteBlock = state;
 	}
 
 	public byte getRawNote()

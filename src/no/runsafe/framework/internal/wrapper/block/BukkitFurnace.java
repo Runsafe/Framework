@@ -1,17 +1,17 @@
 package no.runsafe.framework.internal.wrapper.block;
 
-import no.runsafe.framework.minecraft.block.RunsafeBlockState;
 import no.runsafe.framework.api.minecraft.IInventoryHolder;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
+import org.bukkit.block.Block;
 import org.bukkit.block.Furnace;
 
-public abstract class BukkitFurnace extends RunsafeBlockState implements IInventoryHolder
+public abstract class BukkitFurnace extends BukkitBlockState implements IInventoryHolder
 {
-	protected BukkitFurnace(Furnace toWrap)
+	protected BukkitFurnace(Block toWrap, Furnace state)
 	{
-		super(toWrap);
-		furnace = toWrap;
+		super(toWrap, state);
+		furnace = state;
 	}
 
 	public short getBurnTime()

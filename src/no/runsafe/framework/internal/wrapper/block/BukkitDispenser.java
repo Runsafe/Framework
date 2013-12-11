@@ -1,17 +1,17 @@
 package no.runsafe.framework.internal.wrapper.block;
 
-import no.runsafe.framework.minecraft.block.RunsafeBlockState;
 import no.runsafe.framework.api.minecraft.IInventoryHolder;
-import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
+import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
+import org.bukkit.block.Block;
 import org.bukkit.block.Dispenser;
 
-public abstract class BukkitDispenser extends RunsafeBlockState implements IInventoryHolder
+public abstract class BukkitDispenser extends BukkitBlockState implements IInventoryHolder
 {
-	protected BukkitDispenser(Dispenser toWrap)
+	protected BukkitDispenser(Block toWrap, Dispenser state)
 	{
-		super(toWrap);
-		dispenser = toWrap;
+		super(toWrap, state);
+		dispenser = state;
 	}
 
 	public boolean dispense()

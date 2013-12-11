@@ -1,14 +1,14 @@
 package no.runsafe.framework.internal.wrapper.block;
 
-import no.runsafe.framework.minecraft.block.RunsafeBlockState;
+import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 
-public abstract class BukkitSign extends RunsafeBlockState
+public abstract class BukkitSign extends BukkitBlockState
 {
-	protected BukkitSign(Sign toWrap)
+	protected BukkitSign(Block toWrap, Sign state)
 	{
-		super(toWrap);
-		sign = toWrap;
+		super(toWrap, state);
+		sign = state;
 	}
 
 	public String[] getLines()

@@ -8,14 +8,15 @@ import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
+import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 
-public abstract class BukkitBlockState extends RunsafeBlock
+public class BukkitBlockState extends RunsafeBlock
 {
-	protected BukkitBlockState(BlockState blockState)
+	public BukkitBlockState(Block toWrap, BlockState state)
 	{
-		super(blockState.getBlock() == null ? null : blockState.getBlock());
-		this.blockState = blockState;
+		super(toWrap);
+		blockState = state;
 	}
 
 	public RunsafeChunk getChunk()
