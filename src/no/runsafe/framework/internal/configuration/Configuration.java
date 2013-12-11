@@ -1,19 +1,21 @@
 package no.runsafe.framework.internal.configuration;
 
 import no.runsafe.framework.api.IConfiguration;
-import no.runsafe.framework.api.log.IConsole;
-import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.IConfigurationFile;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
+import no.runsafe.framework.api.log.IConsole;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.internal.Multiverse;
 import no.runsafe.framework.minecraft.RunsafeLocation;
-import no.runsafe.framework.minecraft.RunsafeServer;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 
 import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,9 +26,10 @@ import java.util.logging.Level;
  */
 public final class Configuration implements IConfiguration
 {
-	public Configuration(IConsole console)
+	public Configuration(IConsole console, IDebug debugger)
 	{
 		this.console = console;
+		this.debugger = debugger;
 	}
 
 	@Nullable
@@ -225,7 +228,43 @@ public final class Configuration implements IConfiguration
 		}
 	}
 
-	protected FileConfiguration configFile;
-	protected String configFilePath;
+	public void load(File file)
+	{
+		configFilePath = file.getPath();
+		configFile = YamlConfiguration.loadConfiguration(file);
+	}
+
+	void load(IConfigurationFile configurationFile)
+	{
+		debugger.debugFine("Loading configuration from %s", configurationFile.getConfigurationPath());
+		File file = new File(configurationFile.getConfigurationPath());
+
+		configFile = YamlConfiguration.loadConfiguration(file);
+		configFilePath = configurationFile.getConfigurationPath();
+		InputStream defaults = configurationFile.getDefaultConfiguration();
+		if (defaults != null)
+		{
+			configFile.setDefaults(YamlConfiguration.loadConfiguration(defaults));
+			configFile.options().copyDefaults(true);
+		}
+		save();
+		debugger.debugFine("Updating configuration.");
+	}
+
+	public boolean reset()
+	{
+		if (configFile.getDefaults() != null)
+		{
+			configFile.options().copyDefaults(true);
+			save();
+			console.logInformation("Configuration restored to defaults.");
+			return true;
+		}
+		return false;
+	}
+
+	private FileConfiguration configFile;
+	private String configFilePath;
 	private final IConsole console;
+	private final IDebug debugger;
 }

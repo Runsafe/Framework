@@ -6,12 +6,9 @@ import no.runsafe.framework.api.IConfigurationFile;
 import no.runsafe.framework.api.event.plugin.IConfigurationChanged;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.log.IDebug;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.picocontainer.Startable;
 
-import javax.annotation.Nullable;
 import java.io.File;
-import java.io.InputStream;
 
 /**
  * This class handles basic configuration features of the plugin
@@ -21,18 +18,15 @@ public final class ConfigurationEngine implements Startable
 {
 	public IConfiguration loadConfiguration(String fileName)
 	{
-		Configuration config = new Configuration(console);
-		File configFile = new File(fileName);
-		config.configFilePath = fileName;
-		config.configFile = YamlConfiguration.loadConfiguration(configFile);
+		Configuration config = new Configuration(console, debugger);
+		config.load(new File(fileName));
 		return config;
 	}
 
 	public IConfiguration loadConfiguration(File configFile)
 	{
-		Configuration config = new Configuration(console);
-		config.configFilePath = configFile.getPath();
-		config.configFile = YamlConfiguration.loadConfiguration(configFile);
+		Configuration config = new Configuration(console, debugger);
+		config.load(configFile);
 		return config;
 	}
 
@@ -42,9 +36,14 @@ public final class ConfigurationEngine implements Startable
 	 * @param plugin   The plugin
 	 * @param debugger
 	 */
-	public ConfigurationEngine(RunsafePlugin plugin)
+	@SuppressWarnings("AssignmentToNull")
+	public ConfigurationEngine()
 	{
-		this(plugin, null, null, null);
+		subscribers = null;
+		console = null;
+		debugger = null;
+		configuration = null;
+		configurationFile = null;
 	}
 
 	/**
@@ -53,26 +52,13 @@ public final class ConfigurationEngine implements Startable
 	 * @param output        Console to write messages to
 	 * @param subscribers   Plugin components subscribing to configuration change events
 	 */
-	public ConfigurationEngine(
-		RunsafePlugin plugin,
-		Configuration configuration,
-		IConsole output, IDebug debug, IConfigurationChanged... subscribers)
+	public ConfigurationEngine(IConfigurationFile plugin, IConsole output, IDebug debug, IConfigurationChanged... subscribers)
 	{
+		this.subscribers = subscribers;
 		console = output;
 		debugger = debug;
-		this.subscribers = subscribers;
-		this.configuration = configuration;
-		if (plugin instanceof IConfigurationFile)
-		{
-			IConfigurationFile provider = (IConfigurationFile) plugin;
-			configFilePath = provider.getConfigurationPath();
-			configurationFile = provider;
-		}
-		else
-		{
-			configFilePath = null;
-			configurationFile = null;
-		}
+		configuration = new Configuration(output, debugger);
+		configurationFile = plugin;
 	}
 
 	/**
@@ -94,22 +80,9 @@ public final class ConfigurationEngine implements Startable
 	 */
 	void load()
 	{
-		if (configFilePath == null || configurationFile == null || configuration == null)
-			return;
+		if (configuration != null && configurationFile != null)
+			configuration.load(configurationFile);
 
-		debugger.debugFine("Loading configuration from %s", configFilePath);
-		File configFile = new File(configFilePath);
-
-		configuration.configFile = YamlConfiguration.loadConfiguration(configFile);
-		configuration.configFilePath = configFilePath;
-		InputStream defaults = configurationFile.getDefaultConfiguration();
-		if (defaults != null)
-		{
-			configuration.configFile.setDefaults(YamlConfiguration.loadConfiguration(defaults));
-			configuration.configFile.options().copyDefaults(true);
-		}
-		configuration.save();
-		debugger.debugFine("Updating configuration.");
 		notifySubscribers();
 	}
 
@@ -120,14 +93,10 @@ public final class ConfigurationEngine implements Startable
 	 */
 	public boolean restoreToDefaults()
 	{
-		if (configuration.configFile.getDefaults() != null)
-		{
-			configuration.configFile.options().copyDefaults(true);
-			configuration.save();
-			console.logInformation("Configuration restored to defaults.");
-			return true;
-		}
-		return false;
+		if (configuration == null || !configuration.reset())
+			return false;
+		notifySubscribers();
+		return true;
 	}
 
 	private void notifySubscribers()
@@ -157,8 +126,5 @@ public final class ConfigurationEngine implements Startable
 	private final IConsole console;
 	private final IDebug debugger;
 	private final Configuration configuration;
-	@Nullable
-	private final String configFilePath;
-	@Nullable
 	private final IConfigurationFile configurationFile;
 }
