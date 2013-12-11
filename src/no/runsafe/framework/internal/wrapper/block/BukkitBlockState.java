@@ -14,7 +14,7 @@ public abstract class BukkitBlockState extends RunsafeBlock
 {
 	protected BukkitBlockState(BlockState blockState)
 	{
-		super(blockState.getBlock());
+		super(blockState.getBlock() == null ? null : blockState.getBlock());
 		this.blockState = blockState;
 	}
 
