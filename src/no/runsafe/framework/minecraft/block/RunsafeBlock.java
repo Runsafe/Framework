@@ -1,11 +1,14 @@
 package no.runsafe.framework.minecraft.block;
 
 import no.runsafe.framework.api.block.IBlock;
+import no.runsafe.framework.api.block.IBlockState;
+import no.runsafe.framework.api.block.ISign;
 import no.runsafe.framework.internal.wrapper.block.BukkitBlock;
 import no.runsafe.framework.minecraft.Item;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -40,6 +43,17 @@ public class RunsafeBlock extends BukkitBlock implements IBlock
 	public boolean canPassThrough()
 	{
 		return passableBlocks.contains(getTypeId());
+	}
+
+	@Override
+	@Nullable
+	public ISign getAsSign()
+	{
+		IBlockState state = getBlockState();
+		if (state instanceof ISign)
+			return (ISign) state;
+
+		return null;
 	}
 
 	@Override

@@ -15,6 +15,7 @@ public interface IBlock extends IMetadata
 	Item getMaterial();
 	void setMaterial(Item material);
 	void breakNaturally();
+	ISign getAsSign();
 	boolean is(Item type);
 	boolean hasInterface();
 	boolean isInteractBlock();
