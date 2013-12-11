@@ -162,7 +162,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		container.addComponent(ConfigurationEngine.class);
 //		container.addComponent(getServer().getPluginManager());
 //		container.addComponent(new RunsafeServer(getServer()));
-		container.addComponent(getLogger());
+//		container.addComponent(getLogger());
 		container.addComponent(Configuration.class);
 		container.addComponent(Console.class);
 		container.addComponent(Broadcaster.class);
