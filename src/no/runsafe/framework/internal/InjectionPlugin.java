@@ -39,19 +39,6 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	protected InjectionPlugin()
 	{
 		container = new DefaultPicoContainer(new Caching());
-		container.addComponent(this);
-		container.addComponent(ConfigurationEngine.class);
-		container.addComponent(Console.class);
-		container.addComponent(Broadcaster.class);
-		container.addComponent(Debug.class);
-		container.addComponent(Protocol.class);
-		container.addComponent(Database.class);
-		container.addComponent(SchemaUpdater.class);
-		container.addComponent(CommandEngine.class);
-		container.addComponent(HookEngine.class);
-		container.addComponent(VersionEngine.class);
-		container.addComponent(Environment.class);
-		container.addComponent(PluginFileManager.class);
 	}
 
 	/**
@@ -157,6 +144,19 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		container.addComponent(new Scheduler(getServer().getScheduler(), this));
 		container.addComponent(new RunsafeServer(getServer()));
 		container.addComponent(EventEngine.class);
+		container.addComponent(this);
+		container.addComponent(ConfigurationEngine.class);
+		container.addComponent(Console.class);
+		container.addComponent(Broadcaster.class);
+		container.addComponent(Debug.class);
+		container.addComponent(Protocol.class);
+		container.addComponent(Database.class);
+		container.addComponent(SchemaUpdater.class);
+		container.addComponent(CommandEngine.class);
+		container.addComponent(HookEngine.class);
+		container.addComponent(VersionEngine.class);
+		container.addComponent(Environment.class);
+		container.addComponent(PluginFileManager.class);
 		uninitialized = false;
 	}
 
