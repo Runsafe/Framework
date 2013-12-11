@@ -36,6 +36,12 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 {
 	public static final Map<String, InjectionPlugin> Instances = new HashMap<String, InjectionPlugin>(1);
 
+	protected InjectionPlugin()
+	{
+		container = new DefaultPicoContainer(new Caching());
+		addStandardComponents();
+	}
+
 	/**
 	 * get the first implementation of a given API from any plugin
 	 *
@@ -129,11 +135,6 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 
 	protected void initializePlugin()
 	{
-		if (container == null)
-		{
-			container = new DefaultPicoContainer(new Caching());
-			addStandardComponents();
-		}
 	}
 
 	@SuppressWarnings("OverlyCoupledMethod")
@@ -143,8 +144,6 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		container.addComponent(ConfigurationEngine.class);
 		container.addComponent(getServer().getPluginManager());
 		container.addComponent(new RunsafeServer(getServer()));
-		container.addComponent(getLogger());
-		container.addComponent(Configuration.class);
 		container.addComponent(Console.class);
 		container.addComponent(Broadcaster.class);
 		container.addComponent(Debug.class);
@@ -160,6 +159,6 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		container.addComponent(PluginFileManager.class);
 	}
 
-	private DefaultPicoContainer container;
+	private final DefaultPicoContainer container;
 	protected IDebug output;
 }
