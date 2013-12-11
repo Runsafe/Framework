@@ -10,4 +10,16 @@ public class RunsafeSign extends BukkitSign implements ISign
 	{
 		super(toWrap);
 	}
+
+	@Override
+	public void setLines(String... arguments)
+	{
+		int index = 0;
+		for (String line : arguments)
+		{
+			if (index > 4) break;
+			setLine(index, line);
+			index++;
+		}
+	}
 }
