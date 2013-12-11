@@ -1,10 +1,6 @@
 package no.runsafe.framework.internal;
 
-import org.bukkit.Material;
-
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
+/* This does not appear to work at all, so disabling for now, until someone can figure out why the hell not.
 public enum LegacyMaterial
 {
 	AIR(0, Material.AIR),
@@ -379,3 +375,4 @@ public enum LegacyMaterial
 		legacyMaterialMap.put(material, id);
 	}
 }
+*/

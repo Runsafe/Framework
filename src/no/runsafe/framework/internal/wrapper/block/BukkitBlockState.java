@@ -2,12 +2,12 @@ package no.runsafe.framework.internal.wrapper.block;
 
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
-import no.runsafe.framework.internal.LegacyMaterial;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 
@@ -51,7 +51,7 @@ public class BukkitBlockState extends RunsafeBlock
 
 	public int getMaterialID()
 	{
-		return LegacyMaterial.getIdOf(blockState.getType());
+		return blockState.getTypeId();
 	}
 
 	public IWorld getWorld()
@@ -81,7 +81,7 @@ public class BukkitBlockState extends RunsafeBlock
 
 	public void setMaterialId(int materialId)
 	{
-		blockState.setType(LegacyMaterial.getById(materialId));
+		blockState.setType(Material.getMaterial(materialId));
 	}
 
 	public void update(boolean forceUpdate)
