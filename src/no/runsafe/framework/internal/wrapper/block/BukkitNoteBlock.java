@@ -11,9 +11,6 @@ public abstract class BukkitNoteBlock extends RunsafeBlockState
 		noteBlock = toWrap;
 	}
 
-//	public Note getNote()
-//	public void setNote(Note note)
-
 	public byte getRawNote()
 	{
 		return noteBlock.getRawNote();
@@ -33,8 +30,6 @@ public abstract class BukkitNoteBlock extends RunsafeBlockState
 	{
 		return noteBlock.play(b, b1);
 	}
-
-//	public boolean play(Instrument instrument, Note note)
 
 	protected final NoteBlock noteBlock;
 }

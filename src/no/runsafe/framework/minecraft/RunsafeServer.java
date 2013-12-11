@@ -26,13 +26,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class RunsafeServer extends BukkitServer implements IServer
 {
-	@Deprecated
-	/**
-	 * Entrypoint for internal framework usage only.
-	 * Use injection to get IServer from plugins!
-	 */
-	public static IServer InternalAPI;
-
 	public RunsafeServer(Server toWrap)
 	{
 		super(toWrap);
@@ -186,7 +179,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 			return;
 
 		if (banner != null)
-			kickingPlayer.put(player.getName(), banner);
+			no.runsafe.framework.internal.Player.setKicker(player.getName(), banner);
 		player.setBanned(true);
 		player.kick(reason);
 	}
@@ -197,24 +190,8 @@ public class RunsafeServer extends BukkitServer implements IServer
 		if (player == null)
 			return;
 		if (kicker != null)
-			kickingPlayer.put(player.getName(), kicker);
+			no.runsafe.framework.internal.Player.setKicker(player.getName(), kicker);
 		player.kick(reason);
-	}
-
-	@Override
-	@SuppressWarnings("LocalVariableOfConcreteClass")
-	@Nullable
-	public IPlayer getKicker(String playerName)
-	{
-		if (playerName == null || playerName.isEmpty())
-			return null;
-		if (kickingPlayer.containsKey(playerName))
-		{
-			IPlayer kicker = kickingPlayer.get(playerName);
-			kickingPlayer.remove(playerName);
-			return kicker;
-		}
-		return null;
 	}
 
 	@Override
@@ -254,7 +231,6 @@ public class RunsafeServer extends BukkitServer implements IServer
 		return (T) plugin;
 	}
 
-	private final ConcurrentHashMap<String, IPlayer> kickingPlayer = new ConcurrentHashMap<String, IPlayer>();
 	private final IDebug debugger;
 
 	@Override

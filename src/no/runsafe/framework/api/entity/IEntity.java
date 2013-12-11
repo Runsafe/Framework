@@ -41,8 +41,6 @@ public interface IEntity
 
 	boolean isDead();
 
-	IServer getServer();
-
 	@Nullable
 	IEntity getPassenger();
 

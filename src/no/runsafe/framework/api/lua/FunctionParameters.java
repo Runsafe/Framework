@@ -3,6 +3,8 @@ package no.runsafe.framework.api.lua;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.internal.Multiverse;
+import no.runsafe.framework.internal.Player;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import org.luaj.vm2.LuaError;
@@ -69,7 +71,7 @@ public class FunctionParameters
 
 	public IPlayer getPlayer(int index)
 	{
-		IPlayer player = RunsafeServer.InternalAPI.getOfflinePlayerExact(getString(index));
+		IPlayer player = Player.getExact(getString(index));
 		if (player == null)
 			throw new LuaError(String.format("CommandArgumentSpecification %s at index %d is not a valid player.", getString(index), index));
 
@@ -78,7 +80,7 @@ public class FunctionParameters
 
 	public IWorld getWorld(int index)
 	{
-		IWorld world = RunsafeServer.InternalAPI.getWorld(getString(index));
+		IWorld world = Multiverse.getWorld(getString(index));
 		if (world == null)
 			throw new LuaError(String.format("CommandArgumentSpecification %s at index %d is not a valid world.", getString(index), index));
 

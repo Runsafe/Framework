@@ -127,15 +127,10 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 			impl.OnPluginDisabled();
 	}
 
-	@SuppressWarnings("NonThreadSafeLazyInitialization")
 	protected void initializePlugin()
 	{
 		if (container == null)
 		{
-			Instances.put(getName(), this);
-			if (RunsafeServer.InternalAPI == null)
-				RunsafeServer.InternalAPI = new RunsafeServer(getServer());
-
 			container = new DefaultPicoContainer(new Caching());
 			addStandardComponents();
 		}

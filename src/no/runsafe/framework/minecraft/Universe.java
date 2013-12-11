@@ -2,9 +2,8 @@ package no.runsafe.framework.minecraft;
 
 import com.google.common.collect.Lists;
 import no.runsafe.framework.api.IWorld;
-import no.runsafe.framework.api.hook.IUniverseMapper;
-import no.runsafe.framework.internal.HookEngine;
 
+import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,19 +20,24 @@ public class Universe
 		return name;
 	}
 
-	@SuppressWarnings("MethodWithMultipleLoops")
+	@Nonnull
 	public List<IWorld> getWorlds()
 	{
-		List<IUniverseMapper> dataHooks = HookEngine.hookContainer.getComponents(IUniverseMapper.class);
-		Map<String, IWorld> worlds = new HashMap<String, IWorld>(RunsafeServer.InternalAPI.getWorlds().size());
-		for (IUniverseMapper mapper : dataHooks)
-		{
-			for (String world : mapper.GetWorlds(name))
-				if (!worlds.containsKey(world))
-					worlds.put(world, RunsafeServer.InternalAPI.getWorld(world));
-		}
 		return Lists.newArrayList(worlds.values());
 	}
 
+	public void addWorld(IWorld world)
+	{
+		if (!worlds.containsKey(world.getName()))
+			worlds.put(world.getName(), world);
+	}
+
+	public void removeWorld(String name)
+	{
+		if (worlds.containsKey(name))
+			worlds.remove(name);
+	}
+
 	private final String name;
+	private final Map<String, IWorld> worlds = new HashMap<String, IWorld>(1);
 }

@@ -104,12 +104,6 @@ public abstract class BukkitEntity extends BukkitMetadata
 		return entity.isDead();
 	}
 
-	@Deprecated
-	public IServer getServer()
-	{
-		return RunsafeServer.InternalAPI;
-	}
-
 	@Nullable
 	public IEntity getPassenger()
 	{

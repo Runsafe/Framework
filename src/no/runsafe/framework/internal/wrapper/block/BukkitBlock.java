@@ -3,6 +3,7 @@ package no.runsafe.framework.internal.wrapper.block;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.block.IBlockState;
+import no.runsafe.framework.internal.LegacyMaterial;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import no.runsafe.framework.minecraft.Item;
@@ -40,12 +41,12 @@ public class BukkitBlock extends BukkitMetadata
 
 	public int getTypeId()
 	{
-		return block.getTypeId();
+		return LegacyMaterial.getIdOf(block.getType());
 	}
 
 	public void setTypeId(int materialID)
 	{
-		block.setTypeId(materialID);
+		block.setType(LegacyMaterial.getById(materialID));
 	}
 
 	public IWorld getWorld()

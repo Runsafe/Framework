@@ -78,10 +78,6 @@ public abstract class RunsafePlugin extends InjectionPlugin
 			output.setDebugLevel(debugLevel);
 		output.debugFine("Standard components added.");
 
-		// Temporary to generate some code..
-		getInstance(LegacyMaterial.class).generate();
-		System.exit(2);
-
 		PluginSetup();
 		output.debugFine("Plugin setup performed.");
 

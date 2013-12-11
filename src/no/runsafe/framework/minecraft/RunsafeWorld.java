@@ -2,8 +2,7 @@ package no.runsafe.framework.minecraft;
 
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
-import no.runsafe.framework.api.hook.IUniverseMapper;
-import no.runsafe.framework.internal.HookEngine;
+import no.runsafe.framework.internal.Multiverse;
 import no.runsafe.framework.internal.wrapper.BukkitWorld;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
@@ -11,7 +10,6 @@ import org.bukkit.World;
 import org.bukkit.entity.Entity;
 
 import javax.annotation.Nullable;
-import java.util.List;
 
 public class RunsafeWorld extends BukkitWorld implements IWorld
 {
@@ -51,25 +49,13 @@ public class RunsafeWorld extends BukkitWorld implements IWorld
 	@Override
 	public Universe getUniverse()
 	{
-		if (universe != null)
-			return universe;
-		List<IUniverseMapper> dataHooks = HookEngine.hookContainer.getComponents(IUniverseMapper.class);
-		for (IUniverseMapper mapper : dataHooks)
-		{
-			String name = mapper.GetUniverse(getName());
-			if (name != null)
-			{
-				universe = new Universe(name);
-				return universe;
-			}
-		}
-		return new Universe(getName());
+		return Multiverse.getByWorld(this);
 	}
 
 	@Override
 	public boolean isConnected(IWorld world)
 	{
-		return getUniverse().getName().equals(world.getUniverse().getName());
+		return getUniverse().equals(world.getUniverse());
 	}
 
 	@Override
@@ -96,6 +82,4 @@ public class RunsafeWorld extends BukkitWorld implements IWorld
 	{
 		return getName().equals(world.getName());
 	}
-
-	private Universe universe;
 }

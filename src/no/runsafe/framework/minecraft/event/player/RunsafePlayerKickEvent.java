@@ -4,6 +4,7 @@ import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.event.player.IPlayerKickEvent;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.InjectionPlugin;
+import no.runsafe.framework.internal.Player;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.api.event.IFakeableEvent;
 import org.bukkit.event.player.PlayerKickEvent;
@@ -14,7 +15,7 @@ public class RunsafePlayerKickEvent extends RunsafePlayerEvent implements IFakea
 	{
 		super(toWrap);
 		event = toWrap;
-		kicker = RunsafeServer.InternalAPI.getKicker(toWrap.getPlayer().getName());
+		kicker = Player.getKicker(toWrap.getPlayer().getName());
 	}
 
 	public String getLeaveMessage()

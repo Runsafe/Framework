@@ -5,6 +5,7 @@ import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
+import no.runsafe.framework.internal.Multiverse;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import org.bukkit.configuration.ConfigurationSection;
@@ -162,7 +163,7 @@ public final class Configuration implements IConfiguration
 	@Override
 	public IWorld getConfigValueAsWorld(String key)
 	{
-		return RunsafeServer.InternalAPI.getWorld(getConfigValueAsString(key));
+		return Multiverse.getWorld(getConfigValueAsString(key));
 	}
 
 	@Nullable

@@ -1,5 +1,6 @@
 package no.runsafe.framework.minecraft.event.player;
 
+import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.RunsafeServer;
 
@@ -21,11 +22,11 @@ public class RunsafePlayerFakeChatEvent extends RunsafePlayerChatEvent
 		return String.format(event.format, event.player.getName(), event.message);
 	}
 
-	public static void Broadcast(IPlayer player, String message)
+	public static void Broadcast(IPlayer player, String message, IOutput output)
 	{
 		String result = Run(player, message);
 		if (result != null)
-			RunsafeServer.InternalAPI.broadcastMessage(result);
+			output.broadcastColoured(result);
 	}
 
 	public RunsafePlayerFakeChatEvent(IPlayer player, String message)

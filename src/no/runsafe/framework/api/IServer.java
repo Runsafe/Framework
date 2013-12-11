@@ -35,9 +35,6 @@ public interface IServer
 
 	void kickPlayer(IPlayer kicker, IPlayer player, String reason);
 
-	@Nullable
-	IPlayer getKicker(String playerName);
-
 	boolean someoneHasPermission(String permission);
 
 	List<IPlayer> getPlayersWithPermission(String permission);

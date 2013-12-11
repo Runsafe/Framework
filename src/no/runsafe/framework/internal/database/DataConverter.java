@@ -3,6 +3,8 @@ package no.runsafe.framework.internal.database;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.internal.Multiverse;
+import no.runsafe.framework.internal.Player;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import org.joda.time.DateTime;
@@ -159,12 +161,12 @@ final class DataConverter
 	{
 		if (value == null)
 			return null;
-		return RunsafeServer.InternalAPI.getWorld(value.toString());
+		return Multiverse.getWorld(value.toString());
 	}
 
 	@Nullable
 	static IPlayer Player(Object value)
 	{
-		return value == null ? null : RunsafeServer.InternalAPI.getOfflinePlayerExact(value.toString());
+		return value == null ? null : Player.getExact(value.toString());
 	}
 }

@@ -4,6 +4,7 @@ import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.internal.Multiverse;
 import no.runsafe.framework.minecraft.RunsafeServer;
 
 import javax.annotation.Nullable;
@@ -38,7 +39,7 @@ public class WorldArgument extends CommandArgumentSpecification implements ITabC
 	public List<String> getAlternatives(IPlayer executor, String partial)
 	{
 		return Lists.transform(
-			RunsafeServer.InternalAPI.getWorlds(),
+			Multiverse.getAllWorlds(),
 			new Function<IWorld, String>()
 			{
 				@Override

@@ -46,17 +46,6 @@ public class RunsafeBlock extends BukkitBlock implements IBlock
 	}
 
 	@Override
-	@Nullable
-	public ISign getAsSign()
-	{
-		IBlockState state = getBlockState();
-		if (state instanceof ISign)
-			return (ISign) state;
-
-		return null;
-	}
-
-	@Override
 	@SuppressWarnings("EnumSwitchStatementWhichMissesCases")
 	public boolean isHazardous()
 	{
