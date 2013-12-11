@@ -68,7 +68,6 @@ public abstract class RunsafePlugin extends InjectionPlugin
 	@Override
 	protected final void initializePlugin()
 	{
-		Instances.put(getName(), this);
 		super.initializePlugin();
 
 		scheduleReadyEvent(getComponent(IScheduler.class));
