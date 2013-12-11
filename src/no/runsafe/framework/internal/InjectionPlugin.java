@@ -47,7 +47,6 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		container.addComponent(Protocol.class);
 		container.addComponent(Database.class);
 		container.addComponent(SchemaUpdater.class);
-		container.addComponent(EventEngine.class);
 		container.addComponent(CommandEngine.class);
 		container.addComponent(HookEngine.class);
 		container.addComponent(VersionEngine.class);
@@ -157,6 +156,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		container.addComponent(getServer().getPluginManager());
 		container.addComponent(new Scheduler(getServer().getScheduler(), this));
 		container.addComponent(new RunsafeServer(getServer()));
+		container.addComponent(EventEngine.class);
 		uninitialized = false;
 	}
 
