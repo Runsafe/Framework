@@ -5,13 +5,14 @@ import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.text.ChatColour;
 import org.apache.commons.lang.exception.ExceptionUtils;
 
+import java.io.IOException;
 import java.util.logging.Level;
 
 public final class Protocol extends LoggingBase implements IProtocol
 {
-	public Protocol(InjectionPlugin plugin)
+	public Protocol(InjectionPlugin plugin, LogFileHandler handler) throws IOException
 	{
-		super(plugin);
+		super(plugin, handler, "Protocol", "protocol.log");
 	}
 
 	@Override

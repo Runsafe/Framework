@@ -6,7 +6,9 @@ import no.runsafe.framework.text.ChatColour;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 
+import java.io.IOException;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @SuppressWarnings("CallToPrintStackTrace")
 public final class Console extends LoggingBase implements IConsole
@@ -16,9 +18,15 @@ public final class Console extends LoggingBase implements IConsole
 		return globalConsole;
 	}
 
-	public Console(InjectionPlugin plugin)
+	public Console(InjectionPlugin plugin, LogFileHandler handler) throws IOException
 	{
-		super(plugin);
+		super(plugin, handler, "Console", "runsafe.log");
+		if (globalConsole == null)
+			Bootstrap(log, handler.getFormat(null, "Console"));}
+
+	private Console(Logger logger, String format)
+	{
+		super(logger, format);
 	}
 
 	@Override
@@ -100,5 +108,10 @@ public final class Console extends LoggingBase implements IConsole
 		writeLog(level, message);
 	}
 
-	private static final IConsole globalConsole = new Console(null);
+	private static void Bootstrap(Logger logger, String format)
+	{
+		globalConsole = new Console(logger, format);
+	}
+
+	private static IConsole globalConsole = null;
 }

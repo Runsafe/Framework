@@ -1,6 +1,5 @@
 package no.runsafe.framework.api;
 
-import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventoryHolder;
@@ -16,9 +15,6 @@ import java.util.UUID;
 
 public interface IServer
 {
-	@Deprecated
-	IDebug getDebugger();
-
 	@Nullable
 	IPlayer getPlayer(String playerName);
 

@@ -6,13 +6,14 @@ import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.text.ChatColour;
 
+import java.io.IOException;
 import java.util.logging.Level;
 
 public final class Broadcaster extends LoggingBase implements IOutput
 {
-	public Broadcaster(InjectionPlugin plugin, IServer server)
+	public Broadcaster(InjectionPlugin plugin, IServer server, LogFileHandler handler) throws IOException
 	{
-		super(plugin);
+		super(plugin, handler, "Broadcaster", "broadcast.log");
 		serverOutput = server;
 	}
 

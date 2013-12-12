@@ -7,10 +7,12 @@ import no.runsafe.framework.text.ConsoleColour;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public final class Debug extends LoggingBase implements IDebug
 {
@@ -19,16 +21,18 @@ public final class Debug extends LoggingBase implements IDebug
 		return globalDebugger;
 	}
 
-	public Debug()
+	public Debug(InjectionPlugin plugin, LogFileHandler handler) throws IOException
 	{
-		this(null);
+		super(plugin, handler, "Debugger", "debug.log");
+		if (plugin != null)
+			setDebugLevel(handler.defaultDebugLevel(plugin.getName()));
+		if (globalDebugger == null)
+			Bootstrap(log, handler.getFormat(null, "Debugger"));
 	}
 
-	public Debug(InjectionPlugin plugin)
+	private Debug(Logger logger, String format)
 	{
-		super(plugin);
-		if (plugin != null)
-			setDebugLevel(DefaultDebugLevel(plugin.getName()));
+		super(logger, format);
 	}
 
 	// Sends the supplied String to the console/log the output handler has if the debug level is high enough
@@ -129,6 +133,8 @@ public final class Debug extends LoggingBase implements IDebug
 			outputDebugToConsole(" - %s: %s", level, entry.getKey(), entry.getValue());
 	}
 
+	private Level debugLevel;
+
 	private static String getStackTrace()
 	{
 		int skip = 5;
@@ -143,6 +149,10 @@ public final class Debug extends LoggingBase implements IDebug
 		return StringUtils.join(stack, "\n\t");
 	}
 
-	private Level debugLevel;
-	private static final IDebug globalDebugger = new Debug(null);
+	private static void Bootstrap(Logger logger, String format)
+	{
+		globalDebugger = new Debug(logger, format);
+	}
+
+	private static IDebug globalDebugger = null;
 }

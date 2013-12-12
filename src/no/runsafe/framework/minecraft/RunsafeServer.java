@@ -29,14 +29,6 @@ public class RunsafeServer extends BukkitServer implements IServer
 	public RunsafeServer(Server toWrap)
 	{
 		super(toWrap);
-		debugger = new Debug();
-	}
-
-	@Deprecated
-	@Override
-	public IDebug getDebugger()
-	{
-		return debugger;
 	}
 
 	public static List<String> getGroups()
@@ -230,8 +222,6 @@ public class RunsafeServer extends BukkitServer implements IServer
 			return null;
 		return (T) plugin;
 	}
-
-	private final IDebug debugger;
 
 	@Override
 	public List<String> getOnlinePlayers(IPlayer context, String playerName)

@@ -10,10 +10,7 @@ import no.runsafe.framework.internal.configuration.ConfigurationEngine;
 import no.runsafe.framework.internal.database.SchemaUpdater;
 import no.runsafe.framework.internal.database.jdbc.Database;
 import no.runsafe.framework.internal.event.EventEngine;
-import no.runsafe.framework.internal.log.Broadcaster;
-import no.runsafe.framework.internal.log.Console;
-import no.runsafe.framework.internal.log.Debug;
-import no.runsafe.framework.internal.log.Protocol;
+import no.runsafe.framework.internal.log.*;
 import no.runsafe.framework.internal.lua.Environment;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.timer.Scheduler;
@@ -150,6 +147,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		globalContainer.addComponent(new RunsafeServer(getServer()));
 		globalContainer.addComponent(Multiverse.class);
 		globalContainer.addComponent(Player.class);
+		globalContainer.addComponent(LogFileHandler.class);
 		globalContainer.start();
 		uninitialized = false;
 	}
