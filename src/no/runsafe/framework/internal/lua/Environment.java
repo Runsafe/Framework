@@ -4,6 +4,7 @@ import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.event.IServerReady;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.lua.Library;
+import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.log.Console;
 import no.runsafe.framework.internal.log.Debug;
 import org.apache.commons.io.FileUtils;
@@ -53,7 +54,7 @@ public class Environment implements Startable, IServerReady
 		}
 	}
 
-	public Environment(RunsafePlugin plugin)
+	public Environment(InjectionPlugin plugin)
 	{
 		this.plugin = plugin;
 	}
@@ -80,7 +81,7 @@ public class Environment implements Startable, IServerReady
 		List<Library> libraries = plugin.getComponents(Library.class);
 		if (!libraries.isEmpty())
 		{
-			Debug.Global().debugFine("Adding plugin namespace %s to LUA environment", plugin.getName());
+//			Debug.Global().debugFine("Adding plugin namespace %s to LUA environment", plugin.getName());
 			global.set(plugin.getName(), new LuaTable());
 			for (Library library : libraries)
 				global.load(library);
@@ -126,5 +127,5 @@ public class Environment implements Startable, IServerReady
 		}
 	}
 
-	private final RunsafePlugin plugin;
+	private final InjectionPlugin plugin;
 }
