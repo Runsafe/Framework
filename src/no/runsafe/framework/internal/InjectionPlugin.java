@@ -160,6 +160,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel, Sta
 		globalContainer.addComponent(Multiverse.class);
 		globalContainer.addComponent(Player.class);
 		globalContainer.addComponent(LogFileHandler.class);
+		globalContainer.start();
 		uninitialized = false;
 	}
 
