@@ -18,6 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.picocontainer.MutablePicoContainer;
 import org.picocontainer.PicoBuilder;
 import org.picocontainer.Startable;
+import org.picocontainer.lifecycle.LifecycleState;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ import java.util.Map;
  * Base plugin class containing all the injection handling code
  */
 @SuppressWarnings("OverlyCoupledClass")
-public abstract class InjectionPlugin extends JavaPlugin implements IKernel, Startable
+public abstract class InjectionPlugin extends JavaPlugin implements IKernel, Startable, LifecycleState
 {
 	public static final Map<String, InjectionPlugin> Instances = new HashMap<String, InjectionPlugin>(1);
 
@@ -128,12 +129,6 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel, Sta
 	}
 
 	@Override
-	public void start()
-	{
-		output.debugFine("Plugin engine startup detected.");
-	}
-
-	@Override
 	public final void onDisable()
 	{
 		output.debugFine("Disabling plugin %s", getName());
@@ -160,13 +155,13 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel, Sta
 		globalContainer.addComponent(Multiverse.class);
 		globalContainer.addComponent(Player.class);
 		globalContainer.addComponent(LogFileHandler.class);
-		globalContainer.start();
 		uninitialized = false;
 	}
 
 	@SuppressWarnings("OverlyCoupledMethod")
 	private void addStandardComponents()
 	{
+		container.setLifecycleState(this);
 		container.addComponent(this);
 		container.addComponent(ConfigurationEngine.class);
 		container.addComponent(Console.class);
@@ -188,6 +183,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel, Sta
 
 	private final MutablePicoContainer container;
 	private boolean instanceIsNew = true;
+	private boolean engineStarted = false;
 	protected IDebug output;
 
 	private static final MutablePicoContainer globalContainer;
@@ -198,9 +194,71 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel, Sta
 		globalContainer = new PicoBuilder().withCaching().build();
 	}
 
-	@SuppressWarnings("NoopMethodInAbstractClass")
+	@Override
+	public void start()
+	{
+		engineStarted = true;
+		output.debugFine("Plugin engine startup detected.");
+	}
+
 	@Override
 	public void stop()
 	{
+		engineStarted = false;
+		output.debugFiner("Plugin engine stop requested.");
+	}
+
+	@Override
+	public void removingComponent()
+	{
+		output.debugFiner("Plugin engine component removal detected.");
+	}
+
+	@Override
+	public void starting()
+	{
+		output.debugFiner("Plugin engine start detected.");
+	}
+
+	@Override
+	public void stopping()
+	{
+		output.debugFiner("Plugin engine stop detected.");
+	}
+
+	@Override
+	public void stopped()
+	{
+		output.debugFiner("Plugin engine stopped.");
+	}
+
+	@Override
+	public boolean isStarted()
+	{
+		return engineStarted;
+	}
+
+	@Override
+	public void disposing()
+	{
+		output.debugFiner("Plugin engine disposal detected.");
+	}
+
+	@Override
+	public void disposed()
+	{
+		output.debugFiner("Plugin engine disposed.");
+	}
+
+	@Override
+	public boolean isDisposed()
+	{
+		return false;
+	}
+
+	@Override
+	public boolean isStopped()
+	{
+		return !engineStarted;
 	}
 }
