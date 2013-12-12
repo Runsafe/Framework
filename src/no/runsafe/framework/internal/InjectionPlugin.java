@@ -44,7 +44,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel, Sta
 
 	protected InjectionPlugin()
 	{
-		container = new PicoBuilder(globalContainer).withCaching().withLifecycle(new StartableLifecycleStrategy(new LifecycleComponentMonitor())).build();
+		container = new PicoBuilder(globalContainer).withCaching().withLifecycle().build();
 	}
 
 	/**
@@ -158,6 +158,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel, Sta
 		globalContainer.addComponent(Multiverse.class);
 		globalContainer.addComponent(Player.class);
 		globalContainer.addComponent(LogFileHandler.class);
+		globalContainer.start();
 		uninitialized = false;
 	}
 
