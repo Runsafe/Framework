@@ -4,7 +4,6 @@ import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.hook.IUniverseMapper;
 import no.runsafe.framework.minecraft.Universe;
-import org.picocontainer.Startable;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -15,10 +14,20 @@ import java.util.Map;
  * This class gets called automatically to collect universes from plugins
  */
 @SuppressWarnings({"NonThreadSafeLazyInitialization", "StaticVariableUsedBeforeInitialization"})
-public class Multiverse implements Startable
+public class Multiverse
 {
+	public static Multiverse Get()
+	{
+		return InjectionPlugin.getGlobalComponent(Multiverse.class);
+	}
+
+	public Multiverse(IServer server)
+	{
+		this.server = server;
+	}
+
 	@Nullable
-	public static Universe getByName(String name)
+	public Universe getByName(String name)
 	{
 		if (name != null && universes.containsKey(name))
 			return universes.get(name);
@@ -26,7 +35,7 @@ public class Multiverse implements Startable
 	}
 
 	@Nullable
-	public static Universe getByWorld(IWorld world)
+	public Universe getByWorld(IWorld world)
 	{
 		if (!worldMap.containsKey(world.getName()))
 			createDefaultUniverse(world);
@@ -34,52 +43,20 @@ public class Multiverse implements Startable
 		return worldMap.get(world.getName());
 	}
 
-	public static List<IWorld> getAllWorlds()
+	public List<IWorld> getAllWorlds()
 	{
 		return server.getWorlds();
 	}
 
 	@Nullable
-	public static IWorld getWorld(String name)
+	public IWorld getWorld(String name)
 	{
 		if (name == null)
 			return null;
 		return server.getWorld(name);
 	}
 
-	private static void createDefaultUniverse(IWorld world)
-	{
-		universes.put(world.getName(), new Universe(world.getName()));
-		universes.get(world.getName()).addWorld(world);
-		worldMap.put(world.getName(), universes.get(world.getName()));
-	}
-
-	public Multiverse(IServer server)
-	{
-		if (Multiverse.server == null)
-			Multiverse.server = server;
-	}
-
-	@SuppressWarnings({"OverloadedVarargsMethod"})
-	public Multiverse(IServer server, IUniverseMapper... providers)
-	{
-		if (Multiverse.server == null)
-			Multiverse.server = server;
-		for (IUniverseMapper mapper : providers)
-			addUniversesForMapper(mapper);
-	}
-
-	@Override
-	public void start()
-	{
-	}
-
-	@Override
-	public void stop()
-	{
-	}
-
-	private static void addUniversesForMapper(IUniverseMapper mapper)
+	void addUniversesForMapper(IUniverseMapper mapper)
 	{
 		for (String universe : mapper.GetUniverses())
 		{
@@ -89,7 +66,14 @@ public class Multiverse implements Startable
 		}
 	}
 
-	private static void addWorldsForUniverse(Universe universe, Iterable<String> worlds)
+	private void createDefaultUniverse(IWorld world)
+	{
+		universes.put(world.getName(), new Universe(world.getName()));
+		universes.get(world.getName()).addWorld(world);
+		worldMap.put(world.getName(), universes.get(world.getName()));
+	}
+
+	private void addWorldsForUniverse(Universe universe, Iterable<String> worlds)
 	{
 		for (String world : worlds)
 		{
@@ -104,7 +88,7 @@ public class Multiverse implements Startable
 		}
 	}
 
-	private static IServer server;
-	private static final Map<String, Universe> universes = new HashMap<String, Universe>(1);
-	private static final Map<String, Universe> worldMap = new HashMap<String, Universe>(1);
+	private IServer server;
+	private final Map<String, Universe> universes = new HashMap<String, Universe>(1);
+	private final Map<String, Universe> worldMap = new HashMap<String, Universe>(1);
 }

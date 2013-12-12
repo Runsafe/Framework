@@ -166,7 +166,7 @@ public final class Configuration implements IConfiguration
 	@Override
 	public IWorld getConfigValueAsWorld(String key)
 	{
-		return Multiverse.getWorld(getConfigValueAsString(key));
+		return Multiverse.Get().getWorld(getConfigValueAsString(key));
 	}
 
 	@Nullable

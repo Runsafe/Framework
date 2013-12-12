@@ -32,6 +32,11 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 {
 	public static final Map<String, InjectionPlugin> Instances = new HashMap<String, InjectionPlugin>(1);
 
+	public static <T> T getGlobalComponent(Class<T> type)
+	{
+		return globalContainer.getComponent(type);
+	}
+
 	protected InjectionPlugin()
 	{
 		container = new PicoBuilder(globalContainer).withCaching().build();
@@ -147,7 +152,6 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		globalContainer.addComponent(Multiverse.class);
 		globalContainer.addComponent(Player.class);
 		globalContainer.addComponent(LogFileHandler.class);
-		globalContainer.start();
 		uninitialized = false;
 	}
 
@@ -169,6 +173,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		container.addComponent(VersionEngine.class);
 		container.addComponent(Environment.class);
 		container.addComponent(PluginFileManager.class);
+		container.addComponent(MultiverseLoader.class);
 		instanceIsNew = false;
 	}
 

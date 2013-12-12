@@ -8,24 +8,31 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 
 import java.io.IOException;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public final class Console extends LoggingBase implements IConsole
 {
+	@SuppressWarnings({"ReturnOfNull", "CallToPrintStackTrace"})
 	public static IConsole Global()
 	{
-		return globalConsole;
+		try
+		{
+			return new Console(InjectionPlugin.getGlobalComponent(LogFileHandler.class));
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public Console(InjectionPlugin plugin, LogFileHandler handler) throws IOException
 	{
 		super(plugin, handler, "Console", "runsafe.log");
-		if (globalConsole == null)
-			Bootstrap(log, handler.getFormat("Console"));}
+	}
 
-	private Console(Logger logger, String format)
+	private Console(LogFileHandler handler) throws IOException
 	{
-		super(logger, format);
+		super(handler, "Console", "runsafe.log");
 	}
 
 	@Override
@@ -106,11 +113,4 @@ public final class Console extends LoggingBase implements IConsole
 	{
 		writeLog(level, message);
 	}
-
-	private static void Bootstrap(Logger logger, String format)
-	{
-		globalConsole = new Console(logger, format);
-	}
-
-	private static IConsole globalConsole = null;
 }

@@ -49,7 +49,7 @@ public class RunsafeWorld extends BukkitWorld implements IWorld
 	@Override
 	public Universe getUniverse()
 	{
-		return Multiverse.getByWorld(this);
+		return Multiverse.Get().getByWorld(this);
 	}
 
 	@Override

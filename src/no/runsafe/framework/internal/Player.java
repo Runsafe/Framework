@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 @SuppressWarnings("StaticVariableUsedBeforeInitialization")
-public class Player implements Startable
+public class Player
 {
 	public static IPlayer getExact(String name)
 	{
@@ -48,16 +48,6 @@ public class Player implements Startable
 	{
 		if (Player.server == null)
 			Player.server = server;
-	}
-
-	@Override
-	public void start()
-	{
-	}
-
-	@Override
-	public void stop()
-	{
 	}
 
 	private static IServer server;

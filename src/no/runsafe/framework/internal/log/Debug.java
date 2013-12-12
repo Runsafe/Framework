@@ -12,13 +12,21 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public final class Debug extends LoggingBase implements IDebug
 {
+	@SuppressWarnings({"ReturnOfNull", "CallToPrintStackTrace"})
 	public static IDebug Global()
 	{
-		return globalDebugger;
+		try
+		{
+			return new Debug(InjectionPlugin.getGlobalComponent(LogFileHandler.class));
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public Debug(InjectionPlugin plugin, LogFileHandler handler) throws IOException
@@ -26,13 +34,11 @@ public final class Debug extends LoggingBase implements IDebug
 		super(plugin, handler, "Debugger", "debug.log");
 		if (plugin != null)
 			setDebugLevel(handler.defaultDebugLevel(plugin.getName()));
-		if (globalDebugger == null)
-			Bootstrap(log, handler.getFormat("Debugger"));
 	}
 
-	private Debug(Logger logger, String format)
+	private Debug(LogFileHandler handler) throws IOException
 	{
-		super(logger, format);
+		super(handler, "Debugger", "debug.log");
 	}
 
 	// Sends the supplied String to the console/log the output handler has if the debug level is high enough
@@ -148,11 +154,4 @@ public final class Debug extends LoggingBase implements IDebug
 		}
 		return StringUtils.join(stack, "\n\t");
 	}
-
-	private static void Bootstrap(Logger logger, String format)
-	{
-		globalDebugger = new Debug(logger, format);
-	}
-
-	private static IDebug globalDebugger = null;
 }

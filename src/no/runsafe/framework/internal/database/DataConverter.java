@@ -160,7 +160,7 @@ final class DataConverter
 	{
 		if (value == null)
 			return null;
-		return Multiverse.getWorld(value.toString());
+		return Multiverse.Get().getWorld(value.toString());
 	}
 
 	@Nullable

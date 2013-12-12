@@ -57,7 +57,8 @@ public class LogFileHandler
 			if (!logFile.createNewFile())
 				throw new IOException("Unable to create logfile " + logFile.getPath());
 
-		Logger log = Logger.getLogger("runsafe."+outputFile);
+		Logger log = Logger.getLogger("runsafe." + outputFile);
+		loggers.put(outputFile, log);
 		FileHandler logWriter = new FileHandler(logFile.getPath(), true);
 		logWriter.setEncoding("UTF-8");
 		logWriter.setFormatter(new RunsafeLogFormatter(this));
@@ -147,9 +148,8 @@ public class LogFileHandler
 	private final Map<Level, String> levelFormat;
 	private final Map<String, Level> defaultDebugLevel;
 	private final File logFolder = new File("logs");
+	private final Map<String, Logger> loggers = new ConcurrentHashMap<String, Logger>();
 	private boolean logToOriginalConsole;
-
-	private static final Map<String, Logger> loggers = new ConcurrentHashMap<String, Logger>();
 
 	private static Map<String, String> castStringMap(Map<String, Object> data)
 	{

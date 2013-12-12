@@ -78,7 +78,7 @@ public class FunctionParameters
 
 	public IWorld getWorld(int index)
 	{
-		IWorld world = Multiverse.getWorld(getString(index));
+		IWorld world = Multiverse.Get().getWorld(getString(index));
 		if (world == null)
 			throw new LuaError(String.format("CommandArgumentSpecification %s at index %d is not a valid world.", getString(index), index));
 

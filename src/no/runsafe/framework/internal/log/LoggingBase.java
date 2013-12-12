@@ -10,6 +10,12 @@ import java.util.logging.Logger;
 
 public abstract class LoggingBase implements ILogFormatProvider
 {
+	protected LoggingBase(LogFileHandler handler, String logName, String fileName) throws IOException
+	{
+		logFormat = handler.getFormat(logName);
+		log = handler.getLogger(fileName);
+	}
+
 	protected LoggingBase(InjectionPlugin plugin, LogFileHandler handler, String logName, String fileName) throws IOException
 	{
 		logFormat = handler.getFormat(plugin, logName);
