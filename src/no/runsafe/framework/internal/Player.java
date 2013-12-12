@@ -2,7 +2,6 @@ package no.runsafe.framework.internal;
 
 import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.player.IPlayer;
-import org.picocontainer.Startable;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -11,17 +10,27 @@ import java.util.concurrent.ConcurrentHashMap;
 @SuppressWarnings("StaticVariableUsedBeforeInitialization")
 public class Player
 {
-	public static IPlayer getExact(String name)
+	public static Player Get()
+	{
+		return InjectionPlugin.getGlobalComponent(Player.class);
+	}
+
+	public Player(IServer server)
+	{
+		this.server = server;
+	}
+
+	public IPlayer getExact(String name)
 	{
 		return server.getOfflinePlayerExact(name);
 	}
 
-	public static List<String> getOnline(IPlayer context, String filter)
+	public List<String> getOnline(IPlayer context, String filter)
 	{
 		return server.getOnlinePlayers(context, filter);
 	}
 
-	public static void setKicker(String name, IPlayer kicker)
+	public void setKicker(String name, IPlayer kicker)
 	{
 		if (kickingPlayer.containsKey(name))
 			kickingPlayer.replace(name, kicker);
@@ -30,7 +39,7 @@ public class Player
 	}
 
 	@Nullable
-	public static IPlayer getKicker(String playerName)
+	public IPlayer getKicker(String playerName)
 	{
 		if (playerName == null || playerName.isEmpty())
 			return null;
@@ -43,13 +52,6 @@ public class Player
 		return null;
 	}
 
-	@SuppressWarnings("NonThreadSafeLazyInitialization")
-	public Player(IServer server)
-	{
-		if (Player.server == null)
-			Player.server = server;
-	}
-
-	private static IServer server;
-	private static final ConcurrentHashMap<String, IPlayer> kickingPlayer = new ConcurrentHashMap<String, IPlayer>();
+	private final IServer server;
+	private final ConcurrentHashMap<String, IPlayer> kickingPlayer = new ConcurrentHashMap<String, IPlayer>();
 }

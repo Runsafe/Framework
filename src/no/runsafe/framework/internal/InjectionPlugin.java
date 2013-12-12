@@ -193,7 +193,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel, Sta
 
 	static
 	{
-		globalContainer = new PicoBuilder().withCaching().build();
+		globalContainer = new PicoBuilder().withCaching().withLifecycle().build();
 	}
 
 	@Override
