@@ -60,8 +60,11 @@ public final class Debug extends LoggingBase implements IDebug
 	@Override
 	public void setDebugLevel(Level level)
 	{
-		debugLevel = level;
-		writeLog(Level.INFO, String.format("Debug level is now %s", level.getName()));
+		if (level != debugLevel)
+		{
+			debugLevel = level;
+			writeLog(Level.INFO, String.format("Debug level is now %s", level.getName()));
+		}
 	}
 
 	@Override
@@ -139,7 +142,7 @@ public final class Debug extends LoggingBase implements IDebug
 			outputDebugToConsole(" - %s: %s", level, entry.getKey(), entry.getValue());
 	}
 
-	private Level debugLevel;
+	private Level debugLevel = Level.OFF;
 
 	private static String getStackTrace()
 	{
