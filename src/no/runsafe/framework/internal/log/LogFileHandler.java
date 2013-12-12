@@ -6,6 +6,7 @@ import no.runsafe.framework.text.ChatColour;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
+import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -65,7 +66,7 @@ public class LogFileHandler
 		return log;
 	}
 
-	public String getFormat(InjectionPlugin plugin, String logName)
+	public String getFormat(@Nonnull InjectionPlugin plugin, @Nonnull String logName)
 	{
 		if (plugin == null)
 			return getFormat(logName);
@@ -74,7 +75,7 @@ public class LogFileHandler
 			return getFormat(plugin);
 
 		if (logFormats.get(logName).containsKey(plugin.getName()))
-			return logFormats.get(logName).get(plugin.getName());
+			return String.format(logFormats.get(logName).get(plugin.getName()), plugin.getName());
 
 		if (logFormats.get(logName).containsKey("*"))
 			return String.format(logFormats.get(logName).get("*"), plugin.getName());
@@ -82,15 +83,15 @@ public class LogFileHandler
 		return getFormat(logName);
 	}
 
-	public String getFormat(InjectionPlugin plugin)
+	public String getFormat(@Nonnull InjectionPlugin plugin)
 	{
 		if (logFormats.get("*").containsKey(plugin.getName()))
-			return logFormats.get("*").get(plugin.getName());
+			return String.format(logFormats.get("*").get(plugin.getName()), plugin.getName());
 
 		return logFormats.get("*").get("*");
 	}
 
-	public String getFormat(String logName)
+	public String getFormat(@Nonnull String logName)
 	{
 		if (globalLogFormat.containsKey(logName))
 			return globalLogFormat.get(logName);
