@@ -19,7 +19,7 @@ format:
   logger:
       '*':
         '*': '%%1$s %%2$s [%%3$s] [&9%s&r] %%4$s'
-	  Debug:
+      Debug:
         '*': '%%1$s %%2$s [&oDEBUG&r] [&9%s&r] %%4$s'
-	  Protocol:
+      Protocol:
         '*': '%%1$s %%2$s [&nNET&r] [&9%s&r] %%4$s'
