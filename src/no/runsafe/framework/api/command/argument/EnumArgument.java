@@ -14,7 +14,7 @@ public class EnumArgument extends CommandArgumentSpecification implements ITabCo
 		super(name);
 		List<String> names = new ArrayList<String>(values.length);
 		for (Enum<?> value : values)
-			names.add(value.name().toLowerCase());
+			names.add(value.name());
 		alternatives = ImmutableList.copyOf(names);
 		this.required = required;
 	}
