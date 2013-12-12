@@ -39,7 +39,7 @@ public class PlayerArgument extends CommandArgumentSpecification implements ITab
 	@Override
 	public List<String> getAlternatives(IPlayer executor, String partial)
 	{
-		return Player.getOnline(executor, partial);
+		return Player.Get().getOnline(executor, partial);
 	}
 
 	private final boolean required;

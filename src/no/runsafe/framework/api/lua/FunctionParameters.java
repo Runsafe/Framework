@@ -69,7 +69,7 @@ public class FunctionParameters
 
 	public IPlayer getPlayer(int index)
 	{
-		IPlayer player = Player.getExact(getString(index));
+		IPlayer player = Player.Get().getExact(getString(index));
 		if (player == null)
 			throw new LuaError(String.format("CommandArgumentSpecification %s at index %d is not a valid player.", getString(index), index));
 

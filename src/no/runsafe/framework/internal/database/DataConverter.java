@@ -166,6 +166,6 @@ final class DataConverter
 	@Nullable
 	static IPlayer Player(Object value)
 	{
-		return value == null ? null : Player.getExact(value.toString());
+		return value == null ? null : Player.Get().getExact(value.toString());
 	}
 }
