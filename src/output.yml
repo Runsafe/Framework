@@ -4,7 +4,7 @@ split: 'false'
 format:
   global:
     '*': '%1$s %2%s [%3$s] %4$s'
-    Debug: '%1$s %2$s [&oDEBUG&r] %4$s'
+    Debugger: '%1$s %2$s [&oDEBUG&r] %4$s'
     Protocol: '%1$s %2$s [&nNET&r] %4$s'
   level:
     'OFF': '&8OFF&r'
@@ -19,7 +19,7 @@ format:
   logger:
     '*':
       '*': '%%1$s %%2$s [%%3$s] [&9%s&r] %%4$s'
-    Debug:
+    Debugger:
       '*': '%%1$s %%2$s [&oDEBUG&r] [&9%s&r] %%4$s'
     Protocol:
       '*': '%%1$s %%2$s [&nNET&r] [&9%s&r] %%4$s'
