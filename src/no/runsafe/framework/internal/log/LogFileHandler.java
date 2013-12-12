@@ -20,7 +20,7 @@ public class LogFileHandler
 	public LogFileHandler()
 	{
 		levelFormat = new HashMap<Level, String>(0);
-		defaultLogFormat = new HashMap<String, String>(0);
+		globalLogFormat = new HashMap<String, String>(0);
 		defaultDebugLevel = new HashMap<String, Level>(0);
 		logFormats = new HashMap<String, Map<String, String>>(0);
 		loggers = new HashMap<String, Logger>(0);
@@ -67,24 +67,35 @@ public class LogFileHandler
 
 	public String getFormat(InjectionPlugin plugin, String logName)
 	{
-		if (plugin != null && logFormats.get(logName).containsKey(plugin.getName()))
+		if (plugin == null)
+			return getFormat(logName);
+
+		if (!logFormats.containsKey(logName))
+			return getFormat(plugin);
+
+		if (logFormats.get(logName).containsKey(plugin.getName()))
 			return logFormats.get(logName).get(plugin.getName());
 
-		if (plugin != null && logFormats.get(logName).containsKey("*"))
+		if (logFormats.get(logName).containsKey("*"))
 			return String.format(logFormats.get(logName).get("*"), plugin.getName());
 
-		if (!defaultLogFormat.containsKey(logName))
-			return defaultLogFormat.get("*");
+		return getFormat(logName);
+	}
 
-		return defaultLogFormat.get(logName);
+	public String getFormat(InjectionPlugin plugin)
+	{
+		if (logFormats.get("*").containsKey(plugin.getName()))
+			return logFormats.get("*").get(plugin.getName());
+
+		return logFormats.get("*").get("*");
 	}
 
 	public String getFormat(String logName)
 	{
-		if (!defaultLogFormat.containsKey(logName))
-			return defaultLogFormat.get("*");
+		if (globalLogFormat.containsKey(logName))
+			return globalLogFormat.get(logName);
 
-		return defaultLogFormat.get(logName);
+		return globalLogFormat.get("*");
 	}
 
 	@SuppressWarnings({"ReturnOfNull", "HardcodedFileSeparator"})
@@ -125,18 +136,16 @@ public class LogFileHandler
 
 		logToOriginalConsole = !config.getBoolean("split");
 		defaultDebugLevel.putAll(castLevelMap(config.getConfigurationSection("debug").getValues(false)));
-		levelFormat.putAll(castStringLevel(config.getConfigurationSection("format.level").getValues(false)));
 
+		levelFormat.putAll(castStringLevel(config.getConfigurationSection("format.level").getValues(false)));
 		ConfigurationSection loggerFormats = config.getConfigurationSection("format.logger");
 		for (String log : loggerFormats.getKeys(false))
 			logFormats.put(log, castStringMap(loggerFormats.getConfigurationSection(log).getValues(false)));
-
-		ConfigurationSection anonymous = config.getConfigurationSection("format.anonymous");
-		defaultLogFormat.putAll(castStringMap(anonymous.getValues(false)));
+		globalLogFormat.putAll(castStringMap(config.getConfigurationSection("format.global").getValues(false)));
 	}
 
 	private final Map<String, Map<String, String>> logFormats;
-	private final Map<String, String> defaultLogFormat;
+	private final Map<String, String> globalLogFormat;
 	private final Map<Level, String> levelFormat;
 	private final Map<String, Level> defaultDebugLevel;
 	private final Map<String, Logger> loggers;
