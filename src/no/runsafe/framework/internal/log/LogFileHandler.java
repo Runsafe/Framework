@@ -58,7 +58,7 @@ public class LogFileHandler
 				throw new IOException("Unable to create logfile " + logFile.getPath());
 
 		Logger log = Logger.getLogger("runsafe." + outputFile);
-		log.setUseParentHandlers(logToOriginalConsole);
+		log.setUseParentHandlers(false);
 		loggers.put(outputFile, log);
 		FileHandler logWriter = new FileHandler(logFile.getPath(), true);
 		logWriter.setEncoding("UTF-8");
