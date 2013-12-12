@@ -68,9 +68,6 @@ public class LogFileHandler
 
 	public String getFormat(@Nonnull InjectionPlugin plugin, @Nonnull String logName)
 	{
-		if (plugin == null)
-			return getFormat(logName);
-
 		if (!logFormats.containsKey(logName))
 			return getFormat(plugin);
 

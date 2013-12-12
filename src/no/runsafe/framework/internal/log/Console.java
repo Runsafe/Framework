@@ -21,7 +21,7 @@ public final class Console extends LoggingBase implements IConsole
 	{
 		super(plugin, handler, "Console", "runsafe.log");
 		if (globalConsole == null)
-			Bootstrap(log, handler.getFormat(null, "Console"));}
+			Bootstrap(log, handler.getFormat("Console"));}
 
 	private Console(Logger logger, String format)
 	{

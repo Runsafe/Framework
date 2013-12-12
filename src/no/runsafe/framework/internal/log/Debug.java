@@ -27,7 +27,7 @@ public final class Debug extends LoggingBase implements IDebug
 		if (plugin != null)
 			setDebugLevel(handler.defaultDebugLevel(plugin.getName()));
 		if (globalDebugger == null)
-			Bootstrap(log, handler.getFormat(null, "Debugger"));
+			Bootstrap(log, handler.getFormat("Debugger"));
 	}
 
 	private Debug(Logger logger, String format)
