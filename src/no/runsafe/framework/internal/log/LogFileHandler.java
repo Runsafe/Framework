@@ -73,7 +73,7 @@ public class LogFileHandler
 			return getFormat(plugin);
 
 		if (logFormats.get(logName).containsKey(plugin.getName()))
-			return String.format(logFormats.get(logName).get(plugin.getName()), plugin.getName());
+			return logFormats.get(logName).get(plugin.getName());
 
 		if (logFormats.get(logName).containsKey("*"))
 			return String.format(logFormats.get(logName).get("*"), plugin.getName());
@@ -84,7 +84,7 @@ public class LogFileHandler
 	public String getFormat(@Nonnull InjectionPlugin plugin)
 	{
 		if (logFormats.get("*").containsKey(plugin.getName()))
-			return String.format(logFormats.get("*").get(plugin.getName()), plugin.getName());
+			return logFormats.get("*").get(plugin.getName());
 
 		return String.format(logFormats.get("*").get("*"), plugin.getName());
 	}
