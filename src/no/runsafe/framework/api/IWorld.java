@@ -67,4 +67,6 @@ public interface IWorld extends IMetadata
 	boolean isNether();
 
 	boolean isTheEnd();
+
+	void setTime(long time);
 }

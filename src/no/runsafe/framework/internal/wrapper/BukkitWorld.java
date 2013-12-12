@@ -150,5 +150,10 @@ public abstract class BukkitWorld extends BukkitMetadata implements IWrapper<Wor
 		return world.getEnvironment() == World.Environment.THE_END;
 	}
 
+	public void setTime(long time)
+	{
+		world.setTime(time);
+	}
+
 	protected final World world;
 }
