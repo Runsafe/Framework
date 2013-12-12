@@ -8,7 +8,6 @@ import java.util.List;
 
 public abstract class LocationFunction extends Function
 {
-	@SuppressWarnings("LocalVariableOfConcreteClass")
 	@Override
 	public Varargs invoke(Varargs args)
 	{

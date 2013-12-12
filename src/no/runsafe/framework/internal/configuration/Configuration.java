@@ -170,7 +170,6 @@ public final class Configuration implements IConfiguration
 	}
 
 	@Nullable
-	@SuppressWarnings("LocalVariableOfConcreteClass")
 	@Override
 	public ILocation getConfigValueAsLocation(String key)
 	{

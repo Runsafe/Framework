@@ -19,7 +19,6 @@ public class RunsafeProjectile extends BukkitProjectile
 		super(toWrap);
 	}
 
-	@SuppressWarnings("LocalVariableOfConcreteClass")
 	@Nullable
 	public IBlock getImpaledBlock()
 	{
@@ -36,7 +35,7 @@ public class RunsafeProjectile extends BukkitProjectile
 	}
 
 	@Nullable
-	@SuppressWarnings({"CastToConcreteClass", "InstanceofInterfaces", "LocalVariableOfConcreteClass"})
+	@SuppressWarnings({"LocalVariableOfConcreteClass"})
 	public IPlayer getShooterPlayer()
 	{
 		IWorld world = getWorld();

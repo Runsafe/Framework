@@ -1,7 +1,6 @@
 package no.runsafe.framework.api.entity;
 
 import no.runsafe.framework.api.ILocation;
-import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent;

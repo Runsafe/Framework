@@ -6,7 +6,6 @@ import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.Multiverse;
 import no.runsafe.framework.internal.Player;
 import no.runsafe.framework.minecraft.RunsafeLocation;
-import no.runsafe.framework.minecraft.RunsafeServer;
 import org.joda.time.DateTime;
 
 import javax.annotation.Nullable;
@@ -139,7 +138,7 @@ final class DataConverter
 		return new DateTime(value);
 	}
 
-	@SuppressWarnings({"MethodWithTooManyParameters", "ConstantConditions", "LocalVariableOfConcreteClass"})
+	@SuppressWarnings({"MethodWithTooManyParameters", "ConstantConditions"})
 	@Nullable
 	static ILocation Location(Object world, Object x, Object y, Object z, Object yaw, Object pitch)
 	{

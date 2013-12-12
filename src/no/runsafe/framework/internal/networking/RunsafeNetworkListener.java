@@ -3,7 +3,6 @@ package no.runsafe.framework.internal.networking;
 import net.minecraft.server.v1_6_R3.Connection;
 import net.minecraft.server.v1_6_R3.MinecraftServer;
 import net.minecraft.server.v1_6_R3.PendingConnection;
-import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.log.IConsole;
 
 import java.io.IOException;
@@ -12,7 +11,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 public class RunsafeNetworkListener implements Runnable

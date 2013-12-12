@@ -13,7 +13,6 @@ public class RunsafeCreatureSpawner extends BukkitCreatureSpawner implements ICr
 	public RunsafeCreatureSpawner(Block toWrap, CreatureSpawner state)
 	{
 		super(toWrap, state);
-		spawner = state;
 	}
 
 	@Override
@@ -27,6 +26,4 @@ public class RunsafeCreatureSpawner extends BukkitCreatureSpawner implements ICr
 	{
 		return ObjectWrapper.convert(spawner.getSpawnedType());
 	}
-
-	private CreatureSpawner spawner;
 }

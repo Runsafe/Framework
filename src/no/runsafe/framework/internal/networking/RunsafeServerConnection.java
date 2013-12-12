@@ -10,7 +10,7 @@ import java.net.InetAddress;
 
 public class RunsafeServerConnection extends ServerConnection
 {
-	public RunsafeServerConnection(MinecraftServer server, InetAddress address, int port, IConsole output) throws IOException
+	public RunsafeServerConnection(MinecraftServer server, InetAddress address, int port, IConsole output)
 	{
 		super(server);
 

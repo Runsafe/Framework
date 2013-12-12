@@ -1,11 +1,12 @@
 package no.runsafe.framework.internal.wrapper.metadata;
 
+import no.runsafe.framework.api.metadata.IMetadata;
 import org.bukkit.metadata.Metadatable;
 import org.bukkit.plugin.Plugin;
 
 import java.util.List;
 
-public class BukkitMetadata implements no.runsafe.framework.api.metadata.IMetadata
+public class BukkitMetadata implements IMetadata
 {
 	public BukkitMetadata(Metadatable toWrap)
 	{

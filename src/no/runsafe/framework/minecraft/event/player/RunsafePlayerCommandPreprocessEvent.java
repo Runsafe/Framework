@@ -26,7 +26,7 @@ public class RunsafePlayerCommandPreprocessEvent extends RunsafeCancellablePlaye
 
 	public void setPlayer(RunsafePlayer player)
 	{
-		event.setPlayer((Player) player.getRaw());
+		event.setPlayer(player.getRaw());
 	}
 
 	private final PlayerCommandPreprocessEvent event;

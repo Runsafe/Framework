@@ -1,7 +1,6 @@
 package no.runsafe.framework.internal.event.listener.block;
 
 import no.runsafe.framework.api.EventRouterFactory;
-import no.runsafe.framework.api.block.IChest;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;

@@ -36,7 +36,7 @@ public class RunsafeLogFormatter extends SimpleFormatter
 		);
 	}
 
-	private LogFileHandler handler;
+	private final LogFileHandler handler;
 	private final DateTimeFormatter datestamp = new DateTimeFormatterBuilder()
 		.appendYear(4, 4).appendLiteral('-').appendMonthOfYear(2).appendLiteral('-').appendDayOfMonth(2)
 		.toFormatter();

@@ -1,6 +1,5 @@
 package no.runsafe.framework.internal.configuration;
 
-import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.IConfiguration;
 import no.runsafe.framework.api.IConfigurationFile;
 import no.runsafe.framework.api.event.plugin.IConfigurationChanged;

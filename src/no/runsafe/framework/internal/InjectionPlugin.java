@@ -175,7 +175,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 
 	private static final DefaultPicoContainer globalContainer = new DefaultPicoContainer(new Caching());
 	private static boolean uninitialized = true;
-	private DefaultPicoContainer container;
+	private final DefaultPicoContainer container;
 	private boolean instanceIsNew = true;
 	protected IDebug output;
 }

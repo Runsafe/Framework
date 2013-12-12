@@ -1,7 +1,6 @@
 package no.runsafe.framework.internal.event.listener.entity;
 
 import no.runsafe.framework.api.log.IConsole;
-import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.entity.IEntityShootBowEvent;
 import no.runsafe.framework.internal.event.listener.EventRouterBase;

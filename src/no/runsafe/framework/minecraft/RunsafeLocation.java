@@ -14,7 +14,6 @@ import org.bukkit.World;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("NumericCastThatLosesPrecision")
 public class RunsafeLocation extends BukkitLocation implements ILocation
 {
 	public RunsafeLocation(Location toWrap)
@@ -34,7 +33,6 @@ public class RunsafeLocation extends BukkitLocation implements ILocation
 	}
 
 	@Override
-	@SuppressWarnings("InstanceMethodNamingConvention")
 	public ILocation findTop()
 	{
 		Location target = location.getWorld().getHighestBlockAt(location).getLocation();
@@ -111,7 +109,6 @@ public class RunsafeLocation extends BukkitLocation implements ILocation
 	}
 
 	@Override
-	@SuppressWarnings("LocalVariableOfConcreteClass")
 	public List<IPlayer> getPlayersInRange(double range)
 	{
 		List<IPlayer> allPlayers = getWorld().getPlayers();

@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@SuppressWarnings("CallToPrintStackTrace")
 public final class Console extends LoggingBase implements IConsole
 {
 	public static IConsole Global()

@@ -2,7 +2,6 @@ package no.runsafe.framework.api.command.argument;
 
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.Player;
-import no.runsafe.framework.minecraft.RunsafeServer;
 
 import java.util.List;
 

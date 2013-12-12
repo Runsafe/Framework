@@ -46,5 +46,5 @@ public abstract class NetworkPacket implements IPacket
 		}
 	}
 
-	protected HashMap<String, Object> data = new HashMap<String, Object>(0);
+	protected final HashMap<String, Object> data = new HashMap<String, Object>(0);
 }

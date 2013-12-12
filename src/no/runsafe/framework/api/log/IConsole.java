@@ -1,6 +1,5 @@
 package no.runsafe.framework.api.log;
 
-import javax.annotation.Nullable;
 import java.util.logging.Level;
 
 public interface IConsole

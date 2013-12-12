@@ -4,6 +4,7 @@ import no.runsafe.framework.api.entity.ILivingEntity;
 import no.runsafe.framework.internal.Minecraft;
 import no.runsafe.framework.internal.wrapper.IWrapper;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -138,7 +139,7 @@ public class Buff
 
 	public Buff applyTo(ILivingEntity entity)
 	{
-		getEffect().apply(ObjectUnwrapper.convert((IWrapper<org.bukkit.entity.LivingEntity>) entity));
+		getEffect().apply(ObjectUnwrapper.convert((IWrapper<LivingEntity>) entity));
 		return this;
 	}
 

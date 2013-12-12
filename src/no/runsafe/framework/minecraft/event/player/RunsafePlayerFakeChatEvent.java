@@ -2,7 +2,6 @@ package no.runsafe.framework.minecraft.event.player;
 
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.minecraft.RunsafeServer;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;

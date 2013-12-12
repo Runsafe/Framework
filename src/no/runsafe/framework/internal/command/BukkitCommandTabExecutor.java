@@ -18,7 +18,6 @@ import org.bukkit.entity.Player;
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
 
 /**
  * This class sits between bukkit and the command objects, routing the commands through to the framework objects.
@@ -29,7 +28,7 @@ public final class BukkitCommandTabExecutor implements TabExecutor
 	{
 		this.command = command;
 		this.console = console;
-		this.debugger = debug;
+		debugger = debug;
 		this.consoleLog = consoleLog;
 	}
 

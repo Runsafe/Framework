@@ -68,7 +68,6 @@ public abstract class RunsafePlugin extends InjectionPlugin
 
 	protected abstract void PluginSetup();
 
-	@SuppressWarnings("NonThreadSafeLazyInitialization")
 	private void scheduleReadyEvent()
 	{
 		final List<IServerReady> listeners = getComponents(IServerReady.class);

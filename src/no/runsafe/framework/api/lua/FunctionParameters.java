@@ -6,14 +6,12 @@ import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.Multiverse;
 import no.runsafe.framework.internal.Player;
 import no.runsafe.framework.minecraft.RunsafeLocation;
-import no.runsafe.framework.minecraft.RunsafeServer;
 import org.luaj.vm2.LuaError;
 import org.luaj.vm2.LuaValue;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("LocalVariableOfConcreteClass")
 public class FunctionParameters
 {
 	public void addParameter(LuaValue value)

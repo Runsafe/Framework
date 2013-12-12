@@ -60,7 +60,7 @@ public class Multiverse implements Startable
 			Multiverse.server = server;
 	}
 
-	@SuppressWarnings({"OverloadedVarargsMethod", "NullableProblems"})
+	@SuppressWarnings({"OverloadedVarargsMethod"})
 	public Multiverse(IServer server, IUniverseMapper... providers)
 	{
 		if (Multiverse.server == null)

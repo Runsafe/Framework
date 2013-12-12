@@ -5,7 +5,6 @@ import com.google.common.collect.Lists;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.Multiverse;
-import no.runsafe.framework.minecraft.RunsafeServer;
 
 import javax.annotation.Nullable;
 import java.util.List;

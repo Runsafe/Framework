@@ -31,7 +31,6 @@ public final class PlayerRespawn extends EventRouterBase<IPlayerRespawn, PlayerR
 		super.acceptEvent(event);
 	}
 
-	@SuppressWarnings("LocalVariableOfConcreteClass")
 	@Override
 	public boolean onEvent(PlayerRespawnEvent event)
 	{
