@@ -3,10 +3,11 @@ package no.runsafe.framework.api.command.argument;
 import com.google.common.collect.ImmutableList;
 import no.runsafe.framework.api.player.IPlayer;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EnumArgument extends CommandArgumentSpecification implements ITabComplete
+public class EnumArgument extends CommandArgumentSpecification implements ITabComplete, IValueExpander
 {
 	public EnumArgument(String name, Enum<?>[] values, boolean required)
 	{
@@ -42,6 +43,17 @@ public class EnumArgument extends CommandArgumentSpecification implements ITabCo
 	{
 		//noinspection ReturnOfCollectionOrArrayField
 		return alternatives;
+	}
+
+	@Nullable
+	@Override
+	public String expand(String value)
+	{
+		for (String alternative : alternatives)
+			if (alternative.toLowerCase().startsWith(value.toLowerCase()))
+				return alternative;
+
+		return null;
 	}
 
 	private final boolean required;

@@ -3,8 +3,9 @@ package no.runsafe.framework.api.command;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.command.argument.IArgument;
+import no.runsafe.framework.api.command.argument.IValueExpander;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.internal.command.PreparedSynchronousCommand;
 import no.runsafe.framework.text.ChatColour;
 import org.apache.commons.lang.StringUtils;
@@ -354,6 +355,8 @@ public class Command implements ICommandHandler
 			String value = null;
 			if (args.length > index)
 				value = args[index];
+			if (value != null && parameter instanceof IValueExpander)
+				value = ((IValueExpander) parameter).expand(value);
 			index++;
 			if (parameter.isRequired() || value != null && !value.isEmpty())
 				parameters.put(parameter.toString(), value);
