@@ -17,6 +17,7 @@ import no.runsafe.framework.timer.Scheduler;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.picocontainer.MutablePicoContainer;
 import org.picocontainer.PicoBuilder;
+import org.picocontainer.Startable;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ import java.util.Map;
  * Base plugin class containing all the injection handling code
  */
 @SuppressWarnings("OverlyCoupledClass")
-public abstract class InjectionPlugin extends JavaPlugin implements IKernel
+public abstract class InjectionPlugin extends JavaPlugin implements IKernel, Startable
 {
 	public static final Map<String, InjectionPlugin> Instances = new HashMap<String, InjectionPlugin>(1);
 
@@ -117,12 +118,19 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	public final void onEnable()
 	{
 		initializePlugin();
+		output.debugFine("Starting container");
 		container.start();
 		output.debugFine("Plugin initialized.");
 
 		for (IPluginEnabled impl : getComponents(IPluginEnabled.class))
 			impl.OnPluginEnabled();
 		output.debugFine("Plugin enabled event executed.");
+	}
+
+	@Override
+	public void start()
+	{
+		output.debugFine("Plugin engine startup detected.");
 	}
 
 	@Override
@@ -187,5 +195,11 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	static
 	{
 		globalContainer = new PicoBuilder().withCaching().build();
+	}
+
+	@SuppressWarnings("NoopMethodInAbstractClass")
+	@Override
+	public void stop()
+	{
 	}
 }
