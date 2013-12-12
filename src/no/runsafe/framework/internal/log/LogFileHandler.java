@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +25,6 @@ public class LogFileHandler
 		globalLogFormat = new HashMap<String, String>(0);
 		defaultDebugLevel = new HashMap<String, Level>(0);
 		logFormats = new HashMap<String, Map<String, String>>(0);
-		loggers = new HashMap<String, Logger>(0);
 
 		configure();
 	}
@@ -43,7 +43,7 @@ public class LogFileHandler
 	}
 
 	@SuppressWarnings("OverlyBroadThrowsClause")
-	public Logger getLogger(String logName, String outputFile) throws IOException
+	public Logger getLogger(String outputFile) throws IOException
 	{
 		if (loggers.containsKey(outputFile))
 			return loggers.get(outputFile);
@@ -57,7 +57,7 @@ public class LogFileHandler
 			if (!logFile.createNewFile())
 				throw new IOException("Unable to create logfile " + logFile.getPath());
 
-		Logger log = Logger.getLogger("_runsafe." + logName);
+		Logger log = Logger.getLogger("runsafe."+outputFile);
 		FileHandler logWriter = new FileHandler(logFile.getPath(), true);
 		logWriter.setEncoding("UTF-8");
 		logWriter.setFormatter(new RunsafeLogFormatter(this));
@@ -146,9 +146,10 @@ public class LogFileHandler
 	private final Map<String, String> globalLogFormat;
 	private final Map<Level, String> levelFormat;
 	private final Map<String, Level> defaultDebugLevel;
-	private final Map<String, Logger> loggers;
 	private final File logFolder = new File("logs");
 	private boolean logToOriginalConsole;
+
+	private static final Map<String, Logger> loggers = new ConcurrentHashMap<String, Logger>();
 
 	private static Map<String, String> castStringMap(Map<String, Object> data)
 	{

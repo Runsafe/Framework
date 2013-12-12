@@ -13,7 +13,7 @@ public abstract class LoggingBase implements ILogFormatProvider
 	protected LoggingBase(InjectionPlugin plugin, LogFileHandler handler, String logName, String fileName) throws IOException
 	{
 		logFormat = handler.getFormat(plugin, logName);
-		log = handler.getLogger(logName, fileName);
+		log = handler.getLogger(fileName);
 	}
 
 	protected LoggingBase(Logger logger, String format)

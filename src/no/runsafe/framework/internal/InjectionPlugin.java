@@ -15,8 +15,8 @@ import no.runsafe.framework.internal.lua.Environment;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.timer.Scheduler;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.picocontainer.DefaultPicoContainer;
-import org.picocontainer.behaviors.Caching;
+import org.picocontainer.MutablePicoContainer;
+import org.picocontainer.PicoBuilder;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 
 	protected InjectionPlugin()
 	{
-		container = new DefaultPicoContainer(new Caching(), globalContainer);
+		container = new PicoBuilder(globalContainer).withCaching().build();
 	}
 
 	/**
@@ -131,9 +131,8 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	protected void initializePlugin()
 	{
 		if (uninitialized)
-		{
 			bootStrap();
-		}
+
 		if (!Instances.containsKey(getName()))
 			Instances.put(getName(), this);
 
@@ -173,9 +172,15 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		instanceIsNew = false;
 	}
 
-	private static final DefaultPicoContainer globalContainer = new DefaultPicoContainer(new Caching());
-	private static boolean uninitialized = true;
-	private final DefaultPicoContainer container;
+	private final MutablePicoContainer container;
 	private boolean instanceIsNew = true;
 	protected IDebug output;
+
+	private static final MutablePicoContainer globalContainer;
+	private static boolean uninitialized = true;
+
+	static
+	{
+		globalContainer = new PicoBuilder().withCaching().build();
+	}
 }
