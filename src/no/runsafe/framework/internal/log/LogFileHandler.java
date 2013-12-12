@@ -90,7 +90,7 @@ public class LogFileHandler
 	@SuppressWarnings({"ReturnOfNull", "HardcodedFileSeparator"})
 	private YamlConfiguration loadDefaults(File configFile)
 	{
-		InputStream defaults = getClass().getResourceAsStream("/src/output.yml");
+		InputStream defaults = getClass().getResourceAsStream("/output.yml");
 		try
 		{
 			YamlConfiguration config = YamlConfiguration.loadConfiguration(configFile);
