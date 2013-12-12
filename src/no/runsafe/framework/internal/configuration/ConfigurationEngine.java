@@ -117,7 +117,7 @@ public final class ConfigurationEngine implements Startable
 					console.logException(e);
 				}
 			}
-			console.logInformation("Configuration change notifications sent to %d modules.", subscribers.length);
+			debugger.debugFine("Configuration change notifications sent to %d modules.", subscribers.length);
 		}
 	}
 
