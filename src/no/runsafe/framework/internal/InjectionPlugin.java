@@ -33,7 +33,7 @@ import java.util.Map;
  * Base plugin class containing all the injection handling code
  */
 @SuppressWarnings("OverlyCoupledClass")
-public abstract class InjectionPlugin extends JavaPlugin implements IKernel, Startable
+public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 {
 	public static final Map<String, InjectionPlugin> Instances = new HashMap<String, InjectionPlugin>(1);
 
@@ -194,17 +194,5 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel, Sta
 	static
 	{
 		globalContainer = new PicoBuilder().withCaching().withLifecycle().build();
-	}
-
-	@Override
-	public void start()
-	{
-		output.debugFine("Plugin engine startup detected.");
-	}
-
-	@Override
-	public void stop()
-	{
-		output.debugFiner("Plugin engine stop requested.");
 	}
 }
