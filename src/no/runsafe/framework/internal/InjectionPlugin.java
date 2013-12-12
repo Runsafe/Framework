@@ -164,7 +164,6 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel, Sta
 	@SuppressWarnings("OverlyCoupledMethod")
 	private void addStandardComponents()
 	{
-		container.setLifecycleState(this);
 		container.addComponent(this);
 		container.addComponent(ConfigurationEngine.class);
 		container.addComponent(Console.class);
@@ -199,14 +198,12 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel, Sta
 	@Override
 	public void start()
 	{
-		engineStarted = true;
 		output.debugFine("Plugin engine startup detected.");
 	}
 
 	@Override
 	public void stop()
 	{
-		engineStarted = false;
 		output.debugFiner("Plugin engine stop requested.");
 	}
 }
