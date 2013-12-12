@@ -6,7 +6,6 @@ import no.runsafe.framework.api.event.plugin.IPluginEnabled;
 import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.files.PluginFileManager;
 import no.runsafe.framework.internal.command.CommandEngine;
-import no.runsafe.framework.internal.configuration.Configuration;
 import no.runsafe.framework.internal.configuration.ConfigurationEngine;
 import no.runsafe.framework.internal.database.SchemaUpdater;
 import no.runsafe.framework.internal.database.jdbc.Database;
@@ -141,7 +140,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		if (!Instances.containsKey(getName()))
 			Instances.put(getName(), this);
 
-		if (instanceUnconfigured)
+		if (instanceIsNew)
 			addStandardComponents();
 	}
 
@@ -173,12 +172,12 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		container.addComponent(VersionEngine.class);
 		container.addComponent(Environment.class);
 		container.addComponent(PluginFileManager.class);
-		instanceUnconfigured = false;
+		instanceIsNew = false;
 	}
 
 	private static final DefaultPicoContainer globalContainer = new DefaultPicoContainer(new Caching());
 	private static boolean uninitialized = true;
 	private DefaultPicoContainer container;
-	private boolean instanceUnconfigured = true;
+	private boolean instanceIsNew = true;
 	protected IDebug output;
 }
