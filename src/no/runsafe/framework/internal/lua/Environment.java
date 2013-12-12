@@ -42,15 +42,16 @@ public class Environment implements Startable, IServerReady
 	@SuppressWarnings("StaticVariableUsedBeforeInitialization")
 	public static void loadFile(String file)
 	{
-		IConsole console = Console.Global();
-		console.logInformation("Loading script %s", file);
+		// These will have to wait until we can move this into the global container.
+//		IConsole console = Console.Global();
+//		console.logInformation("Loading script %s", file);
 		try
 		{
 			global.get("dofile").call(LuaValue.valueOf(file));
 		}
 		catch (LuaError error)
 		{
-			console.logException(error);
+//			console.logException(error);
 		}
 	}
 
