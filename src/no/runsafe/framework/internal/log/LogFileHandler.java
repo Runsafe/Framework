@@ -85,7 +85,7 @@ public class LogFileHandler
 		if (logFormats.get("*").containsKey(plugin.getName()))
 			return String.format(logFormats.get("*").get(plugin.getName()), plugin.getName());
 
-		return logFormats.get("*").get("*");
+		return String.format(logFormats.get("*").get("*"), plugin.getName());
 	}
 
 	public String getFormat(@Nonnull String logName)
