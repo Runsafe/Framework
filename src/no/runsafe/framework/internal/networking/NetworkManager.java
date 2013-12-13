@@ -22,6 +22,7 @@ public class NetworkManager implements INetworkEvent
 	public NetworkManager()
 	{
 		debug = Debug.Global();
+		debug.debugInfo("Network manager is active.");
 	}
 
 	public void setTabListName(IPlayer player, String name)
