@@ -9,6 +9,7 @@ import no.runsafe.framework.files.PluginFileManager;
 import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.command.BukkitCommandTabExecutor;
 import no.runsafe.framework.internal.configuration.ConfigurationEngine;
+import no.runsafe.framework.internal.log.Debug;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
 
@@ -53,6 +54,7 @@ public abstract class RunsafePlugin extends InjectionPlugin
 
 		scheduleReadyEvent();
 		output.outputDebugToConsole("Initiation complete", Level.FINE);
+		Debug.Global().debugFine("Test global debugger from plugin");
 	}
 
 	/**
