@@ -32,6 +32,8 @@ public class AnyPlayerArgument extends PlayerArgument implements IValueExpander
 			context.sendColouredMessage(new RunsafeAmbiguousPlayer(null, matches).toString());
 		if (matches.size() == 1)
 			return matches.get(0);
-		return isRequired() ? null : value;
+		return isRequired() ? Invalid : value;
 	}
+
+	public static final String Invalid = "\0INVALID\0";
 }
