@@ -4,12 +4,11 @@ import no.runsafe.framework.internal.networking.NetworkPacket;
 
 public class PacketPlayerInfo extends NetworkPacket
 {
-	public PacketPlayerInfo(String playerName, boolean flag, int i)
+	public PacketPlayerInfo(String playerName, boolean flag, int ping)
 	{
-		// ToDo: Figure out what all this does.
 		setData("a", playerName);
 		setData("b", flag);
-		setData("c", i);
+		setData("c", ping);
 	}
 
 	@Override
