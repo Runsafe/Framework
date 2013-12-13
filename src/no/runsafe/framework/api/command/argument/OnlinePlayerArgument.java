@@ -44,6 +44,6 @@ public class OnlinePlayerArgument extends PlayerArgument implements IValueExpand
 			if (matches != null && matches.size() == 1)
 				return matches.get(0);
 		}
-		return null;
+		return isRequired() ? null : value;
 	}
 }
