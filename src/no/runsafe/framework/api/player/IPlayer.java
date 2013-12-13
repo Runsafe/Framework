@@ -11,4 +11,5 @@ public interface IPlayer extends
 {
 	String getPrettyName();
 	void setPlayerListName(String playerName);
+	String getPlayerListName();
 }
