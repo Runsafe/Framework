@@ -17,7 +17,7 @@ public class NetworkManager implements INetworkEvent
 		return InjectionPlugin.getGlobalComponent(NetworkManager.class);
 	}
 
-	private NetworkManager()
+	public NetworkManager()
 	{}
 
 	public void setTabListName(IPlayer player, String name)
