@@ -9,7 +9,7 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 import java.io.IOException;
 import java.util.logging.Level;
 
-public class Console extends LoggingBase implements IConsole
+public final class Console extends LoggingBase implements IConsole
 {
 	@SuppressWarnings({"ReturnOfNull", "CallToPrintStackTrace", "NonThreadSafeLazyInitialization", "StaticVariableUsedBeforeInitialization"})
 	public static IConsole Global()
