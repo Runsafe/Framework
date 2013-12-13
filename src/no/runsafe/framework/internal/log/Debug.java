@@ -34,11 +34,14 @@ public final class Debug extends LoggingBase implements IDebug
 		super(plugin, handler, "Debugger", "debug.log");
 		if (plugin != null)
 			setDebugLevel(handler.defaultDebugLevel(plugin.getName()));
+		else
+			setDebugLevel(handler.defaultDebugLevel("_global_"));
 	}
 
 	private Debug(LogFileHandler handler) throws IOException
 	{
 		super(handler, "Debugger", "debug.log");
+		setDebugLevel(handler.defaultDebugLevel("_global_"));
 	}
 
 	// Sends the supplied String to the console/log the output handler has if the debug level is high enough
