@@ -11,6 +11,21 @@ public class PacketPlayerInfo extends NetworkPacket
 		setData("c", ping);
 	}
 
+	public String getPlayerName()
+	{
+		return (String) getData("a");
+	}
+
+	public boolean getFlag()
+	{
+		return (Boolean) getData("b");
+	}
+
+	public int getPing()
+	{
+		return (Integer) getData("c");
+	}
+
 	@Override
 	public PacketType getPacketType()
 	{
