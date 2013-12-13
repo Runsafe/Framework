@@ -12,6 +12,9 @@ import java.util.Map;
 
 public abstract class NetworkPacket implements IPacket
 {
+	protected NetworkPacket()
+	{}
+
 	@Override
 	public void send(IPlayer player)
 	{
@@ -27,11 +30,16 @@ public abstract class NetworkPacket implements IPacket
 		data.put(key, value);
 	}
 
-	private Packet getNMSPacket()
+	protected void setWrappedPacket(Packet packet)
+	{
+		wrappedPacket = packet;
+	}
+
+	protected Packet getNMSPacket()
 	{
 		try
 		{
-			Packet packet = getPacketType().makePacket();
+			Packet packet = wrappedPacket == null ? getPacketType().makePacket() : wrappedPacket;
 			for (Map.Entry<String, Object> node : data.entrySet())
 			{
 				Field field = packet.getClass().getDeclaredField(node.getKey());
@@ -46,5 +54,6 @@ public abstract class NetworkPacket implements IPacket
 		}
 	}
 
+	protected Packet wrappedPacket;
 	protected final HashMap<String, Object> data = new HashMap<String, Object>(0);
 }
