@@ -4,6 +4,7 @@ import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.event.INetworkEvent;
 import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.log.Debug;
+import no.runsafe.framework.internal.networking.NetworkManager;
 import no.runsafe.framework.minecraft.event.RunsafeInternalEvent;
 
 public abstract class RunsafeNetworkEvent extends RunsafeInternalEvent
@@ -17,6 +18,7 @@ public abstract class RunsafeNetworkEvent extends RunsafeInternalEvent
 	@Override
 	public boolean Fire()
 	{
+		NetworkManager.Get().handleEvent(this);
 		Debug.Global().debugFiner("Firing custom event %s.", getClass().getName());
 		for (IKernel plugin : InjectionPlugin.Instances.values())
 		{
