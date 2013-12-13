@@ -63,6 +63,14 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 			player.setPlayerListName(playerName);
 	}
 
+	public String getPlayerListName()
+	{
+		if (player == null)
+			return "";
+
+		return player.getPlayerListName();
+	}
+
 	public boolean isOP()
 	{
 		return basePlayer.isOp();
