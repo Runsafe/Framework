@@ -5,6 +5,7 @@ import no.runsafe.framework.api.event.INetworkEvent;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.InjectionPlugin;
+import no.runsafe.framework.internal.log.Debug;
 import no.runsafe.framework.minecraft.event.networking.RunsafeNetworkEvent;
 import no.runsafe.framework.minecraft.event.networking.RunsafeSendPacketEvent;
 import no.runsafe.framework.minecraft.packets.PacketPlayerInfo;
@@ -44,14 +45,19 @@ public class NetworkManager implements INetworkEvent
 	@Override
 	public void onNetworkEvent(RunsafeNetworkEvent networkEvent)
 	{
+		Debug.Global().debugInfo("Network event detected.");
 		if (networkEvent instanceof RunsafeSendPacketEvent)
 		{
+			Debug.Global().debugInfo("Network event is instanceof RunsafeSendPacketEvent");
 			RunsafeSendPacketEvent sendEvent = (RunsafeSendPacketEvent) networkEvent;
 			NetworkPacket rawPacket = sendEvent.getPacket();
 
 			if (rawPacket instanceof PacketPlayerInfo)
 			{
+				Debug.Global().debugInfo("rawPacket is instanceof PacketPlayerInfo");
 				PacketPlayerInfo packet = (PacketPlayerInfo) rawPacket;
+
+				Debug.Global().debugInfo("Tab name: " + getTabListName(sendEvent.getPlayer()));
 				packet.setPlayerName(getTabListName(sendEvent.getPlayer()));
 			}
 		}
