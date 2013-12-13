@@ -3,7 +3,7 @@ debug:
 split: 'false'
 format:
   global:
-    '*': '%1$s %2%s [%3$s] %4$s'
+    '*': '%1$s %2$s [%3$s] %4$s'
     Debugger: '%1$s %2$s [&oDEBUG&r] %4$s'
     Protocol: '%1$s %2$s [&nNET&r] %4$s'
   level:
