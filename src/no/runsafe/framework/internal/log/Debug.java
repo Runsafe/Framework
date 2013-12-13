@@ -48,6 +48,7 @@ public final class Debug extends LoggingBase implements IDebug
 	@Override
 	public void outputDebugToConsole(String message, Level messageLevel, Object... params)
 	{
+		writeLog(Level.INFO, "Logging "+message+" at "+messageLevel.getName()+">="+debugLevel.getName());
 		if (debugLevel != null && messageLevel.intValue() >= debugLevel.intValue())
 			writeLog(Level.INFO, formatDebugMessage(message, messageLevel, params));
 	}
