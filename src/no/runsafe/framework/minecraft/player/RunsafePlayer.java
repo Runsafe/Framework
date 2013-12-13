@@ -7,6 +7,7 @@ import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.hook.*;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.HookEngine;
+import no.runsafe.framework.internal.networking.NetworkManager;
 import no.runsafe.framework.internal.wrapper.BukkitLocation;
 import no.runsafe.framework.internal.wrapper.player.BukkitPlayer;
 import no.runsafe.framework.minecraft.Item;
@@ -382,5 +383,17 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor, IPl
 		if(player == null)
 			return null;
 		return player.getAddress().getAddress().getHostAddress();
+	}
+
+	@Override
+	public void setPlayerListName(String playerName)
+	{
+		NetworkManager.Get().setTabListName(this, playerName);
+	}
+
+	@Override
+	public String getPlayerListName()
+	{
+		return NetworkManager.Get().getTabListName(this);
 	}
 }

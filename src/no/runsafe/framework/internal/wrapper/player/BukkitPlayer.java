@@ -21,8 +21,6 @@ import java.net.InetSocketAddress;
 
 public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolder, IAnimalTamer, IWrapper<OfflinePlayer>
 {
-	public static final int PLAYERLIST_MAXLENGTH = 16;
-
 	protected BukkitPlayer(OfflinePlayer toWrap)
 	{
 		super(toWrap instanceof Player ? (Player) toWrap : null);
@@ -51,24 +49,6 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 	public boolean isOnline()
 	{
 		return basePlayer.isOnline();
-	}
-
-	public void setPlayerListName(String playerName)
-	{
-		if (player == null)
-			return;
-		if (playerName.length() > PLAYERLIST_MAXLENGTH)
-			player.setPlayerListName(playerName.substring(0, PLAYERLIST_MAXLENGTH));
-		else
-			player.setPlayerListName(playerName);
-	}
-
-	public String getPlayerListName()
-	{
-		if (player == null)
-			return "";
-
-		return player.getPlayerListName();
 	}
 
 	public boolean isOP()

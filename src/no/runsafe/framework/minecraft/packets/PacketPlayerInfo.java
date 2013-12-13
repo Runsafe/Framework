@@ -2,13 +2,14 @@ package no.runsafe.framework.minecraft.packets;
 
 import no.runsafe.framework.internal.networking.NetworkPacket;
 
+@SuppressWarnings("OverridableMethodCallDuringObjectConstruction")
 public class PacketPlayerInfo extends NetworkPacket
 {
 	public PacketPlayerInfo(String playerName, boolean flag, int ping)
 	{
-		setData("a", playerName);
-		setData("b", flag);
-		setData("c", ping);
+		setPlayerName(playerName);
+		setFlag(flag);
+		setPing(ping);
 	}
 
 	public String getPlayerName()
@@ -24,6 +25,21 @@ public class PacketPlayerInfo extends NetworkPacket
 	public int getPing()
 	{
 		return (Integer) getData("c");
+	}
+
+	public void setPlayerName(String playerName)
+	{
+		setData("a", playerName);
+	}
+
+	public void setFlag(boolean flag)
+	{
+		setData("b", flag);
+	}
+
+	public void setPing(int ping)
+	{
+		setData("c", ping);
 	}
 
 	@Override
