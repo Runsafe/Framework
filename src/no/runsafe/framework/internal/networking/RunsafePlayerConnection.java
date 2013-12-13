@@ -19,6 +19,6 @@ public class RunsafePlayerConnection extends PlayerConnection
 		event.Fire();
 
 		if (!event.isCancelled())
-			super.sendPacket(event.getPacket().getNMSPacket());
+			super.sendPacket(event.getPacket().wrappedPacket);
 	}
 }
