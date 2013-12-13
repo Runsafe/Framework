@@ -9,21 +9,25 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 import java.io.IOException;
 import java.util.logging.Level;
 
-public final class Console extends LoggingBase implements IConsole
+public class Console extends LoggingBase implements IConsole
 {
-	@SuppressWarnings({"ReturnOfNull", "CallToPrintStackTrace"})
+	@SuppressWarnings({"ReturnOfNull", "CallToPrintStackTrace", "NonThreadSafeLazyInitialization", "StaticVariableUsedBeforeInitialization"})
 	public static IConsole Global()
 	{
 		try
 		{
-			return new Console(InjectionPlugin.getGlobalComponent(LogFileHandler.class));
+			if(globalConsole == null)
+				globalConsole = new Console(InjectionPlugin.getGlobalComponent(LogFileHandler.class));
 		}
 		catch (IOException e)
 		{
 			e.printStackTrace();
 			return null;
 		}
+		return globalConsole;
 	}
+
+	private static IConsole globalConsole;
 
 	public Console(InjectionPlugin plugin, LogFileHandler handler) throws IOException
 	{
