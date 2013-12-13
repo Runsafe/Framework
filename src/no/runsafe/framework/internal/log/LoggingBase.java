@@ -14,7 +14,8 @@ public abstract class LoggingBase implements ILogFormatProvider
 	{
 		logFormat = handler.getFormat(logName);
 		log = handler.getLogger(fileName);
-		log.log(Level.INFO, "Created global logger with format '"+logFormat+"'");
+		log.info("Debugging debugger in debugging with debugger");
+		log.info("Created global logger with format '"+logFormat+"'");
 	}
 
 	protected LoggingBase(InjectionPlugin plugin, LogFileHandler handler, String logName, String fileName) throws IOException
