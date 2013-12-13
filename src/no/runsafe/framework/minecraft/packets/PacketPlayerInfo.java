@@ -7,6 +7,7 @@ public class PacketPlayerInfo extends NetworkPacket
 {
 	public PacketPlayerInfo(String playerName, boolean flag, int ping)
 	{
+		originalPlayerName = playerName;
 		setPlayerName(playerName);
 		setFlag(flag);
 		setPing(ping);
@@ -42,9 +43,16 @@ public class PacketPlayerInfo extends NetworkPacket
 		setData("c", ping);
 	}
 
+	public String getOriginalPlayerName()
+	{
+		return originalPlayerName;
+	}
+
 	@Override
 	public PacketType getPacketType()
 	{
 		return PacketType.PLAYER_INFO;
 	}
+
+	private final String originalPlayerName;
 }
