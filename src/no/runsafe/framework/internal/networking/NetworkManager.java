@@ -19,10 +19,8 @@ public class NetworkManager implements INetworkEvent
 		return InjectionPlugin.getGlobalComponent(NetworkManager.class);
 	}
 
-	public NetworkManager(IConsole output)
-	{
-		this.output = output;
-	}
+	public NetworkManager()
+	{}
 
 	public void setTabListName(IPlayer player, String name)
 	{
@@ -46,18 +44,14 @@ public class NetworkManager implements INetworkEvent
 	@Override
 	public void onNetworkEvent(RunsafeNetworkEvent networkEvent)
 	{
-		output.logInformation("Network event detected.");
 		if (networkEvent instanceof RunsafeSendPacketEvent)
 		{
-			output.logInformation("Network event is a RunsafeSendPacketEvent.");
 			RunsafeSendPacketEvent sendEvent = (RunsafeSendPacketEvent) networkEvent;
 			NetworkPacket rawPacket = sendEvent.getPacket();
 
 			if (rawPacket instanceof PacketPlayerInfo)
 			{
-				output.logInformation("Packet is a PacketPlayerInfo.");
 				PacketPlayerInfo packet = (PacketPlayerInfo) rawPacket;
-				output.logInformation("Setting name to: %s", getTabListName(sendEvent.getPlayer()));
 				packet.setPlayerName(getTabListName(sendEvent.getPlayer()));
 			}
 		}
@@ -65,5 +59,4 @@ public class NetworkManager implements INetworkEvent
 
 	private static final int PLAYERLIST_MAXLENGTH = 16;
 	private final Map<String, String> tabListNames = new HashMap<String, String>(0);
-	private final IConsole output;
 }
