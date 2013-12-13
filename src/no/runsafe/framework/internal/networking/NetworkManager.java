@@ -1,18 +1,15 @@
 package no.runsafe.framework.internal.networking;
 
-import no.runsafe.framework.api.event.INetworkEvent;
 import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.log.Debug;
 import no.runsafe.framework.minecraft.event.networking.RunsafeNetworkEvent;
-import no.runsafe.framework.minecraft.event.networking.RunsafeSendPacketEvent;
-import no.runsafe.framework.minecraft.packets.PacketPlayerInfo;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class NetworkManager implements INetworkEvent
+public class NetworkManager
 {
 	public static NetworkManager Get()
 	{
@@ -43,12 +40,10 @@ public class NetworkManager implements INetworkEvent
 		return playerName;
 	}
 
-	@SuppressWarnings({"InstanceofInterfaces", "CastToConcreteClass", "LocalVariableOfConcreteClass"})
-	@Override
-	public void onNetworkEvent(RunsafeNetworkEvent networkEvent)
+	public void handleEvent(RunsafeNetworkEvent networkEvent)
 	{
 		debug.debugInfo("Network event detected.");
-		if (networkEvent instanceof RunsafeSendPacketEvent)
+		/*if (networkEvent instanceof RunsafeSendPacketEvent)
 		{
 			debug.debugInfo("Network event is instanceof RunsafeSendPacketEvent");
 			RunsafeSendPacketEvent sendEvent = (RunsafeSendPacketEvent) networkEvent;
@@ -62,7 +57,7 @@ public class NetworkManager implements INetworkEvent
 				debug.debugInfo("Tab name: " + getTabListName(sendEvent.getPlayer()));
 				packet.setPlayerName(getTabListName(sendEvent.getPlayer()));
 			}
-		}
+		}*/
 	}
 
 	private final IDebug debug;
