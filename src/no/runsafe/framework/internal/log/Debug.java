@@ -15,19 +15,22 @@ import java.util.logging.Level;
 
 public final class Debug extends LoggingBase implements IDebug
 {
-	@SuppressWarnings({"ReturnOfNull", "CallToPrintStackTrace"})
+	@SuppressWarnings({"ReturnOfNull", "CallToPrintStackTrace", "NonThreadSafeLazyInitialization", "StaticVariableUsedBeforeInitialization"})
 	public static IDebug Global()
 	{
 		try
 		{
-			return new Debug(InjectionPlugin.getGlobalComponent(LogFileHandler.class));
+			if (globalDebugger == null)
+				globalDebugger = new Debug(InjectionPlugin.getGlobalComponent(LogFileHandler.class));
 		}
 		catch (IOException e)
 		{
 			e.printStackTrace();
 			return null;
 		}
+		return globalDebugger;
 	}
+	private static IDebug globalDebugger;
 
 	public Debug(InjectionPlugin plugin, LogFileHandler handler) throws IOException
 	{
