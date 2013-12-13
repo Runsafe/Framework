@@ -30,6 +30,11 @@ public class Player
 		return server.getOnlinePlayers(context, filter);
 	}
 
+	public List<String> getOnline(String value)
+	{
+		return server.getOnlinePlayerNames(value);
+	}
+
 	public void setKicker(String name, IPlayer kicker)
 	{
 		if (kickingPlayer.containsKey(name))

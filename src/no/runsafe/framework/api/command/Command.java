@@ -205,7 +205,7 @@ public class Command implements ICommandHandler
 	)
 	{
 		stack.add(this);
-		Map<String, String> myParams = parseParameters(args);
+		Map<String, String> myParams = parseParameters(executor, args);
 		params.putAll(myParams);
 		if (!myParams.isEmpty())
 		{
@@ -336,7 +336,7 @@ public class Command implements ICommandHandler
 		return executor.hasPermission(permission);
 	}
 
-	private Map<String, String> parseParameters(String... args)
+	private Map<String, String> parseParameters(ICommandExecutor context, String... args)
 	{
 		Map<String, String> parameters = new HashMap<String, String>(args.length);
 
@@ -356,7 +356,7 @@ public class Command implements ICommandHandler
 			if (args.length > index)
 				value = args[index];
 			if (value != null && parameter instanceof IValueExpander)
-				value = ((IValueExpander) parameter).expand(value);
+				value = ((IValueExpander) parameter).expand(context, value);
 			index++;
 			if (parameter.isRequired() || value != null && !value.isEmpty())
 				parameters.put(parameter.toString(), value);

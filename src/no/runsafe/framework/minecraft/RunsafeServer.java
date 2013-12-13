@@ -105,6 +105,22 @@ public class RunsafeServer extends BukkitServer implements IServer
 
 	@Override
 	@Nullable
+	public List<String> getOnlinePlayerNames(String playerName)
+	{
+		if (playerName == null)
+			return null;
+
+		playerName = playerName.toLowerCase();
+		List<String> players = new ArrayList<String>(server.getOnlinePlayers().length);
+		for (OfflinePlayer player : server.getOnlinePlayers())
+			if (player.getName().toLowerCase().startsWith(playerName))
+				players.add(player.getName());
+
+		return players;
+	}
+
+		@Override
+	@Nullable
 	public IPlayer getPlayerExact(String playerName)
 	{
 		if (playerName == null)

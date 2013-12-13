@@ -25,6 +25,9 @@ public interface IServer
 	List<IPlayer> getOnlinePlayers(String playerName);
 
 	@Nullable
+	List<String> getOnlinePlayerNames(String playerName);
+
+	@Nullable
 	IPlayer getPlayerExact(String playerName);
 
 	void banPlayer(IPlayer banner, IPlayer player, String reason);

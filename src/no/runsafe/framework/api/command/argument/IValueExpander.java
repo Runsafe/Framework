@@ -1,9 +1,11 @@
 package no.runsafe.framework.api.command.argument;
 
+import no.runsafe.framework.api.command.ICommandExecutor;
+
 import javax.annotation.Nullable;
 
 public interface IValueExpander
 {
 	@Nullable
-	String expand(String value);
+	String expand(ICommandExecutor context, String value);
 }
