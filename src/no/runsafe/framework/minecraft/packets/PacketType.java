@@ -2,12 +2,14 @@ package no.runsafe.framework.minecraft.packets;
 
 import net.minecraft.server.v1_6_R3.Packet;
 import net.minecraft.server.v1_6_R3.Packet130UpdateSign;
+import net.minecraft.server.v1_6_R3.Packet201PlayerInfo;
 import net.minecraft.server.v1_6_R3.Packet63WorldParticles;
 
 public enum PacketType
 {
 	WORLD_PARTICLES(Packet63WorldParticles.class),
-	UPDATE_SIGN(Packet130UpdateSign.class);
+	UPDATE_SIGN(Packet130UpdateSign.class),
+	PLAYER_INFO(Packet201PlayerInfo.class);
 
 	PacketType(Class<? extends Packet> packetClass)
 	{
