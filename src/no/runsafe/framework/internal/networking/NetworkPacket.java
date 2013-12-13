@@ -7,8 +7,6 @@ import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 
 import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.Map;
 
 public abstract class NetworkPacket implements IPacket
 {
@@ -19,34 +17,29 @@ public abstract class NetworkPacket implements IPacket
 	public void send(IPlayer player)
 	{
 		EntityPlayer rawPlayer = ObjectUnwrapper.getMinecraft(player);
-		Packet packet = getNMSPacket();
 
-		if (packet != null && rawPlayer != null)
-			rawPlayer.playerConnection.sendPacket(getNMSPacket());
+		if (wrappedPacket != null && rawPlayer != null)
+			rawPlayer.playerConnection.sendPacket(wrappedPacket);
 	}
 
 	protected void setData(String key, Object value)
 	{
-		data.put(key, value);
+		try
+		{
+			constructPacket(); // Make sure we have a packet.
+			getPacketField(key).set(wrappedPacket, value);
+		}
+		catch (Exception exception)
+		{
+			// Can't set it, whelp..
+		}
 	}
 
-	protected void setWrappedPacket(Packet packet)
-	{
-		wrappedPacket = packet;
-	}
-
-	protected Packet getNMSPacket()
+	protected Object getData(String key)
 	{
 		try
 		{
-			Packet packet = wrappedPacket == null ? getPacketType().makePacket() : wrappedPacket;
-			for (Map.Entry<String, Object> node : data.entrySet())
-			{
-				Field field = packet.getClass().getDeclaredField(node.getKey());
-				field.setAccessible(true);
-				field.set(packet, node.getValue());
-			}
-			return packet;
+			return getPacketField(key).get(wrappedPacket);
 		}
 		catch (Exception exception)
 		{
@@ -54,6 +47,23 @@ public abstract class NetworkPacket implements IPacket
 		}
 	}
 
+	private Field getPacketField(String key) throws Exception
+	{
+		Field field = wrappedPacket.getClass().getDeclaredField(key);
+		field.setAccessible(true);
+		return field;
+	}
+
+	protected void constructPacket() throws Exception
+	{
+		if (wrappedPacket == null)
+			wrappedPacket = getPacketType().makePacket();
+	}
+
+	protected void setWrappedPacket(Packet packet)
+	{
+		wrappedPacket = packet;
+	}
+
 	protected Packet wrappedPacket;
-	protected final HashMap<String, Object> data = new HashMap<String, Object>(0);
 }
