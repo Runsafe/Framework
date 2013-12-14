@@ -15,6 +15,7 @@ public interface IBlock extends IMetadata
 	void setMaterial(Item material);
 	void breakNaturally();
 	boolean is(Item type);
+	boolean isAny(Item... type);
 	boolean hasInterface();
 	boolean isInteractBlock();
 	boolean canPassThrough();

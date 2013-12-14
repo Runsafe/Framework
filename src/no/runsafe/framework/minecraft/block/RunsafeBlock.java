@@ -25,6 +25,19 @@ public class RunsafeBlock extends BukkitBlock implements IBlock
 	}
 
 	@Override
+	public boolean isAny(Item... type)
+	{
+		if(type.length == 0)
+			return false;
+
+		for(Item test : type)
+			if(is(test))
+				return true;
+
+		return false;
+	}
+
+	@Override
 	public boolean hasInterface()
 	{
 		return RunsafeBlock.interfaceBlocks.contains(block.getType());
