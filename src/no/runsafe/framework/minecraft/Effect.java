@@ -70,7 +70,6 @@ public class Effect
 	}
 
 	public static final Effect StepSound = new Effect(org.bukkit.Effect.STEP_SOUND);
-	//public static final Effect PotionBreak = new Effect(org.bukkit.Effect.POTION_BREAK); // Potion
 	public static final Effect EnderSignal = new Effect(org.bukkit.Effect.ENDER_SIGNAL);
 	public static final Effect MobSpawnerFlames = new Effect(org.bukkit.Effect.MOBSPAWNER_FLAMES);
 
@@ -82,14 +81,6 @@ public class Effect
 		else
 			((BukkitWorld) location.getWorld()).playEffect(location, effect, data);
 	}
-
-//	public void Play(ILocation location, int radius)
-//	{
-//		if (effect == org.bukkit.Effect.STEP_SOUND)
-//			((BukkitWorld) location.getWorld()).playEffect(location, effect, location.getRaw().getBlock().getType(), radius);
-//		else
-//			((BukkitWorld) location.getWorld()).playEffect(location, effect, data, radius);
-//	}
 
 	private Effect(org.bukkit.Effect effect)
 	{

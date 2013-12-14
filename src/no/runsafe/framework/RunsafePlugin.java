@@ -98,8 +98,7 @@ public abstract class RunsafePlugin extends InjectionPlugin
 		output.debugFine("Plugin setup performed.");
 
 		scheduleReadyEvent();
-		output.outputDebugToConsole("Initiation complete", Level.FINE);
-		Debug.Global().debugFine("Test global debugger from plugin");
+		output.debugFine("Initiation complete");
 	}
 
 	/**
