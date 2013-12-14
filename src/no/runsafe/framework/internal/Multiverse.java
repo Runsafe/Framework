@@ -14,7 +14,7 @@ import java.util.Map;
  * This class gets called automatically to collect universes from plugins
  */
 @SuppressWarnings({"NonThreadSafeLazyInitialization", "StaticVariableUsedBeforeInitialization"})
-public class Multiverse
+public final class Multiverse
 {
 	public static Multiverse Get()
 	{
@@ -56,7 +56,7 @@ public class Multiverse
 		return server.getWorld(name);
 	}
 
-	void addUniversesForMapper(IUniverseMapper mapper)
+	public void addUniversesForMapper(IUniverseMapper mapper)
 	{
 		for (String universe : mapper.GetUniverses())
 		{

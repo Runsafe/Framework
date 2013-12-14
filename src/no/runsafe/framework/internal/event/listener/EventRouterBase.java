@@ -69,7 +69,7 @@ public abstract class EventRouterBase<Wrapper extends IRunsafeEvent, EventType e
 		catch (Exception e)
 		{
 			if (event instanceof PlayerEvent && ((PlayerEvent) event).getPlayer() != null)
-				console.logInformation("Player %s caused an exception:", ((PlayerEvent) event).getPlayer().getName());
+				console.logInformation("PlayerExtensions %s caused an exception:", ((PlayerEvent) event).getPlayer().getName());
 			console.logException(e);
 		}
 	}

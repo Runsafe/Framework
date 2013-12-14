@@ -1,9 +1,10 @@
-package no.runsafe.framework.internal;
+package no.runsafe.framework.internal.loader;
 
 import no.runsafe.framework.api.hook.IUniverseMapper;
+import no.runsafe.framework.internal.Multiverse;
 import org.picocontainer.Startable;
 
-public class MultiverseLoader implements Startable
+public final class MultiverseLoader implements Startable
 {
 	public MultiverseLoader()
 	{

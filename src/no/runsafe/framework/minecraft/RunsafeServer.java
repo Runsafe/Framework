@@ -1,12 +1,9 @@
 package no.runsafe.framework.minecraft;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import no.runsafe.framework.api.IServer;
-import no.runsafe.framework.api.hook.IPlayerLookupService;
-import no.runsafe.framework.api.hook.IPlayerPermissions;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.internal.HookEngine;
+import no.runsafe.framework.internal.hooks.PlayerExtensions;
 import no.runsafe.framework.internal.wrapper.BukkitServer;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.player.RunsafeAmbiguousPlayer;
@@ -30,18 +27,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 
 	public static List<String> getGroups()
 	{
-		List<IPlayerPermissions> hooks = HookEngine.hookContainer.getComponents(IPlayerPermissions.class);
-		if (hooks == null)
-			return Lists.newArrayList();
-
-		List<String> groups = new ArrayList<String>(hooks.size() * 5);
-		for (IPlayerPermissions hook : hooks)
-		{
-			List<String> hookGroups = hook.getGroups();
-			if (hookGroups != null)
-				groups.addAll(hookGroups);
-		}
-		return groups;
+		return PlayerExtensions.getGroups();
 	}
 
 	@Override
@@ -139,29 +125,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 	@Nonnull
 	public static List<String> findPlayer(String playerName)
 	{
-		if (playerName == null || playerName.isEmpty())
-			return ImmutableList.of();
-
-		List<String> hits = new ArrayList<String>(1);
-		for (IPlayerLookupService lookup : HookEngine.hookContainer.getComponents(IPlayerLookupService.class))
-		{
-			List<String> data = lookup.findPlayer(playerName);
-			if (data != null)
-			{
-				// Exact match, prefer this to anything else
-				if (data.contains(playerName))
-				{
-					hits.clear();
-					hits.add(playerName);
-					break;
-				}
-				// Add hits to result list
-				for (String hit : data)
-					if (!hits.contains(hit))
-						hits.add(hit);
-			}
-		}
-		return hits;
+		return PlayerExtensions.find(playerName);
 	}
 
 	public static List<IPlayer> filterPlayers(IPlayer context, List<IPlayer> players)

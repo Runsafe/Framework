@@ -8,7 +8,7 @@ import org.joda.time.format.DateTimeFormatterBuilder;
 import java.util.logging.LogRecord;
 import java.util.logging.SimpleFormatter;
 
-public class RunsafeLogFormatter extends SimpleFormatter
+public final class RunsafeLogFormatter extends SimpleFormatter
 {
 	public RunsafeLogFormatter(LogFileHandler handler)
 	{

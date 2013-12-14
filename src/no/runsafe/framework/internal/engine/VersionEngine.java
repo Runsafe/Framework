@@ -1,4 +1,4 @@
-package no.runsafe.framework.internal;
+package no.runsafe.framework.internal.engine;
 
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.log.IConsole;

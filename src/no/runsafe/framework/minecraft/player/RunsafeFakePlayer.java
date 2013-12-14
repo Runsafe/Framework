@@ -2,13 +2,11 @@ package no.runsafe.framework.minecraft.player;
 
 import com.google.common.collect.ImmutableList;
 import no.runsafe.framework.api.IWorld;
-import no.runsafe.framework.api.hook.IPlayerPermissions;
 import no.runsafe.framework.api.player.IFakePlayer;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.internal.HookEngine;
+import no.runsafe.framework.internal.hooks.PlayerExtensions;
 
 import javax.annotation.Nonnull;
-import java.util.List;
 
 public class RunsafeFakePlayer extends RunsafePlayer implements IFakePlayer
 {
@@ -23,23 +21,7 @@ public class RunsafeFakePlayer extends RunsafePlayer implements IFakePlayer
 	@Override
 	public boolean hasPermission(String permission)
 	{
-		List<String> memberOf = groups;
-		for (IPlayerPermissions hook : HookEngine.hookContainer.getComponents(IPlayerPermissions.class))
-		{
-			List<String> permissions = hook.getPlayerPermissions(this);
-			if (permissions != null && permissions.contains(permission))
-				return true;
-
-			for (String group : memberOf)
-			{
-				if (group == null)
-					continue;
-				permissions = hook.getGroupPermissions(group);
-				if (permissions != null && permissions.contains(permission))
-					return true;
-			}
-		}
-		return false;
+		return PlayerExtensions.hasPermission(this, groups, permission);
 	}
 
 	@Override

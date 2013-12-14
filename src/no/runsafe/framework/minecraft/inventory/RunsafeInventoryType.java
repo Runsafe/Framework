@@ -12,7 +12,7 @@ public enum RunsafeInventoryType
 	CRAFTING(5, "Crafting"),
 	ENCHANTING(1, "Enchanting"),
 	BREWING(4, "Brewing"),
-	PLAYER(36, "Player"),
+	PLAYER(36, "PlayerExtensions"),
 	CREATIVE(9, "Creative"),
 	MERCHANT(3, "Villager"),
 	ENDER_CHEST(27, "Ender Chest"),

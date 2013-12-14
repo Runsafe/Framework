@@ -1,6 +1,5 @@
 package no.runsafe.framework.internal;
 
-import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.event.plugin.IPluginDisabled;
 import no.runsafe.framework.api.event.plugin.IPluginEnabled;
@@ -10,7 +9,11 @@ import no.runsafe.framework.internal.command.CommandEngine;
 import no.runsafe.framework.internal.configuration.ConfigurationEngine;
 import no.runsafe.framework.internal.database.SchemaUpdater;
 import no.runsafe.framework.internal.database.jdbc.Database;
+import no.runsafe.framework.internal.engine.VersionEngine;
 import no.runsafe.framework.internal.event.EventEngine;
+import no.runsafe.framework.internal.engine.HookEngine;
+import no.runsafe.framework.internal.loader.HookLoader;
+import no.runsafe.framework.internal.loader.MultiverseLoader;
 import no.runsafe.framework.internal.log.*;
 import no.runsafe.framework.internal.lua.Environment;
 import no.runsafe.framework.internal.networking.NetworkManager;
@@ -35,6 +38,11 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		return globalContainer.getComponent(type);
 	}
 
+	protected static void exportAPI(Object implOrInstance)
+	{
+		globalContainer.addComponent(implOrInstance);
+	}
+
 	protected InjectionPlugin()
 	{
 		container = new PicoBuilder(globalContainer).withCaching().withLifecycle().build();
@@ -47,6 +55,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	 * @return The first available implementation of the interface
 	 */
 	@Nullable
+	@Deprecated
 	public static <T> T getFirstPluginAPI(Class<T> apiType)
 	{
 		for (IKernel kernel : pluginContainer.getComponents(IKernel.class))
@@ -62,7 +71,6 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	 * get all implementations of a given API from all plugins
 	 *
 	 * @param apiType The interface specification needed
-	 * @return The first available implementation of the interface
 	 */
 	public static <T> List<T> getPluginAPI(Class<T> apiType)
 	{
@@ -87,18 +95,6 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 				: implOrInstance.getClass().getCanonicalName()
 		);
 		container.addComponent(implOrInstance);
-	}
-
-	protected static void exportAPI(Object implOrInstance)
-	{
-		globalContainer.addComponent(implOrInstance);
-	}
-
-	@Deprecated
-	protected final <T> void addDependence(Class<T> type)
-	{
-		for (T provider : RunsafePlugin.getAllPluginComponents(type))
-			addComponent(provider);
 	}
 
 	@Override
@@ -147,16 +143,16 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	protected void initializePlugin()
 	{
 		if (uninitialized)
-			bootStrap();
+			addGlobalDefaultComponents();
 
 		if (instanceIsNew)
 		{
 			pluginContainer.addComponent(this);
-			addStandardComponents();
+			addPluginStandardComponents();
 		}
 	}
 
-	private void bootStrap()
+	private void addGlobalDefaultComponents()
 	{
 		globalContainer.addComponent(getServer().getPluginManager());
 		globalContainer.addComponent(new RunsafeServer(getServer()));
@@ -164,12 +160,13 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		globalContainer.addComponent(Player.class);
 		globalContainer.addComponent(LogFileHandler.class);
 		globalContainer.addComponent(NetworkManager.class);
+		globalContainer.addComponent(HookEngine.class);
 		globalContainer.start();
 		uninitialized = false;
 	}
 
 	@SuppressWarnings("OverlyCoupledMethod")
-	private void addStandardComponents()
+	private void addPluginStandardComponents()
 	{
 		container.addComponent(this);
 		container.addComponent(ConfigurationEngine.class);
@@ -182,10 +179,12 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		container.addComponent(SchemaUpdater.class);
 		container.addComponent(EventEngine.class);
 		container.addComponent(CommandEngine.class);
-		container.addComponent(HookEngine.class);
 		container.addComponent(VersionEngine.class);
 		container.addComponent(Environment.class);
 		container.addComponent(PluginFileManager.class);
+
+		// Loaders that inject objects from plugins into framework engines go here
+		container.addComponent(HookLoader.class);
 		container.addComponent(MultiverseLoader.class);
 		instanceIsNew = false;
 	}

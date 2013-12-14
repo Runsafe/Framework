@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 @SuppressWarnings("StaticVariableUsedBeforeInitialization")
-public class Player
+public final class Player
 {
 	public static Player Get()
 	{

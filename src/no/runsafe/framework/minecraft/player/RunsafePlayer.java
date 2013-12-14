@@ -4,9 +4,8 @@ import com.google.common.collect.ImmutableList;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.command.ICommandExecutor;
-import no.runsafe.framework.api.hook.*;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.internal.HookEngine;
+import no.runsafe.framework.internal.hooks.PlayerExtensions;
 import no.runsafe.framework.internal.networking.NetworkManager;
 import no.runsafe.framework.internal.wrapper.BukkitLocation;
 import no.runsafe.framework.internal.wrapper.player.BukkitPlayer;
@@ -24,9 +23,7 @@ import org.joda.time.DateTime;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings({"OverlyCoupledClass", "LocalVariableOfConcreteClass"})
@@ -40,37 +37,20 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor, IPl
 	@Override
 	public String getPrettyName()
 	{
-		List<IPlayerNameDecorator> decoratorHooks = HookEngine.hookContainer.getComponents(IPlayerNameDecorator.class);
-		String name = getName();
-		if (!decoratorHooks.isEmpty())
-			for (IPlayerNameDecorator decorator : decoratorHooks)
-				name = decorator.DecorateName(this, name);
-		return name;
+		return PlayerExtensions.decorate(this);
 	}
 
 	@Override
 	@Nullable
 	public String getLastSeen(IPlayer checker)
 	{
-		List<IPlayerSeen> seenHooks = HookEngine.hookContainer.getComponents(IPlayerSeen.class);
-		if (!seenHooks.isEmpty())
-			return seenHooks.get(0).GetLastSeen(this, checker);
-
-		return null;
+		return PlayerExtensions.seen(this, checker);
 	}
 
 	@Override
 	public boolean isNew()
 	{
-		List<IPlayerSessionDataProvider> dataHooks = HookEngine.hookContainer.getComponents(IPlayerSessionDataProvider.class);
-		if (isOnline() || dataHooks.isEmpty())
-			return false;
-
-		for (IPlayerSessionDataProvider provider : dataHooks)
-			if (provider.IsFirstSession(this))
-				return true;
-
-		return false;
+		return PlayerExtensions.isNew(this);
 	}
 
 	@Override
@@ -118,15 +98,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor, IPl
 	@Override
 	public Map<String, String> getData()
 	{
-		List<IPlayerDataProvider> dataHooks = HookEngine.hookContainer.getComponents(IPlayerDataProvider.class);
-		Map<String, String> results = getBasicData();
-		for (IPlayerDataProvider provider : dataHooks)
-		{
-			Map<String, String> data = provider.GetPlayerData(this);
-			if (data != null)
-				results.putAll(data);
-		}
-		return results;
+		return PlayerExtensions.data(this);
 	}
 
 	@Override
@@ -156,33 +128,14 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor, IPl
 	@Nullable
 	public DateTime lastLogout()
 	{
-		List<IPlayerSessionDataProvider> dataHooks = HookEngine.hookContainer.getComponents(IPlayerSessionDataProvider.class);
-		if (isOnline() || dataHooks.isEmpty())
-			return null;
-		DateTime logout = null;
-		for (IPlayerSessionDataProvider provider : dataHooks)
-		{
-			DateTime value = provider.GetPlayerLogout(this);
-			if (value != null && (logout == null || value.isAfter(logout)))
-				logout = value;
-		}
-		return logout;
+		return PlayerExtensions.logout(this);
 	}
 
 	@Override
 	@Nullable
 	public String getBanReason()
 	{
-		List<IPlayerSessionDataProvider> dataHooks = HookEngine.hookContainer.getComponents(IPlayerSessionDataProvider.class);
-		if (isNotBanned() || dataHooks.isEmpty())
-			return null;
-		for (IPlayerSessionDataProvider provider : dataHooks)
-		{
-			String reason = provider.GetPlayerBanReason(this);
-			if (reason != null)
-				return reason;
-		}
-		return null;
+		return PlayerExtensions.banReason(this);
 	}
 
 	@Override
@@ -198,79 +151,37 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor, IPl
 	@Override
 	public boolean shouldNotSee(@Nonnull IPlayer target)
 	{
-		//noinspection ConstantConditions
-		if (getName().equals(target.getName()))
-			return false;
-
-		List<IPlayerVisibility> visibilityHooks = HookEngine.hookContainer.getComponents(IPlayerVisibility.class);
-		if (visibilityHooks.isEmpty())
-			return false;
-
-		for (IPlayerVisibility check : visibilityHooks)
-			if (check.isPlayerHidden(this, target))
-				return true;
-		return false;
+		return PlayerExtensions.shouldNotSee(this, target);
 	}
 
 	@Override
 	public boolean isVanished()
 	{
-		List<IPlayerVisibility> visibilityHooks = HookEngine.hookContainer.getComponents(IPlayerVisibility.class);
-		if (visibilityHooks.isEmpty())
-			return false;
-		for (IPlayerVisibility check : visibilityHooks)
-			if (check.isPlayerVanished(this))
-				return true;
-		return false;
+		return PlayerExtensions.isVanished(this);
 	}
 
 	@Override
 	public boolean isPvPFlagged()
 	{
-		List<IPlayerPvPFlag> pvpFlagHooks = HookEngine.hookContainer.getComponents(IPlayerPvPFlag.class);
-		if (pvpFlagHooks.isEmpty())
-			return true;
-		for (IPlayerPvPFlag hook : pvpFlagHooks)
-			if (hook.isPvPDisabled(this))
-				return false;
-		return true;
+		return PlayerExtensions.isPvPFlagged(this);
 	}
 
 	@Override
 	public ImmutableList<String> getGroups()
 	{
-		List<String> result = new ArrayList<String>(5);
-		for (IPlayerPermissions hook : HookEngine.hookContainer.getComponents(IPlayerPermissions.class))
-		{
-			List<String> groups = hook.getUserGroups(this);
-			if (groups != null)
-				result.addAll(groups);
-		}
-		if (result.isEmpty())
-			result.add("unknown");
-		return ImmutableList.copyOf(result);
+		return PlayerExtensions.getGroups(this);
 	}
 
 	@Override
 	public boolean setGroup(String group)
 	{
-		for (IPlayerPermissions hook : HookEngine.hookContainer.getComponents(IPlayerPermissions.class))
-			if (hook.setGroup(this, group))
-				return true;
-		return false;
+		return PlayerExtensions.setGroup(this, group);
 	}
 
 	@Override
 	public boolean canBuildNow()
 	{
-		List<IPlayerBuildPermission> buildPermissionHooks =
-			HookEngine.hookContainer.getComponents(IPlayerBuildPermission.class);
-		if (buildPermissionHooks.isEmpty())
-			return true;
-		for (IPlayerBuildPermission check : buildPermissionHooks)
-			if (check.blockPlayerBuilding(this, getLocation()))
-				return false;
-		return true;
+		return PlayerExtensions.canBuildNow(this);
 	}
 
 	@Override
