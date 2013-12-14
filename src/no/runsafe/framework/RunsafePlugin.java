@@ -11,7 +11,6 @@ import no.runsafe.framework.files.PluginFileManager;
 import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.command.BukkitCommandTabExecutor;
 import no.runsafe.framework.internal.configuration.ConfigurationEngine;
-import no.runsafe.framework.internal.log.Debug;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
 
@@ -20,7 +19,6 @@ import javax.annotation.Nullable;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 public abstract class RunsafePlugin extends InjectionPlugin
 {
@@ -61,7 +59,9 @@ public abstract class RunsafePlugin extends InjectionPlugin
 		{
 			List<T> implementations = kernel.getComponents(type);
 			if (implementations != null && !implementations.isEmpty())
-				result.addAll(implementations);
+				for (T implementation : implementations)
+					if (!result.contains(implementation))
+						result.add(implementation);
 		}
 		return result;
 	}
