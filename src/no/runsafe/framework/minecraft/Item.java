@@ -76,26 +76,6 @@ public class Item implements IEnchantable
 		return getItem(material, damage);
 	}
 
-	@Nullable
-	@Deprecated
-	public static Item get(int type)
-	{
-		Material material = LegacyMaterial.getById(type);
-		if (material == null)
-			return null;
-		return getItem(material, (byte) 0);
-	}
-
-	@Nullable
-	@Deprecated
-	public static Item get(int type, byte damage)
-	{
-		Material material = LegacyMaterial.getById(type);
-		if (material == null)
-			return null;
-		return getItem(material, damage);
-	}
-
 	@SuppressWarnings("StaticVariableOfConcreteClass")
 	public static final class BuildingBlock
 	{
@@ -1014,12 +994,6 @@ public class Item implements IEnchantable
 	public int getStackSize()
 	{
 		return material.getMaxStackSize();
-	}
-
-	@Deprecated
-	public int getTypeID()
-	{
-		return material.getId();
 	}
 
 	public Material getType()

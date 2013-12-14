@@ -195,12 +195,6 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor, IPl
 		return null;
 	}
 
-	@Deprecated
-	public boolean canSee(IPlayer target)
-	{
-		return !shouldNotSee(target);
-	}
-
 	@Override
 	public boolean shouldNotSee(@Nonnull IPlayer target)
 	{

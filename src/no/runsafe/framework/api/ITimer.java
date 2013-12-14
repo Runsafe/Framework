@@ -12,8 +12,5 @@ public interface ITimer
 
 	void start();
 
-	@Deprecated
-	boolean isRunning();
-
 	boolean isDone();
 }

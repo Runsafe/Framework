@@ -24,10 +24,4 @@ public interface IBlock extends IMetadata
 	boolean isWater();
 	boolean isLava();
 	boolean isAbleToFall();
-
-	@Deprecated
-	byte getData();
-
-	@Deprecated
-	void setData(byte data);
 }

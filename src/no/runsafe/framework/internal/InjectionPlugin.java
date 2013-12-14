@@ -22,9 +22,7 @@ import org.picocontainer.PicoBuilder;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Base plugin class containing all the injection handling code
@@ -32,9 +30,6 @@ import java.util.Map;
 @SuppressWarnings("OverlyCoupledClass")
 public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 {
-	@Deprecated
-	public static final Map<String, InjectionPlugin> Instances = new HashMap<String, InjectionPlugin>(1);
-
 	public static <T> T getGlobalComponent(Class<T> type)
 	{
 		return globalContainer.getComponent(type);
@@ -54,9 +49,9 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	@Nullable
 	public static <T> T getFirstPluginAPI(Class<T> apiType)
 	{
-		for (InjectionPlugin plugin : Instances.values())
+		for (IKernel kernel : pluginContainer.getComponents(IKernel.class))
 		{
-			T instance = plugin.getComponent(apiType);
+			T instance = kernel.getComponent(apiType);
 			if (instance != null)
 				return instance;
 		}
@@ -72,9 +67,9 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	public static <T> List<T> getPluginAPI(Class<T> apiType)
 	{
 		List<T> results = new ArrayList<T>(1);
-		for (InjectionPlugin plugin : Instances.values())
+		for (IKernel kernel : pluginContainer.getComponents(IKernel.class))
 		{
-			List<T> instance = plugin.getComponents(apiType);
+			List<T> instance = kernel.getComponents(apiType);
 			if (instance != null)
 				results.addAll(instance);
 		}
@@ -96,7 +91,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 
 	protected final <T> void addDependence(Class<T> type)
 	{
-		for(T provider : RunsafePlugin.getAllPluginComponents(type))
+		for (T provider : RunsafePlugin.getAllPluginComponents(type))
 			addComponent(provider);
 	}
 
@@ -148,11 +143,11 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		if (uninitialized)
 			bootStrap();
 
-		if (!Instances.containsKey(getName()))
-			Instances.put(getName(), this);
-
 		if (instanceIsNew)
+		{
+			pluginContainer.addComponent(this);
 			addStandardComponents();
+		}
 	}
 
 	private void bootStrap()
@@ -170,7 +165,6 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	@SuppressWarnings("OverlyCoupledMethod")
 	private void addStandardComponents()
 	{
-		pluginContainer.addComponent(this);
 		container.addComponent(this);
 		container.addComponent(ConfigurationEngine.class);
 		container.addComponent(Console.class);

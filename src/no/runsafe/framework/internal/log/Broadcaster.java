@@ -17,14 +17,6 @@ public final class Broadcaster extends LoggingBase implements IOutput
 		serverOutput = server;
 	}
 
-	@Deprecated
-	@Override
-	public void outputToServer(String message)
-	{
-		writeLog(Level.INFO, message);
-		broadcast(message);
-	}
-
 	@Override
 	public void broadcastColoured(String format, Object... params)
 	{

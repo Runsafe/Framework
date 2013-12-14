@@ -83,32 +83,10 @@ public final class Console extends LoggingBase implements IConsole
 		System.exit(1);
 	}
 
-	@Deprecated
-	@Override
-	public void writeColoured(String message)
-	{
-		writeColoured(message.replace("%", "%%"), Level.INFO);
-	}
-
-	@Deprecated
-	@Override
-	public void writeColoured(String message, Object... params)
-	{
-		writeColoured(message, Level.INFO, params);
-	}
-
 	@Override
 	public void writeColoured(String message, Level level, Object... params)
 	{
 		outputToConsole(ChatColour.ToConsole(String.format(message, params)), level);
-	}
-
-	// Sends the supplied String to the console/log the output handler has
-	@Deprecated
-	@Override
-	public void outputToConsole(String message)
-	{
-		outputToConsole(message, Level.INFO);
 	}
 
 	// Sends the supplied String with the supplied logging level to the console/log the output handler has

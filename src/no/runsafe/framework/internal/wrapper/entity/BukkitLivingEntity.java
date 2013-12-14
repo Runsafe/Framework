@@ -36,12 +36,6 @@ public abstract class BukkitLivingEntity extends RunsafeEntity
 		return livingEntity.getHealth();
 	}
 
-	@Deprecated
-	public void setHealth(int i)
-	{
-		setHealth((double) i);
-	}
-
 	public void setHealth(double health)
 	{
 		if(livingEntity.getMaxHealth() < health)
@@ -110,12 +104,6 @@ public abstract class BukkitLivingEntity extends RunsafeEntity
 		livingEntity.setMaximumAir(i);
 	}
 
-	@Deprecated
-	public void damage(int i)
-	{
-		damage((double) i);
-	}
-
 	public void damage(double damage)
 	{
 		livingEntity.damage(damage);
@@ -124,12 +112,6 @@ public abstract class BukkitLivingEntity extends RunsafeEntity
 	public void damage(double damage, IEntity source)
 	{
 		livingEntity.damage(damage, (Entity)ObjectUnwrapper.convert(source));
-	}
-
-	@Deprecated
-	public void damage(int damage, IEntity source)
-	{
-		damage((double) damage, source);
 	}
 
 	public int getMaximumNoDamageTicks()
@@ -145,12 +127,6 @@ public abstract class BukkitLivingEntity extends RunsafeEntity
 	public double getLastDamage()
 	{
 		return livingEntity.getLastDamage();
-	}
-
-	@Deprecated
-	public void setLastDamage(int i)
-	{
-		livingEntity.setLastDamage(i);
 	}
 
 	public void setLastDamage(double damage)

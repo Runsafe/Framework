@@ -4,18 +4,8 @@ import java.util.logging.Level;
 
 public interface IConsole
 {
-	// Sends the supplied String to the console/log the output handler has
-	@Deprecated
-	void outputToConsole(String message);
-
 	// Sends the supplied String with the supplied logging level to the console/log the output handler has
 	void outputToConsole(String message, Level level);
-
-	@Deprecated
-	void writeColoured(String message);
-
-	@Deprecated
-	void writeColoured(String message, Object... params);
 
 	void writeColoured(String message, Level level, Object... params);
 
