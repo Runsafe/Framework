@@ -19,6 +19,8 @@ public interface IEnchant
 
 	int getStartLevel();
 
+	boolean isOn(IEnchantable target);
+
 	boolean canCoexist(IEnchant enchantment);
 
 	boolean canEnchant(IEnchantable target);

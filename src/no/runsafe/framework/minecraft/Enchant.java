@@ -97,6 +97,12 @@ public class Enchant implements IEnchant
 	}
 
 	@Override
+	public boolean isOn(IEnchantable target)
+	{
+		return target != null && target.enchanted(this);
+	}
+
+	@Override
 	public boolean canCoexist(IEnchant enchantment)
 	{
 		return enchant.compatibleWith(enchantment);
