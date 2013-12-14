@@ -15,8 +15,10 @@ import no.runsafe.framework.internal.log.Debug;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -37,6 +39,20 @@ public abstract class RunsafePlugin extends InjectionPlugin
 				return plugin;
 
 		return null;
+	}
+
+	public static List<IKernel> getPlugins(@Nonnull String name)
+	{
+		if(name.equals("*"))
+			return pluginContainer.getComponents(IKernel.class);
+
+		name = name.toLowerCase();
+		List<IKernel> kernels = new ArrayList<IKernel>(1);
+		for (InjectionPlugin plugin : pluginContainer.getComponents(InjectionPlugin.class))
+			if (plugin.getName().toLowerCase().startsWith(name))
+				kernels.add(plugin);
+
+		return kernels;
 	}
 
 	public static <T> List<T> getAllPluginComponents(Class<T> type)
