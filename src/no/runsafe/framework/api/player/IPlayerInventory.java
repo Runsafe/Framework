@@ -11,6 +11,8 @@ public interface IPlayerInventory extends IInventoryHolder
 {
 	void give(RunsafeMeta... items);
 
+	boolean hasItem(Item itemType, int amount);
+
 	void removeItem(Item itemType, int amount);
 
 	void removeItem(Item itemType);

@@ -293,6 +293,13 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor, IPl
 	}
 
 	@Override
+	public boolean hasItem(Item itemType, int amount)
+	{
+		RunsafePlayerInventory inventory = getInventory();
+		return inventory != null && inventory.contains(itemType, amount);
+	}
+
+	@Override
 	public void removeItem(Item itemType, int amount)
 	{
 		RunsafePlayerInventory inventory = getInventory();
@@ -380,7 +387,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor, IPl
 	@Override
 	public String getIP()
 	{
-		if(player == null)
+		if (player == null)
 			return null;
 		return player.getAddress().getAddress().getHostAddress();
 	}

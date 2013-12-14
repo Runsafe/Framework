@@ -1,5 +1,7 @@
 package no.runsafe.framework.api;
 
+import no.runsafe.framework.minecraft.Item;
+
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +49,9 @@ public interface IConfiguration
 	 * @return The value as a list of integers
 	 */
 	List<Integer> getConfigValueAsIntegerList(String key);
+
+	@Nullable
+	Item getConfigValueAsItem(String key);
 
 	/**
 	 * @param key   The configuration key
@@ -101,4 +106,6 @@ public interface IConfiguration
 	 * Writes configuration to disk
 	 */
 	void save();
+
+	boolean reset();
 }

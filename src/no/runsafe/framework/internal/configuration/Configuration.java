@@ -7,6 +7,7 @@ import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.internal.Multiverse;
+import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -205,6 +206,16 @@ public final class Configuration implements IConfiguration
 	}
 
 	@Override
+	@Nullable
+	public Item getConfigValueAsItem(String key)
+	{
+		if (configFile == null)
+			return null;
+
+		return Item.get(configFile.getString(key));
+	}
+
+	@Override
 	public void setConfigValue(String key, Object value)
 	{
 		configFile.set(key, value);
@@ -250,6 +261,7 @@ public final class Configuration implements IConfiguration
 		debugger.debugFine("Updating configuration.");
 	}
 
+	@Override
 	public boolean reset()
 	{
 		if (configFile.getDefaults() != null)
