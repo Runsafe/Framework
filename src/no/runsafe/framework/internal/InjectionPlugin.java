@@ -94,6 +94,12 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		container.addComponent(implOrInstance);
 	}
 
+	protected final <T> void addDependence(Class<T> type)
+	{
+		for(T provider : RunsafePlugin.getAllPluginComponents(type))
+			addComponent(provider);
+	}
+
 	@Override
 	public final <T> T getComponent(Class<T> type)
 	{
