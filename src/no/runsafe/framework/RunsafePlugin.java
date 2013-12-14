@@ -20,7 +20,6 @@ import javax.annotation.Nullable;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 
 public abstract class RunsafePlugin extends InjectionPlugin
@@ -41,27 +40,27 @@ public abstract class RunsafePlugin extends InjectionPlugin
 		return null;
 	}
 
-	public static List<IKernel> getPlugins(@Nonnull String name)
+	public static List<RunsafePlugin> getPlugins(@Nonnull String name)
 	{
-		if(name.equals("*"))
-			return pluginContainer.getComponents(IKernel.class);
+		if (name.equals("*"))
+			return pluginContainer.getComponents(RunsafePlugin.class);
 
 		name = name.toLowerCase();
-		List<IKernel> kernels = new ArrayList<IKernel>(1);
-		for (InjectionPlugin plugin : pluginContainer.getComponents(InjectionPlugin.class))
+		List<RunsafePlugin> plugins = new ArrayList<RunsafePlugin>(1);
+		for (RunsafePlugin plugin : pluginContainer.getComponents(RunsafePlugin.class))
 			if (plugin.getName().toLowerCase().startsWith(name))
-				kernels.add(plugin);
+				plugins.add(plugin);
 
-		return kernels;
+		return plugins;
 	}
 
 	public static <T> List<T> getAllPluginComponents(Class<T> type)
 	{
 		List<T> result = Lists.newArrayList();
-		for(IKernel kernel : pluginContainer.getComponents(IKernel.class))
+		for (IKernel kernel : pluginContainer.getComponents(IKernel.class))
 		{
 			List<T> implementations = kernel.getComponents(type);
-			if(implementations != null && !implementations.isEmpty())
+			if (implementations != null && !implementations.isEmpty())
 				result.addAll(implementations);
 		}
 		return result;
