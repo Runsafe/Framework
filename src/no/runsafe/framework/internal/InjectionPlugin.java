@@ -15,6 +15,7 @@ import no.runsafe.framework.internal.lua.Environment;
 import no.runsafe.framework.internal.networking.NetworkManager;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.timer.Scheduler;
+import org.apache.commons.lang.mutable.Mutable;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.picocontainer.MutablePicoContainer;
 import org.picocontainer.PicoBuilder;
@@ -167,6 +168,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	@SuppressWarnings("OverlyCoupledMethod")
 	private void addStandardComponents()
 	{
+		pluginContainer.addComponent(this);
 		container.addComponent(this);
 		container.addComponent(ConfigurationEngine.class);
 		container.addComponent(Console.class);
@@ -191,10 +193,12 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	protected IDebug output;
 
 	private static final MutablePicoContainer globalContainer;
+	private static final MutablePicoContainer pluginContainer;
 	private static boolean uninitialized = true;
 
 	static
 	{
 		globalContainer = new PicoBuilder().withCaching().withLifecycle().build();
+		pluginContainer = new PicoBuilder(globalContainer).withCaching().withLifecycle().addChildToParent().build();
 	}
 }
