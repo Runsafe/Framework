@@ -1,9 +1,8 @@
 package no.runsafe.framework.minecraft.event.player;
 
-import no.runsafe.framework.api.IKernel;
+import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.event.IFakeableEvent;
 import no.runsafe.framework.api.event.player.IPlayerDeathEvent;
-import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDeathEvent;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
@@ -73,9 +72,8 @@ public class RunsafePlayerDeathEvent extends RunsafeEntityDeathEvent implements 
 	public boolean Fire()
 	{
 		isFake = true;
-		for (IKernel plugin : InjectionPlugin.Instances.values())
-			for (IPlayerDeathEvent listener : plugin.getComponents(IPlayerDeathEvent.class))
-				listener.OnPlayerDeathEvent(this);
+		for (IPlayerDeathEvent listener : RunsafePlugin.getAllPluginComponents(IPlayerDeathEvent.class))
+			listener.OnPlayerDeathEvent(this);
 		return true;
 	}
 

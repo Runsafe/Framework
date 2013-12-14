@@ -1,9 +1,8 @@
 package no.runsafe.framework.minecraft.event.player;
 
-import no.runsafe.framework.api.IKernel;
+import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.event.IFakeableEvent;
 import no.runsafe.framework.api.event.player.IPlayerLoginEvent;
-import no.runsafe.framework.internal.InjectionPlugin;
 import org.bukkit.event.player.PlayerLoginEvent;
 
 import java.net.InetAddress;
@@ -71,9 +70,8 @@ public class RunsafePlayerLoginEvent extends RunsafePlayerEvent implements IFake
 	public boolean Fire()
 	{
 		isFake = true;
-		for (IKernel plugin : InjectionPlugin.Instances.values())
-			for (IPlayerLoginEvent listener : plugin.getComponents(IPlayerLoginEvent.class))
-				listener.OnPlayerLogin(this);
+		for (IPlayerLoginEvent listener : RunsafePlugin.getAllPluginComponents(IPlayerLoginEvent.class))
+			listener.OnPlayerLogin(this);
 		return true;
 	}
 

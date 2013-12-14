@@ -3,6 +3,7 @@ package no.runsafe.framework.minecraft.entity;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.entity.ILivingEntity;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
+import no.runsafe.framework.internal.LegacyMaterial;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.entity.BukkitLivingEntity;
 import no.runsafe.framework.internal.wrapper.entity.BukkitProjectile;
@@ -33,7 +34,7 @@ public class RunsafeLivingEntity extends BukkitLivingEntity implements ILivingEn
 		for (Material material : Material.values())
 			if (material.isTransparent())
 				// noinspection NumericCastThatLosesPrecision
-				transparent.add((byte) material.getId());
+				transparent.add((byte) (int) LegacyMaterial.getIdOf(material));
 		return getTargetBlock(transparent, MAX_DISTANCE);
 	}
 

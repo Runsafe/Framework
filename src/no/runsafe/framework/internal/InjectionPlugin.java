@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal;
 
+import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.event.plugin.IPluginDisabled;
 import no.runsafe.framework.api.event.plugin.IPluginEnabled;
@@ -15,15 +16,9 @@ import no.runsafe.framework.internal.lua.Environment;
 import no.runsafe.framework.internal.networking.NetworkManager;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.timer.Scheduler;
-import org.apache.commons.lang.mutable.Mutable;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.picocontainer.MutablePicoContainer;
 import org.picocontainer.PicoBuilder;
-import org.picocontainer.Startable;
-import org.picocontainer.lifecycle.CompositeLifecycleStrategy;
-import org.picocontainer.lifecycle.LifecycleState;
-import org.picocontainer.lifecycle.StartableLifecycleStrategy;
-import org.picocontainer.monitors.LifecycleComponentMonitor;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -37,6 +32,7 @@ import java.util.Map;
 @SuppressWarnings("OverlyCoupledClass")
 public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 {
+	@Deprecated
 	public static final Map<String, InjectionPlugin> Instances = new HashMap<String, InjectionPlugin>(1);
 
 	public static <T> T getGlobalComponent(Class<T> type)
@@ -192,8 +188,8 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	private boolean instanceIsNew = true;
 	protected IDebug output;
 
-	private static final MutablePicoContainer globalContainer;
-	private static final MutablePicoContainer pluginContainer;
+	protected static final MutablePicoContainer globalContainer;
+	protected static final MutablePicoContainer pluginContainer;
 	private static boolean uninitialized = true;
 
 	static

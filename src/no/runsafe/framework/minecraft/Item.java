@@ -5,6 +5,7 @@ import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.minecraft.IEnchant;
 import no.runsafe.framework.api.minecraft.IEnchantable;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
+import no.runsafe.framework.internal.LegacyMaterial;
 import no.runsafe.framework.minecraft.entity.RunsafeItem;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
@@ -53,7 +54,7 @@ public class Item implements IEnchantable
 	{
 		Matcher id = materialId.matcher(type);
 		if (id.matches())
-			return getItem(Material.getMaterial(Integer.valueOf(id.group(1))), Byte.valueOf(id.group(2)));
+			return getItem(LegacyMaterial.getById(Integer.valueOf(id.group(1))), Byte.valueOf(id.group(2)));
 		Material material = Material.getMaterial(type);
 		if (material == null)
 			for (Material candidate : Material.values())
@@ -76,18 +77,20 @@ public class Item implements IEnchantable
 	}
 
 	@Nullable
+	@Deprecated
 	public static Item get(int type)
 	{
-		Material material = Material.getMaterial(type);
+		Material material = LegacyMaterial.getById(type);
 		if (material == null)
 			return null;
 		return getItem(material, (byte) 0);
 	}
 
 	@Nullable
+	@Deprecated
 	public static Item get(int type, byte damage)
 	{
-		Material material = Material.getMaterial(type);
+		Material material = LegacyMaterial.getById(type);
 		if (material == null)
 			return null;
 		return getItem(material, damage);

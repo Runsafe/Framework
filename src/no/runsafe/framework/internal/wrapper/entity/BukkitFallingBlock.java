@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.wrapper.entity;
 
+import no.runsafe.framework.internal.LegacyMaterial;
 import no.runsafe.framework.internal.wrapper.IWrapper;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import org.bukkit.entity.FallingBlock;
@@ -19,7 +20,7 @@ public abstract class BukkitFallingBlock extends RunsafeEntity implements IWrapp
 
 	public int getBlockId()
 	{
-		return block.getBlockId();
+		return LegacyMaterial.getIdOf(block.getMaterial());
 	}
 
 	public boolean getDropItem()

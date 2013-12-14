@@ -1,11 +1,10 @@
 package no.runsafe.framework.minecraft.event.player;
 
-import no.runsafe.framework.api.IKernel;
+import no.runsafe.framework.RunsafePlugin;
+import no.runsafe.framework.api.event.IFakeableEvent;
 import no.runsafe.framework.api.event.player.IPlayerKickEvent;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.Player;
-import no.runsafe.framework.api.event.IFakeableEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 
 public class RunsafePlayerKickEvent extends RunsafePlayerEvent implements IFakeableEvent
@@ -42,9 +41,8 @@ public class RunsafePlayerKickEvent extends RunsafePlayerEvent implements IFakea
 	public boolean Fire()
 	{
 		isFake = true;
-		for (IKernel plugin : InjectionPlugin.Instances.values())
-			for (IPlayerKickEvent listener : plugin.getComponents(IPlayerKickEvent.class))
-				listener.OnPlayerKick(this);
+		for (IPlayerKickEvent listener : RunsafePlugin.getAllPluginComponents(IPlayerKickEvent.class))
+			listener.OnPlayerKick(this);
 		return true;
 	}
 

@@ -16,6 +16,7 @@ public class RunsafeBlock extends BukkitBlock implements IBlock
 		super(toWrap);
 	}
 
+	@SuppressWarnings("InstanceMethodNamingConvention")
 	@Override
 	public boolean is(Item type)
 	{
@@ -26,19 +27,19 @@ public class RunsafeBlock extends BukkitBlock implements IBlock
 	@Override
 	public boolean hasInterface()
 	{
-		return RunsafeBlock.interfaceBlocks.contains(getTypeId());
+		return RunsafeBlock.interfaceBlocks.contains(block.getType());
 	}
 
 	@Override
 	public boolean isInteractBlock()
 	{
-		return RunsafeBlock.interactBlocks.contains(getTypeId());
+		return RunsafeBlock.interactBlocks.contains(block.getType());
 	}
 
 	@Override
 	public boolean canPassThrough()
 	{
-		return passableBlocks.contains(getTypeId());
+		return passableBlocks.contains(block.getType());
 	}
 
 	@Override
@@ -85,73 +86,73 @@ public class RunsafeBlock extends BukkitBlock implements IBlock
 		return block.getType().hasGravity();
 	}
 
-	private static final Collection<Integer> passableBlocks = new ArrayList<Integer>(40);
-	private static final Collection<Integer> interfaceBlocks = new ArrayList<Integer>(12);
-	private static final Collection<Integer> interactBlocks = new ArrayList<Integer>(12);
+	private static final Collection<Material> passableBlocks = new ArrayList<Material>(40);
+	private static final Collection<Material> interfaceBlocks = new ArrayList<Material>(12);
+	private static final Collection<Material> interactBlocks = new ArrayList<Material>(12);
 
 	static
 	{
-		passableBlocks.add(Material.AIR.getId());
-		passableBlocks.add(Material.BROWN_MUSHROOM.getId());
-		passableBlocks.add(Material.CROPS.getId());
-		passableBlocks.add(Material.DEAD_BUSH.getId());
-		passableBlocks.add(Material.DETECTOR_RAIL.getId());
-		passableBlocks.add(Material.DIODE.getId());
-		passableBlocks.add(Material.ENDER_PORTAL.getId());
-		passableBlocks.add(Material.FIRE.getId());
-		passableBlocks.add(Material.LADDER.getId());
-		passableBlocks.add(Material.LAVA.getId());
-		passableBlocks.add(Material.LEVER.getId());
-		passableBlocks.add(Material.LONG_GRASS.getId());
-		passableBlocks.add(Material.MELON_STEM.getId());
-		passableBlocks.add(Material.NETHER_WARTS.getId());
-		passableBlocks.add(Material.PORTAL.getId());
-		passableBlocks.add(Material.POWERED_RAIL.getId());
-		passableBlocks.add(Material.PUMPKIN_STEM.getId());
-		passableBlocks.add(Material.RAILS.getId());
-		passableBlocks.add(Material.REDSTONE_TORCH_OFF.getId());
-		passableBlocks.add(Material.REDSTONE_TORCH_ON.getId());
-		passableBlocks.add(Material.REDSTONE_WIRE.getId());
-		passableBlocks.add(Material.RED_MUSHROOM.getId());
-		passableBlocks.add(Material.RED_ROSE.getId());
-		passableBlocks.add(Material.SAPLING.getId());
-		passableBlocks.add(Material.SIGN_POST.getId());
-		passableBlocks.add(Material.SNOW.getId());
-		passableBlocks.add(Material.STATIONARY_LAVA.getId());
-		passableBlocks.add(Material.STATIONARY_WATER.getId());
-		passableBlocks.add(Material.STONE_BUTTON.getId());
-		passableBlocks.add(Material.STONE_PLATE.getId());
-		passableBlocks.add(Material.SUGAR_CANE_BLOCK.getId());
-		passableBlocks.add(Material.TORCH.getId());
-		passableBlocks.add(Material.VINE.getId());
-		passableBlocks.add(Material.WALL_SIGN.getId());
-		passableBlocks.add(Material.WATER.getId());
-		passableBlocks.add(Material.WEB.getId());
-		passableBlocks.add(Material.WOOD_PLATE.getId());
-		passableBlocks.add(Material.YELLOW_FLOWER.getId());
+		passableBlocks.add(Material.AIR);
+		passableBlocks.add(Material.BROWN_MUSHROOM);
+		passableBlocks.add(Material.CROPS);
+		passableBlocks.add(Material.DEAD_BUSH);
+		passableBlocks.add(Material.DETECTOR_RAIL);
+		passableBlocks.add(Material.DIODE);
+		passableBlocks.add(Material.ENDER_PORTAL);
+		passableBlocks.add(Material.FIRE);
+		passableBlocks.add(Material.LADDER);
+		passableBlocks.add(Material.LAVA);
+		passableBlocks.add(Material.LEVER);
+		passableBlocks.add(Material.LONG_GRASS);
+		passableBlocks.add(Material.MELON_STEM);
+		passableBlocks.add(Material.NETHER_WARTS);
+		passableBlocks.add(Material.PORTAL);
+		passableBlocks.add(Material.POWERED_RAIL);
+		passableBlocks.add(Material.PUMPKIN_STEM);
+		passableBlocks.add(Material.RAILS);
+		passableBlocks.add(Material.REDSTONE_TORCH_OFF);
+		passableBlocks.add(Material.REDSTONE_TORCH_ON);
+		passableBlocks.add(Material.REDSTONE_WIRE);
+		passableBlocks.add(Material.RED_MUSHROOM);
+		passableBlocks.add(Material.RED_ROSE);
+		passableBlocks.add(Material.SAPLING);
+		passableBlocks.add(Material.SIGN_POST);
+		passableBlocks.add(Material.SNOW);
+		passableBlocks.add(Material.STATIONARY_LAVA);
+		passableBlocks.add(Material.STATIONARY_WATER);
+		passableBlocks.add(Material.STONE_BUTTON);
+		passableBlocks.add(Material.STONE_PLATE);
+		passableBlocks.add(Material.SUGAR_CANE_BLOCK);
+		passableBlocks.add(Material.TORCH);
+		passableBlocks.add(Material.VINE);
+		passableBlocks.add(Material.WALL_SIGN);
+		passableBlocks.add(Material.WATER);
+		passableBlocks.add(Material.WEB);
+		passableBlocks.add(Material.WOOD_PLATE);
+		passableBlocks.add(Material.YELLOW_FLOWER);
 
-		interfaceBlocks.add(Item.Decoration.Workbench.getTypeID());
-		interfaceBlocks.add(Item.Decoration.TrappedChest.getTypeID());
-		interfaceBlocks.add(Item.Decoration.Furnace.getTypeID());
-		interfaceBlocks.add(Item.Decoration.EnderChest.getTypeID());
-		interfaceBlocks.add(Item.Decoration.EnchantmentTable.getTypeID());
-		interfaceBlocks.add(Item.Decoration.Anvil.Any.getTypeID());
-		interfaceBlocks.add(Item.Brewing.BrewingStand.getTypeID());
-		interfaceBlocks.add(Item.Redstone.Device.Hopper.getTypeID());
-		interfaceBlocks.add(Item.Redstone.Device.Dropper.getTypeID());
-		interfaceBlocks.add(Item.Decoration.Chest.getTypeID());
-		interfaceBlocks.add(Item.Redstone.Device.Dispenser.getTypeID());
+		interfaceBlocks.add(Item.Decoration.Workbench.getType());
+		interfaceBlocks.add(Item.Decoration.TrappedChest.getType());
+		interfaceBlocks.add(Item.Decoration.Furnace.getType());
+		interfaceBlocks.add(Item.Decoration.EnderChest.getType());
+		interfaceBlocks.add(Item.Decoration.EnchantmentTable.getType());
+		interfaceBlocks.add(Item.Decoration.Anvil.Any.getType());
+		interfaceBlocks.add(Item.Brewing.BrewingStand.getType());
+		interfaceBlocks.add(Item.Redstone.Device.Hopper.getType());
+		interfaceBlocks.add(Item.Redstone.Device.Dropper.getType());
+		interfaceBlocks.add(Item.Decoration.Chest.getType());
+		interfaceBlocks.add(Item.Redstone.Device.Dispenser.getType());
 
-		interactBlocks.add(Item.Redstone.Comparator.getTypeID());
-		interactBlocks.add(Item.Redstone.Diode.getTypeID());
-		interactBlocks.add(Item.Redstone.Lever.getTypeID());
-		interactBlocks.add(Item.Redstone.Button.Stone.getTypeID());
-		interactBlocks.add(Item.Redstone.Button.Wood.getTypeID());
-		interactBlocks.add(Item.Redstone.Device.NoteBlock.getTypeID());
-		interactBlocks.add(Item.Redstone.Door.Gate.getTypeID());
-		interactBlocks.add(Item.Redstone.Door.Iron.getTypeID());
-		interactBlocks.add(Item.Redstone.Door.Trap.getTypeID());
-		interactBlocks.add(Item.Redstone.Door.Gate.getTypeID());
-		interactBlocks.add(Item.Redstone.Door.Wood.getTypeID());
+		interactBlocks.add(Item.Redstone.Comparator.getType());
+		interactBlocks.add(Item.Redstone.Diode.getType());
+		interactBlocks.add(Item.Redstone.Lever.getType());
+		interactBlocks.add(Item.Redstone.Button.Stone.getType());
+		interactBlocks.add(Item.Redstone.Button.Wood.getType());
+		interactBlocks.add(Item.Redstone.Device.NoteBlock.getType());
+		interactBlocks.add(Item.Redstone.Door.Gate.getType());
+		interactBlocks.add(Item.Redstone.Door.Iron.getType());
+		interactBlocks.add(Item.Redstone.Door.Trap.getType());
+		interactBlocks.add(Item.Redstone.Door.Gate.getType());
+		interactBlocks.add(Item.Redstone.Door.Wood.getType());
 	}
 }

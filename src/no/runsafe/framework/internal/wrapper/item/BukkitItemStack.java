@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.wrapper.item;
 
+import no.runsafe.framework.internal.LegacyMaterial;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.enchantment.RunsafeEnchantment;
 import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
@@ -30,12 +31,12 @@ public abstract class BukkitItemStack implements ConfigurationSerializable
 
 	public int getItemId()
 	{
-		return itemStack.getTypeId();
+		return LegacyMaterial.getIdOf(itemStack.getType());
 	}
 
 	public void setItemId(int type)
 	{
-		itemStack.setTypeId(type);
+		itemStack.setType(LegacyMaterial.getById(type));
 	}
 
 	public short getDurability()

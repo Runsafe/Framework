@@ -1,6 +1,8 @@
 package no.runsafe.framework;
 
+import com.google.common.collect.Lists;
 import no.runsafe.framework.api.IConfiguration;
+import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.api.event.IServerReady;
@@ -21,13 +23,41 @@ import java.util.logging.Level;
 
 public abstract class RunsafePlugin extends InjectionPlugin
 {
-	@SuppressWarnings({"CastToConcreteClass", "InstanceofInterfaces", "LocalVariableOfConcreteClass"})
+	@Nullable
+	public static <T extends RunsafePlugin> T getPlugin(Class<T> type)
+	{
+		return pluginContainer.getComponent(type);
+	}
+
+	@Nullable
+	public static IKernel getPlugin(String name)
+	{
+		for (InjectionPlugin plugin : pluginContainer.getComponents(InjectionPlugin.class))
+			if (plugin.getName().equals(name))
+				return plugin;
+
+		return null;
+	}
+
+	public static <T> List<T> getAllPluginComponents(Class<T> type)
+	{
+		List<T> result = Lists.newArrayList();
+		for(IKernel kernel : pluginContainer.getComponents(IKernel.class))
+		{
+			List<T> implementations = kernel.getComponents(type);
+			if(implementations != null && !implementations.isEmpty())
+				result.addAll(implementations);
+		}
+		return result;
+	}
+
+	@SuppressWarnings({"InstanceofInterfaces", "LocalVariableOfConcreteClass", "CastToConcreteClass"})
 	@Nullable
 	public static ICommandHandler getPluginCommand(String name)
 	{
-		for (Map.Entry<String, InjectionPlugin> plugin : Instances.entrySet())
+		for (InjectionPlugin plugin : pluginContainer.getComponents(InjectionPlugin.class))
 		{
-			PluginCommand command = plugin.getValue().getCommand(name);
+			PluginCommand command = plugin.getCommand(name);
 			if (command != null)
 			{
 				CommandExecutor executor = command.getExecutor();

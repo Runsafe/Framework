@@ -1,9 +1,8 @@
 package no.runsafe.framework.minecraft.event.player;
 
-import no.runsafe.framework.api.IKernel;
+import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.event.player.IPlayerOperatorEvent;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.minecraft.event.RunsafeInternalEvent;
 
 public class RunsafeOperatorEvent extends RunsafeInternalEvent
@@ -28,9 +27,8 @@ public class RunsafeOperatorEvent extends RunsafeInternalEvent
 	@Override
 	public boolean Fire()
 	{
-		for (IKernel plugin : InjectionPlugin.Instances.values())
-			for (IPlayerOperatorEvent listener : plugin.getComponents(IPlayerOperatorEvent.class))
-				listener.OnPlayerOP(this);
+		for (IPlayerOperatorEvent listener : RunsafePlugin.getAllPluginComponents(IPlayerOperatorEvent.class))
+			listener.OnPlayerOP(this);
 		return true;
 	}
 

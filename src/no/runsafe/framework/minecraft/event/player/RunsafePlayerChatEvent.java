@@ -1,11 +1,10 @@
 package no.runsafe.framework.minecraft.event.player;
 
-import no.runsafe.framework.api.IKernel;
+import no.runsafe.framework.RunsafePlugin;
+import no.runsafe.framework.api.event.IFakeableEvent;
 import no.runsafe.framework.api.event.player.IPlayerChatEvent;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.api.event.IFakeableEvent;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
@@ -57,9 +56,8 @@ public class RunsafePlayerChatEvent extends RunsafeCancellablePlayerEvent implem
 	public boolean Fire()
 	{
 		isFake = true;
-		for (IKernel plugin : InjectionPlugin.Instances.values())
-			for (IPlayerChatEvent listener : plugin.getComponents(IPlayerChatEvent.class))
-				listener.OnPlayerChatEvent(this);
+		for (IPlayerChatEvent listener : RunsafePlugin.getAllPluginComponents(IPlayerChatEvent.class))
+			listener.OnPlayerChatEvent(this);
 		return !isCancelled();
 	}
 
