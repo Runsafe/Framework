@@ -15,7 +15,8 @@ import no.runsafe.framework.internal.engine.HookEngine;
 import no.runsafe.framework.internal.loader.HookLoader;
 import no.runsafe.framework.internal.loader.MultiverseLoader;
 import no.runsafe.framework.internal.log.*;
-import no.runsafe.framework.internal.lua.Environment;
+import no.runsafe.framework.internal.lua.GlobalEnvironment;
+import no.runsafe.framework.internal.lua.PluginRunner;
 import no.runsafe.framework.internal.networking.NetworkManager;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.timer.Scheduler;
@@ -161,6 +162,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		globalContainer.addComponent(LogFileHandler.class);
 		globalContainer.addComponent(NetworkManager.class);
 		globalContainer.addComponent(HookEngine.class);
+		globalContainer.addComponent(GlobalEnvironment.class);
 		globalContainer.start();
 		uninitialized = false;
 	}
@@ -168,25 +170,32 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	@SuppressWarnings("OverlyCoupledMethod")
 	private void addPluginStandardComponents()
 	{
+		instanceIsNew = false;
+
 		container.addComponent(this);
+
+		// Core engines
 		container.addComponent(ConfigurationEngine.class);
-		container.addComponent(Console.class);
-		container.addComponent(Broadcaster.class);
-		container.addComponent(Debug.class);
-		container.addComponent(Protocol.class);
 		container.addComponent(Database.class);
-		container.addComponent(new Scheduler(getServer().getScheduler(), this));
 		container.addComponent(SchemaUpdater.class);
 		container.addComponent(EventEngine.class);
 		container.addComponent(CommandEngine.class);
 		container.addComponent(VersionEngine.class);
-		container.addComponent(Environment.class);
 		container.addComponent(PluginFileManager.class);
+		container.addComponent(new Scheduler(getServer().getScheduler(), this));
+
+		// Logging/output facilities
+		container.addComponent(Console.class);
+		container.addComponent(Broadcaster.class);
+		container.addComponent(Debug.class);
+		container.addComponent(Protocol.class);
+
+		// Lua script extension
+		container.addComponent(PluginRunner.class);
 
 		// Loaders that inject objects from plugins into framework engines go here
 		container.addComponent(HookLoader.class);
 		container.addComponent(MultiverseLoader.class);
-		instanceIsNew = false;
 	}
 
 	private final MutablePicoContainer container;
