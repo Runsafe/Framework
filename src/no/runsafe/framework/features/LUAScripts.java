@@ -1,14 +1,16 @@
 package no.runsafe.framework.features;
 
 import no.runsafe.framework.api.event.IServerReady;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.internal.lua.PluginRunner;
 import org.picocontainer.Startable;
 
 public class LUAScripts implements Startable, IServerReady
 {
-	public LUAScripts(PluginRunner runner)
+	public LUAScripts(PluginRunner runner, IConsole console)
 	{
 		this.runner = runner;
+		this.console = console;
 	}
 
 	@Override
@@ -29,4 +31,5 @@ public class LUAScripts implements Startable, IServerReady
 	}
 
 	private final PluginRunner runner;
+	private final IConsole console;
 }

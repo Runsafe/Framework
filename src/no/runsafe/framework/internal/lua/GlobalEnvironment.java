@@ -1,11 +1,9 @@
 package no.runsafe.framework.internal.lua;
 
-import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.lua.IGlobal;
 import no.runsafe.framework.internal.InjectionPlugin;
 import org.apache.commons.io.FileUtils;
 import org.luaj.vm2.Globals;
-import org.luaj.vm2.LuaError;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.OneArgFunction;
 import org.luaj.vm2.lib.jse.JsePlatform;
@@ -28,41 +26,46 @@ public class GlobalEnvironment implements Startable, IGlobal
 		return InjectionPlugin.getGlobalComponent(GlobalEnvironment.class).globals;
 	}
 
-	public GlobalEnvironment(IConsole console)
+	@Override
+	public LuaValue get(int key)
 	{
-		this.console = console;
+		return globals.get(key);
 	}
 
 	@Override
-	public LuaValue get(int value)
+	public LuaValue get(LuaValue key)
 	{
-		return globals.get(value);
+		return globals.get(key);
 	}
 
 	@Override
-	public LuaValue get(LuaValue value)
+	public LuaValue get(String key)
 	{
-		return globals.get(value);
+		return globals.get(key);
 	}
 
 	@Override
-	public LuaValue get(String value)
+	public void set(int key, LuaValue value)
 	{
-		return globals.get(value);
+		globals.set(key, value);
+	}
+
+	@Override
+	public void set(String key, LuaValue value)
+	{
+		globals.set(key, value);
+	}
+
+	@Override
+	public void set(LuaValue key, LuaValue value)
+	{
+		globals.set(key, value);
 	}
 
 	@Override
 	public void loadFile(String file)
 	{
-		console.logInformation("Loading script %s", file);
-		try
-		{
-			globals.get("dofile").call(LuaValue.valueOf(file));
-		}
-		catch (LuaError error)
-		{
-			console.logException(error);
-		}
+		globals.get("dofile").call(LuaValue.valueOf(file));
 	}
 
 	@Override
@@ -99,5 +102,4 @@ public class GlobalEnvironment implements Startable, IGlobal
 	}
 
 	private Globals globals;
-	private final IConsole console;
 }
