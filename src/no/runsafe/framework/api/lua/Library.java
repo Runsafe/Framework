@@ -8,10 +8,11 @@ import org.luaj.vm2.lib.OneArgFunction;
 
 public abstract class Library extends OneArgFunction
 {
-	protected Library(RunsafePlugin plugin, String module)
+	protected Library(RunsafePlugin plugin, String module, IGlobal environment)
 	{
 		namespace = plugin.getName();
 		this.module = module;
+		globals = environment;
 	}
 
 	@Override
@@ -25,6 +26,7 @@ public abstract class Library extends OneArgFunction
 
 	protected abstract LuaTable getAPI();
 
+	protected final IGlobal globals;
 	private final String namespace;
 	private final String module;
 }
