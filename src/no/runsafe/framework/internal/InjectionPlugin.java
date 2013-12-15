@@ -9,8 +9,8 @@ import no.runsafe.framework.internal.command.CommandEngine;
 import no.runsafe.framework.internal.configuration.ConfigurationEngine;
 import no.runsafe.framework.internal.database.SchemaUpdater;
 import no.runsafe.framework.internal.database.jdbc.Database;
-import no.runsafe.framework.internal.hooks.HookEngine;
 import no.runsafe.framework.internal.event.EventEngine;
+import no.runsafe.framework.internal.hooks.HookEngine;
 import no.runsafe.framework.internal.log.*;
 import no.runsafe.framework.internal.lua.GlobalEnvironment;
 import no.runsafe.framework.internal.lua.PluginRunner;
@@ -85,13 +85,14 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	@Override
 	public final void addComponent(Object implOrInstance)
 	{
-		output.debugFiner(
-			"Plugin %s added component %s",
-			getName(),
-			implOrInstance instanceof Class<?>
-				? ((Class<?>) implOrInstance).getCanonicalName()
-				: implOrInstance.getClass().getCanonicalName()
-		);
+		if (output != null)
+			output.debugFiner(
+				"Plugin %s added component %s",
+				getName(),
+				implOrInstance instanceof Class<?>
+					? ((Class<?>) implOrInstance).getCanonicalName()
+					: implOrInstance.getClass().getCanonicalName()
+			);
 		container.addComponent(implOrInstance);
 	}
 
