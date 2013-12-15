@@ -115,8 +115,11 @@ public class RunsafePendingConnection extends PendingConnection
 		event.Fire();
 
 		playerName = event.getPlayerName();
+		if (playerName == null)
+			return;
 
 		PlayerList playerList = server.getPlayerList();
+
 		EntityPlayer player = playerList.attemptLogin(this, playerName, hostname);
 
 		if (player == null)
