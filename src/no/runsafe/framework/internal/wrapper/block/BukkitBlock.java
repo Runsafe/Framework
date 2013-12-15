@@ -6,7 +6,6 @@ import no.runsafe.framework.internal.LegacyMaterial;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import no.runsafe.framework.minecraft.Item;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 
 public class BukkitBlock extends BukkitMetadata
@@ -73,7 +72,8 @@ public class BukkitBlock extends BukkitMetadata
 	public void setMaterial(Item material)
 	{
 		block.setType(material.getType());
-		block.setData(material.getData());
+		if (material.getData() >= 0)
+			block.setData(material.getData());
 	}
 
 	public void breakNaturally()
