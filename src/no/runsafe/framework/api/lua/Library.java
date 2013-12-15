@@ -28,6 +28,6 @@ public abstract class Library extends OneArgFunction
 	protected abstract LuaTable getAPI();
 
 	protected final IGlobal globals;
-	private final String namespace;
-	private final String module;
+	protected final String namespace;
+	protected final String module;
 }
