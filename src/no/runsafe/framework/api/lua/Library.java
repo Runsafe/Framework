@@ -2,17 +2,18 @@ package no.runsafe.framework.api.lua;
 
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.internal.log.Debug;
+import no.runsafe.framework.internal.lua.GlobalEnvironment;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.OneArgFunction;
 
 public abstract class Library extends OneArgFunction
 {
-	protected Library(RunsafePlugin plugin, String module, IGlobal environment)
+	protected Library(RunsafePlugin plugin, String module)
 	{
 		namespace = plugin.getName();
 		this.module = module;
-		globals = environment;
+		globals = GlobalEnvironment.get();
 	}
 
 	@Override
