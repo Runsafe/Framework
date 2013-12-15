@@ -1,19 +1,17 @@
 package no.runsafe.framework.internal.lua;
 
-import no.runsafe.framework.api.event.IServerReady;
 import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.lua.Library;
 import no.runsafe.framework.internal.InjectionPlugin;
 import org.apache.commons.io.FileUtils;
 import org.luaj.vm2.LuaTable;
-import org.picocontainer.Startable;
 
 import java.io.File;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-public class PluginRunner implements Startable, IServerReady
+public class PluginRunner
 {
 	public PluginRunner(IDebug debugger, InjectionPlugin plugin)
 	{
@@ -21,24 +19,7 @@ public class PluginRunner implements Startable, IServerReady
 		this.plugin = plugin;
 	}
 
-	@Override
-	public void start()
-	{
-		loadAPI();
-	}
-
-	@Override
-	public void stop()
-	{
-	}
-
-	@Override
-	public void OnServerReady()
-	{
-		loadScripts();
-	}
-
-	private void loadAPI()
+	public void loadAPI()
 	{
 		List<Library> libraries = plugin.getComponents(Library.class);
 		if (!libraries.isEmpty())
@@ -50,7 +31,7 @@ public class PluginRunner implements Startable, IServerReady
 		}
 	}
 
-	private void loadScripts()
+	public void loadScripts()
 	{
 		for (File script : getScripts())
 			if (script.isFile())

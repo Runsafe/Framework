@@ -1,17 +1,12 @@
-package no.runsafe.framework.internal.loader;
+package no.runsafe.framework.features;
 
 import no.runsafe.framework.api.hook.IFrameworkHook;
-import no.runsafe.framework.internal.engine.HookEngine;
+import no.runsafe.framework.internal.hooks.HookEngine;
 import org.picocontainer.Startable;
 
-public class HookLoader implements Startable
+public class FrameworkHooks implements Startable
 {
-	public HookLoader()
-	{
-	}
-
-	@SuppressWarnings("OverloadedVarargsMethod")
-	public HookLoader(HookEngine engine, IFrameworkHook... hooks)
+	public FrameworkHooks(HookEngine engine, IFrameworkHook... hooks)
 	{
 		engine.hook(hooks);
 	}
@@ -33,5 +28,4 @@ public class HookLoader implements Startable
 	public void stop()
 	{
 	}
-
 }

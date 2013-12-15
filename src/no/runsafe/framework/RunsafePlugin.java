@@ -87,7 +87,7 @@ public abstract class RunsafePlugin extends InjectionPlugin
 	}
 
 	@Override
-	protected final void initializePlugin()
+	protected void initializePlugin()
 	{
 		super.initializePlugin();
 

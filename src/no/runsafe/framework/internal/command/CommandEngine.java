@@ -7,6 +7,7 @@ import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.minecraft.RunsafeConsole;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
 import org.picocontainer.Startable;
 
@@ -19,18 +20,8 @@ import java.util.List;
  * This class handles the registration of command objects with bukkit.
  */
 @SuppressWarnings("OverloadedVarargsMethod")
-public final class CommandEngine implements Startable
+public final class CommandEngine
 {
-	/**
-	 * This is needed for pico to not throw exceptions
-	 *
-	 * @param plugin The plugin
-	 */
-	public CommandEngine(@Nonnull RunsafePlugin plugin)
-	{
-		this(null, plugin, null);
-	}
-
 	/**
 	 * @param output   The console to output debug information to
 	 * @param plugin   The plugin
@@ -46,24 +37,7 @@ public final class CommandEngine implements Startable
 		consoleLog = output;
 	}
 
-	/**
-	 * Hooks the commands into bukkit when plugin starts
-	 */
-	@Override
-	public void start()
-	{
-		for (BukkitCommandTabExecutor executor : getCommands())
-			hookCommand(plugin.getCommand(executor.getName()), executor);
-	}
-
-	@Override
-	public void stop()
-	{
-		for (BukkitCommandTabExecutor executor : getCommands())
-			unhookCommand(plugin.getCommand(executor.getName()));
-	}
-
-	private void hookCommand(PluginCommand command, BukkitCommandTabExecutor executor)
+	public void hookCommand(PluginCommand command, BukkitCommandTabExecutor executor)
 	{
 		assert console != null;
 		if (command == null)
@@ -75,12 +49,15 @@ public final class CommandEngine implements Startable
 		}
 	}
 
-	private static void unhookCommand(PluginCommand command)
+	public void unhookCommand(PluginCommand command)
 	{
+		CommandExecutor executor = command.getExecutor();
 		command.setExecutor(null);
+		if (executor instanceof BukkitCommandTabExecutor)
+			output.debugFiner("Command handler for %s unregistered from bukkit.", ((BukkitCommandTabExecutor) executor).getName());
 	}
 
-	private Iterable<BukkitCommandTabExecutor> getCommands()
+	public Iterable<BukkitCommandTabExecutor> getCommands()
 	{
 		if (output == null)
 			return ImmutableList.of();

@@ -9,11 +9,8 @@ import no.runsafe.framework.internal.command.CommandEngine;
 import no.runsafe.framework.internal.configuration.ConfigurationEngine;
 import no.runsafe.framework.internal.database.SchemaUpdater;
 import no.runsafe.framework.internal.database.jdbc.Database;
-import no.runsafe.framework.internal.engine.VersionEngine;
+import no.runsafe.framework.internal.hooks.HookEngine;
 import no.runsafe.framework.internal.event.EventEngine;
-import no.runsafe.framework.internal.engine.HookEngine;
-import no.runsafe.framework.internal.loader.HookLoader;
-import no.runsafe.framework.internal.loader.MultiverseLoader;
 import no.runsafe.framework.internal.log.*;
 import no.runsafe.framework.internal.lua.GlobalEnvironment;
 import no.runsafe.framework.internal.lua.PluginRunner;
@@ -180,7 +177,6 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		container.addComponent(SchemaUpdater.class);
 		container.addComponent(EventEngine.class);
 		container.addComponent(CommandEngine.class);
-		container.addComponent(VersionEngine.class);
 		container.addComponent(PluginFileManager.class);
 		container.addComponent(new Scheduler(getServer().getScheduler(), this));
 
@@ -192,10 +188,6 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 
 		// Lua script extension
 		container.addComponent(PluginRunner.class);
-
-		// Loaders that inject objects from plugins into framework engines go here
-		container.addComponent(HookLoader.class);
-		container.addComponent(MultiverseLoader.class);
 	}
 
 	private final MutablePicoContainer container;

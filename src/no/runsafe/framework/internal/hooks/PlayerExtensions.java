@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import no.runsafe.framework.api.hook.*;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.internal.engine.HookEngine;
 import no.runsafe.framework.minecraft.player.RunsafeFakePlayer;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.joda.time.DateTime;

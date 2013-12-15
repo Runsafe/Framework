@@ -1,6 +1,7 @@
 package no.runsafe.framework;
 
 import no.runsafe.framework.api.IConfigurationFile;
+import no.runsafe.framework.features.Configuration;
 
 import java.io.File;
 import java.io.InputStream;
@@ -20,5 +21,12 @@ public abstract class RunsafeConfigurablePlugin extends RunsafePlugin implements
 	public final InputStream getDefaultConfiguration()
 	{
 		return getResource("defaults.yml");
+	}
+
+	@Override
+	protected void initializePlugin()
+	{
+		addComponent(Configuration.class);
+		super.initializePlugin();
 	}
 }

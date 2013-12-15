@@ -1,4 +1,4 @@
-package no.runsafe.framework.internal.engine;
+package no.runsafe.framework.internal.hooks;
 
 import no.runsafe.framework.api.hook.*;
 import no.runsafe.framework.internal.InjectionPlugin;

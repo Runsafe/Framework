@@ -14,7 +14,7 @@ import java.util.logging.Level;
  * This class handles database schema updates
  */
 @SuppressWarnings("OverloadedVarargsMethod")
-public final class SchemaUpdater implements Startable
+public final class SchemaUpdater
 {
 	/**
 	 * This is needed for pico to not throw exceptions
@@ -68,16 +68,10 @@ public final class SchemaUpdater implements Startable
 		);
 	}
 
-	@Override
-	public void start()
+	public void execute()
 	{
 		if (schemaUpdaters != null && schemaUpdaters.length > 0)
 			executeSchemaChanges();
-	}
-
-	@Override
-	public void stop()
-	{
 	}
 
 	@SuppressWarnings("MethodWithMultipleLoops")

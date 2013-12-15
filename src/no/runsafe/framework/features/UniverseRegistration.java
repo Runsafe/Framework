@@ -1,17 +1,17 @@
-package no.runsafe.framework.internal.loader;
+package no.runsafe.framework.features;
 
 import no.runsafe.framework.api.hook.IUniverseMapper;
 import no.runsafe.framework.internal.Multiverse;
 import org.picocontainer.Startable;
 
-public final class MultiverseLoader implements Startable
+public final class UniverseRegistration implements Startable
 {
-	public MultiverseLoader()
+	public UniverseRegistration()
 	{
 	}
 
 	@SuppressWarnings("OverloadedVarargsMethod")
-	public MultiverseLoader(Multiverse multiverse, IUniverseMapper... providers)
+	public UniverseRegistration(Multiverse multiverse, IUniverseMapper... providers)
 	{
 		for (IUniverseMapper mapper : providers)
 			multiverse.addUniversesForMapper(mapper);

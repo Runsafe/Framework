@@ -9,20 +9,14 @@ import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.internal.event.listener.Factories;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
-import org.picocontainer.Startable;
 
 import java.util.*;
 
-public final class EventEngine implements Startable
+public final class EventEngine
 {
 	static
 	{
 		factories = new HashMap<Class<? extends IRunsafeEvent>, EventRouterFactory>(0);
-	}
-
-	public EventEngine(IConsole output, IScheduler scheduler, PluginManager manager, RunsafePlugin plugin, IDebug debug)
-	{
-		this(output, scheduler, manager, plugin, debug, new IRunsafeEvent[0]);
 	}
 
 	public EventEngine(
@@ -36,23 +30,14 @@ public final class EventEngine implements Startable
 		this.plugin = plugin;
 	}
 
-	@Override
-	public void start()
+	public void registerEvents()
 	{
-		if (eventSubscribers != null)
+		Factories.Register();
+		for (Listener listener : getListeners())
 		{
-			Factories.Register();
-			for (Listener listener : getListeners())
-			{
-				pluginManager.registerEvents(listener, plugin);
-				debug.debugFiner("Registered event listener %s", listener.getClass().getName());
-			}
+			pluginManager.registerEvents(listener, plugin);
+			debug.debugFiner("Registered event listener %s", listener.getClass().getName());
 		}
-	}
-
-	@Override
-	public void stop()
-	{
 	}
 
 	public static void Register(EventRouterFactory factory)

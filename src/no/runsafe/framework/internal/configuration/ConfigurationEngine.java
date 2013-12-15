@@ -5,7 +5,6 @@ import no.runsafe.framework.api.IConfigurationFile;
 import no.runsafe.framework.api.event.plugin.IConfigurationChanged;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.log.IDebug;
-import org.picocontainer.Startable;
 
 import java.io.File;
 
@@ -13,7 +12,7 @@ import java.io.File;
  * This class handles basic configuration features of the plugin
  */
 @SuppressWarnings({"OverloadedVarargsMethod", "LocalVariableOfConcreteClass"})
-public final class ConfigurationEngine implements Startable
+public final class ConfigurationEngine
 {
 	public IConfiguration loadConfiguration(String fileName)
 	{
@@ -27,22 +26,6 @@ public final class ConfigurationEngine implements Startable
 		Configuration config = new Configuration(console, debugger);
 		config.load(configFile);
 		return config;
-	}
-
-	/**
-	 * This is needed for pico to not throw exceptions
-	 *
-	 * @param plugin   The plugin
-	 * @param debugger
-	 */
-	@SuppressWarnings("AssignmentToNull")
-	public ConfigurationEngine()
-	{
-		subscribers = null;
-		console = null;
-		debugger = null;
-		configuration = null;
-		configurationFile = null;
 	}
 
 	/**
@@ -61,27 +44,11 @@ public final class ConfigurationEngine implements Startable
 	}
 
 	/**
-	 * Loads configuration on plugin startup
-	 */
-	@Override
-	public void start()
-	{
-		load();
-	}
-
-	@Override
-	public void stop()
-	{
-	}
-
-	/**
 	 * Loads configuration for the plugin from disk
 	 */
-	void load()
+	public void load()
 	{
-		if (configuration != null && configurationFile != null)
-			configuration.load(configurationFile);
-
+		configuration.load(configurationFile);
 		notifySubscribers();
 	}
 
@@ -92,7 +59,7 @@ public final class ConfigurationEngine implements Startable
 	 */
 	public boolean restoreToDefaults()
 	{
-		if (configuration == null || !configuration.reset())
+		if (!configuration.reset())
 			return false;
 		notifySubscribers();
 		return true;
