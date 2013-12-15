@@ -14,6 +14,7 @@ import javax.annotation.Nullable;
 import java.io.File;
 import java.util.Collection;
 
+@SuppressWarnings("InstanceMethodNamingConvention")
 public class GlobalEnvironment implements Startable
 {
 	public static GlobalEnvironment get()
@@ -29,6 +30,21 @@ public class GlobalEnvironment implements Startable
 	public GlobalEnvironment(IConsole console)
 	{
 		this.console = console;
+	}
+
+	public LuaValue get(int value)
+	{
+		return globals.get(value);
+	}
+
+	public LuaValue get(LuaValue value)
+	{
+		return globals.get(value);
+	}
+
+	public LuaValue get(String value)
+	{
+		return globals.get(value);
 	}
 
 	public void loadFile(String file)
