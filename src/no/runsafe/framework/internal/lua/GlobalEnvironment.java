@@ -1,6 +1,7 @@
 package no.runsafe.framework.internal.lua;
 
 import no.runsafe.framework.api.log.IConsole;
+import no.runsafe.framework.api.lua.IGlobal;
 import no.runsafe.framework.internal.InjectionPlugin;
 import org.apache.commons.io.FileUtils;
 import org.luaj.vm2.Globals;
@@ -15,9 +16,9 @@ import java.io.File;
 import java.util.Collection;
 
 @SuppressWarnings("InstanceMethodNamingConvention")
-public class GlobalEnvironment implements Startable
+public class GlobalEnvironment implements Startable, IGlobal
 {
-	public static GlobalEnvironment get()
+	public static IGlobal get()
 	{
 		return InjectionPlugin.getGlobalComponent(GlobalEnvironment.class);
 	}
@@ -32,21 +33,25 @@ public class GlobalEnvironment implements Startable
 		this.console = console;
 	}
 
+	@Override
 	public LuaValue get(int value)
 	{
 		return globals.get(value);
 	}
 
+	@Override
 	public LuaValue get(LuaValue value)
 	{
 		return globals.get(value);
 	}
 
+	@Override
 	public LuaValue get(String value)
 	{
 		return globals.get(value);
 	}
 
+	@Override
 	public void loadFile(String file)
 	{
 		console.logInformation("Loading script %s", file);
