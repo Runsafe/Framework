@@ -24,4 +24,10 @@ public final class PreparedSynchronousCommand extends PreparedCommand
 
 		return usage(target);
 	}
+
+	@Override
+	public String executeDirect()
+	{
+		return execute();
+	}
 }

@@ -28,6 +28,13 @@ public final class PreparedAsynchronousCallbackCommand extends PreparedCommand
 		return usage(target);
 	}
 
+	@Override
+	public String executeDirect()
+	{
+		IAsyncExecute target = (IAsyncExecute) command.peek();
+		return target.OnAsyncExecute(executor, parameters);
+	}
+
 	@SuppressWarnings("unchecked")
 	public <T> void schedule(final IScheduler scheduler)
 	{

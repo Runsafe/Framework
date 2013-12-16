@@ -69,13 +69,6 @@ public abstract class PreparedCommand implements IPreparedCommand
 	}
 
 	@Override
-	public String executeDirect()
-	{
-		IAsyncExecute target = (IAsyncExecute) command.peek();
-		return target.OnAsyncExecute(executor, parameters);
-	}
-
-	@Override
 	@Nullable
 	public Iterable<String> getSuggestions(@Nonnull IArgument param, @Nonnull String... args)
 	{

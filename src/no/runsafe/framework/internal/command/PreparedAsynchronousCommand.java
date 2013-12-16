@@ -28,6 +28,13 @@ public final class PreparedAsynchronousCommand extends PreparedCommand
 		return usage(target);
 	}
 
+	@Override
+	public String executeDirect()
+	{
+		IAsyncExecute target = (IAsyncExecute) command.peek();
+		return target.OnAsyncExecute(executor, parameters);
+	}
+
 	public void schedule(final IScheduler scheduler)
 	{
 		final IAsyncExecute target = (IAsyncExecute) command.peek();

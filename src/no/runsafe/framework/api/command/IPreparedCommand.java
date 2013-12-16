@@ -12,9 +12,9 @@ public interface IPreparedCommand
 	@Nullable
 	String execute();
 	@Nullable
-	Iterable<String> tabComplete(String... args);
-
 	String executeDirect();
+	@Nullable
+	Iterable<String> tabComplete(String... args);
 
 	@Nullable
 	Iterable<String> getSuggestions(@Nonnull IArgument param, @Nonnull String... args);
