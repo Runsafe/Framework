@@ -1,5 +1,8 @@
 package no.runsafe.framework.api.command;
 
+import no.runsafe.framework.api.command.argument.IArgument;
+
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public interface IPreparedCommand
@@ -10,4 +13,13 @@ public interface IPreparedCommand
 	String execute();
 	@Nullable
 	Iterable<String> tabComplete(String... args);
+
+	String executeDirect();
+
+	@Nullable
+	Iterable<String> getSuggestions(@Nonnull IArgument param, @Nonnull String... args);
+
+	int countSuperParams();
+
+	String usage(ICommandHandler target);
 }

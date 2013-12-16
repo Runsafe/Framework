@@ -1,10 +1,7 @@
 package no.runsafe.framework.internal.command;
 
 import com.google.common.collect.Lists;
-import no.runsafe.framework.api.command.ICommandExecutor;
-import no.runsafe.framework.api.command.ICommandHandler;
-import no.runsafe.framework.api.command.IContextPermissionProvider;
-import no.runsafe.framework.api.command.IPreparedCommand;
+import no.runsafe.framework.api.command.*;
 import no.runsafe.framework.api.command.argument.IArgument;
 import no.runsafe.framework.api.command.argument.ITabComplete;
 import no.runsafe.framework.api.player.IPlayer;
@@ -71,8 +68,16 @@ public abstract class PreparedCommand implements IPreparedCommand
 		return null;
 	}
 
+	@Override
+	public String executeDirect()
+	{
+		IAsyncExecute target = (IAsyncExecute) command.peek();
+		return target.OnAsyncExecute(executor, parameters);
+	}
+
+	@Override
 	@Nullable
-	private Iterable<String> getSuggestions(@Nonnull IArgument param, @Nonnull String... args)
+	public Iterable<String> getSuggestions(@Nonnull IArgument param, @Nonnull String... args)
 	{
 		List<String> matches;
 		if (param instanceof ITabComplete)
@@ -94,7 +99,8 @@ public abstract class PreparedCommand implements IPreparedCommand
 		return matches == null || args[args.length - 1].isEmpty() ? matches : filterList(matches, args[args.length - 1]);
 	}
 
-	private int countSuperParams()
+	@Override
+	public int countSuperParams()
 	{
 		int i = 0;
 		for (ICommandHandler cmd : command)
@@ -107,6 +113,17 @@ public abstract class PreparedCommand implements IPreparedCommand
 		return i;
 	}
 
+	@Override
+	public String usage(ICommandHandler target)
+	{
+		Collection<String> params = new ArrayList<String>(command.size());
+		for (ICommandHandler tier : command)
+			params.add(tier.getUsageCommandParams());
+
+		//noinspection HardcodedFileSeparator
+		return String.format("Usage: /%1$s %2$s", StringUtils.join(params, " "), target.getUsage(executor));
+	}
+
 	private static List<String> filterList(Iterable<String> values, String filter)
 	{
 		if (filter == null || filter.isEmpty())
@@ -116,16 +133,6 @@ public abstract class PreparedCommand implements IPreparedCommand
 			if (value.toLowerCase().startsWith(filter.toLowerCase()))
 				matches.add(value);
 		return matches;
-	}
-
-	protected String usage(ICommandHandler target)
-	{
-		Collection<String> params = new ArrayList<String>(command.size());
-		for (ICommandHandler tier : command)
-			params.add(tier.getUsageCommandParams());
-
-		//noinspection HardcodedFileSeparator
-		return String.format("Usage: /%1$s %2$s", StringUtils.join(params, " "), target.getUsage(executor));
 	}
 
 	protected final ICommandExecutor executor;
