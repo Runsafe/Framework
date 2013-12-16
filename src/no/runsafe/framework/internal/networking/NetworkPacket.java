@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.networking;
 
-import net.minecraft.server.v1_6_R3.EntityPlayer;
-import net.minecraft.server.v1_6_R3.Packet;
+import net.minecraft.server.v1_7_R1.EntityPlayer;
+import net.minecraft.server.v1_7_R1.Packet;
 import no.runsafe.framework.api.packets.IPacket;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;

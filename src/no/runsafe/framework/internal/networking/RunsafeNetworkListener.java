@@ -1,8 +1,6 @@
 package no.runsafe.framework.internal.networking;
 
-import net.minecraft.server.v1_6_R3.Connection;
-import net.minecraft.server.v1_6_R3.MinecraftServer;
-import net.minecraft.server.v1_6_R3.PendingConnection;
+import net.minecraft.server.v1_7_R1.MinecraftServer;
 import no.runsafe.framework.api.log.IConsole;
 
 import java.io.IOException;

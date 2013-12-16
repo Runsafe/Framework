@@ -1,6 +1,6 @@
 package no.runsafe.framework.minecraft.event.networking;
 
-import net.minecraft.server.v1_6_R3.Packet;
+import net.minecraft.server.v1_7_R1.Packet;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.networking.NetworkPacket;
 import no.runsafe.framework.internal.networking.PacketWrapper;

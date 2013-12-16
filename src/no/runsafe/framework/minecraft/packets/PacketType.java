@@ -1,9 +1,6 @@
 package no.runsafe.framework.minecraft.packets;
 
-import net.minecraft.server.v1_6_R3.Packet;
-import net.minecraft.server.v1_6_R3.Packet130UpdateSign;
-import net.minecraft.server.v1_6_R3.Packet201PlayerInfo;
-import net.minecraft.server.v1_6_R3.Packet63WorldParticles;
+import net.minecraft.server.v1_7_R1.Packet;
 import no.runsafe.framework.internal.networking.NetworkPacket;
 
 public enum PacketType

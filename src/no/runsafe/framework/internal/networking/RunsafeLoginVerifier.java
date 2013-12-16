@@ -1,6 +1,6 @@
 package no.runsafe.framework.internal.networking;
 
-import net.minecraft.server.v1_6_R3.MinecraftEncryption;
+import net.minecraft.server.v1_7_R1.MinecraftEncryption;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

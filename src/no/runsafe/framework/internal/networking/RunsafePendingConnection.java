@@ -1,10 +1,11 @@
 package no.runsafe.framework.internal.networking;
 
-import net.minecraft.server.v1_6_R3.*;
+import net.minecraft.server.v1_7_R1.EntityPlayer;
+import net.minecraft.server.v1_7_R1.MinecraftServer;
+import net.minecraft.server.v1_7_R1.PlayerList;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.minecraft.event.networking.RunsafeLoginVerifiedEvent;
 import org.apache.commons.lang.StringUtils;
-import org.bukkit.craftbukkit.v1_6_R3.event.CraftEventFactory;
 import org.bukkit.event.server.ServerListPingEvent;
 
 import javax.crypto.SecretKey;

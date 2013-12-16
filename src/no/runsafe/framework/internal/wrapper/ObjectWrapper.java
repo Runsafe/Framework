@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.wrapper;
 
-import net.minecraft.server.v1_6_R3.EntityPlayer;
-import net.minecraft.server.v1_6_R3.MinecraftServer;
+import net.minecraft.server.v1_7_R1.EntityPlayer;
+import net.minecraft.server.v1_7_R1.MinecraftServer;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.metadata.IMetadata;
@@ -25,8 +25,8 @@ import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.*;
 import org.bukkit.block.*;
-import org.bukkit.craftbukkit.v1_6_R3.CraftServer;
-import org.bukkit.craftbukkit.v1_6_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_7_R1.CraftServer;
+import org.bukkit.craftbukkit.v1_7_R1.entity.CraftPlayer;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.event.inventory.InventoryType;

@@ -1,16 +1,16 @@
 package no.runsafe.framework.internal.wrapper;
 
-import net.minecraft.server.v1_6_R3.Entity;
-import net.minecraft.server.v1_6_R3.EntityPlayer;
-import net.minecraft.server.v1_6_R3.EntityProjectile;
+import net.minecraft.server.v1_7_R1.Entity;
+import net.minecraft.server.v1_7_R1.EntityPlayer;
+import net.minecraft.server.v1_7_R1.EntityProjectile;
 import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.wrapper.player.BukkitPlayer;
 import no.runsafe.framework.minecraft.entity.RunsafeProjectile;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.craftbukkit.v1_6_R3.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_6_R3.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_6_R3.entity.CraftProjectile;
+import org.bukkit.craftbukkit.v1_7_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_7_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_7_R1.entity.CraftProjectile;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 

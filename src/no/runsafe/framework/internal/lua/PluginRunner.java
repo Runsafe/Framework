@@ -1,11 +1,11 @@
 package no.runsafe.framework.internal.lua;
 
+import net.minecraft.util.org.apache.commons.io.FileUtils;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.lua.IGlobal;
 import no.runsafe.framework.api.lua.Library;
 import no.runsafe.framework.internal.InjectionPlugin;
-import org.apache.commons.io.FileUtils;
 import org.luaj.vm2.LuaError;
 import org.luaj.vm2.LuaTable;
 
