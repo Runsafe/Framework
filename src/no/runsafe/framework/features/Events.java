@@ -1,11 +1,11 @@
 package no.runsafe.framework.features;
 
-import no.runsafe.framework.internal.event.EventEngine;
+import no.runsafe.framework.internal.event.BukkitEventMapper;
 import org.picocontainer.Startable;
 
 public class Events implements Startable
 {
-	public Events(EventEngine engine)
+	public Events(BukkitEventMapper engine)
 	{
 		this.engine = engine;
 	}
@@ -21,5 +21,5 @@ public class Events implements Startable
 	{
 	}
 
-	private final EventEngine engine;
+	private final BukkitEventMapper engine;
 }

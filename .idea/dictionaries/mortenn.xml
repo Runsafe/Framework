@@ -14,6 +14,7 @@
       <w>enchantable</w>
       <w>ender</w>
       <w>fakeable</w>
+      <w>gameplay</w>
       <w>glowstone</w>
       <w>iterable</w>
       <w>jdbc</w>
@@ -26,6 +27,7 @@
       <w>minecart</w>
       <w>minecraft</w>
       <w>minecraftuser</w>
+      <w>mojang</w>
       <w>mooshroom</w>
       <w>motd</w>
       <w>mycelium</w>

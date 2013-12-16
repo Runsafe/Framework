@@ -49,20 +49,20 @@ public final class ObjectWrapper
 
 	@Nullable
 	@SuppressWarnings("unchecked")
-	public static <Wrapper> List<Wrapper> convert(Collection<?> toWrap)
+	public static <Wrap> List<Wrap> convert(Collection<?> toWrap)
 	{
 		if (toWrap == null)
 			return null;
 
-		List<Wrapper> results = new ArrayList<Wrapper>(toWrap.size());
+		List<Wrap> results = new ArrayList<Wrap>(toWrap.size());
 		for (Object item : toWrap)
 		{
 			if (item instanceof Metadatable)
-				results.add((Wrapper) convert((Metadatable) item));
+				results.add((Wrap) convert((Metadatable) item));
 			else if (item instanceof ItemStack)
-				results.add((Wrapper) convert((ItemStack) item));
+				results.add((Wrap) convert((ItemStack) item));
 			else if (item instanceof OfflinePlayer)
-				results.add((Wrapper) convert((OfflinePlayer) item));
+				results.add((Wrap) convert((OfflinePlayer) item));
 		}
 		return results;
 	}

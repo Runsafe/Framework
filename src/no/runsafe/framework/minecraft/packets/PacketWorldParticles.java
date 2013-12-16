@@ -6,6 +6,7 @@ import no.runsafe.framework.minecraft.WorldEffect;
 
 public final class PacketWorldParticles extends NetworkPacket
 {
+	@SuppressWarnings("NumericCastThatLosesPrecision")
 	public PacketWorldParticles(WorldEffect effect, ILocation location, WorldParticleOffset offset, int speed, int amount)
 	{
 		setData("a", effect.getName());

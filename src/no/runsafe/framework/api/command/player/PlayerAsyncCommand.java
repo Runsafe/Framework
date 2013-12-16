@@ -21,7 +21,7 @@ public abstract class PlayerAsyncCommand extends AsyncCommand implements IPlayer
 		super(name, description, permission, scheduler, args);
 	}
 
-	@SuppressWarnings({"InstanceofInterfaces"})
+	@SuppressWarnings("InstanceofInterfaces")
 	@Override
 	public final String OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters)
 	{

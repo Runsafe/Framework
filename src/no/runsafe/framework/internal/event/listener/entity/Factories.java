@@ -1,6 +1,6 @@
 package no.runsafe.framework.internal.event.listener.entity;
 
-import no.runsafe.framework.internal.event.EventEngine;
+import no.runsafe.framework.internal.event.BukkitEventMapper;
 
 public final class Factories
 {
@@ -10,17 +10,17 @@ public final class Factories
 
 	public static void Register()
 	{
-		EventEngine.Register(CreatureSpawn.Factory());
-		EventEngine.Register(EntityDamageByEntity.Factory());
-		EventEngine.Register(EntityDeath.Factory());
-		EventEngine.Register(EntityShootBow.Factory());
-		EventEngine.Register(SpawnEggUsed.Factory());
-		EventEngine.Register(NaturalSpawn.Factory());
-		EventEngine.Register(EntityChangeBlock.Factory());
-		EventEngine.Register(EntityPortalEnter.Factory());
-		EventEngine.Register(EntityCreatePortal.Factory());
-		EventEngine.Register(EntityDamage.Factory());
-		EventEngine.Register(ProjectileHit.Factory());
-		EventEngine.Register(EntityTame.Factory());
+		BukkitEventMapper.Register(CreatureSpawn.Factory());
+		BukkitEventMapper.Register(DamageByEntity.Factory());
+		BukkitEventMapper.Register(Death.Factory());
+		BukkitEventMapper.Register(ShootBow.Factory());
+		BukkitEventMapper.Register(SpawnEggUsed.Factory());
+		BukkitEventMapper.Register(NaturalSpawn.Factory());
+		BukkitEventMapper.Register(ChangeBlock.Factory());
+		BukkitEventMapper.Register(PortalEnter.Factory());
+		BukkitEventMapper.Register(CreatePortal.Factory());
+		BukkitEventMapper.Register(Damage.Factory());
+		BukkitEventMapper.Register(ProjectileHit.Factory());
+		BukkitEventMapper.Register(Tame.Factory());
 	}
 }

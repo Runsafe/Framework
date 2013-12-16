@@ -23,7 +23,6 @@ public class RunsafePlayerQuitEvent extends RunsafePlayerEvent implements IFakea
 		event.setQuitMessage(message);
 	}
 
-	@SuppressWarnings("MethodWithMultipleLoops")
 	@Override
 	public boolean Fire()
 	{

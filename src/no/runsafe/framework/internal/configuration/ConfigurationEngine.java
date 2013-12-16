@@ -11,19 +11,19 @@ import java.io.File;
 /**
  * This class handles basic configuration features of the plugin
  */
-@SuppressWarnings({"OverloadedVarargsMethod", "LocalVariableOfConcreteClass"})
+@SuppressWarnings("LocalVariableOfConcreteClass")
 public final class ConfigurationEngine
 {
 	public IConfiguration loadConfiguration(String fileName)
 	{
-		Configuration config = new Configuration(console, debugger);
+		PluginConfiguration config = new PluginConfiguration(console, debugger);
 		config.load(new File(fileName));
 		return config;
 	}
 
 	public IConfiguration loadConfiguration(File configFile)
 	{
-		Configuration config = new Configuration(console, debugger);
+		PluginConfiguration config = new PluginConfiguration(console, debugger);
 		config.load(configFile);
 		return config;
 	}
@@ -39,7 +39,7 @@ public final class ConfigurationEngine
 		this.subscribers = subscribers;
 		console = output;
 		debugger = debug;
-		configuration = new Configuration(output, debugger);
+		configuration = new PluginConfiguration(output, debugger);
 		configurationFile = plugin;
 	}
 
@@ -84,13 +84,13 @@ public final class ConfigurationEngine
 					console.logException(e);
 				}
 			}
-			debugger.debugFine("Configuration change notifications sent to %d modules.", subscribers.length);
+			debugger.debugFine("PluginConfiguration change notifications sent to %d modules.", subscribers.length);
 		}
 	}
 
 	private final IConfigurationChanged[] subscribers;
 	private final IConsole console;
 	private final IDebug debugger;
-	private final Configuration configuration;
+	private final PluginConfiguration configuration;
 	private final IConfigurationFile configurationFile;
 }

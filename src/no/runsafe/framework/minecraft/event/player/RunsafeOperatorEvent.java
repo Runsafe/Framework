@@ -23,7 +23,6 @@ public class RunsafeOperatorEvent extends RunsafeInternalEvent
 		return op;
 	}
 
-	@SuppressWarnings("MethodWithMultipleLoops")
 	@Override
 	public boolean Fire()
 	{

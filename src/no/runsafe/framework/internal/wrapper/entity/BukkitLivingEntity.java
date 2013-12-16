@@ -16,7 +16,6 @@ import org.bukkit.entity.LivingEntity;
 import java.util.HashSet;
 import java.util.List;
 
-@SuppressWarnings("OverloadedMethodsWithSameNumberOfParameters")
 public abstract class BukkitLivingEntity extends RunsafeEntity
 {
 	protected BukkitLivingEntity(LivingEntity toWrap)

@@ -23,7 +23,6 @@ public class RunsafePlayerJoinEvent extends RunsafePlayerEvent implements IFakea
 		event.setJoinMessage(message);
 	}
 
-	@SuppressWarnings("MethodWithMultipleLoops")
 	@Override
 	public boolean Fire()
 	{

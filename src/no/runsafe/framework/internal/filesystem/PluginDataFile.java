@@ -7,7 +7,6 @@ import no.runsafe.framework.api.log.IConsole;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 public class PluginDataFile implements IPluginDataFile
 {

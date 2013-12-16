@@ -11,7 +11,7 @@ import no.runsafe.framework.api.filesystem.IPluginFileManager;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.internal.InjectionPlugin;
-import no.runsafe.framework.internal.command.BukkitCommandTabExecutor;
+import no.runsafe.framework.internal.command.ITabExecutor;
 import no.runsafe.framework.internal.configuration.ConfigurationEngine;
 import no.runsafe.framework.internal.filesystem.PluginDataFile;
 import org.bukkit.command.CommandExecutor;
@@ -67,7 +67,6 @@ public abstract class RunsafePlugin extends InjectionPlugin implements IPluginFi
 		return result;
 	}
 
-	@SuppressWarnings({"InstanceofInterfaces", "LocalVariableOfConcreteClass", "CastToConcreteClass"})
 	@Nullable
 	public static ICommandHandler getPluginCommand(String name)
 	{
@@ -77,9 +76,9 @@ public abstract class RunsafePlugin extends InjectionPlugin implements IPluginFi
 			if (command != null)
 			{
 				CommandExecutor executor = command.getExecutor();
-				if (executor instanceof BukkitCommandTabExecutor)
+				if (executor instanceof ITabExecutor)
 				{
-					BukkitCommandTabExecutor handler = (BukkitCommandTabExecutor) executor;
+					ITabExecutor handler = (ITabExecutor) executor;
 					return handler.getHandler();
 				}
 			}

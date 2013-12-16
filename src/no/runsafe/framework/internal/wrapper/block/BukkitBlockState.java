@@ -8,7 +8,6 @@ import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 
@@ -35,16 +34,19 @@ public class BukkitBlockState extends RunsafeBlock
 		return blockState.getLightLevel();
 	}
 
+	@Override
 	public ILocation getLocation()
 	{
 		return ObjectWrapper.convert(blockState.getLocation());
 	}
 
+	@Override
 	public Item getMaterial()
 	{
 		return Item.get(blockState.getType(), (byte) 0);
 	}
 
+	@Override
 	public void setMaterial(Item material)
 	{
 		blockState.setType(material.getType());
@@ -55,6 +57,7 @@ public class BukkitBlockState extends RunsafeBlock
 		return LegacyMaterial.getIdOf(blockState.getType());
 	}
 
+	@Override
 	public IWorld getWorld()
 	{
 		return ObjectWrapper.convert(blockState.getWorld());

@@ -13,7 +13,6 @@ import java.util.Map;
 /**
  * This class gets called automatically to collect universes from plugins
  */
-@SuppressWarnings({"NonThreadSafeLazyInitialization", "StaticVariableUsedBeforeInitialization"})
 public final class Multiverse
 {
 	public static Multiverse Get()
@@ -88,7 +87,7 @@ public final class Multiverse
 		}
 	}
 
-	private IServer server;
+	private final IServer server;
 	private final Map<String, Universe> universes = new HashMap<String, Universe>(1);
 	private final Map<String, Universe> worldMap = new HashMap<String, Universe>(1);
 }

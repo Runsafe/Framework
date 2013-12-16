@@ -11,7 +11,6 @@ import no.runsafe.framework.text.ChatColour;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabExecutor;
 import org.bukkit.craftbukkit.libs.joptsimple.internal.Strings;
 import org.bukkit.entity.Player;
 
@@ -22,7 +21,7 @@ import java.util.List;
 /**
  * This class sits between bukkit and the command objects, routing the commands through to the framework objects.
  */
-public final class BukkitCommandTabExecutor implements TabExecutor
+public final class BukkitCommandTabExecutor implements ITabExecutor
 {
 	public BukkitCommandTabExecutor(ICommandHandler command, ICommandExecutor console, IDebug debug, IConsole consoleLog)
 	{
@@ -32,11 +31,13 @@ public final class BukkitCommandTabExecutor implements TabExecutor
 		this.consoleLog = consoleLog;
 	}
 
+	@Override
 	public String getName()
 	{
 		return command.getName();
 	}
 
+	@Override
 	public ICommandHandler getHandler()
 	{
 		return command;

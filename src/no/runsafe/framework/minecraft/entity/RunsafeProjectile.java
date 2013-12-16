@@ -35,7 +35,7 @@ public class RunsafeProjectile extends BukkitProjectile
 	}
 
 	@Nullable
-	@SuppressWarnings({"LocalVariableOfConcreteClass"})
+	@SuppressWarnings("LocalVariableOfConcreteClass")
 	public IPlayer getShooterPlayer()
 	{
 		IWorld world = getWorld();

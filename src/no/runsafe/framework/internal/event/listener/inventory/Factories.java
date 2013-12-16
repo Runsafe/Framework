@@ -1,6 +1,6 @@
 package no.runsafe.framework.internal.event.listener.inventory;
 
-import no.runsafe.framework.internal.event.EventEngine;
+import no.runsafe.framework.internal.event.BukkitEventMapper;
 
 public final class Factories
 {
@@ -10,14 +10,14 @@ public final class Factories
 
 	public static void Register()
 	{
-		EventEngine.Register(ChestClose.Factory());
-		EventEngine.Register(ChestOpen.Factory());
-		EventEngine.Register(InventoryClose.Factory());
-		EventEngine.Register(InventoryOpen.Factory());
-		EventEngine.Register(Inventory.Factory());
-		EventEngine.Register(InventoryClick.Factory());
-		EventEngine.Register(InventoryMoveItem.Factory());
-		EventEngine.Register(InventoryPickupItem.Factory());
-		EventEngine.Register(CraftItem.Factory());
+		BukkitEventMapper.Register(ChestClose.Factory());
+		BukkitEventMapper.Register(ChestOpen.Factory());
+		BukkitEventMapper.Register(Close.Factory());
+		BukkitEventMapper.Register(Open.Factory());
+		BukkitEventMapper.Register(Inventory.Factory());
+		BukkitEventMapper.Register(Click.Factory());
+		BukkitEventMapper.Register(MoveItem.Factory());
+		BukkitEventMapper.Register(PickupItem.Factory());
+		BukkitEventMapper.Register(CraftItem.Factory());
 	}
 }

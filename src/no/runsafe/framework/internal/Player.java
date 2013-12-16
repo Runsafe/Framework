@@ -7,7 +7,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
-@SuppressWarnings("StaticVariableUsedBeforeInitialization")
 public final class Player
 {
 	public static Player Get()

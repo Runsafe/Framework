@@ -4,11 +4,11 @@ import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.event.plugin.IPluginDisabled;
 import no.runsafe.framework.api.event.plugin.IPluginEnabled;
 import no.runsafe.framework.api.log.IDebug;
-import no.runsafe.framework.internal.command.CommandEngine;
+import no.runsafe.framework.internal.command.Engine;
 import no.runsafe.framework.internal.configuration.ConfigurationEngine;
 import no.runsafe.framework.internal.database.SchemaUpdater;
 import no.runsafe.framework.internal.database.jdbc.Database;
-import no.runsafe.framework.internal.event.EventEngine;
+import no.runsafe.framework.internal.event.BukkitEventMapper;
 import no.runsafe.framework.internal.hooks.HookEngine;
 import no.runsafe.framework.internal.log.*;
 import no.runsafe.framework.internal.lua.GlobalEnvironment;
@@ -175,8 +175,8 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		container.addComponent(ConfigurationEngine.class);
 		container.addComponent(Database.class);
 		container.addComponent(SchemaUpdater.class);
-		container.addComponent(EventEngine.class);
-		container.addComponent(CommandEngine.class);
+		container.addComponent(BukkitEventMapper.class);
+		container.addComponent(Engine.class);
 		container.addComponent(new Scheduler(getServer().getScheduler(), this));
 
 		// Logging/output facilities

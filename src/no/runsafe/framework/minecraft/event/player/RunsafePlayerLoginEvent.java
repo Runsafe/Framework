@@ -65,7 +65,6 @@ public class RunsafePlayerLoginEvent extends RunsafePlayerEvent implements IFake
 		event.setKickMessage(message);
 	}
 
-	@SuppressWarnings("MethodWithMultipleLoops")
 	@Override
 	public boolean Fire()
 	{

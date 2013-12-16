@@ -36,7 +36,6 @@ public class RunsafePlayerKickEvent extends RunsafePlayerEvent implements IFakea
 		event.setReason(reason);
 	}
 
-	@SuppressWarnings("MethodWithMultipleLoops")
 	@Override
 	public boolean Fire()
 	{

@@ -4,7 +4,6 @@ import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.Player;
 import no.runsafe.framework.minecraft.player.RunsafeAmbiguousPlayer;
-import org.omg.CosNaming._NamingContextStub;
 
 import javax.annotation.Nullable;
 import java.util.List;

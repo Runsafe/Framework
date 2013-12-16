@@ -6,6 +6,7 @@ import no.runsafe.framework.api.packets.IPacket;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 
+import javax.annotation.Nullable;
 import java.lang.reflect.Field;
 
 public abstract class NetworkPacket implements IPacket
@@ -35,6 +36,7 @@ public abstract class NetworkPacket implements IPacket
 		}
 	}
 
+	@Nullable
 	protected Object getData(String key)
 	{
 		try

@@ -67,7 +67,6 @@ public class RunsafePlayerDeathEvent extends RunsafeEntityDeathEvent implements 
 		event.setKeepLevel(keepLevel);
 	}
 
-	@SuppressWarnings("MethodWithMultipleLoops")
 	@Override
 	public boolean Fire()
 	{

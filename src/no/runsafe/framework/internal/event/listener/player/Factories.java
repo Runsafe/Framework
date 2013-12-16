@@ -1,6 +1,6 @@
 package no.runsafe.framework.internal.event.listener.player;
 
-import no.runsafe.framework.internal.event.EventEngine;
+import no.runsafe.framework.internal.event.BukkitEventMapper;
 
 public final class Factories
 {
@@ -10,29 +10,29 @@ public final class Factories
 
 	public static void Register()
 	{
-		EventEngine.Register(PlayerChangedWorld.Factory());
-		EventEngine.Register(PlayerChat.Factory());
-		EventEngine.Register(PlayerCommandPreprocess.Factory());
-		EventEngine.Register(PlayerDeath.Factory());
-		EventEngine.Register(PlayerDropItem.Factory());
-		EventEngine.Register(PlayerInteract.Factory());
-		EventEngine.Register(PlayerInteractEntity.Factory());
-		EventEngine.Register(PlayerJoin.Factory());
-		EventEngine.Register(PlayerKick.Factory());
-		EventEngine.Register(PlayerLeftClick.Factory());
-		EventEngine.Register(PlayerLogin.Factory());
-		EventEngine.Register(PlayerMove.Factory());
-		EventEngine.Register(PlayerPreLogin.Factory());
-		EventEngine.Register(PlayerQuit.Factory());
-		EventEngine.Register(PlayerRespawn.Factory());
-		EventEngine.Register(PlayerRightClick.Factory());
-		EventEngine.Register(PlayerRightClickSign.Factory());
-		EventEngine.Register(PlayerTeleport.Factory());
-		EventEngine.Register(PlayerPortal.Factory());
-		EventEngine.Register(PlayerPortalEvent.Factory());
-		EventEngine.Register(PlayerPickupItem.Factory());
-		EventEngine.Register(PlayerTeleportEvent.Factory());
-		EventEngine.Register(PlayerDamage.Factory());
-		EventEngine.Register(PlayerFish.Factory());
+		BukkitEventMapper.Register(PlayerChangedWorld.Factory());
+		BukkitEventMapper.Register(Chat.Factory());
+		BukkitEventMapper.Register(CommandPreprocess.Factory());
+		BukkitEventMapper.Register(Death.Factory());
+		BukkitEventMapper.Register(DropItem.Factory());
+		BukkitEventMapper.Register(Interact.Factory());
+		BukkitEventMapper.Register(InteractEntity.Factory());
+		BukkitEventMapper.Register(Join.Factory());
+		BukkitEventMapper.Register(Kick.Factory());
+		BukkitEventMapper.Register(LeftClick.Factory());
+		BukkitEventMapper.Register(Login.Factory());
+		BukkitEventMapper.Register(Move.Factory());
+		BukkitEventMapper.Register(PreLogin.Factory());
+		BukkitEventMapper.Register(Quit.Factory());
+		BukkitEventMapper.Register(Respawn.Factory());
+		BukkitEventMapper.Register(RightClick.Factory());
+		BukkitEventMapper.Register(RightClickSign.Factory());
+		BukkitEventMapper.Register(Teleport.Factory());
+		BukkitEventMapper.Register(Portal.Factory());
+		BukkitEventMapper.Register(PortalEvent.Factory());
+		BukkitEventMapper.Register(PickupItem.Factory());
+		BukkitEventMapper.Register(TeleportEvent.Factory());
+		BukkitEventMapper.Register(Damage.Factory());
+		BukkitEventMapper.Register(Fish.Factory());
 	}
 }

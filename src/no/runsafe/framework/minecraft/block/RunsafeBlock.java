@@ -16,7 +16,6 @@ public class RunsafeBlock extends BukkitBlock implements IBlock
 		super(toWrap);
 	}
 
-	@SuppressWarnings("InstanceMethodNamingConvention")
 	@Override
 	public boolean is(Item type)
 	{

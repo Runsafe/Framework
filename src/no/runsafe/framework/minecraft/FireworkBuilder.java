@@ -2,6 +2,7 @@ package no.runsafe.framework.minecraft;
 
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.internal.wrapper.BukkitWorld;
 import no.runsafe.framework.minecraft.item.meta.RunsafeFirework;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import org.bukkit.Color;
@@ -147,10 +148,11 @@ public class FireworkBuilder
 		return item;
 	}
 
+	@SuppressWarnings("CastToConcreteClass")
 	public void Fire(ILocation location)
 	{
 		org.bukkit.entity.Firework firework =
-			((RunsafeWorld) location.getWorld()).spawn(location, org.bukkit.entity.Firework.class);
+			((BukkitWorld) location.getWorld()).spawn(location, org.bukkit.entity.Firework.class);
 		firework.getFireworkMeta().setPower(power);
 		if (!effects.isEmpty())
 			firework.getFireworkMeta().addEffects(effects);

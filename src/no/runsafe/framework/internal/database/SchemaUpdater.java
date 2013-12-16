@@ -4,7 +4,6 @@ import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.database.IDatabase;
 import no.runsafe.framework.api.database.ISchemaChanges;
 import no.runsafe.framework.api.database.ITransaction;
-import org.picocontainer.Startable;
 
 import java.util.HashMap;
 import java.util.List;

@@ -3,7 +3,7 @@ package no.runsafe.framework.internal.log;
 import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.wrapper.item.BukkitItemStack;
-import no.runsafe.framework.text.ConsoleColour;
+import no.runsafe.framework.internal.text.ConsoleColour;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 
@@ -66,7 +66,7 @@ public final class Debug extends LoggingBase implements IDebug
 	@Override
 	public void setDebugLevel(Level level)
 	{
-		if (level != debugLevel)
+		if (!level.equals(debugLevel))
 		{
 			debugLevel = level;
 			writeLog(Level.INFO, String.format("Debug level is now %s", level.getName()));

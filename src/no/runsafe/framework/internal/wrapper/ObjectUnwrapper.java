@@ -63,7 +63,7 @@ public final class ObjectUnwrapper
 	}
 
 	@Nullable
-	public static <T extends Object> T convert(IWrapper<T> wrapper)
+	public static <T> T convert(IWrapper<T> wrapper)
 	{
 		return wrapper.getRaw();
 	}

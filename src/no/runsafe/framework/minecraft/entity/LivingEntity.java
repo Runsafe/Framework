@@ -2,8 +2,8 @@ package no.runsafe.framework.minecraft.entity;
 
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
+import no.runsafe.framework.internal.wrapper.BukkitWorld;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.minecraft.RunsafeWorld;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 
@@ -89,10 +89,11 @@ public enum LivingEntity implements RunsafeEntityType
 		return type;
 	}
 
+	@SuppressWarnings("CastToConcreteClass")
 	@Override
 	public RunsafeEntity spawn(ILocation location)
 	{
-		return ObjectWrapper.convert(((RunsafeWorld) location.getWorld()).spawn(location, getEntityType()));
+		return ObjectWrapper.convert(((BukkitWorld) location.getWorld()).spawn(location, getEntityType()));
 	}
 
 	private final EntityType type;

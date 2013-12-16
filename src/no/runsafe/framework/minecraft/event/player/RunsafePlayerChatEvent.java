@@ -51,7 +51,6 @@ public class RunsafePlayerChatEvent extends RunsafeCancellablePlayerEvent implem
 		return ObjectWrapper.convert(event.getRecipients());
 	}
 
-	@SuppressWarnings("MethodWithMultipleLoops")
 	@Override
 	public boolean Fire()
 	{

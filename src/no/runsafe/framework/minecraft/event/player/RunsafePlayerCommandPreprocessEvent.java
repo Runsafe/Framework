@@ -2,7 +2,6 @@ package no.runsafe.framework.minecraft.event.player;
 
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
-import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 public class RunsafePlayerCommandPreprocessEvent extends RunsafeCancellablePlayerEvent

@@ -3,7 +3,6 @@ package no.runsafe.framework.minecraft.player;
 import com.google.common.collect.ImmutableList;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
-import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.hooks.PlayerExtensions;
 import no.runsafe.framework.internal.networking.NetworkManager;
@@ -26,8 +25,8 @@ import javax.annotation.Nullable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-@SuppressWarnings({"OverlyCoupledClass", "LocalVariableOfConcreteClass"})
-public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor, IPlayer
+@SuppressWarnings("LocalVariableOfConcreteClass")
+public class RunsafePlayer extends BukkitPlayer implements IPlayer
 {
 	public RunsafePlayer(OfflinePlayer toWrap)
 	{
@@ -253,6 +252,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor, IPl
 			sendMessage(ChatColour.ToMinecraft(String.format(format, params)));
 	}
 
+	@SuppressWarnings("CastToConcreteClass")
 	@Override
 	public void throwToPoint(ILocation location)
 	{
@@ -262,6 +262,7 @@ public class RunsafePlayer extends BukkitPlayer implements ICommandExecutor, IPl
 			setVelocity(((BukkitLocation) location).toVector().subtract(((BukkitLocation) playerLocation).toVector()));
 	}
 
+	@SuppressWarnings("CastToConcreteClass")
 	@Override
 	public void throwFromPoint(ILocation location)
 	{

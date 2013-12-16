@@ -26,7 +26,6 @@ public abstract class RunsafeCustomEvent extends RunsafeInternalEvent
 
 	public abstract Object getData();
 
-	@SuppressWarnings("MethodWithMultipleLoops")
 	@Override
 	public boolean Fire()
 	{

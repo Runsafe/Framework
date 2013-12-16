@@ -1,6 +1,6 @@
 package no.runsafe.framework.internal.event.listener.block;
 
-import no.runsafe.framework.internal.event.EventEngine;
+import no.runsafe.framework.internal.event.BukkitEventMapper;
 
 public final class Factories
 {
@@ -10,12 +10,12 @@ public final class Factories
 
 	public static void Register()
 	{
-		EventEngine.Register(BlockBreak.Factory());
-		EventEngine.Register(BlockBreakListener.Factory());
-		EventEngine.Register(BlockDispense.Factory());
-		EventEngine.Register(BlockPlace.Factory());
-		EventEngine.Register(BlockRedstone.Factory());
-		EventEngine.Register(ChestBreak.Factory());
-		EventEngine.Register(SignChange.Factory());
+		BukkitEventMapper.Register(Break.Factory());
+		BukkitEventMapper.Register(BreakListener.Factory());
+		BukkitEventMapper.Register(Dispense.Factory());
+		BukkitEventMapper.Register(Place.Factory());
+		BukkitEventMapper.Register(Redstone.Factory());
+		BukkitEventMapper.Register(ChestBreak.Factory());
+		BukkitEventMapper.Register(SignChange.Factory());
 	}
 }

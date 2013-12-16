@@ -17,7 +17,6 @@ public class RunsafeFakePlayer extends RunsafePlayer implements IFakePlayer
 		this.groups = ImmutableList.copyOf(groups);
 	}
 
-	@SuppressWarnings("MethodWithMultipleLoops")
 	@Override
 	public boolean hasPermission(String permission)
 	{

@@ -1,5 +1,6 @@
 package no.runsafe.framework.text;
 
+import no.runsafe.framework.internal.text.ConsoleColour;
 import org.bukkit.ChatColor;
 
 import java.util.regex.Matcher;

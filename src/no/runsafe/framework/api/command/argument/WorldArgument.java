@@ -43,10 +43,10 @@ public class WorldArgument extends CommandArgumentSpecification implements ITabC
 			new Function<IWorld, String>()
 			{
 				@Override
-				public String apply(@Nullable IWorld IWorld)
+				public String apply(@Nullable IWorld world)
 				{
-					assert IWorld != null;
-					return IWorld.getName();
+					assert world != null;
+					return world.getName();
 				}
 			}
 		);

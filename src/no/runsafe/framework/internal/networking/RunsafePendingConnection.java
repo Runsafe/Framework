@@ -146,7 +146,7 @@ public class RunsafePendingConnection extends PendingConnection
 
 			if (packet.d())
 			{
-				response = new StringBuilder(0).append(pingEvent.getMotd()).append('\247').append(playerlist.getPlayerCount()).append('\247').append(pingEvent.getMaxPlayers()).toString();
+				response = pingEvent.getMotd() + '\247' + playerlist.getPlayerCount() + '\247' + pingEvent.getMaxPlayers();
 			}
 			else
 			{
@@ -175,7 +175,7 @@ public class RunsafePendingConnection extends PendingConnection
 	}
 
 	@Override
-	public void a(String s, Object[] aobject)
+	public void a(String s, Object[] obj)
 	{
 		b = true;
 	}

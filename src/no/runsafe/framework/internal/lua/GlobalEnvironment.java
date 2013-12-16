@@ -13,7 +13,6 @@ import javax.annotation.Nullable;
 import java.io.File;
 import java.util.Collection;
 
-@SuppressWarnings("InstanceMethodNamingConvention")
 public class GlobalEnvironment implements Startable, IGlobal
 {
 	public static IGlobal get()

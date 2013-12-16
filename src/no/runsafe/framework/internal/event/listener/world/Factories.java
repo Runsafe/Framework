@@ -1,6 +1,6 @@
 package no.runsafe.framework.internal.event.listener.world;
 
-import no.runsafe.framework.internal.event.EventEngine;
+import no.runsafe.framework.internal.event.BukkitEventMapper;
 
 public final class Factories
 {
@@ -10,13 +10,13 @@ public final class Factories
 
 	public static void Register()
 	{
-		EventEngine.Register(ChunkLoad.Factory());
-		EventEngine.Register(ChunkPopulate.Factory());
-		EventEngine.Register(ChunkUnload.Factory());
-		EventEngine.Register(SpawnChange.Factory());
-		EventEngine.Register(WorldInit.Factory());
-		EventEngine.Register(WorldLoad.Factory());
-		EventEngine.Register(WorldSave.Factory());
-		EventEngine.Register(WorldUnload.Factory());
+		BukkitEventMapper.Register(ChunkLoad.Factory());
+		BukkitEventMapper.Register(ChunkPopulate.Factory());
+		BukkitEventMapper.Register(ChunkUnload.Factory());
+		BukkitEventMapper.Register(SpawnChange.Factory());
+		BukkitEventMapper.Register(Init.Factory());
+		BukkitEventMapper.Register(Load.Factory());
+		BukkitEventMapper.Register(Save.Factory());
+		BukkitEventMapper.Register(Unload.Factory());
 	}
 }

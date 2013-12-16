@@ -121,7 +121,6 @@ public class RunsafeServer extends BukkitServer implements IServer
 		return new RunsafePlayer(player);
 	}
 
-	@SuppressWarnings("MethodWithMultipleLoops")
 	@Nonnull
 	public static List<String> findPlayer(String playerName)
 	{
