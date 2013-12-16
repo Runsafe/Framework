@@ -101,7 +101,6 @@ public abstract class RunsafePlugin extends InjectionPlugin implements IPluginFi
 		output = getComponent(IDebug.class);
 		output.debugFine("Standard components added.");
 
-		PluginSetup();
 		pluginSetup();
 		output.debugFine("Plugin setup performed.");
 
@@ -118,11 +117,6 @@ public abstract class RunsafePlugin extends InjectionPlugin implements IPluginFi
 	public IConfiguration loadConfiguration(String filename)
 	{
 		return getComponent(ConfigurationEngine.class).loadConfiguration(new File(getDataFolder(), filename));
-	}
-
-	@Deprecated
-	protected void PluginSetup()
-	{
 	}
 
 	protected abstract void pluginSetup();
