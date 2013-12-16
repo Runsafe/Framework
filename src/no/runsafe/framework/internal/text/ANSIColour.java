@@ -1,4 +1,4 @@
-package no.runsafe.framework.text;
+package no.runsafe.framework.internal.text;
 
 public enum ANSIColour
 {

@@ -1,5 +1,7 @@
 package no.runsafe.framework.text;
 
+import no.runsafe.framework.internal.text.ANSIColour;
+import no.runsafe.framework.internal.text.ANSIRendition;
 import org.bukkit.ChatColor;
 
 import java.util.regex.Pattern;
