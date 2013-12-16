@@ -62,9 +62,7 @@ public abstract class RunsafePlugin extends InjectionPlugin implements IPluginFi
 		{
 			List<T> implementations = kernel.getComponents(type);
 			if (implementations != null && !implementations.isEmpty())
-				for (T implementation : implementations)
-					if (!result.contains(implementation))
-						result.add(implementation);
+				safeAddAll(result, implementations);
 		}
 		return result;
 	}
@@ -104,6 +102,7 @@ public abstract class RunsafePlugin extends InjectionPlugin implements IPluginFi
 		output.debugFine("Standard components added.");
 
 		PluginSetup();
+		pluginSetup();
 		output.debugFine("Plugin setup performed.");
 
 		scheduleReadyEvent();
@@ -121,7 +120,12 @@ public abstract class RunsafePlugin extends InjectionPlugin implements IPluginFi
 		return getComponent(ConfigurationEngine.class).loadConfiguration(new File(getDataFolder(), filename));
 	}
 
-	protected abstract void PluginSetup();
+	@Deprecated
+	protected void PluginSetup()
+	{
+	}
+
+	protected abstract void pluginSetup();
 
 	private void scheduleReadyEvent()
 	{
@@ -141,14 +145,10 @@ public abstract class RunsafePlugin extends InjectionPlugin implements IPluginFi
 			);
 	}
 
-	/**
-	 * Returns the class responsible for handling files for this plug-in instance.
-	 *
-	 * @return IPluginFileManager
-	 */
-	@Deprecated
-	public IPluginFileManager getFileManager()
+	private static <T> void safeAddAll(List<T> result, List<T> implementations)
 	{
-		return getComponent(IPluginFileManager.class);
+		for (T implementation : implementations)
+			if (!result.contains(implementation))
+				result.add(implementation);
 	}
 }
