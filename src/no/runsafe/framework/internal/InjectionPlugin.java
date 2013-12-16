@@ -4,7 +4,6 @@ import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.event.plugin.IPluginDisabled;
 import no.runsafe.framework.api.event.plugin.IPluginEnabled;
 import no.runsafe.framework.api.log.IDebug;
-import no.runsafe.framework.files.PluginFileManager;
 import no.runsafe.framework.internal.command.CommandEngine;
 import no.runsafe.framework.internal.configuration.ConfigurationEngine;
 import no.runsafe.framework.internal.database.SchemaUpdater;
@@ -178,7 +177,6 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		container.addComponent(SchemaUpdater.class);
 		container.addComponent(EventEngine.class);
 		container.addComponent(CommandEngine.class);
-		container.addComponent(PluginFileManager.class);
 		container.addComponent(new Scheduler(getServer().getScheduler(), this));
 
 		// Logging/output facilities

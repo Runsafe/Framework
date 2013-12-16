@@ -6,11 +6,14 @@ import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.api.event.IServerReady;
+import no.runsafe.framework.api.filesystem.IPluginDataFile;
+import no.runsafe.framework.api.filesystem.IPluginFileManager;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.log.IDebug;
-import no.runsafe.framework.files.PluginFileManager;
 import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.command.BukkitCommandTabExecutor;
 import no.runsafe.framework.internal.configuration.ConfigurationEngine;
+import no.runsafe.framework.internal.filesystem.PluginDataFile;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
 
@@ -20,7 +23,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class RunsafePlugin extends InjectionPlugin
+public abstract class RunsafePlugin extends InjectionPlugin implements IPluginFileManager
 {
 	@Nullable
 	public static <T extends RunsafePlugin> T getPlugin(Class<T> type)
@@ -87,6 +90,12 @@ public abstract class RunsafePlugin extends InjectionPlugin
 	}
 
 	@Override
+	public IPluginDataFile getFile(String file)
+	{
+		return new PluginDataFile(getComponent(IConsole.class), getName(), getDataFolder(), file);
+	}
+
+	@Override
 	protected void initializePlugin()
 	{
 		super.initializePlugin();
@@ -135,10 +144,11 @@ public abstract class RunsafePlugin extends InjectionPlugin
 	/**
 	 * Returns the class responsible for handling files for this plug-in instance.
 	 *
-	 * @return PluginFileManager
+	 * @return IPluginFileManager
 	 */
-	public PluginFileManager getFileManager()
+	@Deprecated
+	public IPluginFileManager getFileManager()
 	{
-		return getComponent(PluginFileManager.class);
+		return getComponent(IPluginFileManager.class);
 	}
 }

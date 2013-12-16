@@ -1,22 +1,33 @@
-package no.runsafe.framework.files;
+package no.runsafe.framework.internal.filesystem;
 
 import no.runsafe.framework.RunsafePlugin;
+import no.runsafe.framework.api.filesystem.IPluginDataFile;
+import no.runsafe.framework.api.log.IConsole;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class PluginDataFile
+public class PluginDataFile implements IPluginDataFile
 {
 	public PluginDataFile(RunsafePlugin plugin, String file)
 	{
 		pluginName = plugin.getName();
 		fileName = file;
 		dataFile = new File(plugin.getDataFolder(), file);
-		logger = plugin.getLogger();
+		logger = plugin.getComponent(IConsole.class);
 	}
 
+	public PluginDataFile(IConsole console, String pluginName, File dataFolder, String file)
+	{
+		this.pluginName = pluginName;
+		fileName = file;
+		dataFile = new File(dataFolder, file);
+		logger = console;
+	}
+
+	@Override
 	public List<String> getLines()
 	{
 		List<String> lines = new ArrayList<String>(0);
@@ -36,7 +47,7 @@ public class PluginDataFile
 		}
 		catch (Exception exception)
 		{
-			logger.warning(exception.getMessage());
+			logger.logException(exception);
 		}
 
 		return lines;
@@ -57,5 +68,5 @@ public class PluginDataFile
 	private final File dataFile;
 	private final String fileName;
 	private final String pluginName;
-	private final Logger logger;
+	private final IConsole logger;
 }
