@@ -1,8 +1,6 @@
 package no.runsafe.framework.internal.networking;
 
-import net.minecraft.server.v1_7_R1.EntityPlayer;
-import net.minecraft.server.v1_7_R1.MinecraftServer;
-import net.minecraft.server.v1_7_R1.PlayerList;
+import net.minecraft.server.v1_7_R1.*;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.minecraft.event.networking.RunsafeLoginVerifiedEvent;
 import org.apache.commons.lang.StringUtils;
@@ -47,7 +45,7 @@ public class RunsafePendingConnection extends PendingConnection
 	}
 
 	@Override
-	public void a(Packet2Handshake packet)
+	public void a(PacketHandshakingInSetProtocol packet)
 	{
 		if (playerName != null)
 		{
