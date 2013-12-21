@@ -64,7 +64,7 @@ public enum ChatColour
 	@SuppressWarnings("HardcodedFileSeparator")
 	public static String Escape(String message)
 	{
-		return CODE_ANY.matcher(message).replaceAll("\\$1");
+		return CODE_ANY.matcher(message).replaceAll("\\\\$1");
 	}
 
 	public static String ToMinecraft(String message)
