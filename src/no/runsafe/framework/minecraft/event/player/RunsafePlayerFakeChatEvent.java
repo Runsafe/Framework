@@ -28,7 +28,7 @@ public class RunsafePlayerFakeChatEvent extends RunsafePlayerChatEvent
 			output.broadcastColoured(result);
 	}
 
-	public RunsafePlayerFakeChatEvent(IPlayer player, String message)
+	protected RunsafePlayerFakeChatEvent(IPlayer player, String message)
 	{
 		super(null);
 		this.player = player;
