@@ -91,6 +91,7 @@ public enum ChatColour
 		message = CODE_UNDERLINE.matcher(message).replaceAll(UNDERLINE.toBukkit());
 		message = CODE_ITALIC.matcher(message).replaceAll(ITALIC.toBukkit());
 		message = CODE_RESET.matcher(message).replaceAll(RESET.toBukkit());
+		message = CODE_ESCAPED.matcher(message).replaceAll("$1");
 		return message;
 	}
 
@@ -118,6 +119,7 @@ public enum ChatColour
 		message = CODE_UNDERLINE.matcher(message).replaceAll(UNDERLINE.toConsole());
 		message = CODE_ITALIC.matcher(message).replaceAll(ITALIC.toConsole());
 		message = CODE_RESET.matcher(message).replaceAll(RESET.toConsole());
+		message = CODE_ESCAPED.matcher(message).replaceAll("$1");
 		return message + RESET.toConsole();
 	}
 
@@ -137,6 +139,7 @@ public enum ChatColour
 	private final String bukkitCode;
 	private final String consoleCode;
 
+	private static final Pattern CODE_ESCAPED = Pattern.compile("\\\\(&[0-9a-fk-or])");
 	private static final Pattern CODE_ANY = Pattern.compile("(?<!\\\\)(&[0-9a-fk-or])");
 	private static final Pattern CODE_BLACK = BLACK.toPattern();
 	private static final Pattern CODE_DARK_GREEN = DARK_GREEN.toPattern();
