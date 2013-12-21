@@ -1,29 +1,27 @@
 package no.runsafe.framework.internal.text;
 
-import no.runsafe.framework.api.IConfiguration;
 import no.runsafe.framework.api.ILocalizer;
-import no.runsafe.framework.internal.configuration.ConfigurationEngine;
-import no.runsafe.framework.internal.text.GlobalLocale;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 
 public class Localization implements ILocalizer
 {
-	public Localization(JavaPlugin plugin, GlobalLocale localizer, ConfigurationEngine engine)
+	public Localization(JavaPlugin plugin, GlobalLocale localizer)
 	{
-		locale = engine.loadConfiguration(new File(plugin.getDataFolder(), localizer.getLocale() + ".yml"));
+		locale = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), localizer.getLocale() + ".yml"));
 	}
 
 	@SuppressWarnings("InstanceMethodNamingConvention")
 	@Override
 	public String _(String value)
 	{
-		if(locale.getConfigValueAsString(value) == null)
-			locale.setConfigValue(value, value);
+		if (locale.getString(value) == null)
+			locale.set(value, value);
 
-		return locale.getConfigValueAsString(value);
+		return locale.getString(value);
 	}
 
-	private final IConfiguration locale;
+	private final YamlConfiguration locale;
 }
