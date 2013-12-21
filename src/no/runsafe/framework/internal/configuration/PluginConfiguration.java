@@ -239,11 +239,6 @@ public final class PluginConfiguration implements IConfiguration
 		}
 	}
 
-	public void update()
-	{
-
-	}
-
 	public void load(File file)
 	{
 		configFilePath = file.getPath();
@@ -278,6 +273,9 @@ public final class PluginConfiguration implements IConfiguration
 	{
 		if (configFile.getDefaults() != null)
 		{
+			FileConfiguration oldConfig = configFile;
+			configFile = new YamlConfiguration();
+			configFile.setDefaults(oldConfig.getDefaults());
 			configFile.options().copyDefaults(true);
 			save();
 			console.logInformation("Configuration restored to defaults.");
