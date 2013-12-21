@@ -14,6 +14,8 @@ import no.runsafe.framework.internal.log.*;
 import no.runsafe.framework.internal.lua.GlobalEnvironment;
 import no.runsafe.framework.internal.lua.PluginRunner;
 import no.runsafe.framework.internal.networking.NetworkManager;
+import no.runsafe.framework.internal.text.GlobalLocale;
+import no.runsafe.framework.internal.text.Localization;
 import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.timer.Scheduler;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -160,6 +162,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		globalContainer.addComponent(NetworkManager.class);
 		globalContainer.addComponent(HookEngine.class);
 		globalContainer.addComponent(GlobalEnvironment.class);
+		globalContainer.addComponent(GlobalLocale.class);
 		globalContainer.start();
 		uninitialized = false;
 	}
@@ -178,6 +181,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		container.addComponent(BukkitEventMapper.class);
 		container.addComponent(Engine.class);
 		container.addComponent(new Scheduler(getServer().getScheduler(), this));
+		container.addComponent(Localization.class);
 
 		// Logging/output facilities
 		container.addComponent(Console.class);
