@@ -20,6 +20,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 
 /**
@@ -262,10 +263,19 @@ public final class PluginConfiguration implements IConfiguration
 	}
 
 	@Override
+	public Set<String> getConfigurationKeys()
+	{
+		return configFile.getKeys(true);
+	}
+
+	@Override
 	public boolean reset()
 	{
 		if (configFile.getDefaults() != null)
 		{
+			FileConfiguration oldConfig = configFile;
+			configFile = new YamlConfiguration();
+			configFile.setDefaults(oldConfig.getDefaults());
 			configFile.options().copyDefaults(true);
 			save();
 			console.logInformation("Configuration restored to defaults.");

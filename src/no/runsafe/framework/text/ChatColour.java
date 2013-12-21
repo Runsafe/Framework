@@ -45,6 +45,12 @@ public enum ChatColour
 		return code;
 	}
 
+	@SuppressWarnings("HardcodedFileSeparator")
+	public Pattern toPattern()
+	{
+		return Pattern.compile("(?<!\\\\)" + code);
+	}
+
 	public String toConsole()
 	{
 		return consoleCode;
@@ -53,6 +59,12 @@ public enum ChatColour
 	public String toBukkit()
 	{
 		return bukkitCode;
+	}
+
+	@SuppressWarnings("HardcodedFileSeparator")
+	public static String Escape(String message)
+	{
+		return CODE_ANY.matcher(message).replaceAll("\\\\$1");
 	}
 
 	public static String ToMinecraft(String message)
@@ -79,6 +91,7 @@ public enum ChatColour
 		message = CODE_UNDERLINE.matcher(message).replaceAll(UNDERLINE.toBukkit());
 		message = CODE_ITALIC.matcher(message).replaceAll(ITALIC.toBukkit());
 		message = CODE_RESET.matcher(message).replaceAll(RESET.toBukkit());
+		message = CODE_ESCAPED.matcher(message).replaceAll("$1");
 		return message;
 	}
 
@@ -106,6 +119,7 @@ public enum ChatColour
 		message = CODE_UNDERLINE.matcher(message).replaceAll(UNDERLINE.toConsole());
 		message = CODE_ITALIC.matcher(message).replaceAll(ITALIC.toConsole());
 		message = CODE_RESET.matcher(message).replaceAll(RESET.toConsole());
+		message = CODE_ESCAPED.matcher(message).replaceAll("$1");
 		return message + RESET.toConsole();
 	}
 
@@ -125,27 +139,28 @@ public enum ChatColour
 	private final String bukkitCode;
 	private final String consoleCode;
 
-	private static final Pattern CODE_ANY = Pattern.compile("&[0-9a-fk-or]");
-	private static final Pattern CODE_BLACK = Pattern.compile(BLACK.toString());
-	private static final Pattern CODE_DARK_GREEN = Pattern.compile(DARK_GREEN.toString());
-	private static final Pattern CODE_DARK_BLUE = Pattern.compile(DARK_BLUE.toString());
-	private static final Pattern CODE_DARK_AQUA = Pattern.compile(DARK_AQUA.toString());
-	private static final Pattern CODE_DARK_RED = Pattern.compile(DARK_RED.toString());
-	private static final Pattern CODE_DARK_PURPLE = Pattern.compile(DARK_PURPLE.toString());
-	private static final Pattern CODE_GOLD = Pattern.compile(GOLD.toString());
-	private static final Pattern CODE_GRAY = Pattern.compile(GRAY.toString());
-	private static final Pattern CODE_DARK_GRAY = Pattern.compile(DARK_GRAY.toString());
-	private static final Pattern CODE_BLUE = Pattern.compile(BLUE.toString());
-	private static final Pattern CODE_GREEN = Pattern.compile(GREEN.toString());
-	private static final Pattern CODE_AQUA = Pattern.compile(AQUA.toString());
-	private static final Pattern CODE_RED = Pattern.compile(RED.toString());
-	private static final Pattern CODE_LIGHT_PURPLE = Pattern.compile(LIGHT_PURPLE.toString());
-	private static final Pattern CODE_YELLOW = Pattern.compile(YELLOW.toString());
-	private static final Pattern CODE_WHITE = Pattern.compile(WHITE.toString());
-	private static final Pattern CODE_MAGIC = Pattern.compile(MAGIC.toString());
-	private static final Pattern CODE_BOLD = Pattern.compile(BOLD.toString());
-	private static final Pattern CODE_STRIKETHROUGH = Pattern.compile(STRIKETHROUGH.toString());
-	private static final Pattern CODE_UNDERLINE = Pattern.compile(UNDERLINE.toString());
-	private static final Pattern CODE_ITALIC = Pattern.compile(ITALIC.toString());
-	private static final Pattern CODE_RESET = Pattern.compile(RESET.toString());
+	private static final Pattern CODE_ESCAPED = Pattern.compile("\\\\(&[0-9a-fk-or])");
+	private static final Pattern CODE_ANY = Pattern.compile("(?<!\\\\)(&[0-9a-fk-or])");
+	private static final Pattern CODE_BLACK = BLACK.toPattern();
+	private static final Pattern CODE_DARK_GREEN = DARK_GREEN.toPattern();
+	private static final Pattern CODE_DARK_BLUE = DARK_BLUE.toPattern();
+	private static final Pattern CODE_DARK_AQUA = DARK_AQUA.toPattern();
+	private static final Pattern CODE_DARK_RED = DARK_RED.toPattern();
+	private static final Pattern CODE_DARK_PURPLE = DARK_PURPLE.toPattern();
+	private static final Pattern CODE_GOLD = GOLD.toPattern();
+	private static final Pattern CODE_GRAY = GRAY.toPattern();
+	private static final Pattern CODE_DARK_GRAY = DARK_GRAY.toPattern();
+	private static final Pattern CODE_BLUE = BLUE.toPattern();
+	private static final Pattern CODE_GREEN = GREEN.toPattern();
+	private static final Pattern CODE_AQUA = AQUA.toPattern();
+	private static final Pattern CODE_RED = RED.toPattern();
+	private static final Pattern CODE_LIGHT_PURPLE = LIGHT_PURPLE.toPattern();
+	private static final Pattern CODE_YELLOW = YELLOW.toPattern();
+	private static final Pattern CODE_WHITE = WHITE.toPattern();
+	private static final Pattern CODE_MAGIC = MAGIC.toPattern();
+	private static final Pattern CODE_BOLD = BOLD.toPattern();
+	private static final Pattern CODE_STRIKETHROUGH = STRIKETHROUGH.toPattern();
+	private static final Pattern CODE_UNDERLINE = UNDERLINE.toPattern();
+	private static final Pattern CODE_ITALIC = ITALIC.toPattern();
+	private static final Pattern CODE_RESET = RESET.toPattern();
 }

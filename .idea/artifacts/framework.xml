@@ -7,6 +7,7 @@
         <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
       </element>
       <element id="file-copy" path="$PROJECT_DIR$/src/output.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/locale.yml" />
     </root>
   </artifact>
 </component>

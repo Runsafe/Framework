@@ -28,6 +28,11 @@ public final class ConfigurationEngine
 		return config;
 	}
 
+	public IConfiguration getPluginConfiguration()
+	{
+		return configuration;
+	}
+
 	/**
 	 * @param plugin        The plugin
 	 * @param configuration The configuration handler class

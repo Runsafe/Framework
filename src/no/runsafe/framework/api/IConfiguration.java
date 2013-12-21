@@ -5,6 +5,7 @@ import no.runsafe.framework.minecraft.Item;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public interface IConfiguration
 {
@@ -101,6 +102,8 @@ public interface IConfiguration
 	 */
 	@Nullable
 	ILocation getConfigValueAsLocation(String key);
+
+	Set<String> getConfigurationKeys();
 
 	/**
 	 * Writes configuration to disk
