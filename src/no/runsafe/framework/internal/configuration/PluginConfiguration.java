@@ -20,6 +20,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 
 /**
@@ -238,6 +239,11 @@ public final class PluginConfiguration implements IConfiguration
 		}
 	}
 
+	public void update()
+	{
+
+	}
+
 	public void load(File file)
 	{
 		configFilePath = file.getPath();
@@ -259,6 +265,12 @@ public final class PluginConfiguration implements IConfiguration
 		}
 		save();
 		debugger.debugFine("Updating configuration.");
+	}
+
+	@Override
+	public Set<String> getConfigurationKeys()
+	{
+		return configFile.getKeys(true);
 	}
 
 	@Override
