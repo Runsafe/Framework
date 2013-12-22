@@ -26,7 +26,10 @@ public final class Root extends LoggingBase implements Startable
 		redirect.log(Level.INFO, "Redirecting root logger..");
 		Enumeration<String> logs = LogManager.getLogManager().getLoggerNames();
 		while (logs.hasMoreElements())
-			redirect.log(Level.INFO, " Found log " + logs.nextElement());
+		{
+			String name = logs.nextElement();
+			redirect.log(Level.INFO, String.format(" Found log %s with %d handlers.", name, Logger.getLogger(name).getHandlers().length));
+		}
 		// Steal the server loggers output..
 //		overRide(log);
 //		overRide(Logger.getLogger("global"));
