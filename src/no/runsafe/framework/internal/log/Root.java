@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.log;
 
+import no.runsafe.framework.minecraft.RunsafeServer;
 import org.picocontainer.Startable;
 
 import java.io.IOException;
@@ -10,9 +11,10 @@ import java.util.logging.Logger;
 // This class will hook into the root logger and send logs to a new file.
 public final class Root extends LoggingBase implements Startable
 {
-	public Root(FileManager handler) throws IOException
+	public Root(FileManager handler, RunsafeServer server) throws IOException
 	{
 		super(handler.getLogger("root.log"), handler.getFormat("Root"));
+		serverLogger = server.getLogger();
 	}
 
 	@SuppressWarnings("MethodWithMultipleLoops")
@@ -26,7 +28,7 @@ public final class Root extends LoggingBase implements Startable
 		// Steal the parent loggers output..
 		hookLogger(parent);
 		// Steal the server loggers output..
-		hookLogger(Logger.getLogger("Server thread"));
+		hookLogger(serverLogger);
 	}
 
 	private void hookLogger(Logger logger)
@@ -41,4 +43,6 @@ public final class Root extends LoggingBase implements Startable
 	public void stop()
 	{
 	}
+
+	private final Logger serverLogger;
 }
