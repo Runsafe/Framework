@@ -15,7 +15,7 @@ public final class Root extends LoggingBase implements Startable
 {
 	public Root(FileManager handler, RunsafeServer server) throws IOException
 	{
-		super(server.getLogger(), handler.getFormat("Root"));
+		super(Logger.getLogger("Minecraft"), handler.getFormat("Root"));
 		redirect = handler.getLogger("root.log");
 	}
 
