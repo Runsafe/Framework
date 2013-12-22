@@ -1,8 +1,8 @@
 package no.runsafe.framework.internal.lua;
 
+import net.minecraft.util.org.apache.commons.io.FileUtils;
 import no.runsafe.framework.api.lua.IGlobal;
 import no.runsafe.framework.internal.InjectionPlugin;
-import org.apache.commons.io.FileUtils;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.OneArgFunction;

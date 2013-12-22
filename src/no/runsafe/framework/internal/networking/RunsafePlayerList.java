@@ -1,7 +1,8 @@
 package no.runsafe.framework.internal.networking;
 
-import net.minecraft.server.v1_6_R3.*;
-import org.apache.commons.io.Charsets;
+import com.google.common.base.Charsets;
+import net.minecraft.server.v1_7_R1.*;
+import net.minecraft.server.v1_7_R1.NetworkManager;
 
 import java.util.Iterator;
 
@@ -14,7 +15,7 @@ public class RunsafePlayerList extends DedicatedPlayerList
 	}
 
 	@Override
-	public void a(INetworkManager inetworkmanager, EntityPlayer entityplayer)
+	public void a(NetworkManager inetworkmanager, EntityPlayer entityplayer)
 	{
 		// ToDO: Clean-up decompiled code.
 		NBTTagCompound nbttagcompound = a(entityplayer);
@@ -25,31 +26,31 @@ public class RunsafePlayerList extends DedicatedPlayerList
 		if(inetworkmanager.getSocketAddress() != null)
 			s = inetworkmanager.getSocketAddress().toString();
 
-		server.getLogger().info(entityplayer.getName() + '[' + s + "] logged in with entity id " + entityplayer.id + " at ([" + entityplayer.world.worldData.getName() + "] " + entityplayer.locX + ", " + entityplayer.locY + ", " + entityplayer.locZ + ')');
+		server.getLogger().info((new StringBuilder()).append(entityplayer.getName()).append("[").append(s).append("] logged in with entity id ").append(entityplayer.id).append(" at ([").append(entityplayer.world.worldData.getName()).append("] ").append(entityplayer.locX).append(", ").append(entityplayer.locY).append(", ").append(entityplayer.locZ).append(")").toString());
 		WorldServer worldserver = server.getWorldServer(entityplayer.dimension);
 		ChunkCoordinates chunkcoordinates = worldserver.getSpawn();
 		a(entityplayer, null, worldserver);
-		RunsafePlayerConnection playerConnection = new RunsafePlayerConnection(server, inetworkmanager, entityplayer);
-		int max = getMaxPlayers();
-		if(max > 60)
-			max = 60;
-		playerConnection.sendPacket(new Packet1Login(entityplayer.id, worldserver.getWorldData().getType(), entityplayer.playerInteractManager.getGameMode(), worldserver.getWorldData().isHardcore(), worldserver.worldProvider.dimension, worldserver.difficulty, worldserver.getHeight(), max));
+		RunsafePlayerConnection playerconnection = new RunsafePlayerConnection(server, inetworkmanager, entityplayer);
+		int maxPlayers = getMaxPlayers();
+		if(maxPlayers > 60)
+			maxPlayers = 60;
+		playerconnection.sendPacket(new PacketPlayOutLogin(entityplayer.id, worldserver.getWorldData().getType(), entityplayer.playerInteractManager.getGameMode(), worldserver.getWorldData().isHardcore(), worldserver.worldProvider.dimension, worldserver.difficulty, worldserver.getHeight(), maxPlayers));
 		entityplayer.getBukkitEntity().sendSupportedChannels();
-		playerConnection.sendPacket(new Packet250CustomPayload("MC|Brand", getServer().getServerModName().getBytes(Charsets.UTF_8)));
-		playerConnection.sendPacket(new Packet6SpawnPosition(chunkcoordinates.x, chunkcoordinates.y, chunkcoordinates.z));
-		playerConnection.sendPacket(new Packet202Abilities(entityplayer.abilities));
-		playerConnection.sendPacket(new Packet16BlockItemSwitch(entityplayer.inventory.itemInHandIndex));
+		playerconnection.sendPacket(new PacketPlayOutCustomPayload("MC|Brand", getServer().getServerModName().getBytes(Charsets.UTF_8)));
+		playerconnection.sendPacket(new PacketPlayOutSpawnPosition(chunkcoordinates.x, chunkcoordinates.y, chunkcoordinates.z));
+		playerconnection.sendPacket(new PacketPlayOutAbilities(entityplayer.abilities));
+		playerconnection.sendPacket(new PacketPlayOutHeldItemSlot(entityplayer.inventory.itemInHandIndex));
 		a((ScoreboardServer)worldserver.getScoreboard(), entityplayer);
 		b(entityplayer, worldserver);
 		c(entityplayer);
-		playerConnection.a(entityplayer.locX, entityplayer.locY, entityplayer.locZ, entityplayer.yaw, entityplayer.pitch);
-		server.ag().a(playerConnection);
-		playerConnection.sendPacket(new Packet4UpdateTime(worldserver.getTime(), worldserver.getDayTime(), worldserver.getGameRules().getBoolean("doDaylightCycle")));
-		if(!server.getTexturePack().isEmpty())
+		playerconnection.a(entityplayer.locX, entityplayer.locY, entityplayer.locZ, entityplayer.yaw, entityplayer.pitch);
+		server.ag().a(playerconnection);
+		playerconnection.sendPacket(new PacketPlayOutUpdateTime(worldserver.getTime(), worldserver.getDayTime(), worldserver.getGameRules().getBoolean("doDaylightCycle")));
+		if(server.getTexturePack().length() > 0)
 			entityplayer.a(server.getTexturePack(), server.U());
 
 		MobEffect mobeffect;
-		for (Iterator<?> iterator = entityplayer.getEffects().iterator(); iterator.hasNext(); playerConnection.sendPacket(new Packet41MobEffect(entityplayer.id, mobeffect)))
+		for (Iterator iterator = entityplayer.getEffects().iterator(); iterator.hasNext(); playerconnection.sendPacket(new PacketPlayOutEntityEffect(entityplayer.id, mobeffect)))
 			mobeffect = (MobEffect)iterator.next();
 
 		entityplayer.syncInventory();
@@ -66,14 +67,14 @@ public class RunsafePlayerList extends DedicatedPlayerList
 		}
 	}
 
-	private void a(EntityPlayer playerOne, EntityPlayer playerTwo, World world)
+	private void a(EntityPlayer entityplayer, EntityPlayer entityplayer1, World world)
 	{
-		if(playerTwo != null)
-			playerOne.playerInteractManager.setGameMode(playerTwo.playerInteractManager.getGameMode());
+		if(entityplayer1 != null)
+			entityplayer.playerInteractManager.setGameMode(entityplayer1.playerInteractManager.getGameMode());
 		else if(l != null)
-			playerOne.playerInteractManager.setGameMode(l); // This is always null?!
+			entityplayer.playerInteractManager.setGameMode(l); // This is always null?!
 
-		playerOne.playerInteractManager.b(world.getWorldData().getGameType());
+		entityplayer.playerInteractManager.b(world.getWorldData().getGameType());
 	}
 
 	private final DedicatedServer server;
