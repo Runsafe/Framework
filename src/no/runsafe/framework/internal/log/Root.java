@@ -28,10 +28,11 @@ public final class Root extends LoggingBase implements Startable
 		while (logs.hasMoreElements())
 			redirect.log(Level.INFO, " Found log " + logs.nextElement());
 		// Steal the server loggers output..
-		overRide(log);
-		overRide(Logger.getLogger("global"));
-		overRide(Logger.getLogger("Minecraft"));
-		overRide(Logger.getLogger("Minecraft.CommandHelper"));
+//		overRide(log);
+//		overRide(Logger.getLogger("global"));
+//		overRide(Logger.getLogger("Minecraft"));
+//		overRide(Logger.getLogger("Minecraft.CommandHelper"));
+		overRide(Logger.getLogger(""));
 	}
 
 	private void overRide(Logger log)
