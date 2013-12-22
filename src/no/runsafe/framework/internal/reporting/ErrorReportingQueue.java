@@ -1,11 +1,11 @@
 package no.runsafe.framework.internal.reporting;
 
-import com.sun.org.apache.xml.internal.security.utils.Base64;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.timer.Worker;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.bukkit.plugin.Plugin;
 
+import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.ConcurrentHashMap;
@@ -22,7 +22,7 @@ public class ErrorReportingQueue extends Worker<String, Throwable>
 
 	public void submit(Throwable throwable)
 	{
-		String hash = Base64.encode(hasher.digest(ExceptionUtils.getFullStackTrace(throwable).getBytes()));
+		String hash = DatatypeConverter.printBase64Binary(hasher.digest(ExceptionUtils.getFullStackTrace(throwable).getBytes()));
 		if (!reported.containsKey(hash))
 			Push(hash, throwable);
 	}
