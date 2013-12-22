@@ -50,11 +50,9 @@ public class Sound
 
 	public static final class Player
 	{
-		public static final Sound Breath = new Sound(org.bukkit.Sound.BREATH);
 		public static final Sound Burp = new Sound(org.bukkit.Sound.BURP);
 		public static final Sound Drink = new Sound(org.bukkit.Sound.DRINK);
 		public static final Sound Eat = new Sound(org.bukkit.Sound.EAT);
-		public static final Sound Hurt = new Sound(org.bukkit.Sound.HURT);
 		public static final Sound HurtFlesh = new Sound(org.bukkit.Sound.HURT_FLESH);
 		public static final Sound LevelUp = new Sound(org.bukkit.Sound.LEVEL_UP);
 		public static final Sound OrbPickup = new Sound(org.bukkit.Sound.ORB_PICKUP);
