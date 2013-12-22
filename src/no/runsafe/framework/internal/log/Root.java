@@ -21,6 +21,8 @@ public final class Root extends LoggingBase implements Startable
 	{
 		log.log(Level.INFO, "Redirecting root logger..");
 		Logger parent = log.getParent();
+		while(parent.getParent() != null)
+			parent = parent.getParent();
 		// Remove default handlers
 		for(Handler handler : parent.getHandlers())
 			parent.removeHandler(handler);
