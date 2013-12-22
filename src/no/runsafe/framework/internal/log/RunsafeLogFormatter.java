@@ -29,7 +29,7 @@ public final class RunsafeLogFormatter extends SimpleFormatter
 		}
 		Throwable exception = record.getThrown();
 		if (exception != null)
-			message = message + '\n' + exception.getMessage() + '\n' + ExceptionUtils.getFullStackTrace(exception);
+			message = message + '\n' + ExceptionUtils.getFullStackTrace(exception);
 		return String.format(
 			logFormat + '\n',
 			datestamp.print(record.getMillis()),
