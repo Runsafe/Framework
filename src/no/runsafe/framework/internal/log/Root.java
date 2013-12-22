@@ -15,7 +15,7 @@ public final class Root extends LoggingBase implements Startable
 {
 	public Root(FileManager handler, RunsafeServer server) throws IOException
 	{
-		super(Logger.getLogger("Minecraft"), handler.getFormat("Root"));
+		super(server.getLogger(), handler.getFormat("Root"));
 		redirect = handler.getLogger("root.log");
 	}
 
@@ -28,6 +28,15 @@ public final class Root extends LoggingBase implements Startable
 		while (logs.hasMoreElements())
 			redirect.log(Level.INFO, " Found log " + logs.nextElement());
 		// Steal the server loggers output..
+		overRide(log);
+		overRide(Logger.getLogger("global"));
+		overRide(Logger.getLogger("Minecraft"));
+		overRide(Logger.getLogger("Minecraft.CommandHelper"));
+	}
+
+	private void overRide(Logger log)
+	{
+		redirect.log(Level.INFO, String.format("Replacing %d handlers in %s", log.getHandlers().length, log.getName()));
 		for (Handler handler : log.getHandlers())
 			log.removeHandler(handler);
 		for (Handler handler : redirect.getHandlers())
