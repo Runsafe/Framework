@@ -20,8 +20,11 @@ public final class Root extends LoggingBase implements Startable
 	public void start()
 	{
 		log.log(Level.INFO, "Redirecting root logger..");
+		Logger parent = log.getParent();
+		while(parent.getParent() != null)
+			parent = parent.getParent();
 		// Steal the parent loggers output..
-		hookLogger(log.getParent());
+		hookLogger(parent);
 		// Steal the server loggers output..
 		hookLogger(Logger.getLogger("Server thread"));
 	}
