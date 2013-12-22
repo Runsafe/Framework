@@ -21,7 +21,7 @@ public final class Root extends LoggingBase implements Startable
 	{
 		log.log(Level.INFO, "Redirecting root logger..");
 		Logger parent = log.getParent();
-		while(parent.getParent() != null)
+		while (parent.getParent() != null)
 			parent = parent.getParent();
 		// Steal the parent loggers output..
 		hookLogger(parent);
@@ -31,8 +31,8 @@ public final class Root extends LoggingBase implements Startable
 
 	private void hookLogger(Logger logger)
 	{
-		for (Handler handler : log.getHandlers())
-			log.removeHandler(handler);
+		for (Handler handler : logger.getHandlers())
+			logger.removeHandler(handler);
 		for (Handler handler : log.getHandlers())
 			logger.addHandler(handler);
 	}
