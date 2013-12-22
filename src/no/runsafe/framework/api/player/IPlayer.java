@@ -10,4 +10,6 @@ public interface IPlayer extends
 	IPlayerNetwork
 {
 	String getPrettyName();
+	void setPlayerListName(String name);
+	String getPlayerListName();
 }
