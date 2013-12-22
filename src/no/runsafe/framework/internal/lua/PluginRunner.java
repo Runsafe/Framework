@@ -56,11 +56,11 @@ public class PluginRunner
 	private Collection<File> getScripts()
 	{
 		File data = plugin.getDataFolder();
-		if (!data.exists() || !data.isDirectory())
+		if (!(data.exists() && data.isDirectory()))
 			return Collections.emptySet();
 
 		File scripts = new File(data, "lua");
-		if (!scripts.exists() || !scripts.isDirectory())
+		if (!(scripts.exists() && scripts.isDirectory()))
 			return Collections.emptySet();
 
 		Collection<File> list = FileUtils.listFiles(scripts, new String[]{"lua"}, false);

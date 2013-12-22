@@ -26,7 +26,7 @@ public final class RightClick extends EventRouterBase<IPlayerRightClick, PlayerI
 	@Override
 	public void acceptEvent(PlayerInteractEvent event)
 	{
-		if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)
+		if (!(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK))
 			return;
 
 		if (handler instanceof IPlayerRightClickAir && event.getAction() != Action.RIGHT_CLICK_AIR)

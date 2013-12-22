@@ -1,6 +1,5 @@
 package no.runsafe.framework.api.command;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public interface IAsyncCallbackExecute<T>
@@ -15,7 +14,7 @@ public interface IAsyncCallbackExecute<T>
 	T OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters);
 
 	/**
-	 * This method gets called on the main thread after the {@link AsyncCallbackCommand#OnAsyncExecute(ICommandExecutor, HashMap)} completes
+	 * This method gets called on the main thread after the {@link AsyncCallbackCommand#OnAsyncExecute(ICommandExecutor, Map)} completes
 	 *
 	 * @param result The value returned from the background thread
 	 */
