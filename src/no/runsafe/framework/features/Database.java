@@ -5,15 +5,17 @@ import org.picocontainer.Startable;
 
 public class Database implements Startable
 {
-	public Database(SchemaUpdater updater)
+	public Database(SchemaUpdater updater, no.runsafe.framework.internal.database.jdbc.Database database)
 	{
 		this.updater = updater;
+		this.database = database;
 	}
 
 	@Override
 	public void start()
 	{
 		updater.execute();
+		database.open();
 	}
 
 	@Override
@@ -22,4 +24,5 @@ public class Database implements Startable
 	}
 
 	private final SchemaUpdater updater;
+	private final no.runsafe.framework.internal.database.jdbc.Database database;
 }

@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.database.jdbc;
 
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.database.IDatabase;
 import no.runsafe.framework.api.database.ITransaction;
@@ -10,11 +11,11 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.joda.time.DateTime;
 
 import javax.annotation.Nullable;
+import javax.sql.DataSource;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 
@@ -70,24 +71,15 @@ public final class Database extends QueryExecutor implements IDatabase
 	{
 		try
 		{
-			if (conn == null || connectionIsStale() || conn.isClosed())
+			if (source == null)
 				open();
-
-			if (conn != null)
-				return conn;
-
-			output.logError("Unable to get database connection!");
+			return source.getConnection();
 		}
 		catch (SQLException e)
 		{
 			output.logException(e);
 		}
 		return null;
-	}
-
-	private boolean connectionIsStale()
-	{
-		return accessTime == null || accessTime.isBefore(DateTime.now().minusMinutes(5));
 	}
 
 	private File configure(YamlConfiguration config, RunsafePlugin plugin)
@@ -138,11 +130,15 @@ public final class Database extends QueryExecutor implements IDatabase
 		return configFile;
 	}
 
-	private void open() throws SQLException
+	public void open()
 	{
 		close();
 		accessTime = DateTime.now();
-		conn = DriverManager.getConnection(databaseURL, databaseUsername, databasePassword);
+		MysqlDataSource mysqlDataSource = new MysqlDataSource();
+		mysqlDataSource.setUrl(databaseURL);
+		mysqlDataSource.setUser(databaseUsername);
+		mysqlDataSource.setPassword(databasePassword);
+		source = mysqlDataSource;
 		debugger.debugFine(String.format("Opening connection to %s by %s", databaseURL, databaseUsername));
 	}
 
@@ -163,6 +159,7 @@ public final class Database extends QueryExecutor implements IDatabase
 	private final String databaseURL;
 	private final String databaseUsername;
 	private final String databasePassword;
+	private DataSource source;
 	private Connection conn;
 	private DateTime accessTime;
 }
