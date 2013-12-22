@@ -20,18 +20,18 @@ public final class Root extends LoggingBase implements Startable
 	public void start()
 	{
 		log.log(Level.INFO, "Redirecting root logger..");
+		// Steal the parent loggers output..
+		hookLogger(log.getParent());
+		// Steal the server loggers output..
+		hookLogger(Logger.getLogger("Server thread"));
+	}
 
-		Logger global = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-		for (Handler handler : global.getHandlers())
-			global.removeHandler(handler);
-
-		// Shift the output handler from the "Root" log up to the parent logger.
+	private void hookLogger(Logger logger)
+	{
 		for (Handler handler : log.getHandlers())
-		{
-			global.addHandler(handler);
 			log.removeHandler(handler);
-		}
-
+		for (Handler handler : log.getHandlers())
+			logger.addHandler(handler);
 	}
 
 	@Override
