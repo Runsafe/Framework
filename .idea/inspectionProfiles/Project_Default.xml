@@ -857,6 +857,7 @@
       <option name="myAllowedSuppressions">
         <list>
           <option value="MethodWithMultipleLoops" />
+          <option value="StringConcatenationInFormatCall" />
         </list>
       </option>
     </inspection_tool>

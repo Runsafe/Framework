@@ -157,7 +157,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		globalContainer.addComponent(new RunsafeServer(getServer()));
 		globalContainer.addComponent(Multiverse.class);
 		globalContainer.addComponent(Player.class);
-		globalContainer.addComponent(LogFileHandler.class);
+		globalContainer.addComponent(FileManager.class);
 		globalContainer.addComponent(HookEngine.class);
 		globalContainer.addComponent(GlobalEnvironment.class);
 		globalContainer.addComponent(GlobalLocale.class);

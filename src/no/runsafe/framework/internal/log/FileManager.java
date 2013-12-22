@@ -17,9 +17,9 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class LogFileHandler
+public final class FileManager
 {
-	public LogFileHandler()
+	public FileManager()
 	{
 		levelFormat = new HashMap<Level, String>(0);
 		globalLogFormat = new HashMap<String, String>(0);

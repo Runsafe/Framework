@@ -21,7 +21,7 @@ public final class Debug extends LoggingBase implements IDebug
 		try
 		{
 			if (globalDebugger == null)
-				globalDebugger = new Debug(InjectionPlugin.getGlobalComponent(LogFileHandler.class));
+				globalDebugger = new Debug(InjectionPlugin.getGlobalComponent(FileManager.class));
 		}
 		catch (IOException e)
 		{
@@ -32,7 +32,7 @@ public final class Debug extends LoggingBase implements IDebug
 	}
 	private static IDebug globalDebugger;
 
-	public Debug(InjectionPlugin plugin, LogFileHandler handler) throws IOException
+	public Debug(InjectionPlugin plugin, FileManager handler) throws IOException
 	{
 		super(plugin, handler, "Debugger", "debug.log");
 		if (plugin != null)
@@ -41,7 +41,7 @@ public final class Debug extends LoggingBase implements IDebug
 			setDebugLevel(handler.defaultDebugLevel("_global_"));
 	}
 
-	private Debug(LogFileHandler handler) throws IOException
+	private Debug(FileManager handler) throws IOException
 	{
 		super(handler, "Debugger", "debug.log");
 		setDebugLevel(handler.defaultDebugLevel("_global_"));

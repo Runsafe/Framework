@@ -11,7 +11,7 @@ import java.util.logging.Level;
 
 public final class Broadcaster extends LoggingBase implements IOutput
 {
-	public Broadcaster(InjectionPlugin plugin, IServer server, LogFileHandler handler) throws IOException
+	public Broadcaster(InjectionPlugin plugin, IServer server, FileManager handler) throws IOException
 	{
 		super(plugin, handler, "Broadcaster", "broadcast.log");
 		serverOutput = server;

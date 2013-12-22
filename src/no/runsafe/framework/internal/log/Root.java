@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 // This class will hook into the root logger and send logs to a new file.
 public final class Root extends LoggingBase implements Startable
 {
-	public Root(LogFileHandler handler) throws IOException
+	public Root(FileManager handler) throws IOException
 	{
 		super(handler.getLogger("root.log"), handler.getFormat("Root"));
 	}

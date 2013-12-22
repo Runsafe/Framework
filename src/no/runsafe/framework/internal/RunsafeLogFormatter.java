@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal;
 
+import no.runsafe.framework.internal.log.FileManager;
 import no.runsafe.framework.internal.log.ILogFormatProvider;
-import no.runsafe.framework.internal.log.LogFileHandler;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.DateTimeFormatterBuilder;
 
@@ -10,16 +10,17 @@ import java.util.logging.SimpleFormatter;
 
 public final class RunsafeLogFormatter extends SimpleFormatter
 {
-	public RunsafeLogFormatter(LogFileHandler handler)
+	public RunsafeLogFormatter(FileManager handler)
 	{
-		this.handler = handler;
+		fileManager = handler;
+		fallbackFormat = fileManager.getFormat("*");
 	}
 
 	@SuppressWarnings("StringConcatenationInFormatCall")
 	@Override
 	public synchronized String format(LogRecord record)
 	{
-		String logFormat = null;
+		String logFormat = fallbackFormat;
 		String message = formatMessage(record);
 		if (record.getParameters() != null && record.getParameters().length > 0)
 		{
@@ -31,12 +32,13 @@ public final class RunsafeLogFormatter extends SimpleFormatter
 			logFormat + '\n',
 			datestamp.print(record.getMillis()),
 			timestamp.print(record.getMillis()),
-			handler.colorize(record.getLevel()),
+			fileManager.colorize(record.getLevel()),
 			message
 		);
 	}
 
-	private final LogFileHandler handler;
+	private final String fallbackFormat;
+	private final FileManager fileManager;
 	private final DateTimeFormatter datestamp = new DateTimeFormatterBuilder()
 		.appendYear(4, 4).appendLiteral('-').appendMonthOfYear(2).appendLiteral('-').appendDayOfMonth(2)
 		.toFormatter();

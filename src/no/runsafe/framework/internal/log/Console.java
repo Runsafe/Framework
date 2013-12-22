@@ -17,7 +17,7 @@ public final class Console extends LoggingBase implements IConsole
 		try
 		{
 			if(globalConsole == null)
-				globalConsole = new Console(InjectionPlugin.getGlobalComponent(LogFileHandler.class));
+				globalConsole = new Console(InjectionPlugin.getGlobalComponent(FileManager.class));
 		}
 		catch (IOException e)
 		{
@@ -29,12 +29,12 @@ public final class Console extends LoggingBase implements IConsole
 
 	private static IConsole globalConsole;
 
-	public Console(InjectionPlugin plugin, LogFileHandler handler) throws IOException
+	public Console(InjectionPlugin plugin, FileManager handler) throws IOException
 	{
 		super(plugin, handler, "Console", "runsafe.log");
 	}
 
-	private Console(LogFileHandler handler) throws IOException
+	private Console(FileManager handler) throws IOException
 	{
 		super(handler, "Console", "runsafe.log");
 	}

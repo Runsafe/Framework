@@ -10,7 +10,7 @@ import java.util.logging.Level;
 
 public final class Protocol extends LoggingBase implements IProtocol
 {
-	public Protocol(InjectionPlugin plugin, LogFileHandler handler) throws IOException
+	public Protocol(InjectionPlugin plugin, FileManager handler) throws IOException
 	{
 		super(plugin, handler, "Protocol", "protocol.log");
 	}
