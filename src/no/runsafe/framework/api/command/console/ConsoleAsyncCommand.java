@@ -7,7 +7,6 @@ import no.runsafe.framework.minecraft.RunsafeConsole;
 import no.runsafe.framework.api.IScheduler;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -31,7 +30,7 @@ public abstract class ConsoleAsyncCommand extends AsyncCommand implements IConso
 	}
 
 	/**
-	 * This method is called on the main thread before {@link ConsoleAsyncCommand#OnAsyncExecute(HashMap)}
+	 * This method is called on the main thread before {@link ConsoleAsyncCommand#OnAsyncExecute(Map)}
 	 * Override this method if you don't use optional arguments
 	 *
 	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user

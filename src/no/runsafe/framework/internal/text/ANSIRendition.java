@@ -1,6 +1,6 @@
 package no.runsafe.framework.internal.text;
 
-public class ANSIRendition
+public final class ANSIRendition
 {
 	public static ANSIRendition Modify()
 	{

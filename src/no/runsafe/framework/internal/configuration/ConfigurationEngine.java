@@ -35,7 +35,6 @@ public final class ConfigurationEngine
 
 	/**
 	 * @param plugin        The plugin
-	 * @param configuration The configuration handler class
 	 * @param output        Console to write messages to
 	 * @param subscribers   Plugin components subscribing to configuration change events
 	 */

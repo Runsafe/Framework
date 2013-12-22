@@ -21,8 +21,7 @@ public final class Engine
 {
 	/**
 	 * @param output   The console to output debug information to
-	 * @param plugin   The plugin
-	 * @param debugger
+	 * @param debugger Debug output handler
 	 * @param commands The commands provided by the plugin
 	 */
 	public Engine(@Nullable IConsole output, IDebug debugger, @Nonnull ICommandHandler... commands)

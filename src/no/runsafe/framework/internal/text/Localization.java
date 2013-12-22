@@ -16,7 +16,6 @@ public class Localization implements ILocalizer
 		locale = YamlConfiguration.loadConfiguration(resourceBundle);
 	}
 
-	@SuppressWarnings("InstanceMethodNamingConvention")
 	@Override
 	public String _(String value)
 	{
