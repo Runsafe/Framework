@@ -53,7 +53,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 		boolean takeParams = !params.isEmpty();
 		boolean takeSub = !subcommands.isEmpty();
 
-		if (!takeParams && !takeSub)
+		if (!(takeParams || takeSub))
 			return Lists.newArrayList();
 
 		if (args.length > i + params.size() + 1)

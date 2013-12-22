@@ -48,15 +48,7 @@ public class LogFileHandler
 		if (loggers.containsKey(outputFile))
 			return loggers.get(outputFile);
 
-		if (!logFolder.exists())
-			if (!logFolder.mkdir())
-				throw new IOException("Unable to create logging directory");
-
-		File logFile = new File(logFolder, outputFile);
-		if (!logFile.exists())
-			if (!logFile.createNewFile())
-				throw new IOException("Unable to create logfile " + logFile.getPath());
-
+		File logFile = getLogFile(outputFile);
 		Logger log = Logger.getLogger("runsafe." + outputFile);
 		log.setUseParentHandlers(logToOriginalConsole);
 		loggers.put(outputFile, log);
@@ -65,6 +57,24 @@ public class LogFileHandler
 		logWriter.setFormatter(new RunsafeLogFormatter(this));
 		log.addHandler(logWriter);
 		return log;
+	}
+
+	private File getLogFile(String outputFile) throws IOException
+	{
+		File logFile = new File(logFolder, outputFile);
+		if(!logFile.exists())
+			createFile(logFile);
+		return logFile;
+	}
+
+	private void createFile(File logFile) throws IOException
+	{
+		if (!logFolder.exists())
+			if (!logFolder.mkdir())
+				throw new IOException("Unable to create logging directory");
+
+		if (!logFile.createNewFile())
+			throw new IOException("Unable to create logfile " + logFile.getPath());
 	}
 
 	public String getFormat(@Nonnull InjectionPlugin plugin, @Nonnull String logName)

@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import no.runsafe.framework.api.database.IRow;
 import no.runsafe.framework.api.database.ISet;
 
-import javax.activity.InvalidActivityException;
 import javax.annotation.Nullable;
 import java.util.*;
 
