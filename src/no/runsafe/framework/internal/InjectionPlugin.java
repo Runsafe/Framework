@@ -13,7 +13,6 @@ import no.runsafe.framework.internal.hooks.HookEngine;
 import no.runsafe.framework.internal.log.*;
 import no.runsafe.framework.internal.lua.GlobalEnvironment;
 import no.runsafe.framework.internal.lua.PluginRunner;
-import no.runsafe.framework.internal.networking.NetworkManager;
 import no.runsafe.framework.internal.text.GlobalLocale;
 import no.runsafe.framework.internal.text.Localization;
 import no.runsafe.framework.minecraft.RunsafeServer;
@@ -159,7 +158,6 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		globalContainer.addComponent(Multiverse.class);
 		globalContainer.addComponent(Player.class);
 		globalContainer.addComponent(LogFileHandler.class);
-		globalContainer.addComponent(NetworkManager.class);
 		globalContainer.addComponent(HookEngine.class);
 		globalContainer.addComponent(GlobalEnvironment.class);
 		globalContainer.addComponent(GlobalLocale.class);

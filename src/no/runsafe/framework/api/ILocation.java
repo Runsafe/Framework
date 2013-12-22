@@ -5,7 +5,6 @@ import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.Sound;
 import no.runsafe.framework.minecraft.WorldEffect;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
-import no.runsafe.framework.minecraft.packets.WorldParticleOffset;
 
 import java.util.List;
 
@@ -32,10 +31,6 @@ public interface ILocation
 	void offset(double x, double y, double z);
 
 	List<IPlayer> getPlayersInRange(double range);
-
-	void playEffect(WorldEffect effect, int speed, int amount, int range);
-
-	void playEffect(WorldEffect effect, WorldParticleOffset offset, int speed, int amount, int range);
 
 	double getX();
 

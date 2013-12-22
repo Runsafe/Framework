@@ -6,8 +6,6 @@ import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.wrapper.BukkitLocation;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.minecraft.packets.PacketWorldParticles;
-import no.runsafe.framework.minecraft.packets.WorldParticleOffset;
 import org.bukkit.Location;
 import org.bukkit.World;
 
@@ -122,20 +120,5 @@ public class RunsafeLocation extends BukkitLocation implements ILocation
 		}
 
 		return players;
-	}
-
-	@Override
-	public void playEffect(WorldEffect effect, int speed, int amount, int range)
-	{
-		playEffect(effect, new WorldParticleOffset(), speed, amount, range);
-	}
-
-	@Override
-	@SuppressWarnings("LocalVariableOfConcreteClass")
-	public void playEffect(WorldEffect effect, WorldParticleOffset offset, int speed, int amount, int range)
-	{
-		PacketWorldParticles packet = new PacketWorldParticles(effect, this, offset, speed, amount);
-		for (IPlayer player : getPlayersInRange(range))
-			packet.send(player);
 	}
 }
