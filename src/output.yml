@@ -1,3 +1,4 @@
+folder: 'logging'
 debug:
   '*': 'OFF'
 split: 'false'

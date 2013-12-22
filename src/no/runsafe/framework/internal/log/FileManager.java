@@ -62,7 +62,7 @@ public final class FileManager
 	private File getLogFile(String outputFile) throws IOException
 	{
 		File logFile = new File(logFolder, outputFile);
-		if(!logFile.exists())
+		if (!logFile.exists())
 			createFile(logFile);
 		return logFile;
 	}
@@ -139,10 +139,18 @@ public final class FileManager
 		return null; // Never reached, due to system.exit above.
 	}
 
+	@SuppressWarnings("UseOfSystemOutOrSystemErr")
 	private void configure()
 	{
 		YamlConfiguration config = loadDefaults(new File("runsafe", "output.yml"));
 
+		logFolder = new File(config.getString("folder"));
+		if (!logFolder.exists())
+			if (!logFolder.mkdir())
+			{
+				System.out.printf("Unable to create logging folder at %s", logFolder.getPath());
+				System.exit(1);
+			}
 		logToOriginalConsole = !config.getBoolean("split");
 		defaultDebugLevel.putAll(castLevelMap(config.getConfigurationSection("debug").getValues(false)));
 
@@ -157,9 +165,9 @@ public final class FileManager
 	private final Map<String, String> globalLogFormat;
 	private final Map<Level, String> levelFormat;
 	private final Map<String, Level> defaultDebugLevel;
-	private final File logFolder = new File("logs");
 	private final Map<String, Logger> loggers = new ConcurrentHashMap<String, Logger>();
 	private boolean logToOriginalConsole;
+	private File logFolder;
 
 	private static Map<String, String> castStringMap(Map<String, Object> data)
 	{
