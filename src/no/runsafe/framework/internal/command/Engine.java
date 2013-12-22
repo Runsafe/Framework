@@ -1,6 +1,7 @@
 package no.runsafe.framework.internal.command;
 
 import com.google.common.collect.ImmutableList;
+import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.api.log.IConsole;
@@ -10,8 +11,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -22,11 +23,10 @@ public final class Engine
 	/**
 	 * @param output   The console to output debug information to
 	 * @param debugger Debug output handler
-	 * @param commands The commands provided by the plugin
 	 */
-	public Engine(@Nullable IConsole output, IDebug debugger, @Nonnull ICommandHandler... commands)
+	public Engine(@Nonnull IConsole output, @Nonnull IDebug debugger, @Nonnull IKernel kernel)
 	{
-		this.commands = commands;
+		this.kernel = kernel;
 		this.output = debugger;
 		console = new RunsafeConsole(output);
 		consoleLog = output;
@@ -34,7 +34,6 @@ public final class Engine
 
 	public void hookCommand(PluginCommand command, ITabExecutor executor)
 	{
-		assert console != null;
 		if (command == null)
 			console.sendColouredMessage("Command not found: %s - does it exist in plugin.yml?", executor.getName());
 		else
@@ -54,10 +53,14 @@ public final class Engine
 
 	public Iterable<ITabExecutor> getCommands()
 	{
-		if (output == null)
+		List<ICommandHandler> commands = kernel.getComponents(ICommandHandler.class);
+		if (commands.isEmpty())
+		{
+			consoleLog.logError("Command subsystem started without any defined commands!");
 			return ImmutableList.of();
+		}
 
-		List<ITabExecutor> handlers = new ArrayList<ITabExecutor>(commands.length);
+		Collection<ITabExecutor> handlers = new ArrayList<ITabExecutor>(commands.size());
 		for (ICommandHandler command : commands)
 		{
 			command.setConsole(output);
@@ -66,10 +69,12 @@ public final class Engine
 		return handlers;
 	}
 
-	@Nullable
+	@Nonnull
 	private final ICommandExecutor console;
+	@Nonnull
 	private final IDebug output;
+	@Nonnull
 	private final IConsole consoleLog;
 	@Nonnull
-	private final ICommandHandler[] commands;
+	private final IKernel kernel;
 }

@@ -21,7 +21,7 @@ public final class HookEngine
 		return get().hookContainer.getComponents(type);
 	}
 
-	public void hook(IFrameworkHook... hooks)
+	public void hook(List<IFrameworkHook> hooks)
 	{
 		List<Object> components = hookContainer.getComponents();
 		for (IFrameworkHook hook : hooks)
