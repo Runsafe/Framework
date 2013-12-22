@@ -1,7 +1,6 @@
 package no.runsafe.framework.internal.log;
 
 import no.runsafe.framework.internal.InjectionPlugin;
-import no.runsafe.framework.internal.RunsafeLogFormatter;
 import no.runsafe.framework.text.ChatColour;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;

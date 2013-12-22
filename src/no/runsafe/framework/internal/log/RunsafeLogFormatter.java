@@ -1,7 +1,6 @@
-package no.runsafe.framework.internal;
+package no.runsafe.framework.internal.log;
 
-import no.runsafe.framework.internal.log.FileManager;
-import no.runsafe.framework.internal.log.ILogFormatProvider;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.DateTimeFormatterBuilder;
 
@@ -28,6 +27,9 @@ public final class RunsafeLogFormatter extends SimpleFormatter
 			if (param instanceof ILogFormatProvider)
 				logFormat = ((ILogFormatProvider) param).getLogFormat();
 		}
+		Throwable exception = record.getThrown();
+		if (exception != null)
+			message = message + '\n' + exception.getMessage() + '\n' + ExceptionUtils.getFullStackTrace(exception);
 		return String.format(
 			logFormat + '\n',
 			datestamp.print(record.getMillis()),
