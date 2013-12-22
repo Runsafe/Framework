@@ -1,56 +1,39 @@
 package no.runsafe.framework.internal.log;
 
-import no.runsafe.framework.minecraft.RunsafeServer;
 import org.picocontainer.Startable;
 
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.logging.Handler;
 import java.util.logging.Level;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 // This class will hook into the root logger and send logs to a new file.
 public final class Root extends LoggingBase implements Startable
 {
-	public Root(FileManager handler, RunsafeServer server) throws IOException
+	public Root(FileManager handler) throws IOException
 	{
-		super(server.getLogger(), handler.getFormat("Root"));
-		redirect = handler.getLogger("root.log");
+		super(handler.getLogger("root.log"), handler.getFormat("Root"));
 	}
 
 	@SuppressWarnings("MethodWithMultipleLoops")
 	@Override
 	public void start()
 	{
-		redirect.log(Level.INFO, "Redirecting root logger..");
-		Enumeration<String> logs = LogManager.getLogManager().getLoggerNames();
-		while (logs.hasMoreElements())
-		{
-			String name = logs.nextElement();
-			redirect.log(Level.INFO, String.format(" Found log %s with %d handlers.", name, Logger.getLogger(name).getHandlers().length));
-		}
-		// Steal the server loggers output..
-//		overRide(log);
-//		overRide(Logger.getLogger("global"));
-//		overRide(Logger.getLogger("Minecraft"));
-//		overRide(Logger.getLogger("Minecraft.CommandHelper"));
+		log.log(Level.INFO, "Redirecting root logger..");
 		overRide(Logger.getLogger(""));
 	}
 
-	private void overRide(Logger log)
+	private void overRide(Logger overrideLog)
 	{
-		redirect.log(Level.INFO, String.format("Replacing %d handlers in %s", log.getHandlers().length, log.getName()));
+		overrideLog.log(Level.INFO, String.format("Replacing %d handlers in %s", overrideLog.getHandlers().length, overrideLog.getName()));
+		for (Handler handler : overrideLog.getHandlers())
+			overrideLog.removeHandler(handler);
 		for (Handler handler : log.getHandlers())
-			log.removeHandler(handler);
-		for (Handler handler : redirect.getHandlers())
-			log.addHandler(handler);
+			overrideLog.addHandler(handler);
 	}
 
 	@Override
 	public void stop()
 	{
 	}
-
-	private final Logger redirect;
 }
