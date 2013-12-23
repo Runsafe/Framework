@@ -19,12 +19,13 @@ public class RunsafeLocation extends BukkitLocation implements ILocation
 		super(toWrap);
 	}
 
+	@Deprecated
 	public RunsafeLocation(IWorld world, double x, double y, double z)
 	{
 		super(new Location((World) ObjectUnwrapper.convert(world), x, y, z));
 	}
 
-	@SuppressWarnings("ConstructorWithTooManyParameters")
+	@Deprecated
 	public RunsafeLocation(IWorld world, double x, double y, double z, float yaw, float pitch)
 	{
 		super(new Location((World) ObjectUnwrapper.convert(world), x, y, z, yaw, pitch));

@@ -66,11 +66,10 @@ public class RunsafePlayerInteractEvent extends RunsafeCancellablePlayerEvent
 	public ILocation getTargetBlock()
 	{
 		BlockFace face = event.getBlockFace();
-		return new RunsafeLocation(
-			getBlock().getWorld(),
-			event.getClickedBlock().getX() + face.getModX(),
-			event.getClickedBlock().getY() + face.getModY(),
-			event.getClickedBlock().getZ() + face.getModZ()
+		return getBlock().getWorld().getLocation(
+			(double) event.getClickedBlock().getX() + face.getModX(),
+			(double) event.getClickedBlock().getY() + face.getModY(),
+			(double) event.getClickedBlock().getZ() + face.getModZ()
 		);
 	}
 

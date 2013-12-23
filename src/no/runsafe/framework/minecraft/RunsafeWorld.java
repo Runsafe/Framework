@@ -1,10 +1,13 @@
 package no.runsafe.framework.minecraft;
 
-import no.runsafe.framework.api.*;
+import no.runsafe.framework.api.ILocation;
+import no.runsafe.framework.api.IUniverse;
+import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.internal.brane.Multiverse;
 import no.runsafe.framework.internal.wrapper.BukkitWorld;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
+import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 
@@ -71,9 +74,9 @@ public class RunsafeWorld extends BukkitWorld implements IWorld
 			return null;
 
 		if (yaw == null || pitch == null)
-			return new RunsafeLocation(this, x, y, z);
+			return ObjectWrapper.convert(new Location(world, x, y, z));
 
-		return new RunsafeLocation(this, x, y, z, yaw, pitch);
+		return ObjectWrapper.convert(new Location(world, x, y, z, yaw, pitch));
 	}
 
 	@Override

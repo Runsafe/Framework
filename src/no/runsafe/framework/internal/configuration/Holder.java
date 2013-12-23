@@ -7,7 +7,6 @@ import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.internal.brane.Multiverse;
 import no.runsafe.framework.internal.log.Console;
 import no.runsafe.framework.minecraft.Item;
-import no.runsafe.framework.minecraft.RunsafeLocation;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -169,8 +168,7 @@ public class Holder
 			if (world == null)
 				return null;
 
-			ILocation location = new RunsafeLocation(
-				world,
+			ILocation location = world.getLocation(
 				section.getDouble("x"),
 				section.getDouble("y"),
 				section.getDouble("z")

@@ -3,9 +3,8 @@ package no.runsafe.framework.internal.database;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.internal.brane.Multiverse;
 import no.runsafe.framework.internal.Player;
-import no.runsafe.framework.minecraft.RunsafeLocation;
+import no.runsafe.framework.internal.brane.Multiverse;
 import org.joda.time.DateTime;
 
 import javax.annotation.Nullable;
@@ -147,12 +146,12 @@ final class DataConverter
 			return null;
 
 		if (x == null || y == null || z == null)
-			return new RunsafeLocation(targetWorld, 0.0D, 0.0D, 0.0D);
+			return targetWorld.getLocation(0.0D, 0.0D, 0.0D);
 
 		if (yaw != null && pitch != null)
-			return new RunsafeLocation(targetWorld, Double(x), Double(y), Double(z), Float(yaw), Float(pitch));
+			return targetWorld.getLocation(Double(x), Double(y), Double(z), Float(yaw), Float(pitch));
 
-		return new RunsafeLocation(targetWorld, Double(x), Double(y), Double(z));
+		return targetWorld.getLocation(Double(x), Double(y), Double(z));
 	}
 
 	@Nullable

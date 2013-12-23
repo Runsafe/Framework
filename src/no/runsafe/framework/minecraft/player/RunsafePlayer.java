@@ -86,7 +86,7 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 	@Override
 	public void teleport(IWorld world, double x, double y, double z)
 	{
-		ILocation target = new RunsafeLocation(world, x, y, z);
+		ILocation target = world.getLocation(x, y, z);
 		RunsafeChunk chunk = target.getChunk();
 		if (chunk.isUnloaded())
 			chunk.load();
