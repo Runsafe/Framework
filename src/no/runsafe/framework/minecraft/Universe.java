@@ -28,7 +28,7 @@ public class Universe
 
 	public void addWorld(IWorld world)
 	{
-		if (!worlds.containsKey(world.getName()))
+		if (world != null && !worlds.containsKey(world.getName()))
 			worlds.put(world.getName(), world);
 	}
 
