@@ -1,15 +1,14 @@
 package no.runsafe.framework.internal;
 
+import com.google.common.collect.Lists;
 import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.hook.IUniverseMapper;
-import no.runsafe.framework.internal.log.Debug;
 import no.runsafe.framework.minecraft.Universe;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * This class gets called automatically to collect universes from plugins
@@ -29,18 +28,13 @@ public final class Multiverse
 	@Nullable
 	public Universe getByName(String name)
 	{
-		if (name != null && universes.containsKey(name))
-			return universes.get(name);
-		return null;
+		return scan(name);
 	}
 
 	@Nullable
 	public Universe getByWorld(IWorld world)
 	{
-		if (!worldMap.containsKey(world.getName()))
-			createDefaultUniverse(world);
-
-		return worldMap.get(world.getName());
+		return scan(world.getName());
 	}
 
 	public List<IWorld> getAllWorlds()
@@ -58,41 +52,27 @@ public final class Multiverse
 
 	public void addUniversesForMapper(IUniverseMapper mapper)
 	{
-		Debug.Global().debugFine("Collecting universes from mapper %s", mapper.getClass().getName());
-		for (String universe : mapper.GetUniverses())
-		{
-			Debug.Global().debugFine("Found universe %s", universe);
-			if (!universes.containsKey(universe))
-				universes.put(universe, new Universe(universe));
-
-			addWorldsForUniverse(universes.get(universe), mapper.GetWorlds(universe));
-		}
+		mappers.add(mapper);
 	}
 
-	private void createDefaultUniverse(IWorld world)
+	private Universe scan(String worldName)
 	{
-		universes.put(world.getName(), new Universe(world.getName()));
-		universes.get(world.getName()).addWorld(world);
-		worldMap.put(world.getName(), universes.get(world.getName()));
-	}
-
-	private void addWorldsForUniverse(Universe universe, Iterable<String> worlds)
-	{
-		for (String world : worlds)
-		{
-			// If conflicted, last plugin to load wins
-			if (worldMap.containsKey(world))
+		for (IUniverseMapper mapper : mappers)
+			for (String universeName : mapper.GetUniverses())
 			{
-				worldMap.get(world).removeWorld(world);
-				worldMap.remove(world);
+				List<String> worlds = Lists.newArrayList(mapper.GetWorlds(universeName));
+				if (worlds.contains(worldName))
+				{
+					Universe universe = new Universe(universeName);
+					for (String world : worlds)
+						universe.addWorld(getWorld(world));
+					return universe;
+				}
 			}
-			universe.addWorld(server.getWorld(world));
-			worldMap.put(world, universe);
-			Debug.Global().debugFine("Added world %s to universe %s", world, universe.getName());
-		}
+
+		return new Universe(worldName);
 	}
 
 	private final IServer server;
-	private final Map<String, Universe> universes = new HashMap<String, Universe>(1);
-	private final Map<String, Universe> worldMap = new HashMap<String, Universe>(1);
+	private final List<IUniverseMapper> mappers = new ArrayList<IUniverseMapper>(0);
 }
