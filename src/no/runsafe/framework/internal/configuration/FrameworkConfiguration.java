@@ -1,11 +1,12 @@
 package no.runsafe.framework.internal.configuration;
 
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.picocontainer.Startable;
 
 import java.io.File;
 import java.io.InputStream;
 
-public class FrameworkConfiguration extends Holder
+public class FrameworkConfiguration extends Holder implements Startable
 {
 	public FrameworkConfiguration()
 	{
@@ -25,5 +26,16 @@ public class FrameworkConfiguration extends Holder
 			configFile.options().copyDefaults(true);
 		}
 		save();
+	}
+
+	@Override
+	public void start()
+	{
+		load();
+	}
+
+	@Override
+	public void stop()
+	{
 	}
 }
