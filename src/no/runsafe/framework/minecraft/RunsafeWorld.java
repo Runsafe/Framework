@@ -1,7 +1,6 @@
 package no.runsafe.framework.minecraft;
 
-import no.runsafe.framework.api.ILocation;
-import no.runsafe.framework.api.IWorld;
+import no.runsafe.framework.api.*;
 import no.runsafe.framework.internal.Multiverse;
 import no.runsafe.framework.internal.wrapper.BukkitWorld;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
@@ -47,7 +46,7 @@ public class RunsafeWorld extends BukkitWorld implements IWorld
 	}
 
 	@Override
-	public Universe getUniverse()
+	public IUniverse getUniverse()
 	{
 		return Multiverse.Get().getByWorld(this);
 	}

@@ -1,21 +1,26 @@
 package no.runsafe.framework.internal;
 
-import com.google.common.collect.Lists;
 import no.runsafe.framework.api.IServer;
+import no.runsafe.framework.api.IUniverse;
+import no.runsafe.framework.api.IUniverseManager;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.hook.IUniverseMapper;
+import no.runsafe.framework.minecraft.DefaultUniverse;
 import no.runsafe.framework.minecraft.Universe;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * This class gets called automatically to collect universes from plugins
  */
-public final class Multiverse
+public final class Multiverse implements IUniverseManager
 {
-	public static Multiverse Get()
+	public static IUniverseManager Get()
 	{
 		return InjectionPlugin.getGlobalComponent(Multiverse.class);
 	}
@@ -25,23 +30,31 @@ public final class Multiverse
 		this.server = server;
 	}
 
+	@Override
 	@Nullable
-	public Universe getByName(String name)
+	public IUniverse getByName(String name)
 	{
-		return scan(name);
+		if (!branes.containsKey(name))
+			findBrane(name);
+		return branes.get(name);
 	}
 
+	@Override
 	@Nullable
-	public Universe getByWorld(IWorld world)
+	public IUniverse getByWorld(IWorld world)
 	{
-		return scan(world.getName());
+		if (!universe.containsKey(world.getName()))
+			findUniverse(world.getName());
+		return universe.get(world.getName());
 	}
 
+	@Override
 	public List<IWorld> getAllWorlds()
 	{
 		return server.getWorlds();
 	}
 
+	@Override
 	@Nullable
 	public IWorld getWorld(String name)
 	{
@@ -50,29 +63,46 @@ public final class Multiverse
 		return server.getWorld(name);
 	}
 
+	@Override
 	public void addUniversesForMapper(IUniverseMapper mapper)
 	{
 		mappers.add(mapper);
 	}
 
-	private Universe scan(String worldName)
+	@Override
+	public void flush()
+	{
+		branes.clear();
+		universe.clear();
+	}
+
+	private void findBrane(String name)
 	{
 		for (IUniverseMapper mapper : mappers)
 			for (String universeName : mapper.GetUniverses())
-			{
-				List<String> worlds = Lists.newArrayList(mapper.GetWorlds(universeName));
-				if (worlds.contains(worldName))
+				if (universeName.equals(name))
 				{
-					Universe universe = new Universe(universeName);
-					for (String world : worlds)
-						universe.addWorld(getWorld(world));
-					return universe;
+					branes.put(name, new Universe(universeName, mapper));
+					return;
 				}
-			}
-
-		return new Universe(worldName);
+		branes.put(name, new DefaultUniverse(name));
 	}
 
+	private void findUniverse(String name)
+	{
+		for (IUniverseMapper mapper : mappers)
+			for (String universeName : mapper.GetUniverses())
+				for (String world : mapper.GetWorlds(universeName))
+					if (world.equals(name))
+					{
+						universe.put(world, new Universe(universeName, mapper));
+						return;
+					}
+		universe.put(name, new DefaultUniverse(name));
+	}
+
+	private final Map<String, IUniverse> branes = new ConcurrentHashMap<String, IUniverse>();
+	private final Map<String, IUniverse> universe = new ConcurrentHashMap<String, IUniverse>();
 	private final IServer server;
-	private final List<IUniverseMapper> mappers = new ArrayList<IUniverseMapper>(0);
+	private final Collection<IUniverseMapper> mappers = new ArrayList<IUniverseMapper>(0);
 }

@@ -1,17 +1,16 @@
 package no.runsafe.framework.features;
 
 import no.runsafe.framework.api.IKernel;
+import no.runsafe.framework.api.IUniverseManager;
 import no.runsafe.framework.api.hook.IUniverseMapper;
 import no.runsafe.framework.api.log.IConsole;
-import no.runsafe.framework.internal.Multiverse;
 import org.picocontainer.Startable;
 
 import java.util.List;
 
 public final class UniverseRegistration implements Startable
 {
-	@SuppressWarnings("OverloadedVarargsMethod")
-	public UniverseRegistration(IConsole console, Multiverse multiverse, IKernel kernel)
+	public UniverseRegistration(IConsole console, IUniverseManager multiverse, IKernel kernel)
 	{
 		this.console = console;
 		this.multiverse = multiverse;
@@ -26,7 +25,10 @@ public final class UniverseRegistration implements Startable
 		if (mappers.isEmpty())
 			console.logError("The plugin has declared it provides universe mapping, but there are no mappers defined!");
 		for (IUniverseMapper mapper : mappers)
+		{
 			multiverse.addUniversesForMapper(mapper);
+			mapper.setManager(multiverse);
+		}
 	}
 
 	@Override
@@ -35,6 +37,6 @@ public final class UniverseRegistration implements Startable
 	}
 
 	private final IConsole console;
-	private final Multiverse multiverse;
+	private final IUniverseManager multiverse;
 	private final IKernel kernel;
 }

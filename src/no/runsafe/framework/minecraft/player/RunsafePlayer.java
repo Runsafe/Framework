@@ -2,6 +2,7 @@ package no.runsafe.framework.minecraft.player;
 
 import com.google.common.collect.ImmutableList;
 import no.runsafe.framework.api.ILocation;
+import no.runsafe.framework.api.IUniverse;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.hooks.PlayerExtensions;
@@ -9,7 +10,6 @@ import no.runsafe.framework.internal.wrapper.BukkitLocation;
 import no.runsafe.framework.internal.wrapper.player.BukkitPlayer;
 import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.RunsafeLocation;
-import no.runsafe.framework.minecraft.Universe;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.event.player.RunsafeOperatorEvent;
 import no.runsafe.framework.minecraft.inventory.RunsafePlayerInventory;
@@ -221,7 +221,7 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 
 	@Override
 	@Nullable
-	public Universe getUniverse()
+	public IUniverse getUniverse()
 	{
 		IWorld world = getWorld();
 		return world == null ? null : world.getUniverse();
@@ -230,7 +230,7 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 	@Override
 	public boolean isInUniverse(String universeName)
 	{
-		Universe universe = getUniverse();
+		IUniverse universe = getUniverse();
 		return universe != null && universe.getName().equals(universeName);
 	}
 

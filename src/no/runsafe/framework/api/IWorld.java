@@ -5,7 +5,6 @@ import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.metadata.IMetadata;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.Sound;
-import no.runsafe.framework.minecraft.Universe;
 import no.runsafe.framework.minecraft.entity.RunsafeItem;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 
@@ -19,7 +18,7 @@ public interface IWorld extends IMetadata
 
 	boolean isUniverse(String name);
 
-	Universe getUniverse();
+	IUniverse getUniverse();
 
 	boolean isConnected(IWorld world);
 

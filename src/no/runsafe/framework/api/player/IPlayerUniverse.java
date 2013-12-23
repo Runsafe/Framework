@@ -1,13 +1,13 @@
 package no.runsafe.framework.api.player;
 
-import no.runsafe.framework.minecraft.Universe;
+import no.runsafe.framework.api.IUniverse;
 
 import javax.annotation.Nullable;
 
 public interface IPlayerUniverse
 {
 	@Nullable
-	Universe getUniverse();
+	IUniverse getUniverse();
 	boolean isInUniverse(String universeName);
 	String getWorldName();
 }

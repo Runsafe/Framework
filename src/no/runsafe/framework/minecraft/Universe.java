@@ -1,43 +1,43 @@
 package no.runsafe.framework.minecraft;
 
-import com.google.common.collect.Lists;
-import no.runsafe.framework.api.IWorld;
+import no.runsafe.framework.api.IUniverse;
+import no.runsafe.framework.api.hook.IUniverseMapper;
 
 import javax.annotation.Nonnull;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-public class Universe
+public class Universe implements IUniverse
 {
-	public Universe(String name)
+	public Universe(String name, IUniverseMapper mapper)
 	{
 		this.name = name;
+		this.mapper = mapper;
 	}
 
+	@Override
 	public String getName()
 	{
 		return name;
 	}
 
+	@Override
 	@Nonnull
-	public List<IWorld> getWorlds()
+	public Iterable<String> getWorlds()
 	{
-		return Lists.newArrayList(worlds.values());
+		return mapper.GetWorlds(name);
 	}
 
-	public void addWorld(IWorld world)
+	@Override
+	public boolean equals(Object obj)
 	{
-		if (world != null && !worlds.containsKey(world.getName()))
-			worlds.put(world.getName(), world);
+		return obj instanceof IUniverse && ((IUniverse) obj).getName().equals(name);
 	}
 
-	public void removeWorld(String name)
+	@Override
+	public int hashCode()
 	{
-		if (worlds.containsKey(name))
-			worlds.remove(name);
+		return name.hashCode();
 	}
 
 	private final String name;
-	private final Map<String, IWorld> worlds = new HashMap<String, IWorld>(1);
+	private final IUniverseMapper mapper;
 }
