@@ -6,6 +6,7 @@ import no.runsafe.framework.api.event.plugin.IPluginEnabled;
 import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.internal.command.Engine;
 import no.runsafe.framework.internal.configuration.ConfigurationEngine;
+import no.runsafe.framework.internal.configuration.FrameworkConfiguration;
 import no.runsafe.framework.internal.database.SchemaUpdater;
 import no.runsafe.framework.internal.database.jdbc.Database;
 import no.runsafe.framework.internal.event.BukkitEventMapper;
@@ -163,6 +164,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		globalContainer.addComponent(GlobalEnvironment.class);
 		globalContainer.addComponent(GlobalLocale.class);
 		globalContainer.addComponent(Root.class);
+		globalContainer.addComponent(FrameworkConfiguration.class);
 		globalContainer.start();
 		uninitialized = false;
 	}

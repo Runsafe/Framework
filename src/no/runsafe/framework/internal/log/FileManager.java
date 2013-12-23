@@ -1,14 +1,12 @@
 package no.runsafe.framework.internal.log;
 
 import no.runsafe.framework.internal.InjectionPlugin;
+import no.runsafe.framework.internal.configuration.FrameworkConfiguration;
 import no.runsafe.framework.text.ChatColour;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.YamlConfiguration;
 
 import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -18,14 +16,14 @@ import java.util.logging.Logger;
 
 public final class FileManager
 {
-	public FileManager()
+	public FileManager(FrameworkConfiguration config)
 	{
 		levelFormat = new HashMap<Level, String>(0);
 		globalLogFormat = new HashMap<String, String>(0);
 		defaultDebugLevel = new HashMap<String, Level>(0);
 		logFormats = new HashMap<String, Map<String, String>>(0);
 
-		configure();
+		configure(config);
 	}
 
 	public Level defaultDebugLevel(String plugin)
@@ -106,58 +104,21 @@ public final class FileManager
 		return globalLogFormat.get("*");
 	}
 
-	@SuppressWarnings({"ReturnOfNull", "HardcodedFileSeparator"})
-	private YamlConfiguration loadDefaults(File configFile)
+	@SuppressWarnings({"UseOfSystemOutOrSystemErr", "ConstantConditions"})
+	private void configure(FrameworkConfiguration config)
 	{
-		InputStream defaults = getClass().getResourceAsStream("/output.yml");
-		try
-		{
-			YamlConfiguration config = YamlConfiguration.loadConfiguration(configFile);
-			config.setDefaults(YamlConfiguration.loadConfiguration(defaults));
-			config.options().copyDefaults(true);
-			config.save(configFile);
-			return config;
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-			System.exit(1);
-		}
-		finally
-		{
-			try
-			{
-				defaults.close();
-			}
-			catch (IOException e)
-			{
-				e.printStackTrace();
-				System.exit(1);
-			}
-		}
-		return null; // Never reached, due to system.exit above.
-	}
-
-	@SuppressWarnings("UseOfSystemOutOrSystemErr")
-	private void configure()
-	{
-		YamlConfiguration config = loadDefaults(new File("runsafe", "output.yml"));
-
-		logFolder = new File(config.getString("folder"));
+		logFolder = new File(config.getConfigValueAsString("output.folder"));
 		if (!logFolder.exists())
 			if (!logFolder.mkdir())
 			{
 				System.out.printf("Unable to create logging folder at %s", logFolder.getPath());
 				System.exit(1);
 			}
-		logToOriginalConsole = !config.getBoolean("split");
-		defaultDebugLevel.putAll(castLevelMap(config.getConfigurationSection("debug").getValues(false)));
-
-		levelFormat.putAll(castStringLevel(config.getConfigurationSection("format.level").getValues(false)));
-		ConfigurationSection loggerFormats = config.getConfigurationSection("format.logger");
-		for (String log : loggerFormats.getKeys(false))
-			logFormats.put(log, castStringMap(loggerFormats.getConfigurationSection(log).getValues(false)));
-		globalLogFormat.putAll(castStringMap(config.getConfigurationSection("format.global").getValues(false)));
+		logToOriginalConsole = !config.getConfigValueAsBoolean("output.split");
+		defaultDebugLevel.putAll(castLevelMap(config.getConfigValuesAsMap("output.debug")));
+		levelFormat.putAll(castStringLevel(config.getConfigValuesAsMap("output.format.level")));
+		logFormats.putAll(config.getConfigSectionsAsMap("output.format.logger"));
+		globalLogFormat.putAll(config.getConfigValuesAsMap("output.format.global"));
 	}
 
 	private final Map<String, Map<String, String>> logFormats;
@@ -168,27 +129,19 @@ public final class FileManager
 	private boolean logToOriginalConsole;
 	private File logFolder;
 
-	private static Map<String, String> castStringMap(Map<String, Object> data)
-	{
-		Map<String, String> cast = new HashMap<String, String>(data.size());
-		for (Map.Entry<String, Object> entry : data.entrySet())
-			cast.put(entry.getKey(), ChatColour.ToConsole(entry.getValue().toString()));
-		return cast;
-	}
-
-	private static Map<String, Level> castLevelMap(Map<String, Object> data)
+	private static Map<String, Level> castLevelMap(Map<String, String> data)
 	{
 		Map<String, Level> cast = new HashMap<String, Level>(data.size());
-		for (Map.Entry<String, Object> entry : data.entrySet())
-			cast.put(entry.getKey(), Level.parse(entry.getValue().toString().toUpperCase()));
+		for (Map.Entry<String, String> entry : data.entrySet())
+			cast.put(entry.getKey(), Level.parse(entry.getValue().toUpperCase()));
 		return cast;
 	}
 
-	private static Map<Level, String> castStringLevel(Map<String, Object> data)
+	private static Map<Level, String> castStringLevel(Map<String, String> data)
 	{
 		Map<Level, String> cast = new HashMap<Level, String>(data.size());
-		for (Map.Entry<String, Object> entry : data.entrySet())
-			cast.put(Level.parse(entry.getKey().toUpperCase()), ChatColour.ToConsole(entry.getValue().toString()));
+		for (Map.Entry<String, String> entry : data.entrySet())
+			cast.put(Level.parse(entry.getKey().toUpperCase()), ChatColour.ToConsole(entry.getValue()));
 		return cast;
 	}
 }

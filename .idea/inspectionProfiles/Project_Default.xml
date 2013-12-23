@@ -859,6 +859,9 @@
           <option value="MethodWithMultipleLoops" />
           <option value="StringConcatenationInFormatCall" />
           <option value="UseOfSystemOutOrSystemErr" />
+          <option value="HardcodedFileSeparator" />
+          <option value="IOResourceOpenedButNotSafelyClosed" />
+          <option value="ConstantConditions" />
         </list>
       </option>
     </inspection_tool>

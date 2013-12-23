@@ -1,0 +1,32 @@
+locale.default: en_GB
+database:
+  url: 'jdbc:mysql://localhost:3306/minecraft'
+  username: 'minecraftuser'
+  password: 'p4ssw0rd'
+output:
+  folder: 'logging'
+  debug:
+    '*': 'OFF'
+  split: 'false'
+  format:
+    global:
+      '*': '%1$s %2$s [%3$s] %4$s'
+      Debugger: '%1$s %2$s [&oDEBUG&r] %4$s'
+      Protocol: '%1$s %2$s [&nNET&r] %4$s'
+    level:
+      'OFF': '&8OFF&r'
+      SEVERE: '&4SEVERE&r'
+      WARNING: '&eWARNING&r'
+      INFO: '&2INFO&r'
+      CONFIG: '&3CONFIG&r'
+      FINE: '&aFINE&r'
+      FINER: '&a&lFINER&r'
+      FINEST: '&a&oFINEST&r'
+      ALL: '&f&nALL&r'
+    logger:
+      '*':
+        '*': '%%1$s %%2$s [%%3$s] [&9%s&r] %%4$s'
+      Debugger:
+        '*': '%%1$s %%2$s [&oDEBUG&r] [&9%s&r] %%4$s'
+      Protocol:
+        '*': '%%1$s %%2$s [&nNET&r] [&9%s&r] %%4$s'

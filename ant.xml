@@ -28,8 +28,7 @@
             <manifest>
                 <attribute name="Class-Path" value="picocontainer-2.14.1.jar joda-time-2.1.jar" />
             </manifest>
-            <fileset dir="${src.dir}" includes="output.yml"/>
-            <fileset dir="${src.dir}" includes="locale.yml"/>
+            <fileset dir="${src.dir}" includes="default.yml"/>
         </jar>
     </target>
 
