@@ -4,7 +4,7 @@ import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.log.IDebug;
-import no.runsafe.framework.internal.Multiverse;
+import no.runsafe.framework.internal.brane.Multiverse;
 import no.runsafe.framework.internal.log.Console;
 import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.RunsafeLocation;
@@ -150,7 +150,7 @@ public class Holder
 
 	public IWorld getConfigValueAsWorld(String key)
 	{
-		return Multiverse.Get().getWorld(getConfigValueAsString(key));
+		return Multiverse.getInstance().getWorld(getConfigValueAsString(key));
 	}
 
 	@Nullable

@@ -1,12 +1,11 @@
-package no.runsafe.framework.internal;
+package no.runsafe.framework.internal.brane;
 
 import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.IUniverse;
 import no.runsafe.framework.api.IUniverseManager;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.hook.IUniverseMapper;
-import no.runsafe.framework.minecraft.DefaultUniverse;
-import no.runsafe.framework.minecraft.Universe;
+import no.runsafe.framework.internal.InjectionPlugin;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public final class Multiverse implements IUniverseManager
 {
-	public static IUniverseManager Get()
+	public static IUniverseManager getInstance()
 	{
 		return InjectionPlugin.getGlobalComponent(Multiverse.class);
 	}

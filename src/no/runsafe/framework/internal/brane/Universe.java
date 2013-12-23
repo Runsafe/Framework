@@ -1,4 +1,4 @@
-package no.runsafe.framework.minecraft;
+package no.runsafe.framework.internal.brane;
 
 import no.runsafe.framework.api.IUniverse;
 import no.runsafe.framework.api.hook.IUniverseMapper;

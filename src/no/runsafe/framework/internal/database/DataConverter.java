@@ -3,7 +3,7 @@ package no.runsafe.framework.internal.database;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.internal.Multiverse;
+import no.runsafe.framework.internal.brane.Multiverse;
 import no.runsafe.framework.internal.Player;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import org.joda.time.DateTime;
@@ -160,7 +160,7 @@ final class DataConverter
 	{
 		if (value == null)
 			return null;
-		return Multiverse.Get().getWorld(value.toString());
+		return Multiverse.getInstance().getWorld(value.toString());
 	}
 
 	@Nullable

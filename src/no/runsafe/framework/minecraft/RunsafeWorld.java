@@ -1,7 +1,7 @@
 package no.runsafe.framework.minecraft;
 
 import no.runsafe.framework.api.*;
-import no.runsafe.framework.internal.Multiverse;
+import no.runsafe.framework.internal.brane.Multiverse;
 import no.runsafe.framework.internal.wrapper.BukkitWorld;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
@@ -48,7 +48,7 @@ public class RunsafeWorld extends BukkitWorld implements IWorld
 	@Override
 	public IUniverse getUniverse()
 	{
-		return Multiverse.Get().getByWorld(this);
+		return Multiverse.getInstance().getByWorld(this);
 	}
 
 	@Override

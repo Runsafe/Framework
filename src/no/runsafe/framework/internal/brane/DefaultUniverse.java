@@ -1,4 +1,4 @@
-package no.runsafe.framework.minecraft;
+package no.runsafe.framework.internal.brane;
 
 import com.google.common.collect.Lists;
 import no.runsafe.framework.api.IUniverse;

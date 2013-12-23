@@ -5,7 +5,7 @@ import com.google.common.collect.Lists;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.internal.Multiverse;
+import no.runsafe.framework.internal.brane.Multiverse;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -39,7 +39,7 @@ public class WorldArgument extends CommandArgumentSpecification implements ITabC
 	public List<String> getAlternatives(IPlayer executor, String partial)
 	{
 		return Lists.transform(
-			Multiverse.Get().getAllWorlds(),
+			Multiverse.getInstance().getAllWorlds(),
 			new Function<IWorld, String>()
 			{
 				@Override
@@ -56,7 +56,7 @@ public class WorldArgument extends CommandArgumentSpecification implements ITabC
 	@Override
 	public String expand(ICommandExecutor context, String value)
 	{
-		for (IWorld world : Multiverse.Get().getAllWorlds())
+		for (IWorld world : Multiverse.getInstance().getAllWorlds())
 			if (world.getName().toLowerCase().startsWith(value.toLowerCase()))
 				return world.getName();
 
