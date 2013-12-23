@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Runsafe-Minecraft-Plugin-Framework.iml" filepath="$PROJECT_DIR$/Runsafe-Minecraft-Plugin-Framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Framework.iml" filepath="$PROJECT_DIR$/Framework.iml" />
     </modules>
   </component>
 </project>

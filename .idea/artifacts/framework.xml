@@ -2,7 +2,7 @@
   <artifact type="jar" build-on-make="true" name="framework">
     <output-path>$PROJECT_DIR$/../out</output-path>
     <root id="archive" name="framework.jar">
-      <element id="module-output" name="Runsafe-Minecraft-Plugin-Framework" />
+      <element id="module-output" name="Framework" />
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
       </element>
