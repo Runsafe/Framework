@@ -1,16 +1,16 @@
 package no.runsafe.framework.internal.configuration;
 
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.picocontainer.Startable;
 
 import java.io.File;
 import java.io.InputStream;
 
-public class FrameworkConfiguration extends Holder implements Startable
+public final class FrameworkConfiguration extends Holder
 {
 	public FrameworkConfiguration()
 	{
 		super(null, null);
+		load();
 	}
 
 	@SuppressWarnings({"HardcodedFileSeparator", "IOResourceOpenedButNotSafelyClosed"})
@@ -26,16 +26,5 @@ public class FrameworkConfiguration extends Holder implements Startable
 			configFile.options().copyDefaults(true);
 		}
 		save();
-	}
-
-	@Override
-	public void start()
-	{
-		load();
-	}
-
-	@Override
-	public void stop()
-	{
 	}
 }
