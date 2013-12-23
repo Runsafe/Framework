@@ -1,13 +1,10 @@
 package no.runsafe.framework.minecraft;
 
 import no.runsafe.framework.api.ILocation;
-import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.wrapper.BukkitLocation;
-import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.Location;
-import org.bukkit.World;
 
 import java.util.ArrayList;
 import java.util.List;

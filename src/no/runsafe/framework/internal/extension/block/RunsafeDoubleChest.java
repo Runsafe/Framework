@@ -1,4 +1,4 @@
-package no.runsafe.framework.minecraft.block;
+package no.runsafe.framework.internal.extension.block;
 
 import no.runsafe.framework.api.block.IDoubleChest;
 import no.runsafe.framework.internal.wrapper.block.BukkitDoubleChest;

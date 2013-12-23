@@ -7,7 +7,7 @@ import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.player.IPlayerRightClickSign;
 import no.runsafe.framework.internal.event.listener.EventRouterBase;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.minecraft.block.RunsafeSign;
+import no.runsafe.framework.internal.extension.block.RunsafeSign;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Sign;
 import org.bukkit.event.EventHandler;

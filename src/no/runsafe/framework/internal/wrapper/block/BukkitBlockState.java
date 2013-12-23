@@ -5,7 +5,7 @@ import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.internal.LegacyMaterial;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.Item;
-import no.runsafe.framework.minecraft.block.RunsafeBlock;
+import no.runsafe.framework.internal.extension.block.RunsafeBlock;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
 import org.bukkit.block.Block;

@@ -5,7 +5,7 @@ import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventoryHolder;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventoryType;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
+import no.runsafe.framework.internal.extension.player.RunsafePlayer;
 import no.runsafe.framework.text.ChatColour;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;

@@ -1,4 +1,4 @@
-package no.runsafe.framework.minecraft.player;
+package no.runsafe.framework.internal.extension.player;
 
 import com.google.common.collect.ImmutableList;
 import no.runsafe.framework.api.ILocation;
@@ -9,7 +9,6 @@ import no.runsafe.framework.internal.hooks.PlayerExtensions;
 import no.runsafe.framework.internal.wrapper.BukkitLocation;
 import no.runsafe.framework.internal.wrapper.player.BukkitPlayer;
 import no.runsafe.framework.minecraft.Item;
-import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.event.player.RunsafeOperatorEvent;
 import no.runsafe.framework.minecraft.inventory.RunsafePlayerInventory;

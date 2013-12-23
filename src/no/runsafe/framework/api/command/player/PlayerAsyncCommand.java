@@ -5,7 +5,7 @@ import no.runsafe.framework.api.command.AsyncCommand;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.argument.IArgument;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
+import no.runsafe.framework.internal.extension.player.RunsafePlayer;
 
 import javax.annotation.Nullable;
 import java.util.Map;

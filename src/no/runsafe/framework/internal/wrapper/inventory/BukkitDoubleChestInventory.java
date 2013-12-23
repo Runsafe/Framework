@@ -1,6 +1,6 @@
 package no.runsafe.framework.internal.wrapper.inventory;
 
-import no.runsafe.framework.minecraft.block.RunsafeDoubleChest;
+import no.runsafe.framework.internal.extension.block.RunsafeDoubleChest;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.inventory.DoubleChestInventory;

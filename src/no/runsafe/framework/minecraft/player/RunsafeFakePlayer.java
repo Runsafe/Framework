@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.player.IFakePlayer;
 import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.internal.extension.player.RunsafePlayer;
 import no.runsafe.framework.internal.hooks.PlayerExtensions;
 
 import javax.annotation.Nonnull;

@@ -1,8 +1,10 @@
-package no.runsafe.framework.minecraft.player;
+package no.runsafe.framework.internal.extension.player;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 import no.runsafe.framework.api.player.IAmbiguousPlayer;
 import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.internal.extension.player.RunsafePlayer;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.OfflinePlayer;
@@ -12,10 +14,10 @@ import java.util.List;
 
 public class RunsafeAmbiguousPlayer extends RunsafePlayer implements IAmbiguousPlayer
 {
-	public RunsafeAmbiguousPlayer(OfflinePlayer toWrap, List<String> ambiguous)
+	public RunsafeAmbiguousPlayer(OfflinePlayer toWrap, Iterable<String> ambiguous)
 	{
 		super(toWrap);
-		ambiguity = ambiguous;
+		ambiguity = Lists.newArrayList(ambiguous);
 	}
 
 	public RunsafeAmbiguousPlayer(List<IPlayer> online)

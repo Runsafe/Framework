@@ -5,7 +5,7 @@ import no.runsafe.framework.api.event.IFakeableEvent;
 import no.runsafe.framework.api.event.player.IPlayerDeathEvent;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDeathEvent;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
+import no.runsafe.framework.internal.extension.player.RunsafePlayer;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.entity.PlayerDeathEvent;
 

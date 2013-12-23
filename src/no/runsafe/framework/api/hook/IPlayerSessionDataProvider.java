@@ -1,7 +1,7 @@
 package no.runsafe.framework.api.hook;
 
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
+import no.runsafe.framework.internal.extension.player.RunsafePlayer;
 import org.joda.time.DateTime;
 
 public interface IPlayerSessionDataProvider extends IFrameworkHook

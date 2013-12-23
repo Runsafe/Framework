@@ -2,7 +2,7 @@ package no.runsafe.framework.api.command.argument;
 
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.minecraft.RunsafeServer;
-import no.runsafe.framework.minecraft.player.RunsafeAmbiguousPlayer;
+import no.runsafe.framework.internal.extension.player.RunsafeAmbiguousPlayer;
 
 import javax.annotation.Nullable;
 import java.util.List;

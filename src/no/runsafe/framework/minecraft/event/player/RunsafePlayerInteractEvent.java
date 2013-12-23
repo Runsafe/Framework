@@ -4,7 +4,6 @@ import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.Item;
-import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import org.bukkit.block.BlockFace;
 import org.bukkit.event.block.Action;
