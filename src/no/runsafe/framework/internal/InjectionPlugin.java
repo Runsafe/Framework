@@ -155,6 +155,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 
 	private void addGlobalDefaultComponents()
 	{
+		globalContainer.addComponent(FrameworkConfiguration.class);
 		globalContainer.addComponent(getServer().getPluginManager());
 		globalContainer.addComponent(new RunsafeServer(getServer()));
 		globalContainer.addComponent(Multiverse.class);
@@ -164,7 +165,6 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		globalContainer.addComponent(GlobalEnvironment.class);
 		globalContainer.addComponent(GlobalLocale.class);
 		globalContainer.addComponent(Root.class);
-		globalContainer.addComponent(FrameworkConfiguration.class);
 		try
 		{
 			globalContainer.start();
