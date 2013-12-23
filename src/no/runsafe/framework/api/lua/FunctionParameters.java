@@ -3,9 +3,8 @@ package no.runsafe.framework.api.lua;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.internal.brane.Multiverse;
 import no.runsafe.framework.internal.Player;
-import no.runsafe.framework.minecraft.RunsafeLocation;
+import no.runsafe.framework.internal.brane.Multiverse;
 import org.luaj.vm2.LuaError;
 import org.luaj.vm2.LuaValue;
 
@@ -94,7 +93,7 @@ public class FunctionParameters
 	{
 		float yaw = hasPitchAndYaw ? getFloat(index + 4) : 0.0f;
 		float pitch = hasPitchAndYaw ? getFloat(index + 5) : 0.0f;
-		return new RunsafeLocation(getWorld(index), getDouble(index + 1), getDouble(index + 2), getDouble(index + 3), yaw, pitch);
+		return getWorld(index).getLocation(getDouble(index + 1), getDouble(index + 2), getDouble(index + 3), yaw, pitch);
 	}
 
 	public boolean hasParameter(int index)
