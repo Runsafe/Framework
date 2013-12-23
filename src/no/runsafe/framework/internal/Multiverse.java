@@ -3,6 +3,7 @@ package no.runsafe.framework.internal;
 import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.hook.IUniverseMapper;
+import no.runsafe.framework.internal.log.Debug;
 import no.runsafe.framework.minecraft.Universe;
 
 import javax.annotation.Nullable;
@@ -57,10 +58,13 @@ public final class Multiverse
 
 	public void addUniversesForMapper(IUniverseMapper mapper)
 	{
+		Debug.Global().debugFine("Collecting universes from mapper %s", mapper.getClass().getName());
 		for (String universe : mapper.GetUniverses())
 		{
+			Debug.Global().debugFine("Found universe %s", universe);
 			if (!universes.containsKey(universe))
 				universes.put(universe, new Universe(universe));
+
 			addWorldsForUniverse(universes.get(universe), mapper.GetWorlds(universe));
 		}
 	}
@@ -84,6 +88,7 @@ public final class Multiverse
 			}
 			universe.addWorld(server.getWorld(world));
 			worldMap.put(world, universe);
+			Debug.Global().debugFine("Added world %s to universe %s", world, universe.getName());
 		}
 	}
 
