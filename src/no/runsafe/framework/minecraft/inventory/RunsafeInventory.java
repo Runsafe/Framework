@@ -38,6 +38,27 @@ public class RunsafeInventory extends BukkitInventory
 		}
 	}
 
+	public void removeExact(RunsafeMeta meta, int amount)
+	{
+		int needed = amount;
+		for (RunsafeMeta itemStack : getContents())
+		{
+			if (itemStack.equals(meta))
+			{
+				if (itemStack.getAmount() <= needed)
+				{
+					inventory.remove(itemStack.getRaw());
+					needed -= itemStack.getAmount();
+				}
+				else
+				{
+					itemStack.setAmount(itemStack.getAmount() - needed);
+					break;
+				}
+			}
+		}
+	}
+
 	public int getAmountOfItem(Item item)
 	{
 		int amount = 0;

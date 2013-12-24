@@ -47,4 +47,8 @@ public interface IPlayerInventory extends IInventoryHolder
 	void setLeggings(RunsafeMeta itemStack);
 
 	void setBoots(RunsafeMeta itemStack);
+
+	void removeExactItem(RunsafeMeta item, int amount);
+
+	void removeExactItem(RunsafeMeta item);
 }

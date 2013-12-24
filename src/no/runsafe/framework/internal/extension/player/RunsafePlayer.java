@@ -219,6 +219,23 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 	}
 
 	@Override
+	public void removeExactItem(RunsafeMeta item, int amount)
+	{
+		RunsafePlayerInventory inventory = getInventory();
+		if (inventory != null)
+		{
+			inventory.removeExact(item, amount);
+			updateInventory();
+		}
+	}
+
+	@Override
+	public void removeExactItem(RunsafeMeta item)
+	{
+		removeExactItem(item, 1);
+	}
+
+	@Override
 	@Nullable
 	public IUniverse getUniverse()
 	{
