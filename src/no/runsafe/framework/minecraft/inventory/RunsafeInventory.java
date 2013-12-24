@@ -28,6 +28,9 @@ public class RunsafeInventory extends BukkitInventory
 				{
 					inventory.remove(itemStack.getRaw());
 					needed -= itemStack.getAmount();
+
+					if (needed == 0)
+						break;
 				}
 				else
 				{
@@ -49,6 +52,9 @@ public class RunsafeInventory extends BukkitInventory
 				{
 					inventory.remove(itemStack.getRaw());
 					needed -= itemStack.getAmount();
+
+					if (needed == 0)
+						break;
 				}
 				else
 				{
