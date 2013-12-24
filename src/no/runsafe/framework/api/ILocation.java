@@ -76,5 +76,6 @@ public interface ILocation
 
 	ILocation zero();
 
-	ILocation clone() throws CloneNotSupportedException;
+	@SuppressWarnings("CloneDoesntDeclareCloneNotSupportedException")
+	ILocation clone();
 }

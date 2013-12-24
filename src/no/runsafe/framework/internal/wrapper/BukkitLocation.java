@@ -145,8 +145,9 @@ public abstract class BukkitLocation implements IWrapper<Location>
 		return location.toVector();
 	}
 
+	@SuppressWarnings("CloneDoesntDeclareCloneNotSupportedException")
 	@Override
-	public ILocation clone() throws CloneNotSupportedException
+	public ILocation clone()
 	{
 		return ObjectWrapper.convert(location.clone());
 	}
