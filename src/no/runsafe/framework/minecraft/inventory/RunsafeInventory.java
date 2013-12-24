@@ -1,6 +1,7 @@
 package no.runsafe.framework.minecraft.inventory;
 
 import no.runsafe.framework.internal.log.Console;
+import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.inventory.BukkitInventory;
 import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
@@ -17,50 +18,69 @@ public class RunsafeInventory extends BukkitInventory
 		super(toWrap);
 	}
 
+	public void removeItemInSlot(int slot)
+	{
+		setItemInSlot(AIR, slot);
+	}
+
+	public void setItemInSlot(RunsafeMeta item, int slot)
+	{
+		inventory.setItem(slot, item.getRaw());
+	}
+
+	public RunsafeMeta getItemInSlot(int slot)
+	{
+		return ObjectWrapper.convert(inventory.getItem(slot));
+	}
+
+	@SuppressWarnings("LocalVariableOfConcreteClass")
 	public void remove(Item item, int amount)
 	{
 		int needed = amount;
-		for (RunsafeMeta itemStack : getContents())
+		for (int slot = 0; slot < inventory.getSize(); slot++)
 		{
-			if (itemStack.is(item))
-			{
-				if (itemStack.getAmount() <= needed)
-				{
-					inventory.remove(itemStack.getRaw());
-					needed -= itemStack.getAmount();
+			RunsafeMeta itemStack = getItemInSlot(slot);
+			if (itemStack == null || !itemStack.is(item))
+				continue;
 
-					if (needed == 0)
-						break;
-				}
-				else
-				{
-					itemStack.setAmount(itemStack.getAmount() - needed);
+			if (itemStack.getAmount() <= needed)
+			{
+				needed -= itemStack.getAmount();
+				removeItemInSlot(slot);
+
+				if (needed == 0)
 					break;
-				}
+			}
+			else
+			{
+				itemStack.setAmount(itemStack.getAmount() - needed);
+				break;
 			}
 		}
 	}
 
+	@SuppressWarnings("LocalVariableOfConcreteClass")
 	public void removeExact(RunsafeMeta meta, int amount)
 	{
 		int needed = amount;
-		for (RunsafeMeta itemStack : getContents())
+		for (int slot = 0; slot < inventory.getSize(); slot++)
 		{
-			if (itemStack.equals(meta))
-			{
-				if (itemStack.getAmount() <= needed)
-				{
-					inventory.remove(itemStack.getRaw());
-					needed -= itemStack.getAmount();
+			RunsafeMeta itemStack = getItemInSlot(slot);
+			if (itemStack == null || itemStack.equals(AIR) || !itemStack.equals(meta))
+				continue;
 
-					if (needed == 0)
-						break;
-				}
-				else
-				{
-					itemStack.setAmount(itemStack.getAmount() - needed);
+			if (itemStack.getAmount() <= needed)
+			{
+				needed -= itemStack.getAmount();
+				removeItemInSlot(slot);
+
+				if (needed == 0)
 					break;
-				}
+			}
+			else
+			{
+				itemStack.setAmount(itemStack.getAmount() - needed);
+				break;
 			}
 		}
 	}
@@ -107,4 +127,6 @@ public class RunsafeInventory extends BukkitInventory
 			Console.Global().logException(e);
 		}
 	}
+
+	private static final RunsafeMeta AIR = Item.Unavailable.Air.getItem();
 }
