@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.database.jdbc;
 
+import com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.database.IDatabase;
@@ -80,7 +81,7 @@ public final class Database extends QueryExecutor implements IDatabase
 	{
 		close();
 		accessTime = DateTime.now();
-		MysqlDataSource mysqlDataSource = new MysqlDataSource();
+		MysqlDataSource mysqlDataSource = new MysqlConnectionPoolDataSource();
 		mysqlDataSource.setUrl(databaseURL);
 		mysqlDataSource.setUser(databaseUsername);
 		mysqlDataSource.setPassword(databasePassword);
