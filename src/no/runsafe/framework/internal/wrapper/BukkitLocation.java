@@ -107,31 +107,6 @@ public abstract class BukkitLocation implements IWrapper<Location>
 		return location.getDirection();
 	}
 
-	public ILocation add(ILocation vec)
-	{
-		return ObjectWrapper.convert(location.add((Location) ObjectUnwrapper.convert(vec)));
-	}
-
-	public ILocation add(double x, double y, double z)
-	{
-		return ObjectWrapper.convert(location.add(x, y, z));
-	}
-
-	public ILocation subtract(ILocation vec)
-	{
-		return ObjectWrapper.convert(location.subtract((Location) ObjectUnwrapper.convert(vec)));
-	}
-
-	public ILocation subtract(Vector vec)
-	{
-		return ObjectWrapper.convert(location.subtract(vec));
-	}
-
-	public ILocation subtract(double x, double y, double z)
-	{
-		return ObjectWrapper.convert(location.subtract(x, y, z));
-	}
-
 	public double length()
 	{
 		return location.length();

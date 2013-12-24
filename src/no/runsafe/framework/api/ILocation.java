@@ -64,14 +64,6 @@ public interface ILocation
 
 	IBlock getBlock();
 
-	ILocation add(ILocation vec);
-
-	ILocation add(double x, double y, double z);
-
-	ILocation subtract(ILocation vec);
-
-	ILocation subtract(double x, double y, double z);
-
 	double length();
 
 	double lengthSquared();
@@ -83,4 +75,6 @@ public interface ILocation
 	ILocation multiply(double factor);
 
 	ILocation zero();
+
+	ILocation clone() throws CloneNotSupportedException;
 }
