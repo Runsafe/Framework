@@ -84,12 +84,9 @@ public class RunsafeLocation extends BukkitLocation implements ILocation
 	@Override
 	public void offset(double x, double y, double z)
 	{
-		if (x > 0) incrementX(x);
-		else decrementX(x);
-		if (y > 0) incrementY(y);
-		else decrementY(y);
-		if (z > 0) incrementZ(z);
-		else decrementZ(z);
+		setX(getX() + x);
+		setY(getY() + y);
+		setZ(getZ() + z);
 	}
 
 	@Override
