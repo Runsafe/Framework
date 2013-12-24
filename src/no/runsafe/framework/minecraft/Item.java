@@ -1001,6 +1001,11 @@ public class Item implements IEnchantable
 		return material;
 	}
 
+	public String getName()
+	{
+		return material.name();
+	}
+
 	public byte getData()
 	{
 		return data;
