@@ -16,10 +16,12 @@ import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import no.runsafe.framework.text.ChatColour;
 import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.craftbukkit.v1_7_R1.entity.CraftEntity;
 import org.joda.time.DateTime;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.lang.reflect.Field;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -311,5 +313,26 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 		if (player == null)
 			return null;
 		return player.getAddress().getAddress().getHostAddress();
+	}
+
+	@Override
+	public int getOldLevel()
+	{
+		net.minecraft.server.v1_7_R1.Entity nmsEntity = ((CraftEntity) entity).getHandle();
+		Class playerClass = nmsEntity.getClass();
+		try
+		{
+			Field oldLevelField = playerClass.getDeclaredField("oldLevel");
+			oldLevelField.setAccessible(true);
+			return oldLevelField.getInt(nmsEntity);
+		}
+		catch (NoSuchFieldException e)
+		{
+			return 0;
+		}
+		catch (IllegalAccessException e)
+		{
+			return 0;
+		}
 	}
 }
