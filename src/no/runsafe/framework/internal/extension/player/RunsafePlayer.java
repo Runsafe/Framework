@@ -318,21 +318,7 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 	@Override
 	public int getOldLevel()
 	{
-		net.minecraft.server.v1_7_R1.Entity nmsEntity = ((CraftEntity) entity).getHandle();
-		Class playerClass = nmsEntity.getClass();
-		try
-		{
-			Field oldLevelField = playerClass.getDeclaredField("oldLevel");
-			oldLevelField.setAccessible(true);
-			return oldLevelField.getInt(nmsEntity);
-		}
-		catch (NoSuchFieldException e)
-		{
-			return 0;
-		}
-		catch (IllegalAccessException e)
-		{
-			return 0;
-		}
+		// ToDo: Fix this.
+		return 0;
 	}
 }
