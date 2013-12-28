@@ -17,6 +17,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public abstract class BukkitWorld extends BukkitMetadata implements IWrapper<World>
@@ -28,16 +29,19 @@ public abstract class BukkitWorld extends BukkitMetadata implements IWrapper<Wor
 		world = toWrap;
 	}
 
+	@Nonnull
 	public String getName()
 	{
 		return world.getName();
 	}
 
+	@Nonnull
 	public IBlock getBlockAt(ILocation location)
 	{
 		return ObjectWrapper.convert(world.getBlockAt((Location) ObjectUnwrapper.convert(location)));
 	}
 
+	@Nonnull
 	public IBlock getBlockAt(int x, int y, int z)
 	{
 		return ObjectWrapper.convert(world.getBlockAt(x, y, z));
@@ -53,6 +57,7 @@ public abstract class BukkitWorld extends BukkitMetadata implements IWrapper<Wor
 		return LegacyMaterial.getIdOf(world.getBlockAt(x, y, z).getType());
 	}
 
+	@Nonnull
 	public RunsafeItem dropItem(ILocation location, RunsafeMeta itemStack)
 	{
 		return new RunsafeItem(world.dropItem((Location) ObjectUnwrapper.convert(location), itemStack.getRaw()));
@@ -95,11 +100,14 @@ public abstract class BukkitWorld extends BukkitMetadata implements IWrapper<Wor
 		return world.getMaxHeight();
 	}
 
+	@Nonnull
 	public IEntity spawnCreature(ILocation location, String type)
 	{
 		return ObjectWrapper.convert(world.spawnEntity((Location) ObjectUnwrapper.convert(location), EntityType.fromName(type)));
 	}
 
+	@Deprecated
+	@Nonnull
 	public IEntity spawnCreature(ILocation location, int id)
 	{
 		return ObjectWrapper.convert(world.spawnEntity((Location) ObjectUnwrapper.convert(location), EntityType.fromId(id)));
@@ -110,11 +118,13 @@ public abstract class BukkitWorld extends BukkitMetadata implements IWrapper<Wor
 		world.strikeLightningEffect((Location) ObjectUnwrapper.convert(location));
 	}
 
+	@Nonnull
 	public List<IPlayer> getPlayers()
 	{
 		return ObjectWrapper.convert(world.getPlayers());
 	}
 
+	@Nonnull
 	public List<IEntity> getEntities()
 	{
 		return ObjectWrapper.convert(world.getEntities());

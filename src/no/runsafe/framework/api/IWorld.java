@@ -8,6 +8,7 @@ import no.runsafe.framework.minecraft.Sound;
 import no.runsafe.framework.minecraft.entity.RunsafeItem;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
@@ -18,10 +19,12 @@ public interface IWorld extends IMetadata
 
 	boolean isUniverse(String name);
 
+	@Nonnull
 	IUniverse getUniverse();
 
 	boolean isConnected(IWorld world);
 
+	@Nullable
 	ILocation getLocation(Double x, Double y, Double z);
 
 	@Nullable
@@ -29,16 +32,20 @@ public interface IWorld extends IMetadata
 
 	boolean isWorld(IWorld world);
 
+	@Nonnull
 	String getName();
 
+	@Nonnull
 	IBlock getBlockAt(ILocation location);
 
+	@Nonnull
 	IBlock getBlockAt(int x, int y, int z);
 
 	int getBlockTypeIdAt(ILocation location);
 
 	int getBlockTypeIdAt(int x, int y, int z);
 
+	@Nonnull
 	RunsafeItem dropItem(ILocation location, RunsafeMeta itemStack);
 
 	void strikeLightning(ILocation location);
@@ -49,14 +56,19 @@ public interface IWorld extends IMetadata
 
 	int getMaxHeight();
 
+	@Nonnull
 	IEntity spawnCreature(ILocation location, String type);
 
+	@Nonnull
+	@Deprecated
 	IEntity spawnCreature(ILocation location, int id);
 
 	void strikeLightningEffect(ILocation location);
 
+	@Nonnull
 	List<IPlayer> getPlayers();
 
+	@Nonnull
 	List<IEntity> getEntities();
 
 	void playSound(ILocation location, Sound sound, float volume, float pitch);

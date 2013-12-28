@@ -11,6 +11,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class RunsafeWorld extends BukkitWorld implements IWorld
@@ -48,6 +49,7 @@ public class RunsafeWorld extends BukkitWorld implements IWorld
 		return getUniverse().getName().equalsIgnoreCase(name);
 	}
 
+	@Nonnull
 	@Override
 	public IUniverse getUniverse()
 	{
@@ -60,14 +62,15 @@ public class RunsafeWorld extends BukkitWorld implements IWorld
 		return getUniverse().equals(world.getUniverse());
 	}
 
+	@Nullable
 	@Override
 	public ILocation getLocation(Double x, Double y, Double z)
 	{
 		return getLocation(x, y, z, null, null);
 	}
 
-	@Override
 	@Nullable
+	@Override
 	public ILocation getLocation(Double x, Double y, Double z, Float yaw, Float pitch)
 	{
 		if (x == null || y == null || z == null)

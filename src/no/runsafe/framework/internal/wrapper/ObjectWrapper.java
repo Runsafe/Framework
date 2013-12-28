@@ -10,6 +10,7 @@ import no.runsafe.framework.api.minecraft.IInventoryHolder;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.extension.block.*;
+import no.runsafe.framework.internal.extension.player.RunsafePlayer;
 import no.runsafe.framework.internal.wrapper.block.BukkitBlockState;
 import no.runsafe.framework.internal.wrapper.item.BukkitItemStack;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
@@ -22,7 +23,6 @@ import no.runsafe.framework.minecraft.entity.*;
 import no.runsafe.framework.minecraft.inventory.*;
 import no.runsafe.framework.minecraft.item.meta.*;
 import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
-import no.runsafe.framework.internal.extension.player.RunsafePlayer;
 import org.bukkit.*;
 import org.bukkit.block.*;
 import org.bukkit.craftbukkit.v1_7_R1.CraftServer;
@@ -35,24 +35,26 @@ import org.bukkit.inventory.meta.*;
 import org.bukkit.material.MaterialData;
 import org.bukkit.metadata.Metadatable;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
-@SuppressWarnings({"ChainOfInstanceofChecks", "UnnecessaryFullyQualifiedName", "OverlyComplexClass", "OverlyCoupledClass", "OverloadedVarargsMethod"})
+@SuppressWarnings({"unchecked", "ChainOfInstanceofChecks", "UnnecessaryFullyQualifiedName", "OverlyComplexClass", "OverlyCoupledClass", "OverloadedVarargsMethod"})
 public final class ObjectWrapper
 {
 	private ObjectWrapper()
 	{
 	}
 
-	@Nullable
+	@Nonnull
 	@SuppressWarnings("unchecked")
 	public static <Wrap> List<Wrap> convert(Collection<?> toWrap)
 	{
 		if (toWrap == null)
-			return null;
+			return Collections.emptyList();
 
 		List<Wrap> results = new ArrayList<Wrap>(toWrap.size());
 		for (Object item : toWrap)
@@ -67,12 +69,11 @@ public final class ObjectWrapper
 		return results;
 	}
 
-	@Nullable
-	@SuppressWarnings("unchecked")
+	@Nonnull
 	public static <Wrapper extends IPlayer, Raw extends OfflinePlayer> List<Wrapper> convert(Raw... toWrap)
 	{
 		if (toWrap == null)
-			return null;
+			return Collections.emptyList();
 
 		List<Wrapper> results = new ArrayList<Wrapper>(toWrap.length);
 		for (Raw item : toWrap)
@@ -80,12 +81,11 @@ public final class ObjectWrapper
 		return results;
 	}
 
-	@SuppressWarnings("unchecked")
-	@Nullable
+	@Nonnull
 	public static <Wrapper extends BukkitMetadata, Raw extends Metadatable> List<Wrapper> convert(Raw... toWrap)
 	{
 		if (toWrap == null)
-			return null;
+			return Collections.emptyList();
 
 		List<Wrapper> results = new ArrayList<Wrapper>(toWrap.length);
 		for (Raw item : toWrap)
@@ -93,12 +93,11 @@ public final class ObjectWrapper
 		return results;
 	}
 
-	@SuppressWarnings("unchecked")
-	@Nullable
+	@Nonnull
 	public static <Wrapper extends BukkitItemStack, Raw extends ItemStack> List<Wrapper> convert(Raw... toWrap)
 	{
 		if (toWrap == null)
-			return null;
+			return Collections.emptyList();
 
 		List<Wrapper> results = new ArrayList<Wrapper>(toWrap.length);
 		for (Raw item : toWrap)
