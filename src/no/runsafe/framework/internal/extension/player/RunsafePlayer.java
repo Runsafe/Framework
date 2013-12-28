@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IUniverse;
 import no.runsafe.framework.api.IWorld;
+import no.runsafe.framework.api.networking.IPacket;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.hooks.PlayerExtensions;
 import no.runsafe.framework.internal.wrapper.BukkitLocation;
@@ -320,5 +321,11 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 	{
 		// ToDo: Fix this.
 		return 0;
+	}
+
+	@Override
+	public void sendPacket(IPacket packet)
+	{
+		packet.sendPacket(this);
 	}
 }
