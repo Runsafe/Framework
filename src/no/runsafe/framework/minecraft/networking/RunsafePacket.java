@@ -5,6 +5,7 @@ import net.minecraft.server.v1_7_R1.Packet;
 import no.runsafe.framework.api.networking.IPacket;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
+import org.bukkit.craftbukkit.v1_7_R1.entity.CraftPlayer;
 
 
 public abstract class RunsafePacket implements IPacket
@@ -15,7 +16,12 @@ public abstract class RunsafePacket implements IPacket
 		if (packet == null)
 			return;
 
-		EntityPlayer rawPlayer = ObjectUnwrapper.convert(player);
+		CraftPlayer craftPlayer = ObjectUnwrapper.convert(player);
+
+		if (craftPlayer == null)
+			return;
+
+		EntityPlayer rawPlayer = craftPlayer.getHandle();
 
 		if (rawPlayer != null)
 			rawPlayer.playerConnection.sendPacket(packet);
