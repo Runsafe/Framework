@@ -7,6 +7,7 @@ import no.runsafe.framework.internal.wrapper.block.BukkitBlockState;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import org.bukkit.Chunk;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
@@ -27,22 +28,25 @@ public abstract class BukkitChunk
 		return chunk.getZ();
 	}
 
+	@Nonnull
 	public IWorld getWorld()
 	{
 		return ObjectWrapper.convert(chunk.getWorld());
 	}
 
+	@Nonnull
 	public IBlock getBlock(int i, int i1, int i2)
 	{
 		return ObjectWrapper.convert(chunk.getBlock(i, i1, i2));
 	}
 
-	@Nullable
+	@Nonnull
 	public List<RunsafeEntity> getEntities()
 	{
 		return ObjectWrapper.convert(chunk.getEntities());
 	}
 
+	@Nonnull
 	public List<BukkitBlockState> getTileEntities()
 	{
 		return ObjectWrapper.convert(chunk.getTileEntities());
