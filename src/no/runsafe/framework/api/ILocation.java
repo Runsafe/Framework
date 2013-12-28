@@ -5,6 +5,7 @@ import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.Sound;
 import no.runsafe.framework.minecraft.WorldEffect;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
+import org.bukkit.util.Vector;
 
 import java.util.List;
 
@@ -82,4 +83,6 @@ public interface ILocation
 	void playEffect(WorldEffect effect, int speed, int particleAmount, double range);
 
 	void playEffect(WorldEffect effect, int particleAmount, double range);
+
+	Vector getDirection();
 }
