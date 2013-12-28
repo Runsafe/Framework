@@ -5,7 +5,6 @@
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/lib/bukkit.jar!/" />
       <root url="file://$PROJECT_DIR$/../other/Bukkit/src/main/java" />
       <root url="file://$PROJECT_DIR$/../other/Bukkit/src/test/java" />
     </SOURCES>
