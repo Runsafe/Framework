@@ -53,6 +53,9 @@ public abstract class BukkitEntity extends BukkitMetadata
 
 	public boolean teleport(ILocation location)
 	{
+		if (location == null)
+			return false;
+
 		RunsafeChunk targetChunk = location.getChunk();
 		if (targetChunk.isUnloaded())
 			targetChunk.load();
