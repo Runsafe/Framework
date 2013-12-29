@@ -359,6 +359,21 @@ public class Item implements IEnchantable
 			}
 		}
 
+		public static final class DoublePlant
+		{
+			public static final Item Any = new Item(Material.DOUBLE_PLANT, true);
+			public static final Item Sunflower = new Item(Material.DOUBLE_PLANT, true, (byte) 0);
+			public static final Item Lilac = new Item(Material.DOUBLE_PLANT, true, (byte) 1);
+			public static final Item TallGrass = new Item(Material.DOUBLE_PLANT, true, (byte) 2);
+			public static final Item Fern = new Item(Material.DOUBLE_PLANT, true, (byte) 3);
+			public static final Item RoseBush = new Item(Material.DOUBLE_PLANT, true, (byte) 4);
+			public static final Item Peony = new Item(Material.DOUBLE_PLANT, true, (byte) 5);
+
+			private DoublePlant()
+			{
+			}
+		}
+
 		public static final class Sapling
 		{
 			public static final Item Any = new Item(Material.SAPLING, true, AnyData);
