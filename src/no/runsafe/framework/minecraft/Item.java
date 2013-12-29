@@ -313,8 +313,7 @@ public class Item implements IEnchantable
 		public static final Item Web = new Item(Material.WEB, true);
 		public static final Item LongGrass = new Item(Material.LONG_GRASS, true);
 		public static final Item DeadBush = new Item(Material.DEAD_BUSH, true);
-		public static final Item Flower = new Item(Material.YELLOW_FLOWER, true);
-		public static final Item Rose = new Item(Material.RED_ROSE, true);
+		public static final Item Dandelion = new Item(Material.YELLOW_FLOWER, true);
 		public static final Item Torch = new Item(Material.TORCH, true);
 		public static final Item Chest = new Item(Material.CHEST, true);
 		public static final Item Workbench = new Item(Material.WORKBENCH, true);
