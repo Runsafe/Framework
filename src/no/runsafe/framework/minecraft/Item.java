@@ -98,6 +98,7 @@ public class Item implements IEnchantable
 		public static final Item Obsidian = new Item(Material.OBSIDIAN, true);
 		public static final Item Diamond = new Item(Material.DIAMOND_BLOCK, true);
 		public static final Item Ice = new Item(Material.ICE, true);
+		public static final Item PackedIce = new Item(Material.PACKED_ICE, true);
 		public static final Item Snow = new Item(Material.SNOW_BLOCK, true);
 		public static final Item Clay = new Item(Material.CLAY, true);
 		public static final Item Pumpkin = new Item(Material.PUMPKIN, true);
