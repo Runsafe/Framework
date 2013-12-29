@@ -431,6 +431,8 @@ public class Item implements IEnchantable
 			public static final Item Spruce = new Item(Material.SAPLING, true, (byte) 1);
 			public static final Item Birch = new Item(Material.SAPLING, true, (byte) 2);
 			public static final Item Jungle = new Item(Material.SAPLING, true, (byte) 3);
+			public static final Item Acacia = new Item(Material.SAPLING, true, (byte) 4);
+			public static final Item DarkOak = new Item(Material.SAPLING, true, (byte) 5);
 
 			private Sapling()
 			{
