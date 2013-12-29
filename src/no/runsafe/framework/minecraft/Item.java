@@ -1242,6 +1242,11 @@ public class Item implements IEnchantable
 		return item == null ? convertToItem().getItem() : item;
 	}
 
+	public int getItemID()
+	{
+		return getItem().getItemId();
+	}
+
 	Item(Material material, boolean root)
 	{
 		this(material, root, AnyData);
