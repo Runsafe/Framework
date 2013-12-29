@@ -1,6 +1,8 @@
 package no.runsafe.framework.minecraft;
 
-public enum WorldEffect
+import no.runsafe.framework.api.IWorldEffect;
+
+public enum WorldEffect implements IWorldEffect
 {
 	HUGE_EXPLOSION("hugeexplosion"),
 	LARGE_EXPLODE("largeexplode"),
@@ -46,15 +48,10 @@ public enum WorldEffect
 		this.name = name;
 	}
 
+	@Override
 	public String getName()
 	{
 		return name;
-	}
-
-	// Used for IRON_CRACK, TILE_CRACK and BLOCK_DUST.
-	public String getBlockEffect(int blockID)
-	{
-		return name + blockID;
 	}
 
 	private final String name;

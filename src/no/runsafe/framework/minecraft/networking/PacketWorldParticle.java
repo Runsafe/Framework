@@ -2,12 +2,12 @@ package no.runsafe.framework.minecraft.networking;
 
 import net.minecraft.server.v1_7_R1.PacketPlayOutWorldParticles;
 import no.runsafe.framework.api.ILocation;
-import no.runsafe.framework.minecraft.WorldEffect;
+import no.runsafe.framework.api.IWorldEffect;
 
 public class PacketWorldParticle extends RunsafePacket
 {
 	@SuppressWarnings("NumericCastThatLosesPrecision")
-	public PacketWorldParticle(WorldEffect effect, ILocation location, WorldParticleOffset offset, int speed, int amount)
+	public PacketWorldParticle(IWorldEffect effect, ILocation location, WorldParticleOffset offset, int speed, int amount)
 	{
 		packet = new PacketPlayOutWorldParticles(
 				effect.getName(),

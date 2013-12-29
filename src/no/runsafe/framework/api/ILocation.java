@@ -3,7 +3,6 @@ package no.runsafe.framework.api;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.Sound;
-import no.runsafe.framework.minecraft.WorldEffect;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import org.bukkit.util.Vector;
 
@@ -80,9 +79,9 @@ public interface ILocation
 	@SuppressWarnings("CloneDoesntDeclareCloneNotSupportedException")
 	ILocation clone();
 
-	void playEffect(WorldEffect effect, int speed, int particleAmount, double range);
+	void playEffect(IWorldEffect effect, int speed, int particleAmount, double range);
 
-	void playEffect(WorldEffect effect, int particleAmount, double range);
+	void playEffect(IWorldEffect effect, int particleAmount, double range);
 
 	Vector getDirection();
 }

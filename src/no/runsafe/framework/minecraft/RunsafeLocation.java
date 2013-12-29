@@ -1,6 +1,7 @@
 package no.runsafe.framework.minecraft;
 
 import no.runsafe.framework.api.ILocation;
+import no.runsafe.framework.api.IWorldEffect;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.wrapper.BukkitLocation;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
@@ -109,7 +110,7 @@ public class RunsafeLocation extends BukkitLocation implements ILocation
 
 	@SuppressWarnings("LocalVariableOfConcreteClass")
 	@Override
-	public void playEffect(WorldEffect effect, int speed, int particleAmount, double range)
+	public void playEffect(IWorldEffect effect, int speed, int particleAmount, double range)
 	{
 		List<IPlayer> players = getPlayersInRange(range);
 		PacketWorldParticle packet = new PacketWorldParticle(effect, this, new WorldParticleOffset(0, 0, 0), speed, particleAmount);
@@ -119,7 +120,7 @@ public class RunsafeLocation extends BukkitLocation implements ILocation
 	}
 
 	@Override
-	public void playEffect(WorldEffect effect, int particleAmount, double range)
+	public void playEffect(IWorldEffect effect, int particleAmount, double range)
 	{
 		playEffect(effect, 1, particleAmount, range);
 	}
