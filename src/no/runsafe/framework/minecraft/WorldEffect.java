@@ -51,5 +51,11 @@ public enum WorldEffect
 		return name;
 	}
 
+	// Used for IRON_CRACK, TILE_CRACK and BLOCK_DUST.
+	public String getBlockEffect(int blockID)
+	{
+		return name + blockID;
+	}
+
 	private final String name;
 }
