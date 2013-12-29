@@ -142,6 +142,31 @@ public class Item implements IEnchantable
 			}
 		}
 
+		public static final class StainedGlassPane
+		{
+			public static final Item Any = new Item(Material.STAINED_GLASS_PANE, true, AnyData);
+			public static final Item White = new Item(Material.STAINED_GLASS_PANE, true, (byte) 0);
+			public static final Item Orange = new Item(Material.STAINED_GLASS_PANE, true, (byte) 1);
+			public static final Item Magenta = new Item(Material.STAINED_GLASS_PANE, true, (byte) 2);
+			public static final Item LightBlue = new Item(Material.STAINED_GLASS_PANE, true, (byte) 3);
+			public static final Item Yellow = new Item(Material.STAINED_GLASS_PANE, true, (byte) 4);
+			public static final Item Lime = new Item(Material.STAINED_GLASS_PANE, true, (byte) 5);
+			public static final Item Pink = new Item(Material.STAINED_GLASS_PANE, true, (byte) 6);
+			public static final Item Gray = new Item(Material.STAINED_GLASS_PANE, true, (byte) 7);
+			public static final Item LightGray = new Item(Material.STAINED_GLASS_PANE, true, (byte) 8);
+			public static final Item Cyan = new Item(Material.STAINED_GLASS_PANE, true, (byte) 9);
+			public static final Item Purple = new Item(Material.STAINED_GLASS_PANE, true, (byte) 10);
+			public static final Item Blue = new Item(Material.STAINED_GLASS_PANE, true, (byte) 11);
+			public static final Item Brown = new Item(Material.STAINED_GLASS_PANE, true, (byte) 12);
+			public static final Item Green = new Item(Material.STAINED_GLASS_PANE, true, (byte) 13);
+			public static final Item Red = new Item(Material.STAINED_GLASS_PANE, true, (byte) 14);
+			public static final Item Black = new Item(Material.STAINED_GLASS_PANE, true, (byte) 15);
+
+			private StainedGlassPane()
+			{
+			}
+		}
+
 		public static final class StainedClay
 		{
 			public static final Item Any = new Item(Material.STAINED_CLAY, true, AnyData);
