@@ -369,7 +369,7 @@ public class Item implements IEnchantable
 
 		public static final class Flower
 		{
-			public static final Item Any = new Item(Material.RED_ROSE, true);
+			public static final Item Any = new Item(Material.RED_ROSE, true, AnyData);
 			public static final Item Poppy = new Item(Material.RED_ROSE, true, (byte) 0);
 			public static final Item BlueOrchid = new Item(Material.RED_ROSE, true, (byte) 1);
 			public static final Item Allium = new Item(Material.RED_ROSE, true, (byte) 2);
@@ -386,7 +386,7 @@ public class Item implements IEnchantable
 
 		public static final class DoublePlant
 		{
-			public static final Item Any = new Item(Material.DOUBLE_PLANT, true);
+			public static final Item Any = new Item(Material.DOUBLE_PLANT, true, AnyData);
 			public static final Item Sunflower = new Item(Material.DOUBLE_PLANT, true, (byte) 0);
 			public static final Item Lilac = new Item(Material.DOUBLE_PLANT, true, (byte) 1);
 			public static final Item TallGrass = new Item(Material.DOUBLE_PLANT, true, (byte) 2);
