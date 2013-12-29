@@ -82,6 +82,7 @@ public class Item implements IEnchantable
 		public static final Item Stone = new Item(Material.STONE, true);
 		public static final Item Grass = new Item(Material.GRASS, true);
 		public static final Item Dirt = new Item(Material.DIRT, true);
+		public static final Item Podzol = new Item(Material.DIRT, true, (byte) 2);
 		public static final Item Cobblestone = new Item(Material.COBBLESTONE, true);
 		public static final Item Bedrock = new Item(Material.BEDROCK, true);
 		public static final Item Sand = new Item(Material.SAND, true);
