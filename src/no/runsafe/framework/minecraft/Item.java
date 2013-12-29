@@ -727,9 +727,21 @@ public class Item implements IEnchantable
 		public static final class Meat
 		{
 			public static final Item Pork = new Item(Material.PORK, true);
-			public static final Item Fish = new Item(Material.RAW_FISH, true);
 			public static final Item Beef = new Item(Material.RAW_BEEF, true);
 			public static final Item Chicken = new Item(Material.RAW_CHICKEN, true);
+
+			public static final class Fish
+			{
+				public static final Item Any = new Item(Material.RAW_FISH, true, AnyData);
+				public static final Item Normal = new Item(Material.RAW_FISH, true, (byte) 0);
+				public static final Item Salmon = new Item(Material.RAW_FISH, true, (byte) 1);
+				public static final Item Clownfish = new Item(Material.RAW_FISH, true, (byte) 2);
+				public static final Item Pufferfish = new Item(Material.RAW_FISH, true, (byte) 3);
+
+				private Fish()
+				{
+				}
+			}
 
 			private Meat()
 			{
