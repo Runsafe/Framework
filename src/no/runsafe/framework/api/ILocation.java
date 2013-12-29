@@ -79,7 +79,7 @@ public interface ILocation
 	@SuppressWarnings("CloneDoesntDeclareCloneNotSupportedException")
 	ILocation clone();
 
-	void playEffect(IWorldEffect effect, int speed, int particleAmount, double range);
+	void playEffect(IWorldEffect effect, float speed, int particleAmount, double range);
 
 	void playEffect(IWorldEffect effect, int particleAmount, double range);
 

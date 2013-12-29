@@ -110,7 +110,7 @@ public class RunsafeLocation extends BukkitLocation implements ILocation
 
 	@SuppressWarnings("LocalVariableOfConcreteClass")
 	@Override
-	public void playEffect(IWorldEffect effect, int speed, int particleAmount, double range)
+	public void playEffect(IWorldEffect effect, float speed, int particleAmount, double range)
 	{
 		List<IPlayer> players = getPlayersInRange(range);
 		PacketWorldParticle packet = new PacketWorldParticle(effect, this, new WorldParticleOffset(0, 0, 0), speed, particleAmount);

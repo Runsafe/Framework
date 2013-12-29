@@ -7,7 +7,7 @@ import no.runsafe.framework.api.IWorldEffect;
 public class PacketWorldParticle extends RunsafePacket
 {
 	@SuppressWarnings("NumericCastThatLosesPrecision")
-	public PacketWorldParticle(IWorldEffect effect, ILocation location, WorldParticleOffset offset, int speed, int amount)
+	public PacketWorldParticle(IWorldEffect effect, ILocation location, WorldParticleOffset offset, float speed, int amount)
 	{
 		packet = new PacketPlayOutWorldParticles(
 				effect.getName(),
