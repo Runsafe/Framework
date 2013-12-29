@@ -37,8 +37,9 @@ public enum WorldEffect
 	HEART("heart"),
 	ANGRY_VILLAGER("angryVillager"),
 	HAPPY_VILLAGER("happyVillager"),
-	ICONCRACK("iconcrack"),
-	TILECRACK("tilecrack");
+	ICON_CRACK("iconcrack_"),
+	TILE_CRACK("tilecrack_"),
+	BLOCK_DUST("blockdust_");
 
 	WorldEffect(String name)
 	{
