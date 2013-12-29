@@ -730,6 +730,10 @@ public class Item implements IEnchantable
 			public static final Item Beef = new Item(Material.RAW_BEEF, true);
 			public static final Item Chicken = new Item(Material.RAW_CHICKEN, true);
 
+			private Meat()
+			{
+			}
+
 			public static final class Fish
 			{
 				public static final Item Any = new Item(Material.RAW_FISH, true, AnyData);
@@ -742,10 +746,6 @@ public class Item implements IEnchantable
 				{
 				}
 			}
-
-			private Meat()
-			{
-			}
 		}
 
 		public static final class Cooked
@@ -753,7 +753,6 @@ public class Item implements IEnchantable
 			public static final Item MushroomSoup = new Item(Material.MUSHROOM_SOUP, true);
 			public static final Item Bread = new Item(Material.BREAD, true);
 			public static final Item Pork = new Item(Material.GRILLED_PORK, true);
-			public static final Item Fish = new Item(Material.COOKED_FISH, true);
 			public static final Item Cake = new Item(Material.CAKE, true);
 			public static final Item Cookie = new Item(Material.COOKIE, true);
 			public static final Item Beef = new Item(Material.COOKED_BEEF, true);
