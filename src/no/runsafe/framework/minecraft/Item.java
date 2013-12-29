@@ -342,6 +342,23 @@ public class Item implements IEnchantable
 		{
 		}
 
+		public static final class Flower
+		{
+			public static final Item Any = new Item(Material.RED_ROSE, true);
+			public static final Item Poppy = new Item(Material.RED_ROSE, true, (byte) 0);
+			public static final Item BlueOrchid = new Item(Material.RED_ROSE, true, (byte) 1);
+			public static final Item Allium = new Item(Material.RED_ROSE, true, (byte) 2);
+			public static final Item RedTulip = new Item(Material.RED_ROSE, true, (byte) 4);
+			public static final Item OrangeTulip = new Item(Material.RED_ROSE, true, (byte) 5);
+			public static final Item WhiteTulip = new Item(Material.RED_ROSE, true, (byte) 6);
+			public static final Item PinkTulip = new Item(Material.RED_ROSE, true, (byte) 7);
+			public static final Item OxeyeDaisy = new Item(Material.RED_ROSE, true, (byte) 8);
+
+			private Flower()
+			{
+			}
+		}
+
 		public static final class Sapling
 		{
 			public static final Item Any = new Item(Material.SAPLING, true, AnyData);
