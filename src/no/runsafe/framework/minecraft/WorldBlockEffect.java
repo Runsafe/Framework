@@ -1,12 +1,15 @@
 package no.runsafe.framework.minecraft;
 
 import no.runsafe.framework.api.IWorldEffect;
+import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 
 public class WorldBlockEffect implements IWorldEffect
 {
+	@SuppressWarnings("LocalVariableOfConcreteClass")
 	public WorldBlockEffect(WorldBlockEffectType type, Item blockType)
 	{
-		name = type.getName() + blockType.getItem().getItemId();
+		RunsafeMeta item = blockType.getItem();
+		name = type.getName() + item.getItemId() + '_' + item.getData().getData();
 	}
 
 	@Override
