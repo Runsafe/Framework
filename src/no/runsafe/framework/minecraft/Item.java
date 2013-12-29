@@ -763,6 +763,19 @@ public class Item implements IEnchantable
 			private Cooked()
 			{
 			}
+
+			public static final class Fish
+			{
+				public static final Item Any = new Item(Material.COOKED_FISH, true, AnyData);
+				public static final Item Normal = new Item(Material.COOKED_FISH, true, (byte) 0);
+				public static final Item Salmon = new Item(Material.COOKED_FISH, true, (byte) 1);
+				public static final Item Clownfish = new Item(Material.COOKED_FISH, true, (byte) 2);
+				public static final Item Pufferfish = new Item(Material.COOKED_FISH, true, (byte) 3);
+
+				private Fish()
+				{
+				}
+			}
 		}
 
 		public static final class Golden
