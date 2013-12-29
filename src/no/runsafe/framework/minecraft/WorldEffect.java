@@ -11,6 +11,7 @@ public enum WorldEffect
 	TOWN_AURA("townaura"),
 	CRIT("crit"),
 	MAGIC_CRIT("magicCrit"),
+	SMOKE("smoke"),
 	MOB_SPELL("mobSpell"),
 	MOB_SPELL_AMBIENT("mobSpellAmbient"),
 	SPELL("spell"),
