@@ -25,6 +25,7 @@ public enum WorldEffect
 	LAVA("lava"),
 	FOOTSTEP("footstep"),
 	SPLASH("splash"),
+	WAKE("wake"),
 	LARGE_SMOKE("largesmoke"),
 	CLOUD("cloud"),
 	RED_DUST("reddust"),
