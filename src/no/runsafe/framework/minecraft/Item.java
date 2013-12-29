@@ -148,6 +148,8 @@ public class Item implements IEnchantable
 			public static final Item Spruce = new Item(Material.LOG, true, (byte) 1);
 			public static final Item Birch = new Item(Material.LOG, true, (byte) 2);
 			public static final Item Jungle = new Item(Material.LOG, true, (byte) 3);
+			public static final Item Acacia = new Item(Material.LOG, true, (byte) 4);
+			public static final Item DarkOak = new Item(Material.LOG, true, (byte) 5);
 
 			private Wood()
 			{
@@ -161,6 +163,8 @@ public class Item implements IEnchantable
 				public static final Item Spruce = new Item(Material.WOOD, true, (byte) 1);
 				public static final Item Birch = new Item(Material.WOOD, true, (byte) 2);
 				public static final Item Jungle = new Item(Material.WOOD, true, (byte) 3);
+				public static final Item Acacia = new Item(Material.WOOD, true, (byte) 4);
+				public static final Item DarkOak = new Item(Material.WOOD, true, (byte) 5);
 
 				private Plank()
 				{
@@ -213,6 +217,8 @@ public class Item implements IEnchantable
 			public static final Item Spruce = new Item(Material.WOOD_STEP, true, (byte) 1);
 			public static final Item Birch = new Item(Material.WOOD_STEP, true, (byte) 2);
 			public static final Item Jungle = new Item(Material.WOOD_STEP, true, (byte) 3);
+			public static final Item Acacia = new Item(Material.WOOD_STEP, true, (byte) 4);
+			public static final Item DarkOak = new Item(Material.WOOD_STEP, true, (byte) 5);
 			public static final Item AnyStone = new Item(Material.STEP, true, AnyData);
 			public static final Item Stone = new Item(Material.STEP, true, (byte) 0);
 			public static final Item Sandstone = new Item(Material.STEP, true, (byte) 1);
@@ -234,6 +240,8 @@ public class Item implements IEnchantable
 			public static final Item Spruce = new Item(Material.SPRUCE_WOOD_STAIRS, true);
 			public static final Item Birch = new Item(Material.BIRCH_WOOD_STAIRS, true);
 			public static final Item Jungle = new Item(Material.JUNGLE_WOOD_STAIRS, true);
+			public static final Item Acacia = new Item(Material.ACACIA_STAIRS, true);
+			public static final Item DarkOak = new Item(Material.DARK_OAK_STAIRS, true);
 			public static final Item Cobblestone = new Item(Material.COBBLESTONE_STAIRS, true);
 			public static final Item Brick = new Item(Material.BRICK_STAIRS, true);
 			public static final Item StoneBrick = new Item(Material.SMOOTH_STAIRS, true);
