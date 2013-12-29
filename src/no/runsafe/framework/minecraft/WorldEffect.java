@@ -6,7 +6,7 @@ public enum WorldEffect
 	LARGE_EXPLODE("largeexplode"),
 	FIREWORKS_SPARK("fireworksSpark"),
 	BUBBLE("bubble"),
-	SUSPEND("suspend"),
+	SUSPEND("suspended"),
 	DEPTH_SUSPEND("depthSuspend"),
 	TOWN_AURA("townaura"),
 	CRIT("crit"),
