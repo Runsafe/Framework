@@ -2,6 +2,7 @@ package no.runsafe.framework.internal.wrapper.entity;
 
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
+import no.runsafe.framework.api.chunk.IChunk;
 import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
@@ -56,7 +57,7 @@ public abstract class BukkitEntity extends BukkitMetadata
 		if (location == null)
 			return false;
 
-		RunsafeChunk targetChunk = location.getChunk();
+		IChunk targetChunk = location.getChunk();
 		if (targetChunk.isUnloaded())
 			targetChunk.load();
 

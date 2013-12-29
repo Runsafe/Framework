@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IUniverse;
 import no.runsafe.framework.api.IWorld;
+import no.runsafe.framework.api.chunk.IChunk;
 import no.runsafe.framework.api.networking.IPacket;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.hooks.PlayerExtensions;
@@ -89,7 +90,7 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 	public void teleport(IWorld world, double x, double y, double z)
 	{
 		ILocation target = world.getLocation(x, y, z);
-		RunsafeChunk chunk = target.getChunk();
+		IChunk chunk = target.getChunk();
 		if (chunk.isUnloaded())
 			chunk.load();
 		teleport(target);

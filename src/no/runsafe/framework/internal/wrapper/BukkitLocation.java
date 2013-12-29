@@ -3,8 +3,8 @@ package no.runsafe.framework.internal.wrapper;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.block.IBlock;
+import no.runsafe.framework.api.chunk.IChunk;
 import no.runsafe.framework.minecraft.RunsafeWorld;
-import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
 
@@ -92,7 +92,7 @@ public abstract class BukkitLocation implements IWrapper<Location>
 		return location;
 	}
 
-	public RunsafeChunk getChunk()
+	public IChunk getChunk()
 	{
 		return ObjectWrapper.convert(location.getChunk());
 	}

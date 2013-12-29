@@ -2,11 +2,11 @@ package no.runsafe.framework.internal.wrapper.block;
 
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
+import no.runsafe.framework.api.chunk.IChunk;
 import no.runsafe.framework.internal.LegacyMaterial;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.internal.extension.block.RunsafeBlock;
-import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -19,7 +19,7 @@ public class BukkitBlockState extends RunsafeBlock
 		blockState = state;
 	}
 
-	public RunsafeChunk getChunk()
+	public IChunk getChunk()
 	{
 		return ObjectWrapper.convert(blockState.getChunk());
 	}

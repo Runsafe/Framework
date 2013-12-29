@@ -4,6 +4,7 @@ import net.minecraft.server.v1_7_R1.EntityPlayer;
 import net.minecraft.server.v1_7_R1.MinecraftServer;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.block.IBlock;
+import no.runsafe.framework.api.chunk.IChunk;
 import no.runsafe.framework.api.metadata.IMetadata;
 import no.runsafe.framework.api.minecraft.IAnimalTamer;
 import no.runsafe.framework.api.minecraft.IInventoryHolder;
@@ -138,7 +139,7 @@ public final class ObjectWrapper
 	}
 
 	@Nullable
-	public static RunsafeChunk convert(Chunk toWrap)
+	public static IChunk convert(Chunk toWrap)
 	{
 		if (toWrap == null)
 			return null;

@@ -2,14 +2,14 @@ package no.runsafe.framework.api.block;
 
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
+import no.runsafe.framework.api.chunk.IChunk;
 import no.runsafe.framework.api.metadata.IMetadata;
 import no.runsafe.framework.minecraft.Item;
-import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
 
 public interface IBlockState extends IMetadata
 {
-	RunsafeChunk getChunk();
+	IChunk getChunk();
 	RunsafeMaterialData getMaterialData();
 	byte getLightLevel();
 	ILocation getLocation();

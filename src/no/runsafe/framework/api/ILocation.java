@@ -1,9 +1,9 @@
 package no.runsafe.framework.api;
 
 import no.runsafe.framework.api.block.IBlock;
+import no.runsafe.framework.api.chunk.IChunk;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.Sound;
-import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import org.bukkit.util.Vector;
 
 import java.util.List;
@@ -60,7 +60,7 @@ public interface ILocation
 
 	int getBlockZ();
 
-	RunsafeChunk getChunk();
+	IChunk getChunk();
 
 	IBlock getBlock();
 
