@@ -16,6 +16,7 @@ We welcome any to contribute to any of the Runsafe projects including the Framew
 * No trailing whitespace.
 * While a lot of our code lacks documentation, we expect any new methods or classes submitted to contain suiting documentation in JavaDoc format as we work toward full documentation.
 * Make sure any changes you submit are tested properly!
+* Your commit messages should be descriptive yet short.
 
 #### Code Example A:
 ```java
