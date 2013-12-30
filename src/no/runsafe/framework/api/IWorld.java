@@ -7,6 +7,7 @@ import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.Sound;
 import no.runsafe.framework.minecraft.entity.RunsafeItem;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
+import org.bukkit.Effect;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -80,4 +81,6 @@ public interface IWorld extends IMetadata
 	boolean isTheEnd();
 
 	void setTime(long time);
+
+	void playEffect(ILocation location, Effect effect, int data);
 }
