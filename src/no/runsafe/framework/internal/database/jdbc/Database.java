@@ -77,8 +77,9 @@ public final class Database extends QueryExecutor implements IDatabase
 
 		try
 		{
+			Connection conn = statement.getConnection();
 			statement.close();
-			statement.getConnection().close();
+			conn.close();
 		}
 		catch (SQLException e)
 		{
