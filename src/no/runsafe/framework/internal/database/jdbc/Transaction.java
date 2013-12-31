@@ -6,8 +6,6 @@ import no.runsafe.framework.api.log.IDebug;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.logging.Level;
 
 public final class Transaction extends QueryExecutor implements ITransaction
 {
@@ -27,7 +25,7 @@ public final class Transaction extends QueryExecutor implements ITransaction
 		}
 		catch (SQLException e)
 		{
-			output.outputToConsole(e.getMessage() + Arrays.toString(e.getStackTrace()), Level.SEVERE);
+			output.logException(e);
 		}
 	}
 
@@ -41,7 +39,7 @@ public final class Transaction extends QueryExecutor implements ITransaction
 		}
 		catch (SQLException e)
 		{
-			output.outputToConsole(e.getMessage() + Arrays.toString(e.getStackTrace()), Level.SEVERE);
+			output.logException(e);
 		}
 	}
 

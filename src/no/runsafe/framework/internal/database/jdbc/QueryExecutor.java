@@ -18,6 +18,7 @@ import org.joda.time.DateTime;
 import org.joda.time.ReadableInstant;
 
 import javax.annotation.Nullable;
+import javax.sql.ConnectionPoolDataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,9 +35,10 @@ abstract class QueryExecutor implements IQueryExecutor
 	@Override
 	public ISet Query(String query, Object... params)
 	{
+		Connection conn = null;
 		try
 		{
-			Connection conn = getConnection();
+			conn = getConnection();
 			if (conn == null)
 				return Set.Empty;
 			PreparedStatement statement = conn.prepareStatement(query);
@@ -49,14 +51,27 @@ abstract class QueryExecutor implements IQueryExecutor
 			output.logException(e);
 			return Set.Empty;
 		}
+		finally
+		{
+			if(conn != null)
+				try
+				{
+					conn.close();
+				}
+				catch (SQLException e)
+				{
+					output.logException(e);
+				}
+		}
 	}
 
 	@Override
 	public IRow QueryRow(String query, Object... params)
 	{
+		Connection conn = null;
 		try
 		{
-			Connection conn = getConnection();
+			conn = getConnection();
 			if (conn == null)
 				return Row.Empty;
 			PreparedStatement statement = conn.prepareStatement(query);
@@ -71,6 +86,18 @@ abstract class QueryExecutor implements IQueryExecutor
 		{
 			output.logException(e);
 			return Row.Empty;
+		}
+		finally
+		{
+			if(conn != null)
+				try
+				{
+					conn.close();
+				}
+				catch (SQLException e)
+				{
+					output.logException(e);
+				}
 		}
 	}
 
@@ -284,9 +311,11 @@ abstract class QueryExecutor implements IQueryExecutor
 	@Override
 	public boolean Execute(String query, Object... params)
 	{
+		Connection conn = null;
 		try
 		{
-			PreparedStatement statement = prepare(query);
+			conn = getConnection();
+			PreparedStatement statement = conn.prepareStatement(query);
 			setParams(statement, params);
 			debugger.debugFiner("Running SQL: %s", statement);
 			statement.execute();
@@ -297,14 +326,28 @@ abstract class QueryExecutor implements IQueryExecutor
 			output.logException(e);
 			return false;
 		}
+		finally
+		{
+			if(conn != null)
+				try
+				{
+					conn.close();
+				}
+				catch (SQLException e)
+				{
+					output.logException(e);
+				}
+		}
 	}
 
 	@Override
 	public int Update(String query, Object... params)
 	{
+		Connection conn = null;
 		try
 		{
-			PreparedStatement statement = prepare(query);
+			conn = getConnection();
+			PreparedStatement statement = conn.prepareStatement(query);
 			setParams(statement, params);
 			debugger.debugFiner("Running SQL: %s", statement);
 			return statement.executeUpdate();
@@ -314,13 +357,27 @@ abstract class QueryExecutor implements IQueryExecutor
 			output.logException(e);
 			return -1;
 		}
+		finally
+		{
+			if(conn != null)
+				try
+				{
+					conn.close();
+				}
+				catch (SQLException e)
+				{
+					output.logException(e);
+				}
+		}
 	}
 
 	List<IValue> QueryColumn(String query, Object... params)
 	{
+		Connection conn = null;
 		try
 		{
-			PreparedStatement statement = prepare(query);
+			conn = getConnection();
+			PreparedStatement statement = conn.prepareStatement(query);
 			setParams(statement, params);
 			return getValues(statement);
 		}
@@ -329,13 +386,26 @@ abstract class QueryExecutor implements IQueryExecutor
 			output.logException(e);
 			return Lists.newArrayList();
 		}
+		finally
+		{
+			if(conn != null)
+				try
+				{
+					conn.close();
+				}
+				catch (SQLException e)
+				{
+					output.logException(e);
+				}
+		}
 	}
 
 	IValue QueryValue(String query, Object... params)
 	{
+		Connection conn = null;
 		try
 		{
-			Connection conn = getConnection();
+			conn = getConnection();
 			PreparedStatement statement = conn.prepareStatement(query);
 			for (int i = 0; i < params.length; i++)
 				statement.setObject(i + 1, params[i]);
@@ -348,6 +418,18 @@ abstract class QueryExecutor implements IQueryExecutor
 		{
 			output.logException(e);
 			return Value.Empty;
+		}
+		finally
+		{
+			if(conn != null)
+				try
+				{
+					conn.close();
+				}
+				catch (SQLException e)
+				{
+					output.logException(e);
+				}
 		}
 	}
 
@@ -393,11 +475,11 @@ abstract class QueryExecutor implements IQueryExecutor
 		return results;
 	}
 
-	PreparedStatement prepare(String query) throws SQLException
-	{
-		Connection conn = getConnection();
-		return conn.prepareStatement(query);
-	}
+//	PreparedStatement prepare(Connection conn, String query) throws SQLException
+//	{
+//		Connection conn = getConnection();
+//		return conn.prepareStatement(query);
+//	}
 
 	static void setParams(PreparedStatement statement, Object... params) throws SQLException
 	{

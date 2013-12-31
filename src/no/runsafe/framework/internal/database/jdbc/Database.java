@@ -30,23 +30,6 @@ public final class Database extends QueryExecutor implements IDatabase
 		source.setUser(user);
 		source.setPassword(password);
 		source.setAutoReconnectForConnectionPools(true);
-		Connection local = null;
-		try
-		{
-			local = source.getConnection();
-		}
-		catch (SQLException e)
-		{
-			console.logException(e);
-			console.logFatal("Unable to connect to SQL server, aborting startup!");
-		}
-		connection = local;
-
-		transactionSource = new MysqlDataSource();
-		transactionSource.setUrl(url);
-		transactionSource.setUser(user);
-		transactionSource.setPassword(password);
-		transactionSource.setAutoReconnect(true);
 
 		try
 		{
@@ -66,9 +49,10 @@ public final class Database extends QueryExecutor implements IDatabase
 	{
 		try
 		{
-			Connection transaction = transactionSource.getConnection();
+			Connection transaction = source.getConnection();
 			if (transaction == null)
 				return null;
+			transaction.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
 			transaction.setAutoCommit(false);
 			return new Transaction(output, debugger, transaction);
 		}
@@ -83,10 +67,16 @@ public final class Database extends QueryExecutor implements IDatabase
 	@Override
 	protected Connection getConnection()
 	{
-		return connection;
+		try
+		{
+			return source.getConnection();
+		}
+		catch (SQLException e)
+		{
+			output.logException(e);
+			return null;
+		}
 	}
 
 	private final MysqlConnectionPoolDataSource source;
-	private final Connection connection;
-	private final MysqlDataSource transactionSource;
 }
