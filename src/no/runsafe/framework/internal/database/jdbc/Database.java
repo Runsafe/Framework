@@ -90,7 +90,7 @@ public final class Database extends QueryExecutor implements IDatabase
 	{
 		try
 		{
-			if (QueryRow("SELECT VERSION()") == null)
+			if (queryRow("SELECT VERSION()") == null)
 				output.logFatal("Unable to connect to MySQL - Verify framework configuration!");
 		}
 		catch (Exception e)

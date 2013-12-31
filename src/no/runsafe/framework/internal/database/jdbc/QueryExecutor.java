@@ -28,7 +28,7 @@ abstract class QueryExecutor extends QueryExecutorBase
 	}
 
 	@Override
-	public ISet Query(String query, Object... params)
+	public ISet query(String query, Object... params)
 	{
 		PreparedStatement statement = null;
 		try
@@ -50,7 +50,7 @@ abstract class QueryExecutor extends QueryExecutorBase
 	}
 
 	@Override
-	public boolean Execute(String query, Object... params)
+	public boolean execute(String query, Object... params)
 	{
 		PreparedStatement statement = null;
 		try
@@ -74,7 +74,7 @@ abstract class QueryExecutor extends QueryExecutorBase
 	}
 
 	@Override
-	public int Update(String query, Object... params)
+	public int update(String query, Object... params)
 	{
 		PreparedStatement statement = null;
 		try
@@ -97,7 +97,7 @@ abstract class QueryExecutor extends QueryExecutorBase
 	}
 
 	@Override
-	public IRow QueryRow(String query, Object... params)
+	public IRow queryRow(String query, Object... params)
 	{
 		PreparedStatement statement = null;
 		try
@@ -120,7 +120,7 @@ abstract class QueryExecutor extends QueryExecutorBase
 	}
 
 	@Override
-	public List<IValue> QueryColumn(String query, Object... params)
+	public List<IValue> queryColumn(String query, Object... params)
 	{
 		PreparedStatement statement = null;
 		try
@@ -142,7 +142,7 @@ abstract class QueryExecutor extends QueryExecutorBase
 	}
 
 	@Override
-	public IValue QueryValue(String query, Object... params)
+	public IValue queryValue(String query, Object... params)
 	{
 		PreparedStatement statement = null;
 		try

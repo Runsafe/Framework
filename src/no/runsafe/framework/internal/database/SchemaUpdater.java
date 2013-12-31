@@ -42,7 +42,7 @@ public final class SchemaUpdater
 
 	private static void Initialize(IDatabase database)
 	{
-		database.Execute(
+		database.execute(
 			"CREATE TABLE IF NOT EXISTS runsafe_schema (" +
 				"`table` varchar(255) NOT NULL," +
 				"`revision` int(11) NOT NULL," +
@@ -54,13 +54,13 @@ public final class SchemaUpdater
 
 	int getRevision(String table)
 	{
-		Integer revision = database.QueryInteger("SELECT `revision` FROM runsafe_schema WHERE `table`=?", table);
+		Integer revision = database.queryInteger("SELECT `revision` FROM runsafe_schema WHERE `table`=?", table);
 		return revision == null ? 0 : revision;
 	}
 
 	void setRevision(String table, int revision)
 	{
-		database.Update(
+		database.update(
 			"INSERT INTO runsafe_schema (`table`,`revision`) VALUES (?,?)" +
 				"ON DUPLICATE KEY UPDATE `revision`=VALUES(`revision`)",
 			table, revision
@@ -86,7 +86,7 @@ public final class SchemaUpdater
 				{
 					revision = executeSchemaChanges(changes.getTableName(), revision, rev, queries.get(rev));
 
-					// Update failed, abort now
+					// update failed, abort now
 					if (revision < rev)
 						break;
 				}
@@ -101,7 +101,7 @@ public final class SchemaUpdater
 		console.logInformation("Updating table %s from revision %d to revision %d", tableName, oldRevision, newRevision);
 		for (String sql : queries)
 		{
-			if (!transaction.Execute(sql))
+			if (!transaction.execute(sql))
 			{
 				console.writeColoured("Failed executing query:\n%s", Level.INFO, sql);
 				console.writeColoured("&cRolling back transaction..", Level.INFO);

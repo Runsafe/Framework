@@ -17,10 +17,10 @@ import java.util.List;
 public abstract class QueryExecutorBase implements IQueryExecutor
 {
 	@Override
-	public List<String> QueryStrings(String query, Object... params)
+	public List<String> queryStrings(String query, Object... params)
 	{
 		return Lists.transform(
-			QueryColumn(query, params),
+			queryColumn(query, params),
 			new Function<IValue, String>()
 			{
 				@Override
@@ -34,10 +34,10 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 	}
 
 	@Override
-	public List<Integer> QueryIntegers(String query, Object... params)
+	public List<Integer> queryIntegers(String query, Object... params)
 	{
 		return Lists.transform(
-			QueryColumn(query, params),
+			queryColumn(query, params),
 			new Function<IValue, Integer>()
 			{
 				@Override
@@ -51,10 +51,10 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 	}
 
 	@Override
-	public List<Long> QueryLongs(String query, Object... params)
+	public List<Long> queryLongs(String query, Object... params)
 	{
 		return Lists.transform(
-			QueryColumn(query, params),
+			queryColumn(query, params),
 			new Function<IValue, Long>()
 			{
 				@Override
@@ -68,10 +68,10 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 	}
 
 	@Override
-	public List<Double> QueryDoubles(String query, Object... params)
+	public List<Double> queryDoubles(String query, Object... params)
 	{
 		return Lists.transform(
-			QueryColumn(query, params),
+			queryColumn(query, params),
 			new Function<IValue, Double>()
 			{
 				@Override
@@ -85,10 +85,10 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 	}
 
 	@Override
-	public List<Float> QueryFloats(String query, Object... params)
+	public List<Float> queryFloats(String query, Object... params)
 	{
 		return Lists.transform(
-			QueryColumn(query, params),
+			queryColumn(query, params),
 			new Function<IValue, Float>()
 			{
 				@Override
@@ -102,10 +102,10 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 	}
 
 	@Override
-	public List<DateTime> QueryDateTimes(String query, Object... params)
+	public List<DateTime> queryDateTimes(String query, Object... params)
 	{
 		return Lists.transform(
-			QueryColumn(query, params),
+			queryColumn(query, params),
 			new Function<IValue, DateTime>()
 			{
 				@Override
@@ -119,10 +119,10 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 	}
 
 	@Override
-	public List<IPlayer> QueryPlayers(String query, Object... params)
+	public List<IPlayer> queryPlayers(String query, Object... params)
 	{
 		return Lists.transform(
-			QueryColumn(query, params),
+			queryColumn(query, params),
 			new Function<IValue, IPlayer>()
 			{
 				@Override
@@ -136,10 +136,10 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 	}
 
 	@Override
-	public List<IWorld> QueryWorlds(String query, Object... params)
+	public List<IWorld> queryWorlds(String query, Object... params)
 	{
 		return Lists.transform(
-			QueryColumn(query, params),
+			queryColumn(query, params),
 			new Function<IValue, IWorld>()
 			{
 				@Override
@@ -153,10 +153,10 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 	}
 
 	@Override
-	public List<ILocation> QueryLocations(String query, Object... params)
+	public List<ILocation> queryLocations(String query, Object... params)
 	{
 		return Lists.transform(
-			Query(query, params),
+			query(query, params),
 			new Function<IRow, ILocation>()
 			{
 				@Override
@@ -170,56 +170,56 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 	}
 
 	@Override
-	public String QueryString(String query, Object... params)
+	public String queryString(String query, Object... params)
 	{
-		return QueryValue(query, params).String();
+		return queryValue(query, params).String();
 	}
 
 	@Override
-	public Integer QueryInteger(String query, Object... params)
+	public Integer queryInteger(String query, Object... params)
 	{
-		return QueryValue(query, params).Integer();
+		return queryValue(query, params).Integer();
 	}
 
 	@Override
-	public Long QueryLong(String query, Object... params)
+	public Long queryLong(String query, Object... params)
 	{
-		return QueryValue(query, params).Long();
+		return queryValue(query, params).Long();
 	}
 
 	@Override
-	public Double QueryDouble(String query, Object... params)
+	public Double queryDouble(String query, Object... params)
 	{
-		return QueryValue(query, params).Double();
+		return queryValue(query, params).Double();
 	}
 
 	@Override
-	public Float QueryFloat(String query, Object... params)
+	public Float queryFloat(String query, Object... params)
 	{
-		return QueryValue(query, params).Float();
+		return queryValue(query, params).Float();
 	}
 
 	@Override
-	public DateTime QueryDateTime(String query, Object... params)
+	public DateTime queryDateTime(String query, Object... params)
 	{
-		return QueryValue(query, params).DateTime();
+		return queryValue(query, params).DateTime();
 	}
 
 	@Override
-	public IPlayer QueryPlayer(String query, Object... params)
+	public IPlayer queryPlayer(String query, Object... params)
 	{
-		return QueryValue(query, params).Player();
+		return queryValue(query, params).Player();
 	}
 
 	@Override
-	public IWorld QueryWorld(String query, Object... params)
+	public IWorld queryWorld(String query, Object... params)
 	{
-		return QueryValue(query, params).World();
+		return queryValue(query, params).World();
 	}
 
 	@Override
-	public ILocation QueryLocation(String query, Object... params)
+	public ILocation queryLocation(String query, Object... params)
 	{
-		return QueryRow(query, params).Location();
+		return queryRow(query, params).Location();
 	}
 }
