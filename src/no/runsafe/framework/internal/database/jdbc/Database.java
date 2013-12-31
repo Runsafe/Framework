@@ -1,7 +1,6 @@
 package no.runsafe.framework.internal.database.jdbc;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource;
-import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import no.runsafe.framework.api.database.IDatabase;
 import no.runsafe.framework.api.database.ITransaction;
 import no.runsafe.framework.api.log.IConsole;
