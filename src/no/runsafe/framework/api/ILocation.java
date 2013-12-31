@@ -3,6 +3,7 @@ package no.runsafe.framework.api;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.chunk.IChunk;
 import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.api.vector.IPoint3D;
 import no.runsafe.framework.minecraft.Sound;
 import org.bukkit.util.Vector;
 
@@ -84,4 +85,6 @@ public interface ILocation
 	void playEffect(IWorldEffect effect, int particleAmount, double range);
 
 	Vector getDirection();
+
+	IPoint3D getPoint();
 }

@@ -3,6 +3,7 @@ package no.runsafe.framework.minecraft;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorldEffect;
 import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.api.vector.IPoint3D;
 import no.runsafe.framework.internal.wrapper.BukkitLocation;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.networking.PacketWorldParticle;
@@ -12,7 +13,7 @@ import org.bukkit.Location;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RunsafeLocation extends BukkitLocation implements ILocation
+public class RunsafeLocation extends BukkitLocation implements ILocation, IPoint3D
 {
 	public RunsafeLocation(Location toWrap)
 	{
@@ -28,6 +29,12 @@ public class RunsafeLocation extends BukkitLocation implements ILocation
 		target.setX(location.getX());
 		target.setZ(location.getZ());
 		return ObjectWrapper.convert(target);
+	}
+
+	@Override
+	public IPoint3D getPoint()
+	{
+		return this;
 	}
 
 	@Override
