@@ -37,6 +37,8 @@ abstract class QueryExecutor implements IQueryExecutor
 		try
 		{
 			Connection conn = getConnection();
+			if (conn == null)
+				return Set.Empty;
 			PreparedStatement statement = conn.prepareStatement(query);
 			for (int i = 0; i < params.length; i++)
 				statement.setObject(i + 1, params[i]);
@@ -55,6 +57,8 @@ abstract class QueryExecutor implements IQueryExecutor
 		try
 		{
 			Connection conn = getConnection();
+			if (conn == null)
+				return Row.Empty;
 			PreparedStatement statement = conn.prepareStatement(query);
 			for (int i = 0; i < params.length; i++)
 				statement.setObject(i + 1, params[i]);
