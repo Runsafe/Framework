@@ -1,30 +1,25 @@
 package no.runsafe.framework.internal.database.jdbc;
 
-import com.google.common.base.Function;
 import com.google.common.collect.Lists;
-import no.runsafe.framework.api.ILocation;
-import no.runsafe.framework.api.IWorld;
-import no.runsafe.framework.api.database.IQueryExecutor;
 import no.runsafe.framework.api.database.IRow;
 import no.runsafe.framework.api.database.ISet;
 import no.runsafe.framework.api.database.IValue;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.log.IDebug;
-import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.internal.database.QueryExecutorBase;
 import no.runsafe.framework.internal.database.Row;
 import no.runsafe.framework.internal.database.Set;
 import no.runsafe.framework.internal.database.Value;
-import org.joda.time.DateTime;
 import org.joda.time.ReadableInstant;
 
 import javax.annotation.Nullable;
-import javax.sql.ConnectionPoolDataSource;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-abstract class QueryExecutor implements IQueryExecutor
+abstract class QueryExecutor extends QueryExecutorBase
 {
 	QueryExecutor(IConsole output, IDebug debugger)
 	{
@@ -35,15 +30,12 @@ abstract class QueryExecutor implements IQueryExecutor
 	@Override
 	public ISet Query(String query, Object... params)
 	{
-		Connection conn = null;
+		PreparedStatement statement = null;
 		try
 		{
-			conn = getConnection();
-			if (conn == null)
+			statement = prepare(query, params);
+			if (statement == null)
 				return Set.Empty;
-			PreparedStatement statement = conn.prepareStatement(query);
-			for (int i = 0; i < params.length; i++)
-				statement.setObject(i + 1, params[i]);
 			return getSet(statement);
 		}
 		catch (SQLException e)
@@ -53,270 +45,19 @@ abstract class QueryExecutor implements IQueryExecutor
 		}
 		finally
 		{
-			if(conn != null)
-				try
-				{
-					conn.close();
-				}
-				catch (SQLException e)
-				{
-					output.logException(e);
-				}
+			close(statement);
 		}
-	}
-
-	@Override
-	public IRow QueryRow(String query, Object... params)
-	{
-		Connection conn = null;
-		try
-		{
-			conn = getConnection();
-			if (conn == null)
-				return Row.Empty;
-			PreparedStatement statement = conn.prepareStatement(query);
-			for (int i = 0; i < params.length; i++)
-				statement.setObject(i + 1, params[i]);
-			ISet set = getSet(statement);
-			if (set.isEmpty())
-				return Row.Empty;
-			return set.get(0);
-		}
-		catch (SQLException e)
-		{
-			output.logException(e);
-			return Row.Empty;
-		}
-		finally
-		{
-			if(conn != null)
-				try
-				{
-					conn.close();
-				}
-				catch (SQLException e)
-				{
-					output.logException(e);
-				}
-		}
-	}
-
-	@Override
-	public List<String> QueryStrings(String query, Object... params)
-	{
-		return Lists.transform(
-			QueryColumn(query, params),
-			new Function<IValue, String>()
-			{
-				@Override
-				public String apply(@Nullable IValue value)
-				{
-					assert value != null;
-					return value.String();
-				}
-			}
-		);
-	}
-
-	@Override
-	public List<Integer> QueryIntegers(String query, Object... params)
-	{
-		return Lists.transform(
-			QueryColumn(query, params),
-			new Function<IValue, Integer>()
-			{
-				@Override
-				public Integer apply(@Nullable IValue value)
-				{
-					assert value != null;
-					return value.Integer();
-				}
-			}
-		);
-	}
-
-	@Override
-	public List<Long> QueryLongs(String query, Object... params)
-	{
-		return Lists.transform(
-			QueryColumn(query, params),
-			new Function<IValue, Long>()
-			{
-				@Override
-				public Long apply(@Nullable IValue value)
-				{
-					assert value != null;
-					return value.Long();
-				}
-			}
-		);
-	}
-
-	@Override
-	public List<Double> QueryDoubles(String query, Object... params)
-	{
-		return Lists.transform(
-			QueryColumn(query, params),
-			new Function<IValue, Double>()
-			{
-				@Override
-				public Double apply(@Nullable IValue value)
-				{
-					assert value != null;
-					return value.Double();
-				}
-			}
-		);
-	}
-
-	@Override
-	public List<Float> QueryFloats(String query, Object... params)
-	{
-		return Lists.transform(
-			QueryColumn(query, params),
-			new Function<IValue, Float>()
-			{
-				@Override
-				public Float apply(@Nullable IValue value)
-				{
-					assert value != null;
-					return value.Float();
-				}
-			}
-		);
-	}
-
-	@Override
-	public List<DateTime> QueryDateTimes(String query, Object... params)
-	{
-		return Lists.transform(
-			QueryColumn(query, params),
-			new Function<IValue, DateTime>()
-			{
-				@Override
-				public DateTime apply(@Nullable IValue value)
-				{
-					assert value != null;
-					return value.DateTime();
-				}
-			}
-		);
-	}
-
-	@Override
-	public List<IPlayer> QueryPlayers(String query, Object... params)
-	{
-		return Lists.transform(
-			QueryColumn(query, params),
-			new Function<IValue, IPlayer>()
-			{
-				@Override
-				public IPlayer apply(@Nullable IValue value)
-				{
-					assert value != null;
-					return value.Player();
-				}
-			}
-		);
-	}
-
-	@Override
-	public List<IWorld> QueryWorlds(String query, Object... params)
-	{
-		return Lists.transform(
-			QueryColumn(query, params),
-			new Function<IValue, IWorld>()
-			{
-				@Override
-				public IWorld apply(@Nullable IValue value)
-				{
-					assert value != null;
-					return value.World();
-				}
-			}
-		);
-	}
-
-	@Override
-	public List<ILocation> QueryLocations(String query, Object... params)
-	{
-		return Lists.transform(
-			Query(query, params),
-			new Function<IRow, ILocation>()
-			{
-				@Override
-				public ILocation apply(@Nullable IRow row)
-				{
-					assert row != null;
-					return row.Location();
-				}
-			}
-		);
-	}
-
-	@Override
-	public String QueryString(String query, Object... params)
-	{
-		return QueryValue(query, params).String();
-	}
-
-	@Override
-	public Integer QueryInteger(String query, Object... params)
-	{
-		return QueryValue(query, params).Integer();
-	}
-
-	@Override
-	public Long QueryLong(String query, Object... params)
-	{
-		return QueryValue(query, params).Long();
-	}
-
-	@Override
-	public Double QueryDouble(String query, Object... params)
-	{
-		return QueryValue(query, params).Double();
-	}
-
-	@Override
-	public Float QueryFloat(String query, Object... params)
-	{
-		return QueryValue(query, params).Float();
-	}
-
-	@Override
-	public DateTime QueryDateTime(String query, Object... params)
-	{
-		return QueryValue(query, params).DateTime();
-	}
-
-	@Override
-	public IPlayer QueryPlayer(String query, Object... params)
-	{
-		return QueryValue(query, params).Player();
-	}
-
-	@Override
-	public IWorld QueryWorld(String query, Object... params)
-	{
-		return QueryValue(query, params).World();
-	}
-
-	@Override
-	public ILocation QueryLocation(String query, Object... params)
-	{
-		return QueryRow(query, params).Location();
 	}
 
 	@Override
 	public boolean Execute(String query, Object... params)
 	{
-		Connection conn = null;
+		PreparedStatement statement = null;
 		try
 		{
-			conn = getConnection();
-			PreparedStatement statement = conn.prepareStatement(query);
-			setParams(statement, params);
+			statement = prepare(query, params);
+			if (statement == null)
+				return false;
 			debugger.debugFiner("Running SQL: %s", statement);
 			statement.execute();
 			return true;
@@ -328,27 +69,19 @@ abstract class QueryExecutor implements IQueryExecutor
 		}
 		finally
 		{
-			if(conn != null)
-				try
-				{
-					conn.close();
-				}
-				catch (SQLException e)
-				{
-					output.logException(e);
-				}
+			close(statement);
 		}
 	}
 
 	@Override
 	public int Update(String query, Object... params)
 	{
-		Connection conn = null;
+		PreparedStatement statement = null;
 		try
 		{
-			conn = getConnection();
-			PreparedStatement statement = conn.prepareStatement(query);
-			setParams(statement, params);
+			statement = prepare(query, params);
+			if (statement == null)
+				return -1;
 			debugger.debugFiner("Running SQL: %s", statement);
 			return statement.executeUpdate();
 		}
@@ -359,56 +92,64 @@ abstract class QueryExecutor implements IQueryExecutor
 		}
 		finally
 		{
-			if(conn != null)
-				try
-				{
-					conn.close();
-				}
-				catch (SQLException e)
-				{
-					output.logException(e);
-				}
+			close(statement);
 		}
 	}
 
-	List<IValue> QueryColumn(String query, Object... params)
+	@Override
+	public IRow QueryRow(String query, Object... params)
 	{
-		Connection conn = null;
+		PreparedStatement statement = null;
 		try
 		{
-			conn = getConnection();
-			PreparedStatement statement = conn.prepareStatement(query);
-			setParams(statement, params);
+			statement = prepare(query, params);
+			if (statement == null)
+				return Row.Empty;
+			ISet set = getSet(statement);
+			return set.get(0);
+		}
+		catch (SQLException e)
+		{
+			output.logException(e);
+			return Row.Empty;
+		}
+		finally
+		{
+			close(statement);
+		}
+	}
+
+	@Override
+	public List<IValue> QueryColumn(String query, Object... params)
+	{
+		PreparedStatement statement = null;
+		try
+		{
+			statement = prepare(query, params);
+			if (statement == null)
+				return Collections.emptyList();
 			return getValues(statement);
 		}
 		catch (SQLException e)
 		{
 			output.logException(e);
-			return Lists.newArrayList();
+			return Collections.emptyList();
 		}
 		finally
 		{
-			if(conn != null)
-				try
-				{
-					conn.close();
-				}
-				catch (SQLException e)
-				{
-					output.logException(e);
-				}
+			close(statement);
 		}
 	}
 
-	IValue QueryValue(String query, Object... params)
+	@Override
+	public IValue QueryValue(String query, Object... params)
 	{
-		Connection conn = null;
+		PreparedStatement statement = null;
 		try
 		{
-			conn = getConnection();
-			PreparedStatement statement = conn.prepareStatement(query);
-			for (int i = 0; i < params.length; i++)
-				statement.setObject(i + 1, params[i]);
+			statement = prepare(query, params);
+			if (statement == null)
+				return Value.Empty;
 			List<IValue> set = getValues(statement);
 			if (set.isEmpty())
 				return Value.Empty;
@@ -421,19 +162,22 @@ abstract class QueryExecutor implements IQueryExecutor
 		}
 		finally
 		{
-			if(conn != null)
-				try
-				{
-					conn.close();
-				}
-				catch (SQLException e)
-				{
-					output.logException(e);
-				}
+			close(statement);
 		}
 	}
 
-	@SuppressWarnings("MethodWithMultipleLoops")
+	@Nullable
+	PreparedStatement prepare(String query, Object... params) throws SQLException
+	{
+		Connection conn = getConnection();
+		if (conn == null)
+			return null;
+
+		PreparedStatement statement = conn.prepareStatement(query);
+		setParams(statement, params);
+		return statement;
+	}
+
 	ISet getSet(PreparedStatement statement) throws SQLException
 	{
 		debugger.debugFiner("Running SQL: %s", statement);
@@ -444,13 +188,10 @@ abstract class QueryExecutor implements IQueryExecutor
 		int cols = meta.getColumnCount();
 		if (cols == 0)
 			return Set.Empty;
-		ArrayList<Row> results = new ArrayList<Row>(1);
+		ArrayList<IRow> results = new ArrayList<IRow>(1);
 		while (!result.isAfterLast())
 		{
-			HashMap<String, Object> row = new HashMap<String, Object>(cols);
-			for (int i = 0; i < cols; ++i)
-				row.put(meta.getColumnName(i + 1), result.getObject(i + 1));
-			results.add(new Row(row));
+			results.add(readRow(meta, result));
 			result.next();
 		}
 		return new Set(results);
@@ -466,20 +207,30 @@ abstract class QueryExecutor implements IQueryExecutor
 		int cols = meta.getColumnCount();
 		if (cols == 0)
 			return Lists.newArrayList();
-		List<IValue> results = new ArrayList<IValue>(0);
+		List<IValue> results = new ArrayList<IValue>(1);
 		while (!result.isAfterLast())
 		{
-			results.add(new Value(result.getObject(1)));
+			results.add(readValue(result));
 			result.next();
 		}
 		return results;
 	}
 
-//	PreparedStatement prepare(Connection conn, String query) throws SQLException
-//	{
-//		Connection conn = getConnection();
-//		return conn.prepareStatement(query);
-//	}
+	abstract void close(PreparedStatement statement);
+
+	static IRow readRow(ResultSetMetaData meta, ResultSet result) throws SQLException
+	{
+		int cols = meta.getColumnCount();
+		HashMap<String, Object> row = new HashMap<String, Object>(cols);
+		for (int i = 0; i < cols; ++i)
+			row.put(meta.getColumnName(i + 1), result.getObject(i + 1));
+		return new Row(row);
+	}
+
+	static IValue readValue(ResultSet result) throws SQLException
+	{
+		return new Value(result.getObject(1));
+	}
 
 	static void setParams(PreparedStatement statement, Object... params) throws SQLException
 	{

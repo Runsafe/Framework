@@ -31,4 +31,8 @@ public interface IQueryExecutor
 	IPlayer QueryPlayer(String query, Object... params);
 	IWorld QueryWorld(String query, Object... params);
 	ILocation QueryLocation(String query, Object... params);
+
+	List<IValue> QueryColumn(String query, Object... params);
+
+	IValue QueryValue(String query, Object... params);
 }

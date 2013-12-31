@@ -1,25 +1,26 @@
 package no.runsafe.framework.internal.database;
 
-import com.google.common.collect.Lists;
 import no.runsafe.framework.api.database.IRow;
 import no.runsafe.framework.api.database.ISet;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
 
-@SuppressWarnings("NullableProblems")
 public final class Set extends ArrayList<IRow> implements ISet
 {
 	public static final ISet Empty = new EmptySet();
 
-	public Set(Collection<Row> dataSet)
+	public Set(Collection<IRow> dataSet)
 	{
 		addAll(dataSet);
 	}
 
-	@SuppressWarnings({"MethodReturnAlwaysConstant", "OverlyComplexAnonymousInnerClass"})
 	private static class EmptySet implements ISet
 	{
+
+		public static final Object[] OBJECTS = new Object[0];
+
 		EmptySet()
 		{
 		}
@@ -42,36 +43,21 @@ public final class Set extends ArrayList<IRow> implements ISet
 			return false;
 		}
 
+		@Nonnull
 		@Override
 		public Iterator<IRow> iterator()
 		{
-			return new Iterator<IRow>()
-			{
-				@Override
-				public boolean hasNext()
-				{
-					return false;
-				}
-
-				@Override
-				public IRow next()
-				{
-					throw new NoSuchElementException("There are no rows");
-				}
-
-				@Override
-				public void remove()
-				{
-				}
-			};
+			return Collections.<IRow>emptyList().iterator();
 		}
 
+		@Nonnull
 		@Override
 		public Object[] toArray()
 		{
-			return new Object[0];
+			return OBJECTS;
 		}
 
+		@Nonnull
 		@Override
 		public <T> T[] toArray(T[] a)
 		{
@@ -129,7 +115,7 @@ public final class Set extends ArrayList<IRow> implements ISet
 		@Nullable
 		public IRow get(int index)
 		{
-			return null;
+			return Row.Empty;
 		}
 
 		@Override
@@ -163,75 +149,25 @@ public final class Set extends ArrayList<IRow> implements ISet
 			return -1;
 		}
 
+		@Nonnull
 		@Override
 		public ListIterator<IRow> listIterator()
 		{
-			return new ListIterator<IRow>()
-			{
-				@Override
-				public boolean hasNext()
-				{
-					return false;
-				}
-
-				@Override
-				public IRow next()
-				{
-					throw new NoSuchElementException("There are no rows");
-				}
-
-				@Override
-				public boolean hasPrevious()
-				{
-					return false;
-				}
-
-				@Override
-				@Nullable
-				public IRow previous()
-				{
-					return null;
-				}
-
-				@Override
-				public int nextIndex()
-				{
-					return 0;
-				}
-
-				@Override
-				public int previousIndex()
-				{
-					return 0;
-				}
-
-				@Override
-				public void remove()
-				{
-				}
-
-				@Override
-				public void set(IRow e)
-				{
-				}
-
-				@Override
-				public void add(IRow e)
-				{
-				}
-			};
+			return Collections.<IRow>emptyList().listIterator();
 		}
 
+		@Nonnull
 		@Override
 		public ListIterator<IRow> listIterator(int index)
 		{
 			return listIterator();
 		}
 
+		@Nonnull
 		@Override
 		public List<IRow> subList(int fromIndex, int toIndex)
 		{
-			return Lists.newArrayList();
+			return Collections.emptyList();
 		}
 	}
 }

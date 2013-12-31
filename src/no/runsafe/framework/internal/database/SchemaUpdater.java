@@ -97,7 +97,7 @@ public final class SchemaUpdater
 
 	private int executeSchemaChanges(String tableName, int oldRevision, int newRevision, Iterable<String> queries)
 	{
-		ITransaction transaction = database.Isolate();
+		ITransaction transaction = database.isolate();
 		console.logInformation("Updating table %s from revision %d to revision %d", tableName, oldRevision, newRevision);
 		for (String sql : queries)
 		{

@@ -5,6 +5,7 @@ import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.log.IDebug;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public final class Transaction extends QueryExecutor implements ITransaction
@@ -36,6 +37,21 @@ public final class Transaction extends QueryExecutor implements ITransaction
 		{
 			conn.rollback();
 			conn.close();
+		}
+		catch (SQLException e)
+		{
+			output.logException(e);
+		}
+	}
+
+	@Override
+	void close(PreparedStatement statement)
+	{
+		if (statement == null)
+			return;
+		try
+		{
+			statement.close();
 		}
 		catch (SQLException e)
 		{

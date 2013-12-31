@@ -9,6 +9,7 @@ import no.runsafe.framework.internal.configuration.FrameworkConfiguration;
 
 import javax.annotation.Nullable;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 
@@ -30,21 +31,12 @@ public final class Database extends QueryExecutor implements IDatabase
 		source.setPassword(password);
 		source.setAutoReconnectForConnectionPools(true);
 
-		try
-		{
-			if (QueryRow("SELECT VERSION()") == null)
-				console.logFatal("Unable to connect to MySQL - Verify framework configuration!");
-		}
-		catch (Exception e)
-		{
-			console.logException(e);
-			console.logFatal("An error occurred while testing the MySQL connection - Verify framework configuration!");
-		}
+		testConnection();
 	}
 
 	@Override
 	@Nullable
-	public ITransaction Isolate()
+	public ITransaction isolate()
 	{
 		try
 		{
@@ -74,6 +66,37 @@ public final class Database extends QueryExecutor implements IDatabase
 		{
 			output.logException(e);
 			return null;
+		}
+	}
+
+	@Override
+	void close(PreparedStatement statement)
+	{
+		if (statement == null)
+			return;
+
+		try
+		{
+			statement.close();
+			statement.getConnection().close();
+		}
+		catch (SQLException e)
+		{
+			output.logException(e);
+		}
+	}
+
+	private void testConnection()
+	{
+		try
+		{
+			if (QueryRow("SELECT VERSION()") == null)
+				output.logFatal("Unable to connect to MySQL - Verify framework configuration!");
+		}
+		catch (Exception e)
+		{
+			output.logException(e);
+			output.logFatal("An error occurred while testing the MySQL connection - Verify framework configuration!");
 		}
 	}
 
