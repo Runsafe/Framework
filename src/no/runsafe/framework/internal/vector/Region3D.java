@@ -3,6 +3,10 @@ package no.runsafe.framework.internal.vector;
 import no.runsafe.framework.api.vector.IPoint3D;
 import no.runsafe.framework.api.vector.IRegion3D;
 
+import javax.annotation.Nullable;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Region3D implements IRegion3D
 {
 	public Region3D(IPoint3D p1, IPoint3D p2)
@@ -33,6 +37,33 @@ public class Region3D implements IRegion3D
 		return new Point3D(xMax, yMax, zMax);
 	}
 
+	@Override
+	public String toString()
+	{
+		return "[" + xMin + ',' + yMin + ',' + zMin + ':' + xMax + ',' + yMax + ',' + zMax + ']';
+	}
+
+	@Nullable
+	public static IRegion3D fromString(CharSequence value)
+	{
+		Matcher decode = DECODE.matcher(value);
+		if (!decode.matches())
+			return null;
+
+		return new Region3D(
+			new Point3D(
+				Integer.valueOf(decode.group(1)),
+				Integer.valueOf(decode.group(2)),
+				Integer.valueOf(decode.group(3))
+			),
+			new Point3D(
+				Integer.valueOf(decode.group(4)),
+				Integer.valueOf(decode.group(5)),
+				Integer.valueOf(decode.group(6))
+			)
+		);
+	}
+
 	private static boolean between(double min, double value, double max)
 	{
 		return min <= value && value <= max;
@@ -44,4 +75,6 @@ public class Region3D implements IRegion3D
 	private final double yMax;
 	private final double zMin;
 	private final double zMax;
+
+	private static final Pattern DECODE = Pattern.compile("[(\\d+),(\\d+),(\\d+):(\\d+),(\\d+),(\\d+)]");
 }
