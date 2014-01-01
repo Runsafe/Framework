@@ -17,12 +17,6 @@ public final class Configurable
 		return null;
 	}
 
-	static
-	{
-		BuildingBlock.register();
-		CobbleWall.register();
-	}
-
 	// Register materials without data
 	static void addSimple(IMaterial... values)
 	{
@@ -32,4 +26,18 @@ public final class Configurable
 
 	private static final Map<String, IMaterial> materials = new ConcurrentHashMap<String, IMaterial>();
 	static final char ID_SEPARATOR = ':';
+
+	static
+	{
+		BuildingBlock.register();
+		CobbleWall.register();
+		Plank.register();
+		Quartz.register();
+		Sandstone.register();
+		StoneBrick.register();
+		StoneSlab.register();
+		Wood.register();
+		WoodSlab.register();
+		Wool.register();
+	}
 }
