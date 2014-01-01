@@ -6,6 +6,7 @@ import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.LegacyMaterial;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
+import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.Sound;
 import no.runsafe.framework.minecraft.entity.RunsafeFallingBlock;
 import no.runsafe.framework.minecraft.entity.RunsafeItem;
@@ -87,6 +88,11 @@ public abstract class BukkitWorld extends BukkitMetadata implements IWrapper<Wor
 	public RunsafeFallingBlock spawnFallingBlock(ILocation location, Material material, Byte blockData)
 	{
 		return ObjectWrapper.convert(world.spawnFallingBlock((Location) ObjectUnwrapper.convert(location), material, blockData));
+	}
+
+	public RunsafeFallingBlock spawnFallingBlock(ILocation location, Item type)
+	{
+		return ObjectWrapper.convert(world.spawnFallingBlock((Location) ObjectUnwrapper.convert(location), type.getType(), (byte) Math.max(type.getData(), 0)));
 	}
 
 	@Override

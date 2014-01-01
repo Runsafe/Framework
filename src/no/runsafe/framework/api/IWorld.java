@@ -4,7 +4,9 @@ import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.metadata.IMetadata;
 import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.Sound;
+import no.runsafe.framework.minecraft.entity.RunsafeFallingBlock;
 import no.runsafe.framework.minecraft.entity.RunsafeItem;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import org.bukkit.Effect;
@@ -63,6 +65,8 @@ public interface IWorld extends IMetadata
 	@Nonnull
 	@Deprecated
 	IEntity spawnCreature(ILocation location, int id);
+
+	IEntity spawnFallingBlock(ILocation location, Item type);
 
 	void strikeLightningEffect(ILocation location);
 
