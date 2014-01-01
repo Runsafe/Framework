@@ -40,7 +40,7 @@ public class Region3D implements IRegion3D
 	@Override
 	public String toString()
 	{
-		return "[" + xMin + ',' + yMin + ',' + zMin + ':' + xMax + ',' + yMax + ',' + zMax + ']';
+		return String.format("[%.5f,%.5f,%.5f:%.5f,%.5f,%.5f]", xMin, yMin, zMin, xMax, yMax, zMax);
 	}
 
 	@Nullable
