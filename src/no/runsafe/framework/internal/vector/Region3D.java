@@ -76,5 +76,5 @@ public class Region3D implements IRegion3D
 	private final double zMin;
 	private final double zMax;
 
-	private static final Pattern DECODE = Pattern.compile("[(\\d+),(\\d+),(\\d+):(\\d+),(\\d+),(\\d+)]");
+	private static final Pattern DECODE = Pattern.compile("\\[(\\d+),(\\d+),(\\d+):(\\d+),(\\d+),(\\d+)\\]");
 }
