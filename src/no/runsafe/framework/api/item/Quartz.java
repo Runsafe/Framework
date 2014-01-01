@@ -54,7 +54,7 @@ public enum Quartz implements IMaterialData
 	@Override
 	public String getName()
 	{
-		return "QuartzBlock" + (this == Normal ? "" : ':' + name());
+		return "QuartzBlock" + (this == Normal ? "" : Configurable.ID_SEPARATOR + name());
 	}
 
 	static void register()

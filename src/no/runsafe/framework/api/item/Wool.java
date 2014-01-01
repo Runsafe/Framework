@@ -49,7 +49,7 @@ public enum Wool implements IMaterialData
 	@Override
 	public String getName()
 	{
-		return "Wool" + (this == White ? "" : ':' + name());
+		return "Wool" + (this == White ? "" : Configurable.ID_SEPARATOR + name());
 	}
 
 	Wool(DyeColor colour)

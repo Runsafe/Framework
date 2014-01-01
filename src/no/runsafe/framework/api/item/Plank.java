@@ -44,7 +44,7 @@ public enum Plank implements IMaterialData
 	@Override
 	public String getName()
 	{
-		return "Plank" + (this == Oak ? "" : ':' + name());
+		return "Plank" + (this == Oak ? "" : Configurable.ID_SEPARATOR + name());
 	}
 
 	private final TreeSpecies variant;

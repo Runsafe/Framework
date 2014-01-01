@@ -56,7 +56,7 @@ public enum StoneBrick implements IMaterialData
 	@Override
 	public String getName()
 	{
-		return "StoneBrick" + (this == Normal ? "" : ':' + name());
+		return "StoneBrick" + (this == Normal ? "" : Configurable.ID_SEPARATOR + name());
 	}
 
 	@Nullable

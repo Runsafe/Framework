@@ -39,7 +39,7 @@ public enum CobbleWall implements IMaterialData
 	@Override
 	public String getName()
 	{
-		return "CobbleWall" + (this == Normal ? "" : ':' + name());
+		return "CobbleWall" + (this == Normal ? "" : Configurable.ID_SEPARATOR + name());
 	}
 
 	@Override

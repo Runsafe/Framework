@@ -44,7 +44,7 @@ public enum Wood implements IMaterialData
 	@Override
 	public String getName()
 	{
-		return "Wood" + (this == Oak ? "" : ':' + name());
+		return "Wood" + (this == Oak ? "" : Configurable.ID_SEPARATOR + name());
 	}
 
 	private final TreeSpecies variant;

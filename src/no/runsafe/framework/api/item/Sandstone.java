@@ -40,7 +40,7 @@ public enum Sandstone implements IMaterialData
 	@Override
 	public String getName()
 	{
-		return "Sandstone" + (this == Normal ? "" : ':' + name());
+		return "Sandstone" + (this == Normal ? "" : Configurable.ID_SEPARATOR + name());
 	}
 
 	private final SandstoneType variant;

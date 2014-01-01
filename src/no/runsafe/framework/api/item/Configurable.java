@@ -31,4 +31,5 @@ public final class Configurable
 	}
 
 	private static final Map<String, IMaterial> materials = new ConcurrentHashMap<String, IMaterial>();
+	static final char ID_SEPARATOR = ':';
 }

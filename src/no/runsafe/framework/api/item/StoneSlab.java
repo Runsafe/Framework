@@ -60,7 +60,7 @@ public enum StoneSlab implements IMaterialData
 	@Override
 	public String getName()
 	{
-		return "StoneSlab" + (this == Smooth ? "" : ':' + name());
+		return "StoneSlab" + (this == Smooth ? "" : Configurable.ID_SEPARATOR + name());
 	}
 
 	@Nullable
