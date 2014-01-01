@@ -8,6 +8,8 @@ import org.bukkit.TreeSpecies;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.*;
 
+import javax.annotation.Nullable;
+
 @SuppressWarnings("NullableProblems")
 public enum BuildingBlock implements IMaterial
 {
@@ -322,10 +324,10 @@ public enum BuildingBlock implements IMaterial
 
 	public enum Quartz implements IMaterial, IMaterialData
 	{
-		Any(0),
-		Normal(1),
-		Chiseled(2),
-		Pillar(3);
+		Any(),
+		Normal(0),
+		Chiseled(1),
+		Pillar(2);
 
 		@SuppressWarnings("NumericCastThatLosesPrecision")
 		Quartz(int durability)
@@ -336,6 +338,11 @@ public enum BuildingBlock implements IMaterial
 				throw new InvalidDurabilityException(temp.getItemType(), (short) durability);
 			stack.setDurability((short) durability);
 			data = stack.getData();
+		}
+
+		Quartz()
+		{
+			data = null;
 		}
 
 		@Override
@@ -353,9 +360,10 @@ public enum BuildingBlock implements IMaterial
 		@Override
 		public boolean isSame(Material material, MaterialData data)
 		{
-			return material == Material.QUARTZ_BLOCK;
+			return material == Material.QUARTZ_BLOCK && (this.data == null || data.equals(this.data));
 		}
 
+		@Nullable
 		private final MaterialData data;
 	}
 
