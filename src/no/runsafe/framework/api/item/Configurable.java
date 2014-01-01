@@ -9,7 +9,7 @@ public final class Configurable
 	private Configurable(){}
 
 	@Nullable
-	public static IMaterial get(String identifier)
+	public static IMaterial getMaterial(String identifier)
 	{
 		String material = identifier.toLowerCase();
 		if (materials.containsKey(material))
