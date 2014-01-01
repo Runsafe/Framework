@@ -19,7 +19,7 @@ import no.runsafe.framework.internal.lua.PluginRunner;
 import no.runsafe.framework.internal.reporting.ErrorReportingQueue;
 import no.runsafe.framework.internal.text.GlobalLocale;
 import no.runsafe.framework.internal.text.Localization;
-import no.runsafe.framework.minecraft.RunsafeServer;
+import no.runsafe.framework.internal.extension.RunsafeServer;
 import no.runsafe.framework.timer.Scheduler;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.picocontainer.MutablePicoContainer;

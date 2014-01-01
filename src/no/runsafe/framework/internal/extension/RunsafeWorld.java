@@ -1,4 +1,4 @@
-package no.runsafe.framework.internal.extension.world;
+package no.runsafe.framework.internal.extension;
 
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IUniverse;
