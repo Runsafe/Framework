@@ -1,5 +1,6 @@
 package no.runsafe.framework.api;
 
+import no.runsafe.framework.api.item.IMaterial;
 import no.runsafe.framework.minecraft.Item;
 
 import javax.annotation.Nullable;
@@ -102,6 +103,12 @@ public interface IConfiguration
 	 */
 	@Nullable
 	ILocation getConfigValueAsLocation(String key);
+
+	/**
+	 * @param key The configuration path.
+	 * @return The configured material value
+	 */
+	IMaterial getConfigValueAsMaterial(String key);
 
 	Set<String> getConfigurationKeys();
 

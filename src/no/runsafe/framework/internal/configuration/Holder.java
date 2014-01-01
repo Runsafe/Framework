@@ -2,6 +2,8 @@ package no.runsafe.framework.internal.configuration;
 
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
+import no.runsafe.framework.api.item.Configurable;
+import no.runsafe.framework.api.item.IMaterial;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.internal.brane.Multiverse;
@@ -183,6 +185,11 @@ public class Holder
 			return location;
 		}
 		return null;
+	}
+
+	public IMaterial getConfigValueAsMaterial(String key)
+	{
+		return Configurable.getMaterial(getConfigValueAsString(key));
 	}
 
 	@Nullable
