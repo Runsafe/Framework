@@ -858,6 +858,7 @@
         <list>
           <option value="AnonymousInnerClass" />
           <option value="MethodWithMultipleLoops" />
+          <option value="NumericCastThatLosesPrecision" />
         </list>
       </option>
     </inspection_tool>

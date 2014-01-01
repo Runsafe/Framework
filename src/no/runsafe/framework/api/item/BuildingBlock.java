@@ -1,10 +1,11 @@
 package no.runsafe.framework.api.item;
 
-import net.minecraft.server.v1_7_R1.ItemStack;
+import no.runsafe.framework.exceptions.InvalidDurabilityException;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.SandstoneType;
 import org.bukkit.TreeSpecies;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.*;
 
 @SuppressWarnings("NullableProblems")
@@ -319,13 +320,23 @@ public enum BuildingBlock implements IMaterial
 		private final Material variant;
 	}
 
-	public enum Quartz implements IMaterial
+	public enum Quartz implements IMaterial, IMaterialData
 	{
-		Any();
-// No idea what to do here..
-//		Normal(),
-//		Chiseled(),
-//		Pillar();
+		Any(0),
+		Normal(1),
+		Chiseled(2),
+		Pillar(3);
+
+		@SuppressWarnings("NumericCastThatLosesPrecision")
+		Quartz(int durability)
+		{
+			MaterialData temp = new MaterialData(Material.QUARTZ_BLOCK);
+			ItemStack stack = temp.toItemStack();
+			if (Material.QUARTZ_BLOCK.getMaxDurability() > durability)
+				throw new InvalidDurabilityException(temp.getItemType(), (short) durability);
+			stack.setDurability((short) durability);
+			data = stack.getData();
+		}
 
 		@Override
 		public Material getMaterial()
@@ -334,10 +345,18 @@ public enum BuildingBlock implements IMaterial
 		}
 
 		@Override
+		public MaterialData getData()
+		{
+			return data;
+		}
+
+		@Override
 		public boolean isSame(Material material, MaterialData data)
 		{
 			return material == Material.QUARTZ_BLOCK;
 		}
+
+		private final MaterialData data;
 	}
 
 	BuildingBlock(Material material)
