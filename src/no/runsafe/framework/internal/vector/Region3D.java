@@ -52,14 +52,14 @@ public class Region3D implements IRegion3D
 
 		return new Region3D(
 			new Point3D(
-				Integer.valueOf(decode.group(1)),
-				Integer.valueOf(decode.group(2)),
-				Integer.valueOf(decode.group(3))
+				Double.valueOf(decode.group(1)),
+				Double.valueOf(decode.group(2)),
+				Double.valueOf(decode.group(3))
 			),
 			new Point3D(
-				Integer.valueOf(decode.group(4)),
-				Integer.valueOf(decode.group(5)),
-				Integer.valueOf(decode.group(6))
+				Double.valueOf(decode.group(4)),
+				Double.valueOf(decode.group(5)),
+				Double.valueOf(decode.group(6))
 			)
 		);
 	}
