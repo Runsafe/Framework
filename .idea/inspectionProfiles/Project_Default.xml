@@ -857,6 +857,7 @@
       <option name="myAllowedSuppressions">
         <list>
           <option value="AnonymousInnerClass" />
+          <option value="MethodWithMultipleLoops" />
         </list>
       </option>
     </inspection_tool>

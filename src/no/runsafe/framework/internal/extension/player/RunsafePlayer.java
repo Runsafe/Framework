@@ -5,25 +5,23 @@ import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IUniverse;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.chunk.IChunk;
+import no.runsafe.framework.api.hook.IPlayerExtensions;
 import no.runsafe.framework.api.networking.IPacket;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.internal.hooks.PlayerExtensions;
+import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.wrapper.BukkitLocation;
 import no.runsafe.framework.internal.wrapper.player.BukkitPlayer;
 import no.runsafe.framework.minecraft.Item;
-import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.event.player.RunsafeOperatorEvent;
 import no.runsafe.framework.minecraft.inventory.RunsafePlayerInventory;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import no.runsafe.framework.text.ChatColour;
 import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.craftbukkit.v1_7_R1.entity.CraftEntity;
 import org.joda.time.DateTime;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.lang.reflect.Field;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -38,20 +36,20 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 	@Override
 	public String getPrettyName()
 	{
-		return PlayerExtensions.decorate(this);
+		return InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).decorate(this);
 	}
 
 	@Override
 	@Nullable
 	public String getLastSeen(IPlayer checker)
 	{
-		return PlayerExtensions.seen(this, checker);
+		return InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).seen(this, checker);
 	}
 
 	@Override
 	public boolean isNew()
 	{
-		return PlayerExtensions.isNew(this);
+		return InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).isNew(this);
 	}
 
 	@Override
@@ -99,7 +97,7 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 	@Override
 	public Map<String, String> getData()
 	{
-		return PlayerExtensions.data(this);
+		return InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).data(this);
 	}
 
 	@Override
@@ -129,14 +127,14 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 	@Nullable
 	public DateTime lastLogout()
 	{
-		return PlayerExtensions.logout(this);
+		return InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).logout(this);
 	}
 
 	@Override
 	@Nullable
 	public String getBanReason()
 	{
-		return PlayerExtensions.banReason(this);
+		return InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).banReason(this);
 	}
 
 	@Override
@@ -152,37 +150,37 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 	@Override
 	public boolean shouldNotSee(@Nonnull IPlayer target)
 	{
-		return PlayerExtensions.shouldNotSee(this, target);
+		return InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).shouldNotSee(this, target);
 	}
 
 	@Override
 	public boolean isVanished()
 	{
-		return PlayerExtensions.isVanished(this);
+		return InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).isVanished(this);
 	}
 
 	@Override
 	public boolean isPvPFlagged()
 	{
-		return PlayerExtensions.isPvPFlagged(this);
+		return InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).isPvPFlagged(this);
 	}
 
 	@Override
 	public ImmutableList<String> getGroups()
 	{
-		return PlayerExtensions.getGroups(this);
+		return InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).getGroups(this);
 	}
 
 	@Override
 	public boolean setGroup(String group)
 	{
-		return PlayerExtensions.setGroup(this, group);
+		return InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).setGroup(this, group);
 	}
 
 	@Override
 	public boolean canBuildNow()
 	{
-		return PlayerExtensions.canBuildNow(this);
+		return InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).canBuildNow(this);
 	}
 
 	@Override

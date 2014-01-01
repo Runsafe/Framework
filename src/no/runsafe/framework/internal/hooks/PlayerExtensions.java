@@ -4,8 +4,8 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import no.runsafe.framework.api.hook.*;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.minecraft.player.RunsafeFakePlayer;
 import no.runsafe.framework.internal.extension.player.RunsafePlayer;
+import no.runsafe.framework.minecraft.player.RunsafeFakePlayer;
 import org.joda.time.DateTime;
 
 import javax.annotation.Nullable;
@@ -14,14 +14,11 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("MethodWithMultipleLoops")
-public final class PlayerExtensions
+public final class PlayerExtensions implements IPlayerExtensions
 {
-	private PlayerExtensions()
-	{
-	}
-
+	@Override
 	@Nullable
-	public static String seen(RunsafePlayer player, IPlayer checker)
+	public String seen(RunsafePlayer player, IPlayer checker)
 	{
 		List<IPlayerSeen> seenHooks = getHooks(IPlayerSeen.class);
 		if (!seenHooks.isEmpty())
@@ -30,7 +27,8 @@ public final class PlayerExtensions
 		return null;
 	}
 
-	public static String decorate(IPlayer player)
+	@Override
+	public String decorate(IPlayer player)
 	{
 		String name = player.getName();
 		for (IPlayerNameDecorator decorator : getHooks(IPlayerNameDecorator.class))
@@ -38,7 +36,8 @@ public final class PlayerExtensions
 		return name;
 	}
 
-	public static boolean isNew(RunsafePlayer player)
+	@Override
+	public boolean isNew(RunsafePlayer player)
 	{
 		List<IPlayerSessionDataProvider> dataHooks = getHooks(IPlayerSessionDataProvider.class);
 		if (player.isOnline() || dataHooks.isEmpty())
@@ -51,7 +50,8 @@ public final class PlayerExtensions
 		return false;
 	}
 
-	public static Map<String, String> data(RunsafePlayer player)
+	@Override
+	public Map<String, String> data(RunsafePlayer player)
 	{
 		Map<String, String> results = player.getBasicData();
 		for (IPlayerDataProvider provider : getHooks(IPlayerDataProvider.class))
@@ -63,8 +63,9 @@ public final class PlayerExtensions
 		return results;
 	}
 
+	@Override
 	@Nullable
-	public static DateTime logout(RunsafePlayer player)
+	public DateTime logout(RunsafePlayer player)
 	{
 		List<IPlayerSessionDataProvider> dataHooks = getHooks(IPlayerSessionDataProvider.class);
 		if (player.isOnline() || dataHooks.isEmpty())
@@ -79,8 +80,9 @@ public final class PlayerExtensions
 		return logout;
 	}
 
+	@Override
 	@Nullable
-	public static String banReason(RunsafePlayer player)
+	public String banReason(RunsafePlayer player)
 	{
 
 		List<IPlayerSessionDataProvider> dataHooks = getHooks(IPlayerSessionDataProvider.class);
@@ -95,10 +97,10 @@ public final class PlayerExtensions
 		return null;
 	}
 
-	@SuppressWarnings("ConstantConditions")
-	public static boolean shouldNotSee(RunsafePlayer player, IPlayer target)
+	@Override
+	public boolean shouldNotSee(RunsafePlayer player, IPlayer target)
 	{
-		if (player.getName().equals(target.getName()))
+		if (player.getName() == null || player.getName().equals(target.getName()))
 			return false;
 
 		List<IPlayerVisibility> visibilityHooks = getHooks(IPlayerVisibility.class);
@@ -111,7 +113,8 @@ public final class PlayerExtensions
 		return false;
 	}
 
-	public static boolean isVanished(RunsafePlayer player)
+	@Override
+	public boolean isVanished(RunsafePlayer player)
 	{
 		List<IPlayerVisibility> visibilityHooks = getHooks(IPlayerVisibility.class);
 		if (visibilityHooks.isEmpty())
@@ -122,7 +125,8 @@ public final class PlayerExtensions
 		return false;
 	}
 
-	public static boolean isPvPFlagged(RunsafePlayer player)
+	@Override
+	public boolean isPvPFlagged(RunsafePlayer player)
 	{
 		List<IPlayerPvPFlag> pvpFlagHooks = getHooks(IPlayerPvPFlag.class);
 		if (pvpFlagHooks.isEmpty())
@@ -133,7 +137,8 @@ public final class PlayerExtensions
 		return true;
 	}
 
-	public static ImmutableList<String> getGroups(RunsafePlayer player)
+	@Override
+	public ImmutableList<String> getGroups(RunsafePlayer player)
 	{
 		List<String> result = new ArrayList<String>(5);
 		for (IPlayerPermissions hook : getHooks(IPlayerPermissions.class))
@@ -147,7 +152,8 @@ public final class PlayerExtensions
 		return ImmutableList.copyOf(result);
 	}
 
-	public static boolean setGroup(RunsafePlayer player, String group)
+	@Override
+	public boolean setGroup(RunsafePlayer player, String group)
 	{
 		for (IPlayerPermissions hook : getHooks(IPlayerPermissions.class))
 			if (hook.setGroup(player, group))
@@ -155,7 +161,8 @@ public final class PlayerExtensions
 		return false;
 	}
 
-	public static boolean canBuildNow(RunsafePlayer player)
+	@Override
+	public boolean canBuildNow(RunsafePlayer player)
 	{
 		List<IPlayerBuildPermission> buildPermissionHooks = getHooks(IPlayerBuildPermission.class);
 		if (buildPermissionHooks.isEmpty())
@@ -166,7 +173,8 @@ public final class PlayerExtensions
 		return true;
 	}
 
-	public static boolean hasPermission(RunsafeFakePlayer player, ImmutableList<String> memberOf, String permission)
+	@Override
+	public boolean hasPermission(RunsafeFakePlayer player, ImmutableList<String> memberOf, String permission)
 	{
 		for (IPlayerPermissions hook : getHooks(IPlayerPermissions.class))
 		{
@@ -186,7 +194,8 @@ public final class PlayerExtensions
 		return false;
 	}
 
-	public static List<String> getGroups()
+	@Override
+	public List<String> getGroups()
 	{
 		List<IPlayerPermissions> hooks = getHooks(IPlayerPermissions.class);
 		if (hooks == null)
@@ -202,7 +211,8 @@ public final class PlayerExtensions
 		return groups;
 	}
 
-	public static List<String> find(String playerName)
+	@Override
+	public List<String> find(String playerName)
 	{
 		if (playerName == null || playerName.isEmpty())
 			return ImmutableList.of();

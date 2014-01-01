@@ -2,10 +2,11 @@ package no.runsafe.framework.minecraft.player;
 
 import com.google.common.collect.ImmutableList;
 import no.runsafe.framework.api.IWorld;
+import no.runsafe.framework.api.hook.IPlayerExtensions;
 import no.runsafe.framework.api.player.IFakePlayer;
 import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.extension.player.RunsafePlayer;
-import no.runsafe.framework.internal.hooks.PlayerExtensions;
 
 import javax.annotation.Nonnull;
 
@@ -21,7 +22,7 @@ public class RunsafeFakePlayer extends RunsafePlayer implements IFakePlayer
 	@Override
 	public boolean hasPermission(String permission)
 	{
-		return PlayerExtensions.hasPermission(this, groups, permission);
+		return InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).hasPermission(this, groups, permission);
 	}
 
 	@Override

@@ -12,6 +12,7 @@ import no.runsafe.framework.internal.database.SchemaUpdater;
 import no.runsafe.framework.internal.database.jdbc.Database;
 import no.runsafe.framework.internal.event.BukkitEventMapper;
 import no.runsafe.framework.internal.hooks.HookEngine;
+import no.runsafe.framework.internal.hooks.PlayerExtensions;
 import no.runsafe.framework.internal.log.*;
 import no.runsafe.framework.internal.lua.GlobalEnvironment;
 import no.runsafe.framework.internal.lua.PluginRunner;
@@ -166,6 +167,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		globalContainer.addComponent(GlobalEnvironment.class);
 		globalContainer.addComponent(GlobalLocale.class);
 		globalContainer.addComponent(Root.class);
+		globalContainer.addComponent(PlayerExtensions.class);
 		try
 		{
 			globalContainer.start();
