@@ -8,7 +8,7 @@ import org.bukkit.material.SmoothBrick;
 
 import javax.annotation.Nullable;
 
-public enum StoneBrick implements IMaterial, IMaterialData
+public enum StoneBrick implements IMaterialData
 {
 	Any(),
 	Normal(0),
@@ -53,6 +53,17 @@ public enum StoneBrick implements IMaterial, IMaterialData
 		return data;
 	}
 
+	@Override
+	public String getName()
+	{
+		return "StoneBrick" + (this == Normal ? "" : ':' + name());
+	}
+
 	@Nullable
 	private final MaterialData data;
+
+	static void register()
+	{
+		Configurable.addSimple(values());
+	}
 }

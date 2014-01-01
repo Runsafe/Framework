@@ -4,7 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.SandstoneType;
 import org.bukkit.material.MaterialData;
 
-public enum Sandstone implements IMaterial, IMaterialData
+public enum Sandstone implements IMaterialData
 {
 	Any(null),
 	Normal(SandstoneType.CRACKED),
@@ -37,5 +37,16 @@ public enum Sandstone implements IMaterial, IMaterialData
 		return variant == null || ((org.bukkit.material.Sandstone) data).getType() == variant;
 	}
 
+	@Override
+	public String getName()
+	{
+		return "Sandstone" + (this == Normal ? "" : ':' + name());
+	}
+
 	private final SandstoneType variant;
+
+	static void register()
+	{
+		Configurable.addSimple(values());
+	}
 }

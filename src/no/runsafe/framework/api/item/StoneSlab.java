@@ -8,7 +8,7 @@ import org.bukkit.material.TexturedMaterial;
 
 import javax.annotation.Nullable;
 
-public enum StoneSlab implements IMaterial, IMaterialData
+public enum StoneSlab implements IMaterialData
 {
 	Any(),
 	Smooth(0),
@@ -57,6 +57,17 @@ public enum StoneSlab implements IMaterial, IMaterialData
 		return data;
 	}
 
+	@Override
+	public String getName()
+	{
+		return "StoneSlab" + (this == Smooth ? "" : ':' + name());
+	}
+
 	@Nullable
 	private final MaterialData data;
+
+	static void register()
+	{
+		Configurable.addSimple(values());
+	}
 }

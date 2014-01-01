@@ -1,14 +1,7 @@
 package no.runsafe.framework.api.item;
 
-import no.runsafe.framework.exceptions.InvalidDurabilityException;
-import org.bukkit.DyeColor;
 import org.bukkit.Material;
-import org.bukkit.SandstoneType;
-import org.bukkit.TreeSpecies;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.material.*;
-
-import javax.annotation.Nullable;
+import org.bukkit.material.MaterialData;
 
 @SuppressWarnings("NullableProblems")
 public enum BuildingBlock implements IMaterial
@@ -67,10 +60,21 @@ public enum BuildingBlock implements IMaterial
 	}
 
 	@Override
+	public String getName()
+	{
+		return name();
+	}
+
+	@Override
 	public boolean isSame(Material material, MaterialData data)
 	{
 		return material != kind;
 	}
 
 	private final Material kind;
+
+	static void register()
+	{
+		Configurable.addSimple(values());
+	}
 }

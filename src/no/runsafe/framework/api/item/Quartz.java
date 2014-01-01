@@ -7,7 +7,7 @@ import org.bukkit.material.MaterialData;
 
 import javax.annotation.Nullable;
 
-public enum Quartz implements IMaterial, IMaterialData
+public enum Quartz implements IMaterialData
 {
 	Any(),
 	Normal(0),
@@ -50,4 +50,15 @@ public enum Quartz implements IMaterial, IMaterialData
 
 	@Nullable
 	private final MaterialData data;
+
+	@Override
+	public String getName()
+	{
+		return "QuartzBlock" + (this == Normal ? "" : ':' + name());
+	}
+
+	static void register()
+	{
+		Configurable.addSimple(values());
+	}
 }

@@ -5,7 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.material.Colorable;
 import org.bukkit.material.MaterialData;
 
-public enum Wool implements IMaterial, IMaterialData
+public enum Wool implements IMaterialData
 {
 	Any(null),
 	White(DyeColor.WHITE),
@@ -46,10 +46,21 @@ public enum Wool implements IMaterial, IMaterialData
 		return new org.bukkit.material.Wool(variant);
 	}
 
+	@Override
+	public String getName()
+	{
+		return "Wool" + (this == White ? "" : ':' + name());
+	}
+
 	Wool(DyeColor colour)
 	{
 		variant = colour;
 	}
 
 	private final DyeColor variant;
+
+	static void register()
+	{
+		Configurable.addSimple(values());
+	}
 }

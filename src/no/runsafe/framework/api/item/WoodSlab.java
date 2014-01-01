@@ -5,7 +5,7 @@ import org.bukkit.TreeSpecies;
 import org.bukkit.material.MaterialData;
 import org.bukkit.material.WoodenStep;
 
-public enum WoodSlab implements IMaterial, IMaterialData
+public enum WoodSlab implements IMaterialData
 {
 	Any(null),
 	Oak(TreeSpecies.GENERIC),
@@ -41,5 +41,16 @@ public enum WoodSlab implements IMaterial, IMaterialData
 		return new WoodenStep(variant);
 	}
 
+	@Override
+	public String getName()
+	{
+		return "WoodSlab" + (this == Oak ? "" : ':' + name());
+	}
+
 	private final TreeSpecies variant;
+
+	static void register()
+	{
+		Configurable.addSimple(values());
+	}
 }

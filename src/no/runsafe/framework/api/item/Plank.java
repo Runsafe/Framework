@@ -5,7 +5,7 @@ import org.bukkit.TreeSpecies;
 import org.bukkit.material.MaterialData;
 import org.bukkit.material.Tree;
 
-public enum Plank implements IMaterial, IMaterialData
+public enum Plank implements IMaterialData
 {
 	Any(null),
 	Oak(TreeSpecies.GENERIC),
@@ -41,5 +41,16 @@ public enum Plank implements IMaterial, IMaterialData
 		return new Tree(variant);
 	}
 
+	@Override
+	public String getName()
+	{
+		return "Plank" + (this == Oak ? "" : ':' + name());
+	}
+
 	private final TreeSpecies variant;
+
+	static void register()
+	{
+		Configurable.addSimple(values());
+	}
 }

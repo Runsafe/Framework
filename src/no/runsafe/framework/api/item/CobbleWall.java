@@ -8,7 +8,7 @@ import org.bukkit.material.TexturedMaterial;
 
 import javax.annotation.Nullable;
 
-public enum CobbleWall implements IMaterial, IMaterialData
+public enum CobbleWall implements IMaterialData
 {
 	Any(),
 	Normal(0),
@@ -37,6 +37,12 @@ public enum CobbleWall implements IMaterial, IMaterialData
 	}
 
 	@Override
+	public String getName()
+	{
+		return "CobbleWall" + (this == Normal ? "" : ':' + name());
+	}
+
+	@Override
 	public boolean isSame(Material material, MaterialData data)
 	{
 		if (material != Material.COBBLE_WALL || !(data instanceof TexturedMaterial))
@@ -53,4 +59,9 @@ public enum CobbleWall implements IMaterial, IMaterialData
 
 	@Nullable
 	private final MaterialData data;
+
+	static void register()
+	{
+		Configurable.addSimple(values());
+	}
 }
