@@ -2,8 +2,7 @@ package no.runsafe.framework.internal.tag;
 
 import net.minecraft.server.v1_7_R1.NBTTagCompound;
 import no.runsafe.framework.internal.wrapper.IWrapper;
-
-import java.lang.reflect.Field;
+import no.runsafe.framework.tools.reflection.ReflectionHelper;
 
 public final class TagHelper
 {
@@ -55,16 +54,7 @@ public final class TagHelper
 		if (bukkitWrapper == null)
 			return null;
 
-		try
-		{
-			Field handleField = bukkitWrapper.getClass().getDeclaredField("handle");
-			handleField.setAccessible(true);
-			return getCompoundFromNMS(handleField.get(bukkitWrapper));
-		}
-		catch (Exception e)
-		{
-			return null;
-		}
+		return getCompoundFromNMS(ReflectionHelper.getObjectField(bukkitWrapper, "handle"));
 	}
 
 	private static NBTTagCompound getCompoundFromNMS(Object rawObject)
@@ -72,21 +62,11 @@ public final class TagHelper
 		if (rawObject == null)
 			return null;
 
-		try
-		{
-			Field tagField = rawObject.getClass().getDeclaredField("tag");
-			tagField.setAccessible(true);
-			Object tagObject = tagField.get(rawObject);
+		Object tagObject = ReflectionHelper.getObjectField(rawObject, "tag");
+		if (tagObject instanceof NBTTagCompound)
+			return (NBTTagCompound) tagObject;
 
-			if (tagObject instanceof NBTTagCompound)
-				return (NBTTagCompound) tagObject;
-
-			return null;
-		}
-		catch (Exception e)
-		{
-			return null;
-		}
+		return null;
 	}
 
 	private static void setNMSObjectCompound(Object nmsObject, NBTTagCompound compound)
@@ -94,15 +74,6 @@ public final class TagHelper
 		if (nmsObject == null)
 			return;
 
-		try
-		{
-			Field tagField = nmsObject.getClass().getDeclaredField("tag");
-			tagField.setAccessible(true);
-			tagField.set(nmsObject, compound);
-		}
-		catch (Exception e)
-		{
-			// Ignore.
-		}
+		ReflectionHelper.setField(nmsObject, "tag", compound);
 	}
 }
