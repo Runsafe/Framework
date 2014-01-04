@@ -1,6 +1,7 @@
 package no.runsafe.framework.internal.wrapper.item;
 
 import no.runsafe.framework.internal.LegacyMaterial;
+import no.runsafe.framework.internal.wrapper.IWrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.enchantment.RunsafeEnchantment;
 import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
@@ -12,7 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class BukkitItemStack implements ConfigurationSerializable
+public abstract class BukkitItemStack implements ConfigurationSerializable, IWrapper<ItemStack>
 {
 	protected BukkitItemStack(ItemStack stack)
 	{
@@ -44,6 +45,7 @@ public abstract class BukkitItemStack implements ConfigurationSerializable
 		return itemStack.getDurability();
 	}
 
+	@Override
 	public ItemStack getRaw()
 	{
 		return itemStack;
