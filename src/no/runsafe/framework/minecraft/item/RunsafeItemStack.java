@@ -1,19 +1,24 @@
 package no.runsafe.framework.minecraft.item;
 
+import net.minecraft.server.v1_7_R1.NBTTagCompound;
+import no.runsafe.framework.api.ITagObject;
 import no.runsafe.framework.api.minecraft.IEnchant;
 import no.runsafe.framework.api.minecraft.IEnchantable;
+import no.runsafe.framework.internal.tag.TagHelper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.item.BukkitItemStack;
 import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
+import org.bukkit.craftbukkit.v1_7_R1.inventory.CraftItemStack;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public abstract class RunsafeItemStack extends BukkitItemStack implements IEnchantable
+public abstract class RunsafeItemStack extends BukkitItemStack implements IEnchantable, ITagObject
 {
 	public static RunsafeMeta deserialize(Map<String, Object> args)
 	{
@@ -99,5 +104,17 @@ public abstract class RunsafeItemStack extends BukkitItemStack implements IEncha
 	public RunsafeMeta clone()
 	{
 		return ObjectWrapper.convert(itemStack.clone());
+	}
+
+	@Override
+	public NBTTagCompound getTagCompound()
+	{
+		return TagHelper.getCompound(this);
+	}
+
+	@Override
+	public void setTagCompound(NBTTagCompound compound)
+	{
+		TagHelper.setCompound(this, compound);
 	}
 }
