@@ -7,6 +7,6 @@ public interface ISchemaUpdate
 {
 	// ToDo: Implement this to be used by the SchemaUpdater and clean all plug-ins.
 
-	void addQueries(Integer revision, String... queries);
+	void addQueries(String... queries);
 	HashMap<Integer, List<String>> getQueries();
 }
