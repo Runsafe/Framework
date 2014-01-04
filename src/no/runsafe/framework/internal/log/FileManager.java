@@ -107,7 +107,15 @@ public final class FileManager
 	@SuppressWarnings({"UseOfSystemOutOrSystemErr", "ConstantConditions"})
 	private void configure(FrameworkConfiguration config)
 	{
-		logFolder = new File(config.getConfigValueAsString("output.folder"));
+		String logFolderString = config.getConfigValueAsString("output.folder");
+
+		if (logFolderString == null)
+		{
+			System.out.printf("output.folder missing from config.yml");
+			System.exit(1);
+		}
+
+		logFolder = new File(logFolderString);
 		if (!logFolder.exists())
 			if (!logFolder.mkdir())
 			{
