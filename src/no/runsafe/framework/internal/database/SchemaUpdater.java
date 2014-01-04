@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.database;
 
+import no.runsafe.framework.api.database.ISchemaUpdate;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.database.IDatabase;
 import no.runsafe.framework.api.database.ISchemaChanges;
@@ -79,7 +80,7 @@ public final class SchemaUpdater
 		for (ISchemaChanges changes : schemaUpdaters)
 		{
 			int revision = getRevision(changes.getTableName());
-			HashMap<Integer, List<String>> queries = changes.getSchemaUpdateQueries();
+			HashMap<Integer, List<String>> queries = changes.getSchemaUpdateQueries().getQueries();
 			for (Integer rev : queries.keySet())
 			{
 				if (rev > revision)

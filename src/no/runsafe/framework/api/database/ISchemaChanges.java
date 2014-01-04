@@ -1,8 +1,5 @@
 package no.runsafe.framework.api.database;
 
-import java.util.HashMap;
-import java.util.List;
-
 /**
  * Interface for automated database upgrades
  */
@@ -18,5 +15,5 @@ public interface ISchemaChanges
 	 *
 	 * @return The SQL statements for upgrading the database table
 	 */
-	HashMap<Integer, List<String>> getSchemaUpdateQueries();
+	ISchemaUpdate getSchemaUpdateQueries();
 }
