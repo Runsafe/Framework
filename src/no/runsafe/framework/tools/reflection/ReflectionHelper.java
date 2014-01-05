@@ -1,15 +1,44 @@
 package no.runsafe.framework.tools.reflection;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
 
 public final class ReflectionHelper
 {
 	private ReflectionHelper()
 	{}
 
-	private static Field getField(Object object, String fieldName) throws Exception
+	private static Map<String, Field> getFullFieldList(Object object, HashMap<String, Field> map, Class<?> type)
 	{
-		return object.getClass().getField(fieldName);
+		if (map == null)
+			map = new HashMap<String, Field>(0);
+
+		if (type == null)
+			type = object.getClass();
+
+		for (Field field : type.getDeclaredFields())
+			map.put(field.getName(), field);
+
+		if (type.getSuperclass() != null)
+			getFullFieldList(object, map, type.getSuperclass());
+
+		return map;
+	}
+
+	private static Field getField(Object object, String fieldName)
+	{
+		try
+		{
+			return object.getClass().getDeclaredField(fieldName);
+		}
+		catch (NoSuchFieldException exception)
+		{
+			Map<String, Field> fullFieldList = getFullFieldList(object, null, null);
+			if (fullFieldList.containsKey(fieldName))
+				return fullFieldList.get(fieldName);
+		}
+		return null;
 	}
 
 	public static Object getObjectField(Object object, String fieldName)
