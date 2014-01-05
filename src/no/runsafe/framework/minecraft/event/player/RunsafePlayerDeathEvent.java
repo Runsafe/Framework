@@ -3,9 +3,11 @@ package no.runsafe.framework.minecraft.event.player;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.event.IFakeableEvent;
 import no.runsafe.framework.api.event.player.IPlayerDeathEvent;
+import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDeathEvent;
 import no.runsafe.framework.internal.extension.player.RunsafePlayer;
+import no.runsafe.framework.tools.reflection.ReflectionHelper;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
@@ -27,46 +29,6 @@ public class RunsafePlayerDeathEvent extends RunsafeEntityDeathEvent implements 
 		return event.getDeathMessage();
 	}
 
-	public int getNewExp()
-	{
-		return event.getNewExp();
-	}
-
-	public void setNewExp(int exp)
-	{
-		event.setNewExp(exp);
-	}
-
-	public int getNewLevel()
-	{
-		return event.getNewLevel();
-	}
-
-	public void setNewLevel(int level)
-	{
-		event.setNewLevel(level);
-	}
-
-	public int getNewTotalExp()
-	{
-		return event.getNewTotalExp();
-	}
-
-	public void setNewTotalExp(int totalExp)
-	{
-		event.setNewTotalExp(totalExp);
-	}
-
-	public boolean getKeepLevel()
-	{
-		return event.getKeepLevel();
-	}
-
-	public void setKeepLevel(boolean keepLevel)
-	{
-		event.setKeepLevel(keepLevel);
-	}
-
 	@Override
 	public boolean Fire()
 	{
@@ -86,6 +48,16 @@ public class RunsafePlayerDeathEvent extends RunsafeEntityDeathEvent implements 
 	public boolean isFake()
 	{
 		return isFake;
+	}
+
+	public int getLevelAmount()
+	{
+		return ObjectUnwrapper.getMinecraft(getEntity()).oldLevel;
+	}
+
+	public void setNewLevelAmount(int level)
+	{
+		ObjectUnwrapper.getMinecraft(getEntity()).expLevel = level;
 	}
 
 	private final PlayerDeathEvent event;
