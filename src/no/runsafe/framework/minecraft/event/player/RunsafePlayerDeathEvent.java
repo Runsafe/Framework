@@ -7,7 +7,6 @@ import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDeathEvent;
 import no.runsafe.framework.internal.extension.player.RunsafePlayer;
-import no.runsafe.framework.tools.reflection.ReflectionHelper;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
