@@ -152,5 +152,10 @@ public abstract class BukkitLocation implements IWrapper<Location>
 		return ObjectWrapper.convert(location.clone());
 	}
 
+	public ILocation add(Vector vector)
+	{
+		return ObjectWrapper.convert(location.add(vector));
+	}
+
 	protected final Location location;
 }

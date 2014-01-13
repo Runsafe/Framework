@@ -87,4 +87,6 @@ public interface ILocation
 	Vector getDirection();
 
 	IPoint3D getPoint();
+
+	ILocation add(Vector vector);
 }
