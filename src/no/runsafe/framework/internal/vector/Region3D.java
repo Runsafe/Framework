@@ -46,6 +46,8 @@ public class Region3D implements IRegion3D
 	@Nullable
 	public static IRegion3D fromString(CharSequence value)
 	{
+		if (value == null)
+			return null;
 		Matcher decode = DECODE.matcher(value);
 		if (!decode.matches())
 			return null;
