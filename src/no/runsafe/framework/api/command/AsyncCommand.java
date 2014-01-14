@@ -2,11 +2,11 @@ package no.runsafe.framework.api.command;
 
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.command.argument.IArgument;
+import no.runsafe.framework.api.command.argument.IArgumentList;
 import no.runsafe.framework.internal.command.PreparedAsynchronousCommand;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.Map;
 import java.util.Stack;
 
 /**
@@ -23,7 +23,7 @@ public abstract class AsyncCommand extends ExecutableCommand implements CommandS
 
 	@Nullable
 	@Override
-	public String OnExecute(ICommandExecutor executor, Map<String, String> parameters)
+	public String OnExecute(ICommandExecutor executor, IArgumentList parameters)
 	{
 		return null;
 	}
@@ -41,7 +41,7 @@ public abstract class AsyncCommand extends ExecutableCommand implements CommandS
 		@Nonnull ICommandExecutor executor,
 		@Nonnull Stack<ICommandHandler> stack,
 		@Nonnull String[] args,
-		@Nonnull Map<String, String> params
+		@Nonnull IArgumentList params
 	)
 	{
 		console.debugFiner("Preparing Async command with %d params and %d args", params.size(), args.length);

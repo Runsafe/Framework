@@ -1,8 +1,8 @@
 package no.runsafe.framework.api.command;
 
-import java.util.Map;
+import no.runsafe.framework.api.command.argument.IArgumentList;
 
 public interface IContextPermissionProvider
 {
-	String getPermission(ICommandExecutor executor, Map<String, String> parameters, String... args);
+	String getPermission(ICommandExecutor executor, IArgumentList parameters, String... args);
 }

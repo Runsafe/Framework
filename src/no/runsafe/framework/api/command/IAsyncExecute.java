@@ -1,6 +1,6 @@
 package no.runsafe.framework.api.command;
 
-import java.util.Map;
+import no.runsafe.framework.api.command.argument.IArgumentList;
 
 public interface IAsyncExecute
 {
@@ -11,5 +11,5 @@ public interface IAsyncExecute
 	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
 	 * @return Message to show to the user running the command
 	 */
-	String OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters);
+	String OnAsyncExecute(ICommandExecutor executor, IArgumentList parameters);
 }

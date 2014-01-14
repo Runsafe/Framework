@@ -1,6 +1,6 @@
 package no.runsafe.framework.api.command;
 
-import java.util.Map;
+import no.runsafe.framework.api.command.argument.IArgumentList;
 
 public interface ISyncExecute
 {
@@ -12,5 +12,5 @@ public interface ISyncExecute
 	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
 	 * @return Message to show to the user running the command
 	 */
-	String OnExecute(ICommandExecutor executor, Map<String, String> parameters);
+	String OnExecute(ICommandExecutor executor, IArgumentList parameters);
 }

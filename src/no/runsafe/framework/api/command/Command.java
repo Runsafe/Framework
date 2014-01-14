@@ -1,9 +1,8 @@
 package no.runsafe.framework.api.command;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Lists;
 import net.minecraft.util.com.google.common.collect.ImmutableList;
 import no.runsafe.framework.api.command.argument.IArgument;
+import no.runsafe.framework.api.command.argument.IArgumentList;
 import no.runsafe.framework.api.command.argument.IValueExpander;
 import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.internal.command.ArgumentList;
@@ -234,7 +233,7 @@ public class Command implements ICommandHandler
 		@Nonnull ICommandExecutor executor,
 		@Nonnull Stack<ICommandHandler> stack,
 		@Nonnull String[] args,
-		@Nonnull Map<String, String> params
+		@Nonnull IArgumentList params
 	)
 	{
 		console.debugFiner("Preparing Sync command with %d params and %d args", params.size(), args.length);

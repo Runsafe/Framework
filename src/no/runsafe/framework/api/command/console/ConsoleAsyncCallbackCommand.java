@@ -4,6 +4,7 @@ import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.command.AsyncCallbackCommand;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.argument.IArgument;
+import no.runsafe.framework.api.command.argument.IArgumentList;
 import no.runsafe.framework.minecraft.RunsafeConsole;
 
 import javax.annotation.Nullable;
@@ -22,7 +23,7 @@ public abstract class ConsoleAsyncCallbackCommand<T> extends AsyncCallbackComman
 
 	@Nullable
 	@Override
-	public final String OnExecute(ICommandExecutor executor, Map<String, String> parameters)
+	public final String OnExecute(ICommandExecutor executor, IArgumentList parameters)
 	{
 		return null;
 	}
@@ -30,7 +31,7 @@ public abstract class ConsoleAsyncCallbackCommand<T> extends AsyncCallbackComman
 	@SuppressWarnings("InstanceofInterfaces")
 	@Nullable
 	@Override
-	public final T OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters)
+	public final T OnAsyncExecute(ICommandExecutor executor, IArgumentList parameters)
 	{
 		if (executor instanceof RunsafeConsole)
 			return OnAsyncExecute(parameters);

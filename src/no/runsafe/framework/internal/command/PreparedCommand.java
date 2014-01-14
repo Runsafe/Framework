@@ -3,6 +3,7 @@ package no.runsafe.framework.internal.command;
 import com.google.common.collect.Lists;
 import no.runsafe.framework.api.command.*;
 import no.runsafe.framework.api.command.argument.IArgument;
+import no.runsafe.framework.api.command.argument.IArgumentList;
 import no.runsafe.framework.api.command.argument.ITabComplete;
 import no.runsafe.framework.api.player.IPlayer;
 import org.apache.commons.lang.StringUtils;
@@ -15,7 +16,7 @@ import java.util.regex.Pattern;
 public abstract class PreparedCommand implements IPreparedCommand
 {
 	protected PreparedCommand(
-		ICommandExecutor executor, Stack<ICommandHandler> definingCommand, String[] args, Map<String, String> parameters)
+		ICommandExecutor executor, Stack<ICommandHandler> definingCommand, String[] args, IArgumentList parameters)
 	{
 		this.executor = executor;
 		command = definingCommand;
@@ -131,7 +132,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 	protected final ICommandExecutor executor;
 	protected final Stack<ICommandHandler> command;
 	protected final String[] arguments;
-	protected final Map<String, String> parameters;
+	protected final IArgumentList parameters;
 	private final String requiredPermission;
 	private static final Pattern paramPermission = Pattern.compile(".*<.*>.*");
 }

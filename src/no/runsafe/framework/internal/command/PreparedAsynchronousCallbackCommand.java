@@ -2,6 +2,7 @@ package no.runsafe.framework.internal.command;
 
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.command.*;
+import no.runsafe.framework.api.command.argument.IArgumentList;
 import no.runsafe.framework.internal.log.Console;
 
 import java.util.Map;
@@ -10,7 +11,7 @@ import java.util.Stack;
 public final class PreparedAsynchronousCallbackCommand extends PreparedCommand
 {
 	public PreparedAsynchronousCallbackCommand(
-		ICommandExecutor executor, Stack<ICommandHandler> definingCommand, String[] args, Map<String, String> parameters)
+		ICommandExecutor executor, Stack<ICommandHandler> definingCommand, String[] args, IArgumentList parameters)
 	{
 		super(executor, definingCommand, args, parameters);
 	}

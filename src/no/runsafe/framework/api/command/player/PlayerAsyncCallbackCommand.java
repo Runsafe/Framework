@@ -4,12 +4,12 @@ import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.command.AsyncCallbackCommand;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.argument.IArgument;
+import no.runsafe.framework.api.command.argument.IArgumentList;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.RunsafeConsole;
 import no.runsafe.framework.internal.extension.player.RunsafePlayer;
 
 import javax.annotation.Nullable;
-import java.util.Map;
 
 /**
  * Base class representing a command that can only be executed by a player and has an implementation that can be executed asynchronously with a return value
@@ -24,7 +24,7 @@ public abstract class PlayerAsyncCallbackCommand<T> extends AsyncCallbackCommand
 	}
 
 	@Override
-	public final String OnExecute(ICommandExecutor executor, Map<String, String> parameters)
+	public final String OnExecute(ICommandExecutor executor, IArgumentList parameters)
 	{
 		if (executor instanceof RunsafeConsole)
 			return "This command cannot be used from the console.";
@@ -33,7 +33,7 @@ public abstract class PlayerAsyncCallbackCommand<T> extends AsyncCallbackCommand
 
 	@Override
 	@Nullable
-	public final T OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters)
+	public final T OnAsyncExecute(ICommandExecutor executor, IArgumentList parameters)
 	{
 		if (executor instanceof RunsafePlayer)
 			return OnAsyncExecute((IPlayer) executor, parameters);
@@ -41,7 +41,8 @@ public abstract class PlayerAsyncCallbackCommand<T> extends AsyncCallbackCommand
 	}
 
 	/**
-	 * This method is called on the main thread before {@link PlayerAsyncCallbackCommand#OnAsyncExecute(ICommandExecutor, Map)}
+	 * This method is called on the main thread before {@link no.runsafe.framework.api.command.IAsyncCallbackExecute#OnAsyncExecute(no.runsafe.framework.api.command.ICommandExecutor, no.runsafe.framework.api.command.argument.IArgumentList)}
+	 *
 	 *
 	 * @param executor   The player executing the command
 	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
@@ -49,7 +50,7 @@ public abstract class PlayerAsyncCallbackCommand<T> extends AsyncCallbackCommand
 	 */
 	@Override
 	@Nullable
-	public String OnExecute(IPlayer executor, Map<String, String> parameters)
+	public String OnExecute(IPlayer executor, IArgumentList parameters)
 	{
 		return null;
 	}

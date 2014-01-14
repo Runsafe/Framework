@@ -3,6 +3,7 @@ package no.runsafe.framework.api.command.console;
 import no.runsafe.framework.api.command.AsyncCommand;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.argument.IArgument;
+import no.runsafe.framework.api.command.argument.IArgumentList;
 import no.runsafe.framework.minecraft.RunsafeConsole;
 import no.runsafe.framework.api.IScheduler;
 
@@ -22,7 +23,7 @@ public abstract class ConsoleAsyncCommand extends AsyncCommand implements IConso
 
 	@SuppressWarnings("InstanceofInterfaces")
 	@Override
-	public final String OnAsyncExecute(ICommandExecutor executor, Map<String, String> parameters)
+	public final String OnAsyncExecute(ICommandExecutor executor, IArgumentList parameters)
 	{
 		if (executor instanceof RunsafeConsole)
 			return OnAsyncExecute(parameters);

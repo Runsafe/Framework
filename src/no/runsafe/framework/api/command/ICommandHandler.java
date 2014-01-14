@@ -1,5 +1,6 @@
 package no.runsafe.framework.api.command;
 
+import no.runsafe.framework.api.command.argument.IArgumentList;
 import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.command.argument.IArgument;
 
@@ -58,6 +59,6 @@ public interface ICommandHandler
 		@Nonnull ICommandExecutor executor,
 		@Nonnull Stack<ICommandHandler> stack,
 		@Nonnull String[] args,
-		@Nonnull Map<String, String> params
+		@Nonnull IArgumentList params
 	);
 }

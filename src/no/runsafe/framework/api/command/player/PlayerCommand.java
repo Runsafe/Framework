@@ -3,10 +3,9 @@ package no.runsafe.framework.api.command.player;
 import no.runsafe.framework.api.command.ExecutableCommand;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.argument.IArgument;
+import no.runsafe.framework.api.command.argument.IArgumentList;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.extension.player.RunsafePlayer;
-
-import java.util.Map;
 
 /**
  * Base class representing a command that can only be executed by a player
@@ -20,7 +19,7 @@ public abstract class PlayerCommand extends ExecutableCommand implements IPlayer
 
 	@SuppressWarnings("InstanceofInterfaces")
 	@Override
-	public final String OnExecute(ICommandExecutor executor, Map<String, String> parameters)
+	public final String OnExecute(ICommandExecutor executor, IArgumentList parameters)
 	{
 		if (executor instanceof RunsafePlayer)
 			return OnExecute((IPlayer) executor, parameters);
