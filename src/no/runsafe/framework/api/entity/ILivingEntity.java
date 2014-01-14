@@ -13,8 +13,8 @@ import java.util.List;
 
 public interface ILivingEntity extends IEntity
 {
-	IBlock getTarget();
-	
+	IBlock getTargetBlock();
+
 	RunsafeEntity Fire(ProjectileEntity projectileType);
 
 	RunsafeEntity Launch(RunsafeEntityType entityType);

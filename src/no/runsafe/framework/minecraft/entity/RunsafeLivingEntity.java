@@ -28,7 +28,7 @@ public class RunsafeLivingEntity extends BukkitLivingEntity implements ILivingEn
 	}
 
 	@Override
-	public IBlock getTarget()
+	public IBlock getTargetBlock()
 	{
 		HashSet<Byte> transparent = new HashSet<Byte>(10);
 		for (Material material : Material.values())
