@@ -6,7 +6,9 @@ import no.runsafe.framework.api.player.IPlayer;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EnumArgument extends CommandArgumentSpecification implements ITabComplete, IValueExpander
 {
@@ -15,7 +17,10 @@ public class EnumArgument extends CommandArgumentSpecification implements ITabCo
 		super(name);
 		List<String> names = new ArrayList<String>(values.length);
 		for (Enum<?> value : values)
+		{
+			this.values.put(value.name(), value);
 			names.add(value.name());
+		}
 		alternatives = ImmutableList.copyOf(names);
 		this.required = required;
 		defaultValue = null;
@@ -26,7 +31,10 @@ public class EnumArgument extends CommandArgumentSpecification implements ITabCo
 		super(name);
 		List<String> names = new ArrayList<String>(values.length);
 		for (Enum<?> value : values)
+		{
+			this.values.put(value.name(), value);
 			names.add(value.name());
+		}
 		alternatives = ImmutableList.copyOf(names);
 		required = true;
 		this.defaultValue = defaultValue.name();
@@ -79,8 +87,18 @@ public class EnumArgument extends CommandArgumentSpecification implements ITabCo
 		return defaultValue;
 	}
 
+	@Nullable
+	public Enum<?> getValue(Map<String, String> params)
+	{
+		if(values.containsKey(params.get(name)))
+			return values.get(params.get(name));
+
+		return null;
+	}
+
 	private final boolean required;
 	private final ImmutableList<String> alternatives;
+	private final Map<String, Enum<?>> values = new HashMap<String, Enum<?>>(0);
 	@Nullable
 	private final String defaultValue;
 }

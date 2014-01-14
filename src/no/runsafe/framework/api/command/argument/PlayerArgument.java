@@ -1,9 +1,12 @@
 package no.runsafe.framework.api.command.argument;
 
+import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.Player;
 
 import java.util.List;
+import java.util.Map;
 
 public class PlayerArgument extends CommandArgumentSpecification implements ITabComplete
 {

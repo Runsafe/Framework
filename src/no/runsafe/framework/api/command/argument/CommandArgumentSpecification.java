@@ -34,5 +34,5 @@ public abstract class CommandArgumentSpecification implements IArgument
 		return name;
 	}
 
-	private final String name;
+	protected final String name;
 }
