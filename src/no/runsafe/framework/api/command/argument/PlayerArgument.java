@@ -3,12 +3,13 @@ package no.runsafe.framework.api.command.argument;
 import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.InjectionPlugin;
-import no.runsafe.framework.internal.Player;
+import no.runsafe.framework.internal.command.BasePlayerArgument;
 
-import java.util.List;
 import java.util.Map;
 
-public class PlayerArgument extends CommandArgumentSpecification implements ITabComplete
+// This is going abstract.
+@Deprecated
+public class PlayerArgument extends BasePlayerArgument
 {
 	public PlayerArgument()
 	{
@@ -17,33 +18,16 @@ public class PlayerArgument extends CommandArgumentSpecification implements ITab
 
 	public PlayerArgument(boolean required)
 	{
-		super("player");
-		this.required = required;
+		super("player", required);
 	}
 
 	public PlayerArgument(String name, boolean required)
 	{
-		super(name);
-		this.required = required;
+		super(name, required);
 	}
 
-	@Override
-	public boolean isRequired()
+	public IPlayer getValue(IPlayer context, Map<String, String> params)
 	{
-		return required;
+		return InjectionPlugin.getGlobalComponent(IServer.class).getPlayer(params.get(name));
 	}
-
-	@Override
-	public boolean isWhitespaceInclusive()
-	{
-		return false;
-	}
-
-	@Override
-	public List<String> getAlternatives(IPlayer executor, String partial)
-	{
-		return Player.Get().getOnline(executor, partial);
-	}
-
-	private final boolean required;
 }
