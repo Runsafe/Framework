@@ -1,11 +1,12 @@
 package no.runsafe.framework.api.command;
 
 import com.google.common.base.Function;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+import net.minecraft.util.com.google.common.collect.ImmutableList;
 import no.runsafe.framework.api.command.argument.IArgument;
 import no.runsafe.framework.api.command.argument.IValueExpander;
 import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.internal.command.ArgumentList;
 import no.runsafe.framework.internal.command.PreparedSynchronousCommand;
 import no.runsafe.framework.text.ChatColour;
 import org.apache.commons.lang.StringUtils;
@@ -40,7 +41,10 @@ public class Command implements ICommandHandler
 		name = commandName;
 		this.permission = permission;
 		this.description = description;
-		argumentList = ImmutableList.copyOf(arguments);
+		Map<String, IArgument> argumentMap = new HashMap<String, IArgument>(arguments.length);
+		for (IArgument argument : arguments)
+			argumentMap.put(argument.toString(), argument);
+		argumentList = Collections.unmodifiableMap(argumentMap);
 	}
 
 	/**
@@ -81,23 +85,18 @@ public class Command implements ICommandHandler
 	{
 		String part = ChatColour.BLUE + name + ChatColour.RESET;
 		if (!argumentList.isEmpty())
-			part += ' ' + Strings.join(
-				Lists.transform(argumentList, new Function<IArgument, String>()
-				{
-					@Override
-					public String apply(@Nullable IArgument arg)
-					{
-						assert arg != null;
-						return String.format(
-							arg.isRequired() ? "<%s%s%s>%s" : "[%s%s%s]%s",
-							ChatColour.YELLOW, arg, ChatColour.RESET,
-							arg.isWhitespaceInclusive() ? "+" : ""
-						);
-					}
-				}),
-				" "
-			);
+			for (IArgument argument : argumentList.values())
+				part += ' ' + getUsageCommandArgument(argument);
 		return part;
+	}
+
+	private String getUsageCommandArgument(IArgument arg)
+	{
+		return String.format(
+			arg.isRequired() ? "<%s%s%s>%s" : "[%s%s%s]%s",
+			ChatColour.YELLOW, arg, ChatColour.RESET,
+			arg.isWhitespaceInclusive() ? "+" : ""
+		);
 	}
 
 	/**
@@ -226,7 +225,7 @@ public class Command implements ICommandHandler
 				return subCommand.prepareCommand(executor, params, args, stack);
 			}
 		}
-		return stack.peek().createAction(executor, stack, args, params);
+		return stack.peek().createAction(executor, stack, args, new ArgumentList(executor, argumentList, params));
 	}
 
 	@Nonnull
@@ -272,7 +271,7 @@ public class Command implements ICommandHandler
 	@Override
 	public List<IArgument> getParameters()
 	{
-		return Collections.unmodifiableList(argumentList);
+		return ImmutableList.copyOf(argumentList.values());
 	}
 
 	@Override
@@ -341,7 +340,7 @@ public class Command implements ICommandHandler
 		Map<String, String> parameters = new HashMap<String, String>(args.length);
 
 		int index = 0;
-		for (IArgument parameter : argumentList)
+		for (IArgument parameter : argumentList.values())
 		{
 			if (parameter.isWhitespaceInclusive())
 			{
@@ -365,7 +364,7 @@ public class Command implements ICommandHandler
 	}
 
 	protected IDebug console;
-	private final ImmutableList<IArgument> argumentList;
+	protected final Map<String, IArgument> argumentList;
 	private final Map<String, ICommandHandler> subCommands = new HashMap<String, ICommandHandler>(0);
 	private final String name;
 	private final String permission;

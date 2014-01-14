@@ -26,6 +26,7 @@ public class PlayerArgument extends BasePlayerArgument
 		super(name, required);
 	}
 
+	// TODO Make abstract
 	public IPlayer getValue(IPlayer context, Map<String, String> params)
 	{
 		return InjectionPlugin.getGlobalComponent(IServer.class).getPlayer(params.get(name));

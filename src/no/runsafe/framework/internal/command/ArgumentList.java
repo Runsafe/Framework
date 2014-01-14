@@ -1,16 +1,18 @@
 package no.runsafe.framework.internal.command;
 
 import no.runsafe.framework.api.IWorld;
+import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.argument.*;
 import no.runsafe.framework.api.player.IPlayer;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
 public class ArgumentList implements IArgumentList
 {
-	public ArgumentList(IPlayer context, Map<String, IArgument> arguments, Map<String, String> parameterList)
+	public ArgumentList(ICommandExecutor context, Map<String, IArgument> arguments, Map<String, String> parameterList)
 	{
-		this.context = context;
+		this.context = context instanceof IPlayer ? (IPlayer)context : null;
 		this.arguments = Collections.unmodifiableMap(arguments);
 		this.parameterList = Collections.unmodifiableMap(parameterList);
 	}
@@ -121,6 +123,7 @@ public class ArgumentList implements IArgumentList
 		return null;
 	}
 
+	@Nullable
 	private final IPlayer context;
 	private final Map<String, String> parameterList;
 	private final Map<String, IArgument> arguments;
