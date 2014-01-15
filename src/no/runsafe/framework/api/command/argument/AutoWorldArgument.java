@@ -9,7 +9,7 @@ public class AutoWorldArgument extends WorldArgument
 {
 	public AutoWorldArgument()
 	{
-		super(true);
+		super(false);
 	}
 
 	@Nullable

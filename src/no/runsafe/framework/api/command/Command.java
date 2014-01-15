@@ -94,15 +94,20 @@ public class Command implements ICommandHandler
 	private static String getUsageCommandArgument(ICommandExecutor executor, IArgument arg)
 	{
 		String argument = arg.toString();
-		String defaultValue = null;
+		boolean isRequired = arg.isRequired();
 		if (arg instanceof IValueExpander)
 		{
-			defaultValue = ((IValueExpander) arg).expand(executor, null);
+			String defaultValue = ((IValueExpander) arg).expand(executor, null);
 			if (defaultValue != null)
+			{
 				argument += '=' + defaultValue;
+				isRequired = false;
+			}
+			else
+				isRequired = true;
 		}
 		return String.format(
-			arg.isRequired() && defaultValue == null ? "<%s%s%s>%s" : "[%s%s%s]%s",
+			isRequired ? "<%s%s%s>%s" : "[%s%s%s]%s",
 			ChatColour.YELLOW, argument, ChatColour.RESET,
 			arg.isWhitespaceInclusive() ? "+" : ""
 		);
