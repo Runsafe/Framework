@@ -46,7 +46,11 @@ public class AnyPlayerArgument extends PlayerArgument
 
 		List<String> matches = RunsafeServer.findPlayer(value);
 		if (matches.size() > 1)
+		{
 			context.sendColouredMessage(new RunsafeAmbiguousPlayer(null, matches).toString());
+			if (!isRequired() && expand)
+				return null;
+		}
 		if (matches.size() == 1)
 			return matches.get(0);
 		return isRequired() ? Invalid : value;

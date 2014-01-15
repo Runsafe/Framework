@@ -47,7 +47,11 @@ public class OnlinePlayerArgument extends PlayerArgument
 		{
 			List<String> matches = Player.Get().getOnline((IPlayer) context, value);
 			if (matches.size() > 1)
+			{
 				context.sendColouredMessage(new RunsafeAmbiguousPlayer(null, matches).toString());
+				if (!isRequired() && expand)
+					return null;
+			}
 			if (matches != null && matches.size() == 1)
 				return matches.get(0);
 		}
@@ -55,7 +59,11 @@ public class OnlinePlayerArgument extends PlayerArgument
 		{
 			List<String> matches = Player.Get().getOnline(value);
 			if (matches.size() > 1)
+			{
 				context.sendColouredMessage(new RunsafeAmbiguousPlayer(null, matches).toString());
+				if (!isRequired() && expand)
+					return null;
+			}
 			if (matches != null && matches.size() == 1)
 				return matches.get(0);
 		}
