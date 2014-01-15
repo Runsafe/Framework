@@ -14,7 +14,7 @@ public class PlayerListArgument extends BasePlayerArgument
 {
 	public PlayerListArgument(boolean required)
 	{
-		super("players", required);
+		super("players", required, false);
 	}
 
 	@Override

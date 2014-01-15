@@ -3,7 +3,9 @@ package no.runsafe.framework.api.command.argument;
 import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.InjectionPlugin;
+import no.runsafe.framework.internal.Player;
 import no.runsafe.framework.internal.command.BasePlayerArgument;
+import no.runsafe.framework.minecraft.Sound;
 
 import java.util.Map;
 
@@ -13,17 +15,27 @@ public class PlayerArgument extends BasePlayerArgument
 {
 	public PlayerArgument()
 	{
-		this(true);
+		this(true, false);
 	}
 
 	public PlayerArgument(boolean required)
 	{
-		super("player", required);
+		this(required, false);
+	}
+
+	public PlayerArgument(boolean required, boolean context)
+	{
+		super("player", required, context);
 	}
 
 	public PlayerArgument(String name, boolean required)
 	{
-		super(name, required);
+		this(name, required, false);
+	}
+
+	public PlayerArgument(String name, boolean required, boolean context)
+	{
+		super(name, required, context);
 	}
 
 	// TODO Make abstract

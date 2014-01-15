@@ -112,7 +112,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 	{
 		Collection<String> params = new ArrayList<String>(command.size());
 		for (ICommandHandler tier : command)
-			params.add(tier.getUsageCommandParams());
+			params.add(tier.getUsageCommandParams(executor));
 
 		//noinspection HardcodedFileSeparator
 		return String.format("Usage: /%1$s %2$s", StringUtils.join(params, " "), target.getUsage(executor));

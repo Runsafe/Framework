@@ -77,24 +77,33 @@ public class Command implements ICommandHandler
 	 * Override this if you have optional arguments
 	 *
 	 * @return List of arguments for inclusion in the command usage
+	 * @param executor
 	 */
 	@Nonnull
 	@Override
-	public String getUsageCommandParams()
+	public String getUsageCommandParams(ICommandExecutor executor)
 	{
 		StringBuilder parts = new StringBuilder(ChatColour.BLUE + name + ChatColour.RESET);
 		if (!argumentList.isEmpty())
 			for (IArgument argument : argumentList.values())
-				parts.append(' ').append(getUsageCommandArgument(argument));
+				parts.append(' ').append(getUsageCommandArgument(executor, argument));
 
 		return parts.toString();
 	}
 
-	private String getUsageCommandArgument(IArgument arg)
+	private String getUsageCommandArgument(ICommandExecutor executor, IArgument arg)
 	{
+		String argument = arg.toString();
+		String defaultValue = null;
+		if (arg instanceof IValueExpander)
+		{
+			defaultValue = ((IValueExpander) arg).expand(executor, null);
+			if (defaultValue != null)
+				argument += '=' + defaultValue;
+		}
 		return String.format(
-			arg.isRequired() ? "<%s%s%s>%s" : "[%s%s%s]%s",
-			ChatColour.YELLOW, arg, ChatColour.RESET,
+			arg.isRequired() && defaultValue == null ? "<%s%s%s>%s" : "[%s%s%s]%s",
+			ChatColour.YELLOW, argument, ChatColour.RESET,
 			arg.isWhitespaceInclusive() ? "+" : ""
 		);
 	}

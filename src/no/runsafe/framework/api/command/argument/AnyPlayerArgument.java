@@ -11,7 +11,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 
-public class AnyPlayerArgument extends PlayerArgument implements IValueExpander
+public class AnyPlayerArgument extends PlayerArgument
 {
 	public AnyPlayerArgument()
 	{
@@ -22,15 +22,28 @@ public class AnyPlayerArgument extends PlayerArgument implements IValueExpander
 		super(required);
 	}
 
+	public AnyPlayerArgument(boolean required, boolean context)
+	{
+		super(required, context);
+	}
+
 	public AnyPlayerArgument(String name, boolean required)
 	{
 		super(name, required);
+	}
+
+	public AnyPlayerArgument(String name, boolean required, boolean context)
+	{
+		super(name, required, context);
 	}
 
 	@Nullable
 	@Override
 	public String expand(ICommandExecutor context, String value)
 	{
+		if (expand && value == null)
+			return context.getName();
+
 		List<String> matches = RunsafeServer.findPlayer(value);
 		if (matches.size() > 1)
 			context.sendColouredMessage(new RunsafeAmbiguousPlayer(null, matches).toString());

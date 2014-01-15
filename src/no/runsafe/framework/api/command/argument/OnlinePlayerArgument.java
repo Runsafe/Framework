@@ -22,9 +22,19 @@ public class OnlinePlayerArgument extends PlayerArgument implements IValueExpand
 		super(required);
 	}
 
+	public OnlinePlayerArgument(boolean required, boolean context)
+	{
+		super(required, context);
+	}
+
 	public OnlinePlayerArgument(String name, boolean required)
 	{
 		super(name, required);
+	}
+
+	public OnlinePlayerArgument(String name, boolean required, boolean context)
+	{
+		super(name, required, context);
 	}
 
 	@Nullable

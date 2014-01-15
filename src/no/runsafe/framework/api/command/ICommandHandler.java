@@ -33,7 +33,7 @@ public interface ICommandHandler
 	List<String> getSubCommands(ICommandExecutor executor);
 
 	@Nonnull
-	String getUsageCommandParams();
+	String getUsageCommandParams(ICommandExecutor executor);
 
 	@Nullable
 	String getPermission();
