@@ -59,6 +59,8 @@ public class WorldArgument extends CommandArgumentSpecification implements ITabC
 	@Override
 	public String expand(ICommandExecutor context, @Nullable String value)
 	{
+		if (value == null)
+			return null;
 		for (IWorld world : Multiverse.getInstance().getAllWorlds())
 			if (world.getName().toLowerCase().startsWith(value.toLowerCase()))
 				return world.getName();

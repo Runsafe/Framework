@@ -80,6 +80,8 @@ public class EnumArgument extends CommandArgumentSpecification implements ITabCo
 	@Override
 	public String expand(ICommandExecutor context, @Nullable String value)
 	{
+		if (value == null)
+			return defaultValue;
 		for (String alternative : alternatives)
 			if (alternative.toLowerCase().startsWith(value.toLowerCase()))
 				return alternative;
@@ -90,7 +92,7 @@ public class EnumArgument extends CommandArgumentSpecification implements ITabCo
 	@Nullable
 	public Enum<?> getValue(Map<String, String> params)
 	{
-		if(values.containsKey(params.get(name)))
+		if (values.containsKey(params.get(name)))
 			return values.get(params.get(name));
 
 		return null;
