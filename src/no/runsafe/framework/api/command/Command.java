@@ -368,7 +368,7 @@ public class Command implements ICommandHandler
 			String value = null;
 			if (args.length > index)
 				value = args[index];
-			if (value != null && parameter instanceof IValueExpander)
+			if (parameter instanceof IValueExpander)
 				value = ((IValueExpander) parameter).expand(context, value);
 			index++;
 			if (parameter.isRequired() || value != null && !value.isEmpty())
