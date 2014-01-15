@@ -41,8 +41,8 @@ public class AnyPlayerArgument extends PlayerArgument
 	@Override
 	public String expand(ICommandExecutor context, @Nullable String value)
 	{
-		if (expand && value == null)
-			return context.getName();
+		if (value == null)
+			return super.expand(context, null);
 
 		List<String> matches = RunsafeServer.findPlayer(value);
 		if (matches.size() > 1)

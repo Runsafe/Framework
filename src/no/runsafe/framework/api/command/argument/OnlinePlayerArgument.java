@@ -41,6 +41,8 @@ public class OnlinePlayerArgument extends PlayerArgument
 	@Override
 	public String expand(ICommandExecutor context, @Nullable String value)
 	{
+		if (value == null)
+			return super.expand(context, null);
 		if (context instanceof IPlayer)
 		{
 			List<String> matches = Player.Get().getOnline((IPlayer) context, value);
