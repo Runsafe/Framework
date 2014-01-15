@@ -27,7 +27,7 @@ public class AnyPlayerArgument extends BasePlayerArgument implements IValueProvi
 
 	public AnyPlayerArgument(boolean required, boolean context)
 	{
-		this("world", required, context);
+		this("player", required, context);
 	}
 
 	public AnyPlayerArgument(String name, boolean required)
