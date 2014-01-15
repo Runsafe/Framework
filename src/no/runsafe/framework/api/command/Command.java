@@ -82,11 +82,12 @@ public class Command implements ICommandHandler
 	@Override
 	public String getUsageCommandParams()
 	{
-		String part = ChatColour.BLUE + name + ChatColour.RESET;
+		StringBuilder parts = new StringBuilder(ChatColour.BLUE + name + ChatColour.RESET);
 		if (!argumentList.isEmpty())
 			for (IArgument argument : argumentList.values())
-				part += ' ' + getUsageCommandArgument(argument);
-		return part;
+				parts.append(' ').append(getUsageCommandArgument(argument));
+
+		return parts.toString();
 	}
 
 	private String getUsageCommandArgument(IArgument arg)
