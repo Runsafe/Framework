@@ -58,7 +58,7 @@ public class Command implements ICommandHandler
 		Map<String, String> available = getAvailableSubCommands(executor);
 		List<String> usage = new ArrayList<String>(subCommands.size());
 		if (available.isEmpty())
-			return description;
+			return "\n " + description;
 
 		String format = "  %s%s%s: %s";
 		for (Map.Entry<String, String> stringStringEntry : available.entrySet())
@@ -76,8 +76,8 @@ public class Command implements ICommandHandler
 	 * The command arguments listed in usage is built by this.
 	 * Override this if you have optional arguments
 	 *
-	 * @return List of arguments for inclusion in the command usage
 	 * @param executor
+	 * @return List of arguments for inclusion in the command usage
 	 */
 	@Nonnull
 	@Override
