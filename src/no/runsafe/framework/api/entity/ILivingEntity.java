@@ -13,6 +13,8 @@ import java.util.List;
 
 public interface ILivingEntity extends IEntity
 {
+	IBlock getTargetBlock();
+
 	RunsafeEntity Fire(ProjectileEntity projectileType);
 
 	RunsafeEntity Launch(RunsafeEntityType entityType);
@@ -68,4 +70,8 @@ public interface ILivingEntity extends IEntity
 	void addBuff(Buff buff);
 
 	void removeBuff(Buff buff);
+
+	IEntity getLeashHolder();
+
+	void setLeashHolder(IEntity entity);
 }

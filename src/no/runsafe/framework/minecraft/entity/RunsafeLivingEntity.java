@@ -1,10 +1,13 @@
 package no.runsafe.framework.minecraft.entity;
 
+import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.entity.ILivingEntity;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
+import no.runsafe.framework.internal.LegacyMaterial;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.entity.BukkitLivingEntity;
 import no.runsafe.framework.internal.wrapper.entity.BukkitProjectile;
+import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -13,6 +16,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.Vector;
 
 import javax.annotation.Nullable;
+import java.util.HashSet;
 
 public class RunsafeLivingEntity extends BukkitLivingEntity implements ILivingEntity
 {
@@ -21,6 +25,17 @@ public class RunsafeLivingEntity extends BukkitLivingEntity implements ILivingEn
 	public RunsafeLivingEntity(LivingEntity toWrap)
 	{
 		super(toWrap);
+	}
+
+	@Override
+	public IBlock getTargetBlock()
+	{
+		HashSet<Byte> transparent = new HashSet<Byte>(10);
+		for (Material material : Material.values())
+			if (material.isTransparent())
+				transparent.add((byte) (int) LegacyMaterial.getIdOf(material));
+
+		return getTargetBlock(transparent, MAX_DISTANCE);
 	}
 
 	public RunsafeEntity Fire(String projectileType)

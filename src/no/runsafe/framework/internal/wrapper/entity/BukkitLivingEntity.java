@@ -160,5 +160,15 @@ public abstract class BukkitLivingEntity extends RunsafeEntity
 			livingEntity.removePotionEffect(buff.getType());
 	}
 
+	public IEntity getLeashHolder()
+	{
+		return ObjectWrapper.convert(livingEntity.getLeashHolder());
+	}
+
+	public void setLeashHolder(IEntity entity)
+	{
+		livingEntity.setLeashHolder((Entity) ObjectUnwrapper.convert(entity));
+	}
+
 	protected final LivingEntity livingEntity;
 }
