@@ -39,7 +39,7 @@ public final class Console extends LoggingBase implements IConsole
 	private Console(FileManager handler) throws IOException
 	{
 		super(handler, "Console", "runsafe.log");
-		this.queue = null;
+		queue = null;
 	}
 
 	@Override

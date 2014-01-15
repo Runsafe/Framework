@@ -1,6 +1,5 @@
 package no.runsafe.framework.internal.database;
 
-import no.runsafe.framework.api.database.ISchemaUpdate;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.database.IDatabase;
 import no.runsafe.framework.api.database.ISchemaChanges;

@@ -39,7 +39,7 @@ public abstract class BasePlayerArgument extends CommandArgumentSpecification im
 
 	@Nullable
 	@Override
-	public String expand(ICommandExecutor context, String value)
+	public String expand(ICommandExecutor context, @Nullable String value)
 	{
 		if(expand && value == null)
 			return context.getName();

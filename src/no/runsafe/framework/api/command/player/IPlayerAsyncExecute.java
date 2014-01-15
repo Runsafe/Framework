@@ -3,8 +3,6 @@ package no.runsafe.framework.api.command.player;
 import no.runsafe.framework.api.command.argument.IArgumentList;
 import no.runsafe.framework.api.player.IPlayer;
 
-import java.util.Map;
-
 public interface IPlayerAsyncExecute extends IPlayerExecute
 {
 	/**

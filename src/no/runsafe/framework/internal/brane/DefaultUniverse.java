@@ -12,11 +12,13 @@ public class DefaultUniverse implements IUniverse
 		worldName = name;
 	}
 
+	@Override
 	public String getName()
 	{
 		return worldName;
 	}
 
+	@Override
 	@Nonnull
 	public Iterable<String> getWorlds()
 	{

@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import no.runsafe.framework.api.player.IAmbiguousPlayer;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.internal.extension.player.RunsafePlayer;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.OfflinePlayer;

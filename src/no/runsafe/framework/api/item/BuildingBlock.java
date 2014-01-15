@@ -3,7 +3,6 @@ package no.runsafe.framework.api.item;
 import org.bukkit.Material;
 import org.bukkit.material.MaterialData;
 
-@SuppressWarnings("NullableProblems")
 public enum BuildingBlock implements IMaterial
 {
 	Stone(Material.STONE),

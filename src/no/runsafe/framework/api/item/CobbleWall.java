@@ -51,6 +51,7 @@ public enum CobbleWall implements IMaterialData
 		return this.data == null || this.data.equals(data);
 	}
 
+	@Nullable
 	@Override
 	public MaterialData getData()
 	{

@@ -2,7 +2,6 @@ package no.runsafe.framework.internal.configuration;
 
 import no.runsafe.framework.api.IConfiguration;
 import no.runsafe.framework.api.IConfigurationFile;
-import no.runsafe.framework.api.item.IMaterial;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.log.IDebug;
 import org.bukkit.configuration.file.YamlConfiguration;

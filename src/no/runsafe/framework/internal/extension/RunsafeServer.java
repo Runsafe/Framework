@@ -5,7 +5,6 @@ import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.hook.IPlayerExtensions;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.InjectionPlugin;
-import no.runsafe.framework.internal.hooks.PlayerExtensions;
 import no.runsafe.framework.internal.wrapper.BukkitServer;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.extension.player.RunsafeAmbiguousPlayer;

@@ -39,7 +39,7 @@ public class AnyPlayerArgument extends PlayerArgument
 
 	@Nullable
 	@Override
-	public String expand(ICommandExecutor context, String value)
+	public String expand(ICommandExecutor context, @Nullable String value)
 	{
 		if (expand && value == null)
 			return context.getName();
@@ -52,6 +52,7 @@ public class AnyPlayerArgument extends PlayerArgument
 		return isRequired() ? Invalid : value;
 	}
 
+	@Override
 	public IPlayer getValue(IPlayer context, Map<String, String> params)
 	{
 		return InjectionPlugin.getGlobalComponent(IServer.class).getPlayer(params.get(name));

@@ -47,6 +47,7 @@ public enum StoneBrick implements IMaterialData
 		return this.data == null || data.equals(this.data);
 	}
 
+	@Nullable
 	@Override
 	public MaterialData getData()
 	{

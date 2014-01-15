@@ -91,7 +91,7 @@ public class Command implements ICommandHandler
 		return parts.toString();
 	}
 
-	private String getUsageCommandArgument(ICommandExecutor executor, IArgument arg)
+	private static String getUsageCommandArgument(ICommandExecutor executor, IArgument arg)
 	{
 		String argument = arg.toString();
 		String defaultValue = null;

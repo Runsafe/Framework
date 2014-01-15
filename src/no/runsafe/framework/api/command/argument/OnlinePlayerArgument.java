@@ -11,7 +11,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 
-public class OnlinePlayerArgument extends PlayerArgument implements IValueExpander
+public class OnlinePlayerArgument extends PlayerArgument
 {
 	public OnlinePlayerArgument()
 	{
@@ -39,7 +39,7 @@ public class OnlinePlayerArgument extends PlayerArgument implements IValueExpand
 
 	@Nullable
 	@Override
-	public String expand(ICommandExecutor context, String value)
+	public String expand(ICommandExecutor context, @Nullable String value)
 	{
 		if (context instanceof IPlayer)
 		{
@@ -60,6 +60,7 @@ public class OnlinePlayerArgument extends PlayerArgument implements IValueExpand
 		return isRequired() ? Invalid : value;
 	}
 
+	@Override
 	public IPlayer getValue(IPlayer context, Map<String, String> params)
 	{
 		return InjectionPlugin.getGlobalComponent(IServer.class).getOnlinePlayer(context, params.get(name));

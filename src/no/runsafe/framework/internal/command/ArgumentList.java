@@ -5,6 +5,7 @@ import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.argument.*;
 import no.runsafe.framework.api.player.IPlayer;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
 
@@ -60,7 +61,7 @@ public class ArgumentList implements IArgumentList
 	}
 
 	@Override
-	public void putAll(Map<? extends String, ? extends String> m)
+	public void putAll(@Nonnull Map<? extends String, ? extends String> m)
 	{
 	}
 
@@ -69,18 +70,21 @@ public class ArgumentList implements IArgumentList
 	{
 	}
 
+	@Nonnull
 	@Override
 	public Set<String> keySet()
 	{
 		return parameterList.keySet();
 	}
 
+	@Nonnull
 	@Override
 	public Collection<String> values()
 	{
 		return parameterList.values();
 	}
 
+	@Nonnull
 	@Override
 	public Set<Entry<String, String>> entrySet()
 	{

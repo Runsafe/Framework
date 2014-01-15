@@ -254,7 +254,7 @@ public class Holder
 		return false;
 	}
 
-	private void logFatal(IOException ex)
+	private static void logFatal(IOException ex)
 	{
 		IConsole globalConsole = Console.Global();
 		globalConsole.logException(ex);

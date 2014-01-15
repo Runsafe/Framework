@@ -36,6 +36,7 @@ public enum Quartz implements IMaterialData
 		return Material.QUARTZ_BLOCK;
 	}
 
+	@Nullable
 	@Override
 	public MaterialData getData()
 	{

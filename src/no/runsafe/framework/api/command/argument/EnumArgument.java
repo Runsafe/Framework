@@ -78,7 +78,7 @@ public class EnumArgument extends CommandArgumentSpecification implements ITabCo
 
 	@Nullable
 	@Override
-	public String expand(ICommandExecutor context, String value)
+	public String expand(ICommandExecutor context, @Nullable String value)
 	{
 		for (String alternative : alternatives)
 			if (alternative.toLowerCase().startsWith(value.toLowerCase()))

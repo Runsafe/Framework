@@ -3,9 +3,7 @@ package no.runsafe.framework.api.command.argument;
 import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.InjectionPlugin;
-import no.runsafe.framework.internal.Player;
 import no.runsafe.framework.internal.command.BasePlayerArgument;
-import no.runsafe.framework.minecraft.Sound;
 
 import java.util.Map;
 

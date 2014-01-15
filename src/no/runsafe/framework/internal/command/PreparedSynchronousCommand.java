@@ -5,7 +5,6 @@ import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.api.command.ISyncExecute;
 import no.runsafe.framework.api.command.argument.IArgumentList;
 
-import java.util.Map;
 import java.util.Stack;
 
 public final class PreparedSynchronousCommand extends PreparedCommand

@@ -5,7 +5,6 @@ import no.runsafe.framework.api.command.*;
 import no.runsafe.framework.api.command.argument.IArgumentList;
 import no.runsafe.framework.internal.log.Console;
 
-import java.util.Map;
 import java.util.Stack;
 
 public final class PreparedAsynchronousCommand extends PreparedCommand

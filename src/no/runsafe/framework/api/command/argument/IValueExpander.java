@@ -7,5 +7,5 @@ import javax.annotation.Nullable;
 public interface IValueExpander
 {
 	@Nullable
-	String expand(ICommandExecutor context, String value);
+	String expand(ICommandExecutor context, @Nullable String value);
 }
