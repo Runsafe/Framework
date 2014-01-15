@@ -40,7 +40,7 @@ public class PlayerArgument extends BasePlayerArgument
 	// TODO Make abstract
 	public IPlayer getValue(IPlayer context, Map<String, String> params)
 	{
-		return InjectionPlugin.getGlobalComponent(IServer.class).getPlayer(params.get(name));
+		return InjectionPlugin.getGlobalComponent(IServer.class).getPlayerExact(params.get(name));
 	}
 
 	static Pattern QUOTED_NAME = Pattern.compile("\"(.+)\"");
