@@ -40,7 +40,7 @@ public class Command implements ICommandHandler
 		name = commandName;
 		this.permission = permission;
 		this.description = description;
-		Map<String, IArgument> argumentMap = new HashMap<String, IArgument>(arguments.length);
+		Map<String, IArgument> argumentMap = new LinkedHashMap<String, IArgument>(arguments.length);
 		for (IArgument argument : arguments)
 			argumentMap.put(argument.toString(), argument);
 		argumentList = Collections.unmodifiableMap(argumentMap);
