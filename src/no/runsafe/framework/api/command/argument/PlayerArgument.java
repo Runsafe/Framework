@@ -6,6 +6,7 @@ import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.command.BasePlayerArgument;
 
 import java.util.Map;
+import java.util.regex.Pattern;
 
 // This is going abstract.
 @Deprecated
@@ -41,4 +42,6 @@ public class PlayerArgument extends BasePlayerArgument
 	{
 		return InjectionPlugin.getGlobalComponent(IServer.class).getPlayer(params.get(name));
 	}
+
+	static Pattern QUOTED_NAME = Pattern.compile("\"(.+)\"");
 }

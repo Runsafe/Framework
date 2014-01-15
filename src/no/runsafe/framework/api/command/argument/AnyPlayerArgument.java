@@ -10,6 +10,7 @@ import no.runsafe.framework.internal.extension.player.RunsafeAmbiguousPlayer;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
 
 public class AnyPlayerArgument extends PlayerArgument
 {
@@ -43,6 +44,10 @@ public class AnyPlayerArgument extends PlayerArgument
 	{
 		if (value == null)
 			return super.expand(context, null);
+
+		Matcher quoted = QUOTED_NAME.matcher(value);
+		if (quoted.matches())
+			return quoted.group(1);
 
 		List<String> matches = RunsafeServer.findPlayer(value);
 		if (matches.size() > 1)
