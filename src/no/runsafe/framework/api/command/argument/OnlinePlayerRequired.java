@@ -11,4 +11,10 @@ public class OnlinePlayerRequired extends OnlinePlayerArgument
 	{
 		super(name, true, false);
 	}
+
+	@Override
+	public boolean isRequired()
+	{
+		return true;
+	}
 }

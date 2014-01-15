@@ -95,8 +95,8 @@ public class ArgumentList implements IArgumentList
 	public IWorld getWorld(String param)
 	{
 		IArgument argument = arguments.get(param);
-		if (argument instanceof WorldArgument)
-			return ((WorldArgument) argument).getValue(context, parameterList);
+		if (argument instanceof IValueProvider<?>)
+			return ((IValueProvider<IWorld>) argument).getValue(context, parameterList);
 		return null;
 	}
 
@@ -104,8 +104,8 @@ public class ArgumentList implements IArgumentList
 	public IPlayer getPlayer(String param)
 	{
 		IArgument argument = arguments.get(param);
-		if (argument instanceof PlayerArgument)
-			return ((PlayerArgument) argument).getValue(context, parameterList);
+		if (argument instanceof IValueProvider<?>)
+			return ((IValueProvider<IPlayer>) argument).getValue(context, parameterList);
 		return null;
 	}
 
@@ -113,8 +113,8 @@ public class ArgumentList implements IArgumentList
 	public List<IPlayer> getPlayers(String param)
 	{
 		IArgument argument = arguments.get(param);
-		if (argument instanceof PlayerListArgument)
-			return ((PlayerListArgument) argument).getValue(context, parameterList);
+		if (argument instanceof IValueProvider<?>)
+			return ((IValueProvider<List<IPlayer>>) argument).getValue(context, parameterList);
 		return null;
 	}
 
@@ -122,8 +122,8 @@ public class ArgumentList implements IArgumentList
 	public Enum<?> getEnum(String param)
 	{
 		IArgument argument = arguments.get(param);
-		if (argument instanceof EnumArgument)
-			return ((EnumArgument) argument).getValue(parameterList);
+		if (argument instanceof IValueProvider<?>)
+			return ((IValueProvider<Enum<?>>) argument).getValue(context, parameterList);
 		return null;
 	}
 

@@ -9,6 +9,7 @@ import no.runsafe.framework.internal.Player;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public abstract class BasePlayerArgument extends CommandArgumentSpecification implements ITabComplete, IValueExpander
 {
@@ -47,6 +48,7 @@ public abstract class BasePlayerArgument extends CommandArgumentSpecification im
 		return null;
 	}
 
+	public static final Pattern QUOTEDNAME = Pattern.compile("\"(.+)\"");
 	protected final boolean required;
 	protected final boolean expand;
 }

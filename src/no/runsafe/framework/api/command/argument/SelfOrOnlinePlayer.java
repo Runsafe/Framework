@@ -11,4 +11,10 @@ public class SelfOrOnlinePlayer extends OnlinePlayerArgument
 	{
 		super(name, false, true);
 	}
+
+	@Override
+	public boolean isRequired()
+	{
+		return false;
+	}
 }

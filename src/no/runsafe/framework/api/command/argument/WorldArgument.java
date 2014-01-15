@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 
-public class WorldArgument extends CommandArgumentSpecification implements ITabComplete, IValueExpander
+public class WorldArgument extends CommandArgumentSpecification implements ITabComplete, IValueExpander, IValueProvider<IWorld>
 {
 	public WorldArgument()
 	{
@@ -68,6 +68,7 @@ public class WorldArgument extends CommandArgumentSpecification implements ITabC
 		return null;
 	}
 
+	@Override
 	public IWorld getValue(IPlayer context, Map<String, String> params)
 	{
 		return InjectionPlugin.getGlobalComponent(IUniverseManager.class).getWorld(params.get(name));

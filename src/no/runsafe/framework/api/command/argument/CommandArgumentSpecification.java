@@ -1,6 +1,7 @@
 package no.runsafe.framework.api.command.argument;
 
 import javax.annotation.Nonnull;
+import java.util.regex.Pattern;
 
 public abstract class CommandArgumentSpecification implements IArgument
 {
@@ -33,6 +34,7 @@ public abstract class CommandArgumentSpecification implements IArgument
 	{
 		return name;
 	}
+
 
 	protected final String name;
 }

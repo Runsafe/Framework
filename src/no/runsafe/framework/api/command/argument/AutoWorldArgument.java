@@ -20,4 +20,10 @@ public class AutoWorldArgument extends WorldArgument
 			return ((IPlayerUniverse) context).getWorldName();
 		return super.expand(context, value);
 	}
+
+	@Override
+	public boolean isRequired()
+	{
+		return false;
+	}
 }

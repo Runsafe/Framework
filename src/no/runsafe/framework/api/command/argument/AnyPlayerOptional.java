@@ -11,4 +11,10 @@ public class AnyPlayerOptional extends AnyPlayerArgument
 	{
 		super(name, false, false);
 	}
+
+	@Override
+	public boolean isRequired()
+	{
+		return false;
+	}
 }

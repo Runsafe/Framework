@@ -1,34 +1,39 @@
 package no.runsafe.framework.api.command.argument;
 
+import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.api.player.IPlayerVisibility;
+import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.Player;
+import no.runsafe.framework.internal.command.BasePlayerArgument;
 import no.runsafe.framework.internal.extension.player.RunsafeAmbiguousPlayer;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 
-public class OnlinePlayerArgument extends PlayerArgument
+public class OnlinePlayerArgument extends BasePlayerArgument implements IValueProvider<IPlayer>
 {
 	public OnlinePlayerArgument()
 	{
+		this(false);
 	}
 
 	public OnlinePlayerArgument(boolean required)
 	{
-		super(required);
+		this(required, false);
 	}
 
 	public OnlinePlayerArgument(boolean required, boolean context)
 	{
-		super(required, context);
+		this("player", required, context);
 	}
 
 	public OnlinePlayerArgument(String name, boolean required)
 	{
-		super(name, required);
+		this(name, required, false);
 	}
 
 	public OnlinePlayerArgument(String name, boolean required, boolean context)
@@ -45,7 +50,7 @@ public class OnlinePlayerArgument extends PlayerArgument
 
 		if (context instanceof IPlayer)
 		{
-			Matcher quoted = QUOTED_NAME.matcher(value);
+			Matcher quoted = QUOTEDNAME.matcher(value);
 			if (quoted.matches())
 			{
 				IPlayer target = Player.Get().getExact(quoted.group(1));
@@ -65,7 +70,7 @@ public class OnlinePlayerArgument extends PlayerArgument
 		}
 		else
 		{
-			Matcher quoted = QUOTED_NAME.matcher(value);
+			Matcher quoted = QUOTEDNAME.matcher(value);
 			if (quoted.matches())
 			{
 				IPlayer target = Player.Get().getExact(quoted.group(1));
@@ -85,6 +90,12 @@ public class OnlinePlayerArgument extends PlayerArgument
 				return matches.get(0);
 		}
 		return isRequired() ? Invalid : value;
+	}
+
+	@Override
+	public IPlayer getValue(IPlayer context, Map<String, String> params)
+	{
+		return InjectionPlugin.getGlobalComponent(IServer.class).getPlayerExact(params.get(name));
 	}
 
 	public static final String Invalid = "\0INVALID\0";

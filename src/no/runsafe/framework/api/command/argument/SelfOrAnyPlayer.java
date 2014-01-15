@@ -11,4 +11,10 @@ public class SelfOrAnyPlayer extends AnyPlayerArgument
 	{
 		super(name, false, true);
 	}
+
+	@Override
+	public boolean isRequired()
+	{
+		return false;
+	}
 }
