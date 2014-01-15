@@ -70,4 +70,8 @@ public interface ILivingEntity extends IEntity
 	void addBuff(Buff buff);
 
 	void removeBuff(Buff buff);
+
+	IEntity getLeashHolder();
+
+	void setLeashHolder(IEntity entity);
 }
