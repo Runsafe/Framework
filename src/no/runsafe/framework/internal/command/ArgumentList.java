@@ -13,7 +13,7 @@ public class ArgumentList implements IArgumentList
 {
 	public ArgumentList(ICommandExecutor context, Map<String, IArgument> arguments, Map<String, String> parameterList)
 	{
-		this.context = context instanceof IPlayer ? (IPlayer)context : null;
+		this.context = context instanceof IPlayer ? (IPlayer) context : null;
 		this.arguments = Collections.unmodifiableMap(arguments);
 		this.parameterList = Collections.unmodifiableMap(parameterList);
 	}
@@ -125,6 +125,16 @@ public class ArgumentList implements IArgumentList
 		if (argument instanceof EnumArgument)
 			return ((EnumArgument) argument).getValue(parameterList);
 		return null;
+	}
+
+	@Override
+	public boolean isAborted()
+	{
+		for (IArgument argument : arguments.values())
+			if (argument instanceof IValueExpander && parameterList.get(argument.toString()) == null)
+				return true;
+
+		return false;
 	}
 
 	@Nullable
