@@ -130,6 +130,9 @@ public class ArgumentList implements IArgumentList
 	@Override
 	public boolean isAborted()
 	{
+		if(containsValue(null))
+			return true;
+
 		for (IArgument argument : arguments.values())
 			if (argument instanceof IValueExpander && parameterList.get(argument.toString()) == null)
 				return true;

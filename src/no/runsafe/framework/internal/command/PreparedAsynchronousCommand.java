@@ -19,7 +19,7 @@ public final class PreparedAsynchronousCommand extends PreparedCommand
 	public String execute()
 	{
 		ICommandHandler target = command.peek();
-		if (target instanceof CommandScheduler && !parameters.containsValue(null))
+		if (target instanceof CommandScheduler && !parameters.isAborted())
 		{
 			schedule(((CommandScheduler) target).getScheduler());
 			return ((ISyncExecute) target).OnExecute(executor, parameters);

@@ -19,10 +19,7 @@ public final class PreparedSynchronousCommand extends PreparedCommand
 	public String execute()
 	{
 		ICommandHandler target = command.peek();
-		if (parameters.isAborted())
-			return null;
-
-		if (target instanceof ISyncExecute && !parameters.containsValue(null))
+		if (target instanceof ISyncExecute && !parameters.isAborted())
 			return ((ISyncExecute) target).OnExecute(executor, parameters);
 
 		return usage(target);
