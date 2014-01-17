@@ -2,6 +2,7 @@ package no.runsafe.framework.internal.wrapper.metadata;
 
 import no.runsafe.framework.api.metadata.IMetadata;
 import no.runsafe.framework.internal.wrapper.IWrapper;
+import org.bukkit.metadata.MetadataValue;
 import org.bukkit.metadata.Metadatable;
 import org.bukkit.plugin.Plugin;
 
@@ -14,25 +15,28 @@ public class BukkitMetadata implements IMetadata, IWrapper<Metadatable>
 		meta = toWrap;
 	}
 
-	public void setMetadata(String s, BukkitMetadataValue metadataValue)
+	@Override
+	public List<MetadataValue> getMetadata(String key)
 	{
-		meta.setMetadata(s, metadataValue.getRaw());
-	}
-
-	public List<BukkitMetadataValue> getMetadata(String s)
-	{
-		return BukkitMetadataValue.convert(meta.getMetadata(s));
+		return meta.getMetadata(key);
 	}
 
 	@Override
-	public boolean hasMetadata(String s)
+	public boolean hasMetadata(String key)
 	{
-		return meta.hasMetadata(s);
+		return meta.hasMetadata(key);
 	}
 
-	public void removeMetadata(String s, Plugin plugin)
+	@Override
+	public void removeMetadata(String key, Plugin plugin)
 	{
-		meta.removeMetadata(s, plugin);
+		meta.removeMetadata(key, plugin);
+	}
+
+	@Override
+	public void setMetadata(String key, MetadataValue value)
+	{
+		meta.setMetadata(key, value);
 	}
 
 	@Override
