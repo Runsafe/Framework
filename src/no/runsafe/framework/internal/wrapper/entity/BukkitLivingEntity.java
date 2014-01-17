@@ -198,5 +198,17 @@ public abstract class BukkitLivingEntity extends RunsafeEntity implements ILivin
 		livingEntity.setLeashHolder(entity.getRaw());
 	}
 
+	@Override
+	public void setMaxHealth(double amount)
+	{
+		livingEntity.setMaxHealth(amount);
+	}
+
+	@Override
+	public void resetMaxHealth()
+	{
+		livingEntity.resetMaxHealth();
+	}
+
 	protected final LivingEntity livingEntity;
 }
