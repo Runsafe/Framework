@@ -13,63 +13,32 @@ import java.util.UUID;
 public interface IEntity
 {
 	void strikeWithLightning(boolean effectOnly);
-
 	void explode(float power, boolean setFire, boolean breakBlocks);
-
-	@Nullable
-	ILocation getLocation();
-
-	@Nullable
-	IWorld getWorld();
-
+	@Nullable ILocation getLocation();
+	@Nullable IWorld getWorld();
 	boolean teleport(ILocation location);
-
 	boolean teleport(IEntity entity);
-
 	List<IEntity> getNearbyEntities(double x, double y, double z);
-
 	int getEntityId();
-
 	int getFireTicks();
-
 	int getMaxFireTicks();
-
 	void setFireTicks(int i);
-
 	void remove();
-
 	boolean isDead();
-
-	@Nullable
-	IEntity getPassenger();
-
+	@Nullable IEntity getPassenger();
 	boolean setPassenger(IEntity entity);
-
 	boolean isEmpty();
-
 	boolean eject();
-
 	float getFallDistance();
-
 	void setFallDistance(float distance);
-
 	void setLastDamageCause(RunsafeEntityDamageEvent entityDamageEvent);
-
 	RunsafeEntityDamageEvent getLastDamageCause();
-
 	UUID getUniqueId();
-
 	int getTicksLived();
-
 	void setTicksLived(int ticks);
-
 	boolean isInsideVehicle();
-
 	boolean leaveVehicle();
-
 	IEntity getVehicle();
-
 	RunsafeEntityType getEntityType();
-
 	void setVelocity(Vector velocity);
 }
