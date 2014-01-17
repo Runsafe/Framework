@@ -11,16 +11,13 @@ import no.runsafe.framework.minecraft.inventory.RunsafeEntityEquipment;
 import java.util.HashSet;
 import java.util.List;
 
-public interface ILivingEntity extends IEntity
+public interface ILivingEntity extends IDamageable
 {
 	IBlock getTargetBlock();
 	RunsafeEntity Fire(ProjectileEntity projectileType);
 	RunsafeEntity Launch(RunsafeEntityType entityType);
 	void removeBuffs();
-	double getHealth();
-	void setHealth(double health);
 	RunsafeEntityEquipment getEquipment();
-	double getMaxHealth();
 	double getEyeHeight();
 	double getEyeHeight(boolean b);
 	ILocation getEyeLocation();
@@ -31,8 +28,6 @@ public interface ILivingEntity extends IEntity
 	void setRemainingAir(int i);
 	int getMaximumAir();
 	void setMaximumAir(int i);
-	void damage(double damage);
-	void damage(double damage, IEntity source);
 	int getMaximumNoDamageTicks();
 	void setMaximumNoDamageTicks(int i);
 	double getLastDamage();
