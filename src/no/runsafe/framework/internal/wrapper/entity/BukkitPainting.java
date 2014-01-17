@@ -5,7 +5,7 @@ import no.runsafe.framework.minecraft.entity.RunsafeHanging;
 import org.bukkit.Art;
 import org.bukkit.entity.Painting;
 
-public abstract class BukkitPainting extends RunsafeHanging implements IWrapper<Painting>
+public abstract class BukkitPainting extends RunsafeHanging
 {
 	protected BukkitPainting(Painting toWrap)
 	{

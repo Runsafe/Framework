@@ -4,7 +4,7 @@ import no.runsafe.framework.internal.wrapper.IWrapper;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import org.bukkit.entity.Vehicle;
 
-public abstract class BukkitVehicle extends RunsafeEntity implements IWrapper<Vehicle>
+public abstract class BukkitVehicle extends RunsafeEntity
 {
 	protected BukkitVehicle(Vehicle toWrap)
 	{

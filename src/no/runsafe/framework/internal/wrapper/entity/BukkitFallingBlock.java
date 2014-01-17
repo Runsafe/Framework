@@ -5,7 +5,7 @@ import no.runsafe.framework.internal.wrapper.IWrapper;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import org.bukkit.entity.FallingBlock;
 
-public abstract class BukkitFallingBlock extends RunsafeEntity implements IWrapper<FallingBlock>
+public abstract class BukkitFallingBlock extends RunsafeEntity
 {
 	protected BukkitFallingBlock(FallingBlock toWrap)
 	{

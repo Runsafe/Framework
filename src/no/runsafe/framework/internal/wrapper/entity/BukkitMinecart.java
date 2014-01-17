@@ -4,7 +4,7 @@ import no.runsafe.framework.internal.wrapper.IWrapper;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import org.bukkit.entity.Minecart;
 
-public abstract class BukkitMinecart extends RunsafeEntity implements IWrapper<Minecart>
+public abstract class BukkitMinecart extends RunsafeEntity
 {
 	protected BukkitMinecart(Minecart toWrap)
 	{

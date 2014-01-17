@@ -7,7 +7,7 @@ import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.entity.Projectile;
 import org.bukkit.util.Vector;
 
-public abstract class BukkitProjectile extends RunsafeEntity implements IWrapper<Projectile>
+public abstract class BukkitProjectile extends RunsafeEntity
 {
 	protected BukkitProjectile(Projectile toWrap)
 	{
