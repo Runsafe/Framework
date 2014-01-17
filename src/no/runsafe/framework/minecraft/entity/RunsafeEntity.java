@@ -1,6 +1,7 @@
 package no.runsafe.framework.minecraft.entity;
 
 import no.runsafe.framework.api.entity.IEntity;
+import no.runsafe.framework.internal.wrapper.IWrapper;
 import no.runsafe.framework.internal.wrapper.entity.BukkitEntity;
 import org.bukkit.entity.Entity;
 

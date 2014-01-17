@@ -73,5 +73,5 @@ public interface ILivingEntity extends IEntity
 
 	IEntity getLeashHolder();
 
-	void setLeashHolder(IEntity entity);
+	void setLeashHolder(RunsafeEntity entity);
 }

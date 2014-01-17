@@ -165,9 +165,9 @@ public abstract class BukkitLivingEntity extends RunsafeEntity
 		return ObjectWrapper.convert(livingEntity.getLeashHolder());
 	}
 
-	public void setLeashHolder(IEntity entity)
+	public void setLeashHolder(RunsafeEntity entity)
 	{
-		livingEntity.setLeashHolder((Entity) ObjectUnwrapper.convert(entity));
+		livingEntity.setLeashHolder(entity.getRaw());
 	}
 
 	protected final LivingEntity livingEntity;
