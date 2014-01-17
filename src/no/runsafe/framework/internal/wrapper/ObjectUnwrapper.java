@@ -48,7 +48,7 @@ public final class ObjectUnwrapper
 	@Nullable
 	public static EntityProjectile getMinecraft(RunsafeProjectile projectile)
 	{
-		Projectile bukkit = convert(projectile);
+		Projectile bukkit = (Projectile) convert(projectile);
 		if (bukkit == null)
 			return null;
 		return ((CraftProjectile) bukkit).getHandle();
