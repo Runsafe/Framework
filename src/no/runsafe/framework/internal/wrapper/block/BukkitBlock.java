@@ -4,7 +4,6 @@ import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.internal.LegacyMaterial;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import no.runsafe.framework.minecraft.Item;
 import org.bukkit.block.Block;
 

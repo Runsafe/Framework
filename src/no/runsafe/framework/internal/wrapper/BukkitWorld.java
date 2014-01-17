@@ -5,7 +5,6 @@ import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.LegacyMaterial;
-import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.Sound;
 import no.runsafe.framework.minecraft.entity.RunsafeFallingBlock;

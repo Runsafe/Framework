@@ -6,6 +6,7 @@ import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.chunk.IChunk;
 import no.runsafe.framework.api.metadata.IMetadata;
+import no.runsafe.framework.api.metadata.IMetadataValue;
 import no.runsafe.framework.api.minecraft.IAnimalTamer;
 import no.runsafe.framework.api.minecraft.IInventoryHolder;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
@@ -14,7 +15,6 @@ import no.runsafe.framework.internal.extension.block.*;
 import no.runsafe.framework.internal.extension.player.RunsafePlayer;
 import no.runsafe.framework.internal.wrapper.block.BukkitBlockState;
 import no.runsafe.framework.internal.wrapper.item.BukkitItemStack;
-import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeTravelAgent;
 import no.runsafe.framework.internal.extension.RunsafeWorld;
@@ -24,6 +24,8 @@ import no.runsafe.framework.minecraft.entity.*;
 import no.runsafe.framework.minecraft.inventory.*;
 import no.runsafe.framework.minecraft.item.meta.*;
 import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
+import no.runsafe.framework.minecraft.metadata.RunsafeMetadata;
+import no.runsafe.framework.minecraft.metadata.RunsafeMetadataValue;
 import org.bukkit.*;
 import org.bukkit.block.*;
 import org.bukkit.craftbukkit.v1_7_R1.CraftServer;
@@ -34,6 +36,7 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.*;
 import org.bukkit.material.MaterialData;
+import org.bukkit.metadata.MetadataValue;
 import org.bukkit.metadata.Metadatable;
 
 import javax.annotation.Nonnull;
@@ -49,6 +52,26 @@ public final class ObjectWrapper
 	private ObjectWrapper()
 	{
 	}
+
+	@Nullable
+	public static IMetadataValue convert(MetadataValue toWrap)
+	{
+		if (toWrap == null)
+			return null;
+
+		return new RunsafeMetadataValue(toWrap);
+	}
+
+	@Nullable
+	public static IMetadata convert(Metadatable toWrap)
+	{
+		if (toWrap == null)
+			return null;
+
+		return new RunsafeMetadata(toWrap);
+	}
+
+	// Old stuff below.
 
 	@Nonnull
 	@SuppressWarnings("unchecked")
@@ -152,27 +175,6 @@ public final class ObjectWrapper
 		if (toWrap == null)
 			return null;
 		return new RunsafeMaterialData(toWrap);
-	}
-
-	@Nullable
-	public static IMetadata convert(Metadatable toWrap)
-	{
-		if (toWrap == null)
-			return null;
-
-		if (toWrap instanceof Block)
-			return convert((Block) toWrap);
-
-		if (toWrap instanceof BlockState)
-			return convert((BlockState) toWrap);
-
-		if (toWrap instanceof Entity)
-			return convert((Entity) toWrap);
-
-		if (toWrap instanceof World)
-			return convert((World) toWrap);
-
-		return new BukkitMetadata(toWrap);
 	}
 
 	@SuppressWarnings({"OverlyComplexMethod", "OverlyCoupledMethod"})
