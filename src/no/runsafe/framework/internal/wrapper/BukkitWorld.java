@@ -21,7 +21,7 @@ import org.bukkit.entity.EntityType;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public abstract class BukkitWorld extends BukkitMetadata implements IWrapper<World>
+public abstract class BukkitWorld extends BukkitMetadata
 {
 
 	protected BukkitWorld(World toWrap)

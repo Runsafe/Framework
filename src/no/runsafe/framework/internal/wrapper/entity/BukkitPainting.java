@@ -1,6 +1,5 @@
 package no.runsafe.framework.internal.wrapper.entity;
 
-import no.runsafe.framework.internal.wrapper.IWrapper;
 import no.runsafe.framework.minecraft.entity.RunsafeHanging;
 import org.bukkit.Art;
 import org.bukkit.entity.Painting;
