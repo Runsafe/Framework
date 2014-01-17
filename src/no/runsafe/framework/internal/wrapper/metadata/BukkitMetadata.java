@@ -1,12 +1,13 @@
 package no.runsafe.framework.internal.wrapper.metadata;
 
 import no.runsafe.framework.api.metadata.IMetadata;
+import no.runsafe.framework.internal.wrapper.IWrapper;
 import org.bukkit.metadata.Metadatable;
 import org.bukkit.plugin.Plugin;
 
 import java.util.List;
 
-public class BukkitMetadata implements IMetadata
+public class BukkitMetadata implements IMetadata, IWrapper<Metadatable>
 {
 	public BukkitMetadata(Metadatable toWrap)
 	{
@@ -34,6 +35,7 @@ public class BukkitMetadata implements IMetadata
 		meta.removeMetadata(s, plugin);
 	}
 
+	@Override
 	public Metadatable getRaw()
 	{
 		return meta;
