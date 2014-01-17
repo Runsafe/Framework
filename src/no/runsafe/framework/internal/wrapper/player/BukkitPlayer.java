@@ -20,7 +20,7 @@ import org.bukkit.entity.Player;
 import javax.annotation.Nullable;
 import java.net.InetSocketAddress;
 
-public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolder, IAnimalTamer, IWrapper<OfflinePlayer>
+public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolder, IAnimalTamer
 {
 	protected BukkitPlayer(OfflinePlayer toWrap)
 	{
