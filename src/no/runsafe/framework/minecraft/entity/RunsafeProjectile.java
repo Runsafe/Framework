@@ -22,7 +22,7 @@ public class RunsafeProjectile extends BukkitProjectile
 	@Nullable
 	public IBlock getImpaledBlock()
 	{
-		Projectile projectileEntity = ObjectUnwrapper.convert(this);
+		Projectile projectileEntity = (Projectile) ObjectUnwrapper.convert(this);
 
 		IWorld world = getWorld();
 		if (!(projectileEntity instanceof EntityArrow) || world == null)
