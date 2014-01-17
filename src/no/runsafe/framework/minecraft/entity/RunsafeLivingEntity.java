@@ -18,7 +18,7 @@ import org.bukkit.util.Vector;
 import javax.annotation.Nullable;
 import java.util.HashSet;
 
-public class RunsafeLivingEntity extends BukkitLivingEntity implements ILivingEntity
+public class RunsafeLivingEntity extends BukkitLivingEntity
 {
 	public static final int MAX_DISTANCE = 300;
 

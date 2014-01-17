@@ -6,7 +6,7 @@ import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import org.bukkit.entity.Item;
 
-public abstract class BukkitItem extends RunsafeEntity implements IWrapper<Item>
+public abstract class BukkitItem extends RunsafeEntity
 {
 	protected BukkitItem(Item toWrap)
 	{

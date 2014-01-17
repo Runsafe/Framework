@@ -199,5 +199,7 @@ public abstract class BukkitEntity extends BukkitMetadata
 			entity.getVehicle().eject();
 	}
 
+
+
 	protected final Entity entity;
 }
