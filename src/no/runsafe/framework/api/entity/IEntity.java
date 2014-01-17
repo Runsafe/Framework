@@ -2,6 +2,7 @@ package no.runsafe.framework.api.entity;
 
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
+import no.runsafe.framework.api.metadata.IMetadata;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent;
 import org.bukkit.util.Vector;
@@ -10,7 +11,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public interface IEntity
+public interface IEntity extends IMetadata
 {
 	void strikeWithLightning(boolean effectOnly);
 	void explode(float power, boolean setFire, boolean breakBlocks);
