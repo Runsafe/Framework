@@ -3,14 +3,17 @@ package no.runsafe.framework.internal.wrapper;
 import net.minecraft.server.v1_7_R1.EntityPlayer;
 import net.minecraft.server.v1_7_R1.MinecraftServer;
 import no.runsafe.framework.api.ILocation;
+import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.chunk.IChunk;
+import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.metadata.IMetadata;
 import no.runsafe.framework.api.metadata.IMetadataValue;
 import no.runsafe.framework.api.minecraft.IAnimalTamer;
 import no.runsafe.framework.api.minecraft.IInventoryHolder;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.internal.extension.RunsafeServer;
 import no.runsafe.framework.internal.extension.block.*;
 import no.runsafe.framework.internal.extension.player.RunsafePlayer;
 import no.runsafe.framework.internal.wrapper.block.BukkitBlockState;
@@ -68,7 +71,28 @@ public final class ObjectWrapper
 		if (toWrap == null)
 			return null;
 
+		if (toWrap instanceof Entity)
+			return convert((Entity) toWrap);
+
 		return new RunsafeMetadata(toWrap);
+	}
+
+	@Nullable
+	public static IEntity convert(Entity toWrap)
+	{
+		if (toWrap == null)
+			return null;
+
+		return new RunsafeEntity(toWrap);
+	}
+
+	@Nullable
+	public static IServer convert(Server toWrap)
+	{
+		if (toWrap == null)
+			return null;
+
+		return new RunsafeServer(toWrap);
 	}
 
 	// Old stuff below.
@@ -95,18 +119,6 @@ public final class ObjectWrapper
 
 	@Nonnull
 	public static <Wrapper extends IPlayer, Raw extends OfflinePlayer> List<Wrapper> convert(Raw... toWrap)
-	{
-		if (toWrap == null)
-			return Collections.emptyList();
-
-		List<Wrapper> results = new ArrayList<Wrapper>(toWrap.length);
-		for (Raw item : toWrap)
-			results.add((Wrapper) convert(item));
-		return results;
-	}
-
-	@Nonnull
-	public static <Wrapper extends BukkitMetadata, Raw extends Metadatable> List<Wrapper> convert(Raw... toWrap)
 	{
 		if (toWrap == null)
 			return Collections.emptyList();
@@ -345,36 +357,6 @@ public final class ObjectWrapper
 		if (toWrap == null)
 			return null;
 		return new RunsafeSign(null, toWrap);
-	}
-
-	@Nullable
-	public static RunsafeEntity convert(Entity toWrap)
-	{
-		if (toWrap == null)
-			return null;
-
-		if (toWrap instanceof Player)
-			return convert((OfflinePlayer) toWrap);
-
-		if (toWrap instanceof Painting)
-			return convert((Painting) toWrap);
-
-		if (toWrap instanceof ItemFrame)
-			return convert((ItemFrame) toWrap);
-
-		if (toWrap instanceof org.bukkit.entity.LivingEntity)
-			return convert((org.bukkit.entity.LivingEntity) toWrap);
-
-		if (toWrap instanceof Projectile)
-			return convert((Projectile) toWrap);
-
-		if (toWrap instanceof Item)
-			return convert((Item) toWrap);
-
-		if (toWrap instanceof Explosive)
-			return convert((Explosive) toWrap);
-
-		return new RunsafeEntity(toWrap);
 	}
 
 	@Nullable
