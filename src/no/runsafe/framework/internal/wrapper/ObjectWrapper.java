@@ -24,6 +24,8 @@ import no.runsafe.framework.internal.extension.RunsafeWorld;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.enchantment.RunsafeEnchantment;
 import no.runsafe.framework.minecraft.entity.*;
+import no.runsafe.framework.minecraft.entity.hanging.RunsafeItemFrame;
+import no.runsafe.framework.minecraft.entity.hanging.RunsafePainting;
 import no.runsafe.framework.minecraft.inventory.*;
 import no.runsafe.framework.minecraft.item.meta.*;
 import no.runsafe.framework.minecraft.material.RunsafeMaterialData;

@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.wrapper.entity;
 
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.minecraft.entity.RunsafeHanging;
+import no.runsafe.framework.minecraft.entity.hanging.RunsafeHanging;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import org.bukkit.entity.ItemFrame;
 

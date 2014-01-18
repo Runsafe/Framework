@@ -1,11 +1,9 @@
 package no.runsafe.framework.minecraft.entity;
 
 import no.runsafe.framework.api.block.IBlock;
-import no.runsafe.framework.api.entity.ILivingEntity;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.internal.LegacyMaterial;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.internal.wrapper.entity.BukkitLivingEntity;
 import no.runsafe.framework.internal.wrapper.entity.BukkitProjectile;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
