@@ -3,40 +3,59 @@ package no.runsafe.framework.api.entity;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.Buff;
 import no.runsafe.framework.minecraft.entity.ProjectileEntity;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.minecraft.inventory.RunsafeEntityEquipment;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
 public interface ILivingEntity extends IDamageable
 {
-	IBlock getTargetBlock();
-	RunsafeEntity Fire(ProjectileEntity projectileType);
-	RunsafeEntity Launch(RunsafeEntityType entityType);
-	void removeBuffs();
-	RunsafeEntityEquipment getEquipment();
+	List<Buff> getActivePotionEffects();
+	boolean getCanPickupItems();
+	String getCustomName();
+	RunsafeEntityEquipment getEquipment(); // ToDo: Framework.
 	double getEyeHeight();
-	double getEyeHeight(boolean b);
+	double getEyeHeight(boolean ignoreSneaking);
 	ILocation getEyeLocation();
-	List<IBlock> getLineOfSight(HashSet<Byte> transparent, int maxDistance);
-	IBlock getTargetBlock(HashSet<Byte> transparent, int maxDistance);
-	List<IBlock> getLastTwoTargetBlocks(HashSet<Byte> transparent, int maxDistance);
-	int getRemainingAir();
-	void setRemainingAir(int i);
-	int getMaximumAir();
-	void setMaximumAir(int i);
-	int getMaximumNoDamageTicks();
-	void setMaximumNoDamageTicks(int i);
+	IPlayer getKiller();
 	double getLastDamage();
-	void setLastDamage(double damage);
+	IEntity getLeashHolder();
+	int getMaximumAir();
+	int getMaximumNoDamageTicks();
 	int getNoDamageTicks();
-	void setNoDamageTicks(int i);
-	IEntity getKiller();
+	int getRemainingAir();
+	boolean getRemoveWhenFarAway();
+	boolean hasLineOfSight(IEntity target);
+	boolean hasPotionEffect(Buff type);
+	boolean isCustomNameVisible();
+	boolean isLeashed();
+	IEntity launchProjectile(ProjectileEntity entity); // ToDo: IProjectile here.
 	void addBuff(Buff buff);
 	void removeBuff(Buff buff);
-	IEntity getLeashHolder();
-	void setLeashHolder(RunsafeEntity entity);
+	void setCanPickupItems(boolean pickup);
+	void setCustomName(String name);
+	void setCustomNameVisible(boolean visible);
+	void setLastDamage(double damage);
+	boolean setLeashHolder(IEntity holder);
+	void setMaximumAir(int ticks);
+	void setMaximumNoDamageTicks(int ticks);
+	void setNoDamageTicks(int ticks);
+	void setRemainingAir(int ticks);
+	void setRemoveWhenFarAway(boolean remove);
+
+	// Runsafe
+	void removeAllBuffs();
+	IEntity launchEntity(RunsafeEntityType entity);
+
+	// Old stuff.
+	//IBlock getTargetBlock();
+	//RunsafeEntity Fire(ProjectileEntity projectileType);
+	//List<IBlock> getLineOfSight(HashSet<Byte> transparent, int maxDistance);
+	//IBlock getTargetBlock(HashSet<Byte> transparent, int maxDistance);
+	//List<IBlock> getLastTwoTargetBlocks(HashSet<Byte> transparent, int maxDistance);
 }
