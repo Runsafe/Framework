@@ -137,7 +137,7 @@ final class DataConverter
 		return new DateTime(value);
 	}
 
-	@SuppressWarnings({"MethodWithTooManyParameters"})
+	@SuppressWarnings("MethodWithTooManyParameters")
 	@Nullable
 	static ILocation Location(Object world, Object x, Object y, Object z, Object yaw, Object pitch)
 	{

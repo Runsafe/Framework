@@ -1,7 +1,6 @@
 package no.runsafe.framework.minecraft;
 
 import no.runsafe.framework.api.ILocation;
-import no.runsafe.framework.internal.wrapper.BukkitWorld;
 import no.runsafe.framework.internal.wrapper.block.BukkitBlock;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
@@ -77,9 +76,9 @@ public class Effect
 	public void Play(ILocation location)
 	{
 		if (effect == org.bukkit.Effect.STEP_SOUND)
-			((BukkitWorld) location.getWorld()).playEffect(location, effect, ((BukkitBlock) location.getBlock()).getData());
+			location.getWorld().playEffect(location, effect, ((BukkitBlock) location.getBlock()).getData());
 		else
-			((BukkitWorld) location.getWorld()).playEffect(location, effect, data);
+			location.getWorld().playEffect(location, effect, data);
 	}
 
 	private Effect(org.bukkit.Effect effect)

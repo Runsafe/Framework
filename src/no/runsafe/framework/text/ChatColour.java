@@ -67,8 +67,9 @@ public enum ChatColour
 		return CODE_ANY.matcher(message).replaceAll("\\\\$1");
 	}
 
-	public static String ToMinecraft(String message)
+	public static String ToMinecraft(String input)
 	{
+		String message = input;
 		message = CODE_DARK_GREEN.matcher(message).replaceAll(DARK_GREEN.toBukkit());
 		message = CODE_DARK_BLUE.matcher(message).replaceAll(DARK_BLUE.toBukkit());
 		message = CODE_BLACK.matcher(message).replaceAll(BLACK.toBukkit());

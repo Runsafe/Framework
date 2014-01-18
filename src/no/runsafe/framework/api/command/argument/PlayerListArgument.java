@@ -23,6 +23,7 @@ public class PlayerListArgument extends BasePlayerArgument implements IValueProv
 		return true;
 	}
 
+	@Override
 	public List<IPlayer> getValue(IPlayer context, Map<String, String> params)
 	{
 		String[] names = LISTSEPARATOR.split(params.get("name"));

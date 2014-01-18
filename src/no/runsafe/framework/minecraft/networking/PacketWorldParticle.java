@@ -9,7 +9,8 @@ public class PacketWorldParticle extends RunsafePacket
 	@SuppressWarnings("NumericCastThatLosesPrecision")
 	public PacketWorldParticle(IWorldEffect effect, ILocation location, WorldParticleOffset offset, float speed, int amount)
 	{
-		packet = new PacketPlayOutWorldParticles(
+		setPacket(
+			new PacketPlayOutWorldParticles(
 				effect.getName(),
 				(float) location.getX(),
 				(float) location.getY(),
@@ -19,6 +20,7 @@ public class PacketWorldParticle extends RunsafePacket
 				offset.getZ(),
 				speed,
 				amount
+			)
 		);
 	}
 }

@@ -1,13 +1,13 @@
 package no.runsafe.framework.internal.event.listener.player;
 
 import no.runsafe.framework.api.EventRouterFactory;
+import no.runsafe.framework.api.block.ISign;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.IRunsafeEvent;
 import no.runsafe.framework.api.event.player.IPlayerRightClickSign;
 import no.runsafe.framework.internal.event.listener.EventRouterBase;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.internal.extension.block.RunsafeSign;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Sign;
 import org.bukkit.event.EventHandler;
@@ -39,7 +39,7 @@ public final class RightClickSign extends EventRouterBase<IPlayerRightClickSign,
 			&& !handler.OnPlayerRightClickSign(
 			ObjectWrapper.convert((OfflinePlayer) event.getPlayer()),
 			ObjectWrapper.convert(event.getItem()),
-			(RunsafeSign) ObjectWrapper.convert(event.getClickedBlock().getState())
+			(ISign) ObjectWrapper.convert(event.getClickedBlock().getState())
 		);
 	}
 

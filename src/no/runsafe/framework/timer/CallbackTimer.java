@@ -7,8 +7,8 @@ public class CallbackTimer extends Timer
 	public CallbackTimer(IScheduler scheduler, Runnable callback, long delay, long period, boolean asynchronous)
 	{
 		super(scheduler, asynchronous);
-		this.delay = delay;
-		this.period = period;
+		setDelay(delay);
+		setPeriod(period);
 		callbackMethod = callback;
 		start();
 	}

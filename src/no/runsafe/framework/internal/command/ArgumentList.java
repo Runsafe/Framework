@@ -48,12 +48,14 @@ public class ArgumentList implements IArgumentList
 		return parameterList.get(key);
 	}
 
+	@Nullable
 	@Override
 	public String put(String key, String value)
 	{
 		return null;
 	}
 
+	@Nullable
 	@Override
 	public String remove(Object key)
 	{
@@ -91,6 +93,7 @@ public class ArgumentList implements IArgumentList
 		return parameterList.entrySet();
 	}
 
+	@Nullable
 	@Override
 	public IWorld getWorld(String param)
 	{
@@ -100,6 +103,7 @@ public class ArgumentList implements IArgumentList
 		return null;
 	}
 
+	@Nullable
 	@Override
 	public IPlayer getPlayer(String param)
 	{
@@ -109,6 +113,7 @@ public class ArgumentList implements IArgumentList
 		return null;
 	}
 
+	@Nullable
 	@Override
 	public List<IPlayer> getPlayers(String param)
 	{
@@ -118,6 +123,7 @@ public class ArgumentList implements IArgumentList
 		return null;
 	}
 
+	@Nullable
 	@Override
 	public Enum<?> getEnum(String param)
 	{

@@ -10,8 +10,9 @@ public final class ConsoleColour
 	{
 	}
 
-	public static String FromMinecraft(String message)
+	public static String FromMinecraft(String input)
 	{
+		String message = input;
 		message = BUKKIT_DARK_GREEN.matcher(message).replaceAll(DARK_GREEN);
 		message = BUKKIT_DARK_BLUE.matcher(message).replaceAll(DARK_BLUE);
 		message = BUKKIT_BLACK.matcher(message).replaceAll(BLACK);

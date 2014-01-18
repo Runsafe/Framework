@@ -12,9 +12,15 @@ public class SchemaUpdate implements ISchemaUpdate
 	}
 
 	@Override
-	public HashMap<Integer, List<String>> getQueries()
+	public Iterable<Integer> getRevisions()
 	{
-		return queries;
+		return queries.keySet();
+	}
+
+	@Override
+	public Iterable<String> getStatements(int revision)
+	{
+		return queries.get(revision);
 	}
 
 	private int currentRevision = 1;

@@ -26,9 +26,19 @@ public final class Root extends LoggingBase implements Startable
 	private void overRide(Logger overrideLog)
 	{
 		overrideLog.log(Level.INFO, String.format("Replacing %d handlers in %s", overrideLog.getHandlers().length, overrideLog.getName()));
+		removeAllHandlers(overrideLog);
+		addCustomHandlers(overrideLog, log.getHandlers());
+	}
+
+	private static void removeAllHandlers(Logger overrideLog)
+	{
 		for (Handler handler : overrideLog.getHandlers())
 			overrideLog.removeHandler(handler);
-		for (Handler handler : log.getHandlers())
+	}
+
+	private static void addCustomHandlers(Logger overrideLog, Handler... handlers)
+	{
+		for (Handler handler : handlers)
 			overrideLog.addHandler(handler);
 	}
 

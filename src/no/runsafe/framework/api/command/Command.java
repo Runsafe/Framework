@@ -76,7 +76,7 @@ public class Command implements ICommandHandler
 	 * The command arguments listed in usage is built by this.
 	 * Override this if you have optional arguments
 	 *
-	 * @param executor
+	 * @param executor The player or console executing the command
 	 * @return List of arguments for inclusion in the command usage
 	 */
 	@Nonnull
@@ -213,10 +213,11 @@ public class Command implements ICommandHandler
 	public final IPreparedCommand prepareCommand(
 		@Nonnull ICommandExecutor executor,
 		@Nonnull Map<String, String> params,
-		@Nonnull String[] args,
+		@Nonnull String[] arguments,
 		@Nonnull Stack<ICommandHandler> stack
 	)
 	{
+		String[] args = arguments;
 		stack.add(this);
 		Map<String, String> myParams = parseParameters(executor, args);
 		params.putAll(myParams);

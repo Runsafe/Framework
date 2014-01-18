@@ -7,6 +7,7 @@ import no.runsafe.framework.text.ChatColour;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.logging.Level;
 
@@ -101,5 +102,6 @@ public final class Console extends LoggingBase implements IConsole
 		writeLog(level, message);
 	}
 
+	@Nullable
 	private final ErrorReportingQueue queue;
 }

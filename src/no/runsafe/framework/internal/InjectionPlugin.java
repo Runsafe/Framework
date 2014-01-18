@@ -21,6 +21,7 @@ import no.runsafe.framework.internal.text.GlobalLocale;
 import no.runsafe.framework.internal.text.Localization;
 import no.runsafe.framework.internal.extension.RunsafeServer;
 import no.runsafe.framework.timer.Scheduler;
+import org.bukkit.Server;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.picocontainer.MutablePicoContainer;
 import org.picocontainer.PicoBuilder;
@@ -146,7 +147,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	protected void initializePlugin()
 	{
 		if (uninitialized)
-			addGlobalDefaultComponents();
+			addGlobalDefaultComponents(getServer());
 
 		if (instanceIsNew)
 		{
@@ -155,11 +156,12 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		}
 	}
 
-	private void addGlobalDefaultComponents()
+	@SuppressWarnings("CallToPrintStackTrace")
+	private static void addGlobalDefaultComponents(Server bukkit)
 	{
 		globalContainer.addComponent(FrameworkConfiguration.class);
-		globalContainer.addComponent(getServer().getPluginManager());
-		globalContainer.addComponent(new RunsafeServer(getServer()));
+		globalContainer.addComponent(bukkit.getPluginManager());
+		globalContainer.addComponent(new RunsafeServer(bukkit));
 		globalContainer.addComponent(Multiverse.class);
 		globalContainer.addComponent(Player.class);
 		globalContainer.addComponent(FileManager.class);

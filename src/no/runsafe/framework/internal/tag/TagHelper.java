@@ -4,6 +4,8 @@ import net.minecraft.server.v1_7_R1.NBTTagCompound;
 import no.runsafe.framework.internal.wrapper.IWrapper;
 import no.runsafe.framework.tools.reflection.ReflectionHelper;
 
+import javax.annotation.Nullable;
+
 public final class TagHelper
 {
 	private TagHelper()
@@ -37,6 +39,7 @@ public final class TagHelper
 		setNMSObjectCompound(object, compound);
 	}
 
+	@Nullable
 	private static NBTTagCompound getCompoundFromRunsafeWrapper(IWrapper<?> wrapper)
 	{
 		try
@@ -49,6 +52,7 @@ public final class TagHelper
 		}
 	}
 
+	@Nullable
 	private static NBTTagCompound getCompoundFromBukkitWrapper(Object bukkitWrapper)
 	{
 		if (bukkitWrapper == null)
@@ -57,6 +61,7 @@ public final class TagHelper
 		return getCompoundFromNMS(ReflectionHelper.getObjectField(bukkitWrapper, "handle"));
 	}
 
+	@Nullable
 	private static NBTTagCompound getCompoundFromNMS(Object rawObject)
 	{
 		if (rawObject == null)

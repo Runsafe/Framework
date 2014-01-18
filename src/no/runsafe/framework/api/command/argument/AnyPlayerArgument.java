@@ -65,6 +65,7 @@ public class AnyPlayerArgument extends BasePlayerArgument implements IValueProvi
 		return isRequired() ? Invalid : value;
 	}
 
+	@Override
 	public IPlayer getValue(IPlayer context, Map<String, String> params)
 	{
 		return InjectionPlugin.getGlobalComponent(IServer.class).getPlayerExact(params.get(name));

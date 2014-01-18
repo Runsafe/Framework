@@ -46,10 +46,10 @@ public abstract class RunsafePlugin extends InjectionPlugin implements IPluginFi
 		if (name.equals("*"))
 			return pluginContainer.getComponents(RunsafePlugin.class);
 
-		name = name.toLowerCase();
+		String lookup = name.toLowerCase();
 		List<RunsafePlugin> plugins = new ArrayList<RunsafePlugin>(1);
 		for (RunsafePlugin plugin : pluginContainer.getComponents(RunsafePlugin.class))
-			if (plugin.getName().toLowerCase().startsWith(name))
+			if (plugin.getName().toLowerCase().startsWith(lookup))
 				plugins.add(plugin);
 
 		return plugins;

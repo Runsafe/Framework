@@ -1,12 +1,11 @@
 package no.runsafe.framework.internal.database;
 
+import no.runsafe.framework.api.database.ISchemaUpdate;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.database.IDatabase;
 import no.runsafe.framework.api.database.ISchemaChanges;
 import no.runsafe.framework.api.database.ITransaction;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.logging.Level;
 
 /**
@@ -79,12 +78,13 @@ public final class SchemaUpdater
 		for (ISchemaChanges changes : schemaUpdaters)
 		{
 			int revision = getRevision(changes.getTableName());
-			HashMap<Integer, List<String>> queries = changes.getSchemaUpdateQueries().getQueries();
-			for (Integer rev : queries.keySet())
+			ISchemaUpdate queries = changes.getSchemaUpdateQueries();
+			//.getQueries();
+			for (Integer rev : queries.getRevisions())
 			{
 				if (rev > revision)
 				{
-					revision = executeSchemaChanges(changes.getTableName(), revision, rev, queries.get(rev));
+					revision = executeSchemaChanges(changes.getTableName(), revision, rev, queries.getStatements(rev));
 
 					// update failed, abort now
 					if (revision < rev)

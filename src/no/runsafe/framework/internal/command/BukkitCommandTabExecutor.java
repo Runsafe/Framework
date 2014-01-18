@@ -46,11 +46,12 @@ public final class BukkitCommandTabExecutor implements ITabExecutor
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
 	{
-		if (args == null)
-			args = new String[0];
 		try
 		{
-			executeCommand(sender, args);
+			if (args == null)
+				executeCommand(sender, new String[0]);
+			else
+				executeCommand(sender, args);
 		}
 		catch (Exception e)
 		{
@@ -106,11 +107,9 @@ public final class BukkitCommandTabExecutor implements ITabExecutor
 
 	private IPreparedCommand preparedCommand(CommandSender sender, boolean skipLast, String... args)
 	{
-		if (skipLast)
-			args = Arrays.copyOfRange(args, 0, args.length - 1);
 		return command.prepare(
 			sender instanceof Player ? ObjectWrapper.convert((OfflinePlayer) sender) : console,
-			args
+			skipLast ? Arrays.copyOfRange(args, 0, args.length - 1) : args
 		);
 	}
 

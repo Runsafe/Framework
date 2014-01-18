@@ -1,5 +1,6 @@
 package no.runsafe.framework.tools.reflection;
 
+import javax.annotation.Nullable;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,6 +27,7 @@ public final class ReflectionHelper
 		return map;
 	}
 
+	@Nullable
 	private static Field getField(Object object, String fieldName)
 	{
 		try
@@ -41,6 +43,7 @@ public final class ReflectionHelper
 		return null;
 	}
 
+	@Nullable
 	public static Object getObjectField(Object object, String fieldName)
 	{
 		try

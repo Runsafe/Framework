@@ -74,6 +74,16 @@ public abstract class Timer implements ITimer, Runnable
 		return timerId <= 0;
 	}
 
+	public void setDelay(long newDelay)
+	{
+		delay = newDelay;
+	}
+
+	public void setPeriod(long newPeriod)
+	{
+		period = newPeriod;
+	}
+
 	private final IScheduler systemScheduler;
 	protected long delay;
 	protected long period;
