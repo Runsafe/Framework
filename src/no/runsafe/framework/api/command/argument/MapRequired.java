@@ -1,6 +1,6 @@
 package no.runsafe.framework.api.command.argument;
 
-import no.runsafe.framework.internal.command.MapArgument;
+import no.runsafe.framework.internal.command.argument.MapArgument;
 
 import java.util.Map;
 

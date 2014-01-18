@@ -1,4 +1,4 @@
-package no.runsafe.framework.internal.command;
+package no.runsafe.framework.internal.command.argument;
 
 import com.google.common.collect.Lists;
 import no.runsafe.framework.api.command.ICommandExecutor;

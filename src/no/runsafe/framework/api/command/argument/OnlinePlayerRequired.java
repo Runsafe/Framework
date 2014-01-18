@@ -1,5 +1,7 @@
 package no.runsafe.framework.api.command.argument;
 
+import no.runsafe.framework.internal.command.argument.OnlinePlayerArgument;
+
 public class OnlinePlayerRequired extends OnlinePlayerArgument
 {
 	public OnlinePlayerRequired()

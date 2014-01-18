@@ -1,4 +1,4 @@
-package no.runsafe.framework.internal.command;
+package no.runsafe.framework.internal.command.argument;
 
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.command.ICommandExecutor;

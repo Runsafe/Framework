@@ -3,7 +3,7 @@ package no.runsafe.framework.api.command.argument;
 import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.InjectionPlugin;
-import no.runsafe.framework.internal.command.BasePlayerArgument;
+import no.runsafe.framework.internal.command.argument.BasePlayerArgument;
 
 import java.util.ArrayList;
 import java.util.List;
