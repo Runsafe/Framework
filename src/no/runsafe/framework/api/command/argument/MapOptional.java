@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class MapOptional<T> extends MapArgument<T>
 {
-	protected MapOptional(String name, Map<String, T> values)
+	public MapOptional(String name, Map<String, T> values)
 	{
 		super(name, values);
 	}

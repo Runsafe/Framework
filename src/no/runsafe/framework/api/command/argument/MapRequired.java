@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class MapRequired<T> extends MapArgument<T>
 {
-	protected MapRequired(String name, Map<String, T> values)
+	public MapRequired(String name, Map<String, T> values)
 	{
 		super(name, values);
 	}
