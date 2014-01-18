@@ -14,7 +14,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.libs.joptsimple.internal.Strings;
 import org.bukkit.entity.Player;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.Collections;
@@ -115,13 +114,16 @@ public final class BranchingCommandTabExecutor implements ITabExecutor
 		}
 	}
 
+	@Nullable
 	private IPreparedCommand preparedCommand(CommandSender sender, boolean skipLast, String... args)
 	{
 		ICommandExecutor executor = sender instanceof Player ? ObjectWrapper.convert((OfflinePlayer) sender) : console;
+		if (executor == null)
+			return null;
 		ICommandHandler branch = getBranch(args);
 		if (branch == null)
 		{
-			sender.sendMessage(getBranchHelp(executor));
+			executor.sendColouredMessage(getBranchHelp(executor));
 			return null;
 		}
 		return branch.prepare(executor, skipLast ? Arrays.copyOfRange(args, 0, args.length - 1) : args);
@@ -133,6 +135,7 @@ public final class BranchingCommandTabExecutor implements ITabExecutor
 		for (ICommandHandler branch : branches.values())
 		{
 			help.append(" /").append(name).append(' ').append(branch.getUsageCommandParams(context)).append('\n');
+			help.append(" - ").append(branch.getDescription()).append('\n');
 		}
 		return help.toString();
 	}
