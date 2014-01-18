@@ -1,98 +1,300 @@
 package no.runsafe.framework.minecraft.entity;
 
-import no.runsafe.framework.api.block.IBlock;
+import no.runsafe.framework.api.ILocation;
+import no.runsafe.framework.api.entity.IEntity;
+import no.runsafe.framework.api.entity.ILivingEntity;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
-import no.runsafe.framework.internal.LegacyMaterial;
+import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.entity.BukkitProjectile;
-import org.bukkit.Material;
+import no.runsafe.framework.minecraft.Buff;
+import no.runsafe.framework.minecraft.inventory.RunsafeEntityEquipment;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Projectile;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.Vector;
 
 import javax.annotation.Nullable;
-import java.util.HashSet;
+import java.util.List;
 
-public class RunsafeLivingEntity extends BukkitLivingEntity
+public class RunsafeLivingEntity extends RunsafeEntity implements ILivingEntity
 {
-	public static final int MAX_DISTANCE = 300;
+	//public static final int MAX_DISTANCE = 300; // ToDo: Check if we use this?
 
 	public RunsafeLivingEntity(LivingEntity toWrap)
 	{
 		super(toWrap);
+		entity = toWrap;
 	}
 
 	@Override
-	public IBlock getTargetBlock()
+	public List<Buff> getActivePotionEffects()
 	{
-		HashSet<Byte> transparent = new HashSet<Byte>(10);
-		for (Material material : Material.values())
-			if (material.isTransparent())
-				transparent.add((byte) (int) LegacyMaterial.getIdOf(material));
-
-		return getTargetBlock(transparent, MAX_DISTANCE);
-	}
-
-	public RunsafeEntity Fire(String projectileType)
-	{
-		return Fire(EntityType.fromName(projectileType).getEntityClass());
+		return ObjectWrapper.convert(entity.getActivePotionEffects());
 	}
 
 	@Override
-	public RunsafeEntity Fire(ProjectileEntity projectileType)
+	public boolean getCanPickupItems()
 	{
-		return Fire(projectileType.getEntityType());
-	}
-
-	public RunsafeEntity Launch(String entityType)
-	{
-		return Launch(EntityType.fromName(entityType).getEntityClass());
+		return entity.getCanPickupItems();
 	}
 
 	@Override
-	public RunsafeEntity Launch(RunsafeEntityType entityType)
+	public String getCustomName()
 	{
-		return Launch(entityType.getEntityType());
+		return entity.getCustomName();
 	}
 
 	@Override
-	public void removeBuffs()
+	public RunsafeEntityEquipment getEquipment()
 	{
-		if (livingEntity != null)
-			for (PotionEffect effect : livingEntity.getActivePotionEffects())
-				livingEntity.removePotionEffect(effect.getType());
+		return ObjectWrapper.convert(entity.getEquipment());
 	}
 
-	@SuppressWarnings({"CastToConcreteClass", "InstanceofInterfaces", "LocalVariableOfConcreteClass"})
-	private RunsafeEntity Launch(Class<? extends Entity> launch)
+	@Override
+	public double getEyeHeight()
 	{
-		Vector velocity = livingEntity.getEyeLocation().getDirection().multiply(2);
-		Entity launched = entity.getWorld().spawn(livingEntity.getEyeLocation().add(velocity), launch);
+		return entity.getEyeHeight();
+	}
+
+	@Override
+	public double getEyeHeight(boolean ignoreSneaking)
+	{
+		return entity.getEyeHeight(ignoreSneaking);
+	}
+
+	@Override
+	public ILocation getEyeLocation()
+	{
+		return ObjectWrapper.convert(entity.getEyeLocation());
+	}
+
+	@Override
+	public IPlayer getKiller()
+	{
+		return ObjectWrapper.convert(entity.getKiller());
+	}
+
+	@Override
+	public double getLastDamage()
+	{
+		return entity.getLastDamage();
+	}
+
+	@Override
+	public IEntity getLeashHolder()
+	{
+		return ObjectWrapper.convert(entity.getLeashHolder());
+	}
+
+	@Override
+	public int getMaximumAir()
+	{
+		return entity.getMaximumAir();
+	}
+
+	@Override
+	public int getMaximumNoDamageTicks()
+	{
+		return entity.getMaximumNoDamageTicks();
+	}
+
+	@Override
+	public int getNoDamageTicks()
+	{
+		return entity.getNoDamageTicks();
+	}
+
+	@Override
+	public int getRemainingAir()
+	{
+		return entity.getRemainingAir();
+	}
+
+	@Override
+	public boolean getRemoveWhenFarAway()
+	{
+		return entity.getRemoveWhenFarAway();
+	}
+
+	@Override
+	public boolean hasLineOfSight(IEntity target)
+	{
+		return entity.hasLineOfSight((Entity) ObjectUnwrapper.convert(target));
+	}
+
+	@Override
+	public boolean hasPotionEffect(Buff type)
+	{
+		return entity.hasPotionEffect(type.getType());
+	}
+
+	@Override
+	public boolean isCustomNameVisible()
+	{
+		return entity.isCustomNameVisible();
+	}
+
+	@Override
+	public boolean isLeashed()
+	{
+		return entity.isLeashed();
+	}
+
+	@Override
+	@Nullable
+	public IEntity launchProjectile(ProjectileEntity launchEntity)
+	{
+		if (!Projectile.class.isAssignableFrom(launchEntity.getEntityType()))
+			return null;
+
+		IEntity projectile = ObjectWrapper.convert(entity.launchProjectile(launchEntity.getClass().asSubclass(Projectile.class)));
+
+		// ToDo: Refactor this? IEntity cannot be cast to bukkit Projectile, so this has never worked.
+		if (projectile instanceof Projectile)
+			((Projectile) projectile).setShooter(entity);
+
+		return projectile;
+	}
+
+	@Override
+	public void addBuff(Buff buff)
+	{
+		entity.addPotionEffect(buff.getEffect());
+	}
+
+	@Override
+	public void removeBuff(Buff buff)
+	{
+		entity.removePotionEffect(buff.getType());
+	}
+
+	@Override
+	public void setCanPickupItems(boolean pickup)
+	{
+		entity.setCanPickupItems(pickup);
+	}
+
+	@Override
+	public void setCustomName(String name)
+	{
+		entity.setCustomName(name);
+	}
+
+	@Override
+	public void setCustomNameVisible(boolean visible)
+	{
+		entity.setCustomNameVisible(visible);
+	}
+
+	@Override
+	public void setLastDamage(double damage)
+	{
+		entity.setLastDamage(damage);
+	}
+
+	@Override
+	public boolean setLeashHolder(IEntity holder)
+	{
+		return entity.setLeashHolder((Entity) ObjectUnwrapper.convert(holder));
+	}
+
+	@Override
+	public void setMaximumAir(int ticks)
+	{
+		entity.setMaximumAir(ticks);
+	}
+
+	@Override
+	public void setMaximumNoDamageTicks(int ticks)
+	{
+		entity.setMaximumNoDamageTicks(ticks);
+	}
+
+	@Override
+	public void setNoDamageTicks(int ticks)
+	{
+		entity.setNoDamageTicks(ticks);
+	}
+
+	@Override
+	public void setRemainingAir(int ticks)
+	{
+		entity.setRemainingAir(ticks);
+	}
+
+	@Override
+	public void setRemoveWhenFarAway(boolean remove)
+	{
+		entity.setRemoveWhenFarAway(remove);
+	}
+
+	@Override
+	public void removeAllBuffs()
+	{
+		for (PotionEffect effect : entity.getActivePotionEffects())
+			entity.removePotionEffect(effect.getType());
+	}
+
+	@Override
+	public IEntity launchEntity(RunsafeEntityType launchEntity)
+	{
+		Vector velocity = entity.getEyeLocation().getDirection().multiply(2);
+		Entity launched = entity.getWorld().spawn(entity.getEyeLocation().add(velocity), launchEntity.getEntityType());
 		launched.setVelocity(velocity);
 
-		RunsafeEntity launchedEntity = ObjectWrapper.convert(launched);
+		IEntity launchedEntity = ObjectWrapper.convert(launched);
 
+		// ToDo: Refactor this later when we have a projectile API in place.
 		if (launchedEntity instanceof BukkitProjectile)
 			((BukkitProjectile) launchedEntity).setShooter(this);
 
 		return launchedEntity;
 	}
 
-	@SuppressWarnings("LocalVariableOfConcreteClass")
-	@Nullable
-	private RunsafeEntity Fire(Class<? extends Entity> projectile)
+	@Override
+	public void damage(double amount)
 	{
-		if (!Projectile.class.isAssignableFrom(projectile))
-			return null;
-
-		RunsafeEntity projectileEntity = ObjectWrapper.convert(livingEntity.launchProjectile(projectile.asSubclass(Projectile.class)));
-
-		if (projectileEntity instanceof Projectile)
-			((Projectile) projectileEntity).setShooter(getRaw());
-
-		return projectileEntity;
+		entity.damage(amount);
 	}
+
+	@Override
+	public void damage(double amount, IEntity source)
+	{
+		entity.damage(amount, (Entity) ObjectUnwrapper.convert(source));
+	}
+
+	@Override
+	public double getHealth()
+	{
+		return entity.getHealth();
+	}
+
+	@Override
+	public double getMaxHealth()
+	{
+		return entity.getMaxHealth();
+	}
+
+	@Override
+	public void resetMaxHealth()
+	{
+		entity.resetMaxHealth();
+	}
+
+	@Override
+	public void setHealth(double amount)
+	{
+		entity.setHealth(amount);
+	}
+
+	@Override
+	public void setMaxHealth(double amount)
+	{
+		entity.setMaxHealth(amount);
+	}
+
+	private final LivingEntity entity;
 }

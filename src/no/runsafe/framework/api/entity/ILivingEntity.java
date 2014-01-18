@@ -9,6 +9,7 @@ import no.runsafe.framework.minecraft.entity.ProjectileEntity;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.minecraft.inventory.RunsafeEntityEquipment;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -34,7 +35,7 @@ public interface ILivingEntity extends IDamageable
 	boolean hasPotionEffect(Buff type);
 	boolean isCustomNameVisible();
 	boolean isLeashed();
-	IEntity launchProjectile(ProjectileEntity entity); // ToDo: IProjectile here.
+	@Nullable IEntity launchProjectile(ProjectileEntity launchEntity); // ToDo: IProjectile here.
 	void addBuff(Buff buff);
 	void removeBuff(Buff buff);
 	void setCanPickupItems(boolean pickup);
@@ -50,7 +51,7 @@ public interface ILivingEntity extends IDamageable
 
 	// Runsafe
 	void removeAllBuffs();
-	IEntity launchEntity(RunsafeEntityType entity);
+	IEntity launchEntity(RunsafeEntityType launchEntity);
 
 	// Old stuff.
 	//IBlock getTargetBlock();
