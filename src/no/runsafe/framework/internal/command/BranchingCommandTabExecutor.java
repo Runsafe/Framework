@@ -134,8 +134,8 @@ public final class BranchingCommandTabExecutor implements ITabExecutor
 		StringBuilder help = new StringBuilder("Usage:\n");
 		for (ICommandHandler branch : branches.values())
 		{
-			help.append(" /").append(name).append(' ').append(branch.getUsageCommandParams(context)).append('\n');
-			help.append(" - ").append(branch.getDescription()).append('\n');
+			help.append(" /").append(branch.getUsageCommandParams(context)).append('\n');
+			help.append("  - ").append(branch.getDescription()).append('\n');
 		}
 		return help.toString();
 	}
