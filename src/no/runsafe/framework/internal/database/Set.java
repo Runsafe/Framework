@@ -115,7 +115,7 @@ public final class Set implements ISet
 	@Override
 	public void add(int index, IRow element)
 	{
-		list.add(index, element)
+		list.add(index, element);
 	}
 
 	@Override
