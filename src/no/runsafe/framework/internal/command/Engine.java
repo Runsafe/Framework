@@ -2,6 +2,7 @@ package no.runsafe.framework.internal.command;
 
 import com.google.common.collect.ImmutableList;
 import no.runsafe.framework.api.IKernel;
+import no.runsafe.framework.api.command.IBranchingExecution;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.ICommandHandler;
 import no.runsafe.framework.api.log.IConsole;
@@ -11,9 +12,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 /**
  * This class handles the registration of command objects with bukkit.
@@ -60,11 +59,25 @@ public final class Engine
 			return ImmutableList.of();
 		}
 
+		Map<String, BranchingCommandTabExecutor> branches = new HashMap<String, BranchingCommandTabExecutor>(0);
 		Collection<ITabExecutor> handlers = new ArrayList<ITabExecutor>(commands.size());
 		for (ICommandHandler command : commands)
 		{
 			command.setConsole(output);
-			handlers.add(new BukkitCommandTabExecutor(command, console, output, consoleLog));
+			if (command instanceof IBranchingExecution)
+			{
+				if (branches.containsKey(command.getName()))
+					branches.get(command.getName()).addBranch(command);
+				else
+				{
+					branches.put(command.getName(), new BranchingCommandTabExecutor(command, console, output, consoleLog));
+					handlers.add(branches.get(command.getName()));
+				}
+			}
+			else
+			{
+				handlers.add(new BukkitCommandTabExecutor(command, console, output, consoleLog));
+			}
 		}
 		return handlers;
 	}
