@@ -17,6 +17,7 @@ import org.bukkit.entity.Player;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -80,6 +81,8 @@ public final class BranchingCommandTabExecutor implements ITabExecutor
 	private Iterable<String> tabCompleteCommand(CommandSender sender, String... args)
 	{
 		IPreparedCommand preparedCommand = preparedCommand(sender, true, args);
+		if (preparedCommand == null)
+			return Collections.emptyList();
 		Iterable<String> options = preparedCommand.tabComplete(args);
 		debugger.debugFine("Tab completion options to return: %s", options);
 		return options;
@@ -88,7 +91,8 @@ public final class BranchingCommandTabExecutor implements ITabExecutor
 	private void executeCommand(CommandSender sender, String... args)
 	{
 		IPreparedCommand preparedCommand = preparedCommand(sender, false, args);
-
+		if (preparedCommand == null)
+			return;
 		String permission = preparedCommand.getRequiredPermission();
 		if (!(sender instanceof Player) || permission == null || sender.hasPermission(permission))
 		{
@@ -113,13 +117,27 @@ public final class BranchingCommandTabExecutor implements ITabExecutor
 
 	private IPreparedCommand preparedCommand(CommandSender sender, boolean skipLast, String... args)
 	{
-		return getBranch(args).prepare(
-			sender instanceof Player ? ObjectWrapper.convert((OfflinePlayer) sender) : console,
-			skipLast ? Arrays.copyOfRange(args, 0, args.length - 1) : args
-		);
+		ICommandExecutor executor = sender instanceof Player ? ObjectWrapper.convert((OfflinePlayer) sender) : console;
+		ICommandHandler branch = getBranch(args);
+		if (branch == null)
+		{
+			sender.sendMessage(getBranchHelp(executor));
+			return null;
+		}
+		return branch.prepare(executor, skipLast ? Arrays.copyOfRange(args, 0, args.length - 1) : args);
 	}
 
-	@Nonnull
+	private String getBranchHelp(ICommandExecutor context)
+	{
+		StringBuilder help = new StringBuilder("Usage:\n");
+		for (ICommandHandler branch : branches.values())
+		{
+			help.append(" /").append(name).append(' ').append(branch.getUsageCommandParams(context)).append('\n');
+		}
+		return help.toString();
+	}
+
+	@Nullable
 	private ICommandHandler getBranch(String... args)
 	{
 		debugger.debugFine("Looking up branch of %s with %d arguments", name, args.length);
