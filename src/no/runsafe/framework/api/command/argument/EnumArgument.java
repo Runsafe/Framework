@@ -40,6 +40,7 @@ public class EnumArgument extends CommandArgumentSpecification implements ITabCo
 		this.defaultValue = defaultValue.name();
 	}
 
+	@Deprecated
 	public EnumArgument(String name, Iterable<String> values, boolean required)
 	{
 		super(name);
@@ -49,6 +50,7 @@ public class EnumArgument extends CommandArgumentSpecification implements ITabCo
 	}
 
 	@SuppressWarnings("NullableProblems")
+	@Deprecated
 	public EnumArgument(String name, Iterable<String> values, String defaultValue)
 	{
 		super(name);

@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 
+@Deprecated
 public class AnyPlayerArgument extends BasePlayerArgument implements IValueProvider<IPlayer>
 {
 	public AnyPlayerArgument()

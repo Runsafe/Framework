@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 
+@Deprecated
 public class OnlinePlayerArgument extends BasePlayerArgument implements IValueProvider<IPlayer>
 {
 	public OnlinePlayerArgument()
