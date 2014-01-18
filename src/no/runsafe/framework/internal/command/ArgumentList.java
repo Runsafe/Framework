@@ -150,7 +150,7 @@ public class ArgumentList implements IArgumentList
 			return true;
 
 		for (IArgument argument : arguments.values())
-			if (argument instanceof IValueExpander && parameterList.get(argument.toString()) == null)
+			if (argument.isRequired() && argument instanceof IValueExpander && parameterList.get(argument.toString()) == null)
 				return true;
 
 		return false;
