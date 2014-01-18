@@ -1,6 +1,7 @@
 package no.runsafe.framework.api.command.argument;
 
 import no.runsafe.framework.api.IServer;
+import no.runsafe.framework.api.command.Command;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.api.player.IPlayerVisibility;
@@ -50,7 +51,7 @@ public class OnlinePlayerArgument extends BasePlayerArgument implements IValuePr
 
 		if (context instanceof IPlayer)
 		{
-			Matcher quoted = QUOTEDNAME.matcher(value);
+			Matcher quoted = Command.QUOTED_ARGUMENT.matcher(value);
 			if (quoted.matches())
 			{
 				IPlayer target = Player.Get().getExact(quoted.group(1));
@@ -70,7 +71,7 @@ public class OnlinePlayerArgument extends BasePlayerArgument implements IValuePr
 		}
 		else
 		{
-			Matcher quoted = QUOTEDNAME.matcher(value);
+			Matcher quoted = Command.QUOTED_ARGUMENT.matcher(value);
 			if (quoted.matches())
 			{
 				IPlayer target = Player.Get().getExact(quoted.group(1));

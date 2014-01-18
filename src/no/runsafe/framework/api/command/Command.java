@@ -383,5 +383,6 @@ public class Command implements ICommandHandler
 	private final String name;
 	private final String permission;
 	private final String description;
+	public static final Pattern QUOTED_ARGUMENT = Pattern.compile("\"(.+)\"");
 	private static final Pattern paramPermission = Pattern.compile("<(.*)>");
 }

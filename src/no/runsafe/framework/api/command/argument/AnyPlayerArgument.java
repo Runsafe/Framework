@@ -1,6 +1,7 @@
 package no.runsafe.framework.api.command.argument;
 
 import no.runsafe.framework.api.IServer;
+import no.runsafe.framework.api.command.Command;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.InjectionPlugin;
@@ -47,7 +48,7 @@ public class AnyPlayerArgument extends BasePlayerArgument implements IValueProvi
 		if (value == null)
 			return super.expand(context, null);
 
-		Matcher quoted = QUOTEDNAME.matcher(value);
+		Matcher quoted = Command.QUOTED_ARGUMENT.matcher(value);
 		if (quoted.matches())
 			return quoted.group(1);
 
