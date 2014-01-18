@@ -62,7 +62,9 @@ public class AnyPlayerArgument extends BasePlayerArgument implements IValueProvi
 		}
 		if (matches.size() == 1)
 			return matches.get(0);
-		return isRequired() ? Invalid : value;
+
+		context.sendColouredMessage("Unable to locate any players matching '%s'!", value);
+		return null;
 	}
 
 	@Override

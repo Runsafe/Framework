@@ -77,7 +77,8 @@ public class OnlinePlayerArgument extends BasePlayerArgument implements IValuePr
 		if (matches != null && matches.size() == 1)
 			return matches.get(0);
 
-		return isRequired() ? Invalid : value;
+		context.sendColouredMessage("Unable to locate any players matching '%s'!", value);
+		return null;
 	}
 
 	@Nullable
@@ -101,7 +102,8 @@ public class OnlinePlayerArgument extends BasePlayerArgument implements IValuePr
 		if (matches != null && matches.size() == 1)
 			return matches.get(0);
 
-		return isRequired() ? Invalid : value;
+		context.sendColouredMessage("Unable to locate any players matching '%s'!", value);
+		return null;
 	}
 
 	@Override
