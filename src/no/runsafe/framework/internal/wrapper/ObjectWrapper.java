@@ -18,6 +18,7 @@ import no.runsafe.framework.internal.extension.block.*;
 import no.runsafe.framework.internal.extension.player.RunsafePlayer;
 import no.runsafe.framework.internal.wrapper.block.BukkitBlockState;
 import no.runsafe.framework.internal.wrapper.item.BukkitItemStack;
+import no.runsafe.framework.minecraft.Buff;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeTravelAgent;
 import no.runsafe.framework.internal.extension.RunsafeWorld;
@@ -43,6 +44,7 @@ import org.bukkit.inventory.meta.*;
 import org.bukkit.material.MaterialData;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.metadata.Metadatable;
+import org.bukkit.potion.PotionEffect;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -95,6 +97,15 @@ public final class ObjectWrapper
 			return null;
 
 		return new RunsafeServer(toWrap);
+	}
+
+	@Nullable
+	public static Buff convert(PotionEffect toWrap)
+	{
+		if (toWrap == null)
+			return null;
+
+		return Buff.fromBukkit(toWrap);
 	}
 
 	// Old stuff below.
