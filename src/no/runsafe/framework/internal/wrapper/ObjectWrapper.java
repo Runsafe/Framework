@@ -38,6 +38,7 @@ import org.bukkit.craftbukkit.v1_7_R1.CraftServer;
 import org.bukkit.craftbukkit.v1_7_R1.entity.CraftPlayer;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.*;
@@ -86,6 +87,9 @@ public final class ObjectWrapper
 	{
 		if (toWrap == null)
 			return null;
+
+		if (toWrap instanceof LivingEntity)
+			return new RunsafeLivingEntity((LivingEntity) toWrap);
 
 		return new RunsafeEntity(toWrap);
 	}
