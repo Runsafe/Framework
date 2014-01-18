@@ -133,6 +133,15 @@ public class ArgumentList implements IArgumentList
 		return null;
 	}
 
+	@Nullable
+	public <T> T getMappedValue(String param)
+	{
+		IArgument argument = arguments.get(param);
+		if (argument instanceof IValueProvider<?>)
+			return ((IValueProvider<T>) argument).getValue(context, parameterList);
+		return null;
+	}
+
 	@Override
 	public boolean isAborted()
 	{
