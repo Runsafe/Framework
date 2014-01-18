@@ -1,4 +1,5 @@
 out
 .idea/workspace.xml
 .idea/ant.xml
-.idea/runConfigurations.idea/inspectionProfiles
+.idea/runConfigurations
+.idea/inspectionProfiles
