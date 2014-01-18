@@ -8,6 +8,10 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map;
+
 @SuppressWarnings("unchecked")
 public class Buff
 {
@@ -96,6 +100,16 @@ public class Buff
 		}
 	}
 
+	@Nullable
+	public static Buff fromBukkit(PotionEffect potionEffect)
+	{
+		for (Map.Entry<PotionEffectType, Buff> buff : map.entrySet())
+			if (potionEffect.getType().equals(buff.getKey()))
+				return buff.getValue();
+
+		return null;
+	}
+
 	public PotionEffect getEffect()
 	{
 		if (root)
@@ -149,6 +163,13 @@ public class Buff
 		this.root = root;
 		duration = 1;
 		amplification = 1;
+
+		register();
+	}
+
+	private void register()
+	{
+		map.put(type, this);
 	}
 
 	private Buff convertToBuff()
@@ -161,4 +182,5 @@ public class Buff
 	private int duration;
 	private int amplification;
 	private boolean ambient;
+	private static final HashMap<PotionEffectType, Buff> map = new HashMap<PotionEffectType, Buff>(0);
 }
