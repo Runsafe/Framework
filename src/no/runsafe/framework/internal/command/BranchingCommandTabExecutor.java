@@ -122,6 +122,7 @@ public final class BranchingCommandTabExecutor implements ITabExecutor
 	@Nonnull
 	private ICommandHandler getBranch(String... args)
 	{
+		debugger.debugFine("Looking up branch of %s with %d arguments", name, args.length);
 		return branches.get(args.length);
 	}
 
