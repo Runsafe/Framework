@@ -25,6 +25,7 @@ public final class BranchingCommandTabExecutor implements ITabExecutor
 {
 	public BranchingCommandTabExecutor(ICommandHandler command, ICommandExecutor console, IDebug debug, IConsole consoleLog)
 	{
+		name = command.getName();
 		this.console = console;
 		debugger = debug;
 		this.consoleLog = consoleLog;
@@ -39,7 +40,7 @@ public final class BranchingCommandTabExecutor implements ITabExecutor
 	@Override
 	public String getName()
 	{
-		return branches.get(0).getName();
+		return name;
 	}
 
 	@Override
@@ -124,6 +125,7 @@ public final class BranchingCommandTabExecutor implements ITabExecutor
 		return branches.get(args.length);
 	}
 
+	private final String name;
 	private final ICommandExecutor console;
 	private final IDebug debugger;
 	private final IConsole consoleLog;
