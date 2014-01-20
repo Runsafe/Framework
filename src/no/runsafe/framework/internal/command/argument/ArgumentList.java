@@ -128,8 +128,8 @@ public class ArgumentList implements IArgumentList
 	public Enum<?> getEnum(String param)
 	{
 		IArgument argument = arguments.get(param);
-		if (argument instanceof IValueProvider<?>)
-			return ((IValueProvider<Enum<?>>) argument).getValue(context, parameterList);
+		if (argument instanceof EnumArgument)
+			return ((EnumArgument) argument).getValue(parameterList);
 		return null;
 	}
 
@@ -146,7 +146,7 @@ public class ArgumentList implements IArgumentList
 	@Override
 	public boolean isAborted()
 	{
-		if(containsValue(null))
+		if (containsValue(null))
 			return true;
 
 		for (IArgument argument : arguments.values())
