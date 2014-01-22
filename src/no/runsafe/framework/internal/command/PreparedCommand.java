@@ -63,7 +63,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 			return null;
 
 		if (takeParams && whitespaceInclusive)
-			return getSuggestions(params.get(args.length - i - 1), args);
+			return getSuggestions(params.get(params.size() - 1), args);
 
 		if (takeParams && args.length - i > 0 && args.length - i <= params.size())
 			return getSuggestions(params.get(args.length - i - 1), args);
