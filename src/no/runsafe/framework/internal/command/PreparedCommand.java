@@ -54,12 +54,16 @@ public abstract class PreparedCommand implements IPreparedCommand
 		List<String> subcommands = command.peek().getSubCommands(executor);
 		boolean takeParams = !params.isEmpty();
 		boolean takeSub = !subcommands.isEmpty();
+		boolean whitespaceInclusive = params.get(params.size() - 1).isWhitespaceInclusive();
 
 		if (!(takeParams || takeSub))
 			return Lists.newArrayList();
 
-		if (args.length > i + params.size() + 1 && !params.get(params.size() - 1).isWhitespaceInclusive())
+		if (args.length > i + params.size() + 1 && !whitespaceInclusive)
 			return null;
+
+		if (takeParams && whitespaceInclusive)
+			return getSuggestions(params.get(args.length - i - 1), args);
 
 		if (takeParams && args.length - i > 0 && args.length - i <= params.size())
 			return getSuggestions(params.get(args.length - i - 1), args);
