@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import no.runsafe.framework.api.command.*;
 import no.runsafe.framework.api.command.argument.IArgument;
 import no.runsafe.framework.api.command.argument.IArgumentList;
+import no.runsafe.framework.api.command.argument.IContextualTabComplete;
 import no.runsafe.framework.api.command.argument.ITabComplete;
 import no.runsafe.framework.api.player.IPlayer;
 import org.apache.commons.lang.StringUtils;
@@ -74,7 +75,14 @@ public abstract class PreparedCommand implements IPreparedCommand
 	public Iterable<String> getSuggestions(@Nonnull IArgument param, @Nonnull String... args)
 	{
 		List<String> matches;
-		if (param instanceof ITabComplete)
+		if (param instanceof IContextualTabComplete)
+			matches = ((IContextualTabComplete) param).getAlternatives(
+				(IPlayer)executor,
+				args[args.length - 1],
+				Arrays.copyOfRange(args, 0, args.length - 1)
+			);
+
+		else if (param instanceof ITabComplete)
 			matches = ((ITabComplete) param).getAlternatives((IPlayer) executor, args[args.length - 1]);
 
 		else

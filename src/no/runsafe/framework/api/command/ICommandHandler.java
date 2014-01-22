@@ -29,6 +29,9 @@ public interface ICommandHandler
 	@Nonnull
 	List<IArgument> getParameters();
 
+	@Nullable
+	ICommandHandler getTargetSubCommand(ICommandExecutor executor, String... path);
+
 	@Nonnull
 	List<String> getSubCommands(ICommandExecutor executor);
 

@@ -179,6 +179,18 @@ public class Command implements ICommandHandler
 		return null;
 	}
 
+	@Override
+	@Nullable
+	public final ICommandHandler getTargetSubCommand(ICommandExecutor executor, String... path)
+	{
+		if (path.length == 0)
+			return this;
+		ICommandHandler subCommand = getSubCommand(executor, path[0]);
+		if (subCommand == null)
+			return null;
+		return subCommand.getTargetSubCommand(executor, Arrays.copyOfRange(path, 1, path.length));
+	}
+
 	@Nonnull
 	@Override
 	public final List<String> getSubCommands(ICommandExecutor executor)
