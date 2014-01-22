@@ -83,7 +83,7 @@ public class Command implements ICommandHandler
 		if (subCommand == null)
 			return "There is no such subcommand.";
 
-		return subCommand.getSubCommandUsage(executor, Arrays.copyOfRange(path, 1, path.length));
+		return getUsageCommandParams(executor) + ' ' + subCommand.getSubCommandUsage(executor, Arrays.copyOfRange(path, 1, path.length));
 	}
 
 	/**
