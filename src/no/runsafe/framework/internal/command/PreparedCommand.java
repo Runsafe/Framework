@@ -58,7 +58,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 		if (!(takeParams || takeSub))
 			return Lists.newArrayList();
 
-		if (args.length > i + params.size() + 1)
+		if (args.length > i + params.size() + 1 && !params.get(params.size() - 1).isWhitespaceInclusive())
 			return null;
 
 		if (takeParams && args.length - i > 0 && args.length - i <= params.size())
