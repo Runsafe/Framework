@@ -77,7 +77,7 @@ public class Command implements ICommandHandler
 	public String getSubCommandUsage(@Nonnull ICommandExecutor executor, String... path)
 	{
 		if (path.length == 0)
-			return getUsage(executor);
+			return getUsageCommandParams(executor) + ' ' + getUsage(executor);
 
 		ICommandHandler subCommand = getSubCommand(executor, path[0]);
 		if (subCommand == null)
