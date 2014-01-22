@@ -26,12 +26,6 @@ import java.util.List;
 public abstract class RunsafePlugin extends InjectionPlugin implements IPluginFileManager
 {
 	@Nullable
-	public static <T extends RunsafePlugin> T getPlugin(Class<T> type)
-	{
-		return pluginContainer.getComponent(type);
-	}
-
-	@Nullable
 	public static IKernel getPlugin(String name)
 	{
 		for (InjectionPlugin plugin : pluginContainer.getComponents(InjectionPlugin.class))
