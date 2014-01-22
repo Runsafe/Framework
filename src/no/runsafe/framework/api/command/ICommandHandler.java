@@ -41,6 +41,9 @@ public interface ICommandHandler
 	@Nonnull
 	String getUsage(@Nonnull ICommandExecutor executor);
 
+	@Nonnull
+	String getSubCommandUsage(@Nonnull ICommandExecutor executor, String... path);
+
 	boolean isExecutable(@Nonnull ICommandExecutor executor);
 
 	@Nonnull

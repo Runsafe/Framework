@@ -5,8 +5,8 @@ import no.runsafe.framework.api.command.argument.IArgument;
 import no.runsafe.framework.api.command.argument.IArgumentList;
 import no.runsafe.framework.api.command.argument.IValueExpander;
 import no.runsafe.framework.api.log.IDebug;
-import no.runsafe.framework.internal.command.argument.ArgumentList;
 import no.runsafe.framework.internal.command.PreparedSynchronousCommand;
+import no.runsafe.framework.internal.command.argument.ArgumentList;
 import no.runsafe.framework.text.ChatColour;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.craftbukkit.libs.joptsimple.internal.Strings;
@@ -70,6 +70,20 @@ public class Command implements ICommandHandler
 			ChatColour.RESET,
 			Strings.join(usage, "\n")
 		);
+	}
+
+	@Nonnull
+	@Override
+	public String getSubCommandUsage(@Nonnull ICommandExecutor executor, String... path)
+	{
+		if (path.length == 0)
+			return getUsage(executor);
+
+		ICommandHandler subCommand = getSubCommand(executor, path[0]);
+		if (subCommand == null)
+			return "There is no such subcommand.";
+
+		return subCommand.getSubCommandUsage(executor, Arrays.copyOfRange(path, 1, path.length));
 	}
 
 	/**
