@@ -6,6 +6,7 @@ import no.runsafe.framework.api.database.ITransaction;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.internal.configuration.FrameworkConfiguration;
+import no.runsafe.framework.internal.database.Row;
 
 import javax.annotation.Nullable;
 import java.sql.Connection;
@@ -91,7 +92,7 @@ public final class Database extends QueryExecutor implements IDatabase
 	{
 		try
 		{
-			if (queryRow("SELECT VERSION()") == null)
+			if (queryRow("SELECT VERSION()").equals(Row.Empty))
 				output.logFatal("Unable to connect to MySQL - Verify framework configuration!");
 		}
 		catch (Exception e)
