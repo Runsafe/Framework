@@ -5,4 +5,16 @@ package no.runsafe.framework.api.database;
  */
 public abstract class Repository implements ISchemaChanges
 {
+	protected void onDatabaseReady()
+	{
+	}
+
+	@Override
+	public final void connect(IDatabase database)
+	{
+		this.database = database;
+		onDatabaseReady();
+	}
+
+	protected IDatabase database = null;
 }

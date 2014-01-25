@@ -16,4 +16,6 @@ public interface ISchemaChanges
 	 * @return The SQL statements for upgrading the database table
 	 */
 	ISchemaUpdate getSchemaUpdateQueries();
+
+	void connect(IDatabase database);
 }

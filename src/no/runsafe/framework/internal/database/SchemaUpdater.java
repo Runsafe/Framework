@@ -79,7 +79,7 @@ public final class SchemaUpdater
 		{
 			int revision = getRevision(changes.getTableName());
 			ISchemaUpdate queries = changes.getSchemaUpdateQueries();
-			//.getQueries();
+			boolean successful = true;
 			for (Integer rev : queries.getRevisions())
 			{
 				if (rev > revision)
@@ -88,10 +88,15 @@ public final class SchemaUpdater
 
 					// update failed, abort now
 					if (revision < rev)
+					{
+						successful = false;
 						break;
+					}
 				}
 			}
 			setRevision(changes.getTableName(), revision);
+			if (successful)
+				changes.connect(database);
 		}
 	}
 
