@@ -31,7 +31,7 @@ public final class Console extends LoggingBase implements IConsole
 
 	private static IConsole globalConsole;
 
-	public Console(InjectionPlugin plugin, ErrorReportingQueue queue, FileManager handler) throws IOException
+	public Console(InjectionPlugin plugin, @Nullable ErrorReportingQueue queue, FileManager handler) throws IOException
 	{
 		super(plugin, handler, "Console", "runsafe.log");
 		this.queue = queue;

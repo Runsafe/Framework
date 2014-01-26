@@ -8,15 +8,13 @@ import java.util.Map;
 public final class ReflectionHelper
 {
 	private ReflectionHelper()
-	{}
-
-	private static Map<String, Field> getFullFieldList(Object object, HashMap<String, Field> map, Class<?> type)
 	{
-		if (map == null)
-			map = new HashMap<String, Field>(0);
+	}
 
-		if (type == null)
-			type = object.getClass();
+	private static Map<String, Field> getFullFieldList(Object object, Map<String, Field> mapIn, Class<?> typeIn)
+	{
+		Map<String, Field> map = mapIn == null ? new HashMap<String, Field>(0) : mapIn;
+		Class<?> type = typeIn == null ? object.getClass() : typeIn;
 
 		for (Field field : type.getDeclaredFields())
 			map.put(field.getName(), field);
@@ -49,6 +47,8 @@ public final class ReflectionHelper
 		try
 		{
 			Field field = getField(object, fieldName);
+			if (field == null)
+				return null;
 			field.setAccessible(true);
 			return field.get(object);
 		}
@@ -63,9 +63,10 @@ public final class ReflectionHelper
 		try
 		{
 			Field field = getField(object, fieldName);
-			field.set(object, value);
+			if (field != null)
+				field.set(object, value);
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			// Ignore.
 		}

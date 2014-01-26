@@ -15,7 +15,6 @@ public final class Root extends LoggingBase implements Startable
 		super(handler.getLogger("root.log"), handler.getFormat("Root"));
 	}
 
-	@SuppressWarnings("MethodWithMultipleLoops")
 	@Override
 	public void start()
 	{

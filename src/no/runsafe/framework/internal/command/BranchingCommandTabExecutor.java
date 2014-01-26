@@ -43,6 +43,7 @@ public final class BranchingCommandTabExecutor implements ITabExecutor
 		return name;
 	}
 
+	@Nullable
 	@Override
 	public ICommandHandler getHandler()
 	{
@@ -55,7 +56,7 @@ public final class BranchingCommandTabExecutor implements ITabExecutor
 		try
 		{
 			if (args == null)
-				executeCommand(sender, new String[0]);
+				executeCommand(sender);
 			else
 				executeCommand(sender, args);
 		}

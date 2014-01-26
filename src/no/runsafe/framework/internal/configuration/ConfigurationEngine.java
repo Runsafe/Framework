@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.configuration;
 
+import com.google.common.collect.Lists;
 import no.runsafe.framework.api.IConfiguration;
 import no.runsafe.framework.api.IConfigurationFile;
 import no.runsafe.framework.api.event.plugin.IConfigurationChanged;
@@ -7,6 +8,7 @@ import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.log.IDebug;
 
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * This class handles basic configuration features of the plugin
@@ -40,7 +42,7 @@ public final class ConfigurationEngine
 	 */
 	public ConfigurationEngine(IConfigurationFile plugin, IConsole output, IDebug debug, IConfigurationChanged... subscribers)
 	{
-		this.subscribers = subscribers;
+		this.subscribers = Lists.newArrayList(subscribers);
 		console = output;
 		debugger = debug;
 		configuration = new PluginConfiguration(output, debugger);
@@ -88,11 +90,11 @@ public final class ConfigurationEngine
 					console.logException(e);
 				}
 			}
-			debugger.debugFine("PluginConfiguration change notifications sent to %d modules.", subscribers.length);
+			debugger.debugFine("PluginConfiguration change notifications sent to %d modules.", subscribers.size());
 		}
 	}
 
-	private final IConfigurationChanged[] subscribers;
+	private final ArrayList<IConfigurationChanged> subscribers;
 	private final IConsole console;
 	private final IDebug debugger;
 	private final PluginConfiguration configuration;

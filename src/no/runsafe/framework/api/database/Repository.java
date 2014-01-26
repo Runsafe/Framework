@@ -5,6 +5,7 @@ package no.runsafe.framework.api.database;
  */
 public abstract class Repository implements ISchemaChanges
 {
+	@SuppressWarnings("NoopMethodInAbstractClass")
 	protected void onDatabaseReady()
 	{
 	}
@@ -16,5 +17,5 @@ public abstract class Repository implements ISchemaChanges
 		onDatabaseReady();
 	}
 
-	protected IDatabase database = null;
+	protected IDatabase database;
 }

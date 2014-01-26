@@ -34,20 +34,23 @@ public final class Set implements ISet
 		return list.contains(o);
 	}
 
+	@Nonnull
 	@Override
 	public Iterator<IRow> iterator()
 	{
 		return list.iterator();
 	}
 
+	@Nonnull
 	@Override
 	public Object[] toArray()
 	{
 		return list.toArray();
 	}
 
+	@Nonnull
 	@Override
-	public <T> T[] toArray(T[] a)
+	public <T> T[] toArray(@Nonnull T[] a)
 	{
 		return list.toArray(a);
 	}
@@ -65,31 +68,31 @@ public final class Set implements ISet
 	}
 
 	@Override
-	public boolean containsAll(Collection<?> c)
+	public boolean containsAll(@Nonnull Collection<?> c)
 	{
 		return list.containsAll(c);
 	}
 
 	@Override
-	public boolean addAll(Collection<? extends IRow> c)
+	public boolean addAll(@Nonnull Collection<? extends IRow> c)
 	{
 		return list.addAll(c);
 	}
 
 	@Override
-	public boolean addAll(int index, Collection<? extends IRow> c)
+	public boolean addAll(int index, @Nonnull Collection<? extends IRow> c)
 	{
 		return list.addAll(index, c);
 	}
 
 	@Override
-	public boolean removeAll(Collection<?> c)
+	public boolean removeAll(@Nonnull Collection<?> c)
 	{
 		return list.removeAll(c);
 	}
 
 	@Override
-	public boolean retainAll(Collection<?> c)
+	public boolean retainAll(@Nonnull Collection<?> c)
 	{
 		return list.retainAll(c);
 	}
@@ -136,24 +139,28 @@ public final class Set implements ISet
 		return list.lastIndexOf(o);
 	}
 
+	@Nonnull
 	@Override
 	public ListIterator<IRow> listIterator()
 	{
 		return list.listIterator();
 	}
 
+	@Nonnull
 	@Override
 	public ListIterator<IRow> listIterator(int index)
 	{
 		return list.listIterator(index);
 	}
 
+	@Nonnull
 	@Override
 	public List<IRow> subList(int fromIndex, int toIndex)
 	{
 		return list.subList(fromIndex, toIndex);
 	}
 
+	@SuppressWarnings("MethodReturnAlwaysConstant")
 	private static class EmptySet implements ISet
 	{
 

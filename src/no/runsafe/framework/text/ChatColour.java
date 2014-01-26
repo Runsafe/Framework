@@ -96,9 +96,9 @@ public enum ChatColour
 		return message;
 	}
 
-	public static String ToConsole(String message)
+	public static String ToConsole(CharSequence messageIn)
 	{
-		message = CODE_DARK_GREEN.matcher(message).replaceAll(DARK_GREEN.toConsole());
+		String message = CODE_DARK_GREEN.matcher(messageIn).replaceAll(DARK_GREEN.toConsole());
 		message = CODE_DARK_BLUE.matcher(message).replaceAll(DARK_BLUE.toConsole());
 		message = CODE_BLACK.matcher(message).replaceAll(BLACK.toConsole());
 		message = CODE_DARK_AQUA.matcher(message).replaceAll(DARK_AQUA.toConsole());
@@ -124,11 +124,12 @@ public enum ChatColour
 		return message + RESET.toConsole();
 	}
 
-	public static String Strip(String message)
+	public static String Strip(String messageIn)
 	{
+		String message = messageIn;
 		while (true)
 		{
-			Matcher matcher = CODE_ANY.matcher(message);
+			Matcher matcher = CODE_ANY.matcher(messageIn);
 			if (!matcher.find())
 				break;
 			message = matcher.replaceAll("");

@@ -38,5 +38,5 @@ public class OptionalArgument extends CommandArgumentSpecification implements IV
 		return defaultValue;
 	}
 
-	private String defaultValue = null;
+	private String defaultValue;
 }

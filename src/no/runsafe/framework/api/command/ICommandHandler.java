@@ -1,8 +1,8 @@
 package no.runsafe.framework.api.command;
 
+import no.runsafe.framework.api.command.argument.IArgument;
 import no.runsafe.framework.api.command.argument.IArgumentList;
 import no.runsafe.framework.api.log.IDebug;
-import no.runsafe.framework.api.command.argument.IArgument;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -21,9 +21,11 @@ public interface ICommandHandler
 	void setConsole(@Nonnull IDebug console);
 
 	@Nullable
+	@Deprecated
 	List<String> getParameterOptions(@Nonnull String parameter);
 
 	@Nullable
+	@Deprecated
 	List<String> getParameterOptionsPartial(@Nonnull String parameter, @Nonnull String arg);
 
 	@Nonnull

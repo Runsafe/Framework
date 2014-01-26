@@ -49,7 +49,7 @@ public final class BukkitCommandTabExecutor implements ITabExecutor
 		try
 		{
 			if (args == null)
-				executeCommand(sender, new String[0]);
+				executeCommand(sender);
 			else
 				executeCommand(sender, args);
 		}

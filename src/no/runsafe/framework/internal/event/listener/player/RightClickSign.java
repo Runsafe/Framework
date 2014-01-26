@@ -29,7 +29,6 @@ public final class RightClickSign extends EventRouterBase<IPlayerRightClickSign,
 		super.acceptEvent(event);
 	}
 
-	@SuppressWarnings("CastToConcreteClass")
 	@Override
 	public boolean onEvent(PlayerInteractEvent event)
 	{

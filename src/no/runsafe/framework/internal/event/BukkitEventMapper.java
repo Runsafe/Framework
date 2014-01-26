@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.event;
 
+import com.google.common.collect.Lists;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.EventRouterFactory;
 import no.runsafe.framework.api.IScheduler;
@@ -22,7 +23,7 @@ public final class BukkitEventMapper
 	public BukkitEventMapper(
 		IConsole output, IScheduler scheduler, PluginManager manager, RunsafePlugin plugin, IDebug debug, IRunsafeEvent... events)
 	{
-		eventSubscribers = events;
+		eventSubscribers = Lists.newArrayList(events);
 		this.scheduler = scheduler;
 		this.output = output;
 		this.debug = debug;
@@ -48,7 +49,7 @@ public final class BukkitEventMapper
 
 	private Iterable<Listener> getListeners()
 	{
-		List<Listener> listeners = new ArrayList<Listener>(eventSubscribers.length);
+		List<Listener> listeners = new ArrayList<Listener>(eventSubscribers.size());
 		for (IRunsafeEvent sub : eventSubscribers)
 			listeners.addAll(getRouters(sub));
 		return listeners;
@@ -64,7 +65,7 @@ public final class BukkitEventMapper
 	}
 
 	private static final Map<Class<? extends IRunsafeEvent>, EventRouterFactory> factories;
-	private final IRunsafeEvent[] eventSubscribers;
+	private final ArrayList<IRunsafeEvent> eventSubscribers;
 	private final IScheduler scheduler;
 	private final IConsole output;
 	private final IDebug debug;

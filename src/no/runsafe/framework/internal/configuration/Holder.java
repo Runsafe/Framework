@@ -263,6 +263,6 @@ public class Holder
 
 	protected final IConsole console;
 	protected final IDebug debugger;
-	protected FileConfiguration configFile = null;
-	protected String configFilePath = null;
+	protected FileConfiguration configFile;
+	protected String configFilePath;
 }
