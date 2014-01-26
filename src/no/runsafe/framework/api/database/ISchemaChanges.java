@@ -1,5 +1,7 @@
 package no.runsafe.framework.api.database;
 
+import javax.annotation.Nonnull;
+
 /**
  * Interface for automated database upgrades
  */
@@ -8,6 +10,7 @@ public interface ISchemaChanges
 	/**
 	 * @return The name of the database table this instance handles updates of
 	 */
+	@Nonnull
 	String getTableName();
 
 	/**
@@ -15,6 +18,7 @@ public interface ISchemaChanges
 	 *
 	 * @return The SQL statements for upgrading the database table
 	 */
+	@Nonnull
 	ISchemaUpdate getSchemaUpdateQueries();
 
 	void connect(IDatabase database);
