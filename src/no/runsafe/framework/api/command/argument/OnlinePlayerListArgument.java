@@ -18,7 +18,7 @@ public class OnlinePlayerListArgument extends PlayerListArgument
 	@Override
 	public List<IPlayer> getValue(IPlayer context, Map<String, String> params)
 	{
-		String[] names = LISTSEPARATOR.split(params.get("name"));
+		String[] names = LISTSEPARATOR.split(params.get(name));
 		List<IPlayer> players = new ArrayList<IPlayer>(names.length);
 		IServer server = InjectionPlugin.getGlobalComponent(IServer.class);
 		for (String playerName : names)
