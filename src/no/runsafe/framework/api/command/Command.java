@@ -3,8 +3,10 @@ package no.runsafe.framework.api.command;
 import net.minecraft.util.com.google.common.collect.ImmutableList;
 import no.runsafe.framework.api.command.argument.IArgument;
 import no.runsafe.framework.api.command.argument.IArgumentList;
+import no.runsafe.framework.api.command.argument.ITabComplete;
 import no.runsafe.framework.api.command.argument.IValueExpander;
 import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.command.PreparedSynchronousCommand;
 import no.runsafe.framework.internal.command.argument.ArgumentList;
 import no.runsafe.framework.text.ChatColour;
@@ -294,20 +296,6 @@ public class Command implements ICommandHandler
 		this.console = console;
 	}
 
-	@Nullable
-	@Override
-	public List<String> getParameterOptions(@Nonnull String parameter)
-	{
-		return null;
-	}
-
-	@Nullable
-	@Override
-	public List<String> getParameterOptionsPartial(@Nonnull String parameter, @Nonnull String arg)
-	{
-		return null;
-	}
-
 	@Nonnull
 	@Override
 	public List<IArgument> getParameters()
@@ -363,14 +351,13 @@ public class Command implements ICommandHandler
 	private boolean checkPermission(ICommandExecutor executor)
 	{
 		Matcher params = paramPermission.matcher(permission);
-		if (params.find())
+		if (params.find() && argumentList.containsKey(params.group()))
 		{
-			Iterable<String> options = getParameterOptions(params.group());
-			if (options == null)
-				return true;
-			for (String value : options)
-				if (executor.hasPermission(params.replaceAll(value)))
-					return true;
+			IArgument argument = argumentList.get(params.group());
+			if (argument instanceof ITabComplete && executor instanceof IPlayer)
+				for (String value : ((ITabComplete) argument).getAlternatives((IPlayer) executor, ""))
+					if (executor.hasPermission(params.replaceAll(value)))
+						return true;
 			return false;
 		}
 		return executor.hasPermission(permission);

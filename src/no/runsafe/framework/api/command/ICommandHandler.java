@@ -20,14 +20,6 @@ public interface ICommandHandler
 
 	void setConsole(@Nonnull IDebug console);
 
-	@Nullable
-	@Deprecated
-	List<String> getParameterOptions(@Nonnull String parameter);
-
-	@Nullable
-	@Deprecated
-	List<String> getParameterOptionsPartial(@Nonnull String parameter, @Nonnull String arg);
-
 	@Nonnull
 	List<IArgument> getParameters();
 

@@ -78,7 +78,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 	@Nullable
 	public Iterable<String> getSuggestions(@Nonnull IArgument param, @Nonnull String... args)
 	{
-		List<String> matches;
+		List<String> matches = null;
 		if (param instanceof IContextualTabComplete)
 			matches = ((IContextualTabComplete) param).getAlternatives(
 				(IPlayer)executor,
@@ -89,19 +89,6 @@ public abstract class PreparedCommand implements IPreparedCommand
 		else if (param instanceof ITabComplete)
 			matches = ((ITabComplete) param).getAlternatives((IPlayer) executor, args[args.length - 1]);
 
-		else
-		{
-			matches = command.peek().getParameterOptionsPartial(param.toString(), args[args.length - 1]);
-			if (matches != null)
-			{
-				if (matches.isEmpty())
-					return null;
-				return matches;
-			}
-			matches = command.peek().getParameterOptions(param.toString());
-			if (matches == null)
-				return Lists.newArrayList();
-		}
 		return matches == null || args[args.length - 1].isEmpty() ? matches : filterList(matches, args[args.length - 1]);
 	}
 
