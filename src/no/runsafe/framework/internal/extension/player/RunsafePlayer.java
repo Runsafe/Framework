@@ -332,24 +332,24 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 	@Override
 	public void addPermission(String permission)
 	{
-		InjectionPlugin.getGlobalComponent(IPlayerPermissions.class).addPermission(this, permission);
+		InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).addPermission(this, permission);
 	}
 
 	@Override
 	public void addPermission(String permission, String world)
 	{
-		InjectionPlugin.getGlobalComponent(IPlayerPermissions.class).addPermission(this, permission, world);
+		InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).addPermission(this, permission, world);
 	}
 
 	@Override
 	public void removePermission(String permission)
 	{
-		InjectionPlugin.getGlobalComponent(IPlayerPermissions.class).removePermission(this, permission);
+		InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).removePermission(this, permission);
 	}
 
 	@Override
 	public void removePermission(String permission, String world)
 	{
-		InjectionPlugin.getGlobalComponent(IPlayerPermissions.class).removePermission(this, permission, world);
+		InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).removePermission(this, permission, world);
 	}
 }
