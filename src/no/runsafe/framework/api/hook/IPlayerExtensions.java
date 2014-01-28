@@ -30,8 +30,4 @@ public interface IPlayerExtensions
 	boolean hasPermission(RunsafeFakePlayer player, ImmutableList<String> memberOf, String permission);
 	List<String> getGroups();
 	List<String> find(String playerName);
-	void addPermission(IPlayer player, String permission, String world);
-	void addPermission(IPlayer player, String permission);
-	void removePermission(IPlayer player, String permission, String world);
-	void removePermission(IPlayer player, String permission);
 }
