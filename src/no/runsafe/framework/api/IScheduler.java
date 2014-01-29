@@ -48,6 +48,8 @@ public interface IScheduler
 	 */
 	int startSyncRepeatingTask(Runnable func, long delay, long period);
 
+	boolean runNow(Runnable func);
+
 	/**
 	 * Don't use this method, use createSyncTimer.
 	 *

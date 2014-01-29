@@ -29,6 +29,7 @@ public class Scheduler implements IScheduler
 		return startSyncTask(func, seconds * Minecraft.TICKS_PER_SECOND);
 	}
 
+	@Override
 	public boolean runNow(Runnable func)
 	{
 		try
