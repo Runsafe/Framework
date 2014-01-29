@@ -32,16 +32,58 @@ public class Scheduler implements IScheduler
 	@Override
 	public boolean runNow(Runnable func)
 	{
-		try
+		Runner runner = new Runner(func);
+		return runner.run();
+	}
+
+	private class Runner
+	{
+		private volatile boolean success;
+		private volatile boolean running = true;
+
+		Runner(Runnable func)
 		{
-			scheduler.runTask(plugin, func).wait();
-			return true;
+			this.func = func;
 		}
-		catch (InterruptedException e)
+
+		public boolean run()
 		{
-			console.logException(e);
-			return false;
+			scheduler.runTask(
+				plugin,
+				new Runnable()
+				{
+					@Override
+					public void run()
+					{
+						try
+						{
+							func.run();
+							success = true;
+						}
+						catch (Exception e)
+						{
+							console.logException(e);
+						}
+						finally
+						{
+							running = false;
+						}
+					}
+				}
+			);
+			while (running)
+				try
+				{
+					Thread.sleep(1);
+				}
+				catch (InterruptedException e)
+				{
+					console.logException(e);
+				}
+			return success;
 		}
+
+		private final Runnable func;
 	}
 
 	@Override
