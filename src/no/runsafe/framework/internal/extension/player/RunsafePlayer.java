@@ -6,6 +6,7 @@ import no.runsafe.framework.api.IUniverse;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.chunk.IChunk;
 import no.runsafe.framework.api.hook.IPlayerExtensions;
+import no.runsafe.framework.api.hook.IPlayerPermissions;
 import no.runsafe.framework.api.networking.IPacket;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.InjectionPlugin;
@@ -326,5 +327,29 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 	public void sendPacket(IPacket packet)
 	{
 		packet.sendPacket(this);
+	}
+
+	@Override
+	public void addPermission(String permission)
+	{
+		InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).addPermission(this, permission);
+	}
+
+	@Override
+	public void addPermission(String permission, String world)
+	{
+		InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).addPermission(this, permission, world);
+	}
+
+	@Override
+	public void removePermission(String permission)
+	{
+		InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).removePermission(this, permission);
+	}
+
+	@Override
+	public void removePermission(String permission, String world)
+	{
+		InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).removePermission(this, permission, world);
 	}
 }

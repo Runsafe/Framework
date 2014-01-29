@@ -19,4 +19,12 @@ public interface IPlayerPermissions extends IFrameworkHook
 	List<String> getGroupPermissions(String groupName);
 
 	List<String> getPlayerPermissions(IPlayer player);
+
+	void addPermission(IPlayer player, String permission, String world);
+
+	void addPermission(IPlayer player, String permission);
+
+	void removePermission(IPlayer player, String permission, String world);
+
+	void removePermission(IPlayer player, String permission);
 }

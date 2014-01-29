@@ -243,4 +243,32 @@ public final class PlayerExtensions implements IPlayerExtensions
 	{
 		return HookEngine.getHooks(type);
 	}
+
+	@Override
+	public void addPermission(IPlayer player, String permission, String world)
+	{
+		for (IPlayerPermissions hook : getHooks(IPlayerPermissions.class))
+			hook.addPermission(player, permission, world);
+	}
+
+	@Override
+	public void addPermission(IPlayer player, String permission)
+	{
+		for (IPlayerPermissions hook : getHooks(IPlayerPermissions.class))
+			hook.addPermission(player, permission);
+	}
+
+	@Override
+	public void removePermission(IPlayer player, String permission, String world)
+	{
+		for (IPlayerPermissions hook : getHooks(IPlayerPermissions.class))
+			hook.removePermission(player, permission, world);
+	}
+
+	@Override
+	public void removePermission(IPlayer player, String permission)
+	{
+		for (IPlayerPermissions hook : getHooks(IPlayerPermissions.class))
+			hook.removePermission(player, permission);
+	}
 }
