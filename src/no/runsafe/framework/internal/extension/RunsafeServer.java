@@ -1,14 +1,17 @@
 package no.runsafe.framework.internal.extension;
 
 import com.google.common.collect.Lists;
+import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.hook.IPlayerExtensions;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.InjectionPlugin;
+import no.runsafe.framework.internal.log.Console;
 import no.runsafe.framework.internal.wrapper.BukkitServer;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.extension.player.RunsafeAmbiguousPlayer;
 import no.runsafe.framework.internal.extension.player.RunsafePlayer;
+import no.runsafe.framework.timer.Scheduler;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
@@ -24,6 +27,11 @@ public class RunsafeServer extends BukkitServer implements IServer
 	public RunsafeServer(Server toWrap)
 	{
 		super(toWrap);
+	}
+
+	public IScheduler getScheduler()
+	{
+		return new Scheduler(server.getScheduler(), null, Console.Global());
 	}
 
 	@Override

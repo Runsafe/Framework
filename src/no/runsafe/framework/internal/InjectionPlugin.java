@@ -187,7 +187,9 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	{
 		instanceIsNew = false;
 
+		// Upstream objects
 		container.addComponent(this);
+		container.addComponent(getServer().getScheduler());
 
 		// Core engines
 		container.addComponent(ConfigurationEngine.class);
@@ -195,7 +197,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		container.addComponent(SchemaUpdater.class);
 		container.addComponent(BukkitEventMapper.class);
 		container.addComponent(Engine.class);
-		container.addComponent(new Scheduler(getServer().getScheduler(), this));
+		container.addComponent(Scheduler.class);
 		container.addComponent(Localization.class);
 
 		// Logging/output facilities
