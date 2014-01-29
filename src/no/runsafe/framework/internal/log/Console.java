@@ -31,23 +31,19 @@ public final class Console extends LoggingBase implements IConsole
 
 	private static IConsole globalConsole;
 
-	public Console(InjectionPlugin plugin, @Nullable ErrorReportingQueue queue, FileManager handler) throws IOException
+	public Console(InjectionPlugin plugin, FileManager handler) throws IOException
 	{
 		super(plugin, handler, "Console", "runsafe.log");
-		this.queue = queue;
 	}
 
 	private Console(FileManager handler) throws IOException
 	{
 		super(handler, "Console", "runsafe.log");
-		queue = null;
 	}
 
 	@Override
 	public void logException(Exception exception)
 	{
-		if(queue != null)
-			queue.submit(exception);
 		writeColoured(
 			"Exception caught: &c%s&r\n%s",
 			Level.SEVERE,
@@ -101,7 +97,4 @@ public final class Console extends LoggingBase implements IConsole
 	{
 		writeLog(level, message);
 	}
-
-	@Nullable
-	private final ErrorReportingQueue queue;
 }
