@@ -32,5 +32,11 @@ public abstract class RunsafePacket implements IPacket
 		this.packet = packet;
 	}
 
+	@Override
+	public Packet getRawPacket()
+	{
+		return packet;
+	}
+
 	protected Packet packet;
 }
