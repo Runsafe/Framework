@@ -13,8 +13,8 @@ public class PacketSpawnLivingEntity extends RunsafePacket
 		ReflectionHelper.setField(raw, "a", entityID);
 		ReflectionHelper.setField(raw, "b", entityType);
 		ReflectionHelper.setField(raw, "c", x);
-		ReflectionHelper.setField(raw, "d", x);
-		ReflectionHelper.setField(raw, "e", x);
+		ReflectionHelper.setField(raw, "d", y);
+		ReflectionHelper.setField(raw, "e", z);
 		ReflectionHelper.setField(raw, "f", (byte) 0);
 		ReflectionHelper.setField(raw, "g", (byte) 0);
 		ReflectionHelper.setField(raw, "h", (byte) 0);

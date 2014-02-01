@@ -11,7 +11,7 @@ public class PacketSetBossBar extends RunsafePacket
 {
 	public PacketSetBossBar(String text, int health)
 	{
-		PacketSpawnLivingEntity spawnPacket = new PacketSpawnLivingEntity(1234, (byte) LivingEntity.Wither.getId(), 0, 0, 0);
+		PacketSpawnLivingEntity spawnPacket = new PacketSpawnLivingEntity(1234, (byte) 64, 0, 0, 0);
 		PacketPlayOutSpawnEntityLiving raw = (PacketPlayOutSpawnEntityLiving) spawnPacket.getRawPacket();
 
 		DataWatcher watcher = new DataWatcher(null);
