@@ -7,6 +7,8 @@ import no.runsafe.framework.minecraft.entity.LivingEntity;
 import no.runsafe.framework.tools.reflection.ReflectionHelper;
 import org.bukkit.entity.EntityType;
 
+import java.lang.reflect.Field;
+
 public class PacketSetBossBar extends RunsafePacket
 {
 	public PacketSetBossBar(String text, int health)
@@ -20,7 +22,16 @@ public class PacketSetBossBar extends RunsafePacket
 		watcher.a(10, (String) text);
 		watcher.a(11, (byte) 1);
 
-		ReflectionHelper.setField(raw, "l", watcher);
+		try
+		{
+			Field dataField = PacketPlayOutSpawnEntityLiving.class.getDeclaredField("l");
+			dataField.setAccessible(true);
+			dataField.set(raw, watcher);
+		}
+		catch (Exception e)
+		{
+			// Ru-roh!
+		}
 		setPacket(raw);
 	}
 
