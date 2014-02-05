@@ -71,7 +71,7 @@ public final class TagHelper
 		if (tagObject instanceof NBTTagCompound)
 			return (NBTTagCompound) tagObject;
 
-		return null;
+		return new NBTTagCompound();
 	}
 
 	private static void setNMSObjectCompound(Object nmsObject, NBTTagCompound compound)
