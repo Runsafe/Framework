@@ -172,5 +172,10 @@ public abstract class BukkitWorld extends BukkitMetadata
 		world.setTime(time);
 	}
 
+	public ILocation getSpawnLocation()
+	{
+		return ObjectWrapper.convert(world.getSpawnLocation());
+	}
+
 	protected final World world;
 }

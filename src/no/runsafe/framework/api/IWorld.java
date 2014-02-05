@@ -86,4 +86,6 @@ public interface IWorld extends IMetadata
 	void setTime(long time);
 
 	void playEffect(ILocation location, Effect effect, int data);
+
+	ILocation getSpawnLocation();
 }
