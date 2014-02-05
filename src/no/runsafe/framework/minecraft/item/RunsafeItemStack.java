@@ -5,6 +5,7 @@ import no.runsafe.framework.api.ITagObject;
 import no.runsafe.framework.api.minecraft.IEnchant;
 import no.runsafe.framework.api.minecraft.IEnchantable;
 import no.runsafe.framework.internal.tag.TagHelper;
+import no.runsafe.framework.internal.wrapper.IWrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.item.BukkitItemStack;
 import no.runsafe.framework.minecraft.Item;

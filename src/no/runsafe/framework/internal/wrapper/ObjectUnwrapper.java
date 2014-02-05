@@ -1,19 +1,19 @@
 package no.runsafe.framework.internal.wrapper;
 
-import net.minecraft.server.v1_7_R1.Entity;
-import net.minecraft.server.v1_7_R1.EntityPlayer;
-import net.minecraft.server.v1_7_R1.EntityProjectile;
-import net.minecraft.server.v1_7_R1.World;
+import net.minecraft.server.v1_7_R1.*;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.wrapper.player.BukkitPlayer;
 import no.runsafe.framework.minecraft.entity.RunsafeProjectile;
+import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
+import no.runsafe.framework.tools.reflection.ReflectionHelper;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.craftbukkit.v1_7_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_7_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_7_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_7_R1.entity.CraftProjectile;
+import org.bukkit.craftbukkit.v1_7_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 
@@ -58,6 +58,13 @@ public final class ObjectUnwrapper
 	{
 		org.bukkit.World bukkitWorld = convert(world);
 		return ((CraftWorld) bukkitWorld).getHandle();
+	}
+
+	@Nullable
+	public static ItemStack getMinecraft(RunsafeMeta itemStack)
+	{
+		org.bukkit.inventory.ItemStack stack = convert(itemStack);
+		return (ItemStack) ReflectionHelper.getObjectField((CraftItemStack) stack, "handle");
 	}
 
 	@SuppressWarnings("unchecked")
