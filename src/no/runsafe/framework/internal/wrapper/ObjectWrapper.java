@@ -28,6 +28,7 @@ import org.bukkit.*;
 import org.bukkit.block.*;
 import org.bukkit.craftbukkit.v1_7_R1.CraftServer;
 import org.bukkit.craftbukkit.v1_7_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_7_R1.inventory.CraftItemStack;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.event.inventory.InventoryType;
@@ -592,6 +593,11 @@ public final class ObjectWrapper
 	public static CraftServer convert(MinecraftServer server)
 	{
 		return new CraftServer(server, server.getPlayerList());
+	}
+
+	public static RunsafeMeta convert(net.minecraft.server.v1_7_R1.ItemStack raw)
+	{
+		return new RunsafeMeta(CraftItemStack.asCraftMirror(raw));
 	}
 
 	public static IPlayer convert(EntityPlayer player)
