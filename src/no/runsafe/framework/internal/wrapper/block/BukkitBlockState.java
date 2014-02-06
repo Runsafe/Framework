@@ -50,6 +50,7 @@ public class BukkitBlockState extends RunsafeBlock
 	public void setMaterial(Item material)
 	{
 		blockState.setType(material.getType());
+		setData(material.getData());
 	}
 
 	public int getMaterialID()
