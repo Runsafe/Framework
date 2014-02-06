@@ -109,7 +109,14 @@ public abstract class RunsafeItemStack extends BukkitItemStack implements IEncha
 	@Override
 	public NBTTagCompound getTagCompound()
 	{
-		return CraftItemStack.asNMSCopy(itemStack).getTag();
+		try
+		{
+			return CraftItemStack.asNMSCopy(itemStack).getTag();
+		}
+		catch (NullPointerException e)
+		{
+			return new NBTTagCompound();
+		}
 	}
 
 	@Override
