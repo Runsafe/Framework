@@ -36,6 +36,7 @@ public class BukkitBlock extends BukkitMetadata
 	public void set(Item type)
 	{
 		block.setType(type.getType());
+		setData(type.getData());
 	}
 
 	public int getTypeId()
