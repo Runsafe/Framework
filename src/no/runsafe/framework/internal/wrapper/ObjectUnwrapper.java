@@ -64,7 +64,7 @@ public final class ObjectUnwrapper
 	public static ItemStack getMinecraft(RunsafeMeta itemStack)
 	{
 		org.bukkit.inventory.ItemStack stack = convert(itemStack);
-		return (ItemStack) ReflectionHelper.getObjectField((CraftItemStack) stack, "handle");
+		return CraftItemStack.asNMSCopy(stack);
 	}
 
 	@SuppressWarnings("unchecked")
