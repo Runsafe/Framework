@@ -43,7 +43,7 @@ public class BukkitBlockState extends RunsafeBlock
 	@Override
 	public Item getMaterial()
 	{
-		return Item.get(blockState.getType(), (byte) 0);
+		return Item.get(blockState.getType(), getData());
 	}
 
 	@Override
