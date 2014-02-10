@@ -210,5 +210,17 @@ public abstract class BukkitLivingEntity extends RunsafeEntity implements ILivin
 		livingEntity.resetMaxHealth();
 	}
 
+	@Override
+	public void setCustomName(String name)
+	{
+		livingEntity.setCustomName(name);
+	}
+
+	@Override
+	public String getCustomName()
+	{
+		return livingEntity.getCustomName();
+	}
+
 	protected final LivingEntity livingEntity;
 }

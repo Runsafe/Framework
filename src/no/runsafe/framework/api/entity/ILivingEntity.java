@@ -39,4 +39,6 @@ public interface ILivingEntity extends IDamageable
 	void removeBuff(Buff buff);
 	IEntity getLeashHolder();
 	void setLeashHolder(RunsafeEntity entity);
+	void setCustomName(String name);
+	String getCustomName();
 }
