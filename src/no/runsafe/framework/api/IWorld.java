@@ -90,9 +90,9 @@ public interface IWorld extends IMetadata
 
 	ILocation getSpawnLocation();
 
-	int getHightestBlockYAt(int x, int z);
+	int getHighestBlockYAt(int x, int z);
 
-	int getHightestBlockYAt(ILocation location);
+	int getHighestBlockYAt(ILocation location);
 
 	IBlock getHighestBlockAt(int x, int z);
 
