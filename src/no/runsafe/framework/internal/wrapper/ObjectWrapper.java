@@ -413,6 +413,10 @@ public final class ObjectWrapper
 	{
 		if (toWrap == null)
 			return null;
+
+		if (toWrap instanceof Creature)
+			return new RunsafeCreature((Creature) toWrap);
+
 		return new RunsafeLivingEntity(toWrap);
 	}
 
