@@ -15,6 +15,7 @@ import no.runsafe.framework.timer.Scheduler;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.plugin.Plugin;
 
 import javax.annotation.Nonnull;
@@ -218,5 +219,11 @@ public class RunsafeServer extends BukkitServer implements IServer
 			players.add(player.getName());
 		}
 		return players;
+	}
+
+	@Override
+	public void addRecipe(ShapedRecipe recipe)
+	{
+		server.addRecipe(recipe);
 	}
 }

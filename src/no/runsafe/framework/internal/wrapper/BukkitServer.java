@@ -374,10 +374,5 @@ public abstract class BukkitServer
 		return server.getListeningPluginChannels();
 	}
 
-	void addRecipe(ShapedRecipe recipe)
-	{
-		server.addRecipe(recipe);
-	}
-
 	protected final Server server;
 }
