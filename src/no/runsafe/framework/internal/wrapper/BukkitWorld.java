@@ -177,5 +177,25 @@ public abstract class BukkitWorld extends BukkitMetadata
 		return ObjectWrapper.convert(world.getSpawnLocation());
 	}
 
+	public int getHighestBlockYAt(int x, int z)
+	{
+		return world.getHighestBlockYAt(x, z);
+	}
+
+	public int getHighestBlockYAt(ILocation location)
+	{
+		return world.getHighestBlockYAt((Location) ObjectUnwrapper.convert(location));
+	}
+
+	public IBlock getHighestBlockAt(int x, int z)
+	{
+		return ObjectWrapper.convert(world.getHighestBlockAt(x, z));
+	}
+
+	public IBlock getHighestBlockAt(ILocation location)
+	{
+		return ObjectWrapper.convert(world.getHighestBlockAt((Location) ObjectUnwrapper.convert(location)));
+	}
+
 	protected final World world;
 }

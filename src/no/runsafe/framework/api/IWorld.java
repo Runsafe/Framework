@@ -1,5 +1,6 @@
 package no.runsafe.framework.api;
 
+import net.minecraft.server.v1_7_R1.ItemBlock;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.metadata.IMetadata;
@@ -88,4 +89,12 @@ public interface IWorld extends IMetadata
 	void playEffect(ILocation location, Effect effect, int data);
 
 	ILocation getSpawnLocation();
+
+	int getHightestBlockYAt(int x, int z);
+
+	int getHightestBlockYAt(ILocation location);
+
+	IBlock getHighestBlockAt(int x, int z);
+
+	IBlock getHighestBlockAt(ILocation location);
 }
