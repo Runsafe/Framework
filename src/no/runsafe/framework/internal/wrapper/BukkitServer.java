@@ -9,6 +9,7 @@ import no.runsafe.framework.internal.extension.player.RunsafePlayer;
 import no.runsafe.framework.text.ChatColour;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
+import org.bukkit.inventory.ShapedRecipe;
 
 import javax.annotation.Nullable;
 import java.io.File;
@@ -371,6 +372,11 @@ public abstract class BukkitServer
 	public Set<String> getListeningPluginChannels()
 	{
 		return server.getListeningPluginChannels();
+	}
+
+	void addRecipe(ShapedRecipe recipe)
+	{
+		server.addRecipe(recipe);
 	}
 
 	protected final Server server;
