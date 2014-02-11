@@ -8,11 +8,6 @@ import java.util.Map;
 
 public abstract class CustomRecipe implements ICustomRecipe
 {
-	public CustomRecipe(RunsafeMeta result)
-	{
-		this.result = result;
-	}
-
 	@Override
 	public Map<Integer, RunsafeMeta> getRecipe()
 	{
@@ -31,6 +26,12 @@ public abstract class CustomRecipe implements ICustomRecipe
 		return result;
 	}
 
-	private final RunsafeMeta result;
+	@Override
+	public void setResult(RunsafeMeta result)
+	{
+		this.result = result;
+	}
+
+	private RunsafeMeta result;
 	private final Map<Integer, RunsafeMeta> recipe = new HashMap<Integer, RunsafeMeta>(0);
 }

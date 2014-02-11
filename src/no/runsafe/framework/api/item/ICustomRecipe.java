@@ -9,4 +9,5 @@ public interface ICustomRecipe
 	RunsafeMeta getResult();
 	Map<Integer, RunsafeMeta> getRecipe();
 	void addIngredient(int slotID, RunsafeMeta item);
+	void setResult(RunsafeMeta result);
 }
