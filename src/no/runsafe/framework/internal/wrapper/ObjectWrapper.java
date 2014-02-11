@@ -116,6 +116,9 @@ public final class ObjectWrapper
 		if (toWrap instanceof PlayerInventory)
 			return new RunsafePlayerInventory((PlayerInventory) toWrap);
 
+		if (toWrap instanceof CraftingInventory)
+			return new RunsafeCraftingInventory((CraftingInventory) toWrap);
+
 		if (toWrap instanceof AnvilInventory)
 			return new RunsafeAnvilInventory((AnvilInventory) toWrap);
 
