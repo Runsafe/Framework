@@ -7,6 +7,8 @@ import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.Inventory;
 
+import java.util.List;
+
 public class BukkitCraftingInventory extends RunsafeInventory
 {
 	public BukkitCraftingInventory(CraftingInventory toWrap)
@@ -23,6 +25,11 @@ public class BukkitCraftingInventory extends RunsafeInventory
 	public void setResult(RunsafeMeta result)
 	{
 		inventory.setResult(ObjectUnwrapper.convert(result));
+	}
+
+	public List<RunsafeMeta> getMatrix()
+	{
+		return ObjectWrapper.convert(inventory.getMatrix());
 	}
 
 	private final CraftingInventory inventory;
