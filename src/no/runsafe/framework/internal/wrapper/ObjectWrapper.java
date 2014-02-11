@@ -417,6 +417,9 @@ public final class ObjectWrapper
 		if (toWrap instanceof Creature)
 			return new RunsafeCreature((Creature) toWrap);
 
+		if (toWrap instanceof EnderDragon)
+			return new RunsafeEnderDragon((EnderDragon) toWrap);
+
 		return new RunsafeLivingEntity(toWrap);
 	}
 
