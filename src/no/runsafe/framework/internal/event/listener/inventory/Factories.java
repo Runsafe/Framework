@@ -19,5 +19,6 @@ public final class Factories
 		BukkitEventMapper.Register(MoveItem.Factory());
 		BukkitEventMapper.Register(PickupItem.Factory());
 		BukkitEventMapper.Register(CraftItem.Factory());
+		BukkitEventMapper.Register(PrepareCraftItem.Factory());
 	}
 }
