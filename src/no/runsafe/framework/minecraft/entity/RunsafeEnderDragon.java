@@ -23,7 +23,7 @@ public class RunsafeEnderDragon extends RunsafeLivingEntity implements IEnderDra
 	{
 		EntityEnderDragon raw = ((CraftEnderDragon) dragon).getHandle();
 		org.bukkit.entity.LivingEntity livingEntity = ObjectUnwrapper.convert(entity);
-		raw.setGoalTarget(((CraftLivingEntity) livingEntity).getHandle());
+		raw.b(((CraftLivingEntity) livingEntity).getHandle());
 	}
 
 	private final EnderDragon dragon;
