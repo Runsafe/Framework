@@ -63,6 +63,7 @@ public final class ReflectionHelper
 		try
 		{
 			Field field = getField(object, fieldName);
+			field.setAccessible(true);
 			if (field != null)
 				field.set(object, value);
 		}
