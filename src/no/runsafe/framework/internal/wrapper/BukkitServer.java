@@ -19,7 +19,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Logger;
 
-public abstract class BukkitServer
+public abstract class BukkitServer implements IWrapper<Server>
 {
 	protected BukkitServer(Server toWrap)
 	{
@@ -372,6 +372,12 @@ public abstract class BukkitServer
 	public Set<String> getListeningPluginChannels()
 	{
 		return server.getListeningPluginChannels();
+	}
+
+	@Override
+	public Server getRaw()
+	{
+		return server;
 	}
 
 	protected final Server server;
