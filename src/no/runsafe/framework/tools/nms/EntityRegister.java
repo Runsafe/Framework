@@ -15,7 +15,7 @@ public class EntityRegister
 
 		getMap(types, "c").put(name, customClass);
 		getMap(types, "d").put(customClass, name);
-		getMap(types, "e").put(id, customClass);
+		//getMap(types, "e").put(id, customClass);
 		getMap(types, "f").put(customClass, id);
 		getMap(types, "g").put(name, id);
 	}
