@@ -4,6 +4,7 @@ import net.minecraft.server.v1_7_R1.Entity;
 import net.minecraft.server.v1_7_R1.EntityTypes;
 import no.runsafe.framework.tools.reflection.ReflectionHelper;
 
+import java.lang.reflect.Field;
 import java.util.Map;
 
 public class EntityRegister
@@ -19,8 +20,21 @@ public class EntityRegister
 		getMap(types, "g").put(name, id);
 	}
 
-	private static Map getMap(Class<?> object, String field)
+	private static Map getMap(Class typeClass, String fieldName)
 	{
-		return (Map) ReflectionHelper.getObjectField(object, field);
+		try
+		{
+			Field field = typeClass.getDeclaredField(fieldName);
+			field.setAccessible(true);
+			return (Map) field.get(null);
+		}
+		catch (NoSuchFieldException e)
+		{
+			return null;
+		}
+		catch (IllegalAccessException e)
+		{
+			return null;
+		}
 	}
 }
