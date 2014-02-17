@@ -17,7 +17,8 @@ public enum RunsafeInventoryType
 	MERCHANT(3, "Villager"),
 	ENDER_CHEST(27, "Ender Chest"),
 	ANVIL(3, "Repairing"),
-	BEACON(1, "container.beacon");
+	BEACON(1, "container.beacon"),
+	DROPPER(9, "Dropper");
 
 	private final int size;
 	private final String title;
