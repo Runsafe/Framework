@@ -1,5 +1,6 @@
 package no.runsafe.framework.api.chunk;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.internal.wrapper.block.BukkitBlockState;
@@ -26,4 +27,5 @@ public interface IChunk
 	boolean unload(boolean b, boolean b1);
 	boolean unload(boolean b);
 	boolean unload();
+	boolean locationIsInChunk(ILocation location);
 }
