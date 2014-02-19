@@ -26,6 +26,6 @@ public class RunsafeChunk extends BukkitChunk implements IChunk
 		double blockX = location.getBlockX();
 		double blockZ = location.getBlockZ();
 
-		return (blockX >= startX && blockX <= endX && blockZ >= startZ && blockZ <= startZ);
+		return (blockX >= startX && blockX <= endX && blockZ >= startZ && blockZ <= endZ);
 	}
 }
