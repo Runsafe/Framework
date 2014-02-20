@@ -4,13 +4,14 @@ import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.argument.CommandArgumentSpecification;
 import no.runsafe.framework.api.command.argument.ITabComplete;
 import no.runsafe.framework.api.command.argument.IValueExpander;
+import no.runsafe.framework.api.command.argument.ListOf;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.Player;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
-public abstract class BasePlayerArgument extends CommandArgumentSpecification implements ITabComplete, IValueExpander
+public abstract class BasePlayerArgument extends CommandArgumentSpecification implements ListOf.Compatible
 {
 	protected BasePlayerArgument(String name, boolean required, boolean context)
 	{

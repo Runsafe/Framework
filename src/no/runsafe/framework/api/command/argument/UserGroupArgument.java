@@ -9,7 +9,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserGroupArgument extends CommandArgumentSpecification implements ITabComplete, IValueExpander
+public class UserGroupArgument extends CommandArgumentSpecification implements ListOf.Compatible
 {
 	public UserGroupArgument(String name, boolean required)
 	{

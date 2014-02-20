@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EnumArgument extends CommandArgumentSpecification implements ITabComplete, IValueExpander
+public class EnumArgument extends CommandArgumentSpecification implements ListOf.Compatible
 {
 	public EnumArgument(String name, Enum<?>[] values, boolean required)
 	{

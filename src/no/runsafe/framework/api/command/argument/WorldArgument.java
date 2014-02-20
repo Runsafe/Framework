@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 
-public class WorldArgument extends CommandArgumentSpecification implements ITabComplete, IValueExpander, IValueProvider<IWorld>
+public class WorldArgument extends CommandArgumentSpecification implements ListOf.Compatible, IValueProvider<IWorld>
 {
 	public WorldArgument()
 	{

@@ -9,7 +9,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EnchantArgument extends CommandArgumentSpecification implements ITabComplete, IValueExpander
+public class EnchantArgument extends CommandArgumentSpecification implements ListOf.Compatible
 {
 	public EnchantArgument(boolean required)
 	{
