@@ -23,6 +23,8 @@ public class ListOf<T extends ListOf.Compatible> extends TrailingArgument implem
 	@Override
 	public String expand(ICommandExecutor context, @Nullable String value)
 	{
+		if (value == null)
+			return null;
 		String[] values = LISTSEPARATOR.split(value);
 		List<String> result = new ArrayList<String>(values.length);
 		IServer server = InjectionPlugin.getGlobalComponent(IServer.class);
