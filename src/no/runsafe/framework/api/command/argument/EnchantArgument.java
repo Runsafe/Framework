@@ -25,13 +25,18 @@ public class EnchantArgument extends CommandArgumentSpecification implements ITa
 	@Override
 	public List<String> getAlternatives(IPlayer executor, String partial)
 	{
-		String filter = partial.toLowerCase();
+		String filter = partial == null ? null : partial.toLowerCase();
 		List<String> alternates = new ArrayList<String>(Enchant.All.size());
 		for (IEnchant enchant : Enchant.All)
 		{
-			String name = enchant.getName().toLowerCase();
-			if (name.equals(filter) || name.startsWith(filter))
-				alternates.add(name);
+			if (filter == null)
+				alternates.add(enchant.getName());
+			else
+			{
+				String name = enchant.getName().toLowerCase();
+				if (name.equals(filter) || name.startsWith(filter))
+					alternates.add(name);
+			}
 		}
 		return alternates;
 	}
@@ -40,6 +45,8 @@ public class EnchantArgument extends CommandArgumentSpecification implements ITa
 	@Override
 	public String expand(ICommandExecutor context, @Nullable String value)
 	{
+		if (value == null)
+			return null;
 		String filter = value.toLowerCase();
 		for (IEnchant enchant : Enchant.All)
 		{
