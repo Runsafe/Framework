@@ -35,6 +35,8 @@ public class Enchant implements IEnchant
 	public static final IEnchant KnockbackArrow = new Enchant(Enchantment.ARROW_KNOCKBACK, true);
 	public static final IEnchant FlameArrow = new Enchant(Enchantment.ARROW_FIRE, true);
 	public static final IEnchant InfiniteArrows = new Enchant(Enchantment.ARROW_INFINITE, true);
+	public static final IEnchant Lure = new Enchant(Enchantment.LURE, true);
+	public static final IEnchant Luck = new Enchant(Enchantment.LUCK, true);
 
 	@Nullable
 	public static IEnchant getByName(String name)
