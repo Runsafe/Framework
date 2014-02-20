@@ -351,9 +351,9 @@ public class Command implements ICommandHandler
 	private boolean checkPermission(ICommandExecutor executor)
 	{
 		Matcher params = paramPermission.matcher(permission);
-		if (params.find() && argumentList.containsKey(params.group()))
+		if (params.find() && argumentList.containsKey(params.group(1)))
 		{
-			IArgument argument = argumentList.get(params.group());
+			IArgument argument = argumentList.get(params.group(1));
 			if (argument instanceof ITabComplete && executor instanceof IPlayer)
 				for (String value : ((ITabComplete) argument).getAlternatives((IPlayer) executor, ""))
 					if (executor.hasPermission(params.replaceAll(value)))
