@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+@Deprecated
 public class PlayerListArgument extends BasePlayerArgument implements IValueProvider<List<IPlayer>>
 {
 	public PlayerListArgument(boolean required)
