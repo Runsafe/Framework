@@ -10,7 +10,12 @@ import java.util.List;
 
 public class EntityTypeArgument extends CommandArgumentSpecification implements ListOf.Compatible
 {
-	protected EntityTypeArgument(String name, boolean required)
+	public EntityTypeArgument(boolean required)
+	{
+		this("entityType", required);
+	}
+
+	public EntityTypeArgument(String name, boolean required)
 	{
 		super(name);
 		this.required = required;
