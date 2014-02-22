@@ -18,6 +18,7 @@ import no.runsafe.framework.minecraft.inventory.RunsafePlayerInventory;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import no.runsafe.framework.text.ChatColour;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.joda.time.DateTime;
 
@@ -117,6 +118,8 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 			data.put("game.mode", player.getGameMode().name());
 			data.put("game.flying", player.isFlying() ? "true" : "false");
 			data.put("game.health", String.format("%.1f/%.1f", getHealth(), getMaxHealth()));
+			Location location = player.getLocation();
+			data.put("game.location", String.format("[%.2f,%.2f,%.2f@%s]", location.getX(), location.getY(), location.getZ(), location.getWorld().getName()));
 		}
 		data.put("game.experience", String.format("%.1f", getXP()));
 		data.put("game.level", String.format("%d", getLevel()));
