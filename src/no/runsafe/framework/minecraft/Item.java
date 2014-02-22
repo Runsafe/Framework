@@ -54,7 +54,7 @@ public class Item implements IEnchantable
 	{
 		Matcher id = materialId.matcher(type);
 		if (id.matches())
-			return getItem(LegacyMaterial.getById(Integer.valueOf(id.group(1))), Byte.valueOf(id.group(2)));
+			return getItem(LegacyMaterial.getById(Integer.valueOf(id.group(1))), Byte.valueOf(id.group(3)));
 		Material material = Material.getMaterial(type);
 		if (material == null)
 			for (Material candidate : Material.values())
@@ -1286,7 +1286,7 @@ public class Item implements IEnchantable
 	}
 
 	private static final Map<String, Item> items = new HashMap<String, Item>(Material.values().length);
-	private static final Pattern materialId = Pattern.compile("^-?(\\d+)(\\.\\d+)?$");
+	private static final Pattern materialId = Pattern.compile("^-?(\\d+)(\\.(\\d+))?$");
 	private final Material material;
 	private final boolean root;
 	@Nullable
