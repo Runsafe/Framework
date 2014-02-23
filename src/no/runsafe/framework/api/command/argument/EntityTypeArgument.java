@@ -30,7 +30,7 @@ public class EntityTypeArgument extends CommandArgumentSpecification implements 
 	@Override
 	public boolean isWhitespaceInclusive()
 	{
-		return true;
+		return false;
 	}
 
 	@Override
