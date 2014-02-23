@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class IntegerArgument extends CommandArgumentSpecification implements IValueProvider<Integer>
 {
-	protected IntegerArgument(String name, boolean required)
+	public IntegerArgument(String name, boolean required)
 	{
 		super(name);
 		this.required = required;

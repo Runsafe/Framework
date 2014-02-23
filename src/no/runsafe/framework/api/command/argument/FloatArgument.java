@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class FloatArgument extends CommandArgumentSpecification implements IValueProvider<Float>
 {
-	protected FloatArgument(String name, boolean required)
+	public FloatArgument(String name, boolean required)
 	{
 		super(name);
 		this.required = required;
