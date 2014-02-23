@@ -44,9 +44,9 @@ public class EntityTypeArgument extends CommandArgumentSpecification implements 
 				alternates.add(type.name());
 			else
 			{
-				String name = type.name();
+				String name = type.name().toLowerCase();
 				if (name.equals(filter) || name.startsWith(filter))
-					alternates.add(name);
+					alternates.add(type.name());
 			}
 		}
 		return alternates;
@@ -63,7 +63,7 @@ public class EntityTypeArgument extends CommandArgumentSpecification implements 
 		{
 			String name = type.name().toLowerCase();
 			if (name.equals(filter) || name.startsWith(filter))
-				return name;
+				return type.name();
 		}
 		return null;
 	}

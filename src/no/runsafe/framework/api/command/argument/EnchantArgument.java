@@ -35,7 +35,7 @@ public class EnchantArgument extends CommandArgumentSpecification implements Lis
 			{
 				String name = enchant.getName().toLowerCase();
 				if (name.equals(filter) || name.startsWith(filter))
-					alternates.add(name);
+					alternates.add(enchant.getName());
 			}
 		}
 		return alternates;
@@ -52,7 +52,7 @@ public class EnchantArgument extends CommandArgumentSpecification implements Lis
 		{
 			String name = enchant.getName().toLowerCase();
 			if (name.equals(filter) || name.startsWith(filter))
-				return name;
+				return enchant.getName();
 		}
 		return null;
 	}
