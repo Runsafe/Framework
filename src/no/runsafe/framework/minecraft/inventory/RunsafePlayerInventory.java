@@ -38,6 +38,8 @@ public class RunsafePlayerInventory extends BukkitPlayerInventory
 	public void unserialize(String serialized)
 	{
 		playerInventory.clear();
+		if (serialized == null)
+			return;
 		try
 		{
 			YamlConfiguration unserialize = new YamlConfiguration();
