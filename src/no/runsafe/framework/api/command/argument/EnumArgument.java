@@ -12,6 +12,59 @@ import java.util.Map;
 
 public class EnumArgument extends CommandArgumentSpecification implements ListOf.Compatible
 {
+	public class Required extends EnumArgument
+	{
+		public Required(String name, Enum<?>[] values)
+		{
+			super(name, values);
+		}
+
+		public Required(String name, Enum<?>[] values, Enum<?> defaultValue)
+		{
+			super(name, values, defaultValue);
+		}
+
+		@Override
+		public boolean isRequired()
+		{
+			return true;
+		}
+	}
+
+	public class Optional extends EnumArgument
+	{
+		public Optional(String name, Enum<?>[] values)
+		{
+			super(name, values);
+		}
+
+		public Optional(String name, Enum<?>[] values, Enum<?> defaultValue)
+		{
+			super(name, values, defaultValue);
+		}
+
+		@Override
+		public boolean isRequired()
+		{
+			return false;
+		}
+	}
+
+	protected EnumArgument(String name, Enum<?>[] values)
+	{
+		super(name);
+		List<String> names = new ArrayList<String>(values.length);
+		for (Enum<?> value : values)
+		{
+			this.values.put(value.name(), value);
+			names.add(value.name());
+		}
+		alternatives = ImmutableList.copyOf(names);
+		this.required = false;
+		defaultValue = null;
+	}
+
+	@Deprecated
 	public EnumArgument(String name, Enum<?>[] values, boolean required)
 	{
 		super(name);
@@ -26,6 +79,7 @@ public class EnumArgument extends CommandArgumentSpecification implements ListOf
 		defaultValue = null;
 	}
 
+	@Deprecated
 	public EnumArgument(String name, Enum<?>[] values, Enum<?> defaultValue)
 	{
 		super(name);

@@ -11,11 +11,57 @@ import java.util.List;
 
 public class EnchantArgument extends CommandArgumentSpecification implements ListOf.Compatible
 {
+	public class Required extends EnchantArgument
+	{
+		public Required()
+		{
+			super("enchant");
+		}
+
+		public Required(String name)
+		{
+			super(name);
+		}
+
+		@Override
+		public boolean isRequired()
+		{
+			return true;
+		}
+	}
+
+	public class Optional extends EnchantArgument
+	{
+		public Optional()
+		{
+			super("enchant");
+		}
+
+		public Optional(String name)
+		{
+			super(name);
+		}
+
+		@Override
+		public boolean isRequired()
+		{
+			return false;
+		}
+	}
+
+	protected EnchantArgument(String name)
+	{
+		super(name);
+		required = false;
+	}
+
+	@Deprecated
 	public EnchantArgument(boolean required)
 	{
 		this("enchant", required);
 	}
 
+	@Deprecated
 	public EnchantArgument(String name, boolean required)
 	{
 		super(name);

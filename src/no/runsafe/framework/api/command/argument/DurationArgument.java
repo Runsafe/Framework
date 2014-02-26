@@ -10,11 +10,57 @@ import java.util.Map;
 
 public class DurationArgument extends CommandArgumentSpecification implements IValueProvider<Duration>
 {
+	public class Required extends DurationArgument
+	{
+		public Required()
+		{
+			super("duration");
+		}
+
+		public Required(String name)
+		{
+			super(name);
+		}
+
+		@Override
+		public boolean isRequired()
+		{
+			return true;
+		}
+	}
+
+	public class Optional extends DurationArgument
+	{
+		public Optional()
+		{
+			super("duration");
+		}
+
+		public Optional(String name)
+		{
+			super(name);
+		}
+
+		@Override
+		public boolean isRequired()
+		{
+			return false;
+		}
+	}
+
+	protected DurationArgument(String name)
+	{
+		super(name);
+		required = false;
+	}
+
+	@Deprecated
 	public DurationArgument(boolean required)
 	{
 		this("duration", required);
 	}
 
+	@Deprecated
 	public DurationArgument(String name, boolean required)
 	{
 		super(name);

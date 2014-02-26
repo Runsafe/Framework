@@ -6,6 +6,41 @@ import java.util.Map;
 
 public class FloatArgument extends CommandArgumentSpecification implements IValueProvider<Float>
 {
+	public class Required extends FloatArgument
+	{
+		public Required(String name)
+		{
+			super(name);
+		}
+
+		@Override
+		public boolean isRequired()
+		{
+			return true;
+		}
+	}
+
+	public class Optional extends FloatArgument
+	{
+		public Optional(String name)
+		{
+			super(name);
+		}
+
+		@Override
+		public boolean isRequired()
+		{
+			return false;
+		}
+	}
+
+	protected FloatArgument(String name)
+	{
+		super(name);
+		required = false;
+	}
+
+	@Deprecated
 	public FloatArgument(String name, boolean required)
 	{
 		super(name);

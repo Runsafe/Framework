@@ -6,6 +6,41 @@ import java.util.Map;
 
 public class IntegerArgument extends CommandArgumentSpecification implements IValueProvider<Integer>
 {
+	public class Required extends IntegerArgument
+	{
+		public Required(String name)
+		{
+			super(name);
+		}
+
+		@Override
+		public boolean isRequired()
+		{
+			return true;
+		}
+	}
+
+	public class Optional extends IntegerArgument
+	{
+		public Optional(String name)
+		{
+			super(name);
+		}
+
+		@Override
+		public boolean isRequired()
+		{
+			return false;
+		}
+	}
+
+	protected IntegerArgument(String name)
+	{
+		super(name);
+		required = false;
+	}
+
+	@Deprecated
 	public IntegerArgument(String name, boolean required)
 	{
 		super(name);

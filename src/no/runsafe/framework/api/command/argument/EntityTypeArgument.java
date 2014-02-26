@@ -10,11 +10,57 @@ import java.util.List;
 
 public class EntityTypeArgument extends CommandArgumentSpecification implements ListOf.Compatible
 {
+	public class Required extends EntityTypeArgument
+	{
+		public Required()
+		{
+			super("entityType");
+		}
+
+		public Required(String name)
+		{
+			super(name);
+		}
+
+		@Override
+		public boolean isRequired()
+		{
+			return true;
+		}
+	}
+
+	public class Optional extends EntityTypeArgument
+	{
+		public Optional()
+		{
+			super("entityType");
+		}
+
+		public Optional(String name)
+		{
+			super(name);
+		}
+
+		@Override
+		public boolean isRequired()
+		{
+			return false;
+		}
+	}
+
+	protected EntityTypeArgument(String name)
+	{
+		super(name);
+		required = false;
+	}
+
+	@Deprecated
 	public EntityTypeArgument(boolean required)
 	{
 		this("entityType", required);
 	}
 
+	@Deprecated
 	public EntityTypeArgument(String name, boolean required)
 	{
 		super(name);
