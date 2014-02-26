@@ -18,7 +18,7 @@ public interface IArgumentList extends Map<String, String>
 	@Nonnull
 	List<IPlayer> getPlayers(String param);
 	@Nullable
-	Enum<?> getEnum(String param);
+	java.lang.Enum<?> getEnum(String param);
 	@Nullable
 	<T> T getMappedValue(String param);
 	@Nullable

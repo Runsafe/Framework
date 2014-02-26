@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.argument.*;
+import no.runsafe.framework.api.command.argument.Enum;
 import no.runsafe.framework.api.player.IPlayer;
 
 import javax.annotation.Nonnull;
@@ -124,11 +125,11 @@ public class ArgumentList implements IArgumentList
 
 	@Nullable
 	@Override
-	public Enum<?> getEnum(String param)
+	public java.lang.Enum getEnum(String param)
 	{
 		IArgument argument = arguments.get(param);
-		if (argument instanceof EnumArgument)
-			return ((EnumArgument) argument).getValue(parameterList);
+		if (argument instanceof Enum)
+			return ((Enum) argument).getValue(parameterList);
 		return null;
 	}
 
