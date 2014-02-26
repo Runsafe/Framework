@@ -10,9 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Enum extends CommandArgumentSpecification implements ListOf.Compatible
+public class Enumeration extends CommandArgumentSpecification implements ListOf.Compatible
 {
-	public class Required extends Enum
+	public class Required extends Enumeration
 	{
 		public Required(String name, java.lang.Enum<?>[] values)
 		{
@@ -31,7 +31,7 @@ public class Enum extends CommandArgumentSpecification implements ListOf.Compati
 		}
 	}
 
-	public class Optional extends Enum
+	public class Optional extends Enumeration
 	{
 		public Optional(String name, java.lang.Enum<?>[] values)
 		{
@@ -50,7 +50,7 @@ public class Enum extends CommandArgumentSpecification implements ListOf.Compati
 		}
 	}
 
-	protected Enum(String name, java.lang.Enum<?>[] values)
+	protected Enumeration(String name, java.lang.Enum<?>[] values)
 	{
 		super(name);
 		List<String> names = new ArrayList<String>(values.length);
@@ -65,7 +65,7 @@ public class Enum extends CommandArgumentSpecification implements ListOf.Compati
 	}
 
 	@Deprecated
-	public Enum(String name, java.lang.Enum<?>[] values, boolean required)
+	public Enumeration(String name, java.lang.Enum<?>[] values, boolean required)
 	{
 		super(name);
 		List<String> names = new ArrayList<String>(values.length);
@@ -80,7 +80,7 @@ public class Enum extends CommandArgumentSpecification implements ListOf.Compati
 	}
 
 	@Deprecated
-	public Enum(String name, java.lang.Enum<?>[] values, java.lang.Enum<?> defaultValue)
+	public Enumeration(String name, java.lang.Enum<?>[] values, java.lang.Enum<?> defaultValue)
 	{
 		super(name);
 		List<String> names = new ArrayList<String>(values.length);
@@ -95,7 +95,7 @@ public class Enum extends CommandArgumentSpecification implements ListOf.Compati
 	}
 
 	@Deprecated
-	public Enum(String name, Iterable<String> values, boolean required)
+	public Enumeration(String name, Iterable<String> values, boolean required)
 	{
 		super(name);
 		alternatives = ImmutableList.copyOf(values);
@@ -105,7 +105,7 @@ public class Enum extends CommandArgumentSpecification implements ListOf.Compati
 
 	@SuppressWarnings("NullableProblems")
 	@Deprecated
-	public Enum(String name, Iterable<String> values, String defaultValue)
+	public Enumeration(String name, Iterable<String> values, String defaultValue)
 	{
 		super(name);
 		alternatives = ImmutableList.copyOf(values);

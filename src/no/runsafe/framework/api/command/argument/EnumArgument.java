@@ -1,6 +1,7 @@
 package no.runsafe.framework.api.command.argument;
 
-public class EnumArgument extends Enum
+@Deprecated
+public class EnumArgument extends Enumeration
 {
 	protected EnumArgument(String name, java.lang.Enum<?>[] values)
 	{

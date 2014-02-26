@@ -1,5 +1,6 @@
 package no.runsafe.framework.api.command.argument;
 
+@Deprecated
 public class DurationArgument extends Duration
 {
 	protected DurationArgument(String name)

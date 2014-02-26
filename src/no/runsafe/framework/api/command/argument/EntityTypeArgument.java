@@ -1,5 +1,6 @@
 package no.runsafe.framework.api.command.argument;
 
+@Deprecated
 public class EntityTypeArgument extends EntityType
 {
 	protected EntityTypeArgument(String name)

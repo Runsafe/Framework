@@ -1,5 +1,6 @@
 package no.runsafe.framework.api.command.argument;
 
+@Deprecated
 public class EnchantArgument extends Enchant
 {
 	protected EnchantArgument(String name)
