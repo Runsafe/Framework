@@ -61,11 +61,22 @@ public class WorldArgument extends CommandArgumentSpecification implements ListO
 	{
 		if (value == null)
 			return null;
-		for (IWorld world : Multiverse.getInstance().getAllWorlds())
-			if (world.getName().toLowerCase().startsWith(value.toLowerCase()))
-				return world.getName();
 
-		return null;
+		value = value.toLowerCase();
+		String partialMatch = null;
+
+		for (IWorld world : Multiverse.getInstance().getAllWorlds())
+		{
+			String worldName = world.getName();
+
+			if (worldName.equalsIgnoreCase(value))
+				return worldName;
+
+			if (world.getName().toLowerCase().startsWith(value))
+				partialMatch = world.getName();
+		}
+
+		return partialMatch;
 	}
 
 	@Override
