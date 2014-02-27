@@ -2,6 +2,7 @@ package no.runsafe.framework.api.command.argument;
 
 import no.runsafe.framework.internal.command.argument.AnyPlayerArgument;
 
+@Deprecated
 public class SelfOrAnyPlayer extends AnyPlayerArgument
 {
 	public SelfOrAnyPlayer()

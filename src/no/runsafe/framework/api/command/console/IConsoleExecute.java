@@ -2,8 +2,6 @@ package no.runsafe.framework.api.command.console;
 
 import no.runsafe.framework.api.command.argument.IArgumentList;
 
-import java.util.Map;
-
 public interface IConsoleExecute
 {
 	/**

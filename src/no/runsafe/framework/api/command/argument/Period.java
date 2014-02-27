@@ -6,7 +6,7 @@ import org.joda.time.format.PeriodFormatterBuilder;
 
 import java.util.Map;
 
-public class Period extends CommandArgumentSpecification implements IValueProvider<org.joda.time.Duration>
+public abstract class Period extends CommandArgumentSpecification implements IValueProvider<org.joda.time.Duration>
 {
 	public static class Required extends Period
 	{
@@ -49,20 +49,6 @@ public class Period extends CommandArgumentSpecification implements IValueProvid
 	protected Period(String name)
 	{
 		super(name);
-		required = false;
-	}
-
-	@Deprecated
-	public Period(boolean required)
-	{
-		this("duration", required);
-	}
-
-	@Deprecated
-	public Period(String name, boolean required)
-	{
-		super(name);
-		this.required = required;
 	}
 
 	@Override
@@ -84,18 +70,10 @@ public class Period extends CommandArgumentSpecification implements IValueProvid
 	}
 
 	@Override
-	public boolean isRequired()
-	{
-		return required;
-	}
-
-	@Override
 	public boolean isWhitespaceInclusive()
 	{
 		return false;
 	}
-
-	private final boolean required;
 
 	private final static PeriodFormatter timeParser;
 

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class EntityType extends CommandArgumentSpecification implements ListOf.Compatible<RunsafeEntityType>
+public abstract class EntityType extends CommandArgumentSpecification implements ListOf.Compatible<RunsafeEntityType>
 {
 	public static class Required extends EntityType
 	{
@@ -52,26 +52,6 @@ public class EntityType extends CommandArgumentSpecification implements ListOf.C
 	protected EntityType(String name)
 	{
 		super(name);
-		required = false;
-	}
-
-	@Deprecated
-	public EntityType(boolean required)
-	{
-		this("entityType", required);
-	}
-
-	@Deprecated
-	public EntityType(String name, boolean required)
-	{
-		super(name);
-		this.required = required;
-	}
-
-	@Override
-	public boolean isRequired()
-	{
-		return required;
 	}
 
 	@Override
@@ -120,6 +100,4 @@ public class EntityType extends CommandArgumentSpecification implements ListOf.C
 	{
 		return no.runsafe.framework.minecraft.entity.EntityType.Get(params.get(name));
 	}
-
-	private final boolean required;
 }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Enchant extends CommandArgumentSpecification implements ListOf.Compatible<IEnchant>
+public abstract class Enchant extends CommandArgumentSpecification implements ListOf.Compatible<IEnchant>
 {
 	public static class Required extends Enchant
 	{
@@ -52,20 +52,6 @@ public class Enchant extends CommandArgumentSpecification implements ListOf.Comp
 	protected Enchant(String name)
 	{
 		super(name);
-		required = false;
-	}
-
-	@Deprecated
-	public Enchant(boolean required)
-	{
-		this("enchant", required);
-	}
-
-	@Deprecated
-	public Enchant(String name, boolean required)
-	{
-		super(name);
-		this.required = required;
 	}
 
 	@Override
@@ -110,16 +96,8 @@ public class Enchant extends CommandArgumentSpecification implements ListOf.Comp
 	}
 
 	@Override
-	public boolean isRequired()
-	{
-		return required;
-	}
-
-	@Override
 	public boolean isWhitespaceInclusive()
 	{
 		return false;
 	}
-
-	private final boolean required;
 }

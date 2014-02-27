@@ -4,7 +4,7 @@ import no.runsafe.framework.api.player.IPlayer;
 
 import java.util.Map;
 
-public class DecimalNumber extends CommandArgumentSpecification implements IValueProvider<java.lang.Float>
+public abstract class DecimalNumber extends CommandArgumentSpecification implements IValueProvider<java.lang.Float>
 {
 	public static class Required extends DecimalNumber
 	{
@@ -37,20 +37,6 @@ public class DecimalNumber extends CommandArgumentSpecification implements IValu
 	protected DecimalNumber(String name)
 	{
 		super(name);
-		required = false;
-	}
-
-	@Deprecated
-	public DecimalNumber(String name, boolean required)
-	{
-		super(name);
-		this.required = required;
-	}
-
-	@Override
-	public boolean isRequired()
-	{
-		return required;
 	}
 
 	@Override
@@ -71,6 +57,4 @@ public class DecimalNumber extends CommandArgumentSpecification implements IValu
 			return null;
 		}
 	}
-
-	private final boolean required;
 }

@@ -10,13 +10,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Enumeration extends CommandArgumentSpecification implements ListOf.Compatible<Enum<?>>
+public abstract class Enumeration extends CommandArgumentSpecification implements ListOf.Compatible<Enum<?>>
 {
 	public static class Required extends Enumeration
 	{
 		public Required(String name, java.lang.Enum<?>[] values)
 		{
-			super(name, values);
+			super(name, values, null);
 		}
 
 		public Required(String name, java.lang.Enum<?>[] values, java.lang.Enum<?> defaultValue)
@@ -35,7 +35,7 @@ public class Enumeration extends CommandArgumentSpecification implements ListOf.
 	{
 		public Optional(String name, java.lang.Enum<?>[] values)
 		{
-			super(name, values);
+			super(name, values, null);
 		}
 
 		public Optional(String name, java.lang.Enum<?>[] values, java.lang.Enum<?> defaultValue)
@@ -50,7 +50,7 @@ public class Enumeration extends CommandArgumentSpecification implements ListOf.
 		}
 	}
 
-	protected Enumeration(String name, java.lang.Enum<?>[] values)
+	protected Enumeration(String name, java.lang.Enum<?>[] values, java.lang.Enum<?> defaultValue)
 	{
 		super(name);
 		List<String> names = new ArrayList<String>(values.length);
@@ -60,63 +60,7 @@ public class Enumeration extends CommandArgumentSpecification implements ListOf.
 			names.add(value.name());
 		}
 		alternatives = ImmutableList.copyOf(names);
-		this.required = false;
-		defaultValue = null;
-	}
-
-	@Deprecated
-	public Enumeration(String name, java.lang.Enum<?>[] values, boolean required)
-	{
-		super(name);
-		List<String> names = new ArrayList<String>(values.length);
-		for (java.lang.Enum<?> value : values)
-		{
-			this.values.put(value.name(), value);
-			names.add(value.name());
-		}
-		alternatives = ImmutableList.copyOf(names);
-		this.required = required;
-		defaultValue = null;
-	}
-
-	@Deprecated
-	public Enumeration(String name, java.lang.Enum<?>[] values, java.lang.Enum<?> defaultValue)
-	{
-		super(name);
-		List<String> names = new ArrayList<String>(values.length);
-		for (java.lang.Enum<?> value : values)
-		{
-			this.values.put(value.name(), value);
-			names.add(value.name());
-		}
-		alternatives = ImmutableList.copyOf(names);
-		required = true;
-		this.defaultValue = defaultValue.name();
-	}
-
-	@Deprecated
-	public Enumeration(String name, Iterable<String> values, boolean required)
-	{
-		super(name);
-		alternatives = ImmutableList.copyOf(values);
-		this.required = required;
-		defaultValue = null;
-	}
-
-	@SuppressWarnings("NullableProblems")
-	@Deprecated
-	public Enumeration(String name, Iterable<String> values, String defaultValue)
-	{
-		super(name);
-		alternatives = ImmutableList.copyOf(values);
-		required = true;
-		this.defaultValue = defaultValue;
-	}
-
-	@Override
-	public boolean isRequired()
-	{
-		return required;
+		this.defaultValue = defaultValue == null ? null : defaultValue.name();
 	}
 
 	@Override
@@ -155,7 +99,6 @@ public class Enumeration extends CommandArgumentSpecification implements ListOf.
 		return null;
 	}
 
-	private final boolean required;
 	private final ImmutableList<String> alternatives;
 	private final Map<String, java.lang.Enum<?>> values = new HashMap<String, java.lang.Enum<?>>(0);
 	@Nullable
