@@ -25,6 +25,11 @@ public abstract class Player extends BasePlayerArgument
 				this("player", false);
 			}
 
+			public Required(String name)
+			{
+				this(name, false);
+			}
+
 			public Required(String name, boolean defaultSelf)
 			{
 				super(name, true, defaultSelf);
@@ -42,6 +47,11 @@ public abstract class Player extends BasePlayerArgument
 			public Optional()
 			{
 				this("player", false);
+			}
+
+			public Optional(String name)
+			{
+				this(name, false);
 			}
 
 			public Optional(String name, boolean defaultSelf)
@@ -102,6 +112,11 @@ public abstract class Player extends BasePlayerArgument
 				this("player", false);
 			}
 
+			public Required(String name)
+			{
+				this(name, false);
+			}
+
 			public Required(String name, boolean defaultSelf)
 			{
 				super(name, true, defaultSelf);
@@ -119,6 +134,11 @@ public abstract class Player extends BasePlayerArgument
 			public Optional()
 			{
 				this("player", false);
+			}
+
+			public Optional(String name)
+			{
+				this(name, false);
 			}
 
 			public Optional(String name, boolean defaultSelf)
