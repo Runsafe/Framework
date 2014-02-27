@@ -1,15 +1,14 @@
 package no.runsafe.framework.api.command.argument;
 
 import no.runsafe.framework.api.player.IPlayer;
-import org.joda.time.Period;
 import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 
 import java.util.Map;
 
-public class Duration extends CommandArgumentSpecification implements IValueProvider<org.joda.time.Duration>
+public class Period extends CommandArgumentSpecification implements IValueProvider<org.joda.time.Duration>
 {
-	public static class Required extends Duration
+	public static class Required extends Period
 	{
 		public Required()
 		{
@@ -28,7 +27,7 @@ public class Duration extends CommandArgumentSpecification implements IValueProv
 		}
 	}
 
-	public static class Optional extends Duration
+	public static class Optional extends Period
 	{
 		public Optional()
 		{
@@ -47,20 +46,20 @@ public class Duration extends CommandArgumentSpecification implements IValueProv
 		}
 	}
 
-	protected Duration(String name)
+	protected Period(String name)
 	{
 		super(name);
 		required = false;
 	}
 
 	@Deprecated
-	public Duration(boolean required)
+	public Period(boolean required)
 	{
 		this("duration", required);
 	}
 
 	@Deprecated
-	public Duration(String name, boolean required)
+	public Period(String name, boolean required)
 	{
 		super(name);
 		this.required = required;
@@ -73,7 +72,7 @@ public class Duration extends CommandArgumentSpecification implements IValueProv
 			return null;
 		try
 		{
-			Period duration = timeParser.parsePeriod(params.get(name));
+			org.joda.time.Period duration = timeParser.parsePeriod(params.get(name));
 			return duration.toStandardDuration();
 		}
 		catch (IllegalArgumentException e)

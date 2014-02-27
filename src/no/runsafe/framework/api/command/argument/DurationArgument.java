@@ -1,7 +1,7 @@
 package no.runsafe.framework.api.command.argument;
 
 @Deprecated
-public class DurationArgument extends Duration
+public class DurationArgument extends Period
 {
 	protected DurationArgument(String name)
 	{
