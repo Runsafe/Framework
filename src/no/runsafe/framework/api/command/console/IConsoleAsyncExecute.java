@@ -1,5 +1,7 @@
 package no.runsafe.framework.api.command.console;
 
+import no.runsafe.framework.api.command.argument.IArgumentList;
+
 import java.util.Map;
 
 public interface IConsoleAsyncExecute extends IConsoleExecute
@@ -10,5 +12,5 @@ public interface IConsoleAsyncExecute extends IConsoleExecute
 	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
 	 * @return Message to show in the console after the command completes
 	 */
-	String OnAsyncExecute(Map<String, String> parameters);
+	String OnAsyncExecute(IArgumentList parameters);
 }

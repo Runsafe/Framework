@@ -47,7 +47,7 @@ public abstract class ConsoleAsyncCallbackCommand<T> extends AsyncCallbackComman
 	 */
 	@Override
 	@Nullable
-	public String OnExecute(Map<String, String> parameters)
+	public String OnExecute(IArgumentList parameters)
 	{
 		return null;
 	}

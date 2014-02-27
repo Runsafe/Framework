@@ -39,7 +39,7 @@ public abstract class ConsoleAsyncCommand extends AsyncCommand implements IConso
 	 */
 	@Override
 	@Nullable
-	public String OnExecute(Map<String, String> parameters)
+	public String OnExecute(IArgumentList parameters)
 	{
 		return null;
 	}
