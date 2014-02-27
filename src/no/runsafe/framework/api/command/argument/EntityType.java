@@ -9,7 +9,7 @@ import java.util.List;
 
 public class EntityType extends CommandArgumentSpecification implements ListOf.Compatible
 {
-	public class Required extends EntityType
+	public static class Required extends EntityType
 	{
 		public Required()
 		{
@@ -28,7 +28,7 @@ public class EntityType extends CommandArgumentSpecification implements ListOf.C
 		}
 	}
 
-	public class Optional extends EntityType
+	public static class Optional extends EntityType
 	{
 		public Optional()
 		{

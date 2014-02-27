@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class DecimalNumber extends CommandArgumentSpecification implements IValueProvider<java.lang.Float>
 {
-	public class Required extends DecimalNumber
+	public static class Required extends DecimalNumber
 	{
 		public Required(String name)
 		{
@@ -20,7 +20,7 @@ public class DecimalNumber extends CommandArgumentSpecification implements IValu
 		}
 	}
 
-	public class Optional extends DecimalNumber
+	public static class Optional extends DecimalNumber
 	{
 		public Optional(String name)
 		{

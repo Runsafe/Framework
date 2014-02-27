@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class Enumeration extends CommandArgumentSpecification implements ListOf.Compatible
 {
-	public class Required extends Enumeration
+	public static class Required extends Enumeration
 	{
 		public Required(String name, java.lang.Enum<?>[] values)
 		{
@@ -31,7 +31,7 @@ public class Enumeration extends CommandArgumentSpecification implements ListOf.
 		}
 	}
 
-	public class Optional extends Enumeration
+	public static class Optional extends Enumeration
 	{
 		public Optional(String name, java.lang.Enum<?>[] values)
 		{

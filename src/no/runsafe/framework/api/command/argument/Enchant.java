@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Enchant extends CommandArgumentSpecification implements ListOf.Compatible
 {
-	public class Required extends Enchant
+	public static class Required extends Enchant
 	{
 		public Required()
 		{
@@ -29,7 +29,7 @@ public class Enchant extends CommandArgumentSpecification implements ListOf.Comp
 		}
 	}
 
-	public class Optional extends Enchant
+	public static class Optional extends Enchant
 	{
 		public Optional()
 		{

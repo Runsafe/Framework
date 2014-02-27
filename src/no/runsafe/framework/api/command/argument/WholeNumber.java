@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class WholeNumber extends CommandArgumentSpecification implements IValueProvider<java.lang.Integer>
 {
-	public class Required extends WholeNumber
+	public static class Required extends WholeNumber
 	{
 		public Required(String name)
 		{
@@ -20,7 +20,7 @@ public class WholeNumber extends CommandArgumentSpecification implements IValueP
 		}
 	}
 
-	public class Optional extends WholeNumber
+	public static class Optional extends WholeNumber
 	{
 		public Optional(String name)
 		{

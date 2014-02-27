@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Duration extends CommandArgumentSpecification implements IValueProvider<org.joda.time.Duration>
 {
-	public class Required extends Duration
+	public static class Required extends Duration
 	{
 		public Required()
 		{
@@ -28,7 +28,7 @@ public class Duration extends CommandArgumentSpecification implements IValueProv
 		}
 	}
 
-	public class Optional extends Duration
+	public static class Optional extends Duration
 	{
 		public Optional()
 		{
