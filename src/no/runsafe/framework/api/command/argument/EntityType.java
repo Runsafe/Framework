@@ -1,6 +1,7 @@
 package no.runsafe.framework.api.command.argument;
 
 import no.runsafe.framework.api.command.ICommandExecutor;
+import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.api.player.IPlayer;
 
 import javax.annotation.Nullable;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class EntityType extends CommandArgumentSpecification implements ListOf.Compatible<org.bukkit.entity.EntityType>
+public class EntityType extends CommandArgumentSpecification implements ListOf.Compatible<RunsafeEntityType>
 {
 	public static class Required extends EntityType
 	{
@@ -115,9 +116,9 @@ public class EntityType extends CommandArgumentSpecification implements ListOf.C
 	}
 
 	@Override
-	public org.bukkit.entity.EntityType getValue(IPlayer context, Map<String, String> params)
+	public RunsafeEntityType getValue(IPlayer context, Map<String, String> params)
 	{
-		return org.bukkit.entity.EntityType.valueOf(params.get(name));
+		return no.runsafe.framework.minecraft.entity.EntityType.Get(params.get(name));
 	}
 
 	private final boolean required;
