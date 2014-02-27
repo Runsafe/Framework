@@ -11,7 +11,7 @@ import no.runsafe.framework.internal.Player;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public abstract class BasePlayerArgument extends CommandArgumentSpecification implements ListOf.Compatible
+public abstract class BasePlayerArgument extends CommandArgumentSpecification implements ListOf.Compatible<IPlayer>
 {
 	protected BasePlayerArgument(String name, boolean required, boolean context)
 	{

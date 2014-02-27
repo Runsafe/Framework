@@ -6,8 +6,9 @@ import no.runsafe.framework.api.player.IPlayer;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-public class EntityType extends CommandArgumentSpecification implements ListOf.Compatible
+public class EntityType extends CommandArgumentSpecification implements ListOf.Compatible<org.bukkit.entity.EntityType>
 {
 	public static class Required extends EntityType
 	{
@@ -111,6 +112,12 @@ public class EntityType extends CommandArgumentSpecification implements ListOf.C
 				return type.name();
 		}
 		return null;
+	}
+
+	@Override
+	public org.bukkit.entity.EntityType getValue(IPlayer context, Map<String, String> params)
+	{
+		return org.bukkit.entity.EntityType.valueOf(params.get(name));
 	}
 
 	private final boolean required;

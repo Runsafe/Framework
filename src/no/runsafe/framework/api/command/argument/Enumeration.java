@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Enumeration extends CommandArgumentSpecification implements ListOf.Compatible
+public class Enumeration extends CommandArgumentSpecification implements ListOf.Compatible<Enum<?>>
 {
 	public static class Required extends Enumeration
 	{
@@ -146,7 +146,8 @@ public class Enumeration extends CommandArgumentSpecification implements ListOf.
 	}
 
 	@Nullable
-	public java.lang.Enum<?> getValue(Map<String, String> params)
+	@Override
+	public Enum<?> getValue(IPlayer context, Map<String, String> params)
 	{
 		if (values.containsKey(params.get(name)))
 			return values.get(params.get(name));

@@ -98,6 +98,7 @@ public class ArgumentList implements IArgumentList
 
 	@Nullable
 	@Override
+	@Deprecated
 	public IWorld getWorld(String param)
 	{
 		IArgument argument = arguments.get(param);
@@ -108,6 +109,7 @@ public class ArgumentList implements IArgumentList
 
 	@Nullable
 	@Override
+	@Deprecated
 	public IPlayer getPlayer(String param)
 	{
 		IArgument argument = arguments.get(param);
@@ -118,6 +120,7 @@ public class ArgumentList implements IArgumentList
 
 	@Nullable
 	@Override
+	@Deprecated
 	public List<IPlayer> getPlayers(String param)
 	{
 		return getList(param);
@@ -125,16 +128,18 @@ public class ArgumentList implements IArgumentList
 
 	@Nullable
 	@Override
+	@Deprecated
 	public Enum getEnum(String param)
 	{
 		IArgument argument = arguments.get(param);
 		if (argument instanceof Enumeration)
-			return ((Enumeration) argument).getValue(parameterList);
+			return ((Enumeration) argument).getValue(context, parameterList);
 		return null;
 	}
 
 	@Override
 	@Nullable
+	@Deprecated
 	public <T> T getMappedValue(String param)
 	{
 		IArgument argument = arguments.get(param);
@@ -144,6 +149,7 @@ public class ArgumentList implements IArgumentList
 	}
 
 	@Nullable
+	@Deprecated
 	public Integer getInt(String param)
 	{
 		IArgument argument = arguments.get(param);
@@ -153,6 +159,7 @@ public class ArgumentList implements IArgumentList
 	}
 
 	@Nullable
+	@Deprecated
 	public Float getFloat(String param)
 	{
 		IArgument argument = arguments.get(param);
@@ -186,6 +193,7 @@ public class ArgumentList implements IArgumentList
 
 	@Override
 	@Nonnull
+	@Deprecated
 	public <T> List<T> getList(String param)
 	{
 		IArgument argument = arguments.get(param);

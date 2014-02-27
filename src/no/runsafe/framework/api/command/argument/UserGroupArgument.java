@@ -8,8 +8,9 @@ import no.runsafe.framework.internal.InjectionPlugin;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-public class UserGroupArgument extends CommandArgumentSpecification implements ListOf.Compatible
+public class UserGroupArgument extends CommandArgumentSpecification implements ListOf.Compatible<String>
 {
 	public UserGroupArgument(String name, boolean required)
 	{
@@ -51,6 +52,12 @@ public class UserGroupArgument extends CommandArgumentSpecification implements L
 	{
 		List<String> alternatives = getAlternatives((IPlayer) context, value);
 		return alternatives.isEmpty() || alternatives.size() > 1 ? null : alternatives.get(0);
+	}
+
+	@Override
+	public String getValue(IPlayer context, Map<String, String> params)
+	{
+		return params.get(name);
 	}
 
 	private final boolean isRequired;

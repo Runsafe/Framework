@@ -7,8 +7,9 @@ import no.runsafe.framework.api.player.IPlayer;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-public class Enchant extends CommandArgumentSpecification implements ListOf.Compatible
+public class Enchant extends CommandArgumentSpecification implements ListOf.Compatible<IEnchant>
 {
 	public static class Required extends Enchant
 	{
@@ -100,6 +101,12 @@ public class Enchant extends CommandArgumentSpecification implements ListOf.Comp
 				return enchant.getName();
 		}
 		return null;
+	}
+
+	@Override
+	public IEnchant getValue(IPlayer context, Map<String, String> params)
+	{
+		return no.runsafe.framework.minecraft.Enchant.getByName(params.get(name));
 	}
 
 	@Override
