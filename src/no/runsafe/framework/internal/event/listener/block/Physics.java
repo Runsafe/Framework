@@ -31,7 +31,7 @@ public final class Physics extends EventRouterBase<IBlockPhysics, BlockPhysicsEv
 	public boolean onEvent(BlockPhysicsEvent event)
 	{
 		handler.OnBlockPhysics(new RunsafeBlockPhysicsEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()

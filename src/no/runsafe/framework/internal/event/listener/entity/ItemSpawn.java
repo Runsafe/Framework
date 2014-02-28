@@ -29,7 +29,7 @@ public final class ItemSpawn extends EventRouterBase<IItemSpawn, ItemSpawnEvent>
 	public boolean onEvent(ItemSpawnEvent event)
 	{
 		handler.OnItemSpawn(new RunsafeItemSpawnEvent(event));
-		return true;
+		return false;
 	}
 
 	public static EventRouterFactory Factory()
