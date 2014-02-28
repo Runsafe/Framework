@@ -22,5 +22,6 @@ public final class Factories
 		BukkitEventMapper.Register(Damage.Factory());
 		BukkitEventMapper.Register(ProjectileHit.Factory());
 		BukkitEventMapper.Register(Tame.Factory());
+		BukkitEventMapper.Register(ItemSpawn.Factory());
 	}
 }
