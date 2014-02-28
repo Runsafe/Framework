@@ -17,5 +17,6 @@ public final class Factories
 		BukkitEventMapper.Register(Redstone.Factory());
 		BukkitEventMapper.Register(ChestBreak.Factory());
 		BukkitEventMapper.Register(SignChange.Factory());
+		BukkitEventMapper.Register(Physics.Factory());
 	}
 }
