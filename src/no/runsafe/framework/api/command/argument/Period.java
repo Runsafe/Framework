@@ -49,7 +49,7 @@ public abstract class Period extends CommandArgumentSpecification<Duration>
 		}
 	}
 
-	protected Period(String name)
+	public Period(String name)
 	{
 		super(name);
 	}

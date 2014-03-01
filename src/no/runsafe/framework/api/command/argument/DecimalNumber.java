@@ -36,7 +36,7 @@ public abstract class DecimalNumber extends CommandArgumentSpecification<java.la
 		}
 	}
 
-	protected DecimalNumber(String name)
+	public DecimalNumber(String name)
 	{
 		super(name);
 	}

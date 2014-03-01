@@ -68,7 +68,7 @@ public abstract class Player extends BasePlayerArgument
 			}
 		}
 
-		protected Any(String name, boolean required, boolean context)
+		public Any(String name, boolean required, boolean context)
 		{
 			super(name, required, context);
 		}
@@ -160,7 +160,7 @@ public abstract class Player extends BasePlayerArgument
 			}
 		}
 
-		protected Online(String name, boolean required, boolean context)
+		public Online(String name, boolean required, boolean context)
 		{
 			super(name, required, context);
 		}

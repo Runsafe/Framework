@@ -51,7 +51,7 @@ public abstract class EntityType extends CommandArgumentSpecification<RunsafeEnt
 		}
 	}
 
-	protected EntityType(String name)
+	public EntityType(String name)
 	{
 		super(name);
 	}

@@ -51,7 +51,7 @@ public abstract class Enchant extends CommandArgumentSpecification<IEnchant> imp
 		}
 	}
 
-	protected Enchant(String name)
+	public Enchant(String name)
 	{
 		super(name);
 	}

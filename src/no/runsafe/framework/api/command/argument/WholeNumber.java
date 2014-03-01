@@ -36,7 +36,7 @@ public abstract class WholeNumber extends CommandArgumentSpecification<Integer>
 		}
 	}
 
-	protected WholeNumber(String name)
+	public WholeNumber(String name)
 	{
 		super(name);
 	}

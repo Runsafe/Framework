@@ -17,13 +17,14 @@ public abstract class Enumeration extends CommandArgumentSpecification<Enum<?>> 
 	{
 		public Required(String name, java.lang.Enum<?>[] values)
 		{
-			super(name, values, null);
+			super(name, values);
 		}
 
 		@Deprecated
 		public Required(String name, java.lang.Enum<?>[] values, java.lang.Enum<?> defaultValue)
 		{
-			super(name, values, defaultValue);
+			super(name, values);
+			withDefault(defaultValue);
 		}
 
 		@Override
@@ -38,13 +39,14 @@ public abstract class Enumeration extends CommandArgumentSpecification<Enum<?>> 
 	{
 		public Optional(String name, java.lang.Enum<?>[] values)
 		{
-			super(name, values, null);
+			super(name, values);
 		}
 
 		@Deprecated
 		public Optional(String name, java.lang.Enum<?>[] values, java.lang.Enum<?> defaultValue)
 		{
-			super(name, values, defaultValue);
+			super(name, values);
+			withDefault(defaultValue);
 		}
 
 		@Override
@@ -54,7 +56,7 @@ public abstract class Enumeration extends CommandArgumentSpecification<Enum<?>> 
 		}
 	}
 
-	protected Enumeration(String name, java.lang.Enum<?>[] values, java.lang.Enum<?> defaultValue)
+	public Enumeration(String name, java.lang.Enum<?>[] values)
 	{
 		super(name);
 		List<String> names = new ArrayList<String>(values.length);
@@ -64,7 +66,6 @@ public abstract class Enumeration extends CommandArgumentSpecification<Enum<?>> 
 			names.add(value.name());
 		}
 		alternatives = ImmutableList.copyOf(names);
-		this.defaultValue = defaultValue;
 	}
 
 	@Override
