@@ -51,6 +51,11 @@ public class EntityType extends CommandArgumentSpecification<RunsafeEntityType> 
 		}
 	}
 
+	public EntityType()
+	{
+		super("entityType");
+	}
+
 	public EntityType(String name)
 	{
 		super(name);

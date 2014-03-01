@@ -51,6 +51,11 @@ public class Enchant extends CommandArgumentSpecification<IEnchant> implements L
 		}
 	}
 
+	public Enchant()
+	{
+		this("enchant");
+	}
+
 	public Enchant(String name)
 	{
 		super(name);

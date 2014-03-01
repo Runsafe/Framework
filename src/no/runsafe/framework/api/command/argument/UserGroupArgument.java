@@ -12,16 +12,22 @@ import java.util.Map;
 
 public class UserGroupArgument extends CommandArgumentSpecification<String> implements ListOf.Compatible<String>
 {
+	public UserGroupArgument()
+	{
+		this("group");
+	}
+
+	public UserGroupArgument(String name)
+	{
+		super(name);
+	}
+
+	@Deprecated
 	public UserGroupArgument(String name, boolean required)
 	{
 		super(name);
-		isRequired = required;
-	}
-
-	@Override
-	public boolean isRequired()
-	{
-		return isRequired;
+		if (required)
+			require();
 	}
 
 	@Override
@@ -62,6 +68,4 @@ public class UserGroupArgument extends CommandArgumentSpecification<String> impl
 			return param;
 		return defaultValue;
 	}
-
-	private final boolean isRequired;
 }

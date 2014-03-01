@@ -17,19 +17,20 @@ public class WorldArgument extends CommandArgumentSpecification<IWorld> implemen
 {
 	public WorldArgument()
 	{
-		this(true);
+		this("world");
 	}
 
+	public WorldArgument(String name)
+	{
+		super(name);
+	}
+
+	@Deprecated
 	public WorldArgument(boolean required)
 	{
 		super("world");
-		this.required = required;
-	}
-
-	@Override
-	public boolean isRequired()
-	{
-		return required;
+		if (required)
+			require();
 	}
 
 	@Override
@@ -87,6 +88,4 @@ public class WorldArgument extends CommandArgumentSpecification<IWorld> implemen
 			return InjectionPlugin.getGlobalComponent(IUniverseManager.class).getWorld(params.get(name));
 		return defaultValue;
 	}
-
-	private final boolean required;
 }

@@ -49,6 +49,11 @@ public class Period extends CommandArgumentSpecification<Duration>
 		}
 	}
 
+	public Period()
+	{
+		this("duration");
+	}
+
 	public Period(String name)
 	{
 		super(name);
