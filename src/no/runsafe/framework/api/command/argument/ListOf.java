@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-public class ListOf<T extends ListOf.Compatible> implements IArgument, IValueExpander, ITabComplete, IValueProvider<List<T>>
+public class ListOf<T> implements IArgument, IValueExpander, ITabComplete, IValueProvider<List<T>>
 {
 	@Override
 	public List<String> getAlternatives(IPlayer executor, String partial)
@@ -107,7 +107,7 @@ public class ListOf<T extends ListOf.Compatible> implements IArgument, IValueExp
 	{
 	}
 
-	public ListOf(T argument)
+	public ListOf(Compatible<T> argument)
 	{
 		name = argument.toString();
 		this.argument = argument;
@@ -115,6 +115,6 @@ public class ListOf<T extends ListOf.Compatible> implements IArgument, IValueExp
 
 	private boolean required;
 	private final String name;
-	private final T argument;
+	private final Compatible<T> argument;
 	static final Pattern LISTSEPARATOR = Pattern.compile("\\s+");
 }
