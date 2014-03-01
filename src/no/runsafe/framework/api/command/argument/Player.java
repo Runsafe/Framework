@@ -68,6 +68,16 @@ public abstract class Player extends BasePlayerArgument
 			}
 		}
 
+		public Any()
+		{
+			this("player");
+		}
+
+		public Any(String name)
+		{
+			this(name, false, false);
+		}
+
 		public Any(String name, boolean required, boolean context)
 		{
 			super(name, required, context);
@@ -158,6 +168,16 @@ public abstract class Player extends BasePlayerArgument
 			{
 				return false;
 			}
+		}
+
+		public Online()
+		{
+			this("player");
+		}
+
+		public Online(String name)
+		{
+			this(name, false, false);
 		}
 
 		public Online(String name, boolean required, boolean context)
