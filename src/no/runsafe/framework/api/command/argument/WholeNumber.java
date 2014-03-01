@@ -4,7 +4,7 @@ import no.runsafe.framework.api.player.IPlayer;
 
 import java.util.Map;
 
-public abstract class WholeNumber extends CommandArgumentSpecification<Integer>
+public class WholeNumber extends CommandArgumentSpecification<Integer>
 {
 	@Deprecated
 	public static class Required extends WholeNumber

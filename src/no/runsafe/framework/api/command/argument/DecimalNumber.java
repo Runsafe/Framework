@@ -4,7 +4,7 @@ import no.runsafe.framework.api.player.IPlayer;
 
 import java.util.Map;
 
-public abstract class DecimalNumber extends CommandArgumentSpecification<java.lang.Float>
+public class DecimalNumber extends CommandArgumentSpecification<java.lang.Float>
 {
 	@Deprecated
 	public static class Required extends DecimalNumber

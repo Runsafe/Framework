@@ -7,7 +7,7 @@ import org.joda.time.format.PeriodFormatterBuilder;
 
 import java.util.Map;
 
-public abstract class Period extends CommandArgumentSpecification<Duration>
+public class Period extends CommandArgumentSpecification<Duration>
 {
 	@Deprecated
 	public static class Required extends Period

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public abstract class Enchant extends CommandArgumentSpecification<IEnchant> implements ListOf.Compatible<IEnchant>
+public class Enchant extends CommandArgumentSpecification<IEnchant> implements ListOf.Compatible<IEnchant>
 {
 	@Deprecated
 	public static class Required extends Enchant

@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class Enumeration extends CommandArgumentSpecification<Enum<?>> implements ListOf.Compatible<Enum<?>>
+public class Enumeration extends CommandArgumentSpecification<Enum<?>> implements ListOf.Compatible<Enum<?>>
 {
 	@Deprecated
 	public static class Required extends Enumeration

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public abstract class EntityType extends CommandArgumentSpecification<RunsafeEntityType> implements ListOf.Compatible<RunsafeEntityType>
+public class EntityType extends CommandArgumentSpecification<RunsafeEntityType> implements ListOf.Compatible<RunsafeEntityType>
 {
 	@Deprecated
 	public static class Required extends EntityType
