@@ -1,6 +1,10 @@
 package no.runsafe.framework.api.command.argument;
 
-public class TrailingArgument extends CommandArgumentSpecification
+import no.runsafe.framework.api.player.IPlayer;
+
+import java.util.Map;
+
+public class TrailingArgument extends CommandArgumentSpecification<String>
 {
 	public TrailingArgument(String name)
 	{
@@ -27,4 +31,13 @@ public class TrailingArgument extends CommandArgumentSpecification
 	}
 
 	private final boolean required;
+
+	@Override
+	public String getValue(IPlayer context, Map<String, String> params)
+	{
+		String param = params.get(name);
+		if (param != null && !param.isEmpty())
+			return param;
+		return defaultValue;
+	}
 }

@@ -4,8 +4,9 @@ import no.runsafe.framework.api.player.IPlayer;
 
 import java.util.Map;
 
-public abstract class WholeNumber extends CommandArgumentSpecification implements IValueProvider<java.lang.Integer>
+public abstract class WholeNumber extends CommandArgumentSpecification<Integer>
 {
+	@Deprecated
 	public static class Required extends WholeNumber
 	{
 		public Required(String name)
@@ -20,6 +21,7 @@ public abstract class WholeNumber extends CommandArgumentSpecification implement
 		}
 	}
 
+	@Deprecated
 	public static class Optional extends WholeNumber
 	{
 		public Optional(String name)
@@ -45,16 +47,26 @@ public abstract class WholeNumber extends CommandArgumentSpecification implement
 		return false;
 	}
 
+	public WholeNumber withDefault(int value)
+	{
+		defaultValue = value;
+		return this;
+	}
+
 	@Override
-	public java.lang.Integer getValue(IPlayer context, Map<String, String> params)
+	public Integer getValue(IPlayer context, Map<String, String> params)
 	{
 		try
 		{
-			return java.lang.Integer.parseInt(params.get(name));
+			if (params.get(name) == null || params.get(name).isEmpty())
+				return defaultValue;
+			return Integer.parseInt(params.get(name));
 		}
 		catch (NumberFormatException e)
 		{
-			return null;
+			return defaultValue;
 		}
 	}
+
+	private Integer defaultValue = null;
 }

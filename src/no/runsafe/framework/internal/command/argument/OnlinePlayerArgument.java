@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 
-public abstract class OnlinePlayerArgument extends BasePlayerArgument implements IValueProvider<IPlayer>
+public abstract class OnlinePlayerArgument extends BasePlayerArgument
 {
 	protected OnlinePlayerArgument(boolean required, boolean context)
 	{

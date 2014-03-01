@@ -2,7 +2,7 @@ package no.runsafe.framework.api.command.argument;
 
 import javax.annotation.Nonnull;
 
-public abstract class CommandArgumentSpecification implements IArgument
+public abstract class CommandArgumentSpecification<T> implements IArgument, IValueProvider<T>
 {
 	protected CommandArgumentSpecification(String name)
 	{
@@ -34,6 +34,25 @@ public abstract class CommandArgumentSpecification implements IArgument
 		return name;
 	}
 
+	@Override
+	public boolean isRequired()
+	{
+		return required;
+	}
 
+	public CommandArgumentSpecification<T> withDefault(T value)
+	{
+		defaultValue = value;
+		return this;
+	}
+
+	public CommandArgumentSpecification<T> require()
+	{
+		required = true;
+		return this;
+	}
+
+	protected T defaultValue;
+	protected boolean required = false;
 	protected final String name;
 }

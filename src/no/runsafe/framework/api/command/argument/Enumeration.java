@@ -10,8 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class Enumeration extends CommandArgumentSpecification implements ListOf.Compatible<Enum<?>>
+public abstract class Enumeration extends CommandArgumentSpecification<Enum<?>> implements ListOf.Compatible<Enum<?>>
 {
+	@Deprecated
 	public static class Required extends Enumeration
 	{
 		public Required(String name, java.lang.Enum<?>[] values)
@@ -19,6 +20,7 @@ public abstract class Enumeration extends CommandArgumentSpecification implement
 			super(name, values, null);
 		}
 
+		@Deprecated
 		public Required(String name, java.lang.Enum<?>[] values, java.lang.Enum<?> defaultValue)
 		{
 			super(name, values, defaultValue);
@@ -31,6 +33,7 @@ public abstract class Enumeration extends CommandArgumentSpecification implement
 		}
 	}
 
+	@Deprecated
 	public static class Optional extends Enumeration
 	{
 		public Optional(String name, java.lang.Enum<?>[] values)
@@ -38,6 +41,7 @@ public abstract class Enumeration extends CommandArgumentSpecification implement
 			super(name, values, null);
 		}
 
+		@Deprecated
 		public Optional(String name, java.lang.Enum<?>[] values, java.lang.Enum<?> defaultValue)
 		{
 			super(name, values, defaultValue);
@@ -60,7 +64,7 @@ public abstract class Enumeration extends CommandArgumentSpecification implement
 			names.add(value.name());
 		}
 		alternatives = ImmutableList.copyOf(names);
-		this.defaultValue = defaultValue == null ? null : defaultValue.name();
+		this.defaultValue = defaultValue;
 	}
 
 	@Override
@@ -81,12 +85,12 @@ public abstract class Enumeration extends CommandArgumentSpecification implement
 	public String expand(ICommandExecutor context, @Nullable String value)
 	{
 		if (value == null)
-			return defaultValue;
+			return null;
 		for (String alternative : alternatives)
 			if (alternative.toLowerCase().startsWith(value.toLowerCase()))
 				return alternative;
 
-		return defaultValue;
+		return null;
 	}
 
 	@Nullable
@@ -96,11 +100,9 @@ public abstract class Enumeration extends CommandArgumentSpecification implement
 		if (values.containsKey(params.get(name)))
 			return values.get(params.get(name));
 
-		return null;
+		return defaultValue;
 	}
 
 	private final ImmutableList<String> alternatives;
 	private final Map<String, java.lang.Enum<?>> values = new HashMap<String, java.lang.Enum<?>>(0);
-	@Nullable
-	private final String defaultValue;
 }

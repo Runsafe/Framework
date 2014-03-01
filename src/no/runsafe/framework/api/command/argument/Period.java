@@ -1,13 +1,15 @@
 package no.runsafe.framework.api.command.argument;
 
 import no.runsafe.framework.api.player.IPlayer;
+import org.joda.time.Duration;
 import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 
 import java.util.Map;
 
-public abstract class Period extends CommandArgumentSpecification implements IValueProvider<org.joda.time.Duration>
+public abstract class Period extends CommandArgumentSpecification<Duration>
 {
+	@Deprecated
 	public static class Required extends Period
 	{
 		public Required()
@@ -27,6 +29,7 @@ public abstract class Period extends CommandArgumentSpecification implements IVa
 		}
 	}
 
+	@Deprecated
 	public static class Optional extends Period
 	{
 		public Optional()
@@ -52,10 +55,11 @@ public abstract class Period extends CommandArgumentSpecification implements IVa
 	}
 
 	@Override
-	public org.joda.time.Duration getValue(IPlayer context, Map<String, String> params)
+	public Duration getValue(IPlayer context, Map<String, String> params)
 	{
-		if (params == null)
-			return null;
+		String param = params.get(name);
+		if (param == null || param.isEmpty())
+			return defaultValue;
 		try
 		{
 			org.joda.time.Period duration = timeParser.parsePeriod(params.get(name));
@@ -65,8 +69,8 @@ public abstract class Period extends CommandArgumentSpecification implements IVa
 		{
 			if (context != null)
 				context.sendMessage("Unrecognized time format, use y/w/d/h/m/s");
+			return null;
 		}
-		return null;
 	}
 
 	@Override

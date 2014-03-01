@@ -18,6 +18,7 @@ public abstract class Player extends BasePlayerArgument
 {
 	public static class Any extends Player
 	{
+		@Deprecated
 		public static class Required extends Any
 		{
 			public Required()
@@ -42,6 +43,7 @@ public abstract class Player extends BasePlayerArgument
 			}
 		}
 
+		@Deprecated
 		public static class Optional extends Any
 		{
 			public Optional()
@@ -99,12 +101,16 @@ public abstract class Player extends BasePlayerArgument
 		@Override
 		public IPlayer getValue(IPlayer context, Map<String, String> params)
 		{
-			return InjectionPlugin.getGlobalComponent(IServer.class).getPlayerExact(params.get(name));
+			String param = params.get(name);
+			if (param == null || param.isEmpty())
+				return defaultValue;
+			return InjectionPlugin.getGlobalComponent(IServer.class).getPlayerExact(param);
 		}
 	}
 
 	public static class Online extends Player
 	{
+		@Deprecated
 		public static class Required extends Online
 		{
 			public Required()
@@ -129,6 +135,7 @@ public abstract class Player extends BasePlayerArgument
 			}
 		}
 
+		@Deprecated
 		public static class Optional extends Online
 		{
 			public Optional()
@@ -225,7 +232,10 @@ public abstract class Player extends BasePlayerArgument
 		@Override
 		public IPlayer getValue(IPlayer context, Map<String, String> params)
 		{
-			return InjectionPlugin.getGlobalComponent(IServer.class).getPlayerExact(params.get(name));
+			String param = params.get(name);
+			if (param == null || param.isEmpty())
+				return defaultValue;
+			return InjectionPlugin.getGlobalComponent(IServer.class).getPlayerExact(param);
 		}
 	}
 

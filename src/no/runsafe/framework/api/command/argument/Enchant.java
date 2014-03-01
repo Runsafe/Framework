@@ -9,8 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public abstract class Enchant extends CommandArgumentSpecification implements ListOf.Compatible<IEnchant>
+public abstract class Enchant extends CommandArgumentSpecification<IEnchant> implements ListOf.Compatible<IEnchant>
 {
+	@Deprecated
 	public static class Required extends Enchant
 	{
 		public Required()
@@ -30,6 +31,7 @@ public abstract class Enchant extends CommandArgumentSpecification implements Li
 		}
 	}
 
+	@Deprecated
 	public static class Optional extends Enchant
 	{
 		public Optional()
@@ -92,7 +94,11 @@ public abstract class Enchant extends CommandArgumentSpecification implements Li
 	@Override
 	public IEnchant getValue(IPlayer context, Map<String, String> params)
 	{
-		return no.runsafe.framework.minecraft.Enchant.getByName(params.get(name));
+		String param = params.get(name);
+		IEnchant value = null;
+		if (param != null && !param.isEmpty())
+			value = no.runsafe.framework.minecraft.Enchant.getByName(params.get(name));
+		return value == null ? defaultValue : value;
 	}
 
 	@Override

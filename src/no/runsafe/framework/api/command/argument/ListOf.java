@@ -7,6 +7,7 @@ import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.InjectionPlugin;
 import org.bukkit.craftbukkit.libs.joptsimple.internal.Strings;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-public class ListOf<T extends ListOf.Compatible> extends TrailingArgument implements IValueExpander, ITabComplete, IValueProvider<List<T>>
+public class ListOf<T extends ListOf.Compatible> implements IArgument, IValueExpander, ITabComplete, IValueProvider<List<T>>
 {
 	@Override
 	public List<String> getAlternatives(IPlayer executor, String partial)
@@ -59,16 +60,61 @@ public class ListOf<T extends ListOf.Compatible> extends TrailingArgument implem
 		return values;
 	}
 
+	public ListOf<T> require()
+	{
+		required = true;
+		return this;
+	}
+
+	@Override
+	public boolean isRequired()
+	{
+		return required;
+	}
+
+	@Override
+	public boolean isWhitespaceInclusive()
+	{
+		return true;
+	}
+
+	@Override
+	public int length()
+	{
+		return name.length();
+	}
+
+	@Override
+	public char charAt(int index)
+	{
+		return name.charAt(index);
+	}
+
+	@Override
+	public CharSequence subSequence(int start, int end)
+	{
+		return name.subSequence(start, end);
+	}
+
+	@Nonnull
+	@Override
+	public String toString()
+	{
+		return name;
+	}
+
 	public interface Compatible<T> extends IArgument, IValueExpander, ITabComplete, IValueProvider<T>
 	{
 	}
 
 	public ListOf(T argument)
 	{
-		super(argument.toString());
+		name = argument.toString();
 		this.argument = argument;
 	}
 
+	private boolean required;
+	private final String name;
 	private final T argument;
 	static final Pattern LISTSEPARATOR = Pattern.compile("\\s+");
 }

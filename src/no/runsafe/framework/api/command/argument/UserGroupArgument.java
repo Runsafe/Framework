@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class UserGroupArgument extends CommandArgumentSpecification implements ListOf.Compatible<String>
+public class UserGroupArgument extends CommandArgumentSpecification<String> implements ListOf.Compatible<String>
 {
 	public UserGroupArgument(String name, boolean required)
 	{
@@ -57,7 +57,10 @@ public class UserGroupArgument extends CommandArgumentSpecification implements L
 	@Override
 	public String getValue(IPlayer context, Map<String, String> params)
 	{
-		return params.get(name);
+		String param = params.get(name);
+		if (param != null && !param.isEmpty())
+			return param;
+		return defaultValue;
 	}
 
 	private final boolean isRequired;

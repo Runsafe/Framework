@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 
-public class WorldArgument extends CommandArgumentSpecification implements ListOf.Compatible<IWorld>
+public class WorldArgument extends CommandArgumentSpecification<IWorld> implements ListOf.Compatible<IWorld>
 {
 	public WorldArgument()
 	{
@@ -82,7 +82,10 @@ public class WorldArgument extends CommandArgumentSpecification implements ListO
 	@Override
 	public IWorld getValue(IPlayer context, Map<String, String> params)
 	{
-		return InjectionPlugin.getGlobalComponent(IUniverseManager.class).getWorld(params.get(name));
+		String param = params.get(name);
+		if (param != null && !param.isEmpty())
+			return InjectionPlugin.getGlobalComponent(IUniverseManager.class).getWorld(params.get(name));
+		return defaultValue;
 	}
 
 	private final boolean required;

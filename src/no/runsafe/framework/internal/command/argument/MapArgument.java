@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public abstract class MapArgument<T> extends CommandArgumentSpecification implements ITabComplete, IValueExpander, IValueProvider<T>
+public abstract class MapArgument<T> extends CommandArgumentSpecification<T> implements ITabComplete, IValueExpander
 {
 	protected MapArgument(String name, Map<String, T> values)
 	{
@@ -50,7 +50,10 @@ public abstract class MapArgument<T> extends CommandArgumentSpecification implem
 	@Override
 	public T getValue(IPlayer context, Map<String, String> params)
 	{
-		return alternatives.get(params.get(name));
+		String param = params.get(name);
+		if (param == null || param.isEmpty())
+			return defaultValue;
+		return alternatives.get(param);
 	}
 
 	private final Map<String, T> alternatives;

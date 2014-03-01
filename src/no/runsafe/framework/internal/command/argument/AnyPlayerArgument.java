@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 
-public abstract class AnyPlayerArgument extends BasePlayerArgument implements IValueProvider<IPlayer>
+public abstract class AnyPlayerArgument extends BasePlayerArgument
 {
 	protected AnyPlayerArgument(boolean required, boolean context)
 	{

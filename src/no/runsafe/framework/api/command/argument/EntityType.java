@@ -9,8 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public abstract class EntityType extends CommandArgumentSpecification implements ListOf.Compatible<RunsafeEntityType>
+public abstract class EntityType extends CommandArgumentSpecification<RunsafeEntityType> implements ListOf.Compatible<RunsafeEntityType>
 {
+	@Deprecated
 	public static class Required extends EntityType
 	{
 		public Required()
@@ -30,6 +31,7 @@ public abstract class EntityType extends CommandArgumentSpecification implements
 		}
 	}
 
+	@Deprecated
 	public static class Optional extends EntityType
 	{
 		public Optional()
@@ -98,6 +100,10 @@ public abstract class EntityType extends CommandArgumentSpecification implements
 	@Override
 	public RunsafeEntityType getValue(IPlayer context, Map<String, String> params)
 	{
-		return no.runsafe.framework.minecraft.entity.EntityType.Get(params.get(name));
+		String param = params.get(name);
+		RunsafeEntityType value = null;
+		if (param != null && !param.isEmpty())
+			value = no.runsafe.framework.minecraft.entity.EntityType.Get(param);
+		return value == null ? defaultValue : null;
 	}
 }

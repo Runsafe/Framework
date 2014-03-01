@@ -4,7 +4,7 @@ import no.runsafe.framework.internal.wrapper.IWrapper;
 import no.runsafe.framework.internal.wrapper.item.meta.BukkitMeta;
 import org.bukkit.inventory.ItemStack;
 
-public class RunsafeMeta extends BukkitMeta implements IWrapper<ItemStack>
+public class RunsafeMeta extends BukkitMeta
 {
 	public RunsafeMeta(ItemStack stack)
 	{

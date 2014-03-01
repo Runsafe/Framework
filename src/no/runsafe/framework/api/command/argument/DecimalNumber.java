@@ -4,8 +4,9 @@ import no.runsafe.framework.api.player.IPlayer;
 
 import java.util.Map;
 
-public abstract class DecimalNumber extends CommandArgumentSpecification implements IValueProvider<java.lang.Float>
+public abstract class DecimalNumber extends CommandArgumentSpecification<java.lang.Float>
 {
+	@Deprecated
 	public static class Required extends DecimalNumber
 	{
 		public Required(String name)
@@ -20,6 +21,7 @@ public abstract class DecimalNumber extends CommandArgumentSpecification impleme
 		}
 	}
 
+	@Deprecated
 	public static class Optional extends DecimalNumber
 	{
 		public Optional(String name)
@@ -50,11 +52,13 @@ public abstract class DecimalNumber extends CommandArgumentSpecification impleme
 	{
 		try
 		{
+			if (params.get(name) == null || params.get(name).isEmpty())
+				return defaultValue;
 			return java.lang.Float.parseFloat(params.get(name));
 		}
 		catch (NumberFormatException e)
 		{
-			return null;
+			return defaultValue;
 		}
 	}
 }
