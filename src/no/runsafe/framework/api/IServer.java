@@ -5,6 +5,7 @@ import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventoryHolder;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventoryType;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.map.MapView;
 import org.bukkit.plugin.Plugin;
 
 import javax.annotation.Nullable;
@@ -172,4 +173,6 @@ public interface IServer
 	Set<String> getListeningPluginChannels();
 
 	void addRecipe(ShapedRecipe recipe);
+
+	MapView getMap(short id);
 }

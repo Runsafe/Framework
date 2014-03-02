@@ -10,6 +10,7 @@ import no.runsafe.framework.text.ChatColour;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.map.MapView;
 
 import javax.annotation.Nullable;
 import java.io.File;
@@ -372,6 +373,11 @@ public abstract class BukkitServer implements IWrapper<Server>
 	public Set<String> getListeningPluginChannels()
 	{
 		return server.getListeningPluginChannels();
+	}
+
+	public MapView getMap(short id)
+	{
+		return server.getMap(id);
 	}
 
 	@Override
