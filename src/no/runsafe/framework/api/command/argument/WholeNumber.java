@@ -6,36 +6,6 @@ import java.util.Map;
 
 public class WholeNumber extends CommandArgumentSpecification<Integer>
 {
-	@Deprecated
-	public static class Required extends WholeNumber
-	{
-		public Required(String name)
-		{
-			super(name);
-		}
-
-		@Override
-		public boolean isRequired()
-		{
-			return true;
-		}
-	}
-
-	@Deprecated
-	public static class Optional extends WholeNumber
-	{
-		public Optional(String name)
-		{
-			super(name);
-		}
-
-		@Override
-		public boolean isRequired()
-		{
-			return false;
-		}
-	}
-
 	public WholeNumber(String name)
 	{
 		super(name);

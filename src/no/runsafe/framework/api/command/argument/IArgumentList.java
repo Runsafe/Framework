@@ -12,24 +12,10 @@ import java.util.Map;
 public interface IArgumentList extends Map<String, String>
 {
 	@Deprecated
-	@Nullable
-	IWorld getWorld(String param);
-	@Deprecated
-	@Nullable
-	IPlayer getPlayer(String param);
-	@Deprecated
-	@Nonnull
-	List<IPlayer> getPlayers(String param);
-	@Deprecated
-	@Nullable
-	Enum<?> getEnum(String param);
-	@Deprecated
-	@Nullable
-	<T> T getMappedValue(String param);
+	@Override
+	boolean containsKey(Object key);
+
 	@Nullable
 	<T> T getValue(String param);
-	@Deprecated
-	@Nonnull
-	<T> Collection<T> getList(String param);
 	boolean isAborted();
 }

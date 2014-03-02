@@ -12,50 +12,6 @@ import java.util.Map;
 
 public class Enumeration extends CommandArgumentSpecification<Enum<?>> implements ListOf.Compatible<Enum<?>>
 {
-	@Deprecated
-	public static class Required extends Enumeration
-	{
-		public Required(String name, java.lang.Enum<?>[] values)
-		{
-			super(name, values);
-		}
-
-		@Deprecated
-		public Required(String name, java.lang.Enum<?>[] values, java.lang.Enum<?> defaultValue)
-		{
-			super(name, values);
-			withDefault(defaultValue);
-		}
-
-		@Override
-		public boolean isRequired()
-		{
-			return true;
-		}
-	}
-
-	@Deprecated
-	public static class Optional extends Enumeration
-	{
-		public Optional(String name, java.lang.Enum<?>[] values)
-		{
-			super(name, values);
-		}
-
-		@Deprecated
-		public Optional(String name, java.lang.Enum<?>[] values, java.lang.Enum<?> defaultValue)
-		{
-			super(name, values);
-			withDefault(defaultValue);
-		}
-
-		@Override
-		public boolean isRequired()
-		{
-			return false;
-		}
-	}
-
 	public Enumeration(String name, java.lang.Enum<?>[] values)
 	{
 		super(name);

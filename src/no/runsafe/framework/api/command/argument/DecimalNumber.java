@@ -6,36 +6,6 @@ import java.util.Map;
 
 public class DecimalNumber extends CommandArgumentSpecification<java.lang.Float>
 {
-	@Deprecated
-	public static class Required extends DecimalNumber
-	{
-		public Required(String name)
-		{
-			super(name);
-		}
-
-		@Override
-		public boolean isRequired()
-		{
-			return true;
-		}
-	}
-
-	@Deprecated
-	public static class Optional extends DecimalNumber
-	{
-		public Optional(String name)
-		{
-			super(name);
-		}
-
-		@Override
-		public boolean isRequired()
-		{
-			return false;
-		}
-	}
-
 	public DecimalNumber(String name)
 	{
 		super(name);

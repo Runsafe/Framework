@@ -22,14 +22,6 @@ public class UserGroupArgument extends CommandArgumentSpecification<String> impl
 		super(name);
 	}
 
-	@Deprecated
-	public UserGroupArgument(String name, boolean required)
-	{
-		super(name);
-		if (required)
-			require();
-	}
-
 	@Override
 	public boolean isWhitespaceInclusive()
 	{

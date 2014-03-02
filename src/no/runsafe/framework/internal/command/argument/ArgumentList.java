@@ -96,78 +96,6 @@ public class ArgumentList implements IArgumentList
 		return parameterList.entrySet();
 	}
 
-	@Nullable
-	@Override
-	@Deprecated
-	public IWorld getWorld(String param)
-	{
-		IArgument argument = arguments.get(param);
-		if (argument instanceof IValueProvider<?>)
-			return ((IValueProvider<IWorld>) argument).getValue(context, parameterList);
-		return null;
-	}
-
-	@Nullable
-	@Override
-	@Deprecated
-	public IPlayer getPlayer(String param)
-	{
-		IArgument argument = arguments.get(param);
-		if (argument instanceof IValueProvider<?>)
-			return ((IValueProvider<IPlayer>) argument).getValue(context, parameterList);
-		return null;
-	}
-
-	@Nullable
-	@Override
-	@Deprecated
-	public List<IPlayer> getPlayers(String param)
-	{
-		return getList(param);
-	}
-
-	@Nullable
-	@Override
-	@Deprecated
-	public Enum getEnum(String param)
-	{
-		IArgument argument = arguments.get(param);
-		if (argument instanceof Enumeration)
-			return ((Enumeration) argument).getValue(context, parameterList);
-		return null;
-	}
-
-	@Override
-	@Nullable
-	@Deprecated
-	public <T> T getMappedValue(String param)
-	{
-		IArgument argument = arguments.get(param);
-		if (argument instanceof IValueProvider<?>)
-			return ((IValueProvider<T>) argument).getValue(context, parameterList);
-		return null;
-	}
-
-	@Nullable
-	@Deprecated
-	public Integer getInt(String param)
-	{
-		IArgument argument = arguments.get(param);
-		if (argument instanceof IValueProvider<?>)
-			return ((IValueProvider<Integer>) argument).getValue(context, parameterList);
-		return null;
-	}
-
-	@Nullable
-	@Deprecated
-	public Float getFloat(String param)
-	{
-		IArgument argument = arguments.get(param);
-		if (argument instanceof IValueProvider<?>)
-			return ((IValueProvider<Float>) argument).getValue(context, parameterList);
-		return null;
-	}
-
 	@Override
 	public boolean isAborted()
 	{
@@ -189,33 +117,6 @@ public class ArgumentList implements IArgumentList
 		if (argument == null || !(argument instanceof IValueProvider<?>))
 			return null;
 		return ((IValueProvider<T>) argument).getValue(context, parameterList);
-	}
-
-	@Override
-	@Nonnull
-	@Deprecated
-	public <T> List<T> getList(String param)
-	{
-		IArgument argument = arguments.get(param);
-		if (argument == null || !(argument instanceof IValueProvider<?>))
-			return Collections.emptyList();
-
-		String value = parameterList.get(param);
-		if (value == null || value.isEmpty())
-			return Collections.emptyList();
-
-		String[] listEntries = argumentListSeparator.split(value);
-		List<T> result = Lists.newArrayList();
-		IValueProvider<T> provider = (IValueProvider<T>) argument;
-		Map<String, String> holder = new HashMap<String, String>(1);
-		for (String entry : listEntries)
-		{
-			holder.put(param, entry);
-			T item = provider.getValue(context, holder);
-			if (item != null)
-				result.add(item);
-		}
-		return result;
 	}
 
 	@Nullable

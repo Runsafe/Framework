@@ -9,46 +9,6 @@ import java.util.Map;
 
 public class Period extends CommandArgumentSpecification<Duration>
 {
-	@Deprecated
-	public static class Required extends Period
-	{
-		public Required()
-		{
-			super("duration");
-		}
-
-		public Required(String name)
-		{
-			super(name);
-		}
-
-		@Override
-		public boolean isRequired()
-		{
-			return true;
-		}
-	}
-
-	@Deprecated
-	public static class Optional extends Period
-	{
-		public Optional()
-		{
-			super("duration");
-		}
-
-		public Optional(String name)
-		{
-			super(name);
-		}
-
-		@Override
-		public boolean isRequired()
-		{
-			return false;
-		}
-	}
-
 	public Period()
 	{
 		this("duration");

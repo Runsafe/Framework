@@ -11,46 +11,6 @@ import java.util.Map;
 
 public class EntityType extends CommandArgumentSpecification<RunsafeEntityType> implements ListOf.Compatible<RunsafeEntityType>
 {
-	@Deprecated
-	public static class Required extends EntityType
-	{
-		public Required()
-		{
-			super("entityType");
-		}
-
-		public Required(String name)
-		{
-			super(name);
-		}
-
-		@Override
-		public boolean isRequired()
-		{
-			return true;
-		}
-	}
-
-	@Deprecated
-	public static class Optional extends EntityType
-	{
-		public Optional()
-		{
-			super("entityType");
-		}
-
-		public Optional(String name)
-		{
-			super(name);
-		}
-
-		@Override
-		public boolean isRequired()
-		{
-			return false;
-		}
-	}
-
 	public EntityType()
 	{
 		super("entityType");

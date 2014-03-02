@@ -11,46 +11,6 @@ import java.util.Map;
 
 public class Enchant extends CommandArgumentSpecification<IEnchant> implements ListOf.Compatible<IEnchant>
 {
-	@Deprecated
-	public static class Required extends Enchant
-	{
-		public Required()
-		{
-			super("enchant");
-		}
-
-		public Required(String name)
-		{
-			super(name);
-		}
-
-		@Override
-		public boolean isRequired()
-		{
-			return true;
-		}
-	}
-
-	@Deprecated
-	public static class Optional extends Enchant
-	{
-		public Optional()
-		{
-			super("enchant");
-		}
-
-		public Optional(String name)
-		{
-			super(name);
-		}
-
-		@Override
-		public boolean isRequired()
-		{
-			return false;
-		}
-	}
-
 	public Enchant()
 	{
 		this("enchant");

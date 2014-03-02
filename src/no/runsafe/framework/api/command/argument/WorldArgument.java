@@ -25,14 +25,6 @@ public class WorldArgument extends CommandArgumentSpecification<IWorld> implemen
 		super(name);
 	}
 
-	@Deprecated
-	public WorldArgument(boolean required)
-	{
-		super("world");
-		if (required)
-			require();
-	}
-
 	@Override
 	public boolean isWhitespaceInclusive()
 	{
