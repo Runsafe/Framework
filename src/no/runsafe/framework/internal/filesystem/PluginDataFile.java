@@ -26,6 +26,19 @@ public class PluginDataFile implements IPluginDataFile
 		logger = console;
 	}
 
+	public File getRawFile()
+	{
+		try
+		{
+			fileCheck();
+		}
+		catch (Exception exception)
+		{
+			logger.logException(exception);
+		}
+		return dataFile;
+	}
+
 	@Override
 	public List<String> getLines()
 	{
