@@ -26,6 +26,7 @@ public class PluginDataFile implements IPluginDataFile
 		logger = console;
 	}
 
+	@Override
 	public File getRawFile()
 	{
 		try
