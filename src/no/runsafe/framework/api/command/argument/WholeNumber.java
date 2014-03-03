@@ -17,12 +17,6 @@ public class WholeNumber extends CommandArgumentSpecification<Integer>
 		return false;
 	}
 
-	public WholeNumber withDefault(int value)
-	{
-		defaultValue = value;
-		return this;
-	}
-
 	@Override
 	public Integer getValue(IPlayer context, Map<String, String> params)
 	{
@@ -37,6 +31,4 @@ public class WholeNumber extends CommandArgumentSpecification<Integer>
 			return defaultValue;
 		}
 	}
-
-	private Integer defaultValue = null;
 }

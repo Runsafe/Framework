@@ -9,7 +9,6 @@ import no.runsafe.framework.internal.extension.player.RunsafePlayer;
 import no.runsafe.framework.text.ChatColour;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
-import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.map.MapView;
 
 import javax.annotation.Nullable;

@@ -1,6 +1,5 @@
 package no.runsafe.framework.api;
 
-import net.minecraft.server.v1_7_R1.ItemBlock;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.metadata.IMetadata;

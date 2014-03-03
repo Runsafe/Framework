@@ -1,10 +1,7 @@
 package no.runsafe.framework.internal.wrapper.chunk;
 
-import no.runsafe.framework.api.IScheduler;
-import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.block.IBlock;
-import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.block.BukkitBlockState;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;

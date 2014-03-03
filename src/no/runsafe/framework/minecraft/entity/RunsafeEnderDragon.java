@@ -1,14 +1,13 @@
 package no.runsafe.framework.minecraft.entity;
 
 import net.minecraft.server.v1_7_R1.EntityEnderDragon;
-import net.minecraft.server.v1_7_R1.EntityLiving;
 import no.runsafe.framework.api.entity.IEnderDragon;
-import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.entity.ILivingEntity;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import org.bukkit.craftbukkit.v1_7_R1.entity.CraftEnderDragon;
 import org.bukkit.craftbukkit.v1_7_R1.entity.CraftLivingEntity;
 import org.bukkit.entity.*;
+import org.bukkit.entity.LivingEntity;
 
 public class RunsafeEnderDragon extends RunsafeLivingEntity implements IEnderDragon
 {
@@ -22,7 +21,7 @@ public class RunsafeEnderDragon extends RunsafeLivingEntity implements IEnderDra
 	public void setDragonTarget(ILivingEntity entity)
 	{
 		EntityEnderDragon raw = ((CraftEnderDragon) dragon).getHandle();
-		org.bukkit.entity.LivingEntity livingEntity = ObjectUnwrapper.convert(entity);
+		LivingEntity livingEntity = ObjectUnwrapper.convert(entity);
 		raw.b(((CraftLivingEntity) livingEntity).getHandle());
 	}
 

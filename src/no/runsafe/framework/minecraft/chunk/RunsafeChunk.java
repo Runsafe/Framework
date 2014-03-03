@@ -18,14 +18,14 @@ public class RunsafeChunk extends BukkitChunk implements IChunk
 		if (!location.getWorld().isWorld(getWorld()))
 			return false;
 
-		double startX = getX() * 16;
-		double startZ = getZ() * 16;
+		double startX = getX() << 4;
+		double startZ = getZ() << 4;
 		double endX = startX + 16;
 		double endZ = startZ + 16;
 
 		double blockX = location.getBlockX();
 		double blockZ = location.getBlockZ();
 
-		return (blockX >= startX && blockX <= endX && blockZ >= startZ && blockZ <= endZ);
+		return blockX >= startX && blockX <= endX && blockZ >= startZ && blockZ <= endZ;
 	}
 }

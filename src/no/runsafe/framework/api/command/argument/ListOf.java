@@ -31,7 +31,6 @@ public class ListOf<T> implements IArgument, IValueExpander, ITabComplete, IValu
 			return null;
 		String[] values = LISTSEPARATOR.split(value);
 		List<String> result = new ArrayList<String>(values.length);
-		IServer server = InjectionPlugin.getGlobalComponent(IServer.class);
 		for (String val : values)
 		{
 			String expanded = argument.expand(context, value);

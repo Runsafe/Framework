@@ -1,9 +1,7 @@
 package no.runsafe.framework.api.command.argument;
 
-import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.player.IPlayer;
 
-import javax.annotation.Nullable;
 import java.util.Map;
 
 public class OptionalArgument extends CommandArgumentSpecification<String>
@@ -17,7 +15,7 @@ public class OptionalArgument extends CommandArgumentSpecification<String>
 	public OptionalArgument(String name, String defaultValue)
 	{
 		super(name);
-		this.defaultValue = defaultValue;
+		withDefault(defaultValue);
 	}
 
 	@Override

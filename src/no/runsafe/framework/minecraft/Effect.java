@@ -76,7 +76,7 @@ public class Effect
 	public void Play(ILocation location)
 	{
 		if (effect == org.bukkit.Effect.STEP_SOUND)
-			location.getWorld().playEffect(location, effect, ((BukkitBlock) location.getBlock()).getData());
+			location.getWorld().playEffect(location, effect, location.getBlock().getData());
 		else
 			location.getWorld().playEffect(location, effect, data);
 	}

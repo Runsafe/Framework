@@ -44,7 +44,7 @@ public class Period extends CommandArgumentSpecification<Duration>
 		return false;
 	}
 
-	private final static PeriodFormatter timeParser;
+	private static final PeriodFormatter timeParser;
 
 	static
 	{

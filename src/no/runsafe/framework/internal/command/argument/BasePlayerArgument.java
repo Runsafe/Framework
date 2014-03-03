@@ -2,8 +2,6 @@ package no.runsafe.framework.internal.command.argument;
 
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.argument.CommandArgumentSpecification;
-import no.runsafe.framework.api.command.argument.ITabComplete;
-import no.runsafe.framework.api.command.argument.IValueExpander;
 import no.runsafe.framework.api.command.argument.ListOf;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.Player;

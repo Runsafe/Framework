@@ -2,12 +2,10 @@ package no.runsafe.framework.internal.log;
 
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.internal.InjectionPlugin;
-import no.runsafe.framework.internal.reporting.ErrorReportingQueue;
 import no.runsafe.framework.text.ChatColour;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 
-import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.logging.Level;
 

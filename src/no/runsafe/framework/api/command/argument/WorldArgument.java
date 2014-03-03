@@ -55,17 +55,17 @@ public class WorldArgument extends CommandArgumentSpecification<IWorld> implemen
 		if (value == null)
 			return null;
 
-		value = value.toLowerCase();
+		String filter = value.toLowerCase();
 		String partialMatch = null;
 
 		for (IWorld world : Multiverse.getInstance().getAllWorlds())
 		{
 			String worldName = world.getName();
 
-			if (worldName.equalsIgnoreCase(value))
+			if (worldName.equalsIgnoreCase(filter))
 				return worldName;
 
-			if (world.getName().toLowerCase().startsWith(value))
+			if (world.getName().toLowerCase().startsWith(filter))
 				partialMatch = world.getName();
 		}
 

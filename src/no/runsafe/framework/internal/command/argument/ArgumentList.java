@@ -1,10 +1,7 @@
 package no.runsafe.framework.internal.command.argument;
 
-import com.google.common.collect.Lists;
-import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.argument.*;
-import no.runsafe.framework.api.command.argument.Enumeration;
 import no.runsafe.framework.api.player.IPlayer;
 
 import javax.annotation.Nonnull;
@@ -114,7 +111,7 @@ public class ArgumentList implements IArgumentList
 	public <T> T getValue(String param)
 	{
 		IArgument argument = arguments.get(param);
-		if (argument == null || !(argument instanceof IValueProvider<?>))
+		if (!(argument instanceof IValueProvider<?>))
 			return null;
 		return ((IValueProvider<T>) argument).getValue(context, parameterList);
 	}
@@ -123,5 +120,5 @@ public class ArgumentList implements IArgumentList
 	private final IPlayer context;
 	private final Map<String, String> parameterList;
 	private final Map<String, IArgument> arguments;
-	private static Pattern argumentListSeparator = Pattern.compile("\\s+");
+	private static final Pattern argumentListSeparator = Pattern.compile("\\s+");
 }

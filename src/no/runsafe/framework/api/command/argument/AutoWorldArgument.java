@@ -7,11 +7,6 @@ import javax.annotation.Nullable;
 
 public class AutoWorldArgument extends WorldArgument
 {
-	public AutoWorldArgument()
-	{
-		super();
-	}
-
 	@Nullable
 	@Override
 	public String expand(ICommandExecutor context, @Nullable String value)

@@ -15,13 +15,8 @@ public class TrailingArgument extends CommandArgumentSpecification<String>
 	public TrailingArgument(String name, boolean required)
 	{
 		super(name);
-		this.required = required;
-	}
-
-	@Override
-	public boolean isRequired()
-	{
-		return required;
+		if (required)
+			require();
 	}
 
 	@Override
@@ -29,8 +24,6 @@ public class TrailingArgument extends CommandArgumentSpecification<String>
 	{
 		return true;
 	}
-
-	private final boolean required;
 
 	@Override
 	public String getValue(IPlayer context, Map<String, String> params)

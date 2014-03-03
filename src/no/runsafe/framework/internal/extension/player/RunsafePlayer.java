@@ -6,7 +6,6 @@ import no.runsafe.framework.api.IUniverse;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.chunk.IChunk;
 import no.runsafe.framework.api.hook.IPlayerExtensions;
-import no.runsafe.framework.api.hook.IPlayerPermissions;
 import no.runsafe.framework.api.networking.IPacket;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.InjectionPlugin;

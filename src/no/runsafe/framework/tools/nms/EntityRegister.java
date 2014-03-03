@@ -2,13 +2,16 @@ package no.runsafe.framework.tools.nms;
 
 import net.minecraft.server.v1_7_R1.Entity;
 import net.minecraft.server.v1_7_R1.EntityTypes;
-import no.runsafe.framework.tools.reflection.ReflectionHelper;
 
 import java.lang.reflect.Field;
 import java.util.Map;
 
-public class EntityRegister
+public final class EntityRegister
 {
+	private EntityRegister()
+	{
+	}
+
 	public static <E extends Entity> void registerEntity(Class<E> customClass, String name, int id)
 	{
 		Class<?> types = EntityTypes.class;

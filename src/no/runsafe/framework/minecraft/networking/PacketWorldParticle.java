@@ -1,6 +1,5 @@
 package no.runsafe.framework.minecraft.networking;
 
-import net.minecraft.server.v1_7_R1.PacketPlayOutSpawnEntityLiving;
 import net.minecraft.server.v1_7_R1.PacketPlayOutWorldParticles;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorldEffect;

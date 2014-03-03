@@ -5,7 +5,6 @@ import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.command.argument.CommandArgumentSpecification;
 import no.runsafe.framework.api.command.argument.ITabComplete;
 import no.runsafe.framework.api.command.argument.IValueExpander;
-import no.runsafe.framework.api.command.argument.IValueProvider;
 import no.runsafe.framework.api.player.IPlayer;
 
 import javax.annotation.Nullable;

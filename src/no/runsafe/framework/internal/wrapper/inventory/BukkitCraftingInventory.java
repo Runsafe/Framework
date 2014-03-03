@@ -5,7 +5,6 @@ import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import org.bukkit.inventory.CraftingInventory;
-import org.bukkit.inventory.Inventory;
 
 import java.util.List;
 

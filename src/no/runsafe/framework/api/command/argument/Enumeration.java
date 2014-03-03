@@ -5,6 +5,7 @@ import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.player.IPlayer;
 
 import javax.annotation.Nullable;
+import java.lang.Enum;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,11 +13,11 @@ import java.util.Map;
 
 public class Enumeration extends CommandArgumentSpecification<Enum<?>> implements ListOf.Compatible<Enum<?>>
 {
-	public Enumeration(String name, java.lang.Enum<?>[] values)
+	public Enumeration(String name, Enum<?>... values)
 	{
 		super(name);
 		List<String> names = new ArrayList<String>(values.length);
-		for (java.lang.Enum<?> value : values)
+		for (Enum<?> value : values)
 		{
 			this.values.put(value.name(), value);
 			names.add(value.name());
@@ -61,5 +62,5 @@ public class Enumeration extends CommandArgumentSpecification<Enum<?>> implement
 	}
 
 	private final ImmutableList<String> alternatives;
-	private final Map<String, java.lang.Enum<?>> values = new HashMap<String, java.lang.Enum<?>>(0);
+	private final Map<String, Enum<?>> values = new HashMap<String, Enum<?>>(0);
 }

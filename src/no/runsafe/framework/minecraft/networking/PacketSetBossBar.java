@@ -1,11 +1,7 @@
 package no.runsafe.framework.minecraft.networking;
 
 import net.minecraft.server.v1_7_R1.DataWatcher;
-import net.minecraft.server.v1_7_R1.Packet;
 import net.minecraft.server.v1_7_R1.PacketPlayOutSpawnEntityLiving;
-import no.runsafe.framework.minecraft.entity.LivingEntity;
-import no.runsafe.framework.tools.reflection.ReflectionHelper;
-import org.bukkit.entity.EntityType;
 
 import java.lang.reflect.Field;
 
