@@ -18,56 +18,6 @@ public abstract class Player extends BasePlayerArgument
 {
 	public static class Any extends Player
 	{
-		@Deprecated
-		public static class Required extends Any
-		{
-			public Required()
-			{
-				this("player", false);
-			}
-
-			public Required(String name)
-			{
-				this(name, false);
-			}
-
-			public Required(String name, boolean defaultSelf)
-			{
-				super(name, true, defaultSelf);
-			}
-
-			@Override
-			public boolean isRequired()
-			{
-				return true;
-			}
-		}
-
-		@Deprecated
-		public static class Optional extends Any
-		{
-			public Optional()
-			{
-				this("player", false);
-			}
-
-			public Optional(String name)
-			{
-				this(name, false);
-			}
-
-			public Optional(String name, boolean defaultSelf)
-			{
-				super(name, false, defaultSelf);
-			}
-
-			@Override
-			public boolean isRequired()
-			{
-				return false;
-			}
-		}
-
 		public Any()
 		{
 			this("player");
@@ -75,12 +25,12 @@ public abstract class Player extends BasePlayerArgument
 
 		public Any(String name)
 		{
-			this(name, false, false);
+			this(name, false);
 		}
 
-		public Any(String name, boolean required, boolean context)
+		public Any(String name, boolean context)
 		{
-			super(name, required, context);
+			super(name, context);
 		}
 
 		@Nullable
@@ -120,56 +70,6 @@ public abstract class Player extends BasePlayerArgument
 
 	public static class Online extends Player
 	{
-		@Deprecated
-		public static class Required extends Online
-		{
-			public Required()
-			{
-				this("player", false);
-			}
-
-			public Required(String name)
-			{
-				this(name, false);
-			}
-
-			public Required(String name, boolean defaultSelf)
-			{
-				super(name, true, defaultSelf);
-			}
-
-			@Override
-			public boolean isRequired()
-			{
-				return true;
-			}
-		}
-
-		@Deprecated
-		public static class Optional extends Online
-		{
-			public Optional()
-			{
-				this("player", false);
-			}
-
-			public Optional(String name)
-			{
-				this(name, false);
-			}
-
-			public Optional(String name, boolean defaultSelf)
-			{
-				super(name, false, defaultSelf);
-			}
-
-			@Override
-			public boolean isRequired()
-			{
-				return false;
-			}
-		}
-
 		public Online()
 		{
 			this("player");
@@ -177,12 +77,12 @@ public abstract class Player extends BasePlayerArgument
 
 		public Online(String name)
 		{
-			this(name, false, false);
+			this(name, false);
 		}
 
-		public Online(String name, boolean required, boolean context)
+		public Online(String name, boolean context)
 		{
-			super(name, required, context);
+			super(name, context);
 		}
 
 		@Nullable
@@ -259,8 +159,8 @@ public abstract class Player extends BasePlayerArgument
 		}
 	}
 
-	protected Player(String name, boolean required, boolean context)
+	protected Player(String name, boolean context)
 	{
-		super(name, required, context);
+		super(name, context);
 	}
 }

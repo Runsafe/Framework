@@ -13,17 +13,10 @@ import java.util.List;
 
 public abstract class BasePlayerArgument extends CommandArgumentSpecification<IPlayer> implements ListOf.Compatible<IPlayer>
 {
-	protected BasePlayerArgument(String name, boolean required, boolean context)
+	protected BasePlayerArgument(String name, boolean context)
 	{
 		super(name);
-		this.required = required;
 		expand = context;
-	}
-
-	@Override
-	public boolean isRequired()
-	{
-		return required;
 	}
 
 	@Override
@@ -48,6 +41,5 @@ public abstract class BasePlayerArgument extends CommandArgumentSpecification<IP
 		return null;
 	}
 
-	protected final boolean required;
 	protected final boolean expand;
 }
