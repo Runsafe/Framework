@@ -7,12 +7,19 @@ import no.runsafe.framework.api.command.argument.IValueExpander;
 import no.runsafe.framework.api.command.argument.ListOf;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.Player;
+import org.omg.CosNaming._NamingContextExtStub;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
 public abstract class BasePlayerArgument extends CommandArgumentSpecification<IPlayer> implements ListOf.Compatible<IPlayer>
 {
+	protected BasePlayerArgument(String name)
+	{
+		super(name);
+		expand = false;
+	}
+
 	protected BasePlayerArgument(String name, boolean context)
 	{
 		super(name);
@@ -41,5 +48,5 @@ public abstract class BasePlayerArgument extends CommandArgumentSpecification<IP
 		return null;
 	}
 
-	protected final boolean expand;
+	protected boolean expand;
 }
