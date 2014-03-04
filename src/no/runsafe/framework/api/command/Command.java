@@ -1,5 +1,7 @@
 package no.runsafe.framework.api.command;
 
+import com.google.common.collect.Maps;
+import net.minecraft.server.v1_7_R1.ICommand;
 import net.minecraft.util.com.google.common.collect.ImmutableList;
 import no.runsafe.framework.api.command.argument.IArgument;
 import no.runsafe.framework.api.command.argument.IArgumentList;
@@ -268,7 +270,14 @@ public class Command implements ICommandHandler
 				return subCommand.prepareCommand(executor, params, args, stack);
 			}
 		}
-		return stack.peek().createAction(executor, stack, args, new ArgumentList(executor, argumentList, params));
+		Map<String, IArgument> myargs = Maps.newHashMap(argumentList);
+		for (ICommandHandler command : stack)
+		{
+			for (IArgument argument : command.getParameters())
+				if (!myargs.containsKey(argument.toString()))
+					myargs.put(argument.toString(), argument);
+		}
+		return stack.peek().createAction(executor, stack, args, new ArgumentList(executor, myargs, params));
 	}
 
 	@Nonnull

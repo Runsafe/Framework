@@ -1,12 +1,18 @@
 package no.runsafe.framework.internal.command.argument;
 
 import no.runsafe.framework.api.command.ICommandExecutor;
-import no.runsafe.framework.api.command.argument.*;
+import no.runsafe.framework.api.command.argument.IArgument;
+import no.runsafe.framework.api.command.argument.IArgumentList;
+import no.runsafe.framework.api.command.argument.IValueExpander;
+import no.runsafe.framework.api.command.argument.IValueProvider;
 import no.runsafe.framework.api.player.IPlayer;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 public class ArgumentList implements IArgumentList
