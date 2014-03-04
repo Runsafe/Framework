@@ -27,7 +27,8 @@ public final class MapInitialize extends EventRouterBase<IMapInitializeEvent, Ma
 	@Override
 	public boolean onEvent(MapInitializeEvent event)
 	{
-		return !handler.OnMapInitialize(event.getMap());
+		handler.OnMapInitialize(event.getMap());
+		return false;
 	}
 
 	public static EventRouterFactory Factory()
