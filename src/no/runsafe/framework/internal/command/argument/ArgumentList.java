@@ -94,7 +94,7 @@ public class ArgumentList implements IArgumentList
 
 	@Nonnull
 	@Override
-	public Set<Entry<String, String>> entrySet()
+	public Set<Map.Entry<String, String>> entrySet()
 	{
 		return parameterList.entrySet();
 	}
