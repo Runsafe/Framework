@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 
-public abstract class Player extends BasePlayerArgument
+public class Player extends BasePlayerArgument
 {
 	@Deprecated
 	public static class Any extends Player
