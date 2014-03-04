@@ -7,7 +7,7 @@ import org.joda.time.format.PeriodFormatterBuilder;
 
 import java.util.Map;
 
-public class Period extends CommandArgumentSpecification<Duration>
+public class Period extends CommandArgumentSpecification<org.joda.time.Period>
 {
 	public Period()
 	{
@@ -20,15 +20,14 @@ public class Period extends CommandArgumentSpecification<Duration>
 	}
 
 	@Override
-	public Duration getValue(IPlayer context, Map<String, String> params)
+	public org.joda.time.Period getValue(IPlayer context, Map<String, String> params)
 	{
 		String param = params.get(name);
 		if (param == null || param.isEmpty())
 			return defaultValue;
 		try
 		{
-			org.joda.time.Period duration = timeParser.parsePeriod(params.get(name));
-			return duration.toStandardDuration();
+			return timeParser.parsePeriod(params.get(name));
 		}
 		catch (IllegalArgumentException e)
 		{
