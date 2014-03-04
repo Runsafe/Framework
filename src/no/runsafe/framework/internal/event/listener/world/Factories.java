@@ -18,5 +18,6 @@ public final class Factories
 		BukkitEventMapper.Register(Load.Factory());
 		BukkitEventMapper.Register(Save.Factory());
 		BukkitEventMapper.Register(Unload.Factory());
+		BukkitEventMapper.Register(MapInitialize.Factory());
 	}
 }
