@@ -54,7 +54,11 @@ public class Item implements IEnchantable
 	{
 		Matcher id = materialId.matcher(type);
 		if (id.matches())
-			return getItem(LegacyMaterial.getById(Integer.valueOf(id.group(1))), Byte.valueOf(id.group(3)));
+		{
+			Integer idPart = Integer.valueOf(id.group(1));
+			Byte dataPart = id.group(3).isEmpty() ? 0 : Byte.valueOf(id.group(3));
+			return getItem(LegacyMaterial.getById(idPart), dataPart);
+		}
 		Material material = Material.getMaterial(type);
 		if (material == null)
 			for (Material candidate : Material.values())
