@@ -42,6 +42,8 @@ public class Player extends BasePlayerArgument
 	@Override
 	public String expand(ICommandExecutor context, @Nullable String value)
 	{
+		if (value == null)
+			return null;
 		if (onlineOnly)
 		{
 			return context instanceof IPlayer
