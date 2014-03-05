@@ -42,8 +42,6 @@ public class Player extends BasePlayerArgument
 	@Override
 	public String expand(ICommandExecutor context, @Nullable String value)
 	{
-		if (value == null)
-			return null;
 		if (onlineOnly)
 		{
 			return context instanceof IPlayer
@@ -78,7 +76,7 @@ public class Player extends BasePlayerArgument
 	private String expandAny(ICommandExecutor context, @Nullable String value)
 	{
 		if (value == null)
-			return super.expand(context, null);
+			return expand ? context.getName() : null;
 
 		Matcher quoted = Command.QUOTED_ARGUMENT.matcher(value);
 		if (quoted.matches())
@@ -100,6 +98,8 @@ public class Player extends BasePlayerArgument
 
 	private String expandOnlineForConsole(ICommandExecutor context, @Nullable String value)
 	{
+		if (value == null)
+			return null;
 		Matcher quoted = Command.QUOTED_ARGUMENT.matcher(value);
 		if (quoted.matches())
 		{
@@ -126,6 +126,8 @@ public class Player extends BasePlayerArgument
 	@Nullable
 	private String expandOnlineForPlayer(IPlayer context, String value)
 	{
+		if(value == null)
+			return expand ? context.getName() : null;
 		Matcher quoted = Command.QUOTED_ARGUMENT.matcher(value);
 		if (quoted.matches())
 		{
