@@ -13,7 +13,7 @@ public abstract class LocationFunction extends Function
 	{
 		ILocation location = run(varargsToParameters(args));
 
-		List<Object> values = new ArrayList<Object>(4);
+		List<Object> values = new ArrayList<Object>(6);
 		values.add(location.getWorld().getName());
 		values.add(location.getX());
 		values.add(location.getY());
