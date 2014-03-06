@@ -190,6 +190,9 @@ public final class ObjectWrapper
 		if (state == null)
 			return new RunsafeBlock(toWrap);
 
+		if (state instanceof Chest)
+			return new RunsafeChest(toWrap, (Chest) state);
+
 		if (state instanceof BrewingStand)
 			return new RunsafeBrewingStand(toWrap, (BrewingStand) state);
 
