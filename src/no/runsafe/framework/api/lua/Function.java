@@ -46,6 +46,9 @@ public abstract class Function extends VarArgFunction
 
 				if (object instanceof Integer)
 					values.add(valueOf((Integer) object));
+
+				if (object instanceof Float)
+					values.add(valueOf((Float) object));
 			}
 		}
 		return varargsOf(values.toArray(new LuaValue[values.size()]));
