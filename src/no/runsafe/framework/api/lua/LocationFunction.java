@@ -18,6 +18,8 @@ public abstract class LocationFunction extends Function
 		values.add(location.getX());
 		values.add(location.getY());
 		values.add(location.getZ());
+		values.add(location.getYaw());
+		values.add(location.getPitch());
 		return objectListToVarargs(values);
 	}
 
