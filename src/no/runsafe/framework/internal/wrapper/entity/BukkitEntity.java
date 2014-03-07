@@ -5,12 +5,14 @@ import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.chunk.IChunk;
 import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
+import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import no.runsafe.framework.minecraft.entity.EntityType;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageByEntityEvent;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent;
+import no.runsafe.framework.timer.Scheduler;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_7_R1.entity.CraftHorse;
 import org.bukkit.entity.Entity;
@@ -74,13 +76,21 @@ public abstract class BukkitEntity extends BukkitMetadata
 
 	private void dismountBeforeTeleport(ILocation location)
 	{
-		Entity vehicle = entity.getVehicle();
+		final Entity vehicle = entity.getVehicle();
 		if (vehicle != null)
 		{
 			if (vehicle.getType() == org.bukkit.entity.EntityType.HORSE && getWorld().isWorld(location.getWorld()))
 			{
 				vehicle.setPassenger(null);
-				vehicle.teleport((Location) ObjectUnwrapper.convert(location));
+				InjectionPlugin.getGlobalComponent(Scheduler.class).startSyncTask(new Runnable()
+				{
+					@Override
+					public void run()
+					{
+						vehicle.teleport(entity);
+						vehicle.setPassenger(entity);
+					}
+				}, 1L);
 			}
 			else
 			{
