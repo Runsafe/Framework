@@ -5,18 +5,14 @@ import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.chunk.IChunk;
 import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
-import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import no.runsafe.framework.minecraft.entity.EntityType;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageByEntityEvent;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent;
-import no.runsafe.framework.timer.Scheduler;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_7_R1.entity.CraftHorse;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.util.Vector;
@@ -64,39 +60,14 @@ public abstract class BukkitEntity extends BukkitMetadata
 		if (targetChunk.isUnloaded())
 			targetChunk.load();
 
-		dismountBeforeTeleport(location);
+		dismountBeforeTeleport();
 		return entity.teleport((Location) ObjectUnwrapper.convert(location));
 	}
 
 	public boolean teleport(IEntity entity)
 	{
-		dismountBeforeTeleport(entity.getLocation());
+		dismountBeforeTeleport();
 		return this.entity.teleport((Entity) ObjectUnwrapper.convert(entity));
-	}
-
-	private void dismountBeforeTeleport(ILocation location)
-	{
-		final Entity vehicle = entity.getVehicle();
-		if (vehicle != null)
-		{
-			if (vehicle.getType() == org.bukkit.entity.EntityType.HORSE && getWorld().isWorld(location.getWorld()))
-			{
-				vehicle.setPassenger(null);
-				InjectionPlugin.getGlobalComponent(Scheduler.class).startSyncTask(new Runnable()
-				{
-					@Override
-					public void run()
-					{
-						vehicle.teleport(entity);
-						vehicle.setPassenger(entity);
-					}
-				}, 1L);
-			}
-			else
-			{
-				vehicle.setPassenger(null);
-			}
-		}
 	}
 
 	public List<IEntity> getNearbyEntities(double x, double y, double z)
@@ -221,6 +192,14 @@ public abstract class BukkitEntity extends BukkitMetadata
 	{
 		entity.setVelocity(velocity);
 	}
+
+	private void dismountBeforeTeleport()
+	{
+		if (entity.getVehicle() != null)
+			entity.getVehicle().eject();
+	}
+
+
 
 	protected final Entity entity;
 }
