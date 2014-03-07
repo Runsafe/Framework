@@ -12,6 +12,7 @@ import no.runsafe.framework.minecraft.entity.EntityType;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageByEntityEvent;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent;
 import org.bukkit.Location;
+import org.bukkit.craftbukkit.v1_7_R1.entity.CraftHorse;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -60,14 +61,26 @@ public abstract class BukkitEntity extends BukkitMetadata
 		if (targetChunk.isUnloaded())
 			targetChunk.load();
 
-		dismountBeforeTeleport();
+		dismountBeforeTeleport(location);
 		return entity.teleport((Location) ObjectUnwrapper.convert(location));
 	}
 
 	public boolean teleport(IEntity entity)
 	{
-		dismountBeforeTeleport();
+		dismountBeforeTeleport(entity.getLocation());
 		return this.entity.teleport((Entity) ObjectUnwrapper.convert(entity));
+	}
+
+	private void dismountBeforeTeleport(ILocation location)
+	{
+		Entity vehicle = entity.getVehicle();
+		if (vehicle != null)
+		{
+			if (vehicle.getType() == org.bukkit.entity.EntityType.HORSE && getWorld().isWorld(location.getWorld()))
+				vehicle.teleport((Location) ObjectUnwrapper.convert(location));
+			else
+				vehicle.setPassenger(null);
+		}
 	}
 
 	public List<IEntity> getNearbyEntities(double x, double y, double z)
@@ -192,14 +205,6 @@ public abstract class BukkitEntity extends BukkitMetadata
 	{
 		entity.setVelocity(velocity);
 	}
-
-	private void dismountBeforeTeleport()
-	{
-		if (entity.getVehicle() != null)
-			entity.getVehicle().eject();
-	}
-
-
 
 	protected final Entity entity;
 }
