@@ -61,26 +61,36 @@ public abstract class BukkitEntity extends BukkitMetadata
 		if (targetChunk.isUnloaded())
 			targetChunk.load();
 
-		dismountBeforeTeleport(location);
+		if (dismountBeforeTeleport(location))
+			return true;
+
 		return entity.teleport((Location) ObjectUnwrapper.convert(location));
 	}
 
 	public boolean teleport(IEntity entity)
 	{
-		dismountBeforeTeleport(entity.getLocation());
+		if (dismountBeforeTeleport(entity.getLocation()))
+			return true;
+
 		return this.entity.teleport((Entity) ObjectUnwrapper.convert(entity));
 	}
 
-	private void dismountBeforeTeleport(ILocation location)
+	private boolean dismountBeforeTeleport(ILocation location)
 	{
 		Entity vehicle = entity.getVehicle();
 		if (vehicle != null)
 		{
 			if (vehicle.getType() == org.bukkit.entity.EntityType.HORSE && getWorld().isWorld(location.getWorld()))
+			{
 				vehicle.teleport((Location) ObjectUnwrapper.convert(location));
+				return true;
+			}
 			else
+			{
 				vehicle.setPassenger(null);
+			}
 		}
+		return false;
 	}
 
 	public List<IEntity> getNearbyEntities(double x, double y, double z)
