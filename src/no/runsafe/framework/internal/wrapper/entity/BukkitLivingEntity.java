@@ -193,6 +193,12 @@ public abstract class BukkitLivingEntity extends RunsafeEntity implements ILivin
 	}
 
 	@Override
+	public boolean isLeashed()
+	{
+		return livingEntity.isLeashed();
+	}
+
+	@Override
 	public void setLeashHolder(RunsafeEntity entity)
 	{
 		livingEntity.setLeashHolder(entity.getRaw());
