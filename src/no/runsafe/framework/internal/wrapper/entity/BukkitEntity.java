@@ -14,6 +14,7 @@ import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageEvent;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_7_R1.entity.CraftHorse;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.util.Vector;
@@ -82,7 +83,7 @@ public abstract class BukkitEntity extends BukkitMetadata
 		{
 			if (vehicle.getType() == org.bukkit.entity.EntityType.HORSE && getWorld().isWorld(location.getWorld()))
 			{
-				vehicle.teleport((Location) ObjectUnwrapper.convert(location));
+				((LivingEntity) vehicle).setHealth(0);
 				return true;
 			}
 			else
