@@ -3,6 +3,7 @@ package no.runsafe.framework.tools;
 import net.minecraft.server.v1_7_R1.*;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.entity.IEntity;
+import no.runsafe.framework.api.entity.ILivingEntity;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 
 import java.io.*;
@@ -12,8 +13,9 @@ import java.math.BigInteger;
 
 public class EntityCompacter
 {
-	public static String convertEntityToString(EntityLiving entity)
+	public static String convertEntityToString(ILivingEntity livingEntity)
 	{
+		EntityLiving entity = (EntityLiving) ObjectUnwrapper.getMinecraft(livingEntity);
 		NBTTagCompound compound = new NBTTagCompound();
 		entity.b(compound);
 
