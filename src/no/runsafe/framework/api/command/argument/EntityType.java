@@ -31,18 +31,11 @@ public class EntityType extends CommandArgumentSpecification<RunsafeEntityType> 
 	public List<String> getAlternatives(IPlayer executor, String partial)
 	{
 		String filter = partial == null ? null : partial.toLowerCase();
-		List<String> alternates = new ArrayList<String>(org.bukkit.entity.EntityType.values().length);
-		for (org.bukkit.entity.EntityType type : org.bukkit.entity.EntityType.values())
-		{
-			if (filter == null)
-				alternates.add(type.name());
-			else
-			{
-				String name = type.name().toLowerCase();
-				if (name.equals(filter) || name.startsWith(filter))
-					alternates.add(type.name());
-			}
-		}
+		List<String> alternates = new ArrayList<String>();
+
+		for (RunsafeEntityType type : no.runsafe.framework.minecraft.entity.EntityType.getTypesByName(filter))
+			alternates.add(type.getAPIName());
+
 		return alternates;
 	}
 
@@ -52,14 +45,9 @@ public class EntityType extends CommandArgumentSpecification<RunsafeEntityType> 
 	{
 		if (value == null)
 			return null;
-		String filter = value.toLowerCase();
-		for (org.bukkit.entity.EntityType type : org.bukkit.entity.EntityType.values())
-		{
-			String name = type.name().toLowerCase();
-			if (name.equals(filter) || name.startsWith(filter))
-				return type.name();
-		}
-		return null;
+
+		List<RunsafeEntityType> types = no.runsafe.framework.minecraft.entity.EntityType.getTypesByName(value.toLowerCase());
+		return types.isEmpty() ? null : types.get(0).getAPIName();
 	}
 
 	@Override
@@ -68,7 +56,7 @@ public class EntityType extends CommandArgumentSpecification<RunsafeEntityType> 
 		String param = params.get(name);
 		RunsafeEntityType value = null;
 		if (param != null && !param.isEmpty())
-			value = no.runsafe.framework.minecraft.entity.EntityType.Get(param);
+			value = no.runsafe.framework.minecraft.entity.EntityType.getTypeByName(param);
 		return value == null ? defaultValue : null;
 	}
 }

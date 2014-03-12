@@ -20,4 +20,6 @@ public interface RunsafeEntityType
 	RunsafeEntity spawn(ILocation location);
 
 	EntityType getRaw();
+
+	String getAPIName();
 }

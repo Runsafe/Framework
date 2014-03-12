@@ -65,6 +65,8 @@ public enum LivingEntity implements RunsafeEntityType
 		return nameOverride == null ? type.getName() : nameOverride;
 	}
 
+
+
 	@Override
 	public int getId()
 	{
@@ -87,6 +89,12 @@ public enum LivingEntity implements RunsafeEntityType
 	public EntityType getRaw()
 	{
 		return type;
+	}
+
+	@Override
+	public String getAPIName()
+	{
+		return name();
 	}
 
 	@SuppressWarnings("CastToConcreteClass")

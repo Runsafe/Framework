@@ -63,6 +63,12 @@ public enum ProjectileEntity implements RunsafeEntityType
 		return type;
 	}
 
+	@Override
+	public String getAPIName()
+	{
+		return name();
+	}
+
 	@SuppressWarnings("CastToConcreteClass")
 	@Override
 	public RunsafeEntity spawn(ILocation location)
