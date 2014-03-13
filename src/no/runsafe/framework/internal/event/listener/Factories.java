@@ -17,6 +17,7 @@ public final class Factories
 			no.runsafe.framework.internal.event.listener.inventory.Factories.Register();
 			no.runsafe.framework.internal.event.listener.player.Factories.Register();
 			no.runsafe.framework.internal.event.listener.world.Factories.Register();
+			no.runsafe.framework.internal.event.listener.vehicle.Factories.Register();
 			registrationNeeded = false;
 		}
 	}
