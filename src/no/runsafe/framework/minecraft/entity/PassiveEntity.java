@@ -19,6 +19,12 @@ public enum PassiveEntity implements RunsafeEntityType
 	ItemFrame(EntityType.ITEM_FRAME),
 	Lightning(EntityType.LIGHTNING),
 	Minecart(EntityType.MINECART),
+	StorageMinecart(EntityType.MINECART_CHEST),
+	PoweredMinecart(EntityType.MINECART_FURNACE),
+	HopperMinecart(EntityType.MINECART_HOPPER),
+	SpawnerMinecart(EntityType.MINECART_MOB_SPAWNER),
+	TNTMinecart(EntityType.MINECART_TNT),
+	CommandMinecart(EntityType.MINECART_COMMAND),
 	Painting(EntityType.PAINTING),
 	Unknown(EntityType.UNKNOWN),
 	Weather(EntityType.WEATHER);
