@@ -3,11 +3,13 @@ package no.runsafe.framework.internal.wrapper;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.entity.IEntity;
+import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.LegacyMaterial;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.Sound;
+import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.minecraft.entity.RunsafeFallingBlock;
 import no.runsafe.framework.minecraft.entity.RunsafeItem;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
@@ -136,9 +138,9 @@ public abstract class BukkitWorld extends BukkitMetadata
 		return ObjectWrapper.convert(world.getEntities());
 	}
 
-	public <T extends Entity> T spawn(ILocation location, Class<T> mob)
+	public IEntity spawn(ILocation location, RunsafeEntityType type)
 	{
-		return world.spawn((Location) ObjectUnwrapper.convert(location), mob);
+		return ObjectWrapper.convert(world.spawn((Location) ObjectUnwrapper.convert(location), type.getEntityType()));
 	}
 
 	public void playEffect(ILocation location, Effect effect, int data)

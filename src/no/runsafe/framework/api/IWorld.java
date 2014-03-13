@@ -3,6 +3,7 @@ package no.runsafe.framework.api;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.metadata.IMetadata;
+import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.Sound;
@@ -66,6 +67,8 @@ public interface IWorld extends IMetadata
 	IEntity spawnCreature(ILocation location, int id);
 
 	IEntity spawnFallingBlock(ILocation location, Item type);
+
+	IEntity spawn(ILocation location, RunsafeEntityType type);
 
 	void strikeLightningEffect(ILocation location);
 
