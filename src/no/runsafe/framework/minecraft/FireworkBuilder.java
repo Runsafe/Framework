@@ -1,8 +1,12 @@
 package no.runsafe.framework.minecraft;
 
 import no.runsafe.framework.api.ILocation;
+import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.wrapper.BukkitWorld;
+import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
+import no.runsafe.framework.minecraft.entity.PassiveEntity;
+import no.runsafe.framework.minecraft.entity.ProjectileEntity;
 import no.runsafe.framework.minecraft.item.meta.RunsafeFirework;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import org.bukkit.Color;
@@ -151,8 +155,9 @@ public class FireworkBuilder
 	@SuppressWarnings("CastToConcreteClass")
 	public void Fire(ILocation location)
 	{
-		org.bukkit.entity.Firework firework =
-			((BukkitWorld) location.getWorld()).spawn(location, org.bukkit.entity.Firework.class);
+		IEntity fireworkEntity = ProjectileEntity.Firework.spawn(location);
+		org.bukkit.entity.Firework firework = ObjectUnwrapper.convert(fireworkEntity);
+
 		firework.getFireworkMeta().setPower(power);
 		if (!effects.isEmpty())
 			firework.getFireworkMeta().addEffects(effects);

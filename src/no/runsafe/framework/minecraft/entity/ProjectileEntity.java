@@ -1,6 +1,7 @@
 package no.runsafe.framework.minecraft.entity;
 
 import no.runsafe.framework.api.ILocation;
+import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.internal.wrapper.BukkitWorld;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
@@ -71,9 +72,9 @@ public enum ProjectileEntity implements RunsafeEntityType
 
 	@SuppressWarnings("CastToConcreteClass")
 	@Override
-	public RunsafeEntity spawn(ILocation location)
+	public IEntity spawn(ILocation location)
 	{
-		return ObjectWrapper.convert(((BukkitWorld) location.getWorld()).spawn(location, type.getEntityClass()));
+		return location.getWorld().spawn(location, this);
 	}
 
 	private final EntityType type;
