@@ -102,7 +102,7 @@ public abstract class BukkitEntity extends BukkitMetadata
 
 	public boolean isDead()
 	{
-		return entity.isDead();
+		return entity != null && entity.isDead();
 	}
 
 	@Nullable
