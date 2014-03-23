@@ -18,6 +18,22 @@ public class RunsafeInventory extends BukkitInventory
 		super(toWrap);
 	}
 
+	public boolean containsStrict(RunsafeMeta item, int amount)
+	{
+		int needed = amount;
+		for (int slot = 0; slot < inventory.getSize(); slot++)
+		{
+			RunsafeMeta itemStack = getItemInSlot(slot);
+			if (itemStack == null || itemStack.equals(AIR) || !itemStack.equals(item))
+				continue;
+
+			needed -= itemStack.getAmount();
+			if (needed <= 0)
+				return true;
+		}
+		return false;
+	}
+
 	public void removeItemInSlot(int slot)
 	{
 		setItemInSlot(AIR, slot);
