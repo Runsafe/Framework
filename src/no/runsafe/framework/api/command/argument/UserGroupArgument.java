@@ -48,7 +48,7 @@ public class UserGroupArgument extends CommandArgumentSpecification<String> impl
 	@Override
 	public String expand(ICommandExecutor context, @Nullable String value)
 	{
-		List<String> alternatives = getAlternatives((IPlayer) context, value);
+		List<String> alternatives = getAlternatives(null, value);
 		return alternatives.isEmpty() || alternatives.size() > 1 ? null : alternatives.get(0);
 	}
 
