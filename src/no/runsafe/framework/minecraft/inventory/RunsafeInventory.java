@@ -82,10 +82,14 @@ public class RunsafeInventory extends BukkitInventory
 		for (int slot = 0; slot < inventory.getSize(); slot++)
 		{
 			RunsafeMeta itemStack = getItemInSlot(slot);
+
+			if (itemStack == null || itemStack.equals(AIR))
+				continue;
+
 			RunsafeMeta cloneStack = itemStack.clone();
 			cloneStack.setAmount(meta.getAmount());
 
-			if (itemStack == null || itemStack.equals(AIR) || !cloneStack.equals(meta))
+			if (!cloneStack.equals(meta))
 				continue;
 
 			if (itemStack.getAmount() <= needed)
