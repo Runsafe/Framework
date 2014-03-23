@@ -22,7 +22,7 @@ public class EntityCompacter
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		DataOutputStream dataOutput = new DataOutputStream(outputStream);
 
-		writeTag(dataOutput, compound);
+		CompactUtil.writeTag(dataOutput, compound);
 		return new BigInteger(1, outputStream.toByteArray()).toString(32);
 	}
 
@@ -33,7 +33,7 @@ public class EntityCompacter
 		ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
 		DataInputStream dis = new DataInputStream(bis);
 
-		NBTTagCompound compound = (NBTTagCompound) readTag(dis);
+		NBTTagCompound compound = (NBTTagCompound) CompactUtil.readTag(dis);
 		World world = ObjectUnwrapper.getMinecraft(location.getWorld());
 		if (world == null)
 			return;
@@ -49,35 +49,5 @@ public class EntityCompacter
 		{
 			// Welp!
 		}
-	}
-
-	private static void writeTag(DataOutput output, NBTBase tag)
-	{
-		try
-		{
-			Method method = NBTCompressedStreamTools.class.getDeclaredMethod("a", NBTBase.class, DataOutput.class);
-			method.setAccessible(true);
-			method.invoke(null, tag, output);
-		}
-		catch (Exception e)
-		{
-			// Welp!
-		}
-	}
-
-	public static NBTBase readTag(DataInput input)
-	{
-		try {
-			Method method = NBTCompressedStreamTools.class.getDeclaredMethod("a", DataInput.class, int.class);
-			method.setAccessible(true);
-
-			return (NBTBase) method.invoke(null, input, 0);
-		}
-		catch (Exception e)
-		{
-			// Welp!
-		}
-
-		return null;
 	}
 }
