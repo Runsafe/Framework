@@ -66,6 +66,28 @@ public class PluginDataFile implements IPluginDataFile
 		return lines;
 	}
 
+	@Override
+	public void writeLines(List<String> lines)
+	{
+		try
+		{
+			fileCheck();
+			BufferedWriter writer = new BufferedWriter(new FileWriter(dataFile));
+
+			for (String line : lines)
+			{
+				writer.write(line);
+				writer.newLine();
+			}
+
+			writer.close();
+		}
+		catch (IOException e)
+		{
+			logger.logException(e);
+		}
+	}
+
 	private void fileCheck() throws IOException
 	{
 		if (!dataFile.exists())
