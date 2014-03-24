@@ -24,5 +24,6 @@ public final class Factories
 		BukkitEventMapper.Register(Tame.Factory());
 		BukkitEventMapper.Register(ItemSpawn.Factory());
 		BukkitEventMapper.Register(Explode.Factory());
+		BukkitEventMapper.Register(ItemDespawn.Factory());
 	}
 }
