@@ -1,7 +1,7 @@
 package no.runsafe.framework.api.command;
 
 import com.google.common.collect.Maps;
-import net.minecraft.server.v1_7_R1.ICommand;
+import net.minecraft.server.v1_7_R2.ICommand;
 import net.minecraft.util.com.google.common.collect.ImmutableList;
 import no.runsafe.framework.api.command.argument.IArgument;
 import no.runsafe.framework.api.command.argument.IArgumentList;

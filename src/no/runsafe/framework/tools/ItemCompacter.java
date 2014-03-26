@@ -1,9 +1,9 @@
 package no.runsafe.framework.tools;
 
-import net.minecraft.server.v1_7_R1.EntityLiving;
-import net.minecraft.server.v1_7_R1.ItemStack;
-import net.minecraft.server.v1_7_R1.NBTTagCompound;
-import net.minecraft.server.v1_7_R1.World;
+import net.minecraft.server.v1_7_R2.EntityLiving;
+import net.minecraft.server.v1_7_R2.ItemStack;
+import net.minecraft.server.v1_7_R2.NBTTagCompound;
+import net.minecraft.server.v1_7_R2.World;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.entity.ILivingEntity;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
