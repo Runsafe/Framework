@@ -447,10 +447,13 @@ public class Item implements IEnchantable
 
 		public static final class Leaves
 		{
-			public static final Item Oak = new Item(Material.LEAVES, true);
-			public static final Item Spruce = new Item(Material.LEAVES, true);
-			public static final Item Birch = new Item(Material.LEAVES, true);
-			public static final Item Jungle = new Item(Material.LEAVES, true);
+			public static final Item Any = new Item(Material.LEAVES, true, AnyData);
+			public static final Item Oak = new Item(Material.LEAVES, true, (byte) 0);
+			public static final Item Spruce = new Item(Material.LEAVES, true, (byte) 1);
+			public static final Item Birch = new Item(Material.LEAVES, true, (byte) 2);
+			public static final Item Jungle = new Item(Material.LEAVES, true, (byte) 3);
+			public static final Item DarkOak = new Item(Material.LEAVES_2, true, (byte) 1);
+			public static final Item Acacia = new Item(Material.LEAVES_2, true, (byte) 2);
 
 			private Leaves()
 			{
