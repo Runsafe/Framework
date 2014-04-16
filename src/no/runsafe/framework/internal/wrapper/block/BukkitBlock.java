@@ -82,5 +82,10 @@ public class BukkitBlock extends BukkitMetadata
 		block.breakNaturally();
 	}
 
+	public int getRedstonePower()
+	{
+		return block.getBlockPower();
+	}
+
 	protected final Block block;
 }

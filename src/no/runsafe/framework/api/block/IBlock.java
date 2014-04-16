@@ -26,4 +26,5 @@ public interface IBlock extends IMetadata
 	boolean isAbleToFall();
 	byte getData();
 	void setData(byte data);
+	int getRedstonePower();
 }
