@@ -2,6 +2,7 @@ package no.runsafe.framework.internal.wrapper;
 
 import net.minecraft.server.v1_7_R2.*;
 import no.runsafe.framework.api.IWorld;
+import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.wrapper.player.BukkitPlayer;
@@ -9,10 +10,12 @@ import no.runsafe.framework.minecraft.entity.RunsafeProjectile;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.craftbukkit.v1_7_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_7_R2.block.CraftBlock;
 import org.bukkit.craftbukkit.v1_7_R2.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_7_R2.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_7_R2.entity.CraftProjectile;
 import org.bukkit.craftbukkit.v1_7_R2.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_7_R2.util.CraftMagicNumbers;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 
@@ -32,6 +35,16 @@ public final class ObjectUnwrapper
 		if (bukkit == null)
 			return null;
 		return ((CraftPlayer) bukkit).getHandle();
+	}
+
+	@Nullable
+	public static Block getMinecraft(IBlock block)
+	{
+		org.bukkit.block.Block bukkitBlock = convert(block);
+		if (bukkitBlock == null)
+			return null;
+
+		return CraftMagicNumbers.getBlock((CraftBlock) bukkitBlock);
 	}
 
 	@Nullable
