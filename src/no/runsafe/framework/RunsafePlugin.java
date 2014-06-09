@@ -90,11 +90,6 @@ public abstract class RunsafePlugin extends InjectionPlugin implements IPluginFi
 	@Override
 	protected void initializePlugin()
 	{
-		initializePlugin(true);
-	}
-
-	protected void initializePlugin(boolean export)
-	{
 		super.initializePlugin();
 
 		output = getComponent(IDebug.class);
@@ -105,15 +100,6 @@ public abstract class RunsafePlugin extends InjectionPlugin implements IPluginFi
 
 		scheduleReadyEvent();
 		output.debugFine("Initiation complete");
-
-		if(export)
-			exportAPI();
-	}
-
-	protected void exportAPI()
-	{
-		for(IGlobalPluginAPI api : getComponents(IGlobalPluginAPI.class))
-			exportAPI(api);
 	}
 
 	/**

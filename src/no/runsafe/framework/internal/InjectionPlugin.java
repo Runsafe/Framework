@@ -3,6 +3,7 @@ package no.runsafe.framework.internal;
 import no.runsafe.framework.api.IKernel;
 import no.runsafe.framework.api.event.plugin.IPluginDisabled;
 import no.runsafe.framework.api.event.plugin.IPluginEnabled;
+import no.runsafe.framework.api.hook.IGlobalPluginAPI;
 import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.internal.brane.Multiverse;
 import no.runsafe.framework.internal.command.Engine;
@@ -134,6 +135,12 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 		for (IPluginEnabled impl : getComponents(IPluginEnabled.class))
 			impl.OnPluginEnabled();
 		output.debugFine("Plugin enabled event executed.");
+
+		for(IGlobalPluginAPI api : getComponents(IGlobalPluginAPI.class))
+		{
+			output.debugFine("Exporting API " + api.getClass().getSimpleName());
+			exportAPI(api);
+		}
 	}
 
 	@Override

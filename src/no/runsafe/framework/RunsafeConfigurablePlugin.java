@@ -26,8 +26,7 @@ public abstract class RunsafeConfigurablePlugin extends RunsafePlugin implements
 	@Override
 	protected void initializePlugin()
 	{
-		super.initializePlugin(false);
+		super.initializePlugin();
 		addComponent(Configuration.class);
-		exportAPI();
 	}
 }
