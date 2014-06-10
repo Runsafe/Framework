@@ -10,24 +10,10 @@ import java.util.List;
 
 public class RunsafePlayerFakeChatEvent extends RunsafePlayerChatEvent
 {
-	@SuppressWarnings("LocalVariableOfConcreteClass")
-	@Nullable
-	@Deprecated
-	public static String Run(IPlayer player, String message)
-	{
-		RunsafePlayerFakeChatEvent event = new RunsafePlayerFakeChatEvent(player, message);
-		if (!event.Fire())
-			return null;
-
-		return String.format(event.format, event.player.getName(), event.message);
-	}
-
 	@Deprecated
 	public static void Broadcast(IPlayer player, String message, IOutput output)
 	{
-		String result = Run(player, message);
-		if (result != null)
-			output.broadcastColoured(result);
+		new RunsafePlayerFakeChatEvent(player, message).Fire();
 	}
 
 	protected RunsafePlayerFakeChatEvent(IPlayer player, String message)
