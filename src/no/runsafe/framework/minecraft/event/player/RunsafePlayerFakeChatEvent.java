@@ -12,6 +12,7 @@ public class RunsafePlayerFakeChatEvent extends RunsafePlayerChatEvent
 {
 	@SuppressWarnings("LocalVariableOfConcreteClass")
 	@Nullable
+	@Deprecated
 	public static String Run(IPlayer player, String message)
 	{
 		RunsafePlayerFakeChatEvent event = new RunsafePlayerFakeChatEvent(player, message);
@@ -21,6 +22,7 @@ public class RunsafePlayerFakeChatEvent extends RunsafePlayerChatEvent
 		return String.format(event.format, event.player.getName(), event.message);
 	}
 
+	@Deprecated
 	public static void Broadcast(IPlayer player, String message, IOutput output)
 	{
 		String result = Run(player, message);
