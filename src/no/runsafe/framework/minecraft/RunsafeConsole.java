@@ -2,6 +2,8 @@ package no.runsafe.framework.minecraft;
 
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.command.ICommandExecutor;
+import no.runsafe.framework.internal.InjectionPlugin;
+import no.runsafe.framework.internal.configuration.FrameworkConfiguration;
 import org.apache.commons.lang.NotImplementedException;
 
 import java.util.logging.Level;
@@ -11,12 +13,13 @@ public class RunsafeConsole implements ICommandExecutor
 	public RunsafeConsole(IConsole output)
 	{
 		this.output = output;
+		this.name = InjectionPlugin.getGlobalComponent(FrameworkConfiguration.class).getConfigValueAsString("console.name");
 	}
 
 	@Override
 	public String getName()
 	{
-		return "console";
+		return name;
 	}
 
 	@Override
@@ -44,4 +47,5 @@ public class RunsafeConsole implements ICommandExecutor
 	}
 
 	private final IConsole output;
+	private final String name;
 }

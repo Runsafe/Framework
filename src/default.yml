@@ -1,4 +1,6 @@
 locale.default: en_GB
+console:
+  name: '&5Server'
 database:
   url: 'jdbc:mysql://localhost:3306/minecraft'
   username: 'minecraftuser'
