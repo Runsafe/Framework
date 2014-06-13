@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class BooleanArgument extends CommandArgumentSpecification<Boolean> implements ITabComplete, IValueExpander
 {
-	protected BooleanArgument(String name)
+	public BooleanArgument(String name)
 	{
 		super(name);
 	}
