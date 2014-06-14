@@ -10,9 +10,12 @@ public interface IArgumentList
 	boolean isAborted();
 	int size();
 	@Nullable
+	@Deprecated
 	String get(Object key);
 	@Nullable
 	<T> T getValue(String param);
+	@Nonnull
+	<T> T getRequired(String param);
 	@Nonnull
 	Set<Map.Entry<String, String>> entrySet();
 }

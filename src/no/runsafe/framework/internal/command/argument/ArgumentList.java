@@ -30,6 +30,7 @@ public class ArgumentList implements IArgumentList
 	}
 
 	@Override
+	@Deprecated
 	public String get(Object key)
 	{
 		return parameterList.get(key);
@@ -63,6 +64,13 @@ public class ArgumentList implements IArgumentList
 		if (!(argument instanceof IValueProvider<?>))
 			return null;
 		return ((IValueProvider<T>) argument).getValue(context, parameterList);
+	}
+
+	@Override
+	@Nonnull
+	public <T> T getRequired(String param)
+	{
+		return ((IValueProvider<T>) arguments.get(param)).getValue(context, parameterList);
 	}
 
 	@Nullable
