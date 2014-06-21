@@ -41,10 +41,22 @@ public interface ICommandHandler
 	@Nonnull
 	String getSubCommandUsage(@Nonnull ICommandExecutor executor, String... path);
 
-	boolean isExecutable(@Nonnull ICommandExecutor executor);
+	boolean isTabCompletable(@Nonnull ICommandExecutor executor);
+
+	boolean isExecutable(ICommandExecutor executor, Map<String, String> params);
 
 	@Nonnull
 	IPreparedCommand prepare(ICommandExecutor executor, String... args);
+
+	IPreparedCommand prepareTabComplete(ICommandExecutor executor, String... strings);
+
+	@Nonnull
+	IPreparedCommand prepareTabCompleteCommand(
+		@Nonnull ICommandExecutor executor,
+		@Nonnull Map<String, String> params,
+		@Nonnull String[] arguments,
+		@Nonnull Stack<ICommandHandler> stack
+	);
 
 	@Nonnull
 	IPreparedCommand prepareCommand(

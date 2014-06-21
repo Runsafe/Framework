@@ -1,7 +1,6 @@
 package no.runsafe.framework.api.command;
 
 import com.google.common.collect.Maps;
-import net.minecraft.server.v1_7_R2.ICommand;
 import net.minecraft.util.com.google.common.collect.ImmutableList;
 import no.runsafe.framework.api.command.argument.IArgument;
 import no.runsafe.framework.api.command.argument.IArgumentList;
@@ -170,7 +169,7 @@ public class Command implements ICommandHandler
 
 		String target = null;
 		for (String sub : subCommands.keySet())
-			if (sub.startsWith(name) && subCommands.get(sub).isExecutable(executor))
+			if (sub.startsWith(name) && subCommands.get(sub).isTabCompletable(executor))
 			{
 				if (target != null)
 					return null;
@@ -201,7 +200,7 @@ public class Command implements ICommandHandler
 	{
 		List<String> available = new ArrayList<String>(subCommands.size());
 		for (Map.Entry<String, ICommandHandler> stringCommandEntry : subCommands.entrySet())
-			if (stringCommandEntry.getValue().isExecutable(executor))
+			if (stringCommandEntry.getValue().isTabCompletable(executor))
 				available.add(stringCommandEntry.getKey());
 		return available;
 	}
@@ -238,6 +237,40 @@ public class Command implements ICommandHandler
 		return prepareCommand(executor, new HashMap<String, String>(args.length), args, new Stack<ICommandHandler>());
 	}
 
+	@Override
+	public IPreparedCommand prepareTabComplete(ICommandExecutor executor, String... args)
+	{
+		console.debugFiner("Preparing command %s %s for tab completion", name, StringUtils.join(args, " "));
+		return prepareTabCompleteCommand(executor, new HashMap<String, String>(args.length), args, new Stack<ICommandHandler>());
+	}
+
+	@Override
+	@Nonnull
+	public final IPreparedCommand prepareTabCompleteCommand(
+		@Nonnull ICommandExecutor executor,
+		@Nonnull Map<String, String> params,
+		@Nonnull String[] arguments,
+		@Nonnull Stack<ICommandHandler> stack
+	)
+	{
+		stack.add(this);
+		String[] args = extractSubCommandArguments(executor, params, arguments);
+		if (args.length > 0)
+		{
+			console.debugFiner("Looking for subcommand %s for tab completion", args[0]);
+			ICommandHandler subCommand = getSubCommand(executor, args[0]);
+			if (subCommand != null && subCommand.isTabCompletable(executor))
+			{
+				subCommand.setConsole(console);
+				args = Arrays.copyOfRange(args, 1, args.length);
+				console.debugFiner("Preparing subcommand %s for tab completion", executor.getName());
+				return subCommand.prepareTabCompleteCommand(executor, params, args, stack);
+			}
+		}
+		Map<String, IArgument> myargs = populateArgumentList(stack);
+		return stack.peek().createAction(executor, stack, args, new ArgumentList(executor, myargs, params));
+	}
+
 	@Nonnull
 	@Override
 	public final IPreparedCommand prepareCommand(
@@ -247,22 +280,13 @@ public class Command implements ICommandHandler
 		@Nonnull Stack<ICommandHandler> stack
 	)
 	{
-		String[] args = arguments;
 		stack.add(this);
-		Map<String, String> myParams = parseParameters(executor, args);
-		params.putAll(myParams);
-		if (!myParams.isEmpty())
-		{
-			args = args.length <= myParams.size()
-				? new String[0] :
-				Arrays.copyOfRange(args, myParams.size(), args.length);
-		}
-		console.debugFiner("Command %s has %d parameters and %d args", name, myParams.size(), args.length);
+		String[] args = extractSubCommandArguments(executor, params, arguments);
 		if (args.length > 0)
 		{
 			console.debugFiner("Looking for subcommand %s", args[0]);
 			ICommandHandler subCommand = getSubCommand(executor, args[0]);
-			if (subCommand != null && subCommand.isExecutable(executor))
+			if (subCommand != null && subCommand.isExecutable(executor, params))
 			{
 				subCommand.setConsole(console);
 				args = Arrays.copyOfRange(args, 1, args.length);
@@ -270,6 +294,27 @@ public class Command implements ICommandHandler
 				return subCommand.prepareCommand(executor, params, args, stack);
 			}
 		}
+		Map<String, IArgument> myargs = populateArgumentList(stack);
+		return stack.peek().createAction(executor, stack, args, new ArgumentList(executor, myargs, params));
+	}
+
+	private String[] extractSubCommandArguments(ICommandExecutor executor, Map<String, String> params, String[] arguments)
+	{
+		String[] args = arguments;
+		Map<String, String> myParams = parseParameters(executor, args);
+		if (!myParams.isEmpty())
+		{
+			params.putAll(myParams);
+			args = args.length <= myParams.size()
+				? new String[0] :
+				Arrays.copyOfRange(args, myParams.size(), args.length);
+		}
+		console.debugFiner("Command %s has %d parameters and %d args", name, myParams.size(), args.length);
+		return args;
+	}
+
+	private Map<String, IArgument> populateArgumentList(Stack<ICommandHandler> stack)
+	{
 		Map<String, IArgument> myargs = Maps.newHashMap(argumentList);
 		for (ICommandHandler command : stack)
 		{
@@ -277,7 +322,7 @@ public class Command implements ICommandHandler
 				if (!myargs.containsKey(argument.toString()))
 					myargs.put(argument.toString(), argument);
 		}
-		return stack.peek().createAction(executor, stack, args, new ArgumentList(executor, myargs, params));
+		return myargs;
 	}
 
 	@Nonnull
@@ -313,17 +358,26 @@ public class Command implements ICommandHandler
 	}
 
 	@Override
-	public boolean isExecutable(@Nonnull ICommandExecutor executor)
+	public boolean isTabCompletable(@Nonnull ICommandExecutor executor)
 	{
 		if (permission == null)
 		{
 			for (ICommandHandler subCommand : subCommands.values())
-				if (subCommand.isExecutable(executor))
+				if (subCommand.isTabCompletable(executor))
 					return true;
 
 			return !getClass().equals(Command.class);
 		}
 		return checkPermission(executor);
+	}
+
+	@Override
+	public boolean isExecutable(ICommandExecutor executor, Map<String, String> params)
+	{
+		if (permission == null)
+			return !getClass().equals(Command.class);
+
+		return executor.hasPermission(effectivePermission(params));
 	}
 
 	private static void validate(IArgument... arguments)
@@ -351,7 +405,7 @@ public class Command implements ICommandHandler
 		Map<String, String> available = new HashMap<String, String>(subCommands.size());
 		for (ICommandHandler sub : subCommands.values())
 		{
-			if (sub.isExecutable(executor))
+			if (sub.isTabCompletable(executor))
 				available.put(sub.getName(), String.format(" - %s", sub.getDescription()));
 		}
 		return available;
@@ -359,17 +413,42 @@ public class Command implements ICommandHandler
 
 	private boolean checkPermission(ICommandExecutor executor)
 	{
-		Matcher params = paramPermission.matcher(permission);
-		if (params.find() && argumentList.containsKey(params.group(1)))
+		Matcher myParams = paramPermission.matcher(permission);
+		if (myParams.find())
 		{
-			IArgument argument = argumentList.get(params.group(1));
-			if (argument instanceof ITabComplete && executor instanceof IPlayer)
-				for (String value : ((ITabComplete) argument).getAlternatives((IPlayer) executor, ""))
-					if (executor.hasPermission(params.replaceAll(value)))
-						return true;
-			return false;
+			boolean satisfied = false;
+			if (argumentList.containsKey(myParams.group(1)))
+			{
+				IArgument argument = argumentList.get(myParams.group(1));
+				if (argument instanceof ITabComplete && executor instanceof IPlayer)
+				{	for (String value : ((ITabComplete) argument).getAlternatives((IPlayer) executor, ""))
+						if (executor.hasPermission(permission.replace(myParams.group(0), value)))
+						{
+							satisfied = true;
+							break;
+						}}
+				else if(executor.hasPermission(permission.replace(myParams.group(0), argumentList.get(myParams.group(1)).toString())))
+					return true;
+			}
+			if (!satisfied)
+				return false;
 		}
 		return executor.hasPermission(permission);
+	}
+
+	private String effectivePermission(Map<String, String> params)
+	{
+		String effectivePermission = permission;
+		Matcher permissionParams = paramPermission.matcher(effectivePermission);
+		while (permissionParams.find())
+		{
+			if (params.containsKey(permissionParams.group(1)))
+				effectivePermission = effectivePermission.replace(permissionParams.group(0), params.get(permissionParams.group(1)));
+
+			else if (argumentList.containsKey(permissionParams.group(1)))
+				effectivePermission = effectivePermission.replace(permissionParams.group(0), argumentList.get(permissionParams.group(1)));
+		}
+		return effectivePermission;
 	}
 
 	private Map<String, String> parseParameters(ICommandExecutor context, String... args)
