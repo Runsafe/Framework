@@ -304,7 +304,7 @@ public class Command implements ICommandHandler
 		{
 			console.debugFiner("Looking for subcommand %s", args[0]);
 			ICommandHandler subCommand = getSubCommand(executor, args[0]);
-			if (subCommand != null && subCommand.isExecutable(executor, myargs))
+			if (subCommand != null)
 			{
 				subCommand.setConsole(console);
 				args = Arrays.copyOfRange(args, 1, args.length);
