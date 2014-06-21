@@ -646,7 +646,8 @@ public class Item implements IEnchantable
 		public static final Item BookAndQuill = new Item(Material.BOOK_AND_QUILL, true);
 		public static final Item Map = new Item(Material.EMPTY_MAP, true);
 		public static final Item FireworkCharge = new Item(Material.FIREWORK_CHARGE, true);
-
+		public static final Item Leash = new Item(Material.LEASH, true);
+		
 		private Miscellaneous()
 		{
 		}
