@@ -4,10 +4,8 @@ import com.google.common.collect.Maps;
 import net.minecraft.util.com.google.common.collect.ImmutableList;
 import no.runsafe.framework.api.command.argument.IArgument;
 import no.runsafe.framework.api.command.argument.IArgumentList;
-import no.runsafe.framework.api.command.argument.ITabComplete;
 import no.runsafe.framework.api.command.argument.IValueExpander;
 import no.runsafe.framework.api.log.IDebug;
-import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.command.PreparedSynchronousCommand;
 import no.runsafe.framework.internal.command.argument.ArgumentList;
 import no.runsafe.framework.text.ChatColour;
@@ -387,7 +385,8 @@ public class Command implements ICommandHandler
 
 			return !getClass().equals(Command.class);
 		}
-		return checkPermission(executor);
+		Matcher myParams = paramPermission.matcher(permission);
+		return (myParams.find() || executor.hasPermission(permission));
 	}
 
 	@Override
@@ -428,31 +427,6 @@ public class Command implements ICommandHandler
 				available.put(sub.getName(), String.format(" - %s", sub.getDescription()));
 		}
 		return available;
-	}
-
-	private boolean checkPermission(ICommandExecutor executor)
-	{
-		Matcher myParams = paramPermission.matcher(permission);
-		if (myParams.find())
-		{
-			boolean satisfied = false;
-			if (argumentList.containsKey(myParams.group(1)))
-			{
-				IArgument argument = argumentList.get(myParams.group(1));
-				if (argument instanceof ITabComplete && executor instanceof IPlayer)
-				{	for (String value : ((ITabComplete) argument).getAlternatives((IPlayer) executor, ""))
-						if (executor.hasPermission(permission.replace(myParams.group(0), value)))
-						{
-							satisfied = true;
-							break;
-						}}
-				else if(executor.hasPermission(permission.replace(myParams.group(0), argumentList.get(myParams.group(1)).toString())))
-					return true;
-			}
-			if (!satisfied)
-				return false;
-		}
-		return executor.hasPermission(permission);
 	}
 
 	private Map<String, String> parseParameters(ICommandExecutor context, String... args)
