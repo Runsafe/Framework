@@ -12,6 +12,7 @@ import org.apache.commons.lang.StringUtils;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public abstract class PreparedCommand implements IPreparedCommand
@@ -30,9 +31,15 @@ public abstract class PreparedCommand implements IPreparedCommand
 		if (permission == null)
 			permission = command.peek().getPermission();
 		if (permission != null)
-			for (Map.Entry<String, String> parameter : parameters.entrySet())
-				if (parameter.getValue() != null)
-					permission = permission.replace('<' + parameter.getKey() + '>', parameter.getValue());
+		{
+			Matcher param = paramPermission.matcher(permission);
+			while(param.find())
+			{
+				String value = parameters.get(param.group(1));
+				if (value != null)
+					permission = permission.replace(param.group(0), value);
+			}
+		}
 		requiredPermission = permission;
 	}
 
@@ -40,7 +47,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 	@Nullable
 	public String getRequiredPermission()
 	{
-		if (requiredPermission == null || paramPermission.matcher(requiredPermission).matches())
+		if (requiredPermission == null || paramPermission.matcher(requiredPermission).find())
 			return null;
 		return requiredPermission;
 	}
@@ -133,5 +140,5 @@ public abstract class PreparedCommand implements IPreparedCommand
 	protected final String[] arguments;
 	protected final IArgumentList parameters;
 	private final String requiredPermission;
-	private static final Pattern paramPermission = Pattern.compile(".*<.*>.*");
+	private static final Pattern paramPermission = Pattern.compile("<(.*)>");
 }
