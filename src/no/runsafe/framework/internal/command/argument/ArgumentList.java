@@ -37,6 +37,12 @@ public class ArgumentList implements IArgumentList
 	}
 
 	@Override
+	public boolean has(String param)
+	{
+		return parameterList.containsKey(param);
+	}
+
+	@Override
 	@Nonnull
 	public Set<Map.Entry<String, String>> entrySet()
 	{

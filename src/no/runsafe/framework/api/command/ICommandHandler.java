@@ -24,6 +24,9 @@ public interface ICommandHandler
 	List<IArgument> getParameters();
 
 	@Nullable
+	String getEffectivePermission(IArgumentList params);
+
+	@Nullable
 	ICommandHandler getTargetSubCommand(ICommandExecutor executor, String... path);
 
 	@Nonnull
@@ -43,7 +46,7 @@ public interface ICommandHandler
 
 	boolean isTabCompletable(@Nonnull ICommandExecutor executor);
 
-	boolean isExecutable(ICommandExecutor executor, Map<String, String> params);
+	boolean isExecutable(ICommandExecutor executor, IArgumentList params);
 
 	@Nonnull
 	IPreparedCommand prepare(ICommandExecutor executor, String... args);

@@ -1,6 +1,8 @@
 package no.runsafe.framework.internal.command;
 
 import com.google.common.collect.Lists;
+import net.minecraft.util.com.google.common.base.Function;
+import net.minecraft.util.com.google.common.collect.Maps;
 import no.runsafe.framework.api.command.*;
 import no.runsafe.framework.api.command.argument.IArgument;
 import no.runsafe.framework.api.command.argument.IArgumentList;
@@ -29,17 +31,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 		if (execute instanceof IContextPermissionProvider)
 			permission = ((IContextPermissionProvider) execute).getPermission(executor, parameters, args);
 		if (permission == null)
-			permission = command.peek().getPermission();
-		if (permission != null)
-		{
-			Matcher param = paramPermission.matcher(permission);
-			while(param.find())
-			{
-				String value = parameters.get(param.group(1));
-				if (value != null)
-					permission = permission.replace(param.group(0), value);
-			}
-		}
+			permission = command.peek().getEffectivePermission(parameters);
 		requiredPermission = permission;
 	}
 
@@ -47,8 +39,6 @@ public abstract class PreparedCommand implements IPreparedCommand
 	@Nullable
 	public String getRequiredPermission()
 	{
-		if (requiredPermission == null || paramPermission.matcher(requiredPermission).find())
-			return null;
 		return requiredPermission;
 	}
 
@@ -140,5 +130,4 @@ public abstract class PreparedCommand implements IPreparedCommand
 	protected final String[] arguments;
 	protected final IArgumentList parameters;
 	private final String requiredPermission;
-	private static final Pattern paramPermission = Pattern.compile("<(.*)>");
 }

@@ -12,6 +12,7 @@ public interface IArgumentList
 	@Nullable
 	@Deprecated
 	String get(Object key);
+	boolean has(String param);
 	@Nullable
 	<T> T getValue(String param);
 	@Nonnull

@@ -140,6 +140,25 @@ public class Command implements ICommandHandler
 		return permission;
 	}
 
+	@Nullable
+	@Override
+	public String getEffectivePermission(IArgumentList params)
+	{
+		if (permission == null)
+			return null;
+		String effectivePermission = permission;
+		Matcher permissionParams = paramPermission.matcher(effectivePermission);
+		while (permissionParams.find())
+		{
+			if (params.has(permissionParams.group(1)))
+				effectivePermission = effectivePermission.replace(permissionParams.group(0), params.get(permissionParams.group(1)));
+
+			else if (argumentList.containsKey(permissionParams.group(1)))
+				effectivePermission = effectivePermission.replace(permissionParams.group(0), argumentList.get(permissionParams.group(1)));
+		}
+		return effectivePermission;
+	}
+
 	/**
 	 * Adds a subcommand to this command
 	 *
@@ -282,11 +301,12 @@ public class Command implements ICommandHandler
 	{
 		stack.add(this);
 		String[] args = extractSubCommandArguments(executor, params, arguments);
+		IArgumentList myargs = new ArgumentList(executor, populateArgumentList(stack), params);
 		if (args.length > 0)
 		{
 			console.debugFiner("Looking for subcommand %s", args[0]);
 			ICommandHandler subCommand = getSubCommand(executor, args[0]);
-			if (subCommand != null && subCommand.isExecutable(executor, params))
+			if (subCommand != null && subCommand.isExecutable(executor, myargs))
 			{
 				subCommand.setConsole(console);
 				args = Arrays.copyOfRange(args, 1, args.length);
@@ -294,8 +314,7 @@ public class Command implements ICommandHandler
 				return subCommand.prepareCommand(executor, params, args, stack);
 			}
 		}
-		Map<String, IArgument> myargs = populateArgumentList(stack);
-		return stack.peek().createAction(executor, stack, args, new ArgumentList(executor, myargs, params));
+		return stack.peek().createAction(executor, stack, args, myargs);
 	}
 
 	private String[] extractSubCommandArguments(ICommandExecutor executor, Map<String, String> params, String[] arguments)
@@ -372,12 +391,12 @@ public class Command implements ICommandHandler
 	}
 
 	@Override
-	public boolean isExecutable(ICommandExecutor executor, Map<String, String> params)
+	public boolean isExecutable(ICommandExecutor executor, IArgumentList params)
 	{
 		if (permission == null)
 			return !getClass().equals(Command.class);
 
-		return executor.hasPermission(effectivePermission(params));
+		return executor.hasPermission(getEffectivePermission(params));
 	}
 
 	private static void validate(IArgument... arguments)
@@ -434,21 +453,6 @@ public class Command implements ICommandHandler
 				return false;
 		}
 		return executor.hasPermission(permission);
-	}
-
-	private String effectivePermission(Map<String, String> params)
-	{
-		String effectivePermission = permission;
-		Matcher permissionParams = paramPermission.matcher(effectivePermission);
-		while (permissionParams.find())
-		{
-			if (params.containsKey(permissionParams.group(1)))
-				effectivePermission = effectivePermission.replace(permissionParams.group(0), params.get(permissionParams.group(1)));
-
-			else if (argumentList.containsKey(permissionParams.group(1)))
-				effectivePermission = effectivePermission.replace(permissionParams.group(0), argumentList.get(permissionParams.group(1)));
-		}
-		return effectivePermission;
 	}
 
 	private Map<String, String> parseParameters(ICommandExecutor context, String... args)
