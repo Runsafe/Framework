@@ -186,7 +186,7 @@ public class Command implements ICommandHandler
 
 		String target = null;
 		for (String sub : subCommands.keySet())
-			if (sub.startsWith(name) && subCommands.get(sub).isTabCompletable(executor))
+			if (sub.startsWith(name))
 			{
 				if (target != null)
 					return null;
@@ -272,7 +272,9 @@ public class Command implements ICommandHandler
 	{
 		stack.add(this);
 		String[] args = extractSubCommandArguments(executor, params, arguments);
-		if (args.length > 0)
+		IArgumentList myargs = new ArgumentList(executor, populateArgumentList(stack), params);
+		String permission = getEffectivePermission(myargs);
+		if (args.length > 0 && (permission == null || paramPermission.matcher(permission).find() || executor.hasPermission(permission)))
 		{
 			console.debugFiner("Looking for subcommand %s for tab completion", args[0]);
 			ICommandHandler subCommand = getSubCommand(executor, args[0]);
@@ -284,8 +286,7 @@ public class Command implements ICommandHandler
 				return subCommand.prepareTabCompleteCommand(executor, params, args, stack);
 			}
 		}
-		Map<String, IArgument> myargs = populateArgumentList(stack);
-		return stack.peek().createAction(executor, stack, args, new ArgumentList(executor, myargs, params));
+		return stack.peek().createAction(executor, stack, args, myargs);
 	}
 
 	@Nonnull
