@@ -148,11 +148,18 @@ public class Command implements ICommandHandler
 		Matcher permissionParams = paramPermission.matcher(effectivePermission);
 		while (permissionParams.find())
 		{
-			if (params.has(permissionParams.group(1)))
-				effectivePermission = effectivePermission.replace(permissionParams.group(0), params.get(permissionParams.group(1)));
-
-			else if (argumentList.containsKey(permissionParams.group(1)))
-				effectivePermission = effectivePermission.replace(permissionParams.group(0), argumentList.get(permissionParams.group(1)));
+			String param = permissionParams.group(1);
+			String paramTag = permissionParams.group(0);
+			if (params.has(param))
+			{
+				if (params.get(param) != null)
+					effectivePermission = effectivePermission.replace(paramTag, params.get(param));
+			}
+			else if (argumentList.containsKey(param))
+			{
+				if (argumentList.get(param) != null)
+					effectivePermission = effectivePermission.replace(paramTag, argumentList.get(param));
+			}
 		}
 		return effectivePermission;
 	}

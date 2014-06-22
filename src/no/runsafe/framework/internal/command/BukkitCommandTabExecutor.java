@@ -82,7 +82,6 @@ public final class BukkitCommandTabExecutor implements ITabExecutor
 	private void executeCommand(CommandSender sender, String... args)
 	{
 		IPreparedCommand preparedCommand = preparedCommand(sender, false, args);
-
 		String permission = preparedCommand.getRequiredPermission();
 		if (!(sender instanceof Player) || permission == null || sender.hasPermission(permission))
 		{
