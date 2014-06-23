@@ -1,7 +1,7 @@
 package no.runsafe.framework.tools.nms;
 
-import net.minecraft.server.v1_7_R2.Entity;
-import net.minecraft.server.v1_7_R2.EntityTypes;
+import net.minecraft.server.v1_7_R3.Entity;
+import net.minecraft.server.v1_7_R3.EntityTypes;
 
 import java.lang.reflect.Field;
 import java.util.Map;

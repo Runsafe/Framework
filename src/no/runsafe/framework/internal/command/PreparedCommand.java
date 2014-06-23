@@ -1,8 +1,6 @@
 package no.runsafe.framework.internal.command;
 
 import com.google.common.collect.Lists;
-import net.minecraft.util.com.google.common.base.Function;
-import net.minecraft.util.com.google.common.collect.Maps;
 import no.runsafe.framework.api.command.*;
 import no.runsafe.framework.api.command.argument.IArgument;
 import no.runsafe.framework.api.command.argument.IArgumentList;
@@ -14,8 +12,6 @@ import org.apache.commons.lang.StringUtils;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public abstract class PreparedCommand implements IPreparedCommand
 {

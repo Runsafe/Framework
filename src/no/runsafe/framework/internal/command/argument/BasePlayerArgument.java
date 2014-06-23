@@ -5,7 +5,6 @@ import no.runsafe.framework.api.command.argument.CommandArgumentSpecification;
 import no.runsafe.framework.api.command.argument.ListOf;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.Player;
-import org.omg.CosNaming._NamingContextExtStub;
 
 import javax.annotation.Nullable;
 import java.util.List;

@@ -12,6 +12,7 @@ import no.runsafe.framework.internal.database.Set;
 import no.runsafe.framework.internal.database.Value;
 import org.joda.time.ReadableInstant;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.sql.*;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ abstract class QueryExecutor extends QueryExecutorBase
 		this.debugger = debugger;
 	}
 
+	@Nonnull
 	@Override
 	public ISet query(String query, Object... params)
 	{
@@ -96,6 +98,7 @@ abstract class QueryExecutor extends QueryExecutorBase
 		}
 	}
 
+	@Nonnull
 	@Override
 	public IRow queryRow(String query, Object... params)
 	{

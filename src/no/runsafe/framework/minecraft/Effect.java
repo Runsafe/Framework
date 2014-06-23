@@ -1,7 +1,6 @@
 package no.runsafe.framework.minecraft;
 
 import no.runsafe.framework.api.ILocation;
-import no.runsafe.framework.internal.wrapper.block.BukkitBlock;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 

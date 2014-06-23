@@ -10,12 +10,14 @@ import no.runsafe.framework.api.database.IValue;
 import no.runsafe.framework.api.player.IPlayer;
 import org.joda.time.DateTime;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
 @SuppressWarnings("AnonymousInnerClass")
 public abstract class QueryExecutorBase implements IQueryExecutor
 {
+	@Nonnull
 	@Override
 	public List<String> queryStrings(String query, Object... params)
 	{
@@ -33,6 +35,7 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 		);
 	}
 
+	@Nonnull
 	@Override
 	public List<Integer> queryIntegers(String query, Object... params)
 	{
@@ -50,6 +53,7 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 		);
 	}
 
+	@Nonnull
 	@Override
 	public List<Long> queryLongs(String query, Object... params)
 	{
@@ -67,6 +71,7 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 		);
 	}
 
+	@Nonnull
 	@Override
 	public List<Double> queryDoubles(String query, Object... params)
 	{
@@ -84,6 +89,7 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 		);
 	}
 
+	@Nonnull
 	@Override
 	public List<Float> queryFloats(String query, Object... params)
 	{
@@ -101,6 +107,7 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 		);
 	}
 
+	@Nonnull
 	@Override
 	public List<DateTime> queryDateTimes(String query, Object... params)
 	{
@@ -118,6 +125,7 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 		);
 	}
 
+	@Nonnull
 	@Override
 	public List<IPlayer> queryPlayers(String query, Object... params)
 	{
@@ -135,6 +143,7 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 		);
 	}
 
+	@Nonnull
 	@Override
 	public List<IWorld> queryWorlds(String query, Object... params)
 	{
@@ -152,6 +161,7 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 		);
 	}
 
+	@Nonnull
 	@Override
 	public List<ILocation> queryLocations(String query, Object... params)
 	{

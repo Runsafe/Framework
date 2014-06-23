@@ -1,10 +1,8 @@
 package no.runsafe.framework.api.command.argument;
 
 import com.google.common.collect.Lists;
-import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.internal.InjectionPlugin;
 import org.bukkit.craftbukkit.libs.joptsimple.internal.Strings;
 
 import javax.annotation.Nonnull;

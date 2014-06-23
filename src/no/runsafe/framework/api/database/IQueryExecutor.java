@@ -5,20 +5,32 @@ import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.player.IPlayer;
 import org.joda.time.DateTime;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public interface IQueryExecutor
 {
+	@Nonnull
 	ISet query(String query, Object... params);
+	@Nonnull
 	IRow queryRow(String query, Object... params);
+	@Nonnull
 	List<String> queryStrings(String query, Object... params);
+	@Nonnull
 	List<Integer> queryIntegers(String query, Object... params);
+	@Nonnull
 	List<Long> queryLongs(String query, Object... params);
+	@Nonnull
 	List<Double> queryDoubles(String query, Object... params);
+	@Nonnull
 	List<Float> queryFloats(String query, Object... params);
+	@Nonnull
 	List<DateTime> queryDateTimes(String query, Object... params);
+	@Nonnull
 	List<IPlayer> queryPlayers(String query, Object... params);
+	@Nonnull
 	List<IWorld> queryWorlds(String query, Object... params);
+	@Nonnull
 	List<ILocation> queryLocations(String query, Object... params);
 	boolean execute(String query, Object... params);
 	int update(String query, Object... params);

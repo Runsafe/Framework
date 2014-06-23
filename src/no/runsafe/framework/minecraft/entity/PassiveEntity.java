@@ -3,8 +3,6 @@ package no.runsafe.framework.minecraft.entity;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
-import no.runsafe.framework.internal.wrapper.BukkitWorld;
-import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 

@@ -1,6 +1,6 @@
 package no.runsafe.framework.api;
 
-import net.minecraft.server.v1_7_R2.NBTTagCompound;
+import net.minecraft.server.v1_7_R3.NBTTagCompound;
 
 public interface ITagObject
 {

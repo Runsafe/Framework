@@ -1,11 +1,11 @@
 package no.runsafe.framework.minecraft.entity;
 
-import net.minecraft.server.v1_7_R2.EntityEnderDragon;
+import net.minecraft.server.v1_7_R3.EntityEnderDragon;
 import no.runsafe.framework.api.entity.IEnderDragon;
 import no.runsafe.framework.api.entity.ILivingEntity;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
-import org.bukkit.craftbukkit.v1_7_R2.entity.CraftEnderDragon;
-import org.bukkit.craftbukkit.v1_7_R2.entity.CraftLivingEntity;
+import org.bukkit.craftbukkit.v1_7_R3.entity.CraftEnderDragon;
+import org.bukkit.craftbukkit.v1_7_R3.entity.CraftLivingEntity;
 import org.bukkit.entity.*;
 import org.bukkit.entity.LivingEntity;
 
