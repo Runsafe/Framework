@@ -96,6 +96,11 @@ public class Buff
 		}
 	}
 
+	public static Buff getFromName(String name)
+	{
+		return new Buff(PotionEffectType.getByName(name), false);
+	}
+
 	public PotionEffect getEffect()
 	{
 		if (root)
