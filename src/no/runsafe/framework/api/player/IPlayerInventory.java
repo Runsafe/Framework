@@ -13,6 +13,8 @@ public interface IPlayerInventory extends IInventoryHolder
 
 	boolean hasItem(Item itemType, int amount);
 
+	boolean hasItemStrict(Item itemType, int amount);
+
 	void removeItem(Item itemType, int amount);
 
 	void removeItem(Item itemType);

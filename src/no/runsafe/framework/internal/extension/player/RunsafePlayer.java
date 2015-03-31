@@ -207,6 +207,28 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 	}
 
 	@Override
+	public boolean hasItemStrict(Item itemType, int amount)
+	{
+		int found = 0;
+		RunsafePlayerInventory inventory = getInventory();
+
+		for (int slot = 0; slot < inventory.getSize(); slot++)
+		{
+			RunsafeMeta itemStack = inventory.getItemInSlot(slot);
+
+			if (itemStack == null || itemStack.getItemId() == 0)
+				continue;
+
+			if (itemStack.getItemId() == itemType.getItemID() && itemStack.getData().getData() == itemType.getData())
+				found += itemStack.getAmount();
+
+			if (found >= amount)
+				return true;
+		}
+		return false;
+	}
+
+	@Override
 	public void removeItem(Item itemType, int amount)
 	{
 		RunsafePlayerInventory inventory = getInventory();
