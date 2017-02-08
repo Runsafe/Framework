@@ -1077,7 +1077,8 @@ public class Item implements IEnchantable
 		public static final Item SugarCaneBlock = new Item(Material.SUGAR_CANE_BLOCK, true);
 		public static final Item Portal = new Item(Material.PORTAL, true);
 		public static final Item CakeBlock = new Item(Material.CAKE_BLOCK, true);
-		public static final Item LockedChest = new Item(Material.LOCKED_CHEST, true);
+		public static final Item LockedChest = new Item(Material.TRAPPED_CHEST, true);
+		public static final Item TrappedChest = new Item(Material.TRAPPED_CHEST, true);
 		public static final Item PumpkinStem = new Item(Material.PUMPKIN_STEM, true);
 		public static final Item MelonStem = new Item(Material.MELON_STEM, true);
 		public static final Item NetherWart = new Item(Material.NETHER_WARTS, true);
