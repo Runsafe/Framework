@@ -125,7 +125,7 @@ public final class LegacyMaterial
 		Map(92, Material.CAKE_BLOCK);
 		Map(93, Material.DIODE_BLOCK_OFF);
 		Map(94, Material.DIODE_BLOCK_ON);
-		Map(95, Material.LOCKED_CHEST);
+		Map(95, Material.TRAPPED_CHEST);
 		Map(96, Material.TRAP_DOOR);
 		Map(97, Material.MONSTER_EGGS);
 		Map(98, Material.SMOOTH_BRICK);
