@@ -1,6 +1,6 @@
 package no.runsafe.framework.minecraft.networking;
 
-import net.minecraft.server.v1_7_R3.PacketPlayOutWorldParticles;
+import net.minecraft.server.v1_8_R3.PacketPlayOutWorldParticles;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorldEffect;
 
@@ -11,6 +11,8 @@ public class PacketWorldParticle extends RunsafePacket
 	{
 		setPacket(
 			new PacketPlayOutWorldParticles(
+				/*
+				//TODO: Fix this
 				effect.getName(),
 				(float) location.getX(),
 				(float) location.getY(),
@@ -20,6 +22,7 @@ public class PacketWorldParticle extends RunsafePacket
 				offset.getZ(),
 				speed,
 				amount
+				*/
 			)
 		);
 	}

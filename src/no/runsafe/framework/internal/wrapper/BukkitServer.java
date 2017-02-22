@@ -135,7 +135,8 @@ public abstract class BukkitServer implements IWrapper<Server>
 
 	public List<IPlayer> getOnlinePlayers()
 	{
-		return ObjectWrapper.convert((OfflinePlayer[]) server.getOnlinePlayers());
+		//return ObjectWrapper.convert((OfflinePlayer[]) server.getOnlinePlayers());
+		return null;//TODO: Fix this
 	}
 
 	public List<IPlayer> getOperators()

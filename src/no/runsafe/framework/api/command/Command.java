@@ -1,7 +1,8 @@
 package no.runsafe.framework.api.command;
 
 import com.google.common.collect.Maps;
-import net.minecraft.util.com.google.common.collect.ImmutableList;
+//import net.minecraft.util.com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableList;//TODO: Verify this does the same thing as that ^
 import no.runsafe.framework.api.command.argument.IArgument;
 import no.runsafe.framework.api.command.argument.IArgumentList;
 import no.runsafe.framework.api.command.argument.IValueExpander;
