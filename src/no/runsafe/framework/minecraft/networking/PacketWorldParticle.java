@@ -11,9 +11,9 @@ public class PacketWorldParticle extends RunsafePacket
 	{
 		setPacket(
 			new PacketPlayOutWorldParticles(
-				/*
-				//TODO: Fix this
-				effect.getName(),
+				//effect.getName(),
+				null,//TODO: Convert effect into enumParticle
+				true, //TODO: find out what this does
 				(float) location.getX(),
 				(float) location.getY(),
 				(float) location.getZ(),
@@ -21,8 +21,9 @@ public class PacketWorldParticle extends RunsafePacket
 				offset.getY(),
 				offset.getZ(),
 				speed,
+				0,//TODO: Find out what this does
 				amount
-				*/
+
 			)
 		);
 	}

@@ -12,6 +12,8 @@ public interface IPlayerGameplay
 
 	boolean isAdventurer();
 
+	boolean isSpectator();
+
 	boolean isPvPFlagged();
 
 	boolean canBuildNow();

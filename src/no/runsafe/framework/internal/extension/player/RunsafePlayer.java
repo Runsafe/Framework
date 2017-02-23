@@ -86,6 +86,12 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 	}
 
 	@Override
+	public boolean isSpectator()
+	{
+		return player != null && player.getGameMode() == GameMode.SPECTATOR;
+	}
+
+	@Override
 	public void teleport(IWorld world, double x, double y, double z)
 	{
 		ILocation target = world.getLocation(x, y, z);
