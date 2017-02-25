@@ -16,8 +16,7 @@ public abstract class BukkitProjectile extends RunsafeEntity
 
 	public RunsafeLivingEntity getShooter()
 	{
-		//return ObjectWrapper.convert(projectile.getShooter());
-		return null; //TODO: Fix this
+		return ObjectWrapper.convert(projectile.getShooter());
 	}
 
 	public void setShooter(RunsafeLivingEntity livingEntity)

@@ -429,6 +429,28 @@ public final class ObjectWrapper
 		return new RunsafeLivingEntity(toWrap);
 	}
 
+	/*
+	* Converts ProjectileSource into a RunsafeLivingEntity.
+	* Returns null if ProjectileSource is not a living entity
+	*/
+	@Nullable
+	public static RunsafeLivingEntity convert(org.bukkit.projectiles.ProjectileSource toWrap)
+	{
+		if (toWrap == null)
+			return null;
+
+		if (toWrap instanceof Creature)
+			return new RunsafeCreature((Creature) toWrap);
+
+		if (toWrap instanceof EnderDragon)
+			return new RunsafeEnderDragon((EnderDragon) toWrap);
+
+		if (toWrap instanceof org.bukkit.entity.LivingEntity)
+			return new RunsafeLivingEntity((org.bukkit.entity.LivingEntity) toWrap);
+
+		return null;
+	}
+
 	@Nullable
 	public static RunsafeProjectile convert(Projectile toWrap)
 	{
