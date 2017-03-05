@@ -8,6 +8,7 @@ import org.bukkit.entity.EntityType;
 
 public enum PassiveEntity implements RunsafeEntityType
 {
+	ArmorStand(EntityType.ARMOR_STAND),
 	Boat(EntityType.BOAT),
 	DroppedItem(EntityType.DROPPED_ITEM),
 	EnderCrystal(EntityType.ENDER_CRYSTAL),
