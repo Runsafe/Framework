@@ -5,6 +5,7 @@ import net.minecraft.server.v1_8_R3.MinecraftServer;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.chunk.IChunk;
+import no.runsafe.framework.api.entity.IProjectileSource;
 import no.runsafe.framework.api.metadata.IMetadata;
 import no.runsafe.framework.api.minecraft.IAnimalTamer;
 import no.runsafe.framework.api.minecraft.IInventoryHolder;
@@ -429,26 +430,12 @@ public final class ObjectWrapper
 		return new RunsafeLivingEntity(toWrap);
 	}
 
-	/*
-	* Converts ProjectileSource into a RunsafeLivingEntity.
-	* Returns null if ProjectileSource is not a living entity
-	*/
 	@Nullable
-	public static RunsafeLivingEntity convert(org.bukkit.projectiles.ProjectileSource toWrap)
+	public static RunsafeBlockProjectileSource convert(org.bukkit.projectiles.BlockProjectileSource toWrap)
 	{
 		if (toWrap == null)
 			return null;
-
-		if (toWrap instanceof Creature)
-			return new RunsafeCreature((Creature) toWrap);
-
-		if (toWrap instanceof EnderDragon)
-			return new RunsafeEnderDragon((EnderDragon) toWrap);
-
-		if (toWrap instanceof org.bukkit.entity.LivingEntity)
-			return new RunsafeLivingEntity((org.bukkit.entity.LivingEntity) toWrap);
-
-		return null;
+		return new RunsafeBlockProjectileSource(toWrap);
 	}
 
 	@Nullable
@@ -565,8 +552,15 @@ public final class ObjectWrapper
 	{
 		if (toWrap == null)
 			return null;
-
 		return new RunsafeDropper(null, toWrap);
+	}
+
+	@Nullable
+	public static IProjectileSource convert(org.bukkit.projectiles.ProjectileSource toWrap)
+	{
+		if (toWrap == null)
+			return null;
+		return convert((org.bukkit.projectiles.ProjectileSource) toWrap);
 	}
 
 	@Nullable

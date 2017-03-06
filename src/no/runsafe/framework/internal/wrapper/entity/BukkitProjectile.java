@@ -3,6 +3,7 @@ package no.runsafe.framework.internal.wrapper.entity;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.minecraft.entity.RunsafeLivingEntity;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
+import no.runsafe.framework.api.entity.IProjectileSource;
 import org.bukkit.entity.Projectile;
 import org.bukkit.util.Vector;
 
@@ -14,7 +15,7 @@ public abstract class BukkitProjectile extends RunsafeEntity
 		projectile = toWrap;
 	}
 
-	public RunsafeLivingEntity getShooter()
+	public IProjectileSource getShooter()
 	{
 		return ObjectWrapper.convert(projectile.getShooter());
 	}

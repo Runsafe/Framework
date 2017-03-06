@@ -6,6 +6,7 @@ import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.api.entity.IProjectileSource;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.entity.BukkitProjectile;
 import org.bukkit.entity.Projectile;
@@ -39,7 +40,7 @@ public class RunsafeProjectile extends BukkitProjectile
 	public IPlayer getShooterPlayer()
 	{
 		IWorld world = getWorld();
-		RunsafeLivingEntity shooter = getShooter();
+		RunsafeLivingEntity shooter = (RunsafeLivingEntity)getShooter();
 
 		if (world != null && shooter != null)
 		{
