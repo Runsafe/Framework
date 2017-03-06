@@ -1,7 +1,7 @@
 package no.runsafe.framework.internal.wrapper;
 
-import net.minecraft.server.v1_7_R3.EntityPlayer;
-import net.minecraft.server.v1_7_R3.MinecraftServer;
+import net.minecraft.server.v1_8_R3.EntityPlayer;
+import net.minecraft.server.v1_8_R3.MinecraftServer;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.chunk.IChunk;
@@ -26,9 +26,9 @@ import no.runsafe.framework.minecraft.item.meta.*;
 import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
 import org.bukkit.*;
 import org.bukkit.block.*;
-import org.bukkit.craftbukkit.v1_7_R3.CraftServer;
-import org.bukkit.craftbukkit.v1_7_R3.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_7_R3.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.event.inventory.InventoryType;
@@ -429,6 +429,28 @@ public final class ObjectWrapper
 		return new RunsafeLivingEntity(toWrap);
 	}
 
+	/*
+	* Converts ProjectileSource into a RunsafeLivingEntity.
+	* Returns null if ProjectileSource is not a living entity
+	*/
+	@Nullable
+	public static RunsafeLivingEntity convert(org.bukkit.projectiles.ProjectileSource toWrap)
+	{
+		if (toWrap == null)
+			return null;
+
+		if (toWrap instanceof Creature)
+			return new RunsafeCreature((Creature) toWrap);
+
+		if (toWrap instanceof EnderDragon)
+			return new RunsafeEnderDragon((EnderDragon) toWrap);
+
+		if (toWrap instanceof org.bukkit.entity.LivingEntity)
+			return new RunsafeLivingEntity((org.bukkit.entity.LivingEntity) toWrap);
+
+		return null;
+	}
+
 	@Nullable
 	public static RunsafeProjectile convert(Projectile toWrap)
 	{
@@ -608,7 +630,7 @@ public final class ObjectWrapper
 		return new CraftServer(server, server.getPlayerList());
 	}
 
-	public static RunsafeMeta convert(net.minecraft.server.v1_7_R3.ItemStack raw)
+	public static RunsafeMeta convert(net.minecraft.server.v1_8_R3.ItemStack raw)
 	{
 		return new RunsafeMeta(CraftItemStack.asCraftMirror(raw));
 	}

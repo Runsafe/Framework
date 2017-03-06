@@ -1,6 +1,6 @@
 package no.runsafe.framework.internal.lua;
 
-import net.minecraft.util.org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FileUtils;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.lua.IGlobal;
