@@ -9,10 +9,12 @@ import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.minecraft.Buff;
 import no.runsafe.framework.minecraft.inventory.RunsafeEntityEquipment;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
+import no.runsafe.framework.minecraft.entity.RunsafeProjectile;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.util.Vector;
 
 import java.util.HashSet;
 import java.util.List;
@@ -226,6 +228,16 @@ public abstract class BukkitLivingEntity extends RunsafeEntity implements ILivin
 	public String getCustomName()
 	{
 		return livingEntity.getCustomName();
+	}
+
+	public <T extends RunsafeProjectile> T launchProjectile(Class<? extends T> projectile)
+	{
+		return this.launchProjectile(projectile, (Vector)null);
+	}
+
+	public <T extends RunsafeProjectile> T launchProjectile(Class<? extends T> projectile, Vector velocity)
+	{
+		return this.launchProjectile(projectile, velocity);
 	}
 
 	protected final LivingEntity livingEntity;

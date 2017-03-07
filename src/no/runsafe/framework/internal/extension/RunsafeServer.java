@@ -86,7 +86,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 			return null;
 
 		String lookup = playerName.toLowerCase();
-		List<OfflinePlayer> players = new ArrayList<OfflinePlayer>(server.getOnlinePlayers().length);
+		List<OfflinePlayer> players = new ArrayList<OfflinePlayer>(server.getOnlinePlayers().size());
 		for (OfflinePlayer player : server.getOnlinePlayers())
 			if (player.getName().toLowerCase().startsWith(lookup))
 				players.add(player);
@@ -102,7 +102,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 			return null;
 
 		String lookup = playerName.toLowerCase();
-		List<String> players = new ArrayList<String>(server.getOnlinePlayers().length);
+		List<String> players = new ArrayList<String>(server.getOnlinePlayers().size());
 		for (OfflinePlayer player : server.getOnlinePlayers())
 			if (player.getName().toLowerCase().startsWith(lookup))
 				players.add(player.getName());
@@ -184,7 +184,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 		if (permission == null || permission.isEmpty())
 			return Lists.newArrayList();
 
-		List<IPlayer> results = new ArrayList<IPlayer>(server.getOnlinePlayers().length);
+		List<IPlayer> results = new ArrayList<IPlayer>(server.getOnlinePlayers().size());
 		for (Player player : server.getOnlinePlayers())
 			if (player.hasPermission(permission))
 				results.add(ObjectWrapper.convert((OfflinePlayer) player));

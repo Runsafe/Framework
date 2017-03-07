@@ -8,7 +8,9 @@ public enum GameMode
 {
 	Survival(org.bukkit.GameMode.SURVIVAL),
 	Creative(org.bukkit.GameMode.CREATIVE),
-	Adventure(org.bukkit.GameMode.ADVENTURE);
+	Adventure(org.bukkit.GameMode.ADVENTURE),
+	Spectator(org.bukkit.GameMode.SPECTATOR);
+
 
 	@Nullable
 	public static GameMode search(String name)

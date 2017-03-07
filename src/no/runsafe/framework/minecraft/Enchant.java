@@ -21,6 +21,7 @@ public class Enchant implements IEnchant
 	public static final IEnchant WaterBreathing = new Enchant(Enchantment.OXYGEN, true);
 	public static final IEnchant WaterWorker = new Enchant(Enchantment.WATER_WORKER, true);
 	public static final IEnchant Thorns = new Enchant(Enchantment.THORNS, true);
+	public static final IEnchant DepthStrider = new Enchant(Enchantment.DEPTH_STRIDER, true);
 	public static final IEnchant Damage = new Enchant(Enchantment.DAMAGE_ALL, true);
 	public static final IEnchant DamageUndead = new Enchant(Enchantment.DAMAGE_UNDEAD, true);
 	public static final IEnchant DamageArthropods = new Enchant(Enchantment.DAMAGE_ARTHROPODS, true);
