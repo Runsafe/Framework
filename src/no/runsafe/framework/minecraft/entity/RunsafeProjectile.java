@@ -46,7 +46,7 @@ public class RunsafeProjectile extends BukkitProjectile
 		if(!(shooterSource instanceof RunsafeLivingEntity))
 			return null;
 
-		RunsafeLivingEntity shooter = (RunsafeLivingEntity)getShooter();
+		RunsafeLivingEntity shooter = (RunsafeLivingEntity) getShooter();
 
 		if (world != null && shooter != null)
 		{
