@@ -40,6 +40,12 @@ public class RunsafeProjectile extends BukkitProjectile
 	public IPlayer getShooterPlayer()
 	{
 		IWorld world = getWorld();
+
+		IProjectileSource shooterSource = getShooter();
+
+		if(!(shooterSource instanceof RunsafeLivingEntity))
+			return null;
+
 		RunsafeLivingEntity shooter = (RunsafeLivingEntity)getShooter();
 
 		if (world != null && shooter != null)

@@ -28,7 +28,7 @@ public interface IPlayerGameplay
 
 	void setLevel(int level);
 
-	int getOldLevel();
+	int getOldLevel(); //Returns 0
 
 	@Nullable
 	GameMode getGameMode();
