@@ -11,7 +11,7 @@ import no.runsafe.framework.minecraft.inventory.RunsafeEntityEquipment;
 import java.util.HashSet;
 import java.util.List;
 
-public interface ILivingEntity extends IDamageable
+public interface ILivingEntity extends IDamageable, IProjectileSource
 {
 	IBlock getTargetBlock();
 	RunsafeEntity Fire(ProjectileEntity projectileType);
