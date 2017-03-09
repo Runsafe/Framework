@@ -37,19 +37,11 @@ public class RunsafeProjectile extends BukkitProjectile
 
 	@Nullable
 	@SuppressWarnings("LocalVariableOfConcreteClass")
-	public IPlayer getShooterPlayer()
+	public IPlayer getShootingPlayer()
 	{
-		IWorld world = getWorld();
-		RunsafeLivingEntity shooter = (RunsafeLivingEntity)getShooter();
+		if(getWorld() == null) return null;
 
-		if (world != null && shooter != null)
-		{
-			IEntity shooterEntity = world.getEntityById(shooter.getEntityId());
-
-			if (shooterEntity instanceof IPlayer)
-				return (IPlayer) shooterEntity;
-		}
-
-		return null;
+		IProjectileSource shooterSource = getShooter();
+		return (shooterSource instanceof IPlayer) ? (IPlayer) shooterSource : null;
 	}
 }
