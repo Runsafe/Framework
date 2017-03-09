@@ -5,6 +5,7 @@ import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.entity.IEntity;
+import no.runsafe.framework.api.entity.ILivingEntity;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.api.entity.IProjectileSource;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
@@ -36,20 +37,17 @@ public class RunsafeProjectile extends BukkitProjectile
 	}
 
 	@Nullable
-	@SuppressWarnings("LocalVariableOfConcreteClass")
-	public IPlayer getShooterPlayer()
+	public IPlayer getShootingPlayer()
 	{
-		IWorld world = getWorld();
-		RunsafeLivingEntity shooter = (RunsafeLivingEntity)getShooter();
-
-		if (world != null && shooter != null)
-		{
-			IEntity shooterEntity = world.getEntityById(shooter.getEntityId());
-
-			if (shooterEntity instanceof IPlayer)
-				return (IPlayer) shooterEntity;
-		}
-
-		return null;
+		IProjectileSource shooterSource = getShooter();
+		return (shooterSource instanceof IPlayer) ? (IPlayer) shooterSource : null;
 	}
+
+	@Nullable
+	public ILivingEntity getShootingEntity()
+	{
+		IProjectileSource shooterSource = getShooter();
+		return (shooterSource instanceof ILivingEntity) ? (ILivingEntity) shooterSource : null;
+	}
+
 }
