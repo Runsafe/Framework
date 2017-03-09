@@ -40,9 +40,6 @@ public class RunsafeProjectile extends BukkitProjectile
 	@SuppressWarnings("LocalVariableOfConcreteClass")
 	public IPlayer getShootingPlayer()
 	{
-		if(getWorld() == null)
-			return null;
-
 		IProjectileSource shooterSource = getShooter();
 		return (shooterSource instanceof IPlayer) ? (IPlayer) shooterSource : null;
 	}
@@ -50,9 +47,6 @@ public class RunsafeProjectile extends BukkitProjectile
 	@Nullable
 	public ILivingEntity getShootingEntity()
 	{
-		if(getWorld() == null)
-			return null;
-
 		IProjectileSource shooterSource = getShooter();
 		return (shooterSource instanceof ILivingEntity) ? (ILivingEntity) shooterSource : null;
 	}
