@@ -9,6 +9,8 @@ import no.runsafe.framework.internal.extension.player.RunsafePlayer;
 import no.runsafe.framework.text.ChatColour;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.entity.Player;
 import org.bukkit.map.MapView;
 
 import javax.annotation.Nullable;
@@ -125,7 +127,7 @@ public abstract class BukkitServer implements IWrapper<Server>
 
 	public List<IPlayer> getOfflinePlayers()
 	{
-		return ObjectWrapper.convert((OfflinePlayer[]) server.getOfflinePlayers());
+		return ObjectWrapper.convert(server.getOfflinePlayers());
 	}
 
 	public boolean getOnlineMode()
@@ -135,7 +137,7 @@ public abstract class BukkitServer implements IWrapper<Server>
 
 	public List<IPlayer> getOnlinePlayers()
 	{
-		return ObjectWrapper.convert((OfflinePlayer[]) server.getOnlinePlayers().toArray());
+		return ObjectWrapper.convert((CraftPlayer[]) server.getOnlinePlayers().toArray());
 	}
 
 	public List<IPlayer> getOperators()
