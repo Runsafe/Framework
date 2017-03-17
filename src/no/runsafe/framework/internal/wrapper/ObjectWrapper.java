@@ -68,12 +68,26 @@ public final class ObjectWrapper
 				results.add((Wrap) convert((ItemStack) item));
 			else if (item instanceof OfflinePlayer)
 				results.add((Wrap) convert((OfflinePlayer) item));
+			else if (item instanceof CraftPlayer)
+				results.add((Wrap) convert((CraftPlayer) item));
 		}
 		return results;
 	}
 
 	@Nonnull
 	public static <Wrapper extends IPlayer, Raw extends OfflinePlayer> List<Wrapper> convert(Raw... toWrap)
+	{
+		if (toWrap == null)
+			return Collections.emptyList();
+
+		List<Wrapper> results = new ArrayList<Wrapper>(toWrap.length);
+		for (Raw item : toWrap)
+			results.add((Wrapper) convert(item));
+		return results;
+	}
+
+	@Nonnull
+	public static <Wrapper extends IPlayer, Raw extends CraftPlayer> List<Wrapper> convert(Raw... toWrap)
 	{
 		if (toWrap == null)
 			return Collections.emptyList();
@@ -385,6 +399,14 @@ public final class ObjectWrapper
 
 	@Nullable
 	public static RunsafePlayer convert(OfflinePlayer toWrap)
+	{
+		if (toWrap == null)
+			return null;
+		return new RunsafePlayer(toWrap);
+	}
+
+	@Nullable
+	public static RunsafePlayer convert(CraftPlayer toWrap)
 	{
 		if (toWrap == null)
 			return null;
