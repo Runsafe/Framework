@@ -19,7 +19,6 @@ import no.runsafe.framework.text.ChatColour;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.joda.time.DateTime;
 
 import javax.annotation.Nonnull;
@@ -31,11 +30,6 @@ import java.util.Map;
 public class RunsafePlayer extends BukkitPlayer implements IPlayer
 {
 	public RunsafePlayer(OfflinePlayer toWrap)
-	{
-		super(toWrap);
-	}
-
-	public RunsafePlayer(CraftPlayer toWrap)
 	{
 		super(toWrap);
 	}

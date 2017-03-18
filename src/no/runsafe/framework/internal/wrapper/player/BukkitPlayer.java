@@ -14,7 +14,6 @@ import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
@@ -23,13 +22,6 @@ import java.net.InetSocketAddress;
 public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolder, IAnimalTamer
 {
 	protected BukkitPlayer(OfflinePlayer toWrap)
-	{
-		super(toWrap instanceof Player ? (Player) toWrap : null);
-		player = toWrap instanceof Player ? (Player) toWrap : null;
-		basePlayer = toWrap;
-	}
-
-	protected BukkitPlayer(CraftPlayer toWrap)
 	{
 		super(toWrap instanceof Player ? (Player) toWrap : null);
 		player = toWrap instanceof Player ? (Player) toWrap : null;
