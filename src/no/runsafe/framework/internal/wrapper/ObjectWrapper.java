@@ -394,6 +394,9 @@ public final class ObjectWrapper
 		if (toWrap instanceof Explosive)
 			return convert((Explosive) toWrap);
 
+		if (toWrap instanceof Minecart)
+			return convert((Minecart) toWrap);
+
 		return new RunsafeEntity(toWrap);
 	}
 
@@ -506,6 +509,14 @@ public final class ObjectWrapper
 		if (toWrap == null)
 			return null;
 		return new RunsafeExplosive(toWrap);
+	}
+
+	@Nullable
+	public static RunsafeMinecart convert(Minecart toWrap)
+	{
+		if (toWrap == null)
+			return null;
+		return new RunsafeMinecart(toWrap);
 	}
 
 	@Nullable
