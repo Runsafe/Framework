@@ -2,7 +2,6 @@ package no.runsafe.framework.internal.wrapper;
 
 import net.minecraft.server.v1_8_R3.*;
 import no.runsafe.framework.api.IWorld;
-import no.runsafe.framework.api.IWorldEffect;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.player.IPlayer;
