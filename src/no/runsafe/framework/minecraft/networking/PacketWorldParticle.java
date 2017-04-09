@@ -4,15 +4,27 @@ import net.minecraft.server.v1_8_R3.PacketPlayOutWorldParticles;
 import net.minecraft.server.v1_8_R3.EnumParticle;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorldEffect;
+import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
+import no.runsafe.framework.minecraft.WorldBlockEffect;
 
 public class PacketWorldParticle extends RunsafePacket
 {
 	@SuppressWarnings("NumericCastThatLosesPrecision")
 	public PacketWorldParticle(IWorldEffect effect, ILocation location, WorldParticleOffset offset, float speed, int amount)
 	{
+		//Set item values if needed.
+		int[] itemValues = null;
+		if(effect instanceof WorldBlockEffect)
+		{
+			WorldBlockEffect blockEffect = (WorldBlockEffect) effect;
+			itemValues = new int[]{blockEffect.getBlockID(), blockEffect.getBlockData()};
+		}
+		else
+			itemValues = new int[0];
+
 		setPacket(
 			new PacketPlayOutWorldParticles(
-				EnumParticle.valueOf(effect.getName()),
+				ObjectUnwrapper.getMinecraft(effect),
 				true,
 				(float) location.getX(),
 				(float) location.getY(),
@@ -22,7 +34,7 @@ public class PacketWorldParticle extends RunsafePacket
 				offset.getZ(),
 				speed,
 				amount,
-				0
+				itemValues
 			)
 		);
 	}

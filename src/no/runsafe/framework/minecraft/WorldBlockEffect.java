@@ -9,7 +9,9 @@ public class WorldBlockEffect implements IWorldEffect
 	public WorldBlockEffect(WorldBlockEffectType type, Item blockType)
 	{
 		RunsafeMeta item = blockType.getItem();
-		name = type.getName() + item.getItemId() + '_' + item.getData().getData();
+		name = type.getName();
+		blockID = item.getItemId();
+		blockData = item.getData().getData();
 	}
 
 	@Override
@@ -18,5 +20,17 @@ public class WorldBlockEffect implements IWorldEffect
 		return name;
 	}
 
+	public int getBlockID()
+	{
+		return blockID;
+	}
+
+	public int getBlockData()
+	{
+		return blockData;
+	}
+
 	private final String name;
+	private final int blockID;
+	private final int blockData;
 }
