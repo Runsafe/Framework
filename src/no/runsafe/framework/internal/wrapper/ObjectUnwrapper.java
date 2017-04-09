@@ -80,17 +80,6 @@ public final class ObjectUnwrapper
 		return CraftItemStack.asNMSCopy(stack);
 	}
 
-	@Nullable
-	public static EnumParticle getMinecraft(IWorldEffect effect)
-	{
-		for (EnumParticle bukkitParticle : EnumParticle.values())
-		{
-			if (effect.getName().equals(bukkitParticle.b()))
-				return bukkitParticle;
-		}
-		return null;
-	}
-
 	@SuppressWarnings("unchecked")
 	@Nullable
 	public static <T> T convert(Object wrapper)

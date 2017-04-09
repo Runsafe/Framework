@@ -24,7 +24,7 @@ public class PacketWorldParticle extends RunsafePacket
 
 		setPacket(
 			new PacketPlayOutWorldParticles(
-				ObjectUnwrapper.getMinecraft(effect),
+				effect.getBukkitParticle(),
 				true,
 				(float) location.getX(),
 				(float) location.getY(),
