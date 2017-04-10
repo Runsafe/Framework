@@ -12,7 +12,7 @@ import org.bukkit.entity.Wolf;
 
 public class RunsafeWolf extends RunsafeAgeable implements IWolf
 {
-	protected RunsafeWolf(Wolf toWrap)
+	public RunsafeWolf(Wolf toWrap)
 	{
 		super(toWrap);
 		wolf = toWrap;
