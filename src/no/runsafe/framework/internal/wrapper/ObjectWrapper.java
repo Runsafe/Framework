@@ -39,6 +39,7 @@ import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.*;
 import org.bukkit.material.MaterialData;
 import org.bukkit.metadata.Metadatable;
+import org.bukkit.projectiles.BlockProjectileSource;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -607,7 +608,11 @@ public final class ObjectWrapper
 	{
 		if (toWrap == null)
 			return null;
-		return convert((org.bukkit.projectiles.ProjectileSource) toWrap);
+		if (toWrap instanceof BlockProjectileSource)
+			return convert((BlockProjectileSource) toWrap);
+		if (toWrap instanceof org.bukkit.entity.LivingEntity)
+			return convert((org.bukkit.entity.LivingEntity) toWrap);
+		return null;
 	}
 
 	@Nullable
