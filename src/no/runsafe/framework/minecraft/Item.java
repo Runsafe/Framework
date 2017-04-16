@@ -623,7 +623,6 @@ public class Item implements IEnchantable
 		{
 			public static final Item Sticky = new Item(Material.PISTON_STICKY_BASE, true);
 			public static final Item Normal = new Item(Material.PISTON_BASE, true);
-			public static final Item Box = new Item(Material.PISTON_BASE, true, (byte) 6);
 
 			private Piston()
 			{

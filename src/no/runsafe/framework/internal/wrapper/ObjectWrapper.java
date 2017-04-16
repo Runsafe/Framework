@@ -22,6 +22,8 @@ import no.runsafe.framework.internal.extension.RunsafeWorld;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.enchantment.RunsafeEnchantment;
 import no.runsafe.framework.minecraft.entity.*;
+import no.runsafe.framework.minecraft.entity.animals.RunsafeOcelot;
+import no.runsafe.framework.minecraft.entity.animals.RunsafeWolf;
 import no.runsafe.framework.minecraft.inventory.*;
 import no.runsafe.framework.minecraft.item.meta.*;
 import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
@@ -37,6 +39,7 @@ import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.*;
 import org.bukkit.material.MaterialData;
 import org.bukkit.metadata.Metadatable;
+import org.bukkit.projectiles.BlockProjectileSource;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -394,6 +397,9 @@ public final class ObjectWrapper
 		if (toWrap instanceof Explosive)
 			return convert((Explosive) toWrap);
 
+		if (toWrap instanceof Minecart)
+			return convert((Minecart) toWrap);
+
 		return new RunsafeEntity(toWrap);
 	}
 
@@ -444,12 +450,24 @@ public final class ObjectWrapper
 			return null;
 
 		if (toWrap instanceof Creature)
-			return new RunsafeCreature((Creature) toWrap);
+			return convert((Creature) toWrap);
 
 		if (toWrap instanceof EnderDragon)
 			return new RunsafeEnderDragon((EnderDragon) toWrap);
 
 		return new RunsafeLivingEntity(toWrap);
+	}
+
+	@Nullable
+	public static RunsafeCreature convert(org.bukkit.entity.Creature toWrap)
+	{
+		if (toWrap instanceof Wolf)
+			return new RunsafeWolf((Wolf) toWrap);
+
+		if (toWrap instanceof Ocelot)
+			return new RunsafeOcelot((Ocelot) toWrap);
+
+		return new RunsafeCreature(toWrap);
 	}
 
 	@Nullable
@@ -506,6 +524,14 @@ public final class ObjectWrapper
 		if (toWrap == null)
 			return null;
 		return new RunsafeExplosive(toWrap);
+	}
+
+	@Nullable
+	public static RunsafeMinecart convert(Minecart toWrap)
+	{
+		if (toWrap == null)
+			return null;
+		return new RunsafeMinecart(toWrap);
 	}
 
 	@Nullable
@@ -582,7 +608,11 @@ public final class ObjectWrapper
 	{
 		if (toWrap == null)
 			return null;
-		return convert((org.bukkit.projectiles.ProjectileSource) toWrap);
+		if (toWrap instanceof BlockProjectileSource)
+			return convert((BlockProjectileSource) toWrap);
+		if (toWrap instanceof org.bukkit.entity.LivingEntity)
+			return convert((org.bukkit.entity.LivingEntity) toWrap);
+		return null;
 	}
 
 	@Nullable

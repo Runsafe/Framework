@@ -80,6 +80,34 @@ public interface IWorld extends IMetadata
 
 	void playSound(ILocation location, Sound sound, float volume, float pitch);
 
+	/**
+	 * Gets a list of game rule names.
+	 * @return Names of various game rules.
+	 */
+	String[] getGameRules();
+
+	/**
+	 * Gets the value of a game rule.
+	 * @param gameRuleName Name of the game rule.
+	 * @return Game rule's value represented as a string.
+	 */
+	String getGameRuleValue(String gameRuleName);
+
+	/**
+	 * Sets a game rule's value.
+	 * @param gameRuleName Name of game rule.
+	 * @param newGameRuleValue Game rule value to set.
+	 * @return True if it could be set, false if it could not be set.
+	 */
+	boolean setGameRuleValue(String gameRuleName, String newGameRuleValue);
+
+	/**
+	 * Checks if a game rule name is an actual game rule.
+	 * @param gameRuleName Game rule name to check.
+	 * @return True if it's real, false if it's not real.
+	 */
+	boolean isGameRule(String gameRuleName);
+
 	boolean isNormal();
 
 	boolean isNether();

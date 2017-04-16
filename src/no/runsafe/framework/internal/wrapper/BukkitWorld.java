@@ -151,6 +151,26 @@ public abstract class BukkitWorld extends BukkitMetadata
 		world.playSound((Location) ObjectUnwrapper.convert(location), sound.getSound(), volume, pitch);
 	}
 
+	public String[] getGameRules()
+	{
+		return world.getGameRules();
+	}
+
+	public String getGameRuleValue(String gameRuleName)
+	{
+		return world.getGameRuleValue(gameRuleName);
+	}
+
+	public boolean setGameRuleValue(String gameRuleName, String newGameRuleValue)
+	{
+		return world.setGameRuleValue(gameRuleName, newGameRuleValue);
+	}
+
+	public boolean isGameRule(String gameRuleName)
+	{
+		return world.isGameRule(gameRuleName);
+	}
+
 	public boolean isNormal()
 	{
 		return world.getEnvironment() == World.Environment.NORMAL;
