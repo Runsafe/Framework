@@ -40,9 +40,13 @@ public enum WorldEffect implements IWorldEffect
 	SNOW_SHOVEL("snowshovel", EnumParticle.SNOW_SHOVEL),
 	SLIME("slime", EnumParticle.SLIME),
 	HEART("heart", EnumParticle.HEART),
+	BARRIER("barrier", EnumParticle.BARRIER),
 	ICON_CRACK("iconcrack_", EnumParticle.ITEM_CRACK),
 	TILE_CRACK("tilecrack_", EnumParticle.BLOCK_CRACK),
-	BLOCK_DUST("blockdust_", EnumParticle.BLOCK_DUST);
+	BLOCK_DUST("blockdust_", EnumParticle.BLOCK_DUST),
+	WATER_DROP("droplet", EnumParticle.WATER_DROP),
+	ITEM_TAKE("take", EnumParticle.ITEM_TAKE),
+	GUARDIAN_POPUP("mobappearance", EnumParticle.MOB_APPEARANCE);
 
 	WorldEffect(String name, EnumParticle particle)
 	{
