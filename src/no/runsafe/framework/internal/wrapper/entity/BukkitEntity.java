@@ -199,7 +199,22 @@ public abstract class BukkitEntity extends BukkitMetadata
 			entity.getVehicle().eject();
 	}
 
+	@Override
+	public boolean equals(Object o)
+	{
+		if (this == o)
+			return true;
 
+		if(o == null)
+			return false;
+
+		if (getClass() != o.getClass())
+			return false;
+
+		BukkitEntity object = (BukkitEntity) o;
+
+		return this.getUniqueId() == object.getUniqueId();
+	}
 
 	protected final Entity entity;
 }
