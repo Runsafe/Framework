@@ -18,6 +18,7 @@ import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
 import java.net.InetSocketAddress;
+import java.util.UUID;
 
 public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolder, IAnimalTamer
 {
@@ -274,6 +275,32 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 	{
 		if (player != null)
 			player.setPlayerListName(name);
+	}
+
+	@Override
+	public UUID getUniqueId()
+	{
+		return basePlayer.getUniqueId();
+	}
+
+	/**
+	 * Determines if two objects are the same player.
+	 * Uses UUID values to compare players.
+	 * @param o Object to compare.
+	 * @return True if and only if both players have the same UUID.
+	 */
+	@Override
+	public boolean equals(Object o)
+	{
+		if (this == o)
+			return true;
+
+		if(o == null || !(o instanceof BukkitPlayer))
+			return false;
+
+		BukkitPlayer object = (BukkitPlayer) o;
+
+		return this.getUniqueId().equals(object.getUniqueId());
 	}
 
 	@Nullable

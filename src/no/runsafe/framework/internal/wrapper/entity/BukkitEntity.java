@@ -199,21 +199,24 @@ public abstract class BukkitEntity extends BukkitMetadata
 			entity.getVehicle().eject();
 	}
 
+	/**
+	 * Determines if two objects are the same entity.
+	 * Uses UUID value to compare objects.
+	 * @param o Object to compare.
+	 * @return True if and only if both objects have the same UUID.
+	 */
 	@Override
 	public boolean equals(Object o)
 	{
 		if (this == o)
 			return true;
 
-		if(o == null)
-			return false;
-
-		if (getClass() != o.getClass())
+		if(o == null || !(o instanceof BukkitEntity))
 			return false;
 
 		BukkitEntity object = (BukkitEntity) o;
 
-		return this.getUniqueId() == object.getUniqueId();
+		return this.getUniqueId().equals(object.getUniqueId());
 	}
 
 	protected final Entity entity;
