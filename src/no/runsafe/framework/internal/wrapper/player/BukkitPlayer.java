@@ -284,6 +284,36 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 	}
 
 	/**
+	 * Sends a title to the player.
+	 * If either value is null, it will be treated as blank.
+	 * @param title Main title message.
+	 * @param subtitle Subtitle message.
+	 */
+	public void sendTitle(String title, String subtitle)
+	{
+		if (player == null)
+			return;
+
+		if (title == null)
+			title = "";
+
+		if (subtitle == null)
+			subtitle = "";
+
+		player.sendTitle(title, subtitle);
+	}
+
+	/**
+	 * Resets title sent to player.
+	 * Makes title dissapear from player's view if it hasn't already
+	 */
+	public void resetTitle()
+	{
+		if (player != null)
+			player.resetTitle();
+	}
+
+	/**
 	 * Determines if two objects are the same player.
 	 * Uses UUID values to compare players.
 	 * @param o Object to compare.
