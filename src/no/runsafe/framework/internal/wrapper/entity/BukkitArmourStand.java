@@ -1,9 +1,10 @@
 package no.runsafe.framework.internal.wrapper.entity;
 
 import no.runsafe.framework.internal.vector.Point3D;
+import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.entity.RunsafeLivingEntity;
+import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.EulerAngle;
 
 public class BukkitArmourStand extends RunsafeLivingEntity
@@ -18,72 +19,72 @@ public class BukkitArmourStand extends RunsafeLivingEntity
 	 * Gets item armour stand is holding.
 	 * @return Item held.
 	 */
-	ItemStack getItemInHand()
+	RunsafeMeta getItemInHand()
 	{
-		return stand.getItemInHand();
+		return ObjectWrapper.convert(stand.getItemInHand());
 	}
 
 	/**
 	 * Makes the armour stand hold an item.
 	 * @param item Thing to be held.
 	 */
-	void setItemInHand(ItemStack item)
+	void setItemInHand(RunsafeMeta itemStack)
 	{
-		stand.setItemInHand(item);
+		stand.setItemInHand(itemStack.getRaw());
 	}
 
 	/**
 	 * Gets item in boots slot.
 	 * @return boots
 	 */
-	public ItemStack getBoots()
+	public RunsafeMeta getBoots()
 	{
-		return stand.getBoots();
+		return ObjectWrapper.convert(stand.getBoots());
 	}
 
 	/**
 	 * Give this armour stand boots.
 	 * @param item boots
 	 */
-	public void setBoots(ItemStack item)
+	public void setBoots(RunsafeMeta itemStack)
 	{
-		stand.setBoots(item);
+		stand.setBoots(itemStack.getRaw());
 	}
 
 	/**
 	 * Gets item in pants slot.
 	 * @return pants
 	 */
-	public ItemStack getLeggings()
+	public RunsafeMeta getLeggings()
 	{
-		return stand.getLeggings();
+		return ObjectWrapper.convert(stand.getLeggings());
 	}
 
 	/**
 	 * Give this armour stand pants.
 	 * @param item pants
 	 */
-	public void setLeggings(ItemStack item)
+	public void setLeggings(RunsafeMeta itemStack)
 	{
-		stand.setLeggings(item);
+		stand.setLeggings(itemStack.getRaw());
 	}
 
 	/**
 	 * Gets item in chestplate slot.
 	 * @return Chestplate.
 	 */
-	public ItemStack getChestplate()
+	public RunsafeMeta getChestplate()
 	{
-		return stand.getChestplate();
+		return ObjectWrapper.convert(stand.getChestplate());
 	}
 
 	/**
 	 * Set a chestplate.
 	 * @param item Chestplate
 	 */
-	public void setChestplate(ItemStack item)
+	public void setChestplate(RunsafeMeta itemStack)
 	{
-		stand.setChestplate(item);
+		stand.setChestplate(itemStack.getRaw());
 	}
 
 	/**
@@ -91,9 +92,9 @@ public class BukkitArmourStand extends RunsafeLivingEntity
 	 * May or may not be a helmet.
 	 * @return item in helmet slot
 	 */
-	public ItemStack getHelmet()
+	public RunsafeMeta getHelmet()
 	{
-		return stand.getHelmet();
+		return ObjectWrapper.convert(stand.getHelmet());
 	}
 
 	/**
@@ -101,9 +102,9 @@ public class BukkitArmourStand extends RunsafeLivingEntity
 	 * Can be a block or item, not limited to normal helmets.
 	 * @param item Hat
 	 */
-	public void setHelmet(ItemStack item)
+	public void setHelmet(RunsafeMeta itemStack)
 	{
-		stand.setHelmet(item);
+		stand.setHelmet(itemStack.getRaw());
 	}
 
 	/**
