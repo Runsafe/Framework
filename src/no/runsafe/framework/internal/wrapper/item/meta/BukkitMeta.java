@@ -127,4 +127,16 @@ public abstract class BukkitMeta extends RunsafeItemStack
 		}
 		return this;
 	}
+
+	public BukkitMeta clearLore()
+	{
+		ItemMeta meta = getRawMeta();
+		List<String> metaD = meta == null ? null : meta.getLore();
+		if (meta != null)
+		{
+			meta.getLore().clear();
+			itemStack.setItemMeta(meta);
+		}
+		return this;
+	}
 }
