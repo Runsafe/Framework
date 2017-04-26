@@ -21,6 +21,9 @@ public interface IServer
 	IPlayer getPlayer(String playerName);
 
 	@Nullable
+	IPlayer getPlayer(UUID playerUUID);
+
+	@Nullable
 	IPlayer getOnlinePlayer(IPlayer context, String playerName);
 
 	@Nullable
