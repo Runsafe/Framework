@@ -201,10 +201,10 @@ public abstract class BukkitEntity extends BukkitMetadata
 
 	/**
 	 * Determines if two objects are the same entity.
-	 * Uses UUID value to compare objects.
+	 * Uses the EntityID value to compare objects.
 	 * If Object o is a spigot entity, this object's raw value will be compared.
 	 * @param o Object to compare.
-	 * @return True if and only if both objects have the same UUID.
+	 * @return True if and only if both objects have the same entity id.
 	 */
 	@Override
 	public boolean equals(Object o)
@@ -215,19 +215,13 @@ public abstract class BukkitEntity extends BukkitMetadata
 		if(o == null)
 			return false;
 
+		Entity rawObject = null;
 		if (o instanceof BukkitEntity)
-		{
-			BukkitEntity objectEntity = (BukkitEntity) o;
-			return this.getUniqueId().equals(objectEntity.getUniqueId());
-		}
+			rawObject = ((BukkitEntity) o).getRaw();
 		else if (o instanceof Entity)
-		{
-			Entity objectEntity = (Entity) o;
-			Entity rawEntity = this.getRaw();
-			return objectEntity.equals(rawEntity);
-		}
+			rawObject = ((Entity) o);
 
-		return false;
+		return this.getRaw().equals(rawObject);
 	}
 
 	protected final Entity entity;
