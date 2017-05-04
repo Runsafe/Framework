@@ -315,7 +315,9 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 
 	/**
 	 * Determines if two objects are the same player.
-	 * Uses UUID values to compare players.
+	 * Compares raw base player objects via their UUIDs.
+	 * If object passed is an OfflinePlayer object that has the same UUID it will be considered equal.
+	 * Uses the OfflinePlayer equals method to compare UUIDs.
 	 * @param o Object to compare.
 	 * @return True if and only if both players have the same UUID.
 	 */
@@ -325,12 +327,16 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 		if (this == o)
 			return true;
 
-		if(o == null || !(o instanceof BukkitPlayer))
+		if (o == null)
 			return false;
 
-		BukkitPlayer object = (BukkitPlayer) o;
+		OfflinePlayer rawObject = null;
+		if (o instanceof BukkitPlayer)
+			rawObject = ((BukkitPlayer) o).getBasePlayer();
+		else if (o instanceof OfflinePlayer)
+			rawObject = ((OfflinePlayer) o);
 
-		return this.getUniqueId().equals(object.getUniqueId());
+		return this.getBasePlayer().equals(rawObject);
 	}
 
 	@Nullable
