@@ -7,6 +7,10 @@ public interface IPlayerNotification
 {
 	void sendColouredMessage(String format, Object... params);
 
+	void sendTitle(String title, String subtitle);
+
+	void resetTitle();
+
 	void sendBlockChange(IBlock block, byte data);
 
 	void sendBlockChange(ILocation location, int itemId, byte data);

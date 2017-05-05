@@ -452,6 +452,9 @@ public final class ObjectWrapper
 		if (toWrap instanceof Creature)
 			return convert((Creature) toWrap);
 
+		if (toWrap instanceof ArmorStand)
+			return new RunsafeArmourStand((ArmorStand) toWrap);
+
 		if (toWrap instanceof EnderDragon)
 			return new RunsafeEnderDragon((EnderDragon) toWrap);
 

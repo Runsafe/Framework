@@ -199,7 +199,30 @@ public abstract class BukkitEntity extends BukkitMetadata
 			entity.getVehicle().eject();
 	}
 
+	/**
+	 * Determines if two objects are the same entity.
+	 * Uses UUIDs to compare objects.
+	 * Can compare against runsafe and spigot entities.
+	 * @param o Object to compare.
+	 * @return True if and only if both objects have the same UUID.
+	 */
+	@Override
+	public boolean equals(Object o)
+	{
+		if (this == o)
+			return true;
 
+		if(o == null)
+			return false;
+
+		if(o instanceof BukkitEntity)
+			return this.getUniqueId().equals(((BukkitEntity) o).getUniqueId());
+
+		if (o instanceof Entity)
+			return this.getUniqueId().equals(((Entity) o).getUniqueId());
+
+		return false;
+	}
 
 	protected final Entity entity;
 }

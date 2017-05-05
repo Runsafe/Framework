@@ -18,6 +18,7 @@ import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
 import java.net.InetSocketAddress;
+import java.util.UUID;
 
 public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolder, IAnimalTamer
 {
@@ -274,6 +275,42 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 	{
 		if (player != null)
 			player.setPlayerListName(name);
+	}
+
+	@Override
+	public UUID getUniqueId()
+	{
+		return basePlayer.getUniqueId();
+	}
+
+	/**
+	 * Sends a title to the player.
+	 * If either value is null, it will be treated as blank.
+	 * @param title Main title message.
+	 * @param subtitle Subtitle message.
+	 */
+	public void sendTitle(String title, String subtitle)
+	{
+		if (player == null)
+			return;
+
+		if (title == null)
+			title = "";
+
+		if (subtitle == null)
+			subtitle = "";
+
+		player.sendTitle(title, subtitle);
+	}
+
+	/**
+	 * Resets title sent to player.
+	 * Makes title dissapear from player's view if it hasn't already
+	 */
+	public void resetTitle()
+	{
+		if (player != null)
+			player.resetTitle();
 	}
 
 	@Nullable

@@ -22,6 +22,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class RunsafeServer extends BukkitServer implements IServer
 {
@@ -55,6 +56,21 @@ public class RunsafeServer extends BukkitServer implements IServer
 			return new RunsafePlayer(server.getOfflinePlayer(hits.get(0)));
 
 		return new RunsafeAmbiguousPlayer(server.getOfflinePlayer(hits.get(0)), hits);
+	}
+
+	@Override
+	@Nullable
+	public IPlayer getPlayer(UUID playerUUID)
+	{
+		if (playerUUID == null)
+			return null;
+
+		Player rawPlayer = server.getPlayer(playerUUID);
+
+		if (rawPlayer != null && rawPlayer.isOnline())
+			return ObjectWrapper.convert((OfflinePlayer) rawPlayer);
+
+		return ObjectWrapper.convert(server.getOfflinePlayer(playerUUID));
 	}
 
 	@Override
@@ -110,7 +126,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 		return players;
 	}
 
-		@Override
+	@Override
 	@Nullable
 	public IPlayer getPlayerExact(String playerName)
 	{

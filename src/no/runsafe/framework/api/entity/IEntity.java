@@ -42,4 +42,5 @@ public interface IEntity extends IMetadata
 	IEntity getVehicle();
 	RunsafeEntityType getEntityType();
 	void setVelocity(Vector velocity);
+	@Override boolean equals(Object o);
 }
