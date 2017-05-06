@@ -168,7 +168,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 			return;
 
 		if (banner != null)
-			no.runsafe.framework.internal.Player.Get().setKicker(player.getName(), banner);
+			no.runsafe.framework.internal.Player.Get().setKicker(player, banner);
 		player.setBanned(true);
 		player.kick(reason);
 	}
@@ -179,7 +179,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 		if (player == null)
 			return;
 		if (kicker != null)
-			no.runsafe.framework.internal.Player.Get().setKicker(player.getName(), kicker);
+			no.runsafe.framework.internal.Player.Get().setKicker(player, kicker);
 		player.kick(reason);
 	}
 
