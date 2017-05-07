@@ -6,6 +6,7 @@ import no.runsafe.framework.minecraft.event.RunsafeEvent;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 
 import java.net.InetAddress;
+import java.util.UUID;
 
 public class RunsafePlayerPreLoginEvent extends RunsafeEvent
 {
@@ -17,12 +18,17 @@ public class RunsafePlayerPreLoginEvent extends RunsafeEvent
 
 	public IPlayer getPlayer()
 	{
-		return Player.Get().getExact(event.getName());
+		return Player.Get().getExact(event.getUniqueId());
 	}
 
 	public String getName()
 	{
 		return event.getName();
+	}
+
+	public UUID getUniqueId()
+	{
+		return event.getUniqueId();
 	}
 
 	public void allow()
