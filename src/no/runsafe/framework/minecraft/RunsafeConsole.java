@@ -6,6 +6,7 @@ import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.configuration.FrameworkConfiguration;
 import org.apache.commons.lang.NotImplementedException;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 public class RunsafeConsole implements ICommandExecutor
@@ -20,6 +21,16 @@ public class RunsafeConsole implements ICommandExecutor
 	public String getName()
 	{
 		return name;
+	}
+
+	/**
+	* Gets the unique ID.
+	* @return null. The console doesn't have a unique ID.
+	*/
+	@Override
+	public UUID getUniqueId()
+	{
+		return null;
 	}
 
 	@Override
