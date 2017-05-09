@@ -7,7 +7,7 @@ import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.util.EulerAngle;
 
-public class BukkitArmourStand extends RunsafeLivingEntity
+public abstract class BukkitArmourStand extends RunsafeLivingEntity
 {
 	public BukkitArmourStand(ArmorStand toWrap)
 	{
