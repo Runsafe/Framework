@@ -400,6 +400,9 @@ public final class ObjectWrapper
 		if (toWrap instanceof Minecart)
 			return convert((Minecart) toWrap);
 
+		if (toWrap instanceof TNTPrimed)
+			return convert((TNTPrimed) toWrap);
+
 		return new RunsafeEntity(toWrap);
 	}
 
@@ -535,6 +538,14 @@ public final class ObjectWrapper
 		if (toWrap == null)
 			return null;
 		return new RunsafeMinecart(toWrap);
+	}
+
+	@Nullable
+	public static RunsafeTNTPrimed convert(TNTPrimed toWrap)
+	{
+		if (toWrap == null)
+			return null;
+		return new RunsafeTNTPrimed(toWrap);
 	}
 
 	@Nullable
