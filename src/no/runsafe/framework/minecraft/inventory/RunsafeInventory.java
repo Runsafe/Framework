@@ -151,5 +151,14 @@ public class RunsafeInventory extends BukkitInventory
 		}
 	}
 
+	/**
+	 * Checks if this inventory is empty.
+	 * @return True when empty, false otherwise.
+	 */
+	public boolean isEmpty()
+	{
+		return this.getContents().size() == 0;
+	}
+
 	private static final RunsafeMeta AIR = Item.Unavailable.Air.getItem();
 }
