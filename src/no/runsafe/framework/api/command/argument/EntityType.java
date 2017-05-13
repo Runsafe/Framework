@@ -57,6 +57,6 @@ public class EntityType extends CommandArgumentSpecification<RunsafeEntityType> 
 		RunsafeEntityType value = null;
 		if (param != null && !param.isEmpty())
 			value = no.runsafe.framework.minecraft.entity.EntityType.getTypeByName(param);
-		return value == null ? defaultValue : null;
+		return value == null ? defaultValue : value;
 	}
 }
