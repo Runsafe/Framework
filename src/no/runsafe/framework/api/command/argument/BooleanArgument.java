@@ -26,7 +26,7 @@ public class BooleanArgument extends CommandArgumentSpecification<Boolean> imple
 	{
 		String value = params.get(name);
 		if (value == null || value.isEmpty())
-			return null;
+			return defaultValue;
 		return value.startsWith("t");
 	}
 

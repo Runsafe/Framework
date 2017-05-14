@@ -5,6 +5,7 @@ import no.runsafe.framework.api.player.IPlayer;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 public final class Player
@@ -24,6 +25,11 @@ public final class Player
 		return server.getOfflinePlayerExact(name);
 	}
 
+	public IPlayer getExact(UUID uniqueId)
+	{
+		return server.getPlayer(uniqueId);
+	}
+
 	public List<String> getOnline(IPlayer context, String filter)
 	{
 		return server.getOnlinePlayers(context, filter);
@@ -34,28 +40,28 @@ public final class Player
 		return server.getOnlinePlayerNames(value);
 	}
 
-	public void setKicker(String name, IPlayer kicker)
+	public void setKicker(IPlayer kickedPlayer, IPlayer kicker)
 	{
-		if (kickingPlayer.containsKey(name))
-			kickingPlayer.replace(name, kicker);
+		if (kickingPlayer.containsKey(kickedPlayer))
+			kickingPlayer.replace(kickedPlayer.getUniqueId(), kicker);
 		else
-			kickingPlayer.put(name, kicker);
+			kickingPlayer.put(kickedPlayer.getUniqueId(), kicker);
 	}
 
 	@Nullable
-	public IPlayer getKicker(String playerName)
+	public IPlayer getKicker(UUID playerId)
 	{
-		if (playerName == null || playerName.isEmpty())
+		if (playerId == null)
 			return null;
-		if (kickingPlayer.containsKey(playerName))
+		if (kickingPlayer.containsKey(server.getPlayer(playerId)))
 		{
-			IPlayer kicker = kickingPlayer.get(playerName);
-			kickingPlayer.remove(playerName);
+			IPlayer kicker = kickingPlayer.get(playerId);
+			kickingPlayer.remove(playerId);
 			return kicker;
 		}
 		return null;
 	}
 
 	private final IServer server;
-	private final ConcurrentHashMap<String, IPlayer> kickingPlayer = new ConcurrentHashMap<String, IPlayer>();
+	private final ConcurrentHashMap<UUID, IPlayer> kickingPlayer = new ConcurrentHashMap<UUID, IPlayer>();
 }
