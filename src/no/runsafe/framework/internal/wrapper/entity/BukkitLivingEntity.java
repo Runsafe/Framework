@@ -67,9 +67,9 @@ public abstract class BukkitLivingEntity extends RunsafeEntity implements ILivin
 	}
 
 	@Override
-	public double getEyeHeight(boolean b)
+	public double getEyeHeight(boolean ignoreSneaking)
 	{
-		return livingEntity.getEyeHeight(b);
+		return livingEntity.getEyeHeight(ignoreSneaking);
 	}
 
 	@Override
@@ -103,9 +103,9 @@ public abstract class BukkitLivingEntity extends RunsafeEntity implements ILivin
 	}
 
 	@Override
-	public void setRemainingAir(int i)
+	public void setRemainingAir(int remainingAirTicks)
 	{
-		livingEntity.setRemainingAir(i);
+		livingEntity.setRemainingAir(remainingAirTicks);
 	}
 
 	@Override
@@ -115,9 +115,9 @@ public abstract class BukkitLivingEntity extends RunsafeEntity implements ILivin
 	}
 
 	@Override
-	public void setMaximumAir(int i)
+	public void setMaximumAir(int maximumAirTicks)
 	{
-		livingEntity.setMaximumAir(i);
+		livingEntity.setMaximumAir(maximumAirTicks);
 	}
 
 	@Override
@@ -139,9 +139,9 @@ public abstract class BukkitLivingEntity extends RunsafeEntity implements ILivin
 	}
 
 	@Override
-	public void setMaximumNoDamageTicks(int i)
+	public void setMaximumNoDamageTicks(int maximumNoDamageTicks)
 	{
-		livingEntity.setMaximumNoDamageTicks(i);
+		livingEntity.setMaximumNoDamageTicks(maximumNoDamageTicks);
 	}
 
 	@Override
@@ -163,9 +163,9 @@ public abstract class BukkitLivingEntity extends RunsafeEntity implements ILivin
 	}
 
 	@Override
-	public void setNoDamageTicks(int i)
+	public void setNoDamageTicks(int noDamageTicks)
 	{
-		livingEntity.setNoDamageTicks(i);
+		livingEntity.setNoDamageTicks(noDamageTicks);
 	}
 
 	@Override
