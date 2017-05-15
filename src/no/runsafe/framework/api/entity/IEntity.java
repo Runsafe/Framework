@@ -43,4 +43,5 @@ public interface IEntity extends IMetadata
 	RunsafeEntityType getEntityType();
 	void setVelocity(Vector velocity);
 	@Override boolean equals(Object o);
+	@Override int hashCode();
 }
