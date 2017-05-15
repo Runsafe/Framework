@@ -17,7 +17,6 @@ import java.util.Random;
 
 public class FireworkBuilder
 {
-
 	public static final int HEXADECIMAL = 16;
 
 	public FireworkBuilder Random()

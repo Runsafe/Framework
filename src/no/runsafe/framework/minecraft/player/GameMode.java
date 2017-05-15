@@ -11,7 +11,6 @@ public enum GameMode
 	Adventure(org.bukkit.GameMode.ADVENTURE),
 	Spectator(org.bukkit.GameMode.SPECTATOR);
 
-
 	@Nullable
 	public static GameMode search(String name)
 	{

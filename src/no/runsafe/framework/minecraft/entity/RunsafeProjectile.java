@@ -49,5 +49,4 @@ public class RunsafeProjectile extends BukkitProjectile
 		IProjectileSource shooterSource = getShooter();
 		return (shooterSource instanceof ILivingEntity) ? (ILivingEntity) shooterSource : null;
 	}
-
 }
