@@ -224,5 +224,11 @@ public abstract class BukkitEntity extends BukkitMetadata
 		return false;
 	}
 
+	@Override
+	public int hashCode()
+	{
+		return getUniqueId().hashCode();
+	}
+
 	protected final Entity entity;
 }

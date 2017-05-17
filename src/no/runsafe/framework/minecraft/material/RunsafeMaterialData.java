@@ -22,7 +22,6 @@ public class RunsafeMaterialData extends BukkitMaterialData
 		super(new MaterialData(type));
 	}
 
-
 	@Deprecated
 	public RunsafeMaterialData(int type, byte data)
 	{

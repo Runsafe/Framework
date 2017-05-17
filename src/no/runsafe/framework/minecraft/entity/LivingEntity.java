@@ -67,8 +67,6 @@ public enum LivingEntity implements RunsafeEntityType
 		return nameOverride == null ? type.getName() : nameOverride;
 	}
 
-
-
 	@Override
 	public int getId()
 	{

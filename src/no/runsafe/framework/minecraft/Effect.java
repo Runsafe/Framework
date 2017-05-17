@@ -70,7 +70,6 @@ public class Effect
 	public static final Effect EnderSignal = new Effect(org.bukkit.Effect.ENDER_SIGNAL);
 	public static final Effect MobSpawnerFlames = new Effect(org.bukkit.Effect.MOBSPAWNER_FLAMES);
 
-
 	@SuppressWarnings("CastToConcreteClass")
 	public void Play(ILocation location)
 	{
