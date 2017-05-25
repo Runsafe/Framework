@@ -12,6 +12,7 @@ import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.extension.player.RunsafeAmbiguousPlayer;
 import no.runsafe.framework.internal.extension.player.RunsafePlayer;
 import no.runsafe.framework.timer.Scheduler;
+import org.bukkit.BanList;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
@@ -171,6 +172,15 @@ public class RunsafeServer extends BukkitServer implements IServer
 			no.runsafe.framework.internal.Player.Get().setKicker(player, banner);
 		player.setBanned(true);
 		player.kick(reason);
+	}
+
+	@Override
+	public void pardonPlayer(IPlayer player)
+	{
+		if(player == null)
+			return;
+
+		server.getBanList(BanList.Type.NAME).pardon(player.getName());
 	}
 
 	@Override
