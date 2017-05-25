@@ -57,6 +57,33 @@ public class RunsafeConsole implements ICommandExecutor
 		throw new NotImplementedException("It is not yet supported running commands as the console from code.");
 	}
 
+	/**
+	 * Determines if two objects are the same console.
+	 * Compares using their names.
+	 * @param o Object to compare.
+	 * @return True if and only if both objects have the same name.
+	 */
+	@Override
+	public boolean equals(Object o)
+	{
+		if (this == o)
+			return true;
+
+		if(o == null)
+			return false;
+
+		if(o instanceof RunsafeConsole)
+			return this.getName().equals(((RunsafeConsole) o).getName());
+
+		return false;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return name.hashCode();
+	}
+
 	private final IConsole output;
 	private final String name;
 }
