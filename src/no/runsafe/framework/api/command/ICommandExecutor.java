@@ -10,4 +10,6 @@ public interface ICommandExecutor
 	void sendColouredMessage(String format, Object... params);
 	boolean hasPermission(String permission);
 	boolean performCommand(String command);
+	@Override boolean equals(Object o);
+	@Override int hashCode();
 }
