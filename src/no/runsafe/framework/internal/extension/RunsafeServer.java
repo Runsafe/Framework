@@ -168,9 +168,13 @@ public class RunsafeServer extends BukkitServer implements IServer
 		if (player == null)
 			return;
 
+		String bannerName = "Unknown";
 		if (banner != null)
+		{
 			no.runsafe.framework.internal.Player.Get().setKicker(player, banner);
-		player.setBanned(true);
+			bannerName = banner.getName();
+		}
+		server.getBanList(BanList.Type.NAME).addBan(player.getName(), reason, null, bannerName);
 		player.kick(reason);
 	}
 
