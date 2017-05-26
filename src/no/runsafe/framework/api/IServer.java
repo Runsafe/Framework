@@ -37,7 +37,7 @@ public interface IServer
 
 	void banPlayer(IPlayer banner, IPlayer player, String reason);
 
-	void pardonPlayer(IPlayer player);
+	void unbanPlayer(IPlayer player);
 
 	void kickPlayer(IPlayer kicker, IPlayer player, String reason);
 

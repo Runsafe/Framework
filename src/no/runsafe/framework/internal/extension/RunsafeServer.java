@@ -179,7 +179,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 	}
 
 	@Override
-	public void pardonPlayer(IPlayer player)
+	public void unbanPlayer(IPlayer player)
 	{
 		if(player == null)
 			return;
