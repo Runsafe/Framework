@@ -6,11 +6,11 @@ import no.runsafe.framework.api.minecraft.IEnchant;
 import no.runsafe.framework.api.minecraft.IEnchantable;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.internal.LegacyMaterial;
+import no.runsafe.framework.minecraft.entity.LivingEntity;
 import no.runsafe.framework.minecraft.entity.RunsafeItem;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
 import org.bukkit.Material;
-import org.bukkit.entity.EntityType;
 import org.bukkit.material.MaterialData;
 
 import javax.annotation.Nullable;
@@ -762,32 +762,32 @@ public class Item implements IEnchantable
 			}
 
 			public static final Item Any = new Item(Material.MONSTER_EGG, true, AnyData);
-			public static final Item Creeper = new Item(Material.MONSTER_EGG, true, (byte) EntityType.CREEPER.getTypeId());
-			public static final Item Skeleton = new Item(Material.MONSTER_EGG, true, (byte) EntityType.SKELETON.getTypeId());
-			public static final Item Spider = new Item(Material.MONSTER_EGG, true, (byte) EntityType.SPIDER.getTypeId());
-			public static final Item Zombie = new Item(Material.MONSTER_EGG, true, (byte) EntityType.ZOMBIE.getTypeId());
-			public static final Item Slime = new Item(Material.MONSTER_EGG, true, (byte) EntityType.SLIME.getTypeId());
-			public static final Item Ghast = new Item(Material.MONSTER_EGG, true, (byte) EntityType.GHAST.getTypeId());
-			public static final Item ZombiePigman = new Item(Material.MONSTER_EGG, true, (byte) EntityType.PIG_ZOMBIE.getTypeId());
-			public static final Item Enderman = new Item(Material.MONSTER_EGG, true, (byte) EntityType.ENDERMAN.getTypeId());
-			public static final Item CaveSpider = new Item(Material.MONSTER_EGG, true, (byte) EntityType.CAVE_SPIDER.getTypeId());
-			public static final Item Silverfish = new Item(Material.MONSTER_EGG, true, (byte) EntityType.SILVERFISH.getTypeId());
-			public static final Item Blaze = new Item(Material.MONSTER_EGG, true, (byte) EntityType.BLAZE.getTypeId());
-			public static final Item MagmaCube = new Item(Material.MONSTER_EGG, true, (byte) EntityType.MAGMA_CUBE.getTypeId());
-			public static final Item Bat = new Item(Material.MONSTER_EGG, true, (byte) EntityType.BAT.getTypeId());
-			public static final Item Witch = new Item(Material.MONSTER_EGG, true, (byte) EntityType.WITCH.getTypeId());
-			public static final Item Pig = new Item(Material.MONSTER_EGG, true, (byte) EntityType.PIG.getTypeId());
-			public static final Item Sheep = new Item(Material.MONSTER_EGG, true, (byte) EntityType.SHEEP.getTypeId());
-			public static final Item Cow = new Item(Material.MONSTER_EGG, true, (byte) EntityType.COW.getTypeId());
-			public static final Item Chicken = new Item(Material.MONSTER_EGG, true, (byte) EntityType.CHICKEN.getTypeId());
-			public static final Item Squid = new Item(Material.MONSTER_EGG, true, (byte) EntityType.SQUID.getTypeId());
-			public static final Item Wolf = new Item(Material.MONSTER_EGG, true, (byte) EntityType.WOLF.getTypeId());
-			public static final Item Mooshroom = new Item(Material.MONSTER_EGG, true, (byte) EntityType.MUSHROOM_COW.getTypeId());
-			public static final Item Ocelot = new Item(Material.MONSTER_EGG, true, (byte) EntityType.OCELOT.getTypeId());
-			public static final Item Villager = new Item(Material.MONSTER_EGG, true, (byte) EntityType.VILLAGER.getTypeId());
-			public static final Item Guardian = new Item(Material.MONSTER_EGG, true, (byte) EntityType.GUARDIAN.getTypeId());
-			public static final Item Endermite = new Item(Material.MONSTER_EGG, true, (byte) EntityType.ENDERMITE.getTypeId());
-			public static final Item Rabbit = new Item(Material.MONSTER_EGG, true, (byte) EntityType.RABBIT.getTypeId());
+			public static final Item Creeper = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Creeper.getId());
+			public static final Item Skeleton = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Skeleton.getId());
+			public static final Item Spider = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Spider.getId());
+			public static final Item Zombie = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Zombie.getId());
+			public static final Item Slime = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Slime.getId());
+			public static final Item Ghast = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Ghast.getId());
+			public static final Item ZombiePigman = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.PigZombie.getId());
+			public static final Item Enderman = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Enderman.getId());
+			public static final Item CaveSpider = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.CaveSpider.getId());
+			public static final Item Silverfish = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Silverfish.getId());
+			public static final Item Blaze = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Blaze.getId());
+			public static final Item MagmaCube = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.LavaSlime.getId());
+			public static final Item Bat = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Bat.getId());
+			public static final Item Witch = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Witch.getId());
+			public static final Item Pig = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Pig.getId());
+			public static final Item Sheep = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Sheep.getId());
+			public static final Item Cow = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Cow.getId());
+			public static final Item Chicken = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Chicken.getId());
+			public static final Item Squid = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Squid.getId());
+			public static final Item Wolf = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Wolf.getId());
+			public static final Item Mooshroom = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.MushroomCow.getId());
+			public static final Item Ocelot = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Ocelot.getId());
+			public static final Item Villager = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Villager.getId());
+			public static final Item Guardian = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Guardian.getId());
+			public static final Item Endermite = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Endermite.getId());
+			public static final Item Rabbit = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Rabbit.getId());
 		}
 
 		public static final class Record
