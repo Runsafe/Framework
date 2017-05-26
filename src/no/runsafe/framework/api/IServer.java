@@ -146,8 +146,6 @@ public interface IServer
 
 	boolean unloadWorld(IWorld world, boolean save);
 
-	boolean useExactLoginLocation();
-
 	RunsafeInventory createInventory(RunsafeInventoryHolder holder, int size, String name);
 
 	RunsafeInventory createInventory(RunsafeInventoryHolder holder, int size);

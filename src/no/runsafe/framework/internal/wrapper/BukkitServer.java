@@ -280,11 +280,6 @@ public abstract class BukkitServer implements IWrapper<Server>
 		return world != null && unloadWorld(world.getName(), save);
 	}
 
-	public boolean useExactLoginLocation()
-	{
-		return server.useExactLoginLocation();
-	}
-
 	public RunsafeInventory createInventory(RunsafeInventoryHolder holder, int size, String name)
 	{
 		if (name == null)
