@@ -1,6 +1,7 @@
 package no.runsafe.framework.minecraft;
 
 import no.runsafe.framework.api.ILocation;
+import no.runsafe.framework.minecraft.Item;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
@@ -15,18 +16,18 @@ public class Effect
 
 	public static final class Record
 	{
-		public static final Effect C418_13 = new Effect(org.bukkit.Effect.RECORD_PLAY, Material.GOLD_RECORD.getId());
-		public static final Effect C418_Cat = new Effect(org.bukkit.Effect.RECORD_PLAY, Material.GREEN_RECORD.getId());
-		public static final Effect C418_Blocks = new Effect(org.bukkit.Effect.RECORD_PLAY, Material.RECORD_3.getId());
-		public static final Effect C418_Chirp = new Effect(org.bukkit.Effect.RECORD_PLAY, Material.RECORD_4.getId());
-		public static final Effect C418_Far = new Effect(org.bukkit.Effect.RECORD_PLAY, Material.RECORD_5.getId());
-		public static final Effect C418_Mall = new Effect(org.bukkit.Effect.RECORD_PLAY, Material.RECORD_6.getId());
-		public static final Effect C418_Mellohi = new Effect(org.bukkit.Effect.RECORD_PLAY, Material.RECORD_7.getId());
-		public static final Effect C418_Stal = new Effect(org.bukkit.Effect.RECORD_PLAY, Material.RECORD_8.getId());
-		public static final Effect C418_Strad = new Effect(org.bukkit.Effect.RECORD_PLAY, Material.RECORD_9.getId());
-		public static final Effect C418_Ward = new Effect(org.bukkit.Effect.RECORD_PLAY, Material.RECORD_10.getId());
-		public static final Effect C418_11 = new Effect(org.bukkit.Effect.RECORD_PLAY, Material.RECORD_11.getId());
-		public static final Effect C418_Wait = new Effect(org.bukkit.Effect.RECORD_PLAY, Material.RECORD_12.getId());
+		public static final Effect C418_13 = new Effect(org.bukkit.Effect.RECORD_PLAY, Item.Miscellaneous.Record.C418_13.getItemID());
+		public static final Effect C418_Cat = new Effect(org.bukkit.Effect.RECORD_PLAY, Item.Miscellaneous.Record.C418_Cat.getItemID());
+		public static final Effect C418_Blocks = new Effect(org.bukkit.Effect.RECORD_PLAY, Item.Miscellaneous.Record.C418_Blocks.getItemID());
+		public static final Effect C418_Chirp = new Effect(org.bukkit.Effect.RECORD_PLAY, Item.Miscellaneous.Record.C418_Chirp.getItemID());
+		public static final Effect C418_Far = new Effect(org.bukkit.Effect.RECORD_PLAY, Item.Miscellaneous.Record.C418_Far.getItemID());
+		public static final Effect C418_Mall = new Effect(org.bukkit.Effect.RECORD_PLAY, Item.Miscellaneous.Record.C418_Mall.getItemID());
+		public static final Effect C418_Mellohi = new Effect(org.bukkit.Effect.RECORD_PLAY, Item.Miscellaneous.Record.C418_Mellohi.getItemID());
+		public static final Effect C418_Stal = new Effect(org.bukkit.Effect.RECORD_PLAY, Item.Miscellaneous.Record.C418_Stal.getItemID());
+		public static final Effect C418_Strad = new Effect(org.bukkit.Effect.RECORD_PLAY, Item.Miscellaneous.Record.C418_Strad.getItemID());
+		public static final Effect C418_Ward = new Effect(org.bukkit.Effect.RECORD_PLAY, Item.Miscellaneous.Record.C418_Ward.getItemID());
+		public static final Effect C418_11 = new Effect(org.bukkit.Effect.RECORD_PLAY, Item.Miscellaneous.Record.C418_11.getItemID());
+		public static final Effect C418_Wait = new Effect(org.bukkit.Effect.RECORD_PLAY, Item.Miscellaneous.Record.C418_Wait.getItemID());
 
 		private Record()
 		{

@@ -37,6 +37,8 @@ public interface IServer
 
 	void banPlayer(IPlayer banner, IPlayer player, String reason);
 
+	void unbanPlayer(IPlayer player);
+
 	void kickPlayer(IPlayer kicker, IPlayer player, String reason);
 
 	boolean someoneHasPermission(String permission);
@@ -143,8 +145,6 @@ public interface IServer
 	boolean unloadWorld(String worldName, boolean save);
 
 	boolean unloadWorld(IWorld world, boolean save);
-
-	boolean useExactLoginLocation();
 
 	RunsafeInventory createInventory(RunsafeInventoryHolder holder, int size, String name);
 
