@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public interface IServer extends IPlayerProvider, IPlayerManager, IServerNetwork, IBroadcast, IWhitelistManager, IWorldManager
+public interface IServer extends IPlayerProvider, IPlayerManager, IBroadcast, IWhitelistManager, IWorldManager
 {
 	boolean someoneHasPermission(String permission);
 
@@ -35,11 +35,17 @@ public interface IServer extends IPlayerProvider, IPlayerManager, IServerNetwork
 
 	boolean getGenerateStructures();
 
+	String getIp();
+
 	int getMaxPlayers();
 
 	String getName();
 
+	boolean getOnlineMode();
+
 	List<IPlayer> getOperators();
+
+	int getPort();
 
 	String getServerId();
 
