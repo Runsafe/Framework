@@ -4,7 +4,7 @@ import no.runsafe.framework.api.player.IPlayer;
 
 import java.util.List;
 
-public interface IServerWhitelist
+public interface IWhitelistManager
 {
 	List<IPlayer> getWhitelistedPlayers();
 

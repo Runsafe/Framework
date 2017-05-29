@@ -5,7 +5,7 @@ import no.runsafe.framework.api.player.IPlayer;
 import java.util.List;
 import java.util.Set;
 
-public interface IServerPlayerControl
+public interface IPlayerManager
 {
 	List<IPlayer> getBannedPlayers();
 

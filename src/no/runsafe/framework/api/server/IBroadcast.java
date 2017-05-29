@@ -1,6 +1,6 @@
 package no.runsafe.framework.api.server;
 
-public interface IServerNotification
+public interface IBroadcast
 {
 	int broadcastMessage(String message, String permission);
 

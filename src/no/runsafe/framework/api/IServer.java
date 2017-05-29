@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public interface IServer extends IPlayerProvider, IServerPlayerControl, IServerNetwork, IServerNotification, IServerWhitelist, IServerWorld
+public interface IServer extends IPlayerProvider, IPlayerManager, IServerNetwork, IBroadcast, IWhitelistManager, IWorldManager
 {
 	boolean someoneHasPermission(String permission);
 
