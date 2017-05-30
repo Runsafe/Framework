@@ -22,6 +22,7 @@ import org.bukkit.plugin.Plugin;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -247,6 +248,92 @@ public class RunsafeServer extends BukkitServer implements IServer
 			if (context.shouldNotSee(player))
 				continue;
 			players.add(player.getName());
+		}
+		return players;
+	}
+
+	/**
+	 * Converts a list of IPlayers into a list of their usernames.
+	 *
+	 * @param players List of players.
+	 *                If a player is null, they will be skipped.
+	 *                If a player's username is null or empty, "Invalid Username"
+	 *                will be used instead.
+	 *
+	 * @return List of player usernames.
+	 */
+	@Override
+	public List<String> getUsernames(List<IPlayer> players)
+	{
+		if (players == null || players.isEmpty())
+			return Collections.emptyList();
+
+		List<String> playerNames = new ArrayList<>(players.size());
+		for(IPlayer player : players)
+		{
+			if (player == null)
+				continue;
+			String playerName = player.getName();
+			if (playerName == null || playerName.isEmpty())
+				playerNames.add("Invalid Player");
+			else
+				playerNames.add(playerName);
+		}
+		return playerNames;
+	}
+
+	/**
+	 * Converts a list of UUIDs into IPlayers.
+	 *
+	 * @param playerIds List of player UUIDs.
+	 *                  For every null UUID a null player will put on the list.
+	 *                  When not null, assumed to be valid player Ids.
+	 *
+	 * @return List of IPlayers.
+	 */
+	@Override
+	public List<IPlayer> getPlayersFromUniqueIds(List<UUID> playerIds)
+	{
+		if (playerIds == null || playerIds.isEmpty())
+			return Collections.emptyList();
+
+		List<IPlayer> players = new ArrayList<>(playerIds.size());
+		for(UUID playerId : playerIds)
+		{
+			if (playerId == null)
+				continue;
+			players.add(this.getPlayer(playerId));
+		}
+		return players;
+	}
+
+	/**
+	 * Converts a list of UUIDs in the form of strings into IPlayers.
+	 *
+	 * @param playerIds List of player UUIDs in the form of strings.
+	 *                  Prefferably obtained through UUID's toString method.
+	 *                  For every null or non 36 length strings a null player
+	 *                  will put on the list.
+	 *                  When they are valid UUIDs, assumed to be player Ids.
+	 *
+	 * @return List of IPlayers.
+	 *
+	 * @throws  IllegalArgumentException
+	 *          If any string in the list of playerIds is 36 in length
+	 *          and is not a valid UUID returned by the UUID toString method.
+	 */
+	@Override
+	public List<IPlayer> getPlayersFromUniqueIdStrings(List<String> playerIds)
+	{
+		if (playerIds == null || playerIds.isEmpty())
+			return Collections.emptyList();
+
+		List<IPlayer> players = new ArrayList<>(playerIds.size());
+		for(String playerId : playerIds)
+		{
+			if (playerId == null || playerId.length() != 36)
+				continue;
+			players.add(this.getPlayer(UUID.fromString(playerId)));
 		}
 		return players;
 	}
