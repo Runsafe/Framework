@@ -254,30 +254,6 @@ public class RunsafeServer extends BukkitServer implements IServer
 	}
 
 	/**
-	 * Converts a list of UUIDs into IPlayers.
-	 *
-	 * @param playerIds List of player UUIDs.
-	 *                  If a UUID is null it will not be used.
-	 *
-	 * @return List of IPlayers.
-	 */
-	@Override
-	public List<IPlayer> getPlayersFromUniqueIds(Set<UUID> playerIds)
-	{
-		if (playerIds == null || playerIds.isEmpty())
-			return Collections.emptyList();
-
-		List<IPlayer> players = new ArrayList<>(playerIds.size());
-		for(UUID playerId : playerIds)
-		{
-			if (playerId == null)
-				continue;
-			players.add(this.getPlayer(playerId));
-		}
-		return players;
-	}
-
-	/**
 	 * Converts a list of UUIDs in the form of strings into IPlayers.
 	 *
 	 * @param playerIds List of player UUIDs in the form of strings.
