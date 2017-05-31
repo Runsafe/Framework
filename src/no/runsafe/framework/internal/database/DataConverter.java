@@ -10,6 +10,7 @@ import org.joda.time.DateTime;
 import javax.annotation.Nullable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.UUID;
 
 @SuppressWarnings("ChainOfInstanceofChecks")
 final class DataConverter
@@ -165,6 +166,15 @@ final class DataConverter
 	@Nullable
 	static IPlayer Player(Object value)
 	{
-		return value == null ? null : Player.Get().getExact(value.toString());
+		if (value == null)
+			return null;
+
+		String valueString = value.toString();
+
+		//Check if value is a UUID.
+		if (valueString.length() == 36)
+			return Player.Get().getExact(UUID.fromString(valueString));
+
+		return Player.Get().getExact(valueString);
 	}
 }
