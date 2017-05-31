@@ -22,7 +22,9 @@ import org.bukkit.plugin.Plugin;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public class RunsafeServer extends BukkitServer implements IServer
@@ -247,6 +249,36 @@ public class RunsafeServer extends BukkitServer implements IServer
 			if (context.shouldNotSee(player))
 				continue;
 			players.add(player.getName());
+		}
+		return players;
+	}
+
+	/**
+	 * Converts a list of UUIDs in the form of strings into IPlayers.
+	 *
+	 * @param playerIds List of player UUIDs in the form of strings.
+	 *                  Prefferably obtained through UUID's toString method.
+	 *                  If a string is null or not 36 characters in length it will not be used.
+	 *                  When they are valid UUIDs, assumed to be player Ids.
+	 *
+	 * @return List of IPlayers.
+	 *
+	 * @throws  IllegalArgumentException
+	 *          If any string in the list of playerIds is 36 in length
+	 *          and is not a valid UUID returned by the UUID toString method.
+	 */
+	@Override
+	public List<IPlayer> getPlayersByIDs(Set<String> playerIds)
+	{
+		if (playerIds == null || playerIds.isEmpty())
+			return Collections.emptyList();
+
+		List<IPlayer> players = new ArrayList<>(playerIds.size());
+		for(String playerId : playerIds)
+		{
+			if (playerId == null || playerId.length() != 36)
+				continue;
+			players.add(this.getPlayer(UUID.fromString(playerId)));
 		}
 		return players;
 	}
