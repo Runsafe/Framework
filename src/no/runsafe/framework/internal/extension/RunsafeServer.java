@@ -21,11 +21,7 @@ import org.bukkit.plugin.Plugin;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 public class RunsafeServer extends BukkitServer implements IServer
 {
@@ -268,12 +264,12 @@ public class RunsafeServer extends BukkitServer implements IServer
 	 *          and is not a valid UUID returned by the UUID toString method.
 	 */
 	@Override
-	public List<IPlayer> getPlayersByIDs(Set<String> playerIds)
+	public List<IPlayer> getPlayersByIDs(Iterable<String> playerIds)
 	{
-		if (playerIds == null || playerIds.isEmpty())
+		if (playerIds == null)
 			return Collections.emptyList();
 
-		List<IPlayer> players = new ArrayList<>(playerIds.size());
+		List<IPlayer> players = new ArrayList<>();
 		for(String playerId : playerIds)
 		{
 			if (playerId == null || playerId.length() != 36)
