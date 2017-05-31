@@ -254,36 +254,6 @@ public class RunsafeServer extends BukkitServer implements IServer
 	}
 
 	/**
-	 * Converts a list of IPlayers into a list of their usernames.
-	 *
-	 * @param players List of players.
-	 *                If a player is null, they will be skipped.
-	 *                If a player's username is null or empty, "Invalid Username"
-	 *                will be used instead.
-	 *
-	 * @return List of player usernames.
-	 */
-	@Override
-	public List<String> getUsernames(Set<IPlayer> players)
-	{
-		if (players == null || players.isEmpty())
-			return Collections.emptyList();
-
-		List<String> playerNames = new ArrayList<>(players.size());
-		for(IPlayer player : players)
-		{
-			if (player == null)
-				continue;
-			String playerName = player.getName();
-			if (playerName == null || playerName.isEmpty())
-				playerNames.add("Invalid Player");
-			else
-				playerNames.add(playerName);
-		}
-		return playerNames;
-	}
-
-	/**
 	 * Converts a list of UUIDs into IPlayers.
 	 *
 	 * @param playerIds List of player UUIDs.

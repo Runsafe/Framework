@@ -39,8 +39,6 @@ public interface IPlayerProvider
 
 	List<String> getOnlinePlayers(IPlayer context, String playerName);
 
-	List<String> getUsernames(Set<IPlayer> players);
-
 	List<IPlayer> getPlayersFromUniqueIds(Set<UUID> playerIds);
 
 	List<IPlayer> getPlayersFromUniqueIdStrings(Set<String> playerStringIds);
