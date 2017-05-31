@@ -257,8 +257,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 	 * Converts a list of UUIDs into IPlayers.
 	 *
 	 * @param playerIds List of player UUIDs.
-	 *                  For every null UUID a null player will put on the list.
-	 *                  When not null, assumed to be valid player Ids.
+	 *                  If a UUID is null it will not be used.
 	 *
 	 * @return List of IPlayers.
 	 */
@@ -283,8 +282,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 	 *
 	 * @param playerIds List of player UUIDs in the form of strings.
 	 *                  Prefferably obtained through UUID's toString method.
-	 *                  For every null or non 36 length strings a null player
-	 *                  will put on the list.
+	 *                  If a string is null or not 36 characters in length it will not be used.
 	 *                  When they are valid UUIDs, assumed to be player Ids.
 	 *
 	 * @return List of IPlayers.
