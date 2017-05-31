@@ -268,7 +268,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 	 *          and is not a valid UUID returned by the UUID toString method.
 	 */
 	@Override
-	public List<IPlayer> getPlayersFromUniqueIdStrings(Set<String> playerIds)
+	public List<IPlayer> getPlayersByIDs(Set<String> playerIds)
 	{
 		if (playerIds == null || playerIds.isEmpty())
 			return Collections.emptyList();
