@@ -24,6 +24,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public class RunsafeServer extends BukkitServer implements IServer
@@ -263,7 +264,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 	 * @return List of player usernames.
 	 */
 	@Override
-	public List<String> getUsernames(List<IPlayer> players)
+	public List<String> getUsernames(Set<IPlayer> players)
 	{
 		if (players == null || players.isEmpty())
 			return Collections.emptyList();
@@ -292,7 +293,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 	 * @return List of IPlayers.
 	 */
 	@Override
-	public List<IPlayer> getPlayersFromUniqueIds(List<UUID> playerIds)
+	public List<IPlayer> getPlayersFromUniqueIds(Set<UUID> playerIds)
 	{
 		if (playerIds == null || playerIds.isEmpty())
 			return Collections.emptyList();
@@ -323,7 +324,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 	 *          and is not a valid UUID returned by the UUID toString method.
 	 */
 	@Override
-	public List<IPlayer> getPlayersFromUniqueIdStrings(List<String> playerIds)
+	public List<IPlayer> getPlayersFromUniqueIdStrings(Set<String> playerIds)
 	{
 		if (playerIds == null || playerIds.isEmpty())
 			return Collections.emptyList();

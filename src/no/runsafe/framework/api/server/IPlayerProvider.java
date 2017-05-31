@@ -4,6 +4,7 @@ import no.runsafe.framework.api.player.IPlayer;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public interface IPlayerProvider
@@ -38,9 +39,9 @@ public interface IPlayerProvider
 
 	List<String> getOnlinePlayers(IPlayer context, String playerName);
 
-	List<String> getUsernames(List<IPlayer> players);
+	List<String> getUsernames(Set<IPlayer> players);
 
-	List<IPlayer> getPlayersFromUniqueIds(List<UUID> playerIds);
+	List<IPlayer> getPlayersFromUniqueIds(Set<UUID> playerIds);
 
-	List<IPlayer> getPlayersFromUniqueIdStrings(List<String> playerStringIds);
+	List<IPlayer> getPlayersFromUniqueIdStrings(Set<String> playerStringIds);
 }
