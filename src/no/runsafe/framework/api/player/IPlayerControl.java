@@ -29,9 +29,6 @@ public interface IPlayerControl
 
 	boolean isNotBanned();
 
-	@Deprecated
-	void setBanned(boolean banned);
-
 	void kick(String reason);
 
 	boolean hasPlayedBefore();

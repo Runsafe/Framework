@@ -6,6 +6,7 @@ import no.runsafe.framework.api.database.ISet;
 import no.runsafe.framework.api.database.IValue;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.log.IDebug;
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.database.QueryExecutorBase;
 import no.runsafe.framework.internal.database.Row;
 import no.runsafe.framework.internal.database.Set;
@@ -241,6 +242,8 @@ abstract class QueryExecutor extends QueryExecutorBase
 		{
 			if (params[i] instanceof ReadableInstant)
 				statement.setObject(i + 1, new Timestamp(((ReadableInstant) params[i]).getMillis()));
+			else if (params[i] instanceof IPlayer)
+				statement.setObject(i + 1, ((IPlayer) params[i]).getUniqueId().toString());
 			else
 				statement.setObject(i + 1, params[i]);
 		}
