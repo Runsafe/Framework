@@ -118,11 +118,19 @@ public abstract class BukkitEntity extends BukkitMetadata
 		return this.entity.setPassenger((Entity) ObjectUnwrapper.convert(entity));
 	}
 
+	/**
+	 * Checks if this entity has a passenger.
+	 * @return True if there isn't a passenger.
+	 */
 	public boolean isEmpty()
 	{
 		return entity.isEmpty();
 	}
 
+	/**
+	 * If there is an entity riding this entity, eject them.
+	 * @return True if passenger was ejected, false otherwise.
+	 */
 	public boolean eject()
 	{
 		return entity.eject();
@@ -168,11 +176,19 @@ public abstract class BukkitEntity extends BukkitMetadata
 		entity.setTicksLived(ticks);
 	}
 
+	/**
+	 * Checks if this entity is riding something.
+	 * @return True if riding an entity, false otherwise.
+	 */
 	public boolean isInsideVehicle()
 	{
 		return entity.isInsideVehicle();
 	}
 
+	/**
+	 * Dismounts whatever is being ridden.
+	 * @return True if dismounted, false if not riding anything.
+	 */
 	public boolean leaveVehicle()
 	{
 		return entity.leaveVehicle();
