@@ -89,7 +89,9 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 		if (!Projectile.class.isAssignableFrom(projectile))
 			return null;
 
-		RunsafeEntity projectileEntity = ObjectWrapper.convert(livingEntity.launchProjectile(projectile.asSubclass(Projectile.class)));
+		RunsafeEntity projectileEntity = ObjectWrapper.convert(
+			(Projectile) livingEntity.launchProjectile(projectile.asSubclass(Projectile.class))
+		);
 
 		if (projectileEntity instanceof Projectile)
 			((Projectile) projectileEntity).setShooter(getRaw());
