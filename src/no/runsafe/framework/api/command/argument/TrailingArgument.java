@@ -4,7 +4,7 @@ import no.runsafe.framework.api.player.IPlayer;
 
 import java.util.Map;
 
-public class TrailingArgument extends CommandArgumentSpecification<String>
+public class TrailingArgument extends StringArgumentSpecification
 {
 	public TrailingArgument(String name)
 	{
@@ -23,14 +23,5 @@ public class TrailingArgument extends CommandArgumentSpecification<String>
 	public boolean isWhitespaceInclusive()
 	{
 		return true;
-	}
-
-	@Override
-	public String getValue(IPlayer context, Map<String, String> params)
-	{
-		String param = params.get(name);
-		if (param != null && !param.isEmpty())
-			return param;
-		return defaultValue;
 	}
 }

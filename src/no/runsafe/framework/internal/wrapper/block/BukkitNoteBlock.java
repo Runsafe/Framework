@@ -1,5 +1,7 @@
 package no.runsafe.framework.internal.wrapper.block;
 
+import org.bukkit.Instrument;
+import org.bukkit.Note;
 import org.bukkit.block.Block;
 import org.bukkit.block.NoteBlock;
 
@@ -16,9 +18,9 @@ public abstract class BukkitNoteBlock extends BukkitBlockState
 		return noteBlock.getRawNote();
 	}
 
-	public void setRawNote(byte b)
+	public void setRawNote(byte note)
 	{
-		noteBlock.setRawNote(b);
+		noteBlock.setNote(new Note(note));
 	}
 
 	public boolean play()
@@ -26,9 +28,9 @@ public abstract class BukkitNoteBlock extends BukkitBlockState
 		return noteBlock.play();
 	}
 
-	public boolean play(byte b, byte b1)
+	public boolean play(byte instrument, byte note)
 	{
-		return noteBlock.play(b, b1);
+		return noteBlock.play(Instrument.getByType(instrument), new Note(note));
 	}
 
 	protected final NoteBlock noteBlock;
