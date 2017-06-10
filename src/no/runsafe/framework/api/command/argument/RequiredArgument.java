@@ -4,7 +4,7 @@ import no.runsafe.framework.api.player.IPlayer;
 
 import java.util.Map;
 
-public class RequiredArgument extends CommandArgumentSpecification<String>
+public class RequiredArgument extends StringArgumentSpecification
 {
 	public RequiredArgument(String name)
 	{
@@ -21,14 +21,5 @@ public class RequiredArgument extends CommandArgumentSpecification<String>
 	public boolean isWhitespaceInclusive()
 	{
 		return false;
-	}
-
-	@Override
-	public String getValue(IPlayer context, Map<String, String> params)
-	{
-		String value = params.get(name);
-		if (value != null && !value.isEmpty())
-			return value;
-		return defaultValue;
 	}
 }
