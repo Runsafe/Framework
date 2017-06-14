@@ -275,6 +275,9 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 	@Override
 	public UUID getUniqueId()
 	{
+		if (basePlayer == null)
+			return null;
+
 		return basePlayer.getUniqueId();
 	}
 

@@ -163,6 +163,9 @@ public abstract class BukkitEntity extends BukkitMetadata
 
 	public UUID getUniqueId()
 	{
+		if (entity == null)
+			return null;
+
 		return entity.getUniqueId();
 	}
 

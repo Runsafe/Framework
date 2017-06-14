@@ -7,6 +7,8 @@ import no.runsafe.framework.api.player.IFakePlayer;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.extension.player.RunsafePlayer;
+import no.runsafe.framework.internal.wrapper.entity.BukkitEntity;
+import org.bukkit.entity.Entity;
 
 import javax.annotation.Nonnull;
 
@@ -95,6 +97,27 @@ public class RunsafeFakePlayer extends RunsafePlayer implements IFakePlayer
 	public void setWorld(IWorld world)
 	{
 		this.world = world;
+	}
+
+	@Override
+	public boolean equals(Object o)
+	{
+		if (this == o)
+			return true;
+
+		if(o == null)
+			return false;
+
+		if(o instanceof RunsafeFakePlayer)
+			return this.name.equals(((RunsafeFakePlayer) o).getName());
+
+		return false;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return name.hashCode();
 	}
 
 	private final String name;
