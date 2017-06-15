@@ -2,8 +2,10 @@ package no.runsafe.framework.api.server;
 
 import no.runsafe.framework.api.player.IPlayer;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 public interface IPlayerManager
 {
@@ -20,4 +22,7 @@ public interface IPlayerManager
 	Set<String> getIpBans();
 
 	void unbanIP(String ip);
+
+	@Nullable
+	UUID getUniqueId(String playerName);
 }

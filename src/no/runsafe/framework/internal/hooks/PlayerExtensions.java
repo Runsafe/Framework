@@ -12,6 +12,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @SuppressWarnings("MethodWithMultipleLoops")
 public final class PlayerExtensions implements IPlayerExtensions
@@ -237,6 +238,19 @@ public final class PlayerExtensions implements IPlayerExtensions
 			}
 		}
 		return hits;
+	}
+
+	@Override
+	@Nullable
+	public UUID getUniqueId(String playerName)
+	{
+		if (playerName == null || playerName.isEmpty() || playerName.length() > 16)
+			return null;
+
+		for (IPlayerLookupService lookup : getHooks(IPlayerLookupService.class))
+			return lookup.findPlayerUniqueId(playerName);
+
+		return null;
 	}
 
 	private static <T> List<T> getHooks(Class<T> type)
