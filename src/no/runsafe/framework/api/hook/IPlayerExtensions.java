@@ -9,6 +9,7 @@ import org.joda.time.DateTime;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public interface IPlayerExtensions
 {
@@ -30,6 +31,8 @@ public interface IPlayerExtensions
 	boolean hasPermission(RunsafeFakePlayer player, ImmutableList<String> memberOf, String permission);
 	List<String> getGroups();
 	List<String> find(String playerName);
+	@Nullable
+	UUID getUniqueId(String playerName);
 	void addPermission(IPlayer player, String permission, String world);
 	void addPermission(IPlayer player, String permission);
 	void removePermission(IPlayer player, String permission, String world);

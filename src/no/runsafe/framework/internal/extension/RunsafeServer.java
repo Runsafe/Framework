@@ -279,6 +279,21 @@ public class RunsafeServer extends BukkitServer implements IServer
 		return players;
 	}
 
+	/**
+	 * Provides the Unique Id of the player who logged the most recently with a specified username.
+	 * Intended to help with converting player usernames to UUIDs.
+	 *
+	 * @param playerName Exact name of the player to lookup.
+	 * @return the UUID of the last player to loged in.
+	 *         Null if the player can't be found.
+	 */
+	@Override
+	@Nullable
+	public UUID getUniqueId(String playerName)
+	{
+		return InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).getUniqueId(playerName);
+	}
+
 	@Override
 	public void addRecipe(ShapedRecipe recipe)
 	{
