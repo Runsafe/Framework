@@ -281,7 +281,6 @@ public class RunsafeServer extends BukkitServer implements IServer
 
 	/**
 	 * Provides the Unique Id of the player who logged the most recently with a specified username.
-	 * Intended to help with converting player usernames to UUIDs.
 	 *
 	 * @param playerName Exact name of the player to lookup.
 	 * @return the UUID of the last player to loged in.
