@@ -141,6 +141,15 @@ public class RunsafeServer extends BukkitServer implements IServer
 		return new RunsafePlayer(player);
 	}
 
+	@Override
+	@Nullable
+	public IPlayer getOfflinePlayerExact(String playerName)
+	{
+		if (playerName == null || playerName.isEmpty())
+			return null;
+		return new RunsafePlayer(server.getOfflinePlayer(playerName));
+	}
+
 	@Nonnull
 	public static List<String> findPlayer(String playerName)
 	{
