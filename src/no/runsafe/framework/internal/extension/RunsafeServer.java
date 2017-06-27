@@ -52,7 +52,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 			return null;
 
 		if (hits.size() == 1)
-			return new RunsafePlayer(server.getOfflinePlayer(hits.get(0)));
+			return getOfflinePlayerExact(playerName);
 
 		return new RunsafeAmbiguousPlayer(server.getOfflinePlayer(hits.get(0)), hits);
 	}
@@ -136,7 +136,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 		if (player == null)
 		{
 			List<String> players = findPlayer(playerName);
-			return players.contains(playerName) ? new RunsafePlayer(server.getOfflinePlayer(playerName)) : null;
+			return players.contains(playerName) ? getOfflinePlayerExact(playerName) : null;
 		}
 		return new RunsafePlayer(player);
 	}
@@ -147,7 +147,13 @@ public class RunsafeServer extends BukkitServer implements IServer
 	{
 		if (playerName == null || playerName.isEmpty())
 			return null;
-		return new RunsafePlayer(server.getOfflinePlayer(playerName));
+
+		UUID playerId = getUniqueId(playerName);
+
+		if (playerId == null)
+			return new RunsafePlayer(server.getOfflinePlayer(playerName));
+		else
+			return new RunsafePlayer(server.getOfflinePlayer(playerId));
 	}
 
 	@Nonnull
