@@ -17,7 +17,7 @@ public class RunsafeFakePlayer extends RunsafePlayer implements IFakePlayer
 	public RunsafeFakePlayer(String playerName, String... groups)
 	{
 		super(null);
-		name = playerName;
+		this.playerName = playerName;
 		this.groups = ImmutableList.copyOf(groups);
 	}
 
@@ -25,12 +25,6 @@ public class RunsafeFakePlayer extends RunsafePlayer implements IFakePlayer
 	public boolean hasPermission(String permission)
 	{
 		return InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).hasPermission(this, groups, permission);
-	}
-
-	@Override
-	public String getName()
-	{
-		return name;
 	}
 
 	@Override
@@ -109,7 +103,7 @@ public class RunsafeFakePlayer extends RunsafePlayer implements IFakePlayer
 			return false;
 
 		if(o instanceof RunsafeFakePlayer)
-			return this.name.equals(((RunsafeFakePlayer) o).getName());
+			return this.playerName.equals(((RunsafeFakePlayer) o).getName());
 
 		return false;
 	}
@@ -117,10 +111,9 @@ public class RunsafeFakePlayer extends RunsafePlayer implements IFakePlayer
 	@Override
 	public int hashCode()
 	{
-		return name.hashCode();
+		return playerName.hashCode();
 	}
 
-	private final String name;
 	private final ImmutableList<String> groups;
 	private boolean isOp;
 	private IWorld world;

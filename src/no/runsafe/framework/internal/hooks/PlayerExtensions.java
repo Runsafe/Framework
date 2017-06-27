@@ -253,6 +253,19 @@ public final class PlayerExtensions implements IPlayerExtensions
 		return null;
 	}
 
+	@Override
+	@Nullable
+	public String getPlayerName(UUID playerId)
+	{
+		if (playerId == null)
+			return null;
+
+		for (IPlayerLookupService lookup : getHooks(IPlayerLookupService.class))
+			return lookup.getLatestUsername(playerId);
+
+		return null;
+	}
+
 	private static <T> List<T> getHooks(Class<T> type)
 	{
 		return HookEngine.getHooks(type);

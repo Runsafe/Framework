@@ -52,7 +52,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 			return null;
 
 		if (hits.size() == 1)
-			return new RunsafePlayer(server.getOfflinePlayer(hits.get(0)));
+			return getOfflinePlayerExact(playerName);
 
 		return new RunsafeAmbiguousPlayer(server.getOfflinePlayer(hits.get(0)), hits);
 	}
@@ -136,9 +136,24 @@ public class RunsafeServer extends BukkitServer implements IServer
 		if (player == null)
 		{
 			List<String> players = findPlayer(playerName);
-			return players.contains(playerName) ? new RunsafePlayer(server.getOfflinePlayer(playerName)) : null;
+			return players.contains(playerName) ? getOfflinePlayerExact(playerName) : null;
 		}
 		return new RunsafePlayer(player);
+	}
+
+	@Override
+	@Nullable
+	public IPlayer getOfflinePlayerExact(String playerName)
+	{
+		if (playerName == null || playerName.isEmpty())
+			return null;
+
+		UUID playerId = getUniqueId(playerName);
+
+		if (playerId == null)
+			return new RunsafePlayer(server.getOfflinePlayer(playerName), playerName);
+		else
+			return new RunsafePlayer(server.getOfflinePlayer(playerId), playerName);
 	}
 
 	@Nonnull
@@ -281,13 +296,11 @@ public class RunsafeServer extends BukkitServer implements IServer
 
 	/**
 	 * Provides the Unique Id of the player who logged the most recently with a specified username.
-	 * Intended to help with converting player usernames to UUIDs.
 	 *
 	 * @param playerName Exact name of the player to lookup.
 	 * @return the UUID of the last player to loged in.
 	 *         Null if the player can't be found.
 	 */
-	@Override
 	@Nullable
 	public UUID getUniqueId(String playerName)
 	{

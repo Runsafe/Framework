@@ -115,14 +115,6 @@ public abstract class BukkitServer implements IWrapper<Server>
 		return server.getName();
 	}
 
-	@Nullable
-	public IPlayer getOfflinePlayerExact(String playerName)
-	{
-		if (playerName == null || playerName.isEmpty())
-			return null;
-		return new RunsafePlayer(server.getOfflinePlayer(playerName));
-	}
-
 	public List<IPlayer> getOfflinePlayers()
 	{
 		return ObjectWrapper.convert(server.getOfflinePlayers());
