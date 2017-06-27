@@ -151,9 +151,9 @@ public class RunsafeServer extends BukkitServer implements IServer
 		UUID playerId = getUniqueId(playerName);
 
 		if (playerId == null)
-			return new RunsafePlayer(server.getOfflinePlayer(playerName));
+			return new RunsafePlayer(server.getOfflinePlayer(playerName), playerName);
 		else
-			return new RunsafePlayer(server.getOfflinePlayer(playerId));
+			return new RunsafePlayer(server.getOfflinePlayer(playerId), playerName);
 	}
 
 	@Nonnull

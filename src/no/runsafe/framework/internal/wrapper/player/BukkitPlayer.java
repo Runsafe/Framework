@@ -2,8 +2,10 @@ package no.runsafe.framework.internal.wrapper.player;
 
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.block.IBlock;
+import no.runsafe.framework.api.hook.IPlayerExtensions;
 import no.runsafe.framework.api.minecraft.IAnimalTamer;
 import no.runsafe.framework.api.minecraft.IInventoryHolder;
+import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.LegacyMaterial;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
@@ -40,6 +42,10 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 			return null;
 
 		playerName = basePlayer.getName();
+		if (playerName != null)
+			return playerName;
+
+		playerName = InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).getPlayerName(getUniqueId());
 		if (playerName != null)
 			return playerName;
 

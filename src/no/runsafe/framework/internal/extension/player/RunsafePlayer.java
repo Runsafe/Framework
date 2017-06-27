@@ -34,6 +34,12 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 		super(toWrap);
 	}
 
+	public RunsafePlayer(OfflinePlayer toWrap, String playerName)
+	{
+		super(toWrap);
+		this.playerName = playerName;
+	}
+
 	@Override
 	public String getPrettyName()
 	{
