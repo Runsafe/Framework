@@ -20,4 +20,15 @@ public interface IPlayerLookupService extends IFrameworkHook
 	 */
 	@Nullable
 	UUID findPlayerUniqueId(String playerName);
+
+	/**
+	 * Gets the most recent username a player has logged in with.
+	 *
+	 * @param playerId The player's identifying number.
+	 * @return The latest username a player has logged in with.
+	 *         Might not be the player's current username.
+	 *         Null if the player has never logged into the server.
+	 */
+	@Nullable
+	String getLatestUsername(UUID playerId);
 }

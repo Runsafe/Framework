@@ -33,6 +33,7 @@ public interface IPlayerExtensions
 	List<String> find(String playerName);
 	@Nullable
 	UUID getUniqueId(String playerName);
+	String getPlayerName(UUID playerId);
 	void addPermission(IPlayer player, String permission, String world);
 	void addPermission(IPlayer player, String permission);
 	void removePermission(IPlayer player, String permission, String world);
