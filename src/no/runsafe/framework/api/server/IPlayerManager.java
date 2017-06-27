@@ -22,7 +22,4 @@ public interface IPlayerManager
 	Set<String> getIpBans();
 
 	void unbanIP(String ip);
-
-	@Nullable
-	UUID getUniqueId(String playerName);
 }

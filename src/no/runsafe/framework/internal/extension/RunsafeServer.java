@@ -287,7 +287,6 @@ public class RunsafeServer extends BukkitServer implements IServer
 	 * @return the UUID of the last player to loged in.
 	 *         Null if the player can't be found.
 	 */
-	@Override
 	@Nullable
 	public UUID getUniqueId(String playerName)
 	{
