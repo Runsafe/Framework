@@ -33,7 +33,18 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 	@Nullable
 	public String getName()
 	{
-		return basePlayer == null ? null : basePlayer.getName();
+		if (playerName != null)
+			return playerName;
+
+		if (nullName || basePlayer == null)
+			return null;
+
+		playerName = basePlayer.getName();
+		if (playerName != null)
+			return playerName;
+
+		nullName = true;
+		return null;
 	}
 
 	public void closeInventory()
@@ -311,6 +322,8 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 			player.resetTitle();
 	}
 
+	protected String playerName = null;
+	private boolean nullName = false;
 	@Nullable
 	protected final Player player;
 	protected final OfflinePlayer basePlayer;
