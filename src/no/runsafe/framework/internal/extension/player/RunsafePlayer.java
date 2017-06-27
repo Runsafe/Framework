@@ -126,6 +126,7 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 			Location location = player.getLocation();
 			data.put("game.location", String.format("[%.2f,%.2f,%.2f@%s]", location.getX(), location.getY(), location.getZ(), location.getWorld().getName()));
 		}
+		data.put("game.uniqueId", getUniqueId().toString());
 		data.put("game.experience", String.format("%.1f", getXP()));
 		data.put("game.level", String.format("%d", getLevel()));
 		data.put("game.op", isOP() ? "true" : "false");
