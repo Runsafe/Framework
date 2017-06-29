@@ -152,8 +152,8 @@ public class Command implements ICommandHandler
 			String paramTag = permissionParams.group(0);
 			if (params.has(param))
 			{
-				if (params.get(param) != null)
-					effectivePermission = effectivePermission.replace(paramTag, params.get(param));
+				if (params.getValue(param) != null)
+					effectivePermission = effectivePermission.replace(paramTag, params.getValue(param));
 			}
 			else if (argumentList.containsKey(param))
 			{
