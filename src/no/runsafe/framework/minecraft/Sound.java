@@ -412,6 +412,20 @@ public class Sound
 			}
 		}
 
+		public static final class Villager
+		{
+			public static final Sound Idle = new Sound(org.bukkit.Sound.VILLAGER_IDLE);
+			public static final Sound Death = new Sound(org.bukkit.Sound.VILLAGER_DEATH);
+			public static final Sound Hurt = new Sound(org.bukkit.Sound.VILLAGER_HIT);
+			public static final Sound Haggle = new Sound(org.bukkit.Sound.VILLAGER_HAGGLE);
+			public static final Sound Yes = new Sound(org.bukkit.Sound.VILLAGER_YES);
+			public static final Sound No = new Sound(org.bukkit.Sound.VILLAGER_NO);
+
+			private Villager()
+			{
+			}
+		}
+
 		public static final class Wither
 		{
 			public static final Sound Death = new Sound(org.bukkit.Sound.WITHER_DEATH);
