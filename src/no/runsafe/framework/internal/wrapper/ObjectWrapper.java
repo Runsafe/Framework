@@ -22,8 +22,7 @@ import no.runsafe.framework.internal.extension.RunsafeWorld;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.enchantment.RunsafeEnchantment;
 import no.runsafe.framework.minecraft.entity.*;
-import no.runsafe.framework.minecraft.entity.animals.RunsafeOcelot;
-import no.runsafe.framework.minecraft.entity.animals.RunsafeWolf;
+import no.runsafe.framework.minecraft.entity.animals.*;
 import no.runsafe.framework.minecraft.inventory.*;
 import no.runsafe.framework.minecraft.item.meta.*;
 import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
@@ -455,6 +454,9 @@ public final class ObjectWrapper
 		if (toWrap instanceof Creature)
 			return convert((Creature) toWrap);
 
+		if (toWrap instanceof Bat)
+			return new RunsafeBat((Bat) toWrap);
+
 		if (toWrap instanceof ArmorStand)
 			return new RunsafeArmourStand((ArmorStand) toWrap);
 
@@ -472,6 +474,18 @@ public final class ObjectWrapper
 
 		if (toWrap instanceof Ocelot)
 			return new RunsafeOcelot((Ocelot) toWrap);
+
+		if (toWrap instanceof Pig)
+			return new RunsafePig((Pig) toWrap);
+
+		if (toWrap instanceof Cow)
+			return new RunsafeCow((Cow) toWrap);
+
+		if (toWrap instanceof Chicken)
+			return new RunsafeChicken((Chicken) toWrap);
+
+		if (toWrap instanceof Sheep)
+			return new RunsafeSheep((Sheep) toWrap);
 
 		if (toWrap instanceof Villager)
 			return new RunsafeVillager((Villager) toWrap);
