@@ -1,5 +1,6 @@
 package no.runsafe.framework.api.entity;
 
+import net.minecraft.server.v1_8_R3.PathfinderGoal;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
@@ -46,4 +47,6 @@ public interface ILivingEntity extends IDamageable, IProjectileSource
 	String getCustomName();
 	@Nullable
 	Sound getIdleSound();
+	void stopPathfinding();
+	void setNewPathfindingGoal(int goalNum, PathfinderGoal goal);
 }

@@ -1,5 +1,9 @@
 package no.runsafe.framework.minecraft.entity;
 
+import net.minecraft.server.v1_8_R3.EntityInsentient;
+import net.minecraft.server.v1_8_R3.EntityLiving;
+import net.minecraft.server.v1_8_R3.PathfinderGoal;
+import net.minecraft.server.v1_8_R3.PathfinderGoalSelector;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.internal.LegacyMaterial;
@@ -7,6 +11,8 @@ import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.entity.BukkitLivingEntity;
 import no.runsafe.framework.internal.wrapper.entity.BukkitProjectile;
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
+import org.bukkit.craftbukkit.v1_8_R3.util.UnsafeList;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -15,6 +21,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.Vector;
 
 import javax.annotation.Nullable;
+import java.lang.reflect.Field;
 import java.util.HashSet;
 
 public class RunsafeLivingEntity extends BukkitLivingEntity
@@ -65,6 +72,50 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 		if (livingEntity != null)
 			for (PotionEffect effect : livingEntity.getActivePotionEffects())
 				livingEntity.removePotionEffect(effect.getType());
+	}
+
+	/**
+	 * Removes all default path finding goals and targets.
+	 */
+	@Override
+	public void stopPathfinding()
+	{
+		// Make sure this is an Insentient entity. Not all living entities are Insentient.
+		EntityLiving rawLivingEntity = ((CraftLivingEntity) livingEntity).getHandle();
+		if (!(rawLivingEntity instanceof EntityInsentient))
+			return;
+		EntityInsentient rawInsentientEntity = (EntityInsentient) rawLivingEntity;
+		try
+		{
+			// Declared field name stays the same up to Minecraft 1.12.
+			Field gsa = PathfinderGoalSelector.class.getDeclaredField("b");
+			gsa.setAccessible(true);
+			gsa.set(rawInsentientEntity.goalSelector, new UnsafeList());
+			gsa.set(rawInsentientEntity.targetSelector, new UnsafeList());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Adds a new pathfinding goal.
+	 * Reccomended to stop all pathfinding before using this to avoid problems with the goal number.
+	 * @param goalNum The goal number.
+	 *                Undefined behavior if this is the same as an
+	 *                already set goal or is too high/low.
+	 * @param goal The pathfinding goal to use.
+	 */
+	@Override
+	public void setNewPathfindingGoal(int goalNum, PathfinderGoal goal)
+	{
+		// Make sure this is an Insentient entity. Not all living entities are Insentient.
+		EntityLiving rawLivingEntity = ((CraftLivingEntity) livingEntity).getHandle();
+		if (!(rawLivingEntity instanceof EntityInsentient))
+			return;
+		EntityInsentient rawInsentientEntity = (EntityInsentient) rawLivingEntity;
+		rawInsentientEntity.goalSelector.a(goalNum, goal);
 	}
 
 	@SuppressWarnings({"CastToConcreteClass", "InstanceofInterfaces", "LocalVariableOfConcreteClass"})
