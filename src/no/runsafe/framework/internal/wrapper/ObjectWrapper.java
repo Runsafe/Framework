@@ -23,6 +23,7 @@ import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.enchantment.RunsafeEnchantment;
 import no.runsafe.framework.minecraft.entity.*;
 import no.runsafe.framework.minecraft.entity.animals.*;
+import no.runsafe.framework.minecraft.entity.monsters.*;
 import no.runsafe.framework.minecraft.inventory.*;
 import no.runsafe.framework.minecraft.item.meta.*;
 import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
@@ -457,6 +458,9 @@ public final class ObjectWrapper
 		if (toWrap instanceof Bat)
 			return new RunsafeBat((Bat) toWrap);
 
+		if (toWrap instanceof Slime)
+			return new RunsafeSlime((Slime) toWrap);
+
 		if (toWrap instanceof ArmorStand)
 			return new RunsafeArmourStand((ArmorStand) toWrap);
 
@@ -469,6 +473,9 @@ public final class ObjectWrapper
 	@Nullable
 	public static RunsafeCreature convert(org.bukkit.entity.Creature toWrap)
 	{
+		if (toWrap instanceof Monster)
+			return convert((Monster) toWrap);
+
 		if (toWrap instanceof Wolf)
 			return new RunsafeWolf((Wolf) toWrap);
 
@@ -491,6 +498,21 @@ public final class ObjectWrapper
 			return new RunsafeVillager((Villager) toWrap);
 
 		return new RunsafeCreature(toWrap);
+	}
+
+	@Nullable
+	public static RunsafeMonster convert(org.bukkit.entity.Monster toWrap)
+	{
+		if (toWrap instanceof PigZombie)
+			return new RunsafePigZombie((PigZombie) toWrap);
+
+		if (toWrap instanceof Zombie)
+			return new RunsafeZombie((Zombie) toWrap);
+
+		if (toWrap instanceof Silverfish)
+			return new RunsafeSilverfish((Silverfish) toWrap);
+
+		return new RunsafeMonster(toWrap);
 	}
 
 	@Nullable
