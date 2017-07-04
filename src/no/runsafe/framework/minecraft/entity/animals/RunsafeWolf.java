@@ -4,11 +4,14 @@ import no.runsafe.framework.api.entity.animals.IWolf;
 import no.runsafe.framework.api.minecraft.IAnimalTamer;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
+import no.runsafe.framework.minecraft.Sound;
 import no.runsafe.framework.minecraft.entityData.DyeColour;
 import no.runsafe.framework.minecraft.entity.RunsafeAgeable;
 import org.bukkit.DyeColor;
 import org.bukkit.entity.AnimalTamer;
 import org.bukkit.entity.Wolf;
+
+import javax.annotation.Nullable;
 
 public class RunsafeWolf extends RunsafeAgeable implements IWolf
 {
@@ -76,6 +79,13 @@ public class RunsafeWolf extends RunsafeAgeable implements IWolf
 	public IAnimalTamer getOwner()
 	{
 		return ObjectWrapper.convert(wolf.getOwner());
+	}
+
+	@Override
+	@Nullable
+	public Sound getIdleSound()
+	{
+		return Sound.Creature.Wolf.Bark;
 	}
 
 	private final Wolf wolf;

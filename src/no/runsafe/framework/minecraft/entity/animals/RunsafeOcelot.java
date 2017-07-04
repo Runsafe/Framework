@@ -4,9 +4,12 @@ import no.runsafe.framework.api.entity.animals.IOcelot;
 import no.runsafe.framework.api.minecraft.IAnimalTamer;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
+import no.runsafe.framework.minecraft.Sound;
 import no.runsafe.framework.minecraft.entity.RunsafeAgeable;
 import org.bukkit.entity.AnimalTamer;
 import org.bukkit.entity.Ocelot;
+
+import javax.annotation.Nullable;
 
 public class RunsafeOcelot extends RunsafeAgeable implements IOcelot
 {
@@ -62,6 +65,13 @@ public class RunsafeOcelot extends RunsafeAgeable implements IOcelot
 	public IAnimalTamer getOwner()
 	{
 		return ObjectWrapper.convert(ocelot.getOwner());
+	}
+
+	@Override
+	@Nullable
+	public Sound getIdleSound()
+	{
+		return Sound.Creature.Cat.Meow;
 	}
 
 	private final Ocelot ocelot;

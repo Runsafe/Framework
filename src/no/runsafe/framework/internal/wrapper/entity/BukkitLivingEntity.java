@@ -7,6 +7,7 @@ import no.runsafe.framework.api.entity.ILivingEntity;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.minecraft.Buff;
+import no.runsafe.framework.minecraft.Sound;
 import no.runsafe.framework.minecraft.inventory.RunsafeEntityEquipment;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.minecraft.entity.RunsafeProjectile;
@@ -16,6 +17,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.util.Vector;
 
+import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.List;
 
@@ -238,6 +240,12 @@ public abstract class BukkitLivingEntity extends RunsafeEntity implements ILivin
 	public <T extends RunsafeProjectile> T launchProjectile(Class<? extends T> projectile, Vector velocity)
 	{
 		return this.launchProjectile(projectile, velocity);
+	}
+
+	@Nullable
+	public Sound getIdleSound()
+	{
+		return null;
 	}
 
 	protected final LivingEntity livingEntity;
