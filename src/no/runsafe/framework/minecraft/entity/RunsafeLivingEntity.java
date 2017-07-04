@@ -118,6 +118,24 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 		rawInsentientEntity.goalSelector.a(goalNum, goal);
 	}
 
+	/**
+	 * @return Whether or not this entity will naturally despawn.
+	 */
+	@Override
+	public boolean getPersistance()
+	{
+		return livingEntity.getRemoveWhenFarAway();
+	}
+
+	/**
+	 * @param persistance Whether or not this entity will naturally depsawn.
+	 */
+	@Override
+	public void setPersistance(boolean persistance)
+	{
+		livingEntity.setRemoveWhenFarAway(persistance);
+	}
+
 	@SuppressWarnings({"CastToConcreteClass", "InstanceofInterfaces", "LocalVariableOfConcreteClass"})
 	private RunsafeEntity Launch(Class<? extends Entity> launch)
 	{
