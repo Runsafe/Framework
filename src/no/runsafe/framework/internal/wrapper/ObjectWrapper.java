@@ -473,6 +473,9 @@ public final class ObjectWrapper
 		if (toWrap instanceof Ocelot)
 			return new RunsafeOcelot((Ocelot) toWrap);
 
+		if (toWrap instanceof Villager)
+			return new RunsafeVillager((Villager) toWrap);
+
 		return new RunsafeCreature(toWrap);
 	}
 
