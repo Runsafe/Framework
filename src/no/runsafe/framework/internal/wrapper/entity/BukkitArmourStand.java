@@ -19,7 +19,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 	 * Gets item armour stand is holding.
 	 * @return Item held.
 	 */
-	RunsafeMeta getItemInHand()
+	public RunsafeMeta getItemInHand()
 	{
 		return ObjectWrapper.convert(stand.getItemInHand());
 	}
@@ -28,7 +28,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 	 * Makes the armour stand hold an item.
 	 * @param item Thing to be held.
 	 */
-	void setItemInHand(RunsafeMeta itemStack)
+	public void setItemInHand(RunsafeMeta itemStack)
 	{
 		stand.setItemInHand(itemStack.getRaw());
 	}
@@ -222,7 +222,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 	 * Gets body pose.
 	 * @return Body part position.
 	 */
-	Point3D getBodyPose()
+	public Point3D getBodyPose()
 	{
 		EulerAngle poseAngle = stand.getBodyPose();
 		return new Point3D(poseAngle.getX(), poseAngle.getY(), poseAngle.getZ());
@@ -232,7 +232,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 	 * Sets body pose.
 	 * @param poseAngle Body part position.
 	 */
-	void setBodyPose(Point3D poseAngle)
+	public void setBodyPose(Point3D poseAngle)
 	{
 		stand.setBodyPose(new EulerAngle(poseAngle.getX(), poseAngle.getY(), poseAngle.getZ()));
 	}
@@ -241,7 +241,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 	 * Gets left arm pose.
 	 * @return Body part position.
 	 */
-	Point3D getLeftArmPose()
+	public Point3D getLeftArmPose()
 	{
 		EulerAngle poseAngle = stand.getLeftArmPose();
 		return new Point3D(poseAngle.getX(), poseAngle.getY(), poseAngle.getZ());
@@ -251,7 +251,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 	 * Sets left arm position.
 	 * @param poseAngle Body part position.
 	 */
-	void setLeftArmPose(Point3D poseAngle)
+	public void setLeftArmPose(Point3D poseAngle)
 	{
 		stand.setLeftArmPose(new EulerAngle(poseAngle.getX(), poseAngle.getY(), poseAngle.getZ()));
 	}
@@ -260,7 +260,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 	 * Gets right arm pose.
 	 * @return Body part position.
 	 */
-	Point3D getRightArmPose()
+	public Point3D getRightArmPose()
 	{
 		EulerAngle poseAngle = stand.getRightArmPose();
 		return new Point3D(poseAngle.getX(), poseAngle.getY(), poseAngle.getZ());
@@ -270,7 +270,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 	 * Sets right arm position.
 	 * @param poseAngle Body part position.
 	 */
-	void setRightArmPose(Point3D poseAngle)
+	public void setRightArmPose(Point3D poseAngle)
 	{
 		stand.setRightArmPose(new EulerAngle(poseAngle.getX(), poseAngle.getY(), poseAngle.getZ()));
 	}
@@ -279,7 +279,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 	 * Gets left leg pose.
 	 * @return Body part position.
 	 */
-	Point3D getLeftLegPose()
+	public Point3D getLeftLegPose()
 	{
 		EulerAngle poseAngle = stand.getLeftLegPose();
 		return new Point3D(poseAngle.getX(), poseAngle.getY(), poseAngle.getZ());
@@ -289,7 +289,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 	 * Sets left leg position.
 	 * @param poseAngle Body part position.
 	 */
-	void setLeftLegPose(Point3D poseAngle)
+	public void setLeftLegPose(Point3D poseAngle)
 	{
 		stand.setLeftLegPose(new EulerAngle(poseAngle.getX(), poseAngle.getY(), poseAngle.getZ()));
 	}
@@ -298,7 +298,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 	 * Gets right leg pose.
 	 * @return Body part position.
 	 */
-	Point3D getRightLegPose()
+	public Point3D getRightLegPose()
 	{
 		EulerAngle poseAngle = stand.getRightLegPose();
 		return new Point3D(poseAngle.getX(), poseAngle.getY(), poseAngle.getZ());
@@ -308,7 +308,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 	 * Sets right leg position.
 	 * @param poseAngle Body part position.
 	 */
-	void setRightLegPose(Point3D poseAngle)
+	public void setRightLegPose(Point3D poseAngle)
 	{
 		stand.setRightLegPose(new EulerAngle(poseAngle.getX(), poseAngle.getY(), poseAngle.getZ()));
 	}
@@ -317,7 +317,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 	 * Gets head pose.
 	 * @return Body part position.
 	 */
-	Point3D getHeadPose()
+	public Point3D getHeadPose()
 	{
 		EulerAngle poseAngle = stand.getHeadPose();
 		return new Point3D(poseAngle.getX(), poseAngle.getY(), poseAngle.getZ());
@@ -327,7 +327,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 	 * Sets head position.
 	 * @param poseAngle Body part position.
 	 */
-	void setHeadPose(Point3D poseAngle)
+	public void setHeadPose(Point3D poseAngle)
 	{
 		stand.setHeadPose(new EulerAngle(poseAngle.getX(), poseAngle.getY(), poseAngle.getZ()));
 	}
