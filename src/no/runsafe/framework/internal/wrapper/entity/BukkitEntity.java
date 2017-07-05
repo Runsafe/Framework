@@ -98,7 +98,8 @@ public abstract class BukkitEntity extends BukkitMetadata
 
 	public void remove()
 	{
-		entity.remove();
+		if (entity != null)
+			entity.remove();
 	}
 
 	public boolean isDead()
