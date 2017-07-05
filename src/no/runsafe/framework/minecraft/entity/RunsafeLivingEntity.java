@@ -102,20 +102,18 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 	/**
 	 * Adds a new pathfinding goal.
 	 * Reccomended to stop all pathfinding before using this to avoid problems with the goal number.
-	 * @param goalNum The goal number.
-	 *                Undefined behavior if this is the same as an
-	 *                already set goal or is too high/low.
+	 * @param priority
 	 * @param goal The pathfinding goal to use.
 	 */
 	@Override
-	public void setNewPathfindingGoal(int goalNum, PathfinderGoal goal)
+	public void setNewPathfindingGoal(int priority, PathfinderGoal goal)
 	{
 		// Make sure this is an Insentient entity. Not all living entities are Insentient.
 		EntityLiving rawLivingEntity = ((CraftLivingEntity) livingEntity).getHandle();
 		if (!(rawLivingEntity instanceof EntityInsentient))
 			return;
 		EntityInsentient rawInsentientEntity = (EntityInsentient) rawLivingEntity;
-		rawInsentientEntity.goalSelector.a(goalNum, goal);
+		rawInsentientEntity.goalSelector.a(priority, goal);
 	}
 
 	/**
