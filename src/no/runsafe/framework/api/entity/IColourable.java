@@ -7,4 +7,6 @@ public interface IColourable
 	void setColour(DyeColour colour);
 
 	DyeColour getColour();
+
+	void setRandomColour();
 }

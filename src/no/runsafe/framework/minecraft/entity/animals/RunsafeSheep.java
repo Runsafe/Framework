@@ -8,6 +8,7 @@ import org.bukkit.DyeColor;
 import org.bukkit.entity.Sheep;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class RunsafeSheep extends RunsafeAgeable implements ISheep
 {
@@ -36,6 +37,13 @@ public class RunsafeSheep extends RunsafeAgeable implements ISheep
 	}
 
 	@Override
+	public void setRandomColour()
+	{
+		DyeColour[] values = DyeColour.values();
+		this.setColour(values[this.random.nextInt(values.length)]);
+	}
+
+	@Override
 	public DyeColour getColour()
 	{
 		return DyeColour.valueOf(sheep.getColor().name());
@@ -48,5 +56,6 @@ public class RunsafeSheep extends RunsafeAgeable implements ISheep
 		return Sound.Creature.Sheep.Idle;
 	}
 
+	private Random random = new Random();
 	private final Sheep sheep;
 }
