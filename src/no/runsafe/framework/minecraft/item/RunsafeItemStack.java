@@ -8,6 +8,7 @@ import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.item.BukkitItemStack;
 import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
+import no.runsafe.framework.tools.reflection.ReflectionHelper;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -102,6 +103,34 @@ public abstract class RunsafeItemStack extends BukkitItemStack implements IEncha
 	public RunsafeMeta clone()
 	{
 		return ObjectWrapper.convert(itemStack.clone());
+	}
+
+	@Override
+	public boolean hasTagKey(String key)
+	{
+		NBTTagCompound tag = getTagCompound();
+		return (tag != null && tag.hasKey(key));
+	}
+
+	@Override
+	public String getTagCompoundValue(String key)
+	{
+		return getTagCompound().getString(key);
+	}
+
+	@Override
+	public void setTagCompound(String key, String value)
+	{
+		net.minecraft.server.v1_8_R3.ItemStack rawItem =
+			(net.minecraft.server.v1_8_R3.ItemStack) ReflectionHelper.getObjectField(itemStack, "handle");
+		if (!rawItem.hasTag())
+		{
+			NBTTagCompound tag = new NBTTagCompound();
+			tag.setString(key, value);
+			ReflectionHelper.setField(rawItem, "tag", tag);
+		}
+		else
+			rawItem.getTag().setString(key, value);
 	}
 
 	@Override
