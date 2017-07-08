@@ -520,7 +520,7 @@ public final class ObjectWrapper
 	}
 
 	@Nullable
-	public static RunsafeAbstractHorse convert(Horse toWrap)
+	public static RunsafeHorse convert(Horse toWrap)
 	{
 		if (toWrap == null)
 			return null;

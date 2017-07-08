@@ -1,10 +1,8 @@
 package no.runsafe.framework.api.entity.animals.horses;
 
-import no.runsafe.framework.api.entity.IAnimal;
-import no.runsafe.framework.api.entity.ITameable;
 import org.bukkit.entity.Horse;
 
-public interface INormalHorse extends IAbstractHorse
+public interface INormalHorse extends IHorse
 {
 	Horse.Variant getType();
 

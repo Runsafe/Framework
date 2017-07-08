@@ -5,7 +5,7 @@ import org.bukkit.entity.Horse;
 
 import java.util.Random;
 
-public class RunsafeNormalHorse extends RunsafeAbstractHorse implements INormalHorse
+public class RunsafeNormalHorse extends RunsafeHorse implements INormalHorse
 {
 	public RunsafeNormalHorse(Horse toWrap)
 	{
