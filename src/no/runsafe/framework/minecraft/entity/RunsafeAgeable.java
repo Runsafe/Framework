@@ -57,6 +57,7 @@ public class RunsafeAgeable extends RunsafeCreature implements IAgeable
 	public void setBaby()
 	{
 		ageable.setBaby();
+		setAgeLock(true);
 	}
 
 	@Override

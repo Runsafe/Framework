@@ -23,6 +23,7 @@ import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.enchantment.RunsafeEnchantment;
 import no.runsafe.framework.minecraft.entity.*;
 import no.runsafe.framework.minecraft.entity.animals.*;
+import no.runsafe.framework.minecraft.entity.animals.horses.*;
 import no.runsafe.framework.minecraft.entity.monsters.*;
 import no.runsafe.framework.minecraft.inventory.*;
 import no.runsafe.framework.minecraft.item.meta.*;
@@ -476,6 +477,9 @@ public final class ObjectWrapper
 		if (toWrap instanceof Monster)
 			return convert((Monster) toWrap);
 
+		if (toWrap instanceof Horse)
+			return convert((Horse) toWrap);
+
 		if (toWrap instanceof Wolf)
 			return new RunsafeWolf((Wolf) toWrap);
 
@@ -513,6 +517,14 @@ public final class ObjectWrapper
 			return new RunsafeSilverfish((Silverfish) toWrap);
 
 		return new RunsafeMonster(toWrap);
+	}
+
+	@Nullable
+	public static RunsafeHorse convert(Horse toWrap)
+	{
+		if (toWrap == null)
+			return null;
+		return new RunsafeNormalHorse(toWrap);
 	}
 
 	@Nullable

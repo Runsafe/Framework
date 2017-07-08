@@ -19,7 +19,7 @@ public class RunsafeChicken extends RunsafeAgeable implements IChicken
 	@Nullable
 	public Sound getIdleSound()
 	{
-		return Sound.Creature.Cat.Meow;
+		return Sound.Creature.Chicken.Idle;
 	}
 
 	private final Chicken chicken;
