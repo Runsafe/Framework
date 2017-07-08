@@ -1,82 +1,81 @@
 package no.runsafe.framework.minecraft.entity.animals.horses;
 
-import no.runsafe.framework.api.entity.animals.horses.IHorse;
-import no.runsafe.framework.minecraft.entity.RunsafeLivingEntity;
+import no.runsafe.framework.api.entity.animals.horses.INormalHorse;
 import org.bukkit.entity.Horse;
 
 import java.util.Random;
 
-public class RunsafeHorse extends RunsafeAbstractHorse implements IHorse
+public class RunsafeNormalHorse extends RunsafeAbstractHorse implements INormalHorse
 {
-	public RunsafeHorse(Horse toWrap)
+	public RunsafeNormalHorse(Horse toWrap)
 	{
 		super(toWrap);
-		horse = toWrap;
+		normalHorse = toWrap;
 	}
 
 	@Override
 	public Horse.Variant getType()
 	{
-		return horse.getVariant();
+		return normalHorse.getVariant();
 	}
 
 	@Override
 	public void setType(Horse.Variant type)
 	{
-		horse.setVariant(type);
+		normalHorse.setVariant(type);
 	}
 
 	@Override
 	public void setRandomType()
 	{
 		Horse.Variant[] values = Horse.Variant.values();
-		horse.setVariant(values[this.random.nextInt(values.length)]);
+		normalHorse.setVariant(values[this.random.nextInt(values.length)]);
 	}
 
 	@Override
 	public Horse.Color getColour()
 	{
-		return horse.getColor();
+		return normalHorse.getColor();
 	}
 
 	@Override
 	public void setColour(Horse.Color colour)
 	{
-		horse.setColor(colour);
+		normalHorse.setColor(colour);
 	}
 
 	@Override
 	public void setRandomColour()
 	{
 		Horse.Color[] values = Horse.Color.values();
-		horse.setColor(values[this.random.nextInt(values.length)]);
+		normalHorse.setColor(values[this.random.nextInt(values.length)]);
 	}
 
 	@Override
 	public Horse.Style getStyle()
 	{
-		return horse.getStyle();
+		return normalHorse.getStyle();
 	}
 
 	@Override
 	public void setStyle(Horse.Style style)
 	{
-		horse.setStyle(style);
+		normalHorse.setStyle(style);
 	}
 
 	@Override
 	public void setRandomStyle()
 	{
 		Horse.Style[] values = Horse.Style.values();
-		horse.setStyle(values[this.random.nextInt(values.length)]);
+		normalHorse.setStyle(values[this.random.nextInt(values.length)]);
 	}
 
 	@Override
 	public Horse getRaw()
 	{
-		return horse;
+		return normalHorse;
 	}
 
 	private Random random = new Random();
-	Horse horse;
+	Horse normalHorse;
 }

@@ -524,7 +524,7 @@ public final class ObjectWrapper
 	{
 		if (toWrap == null)
 			return null;
-		return new RunsafeHorse(toWrap);
+		return new RunsafeNormalHorse(toWrap);
 	}
 
 	@Nullable
