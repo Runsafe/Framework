@@ -10,6 +10,7 @@ import no.runsafe.framework.internal.LegacyMaterial;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.entity.BukkitLivingEntity;
 import no.runsafe.framework.internal.wrapper.entity.BukkitProjectile;
+import no.runsafe.framework.tools.reflection.ReflectionHelper;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
 import org.bukkit.craftbukkit.v1_8_R3.util.UnsafeList;
@@ -85,18 +86,9 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 		if (!(rawLivingEntity instanceof EntityInsentient))
 			return;
 		EntityInsentient rawInsentientEntity = (EntityInsentient) rawLivingEntity;
-		try
-		{
-			// Declared field name stays the same up to Minecraft 1.12.
-			Field gsa = PathfinderGoalSelector.class.getDeclaredField("b");
-			gsa.setAccessible(true);
-			gsa.set(rawInsentientEntity.goalSelector, new UnsafeList());
-			gsa.set(rawInsentientEntity.targetSelector, new UnsafeList());
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
+		// Field name stays the same up to Minecraft 1.12.
+		ReflectionHelper.setField(rawInsentientEntity.goalSelector, "b", new UnsafeList());
+		ReflectionHelper.setField(rawInsentientEntity.targetSelector, "b", new UnsafeList());
 	}
 
 	/**
