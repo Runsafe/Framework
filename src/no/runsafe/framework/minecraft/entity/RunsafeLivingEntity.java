@@ -109,6 +109,22 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 	}
 
 	/**
+	 * Adds a new pathfinding target.
+	 * @param priority
+	 * @param goal The pathfinding target to use.
+	 */
+	@Override
+	public void setNewPathfindingTarget(int priority, PathfinderGoal target)
+	{
+		// Make sure this is an Insentient entity. Not all living entities are Insentient.
+		EntityLiving rawLivingEntity = ((CraftLivingEntity) livingEntity).getHandle();
+		if (!(rawLivingEntity instanceof EntityInsentient))
+			return;
+		EntityInsentient rawInsentientEntity = (EntityInsentient) rawLivingEntity;
+		rawInsentientEntity.targetSelector.a(priority, target);
+	}
+
+	/**
 	 * @return Whether or not this entity will naturally despawn.
 	 */
 	@Override
