@@ -17,13 +17,5 @@ public class RunsafeEnderDragon extends RunsafeLivingEntity implements IEnderDra
 		dragon = toWrap;
 	}
 
-	@Override
-	public void setDragonTarget(ILivingEntity entity)
-	{
-		EntityEnderDragon raw = ((CraftEnderDragon) dragon).getHandle();
-		LivingEntity livingEntity = ObjectUnwrapper.convert(entity);
-		raw.b(((CraftLivingEntity) livingEntity).getHandle());
-	}
-
 	private final EnderDragon dragon;
 }
