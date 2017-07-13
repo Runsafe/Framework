@@ -9,6 +9,25 @@ public class PacketSpawnLivingEntity extends RunsafePacket
 	{
 		PacketPlayOutSpawnEntityLiving raw = new PacketPlayOutSpawnEntityLiving();
 
+		/*
+		 * Variable names in various spigot versions:
+		 * Type    1.8    1.10+  Description
+		 * int     a      a      EntityID
+		 * int     b      c      EntityType
+		 * int     c      N/A    X location divided by 32
+		 * int     d      N/A    Y location divided by 32
+		 * int     e      N/A    Z location divided by 32
+		 * double  N/A    d      Exact X location.
+		 * double  N/A    e      Exact Y location.
+		 * double  N/A    f      Exact Z location.
+		 * int     f      g      Unknown
+		 * int     g      h      Unknown
+		 * int     h      i      Unknown
+		 * byte    i      j      Yaw
+		 * byte    j      k      Pitch
+		 * byte    k      l      Head rotation
+		 * UUID    N/A    b      Unique ID.
+		 */
 		ReflectionHelper.setField(raw, "a", entityID);
 		ReflectionHelper.setField(raw, "b", entityType);
 		ReflectionHelper.setField(raw, "c", x);
