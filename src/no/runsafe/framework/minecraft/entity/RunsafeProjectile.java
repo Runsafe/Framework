@@ -4,8 +4,8 @@ import net.minecraft.server.v1_8_R3.EntityArrow;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.block.IBlock;
-import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.entity.ILivingEntity;
+import no.runsafe.framework.api.entity.projectiles.IProjectile;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.api.entity.IProjectileSource;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
@@ -14,13 +14,14 @@ import org.bukkit.entity.Projectile;
 
 import javax.annotation.Nullable;
 
-public class RunsafeProjectile extends BukkitProjectile
+public class RunsafeProjectile extends BukkitProjectile implements IProjectile
 {
 	public RunsafeProjectile(Projectile toWrap)
 	{
 		super(toWrap);
 	}
 
+	@Override
 	@Nullable
 	public IBlock getImpaledBlock()
 	{
@@ -36,6 +37,7 @@ public class RunsafeProjectile extends BukkitProjectile
 		return world.getBlockAt(tag.getShort("xTile"), tag.getShort("yTile"), tag.getShort("zTile"));
 	}
 
+	@Override
 	@Nullable
 	public IPlayer getShootingPlayer()
 	{
@@ -43,6 +45,7 @@ public class RunsafeProjectile extends BukkitProjectile
 		return (shooterSource instanceof IPlayer) ? (IPlayer) shooterSource : null;
 	}
 
+	@Override
 	@Nullable
 	public ILivingEntity getShootingEntity()
 	{

@@ -1,5 +1,6 @@
 package no.runsafe.framework.internal.wrapper.entity;
 
+import no.runsafe.framework.api.entity.ILivingEntity;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.minecraft.entity.RunsafeLivingEntity;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
@@ -20,9 +21,9 @@ public abstract class BukkitProjectile extends RunsafeEntity
 		return ObjectWrapper.convert(projectile.getShooter());
 	}
 
-	public void setShooter(RunsafeLivingEntity livingEntity)
+	public void setShooter(ILivingEntity livingEntity)
 	{
-		projectile.setShooter(livingEntity.getRaw());
+		projectile.setShooter(((RunsafeLivingEntity) livingEntity).getRaw());
 	}
 
 	@Override
