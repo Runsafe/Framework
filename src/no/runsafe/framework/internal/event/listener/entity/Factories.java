@@ -17,7 +17,11 @@ public final class Factories
 		BukkitEventMapper.Register(SpawnEggUsed.Factory());
 		BukkitEventMapper.Register(NaturalSpawn.Factory());
 		BukkitEventMapper.Register(ChangeBlock.Factory());
+		BukkitEventMapper.Register(Teleport.Factory());
+		BukkitEventMapper.Register(TeleportEvent.Factory());
 		BukkitEventMapper.Register(PortalEnter.Factory());
+		BukkitEventMapper.Register(Portal.Factory());
+		BukkitEventMapper.Register(PortalEvent.Factory());
 		BukkitEventMapper.Register(CreatePortal.Factory());
 		BukkitEventMapper.Register(Damage.Factory());
 		BukkitEventMapper.Register(ProjectileHit.Factory());

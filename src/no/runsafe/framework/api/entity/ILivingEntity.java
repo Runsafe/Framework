@@ -49,6 +49,7 @@ public interface ILivingEntity extends IDamageable, IProjectileSource
 	Sound getIdleSound();
 	void stopPathfinding();
 	void setNewPathfindingGoal(int goalNum, PathfinderGoal goal);
+	void setNewPathfindingTarget(int priority, PathfinderGoal target);
 	boolean getPersistance();
 	void setPersistance(boolean persistance);
 }
