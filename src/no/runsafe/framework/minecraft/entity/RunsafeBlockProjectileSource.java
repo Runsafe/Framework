@@ -9,6 +9,6 @@ public class RunsafeBlockProjectileSource extends BukkitBlockProjectileSource im
 {
     public RunsafeBlockProjectileSource(BlockProjectileSource toWrap)
     {
-        super((Dispenser)toWrap);
+        super(toWrap);
     }
 }
