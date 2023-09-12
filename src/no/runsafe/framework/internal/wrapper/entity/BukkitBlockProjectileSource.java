@@ -11,16 +11,16 @@ import org.bukkit.util.Vector;
 
 public abstract class BukkitBlockProjectileSource implements IBlockProjectileSource
 {
-    private final RunsafeBlockProjectileSource blockProjectileSource;
+    private final BlockProjectileSource blockProjectileSource;
 
     public BukkitBlockProjectileSource(BlockProjectileSource toWrap)
     {
-        blockProjectileSource = ObjectWrapper.convert(toWrap);
+        blockProjectileSource = toWrap;
     }
 
     public IBlock getBlock()
     {
-        return blockProjectileSource.getBlock();
+        return ObjectWrapper.convert(blockProjectileSource.getBlock());
     }
 
     public <T extends RunsafeProjectile> T launchProjectile(Class<? extends T> projectile)
