@@ -82,19 +82,37 @@ public abstract class BukkitLivingEntity extends RunsafeEntity implements ILivin
 	}
 
 	@Override
-	public List<IBlock> getLineOfSight(HashSet<Material> transparent, int maxDistance)
+	public List<IBlock> getBlocksInLineOfSight(HashSet<Material> transparent, int maxDistance)
 	{
 		return ObjectWrapper.convert(livingEntity.getLineOfSight(transparent, maxDistance));
 	}
 
 	@Override
-	public IBlock getTargetBlock(HashSet<Material> transparent, int maxDistance)
+	public IBlock getTargetedBlock(HashSet<Material> transparent, int maxDistance)
 	{
 		return ObjectWrapper.convert(livingEntity.getTargetBlock(transparent, maxDistance));
 	}
 
 	@Override
-	public List<IBlock> getLastTwoTargetBlocks(HashSet<Material> transparent, int maxDistance)
+	public List<IBlock> getLastTwoTargetedBlocks(HashSet<Material> transparent, int maxDistance)
+	{
+		return ObjectWrapper.convert(livingEntity.getLastTwoTargetBlocks(transparent, maxDistance));
+	}
+
+	@Override
+	public List<IBlock> getLineOfSight(HashSet<Byte> transparent, int maxDistance)
+	{
+		return ObjectWrapper.convert(livingEntity.getLineOfSight(transparent, maxDistance));
+	}
+	@Deprecated
+	@Override
+	public IBlock getTargetBlock(HashSet<Byte> transparent, int maxDistance)
+	{
+		return ObjectWrapper.convert(livingEntity.getTargetBlock(transparent, maxDistance));
+	}
+	@Deprecated
+	@Override
+	public List<IBlock> getLastTwoTargetBlocks(HashSet<Byte> transparent, int maxDistance)
 	{
 		return ObjectWrapper.convert(livingEntity.getLastTwoTargetBlocks(transparent, maxDistance));
 	}

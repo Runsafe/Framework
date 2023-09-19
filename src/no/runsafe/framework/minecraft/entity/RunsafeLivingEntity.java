@@ -42,7 +42,7 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 			if (material.isTransparent())
 				transparent.add(material);
 
-		return getTargetBlock(transparent, MAX_DISTANCE);
+		return getTargetedBlock(transparent, MAX_DISTANCE);
 	}
 
 	public RunsafeEntity Fire(String projectileType)
