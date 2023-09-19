@@ -17,6 +17,7 @@ public abstract class BukkitFallingBlock extends RunsafeEntity
 		return block.getBlockData();
 	}
 
+	@Deprecated
 	public int getBlockId()
 	{
 		return LegacyMaterial.getIdOf(block.getMaterial());

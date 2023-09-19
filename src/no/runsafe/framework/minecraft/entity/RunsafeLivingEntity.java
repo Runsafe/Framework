@@ -37,10 +37,10 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 	@Override
 	public IBlock getTargetBlock()
 	{
-		HashSet<Byte> transparent = new HashSet<Byte>(10);
+		HashSet<Material> transparent = new HashSet<>(10);
 		for (Material material : Material.values())
 			if (material.isTransparent())
-				transparent.add((byte) (int) LegacyMaterial.getIdOf(material));
+				transparent.add(material);
 
 		return getTargetBlock(transparent, MAX_DISTANCE);
 	}

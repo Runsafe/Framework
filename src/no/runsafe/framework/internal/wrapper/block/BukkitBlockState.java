@@ -53,6 +53,7 @@ public class BukkitBlockState extends RunsafeBlock
 		setData(material.getData());
 	}
 
+	@Deprecated
 	public int getMaterialID()
 	{
 		return LegacyMaterial.getIdOf(blockState.getType());

@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @SuppressWarnings("MagicNumber")
+@Deprecated
 public final class LegacyMaterial
 {
 	public static Material getById(int id)

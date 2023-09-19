@@ -9,6 +9,7 @@ import no.runsafe.framework.minecraft.Sound;
 import no.runsafe.framework.minecraft.entity.ProjectileEntity;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.minecraft.inventory.RunsafeEntityEquipment;
+import org.bukkit.Material;
 
 import javax.annotation.Nullable;
 import java.util.HashSet;
@@ -24,9 +25,9 @@ public interface ILivingEntity extends IDamageable, IProjectileSource
 	double getEyeHeight();
 	double getEyeHeight(boolean ignoreSneaking);
 	ILocation getEyeLocation();
-	List<IBlock> getLineOfSight(HashSet<Byte> transparent, int maxDistance);
-	IBlock getTargetBlock(HashSet<Byte> transparent, int maxDistance);
-	List<IBlock> getLastTwoTargetBlocks(HashSet<Byte> transparent, int maxDistance);
+	List<IBlock> getLineOfSight(HashSet<Material> transparent, int maxDistance);
+	IBlock getTargetBlock(HashSet<Material> transparent, int maxDistance);
+	List<IBlock> getLastTwoTargetBlocks(HashSet<Material> transparent, int maxDistance);
 	int getRemainingAir();
 	void setRemainingAir(int remainingAirTicks);
 	int getMaximumAir();

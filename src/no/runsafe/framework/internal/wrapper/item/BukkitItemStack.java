@@ -30,11 +30,13 @@ public abstract class BukkitItemStack implements ConfigurationSerializable, IWra
 		itemStack.setType(type);
 	}
 
+	@Deprecated
 	public int getItemId()
 	{
 		return LegacyMaterial.getIdOf(itemStack.getType());
 	}
 
+	@Deprecated
 	public void setItemId(int type)
 	{
 		itemStack.setType(LegacyMaterial.getById(type));

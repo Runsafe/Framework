@@ -16,6 +16,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.util.Vector;
+import org.bukkit.Material;
 
 import javax.annotation.Nullable;
 import java.util.HashSet;
@@ -81,19 +82,19 @@ public abstract class BukkitLivingEntity extends RunsafeEntity implements ILivin
 	}
 
 	@Override
-	public List<IBlock> getLineOfSight(HashSet<Byte> transparent, int maxDistance)
+	public List<IBlock> getLineOfSight(HashSet<Material> transparent, int maxDistance)
 	{
 		return ObjectWrapper.convert(livingEntity.getLineOfSight(transparent, maxDistance));
 	}
 
 	@Override
-	public IBlock getTargetBlock(HashSet<Byte> transparent, int maxDistance)
+	public IBlock getTargetBlock(HashSet<Material> transparent, int maxDistance)
 	{
 		return ObjectWrapper.convert(livingEntity.getTargetBlock(transparent, maxDistance));
 	}
 
 	@Override
-	public List<IBlock> getLastTwoTargetBlocks(HashSet<Byte> transparent, int maxDistance)
+	public List<IBlock> getLastTwoTargetBlocks(HashSet<Material> transparent, int maxDistance)
 	{
 		return ObjectWrapper.convert(livingEntity.getLastTwoTargetBlocks(transparent, maxDistance));
 	}
