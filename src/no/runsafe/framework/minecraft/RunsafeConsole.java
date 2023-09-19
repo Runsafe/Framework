@@ -25,12 +25,12 @@ public class RunsafeConsole implements ICommandExecutor
 
 	/**
 	* Gets the unique ID.
-	* @return null. The console doesn't have a unique ID.
+	* @return Zeroed out UUID.
 	*/
 	@Override
 	public UUID getUniqueId()
 	{
-		return null;
+		return consoleUUID;
 	}
 
 	@Override
@@ -84,6 +84,7 @@ public class RunsafeConsole implements ICommandExecutor
 		return name.hashCode();
 	}
 
+	private final UUID consoleUUID = UUID.fromString("00000000-0000-0000-0000-000000000000");
 	private final IConsole output;
 	private final String name;
 }
