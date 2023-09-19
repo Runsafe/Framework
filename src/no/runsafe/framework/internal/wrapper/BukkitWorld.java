@@ -48,11 +48,13 @@ public abstract class BukkitWorld extends BukkitMetadata
 		return ObjectWrapper.convert(world.getBlockAt(x, y, z));
 	}
 
+	@Deprecated
 	public int getBlockTypeIdAt(ILocation location)
 	{
 		return LegacyMaterial.getIdOf(world.getBlockAt((Location) ObjectUnwrapper.convert(location)).getType());
 	}
 
+	@Deprecated
 	public int getBlockTypeIdAt(int x, int y, int z)
 	{
 		return LegacyMaterial.getIdOf(world.getBlockAt(x, y, z).getType());

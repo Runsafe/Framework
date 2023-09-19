@@ -39,11 +39,13 @@ public class BukkitBlock extends BukkitMetadata
 		setData(type.getData());
 	}
 
+	@Deprecated
 	public int getTypeId()
 	{
 		return LegacyMaterial.getIdOf(block.getType());
 	}
 
+	@Deprecated
 	public void setTypeId(int materialID)
 	{
 		block.setType(LegacyMaterial.getById(materialID));
