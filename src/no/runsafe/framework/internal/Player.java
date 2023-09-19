@@ -53,7 +53,7 @@ public final class Player
 	{
 		if (playerId == null)
 			return null;
-		if (kickingPlayer.containsKey(server.getPlayer(playerId)))
+		if (kickingPlayer.containsKey(playerId))
 		{
 			IPlayer kicker = kickingPlayer.get(playerId);
 			kickingPlayer.remove(playerId);
