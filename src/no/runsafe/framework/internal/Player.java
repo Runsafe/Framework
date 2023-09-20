@@ -42,7 +42,7 @@ public final class Player
 
 	public void setKicker(IPlayer kickedPlayer, IPlayer kicker)
 	{
-		if (kickingPlayer.containsKey(kickedPlayer))
+		if (kickingPlayer.containsKey(kickedPlayer.getUniqueId()))
 			kickingPlayer.replace(kickedPlayer.getUniqueId(), kicker);
 		else
 			kickingPlayer.put(kickedPlayer.getUniqueId(), kicker);
