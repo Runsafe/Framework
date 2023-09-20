@@ -4,6 +4,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public final class FrameworkConfiguration extends Holder
 {
@@ -22,7 +23,7 @@ public final class FrameworkConfiguration extends Holder
 		InputStream defaults = getClass().getResourceAsStream("/default.yml");
 		if (defaults != null)
 		{
-			configFile.setDefaults(YamlConfiguration.loadConfiguration(defaults));
+			configFile.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(defaults)));
 			configFile.options().copyDefaults(true);
 		}
 		save();
