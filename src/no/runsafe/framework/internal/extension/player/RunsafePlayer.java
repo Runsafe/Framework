@@ -229,10 +229,10 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 		{
 			RunsafeMeta itemStack = inventory.getItemInSlot(slot);
 
-			if (itemStack == null || itemStack.getItemId() == 0)
+			if (itemStack == null || itemStack.getItemType() == Item.Unavailable.Air)
 				continue;
 
-			if (itemStack.getItemId() == itemType.getItemID() && itemStack.getData().getData() == itemType.getData())
+			if (itemStack == itemType.getItem() && itemStack.getData().getData() == itemType.getData())
 				found += itemStack.getAmount();
 
 			if (found >= amount)

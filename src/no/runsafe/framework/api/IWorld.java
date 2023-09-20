@@ -44,8 +44,10 @@ public interface IWorld extends IMetadata
 	@Nonnull
 	IBlock getBlockAt(int x, int y, int z);
 
+	@Deprecated
 	int getBlockTypeIdAt(ILocation location);
 
+	@Deprecated
 	int getBlockTypeIdAt(int x, int y, int z);
 
 	@Nonnull
