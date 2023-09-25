@@ -28,12 +28,6 @@ public interface ILivingEntity extends IDamageable, IProjectileSource
 	List<IBlock> getBlocksInLineOfSight(HashSet<Material> transparent, int maxDistance);
 	IBlock getTargetedBlock(HashSet<Material> transparent, int maxDistance);
 	List<IBlock> getLastTwoTargetedBlocks(HashSet<Material> transparent, int maxDistance);
-	@Deprecated
-	List<IBlock> getLineOfSight(HashSet<Byte> transparent, int maxDistance);
-	@Deprecated
-	IBlock getTargetBlock(HashSet<Byte> transparent, int maxDistance);
-	@Deprecated
-	List<IBlock> getLastTwoTargetBlocks(HashSet<Byte> transparent, int maxDistance);
 	int getRemainingAir();
 	void setRemainingAir(int remainingAirTicks);
 	int getMaximumAir();

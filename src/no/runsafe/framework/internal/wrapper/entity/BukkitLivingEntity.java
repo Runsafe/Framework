@@ -100,24 +100,6 @@ public abstract class BukkitLivingEntity extends RunsafeEntity implements ILivin
 	}
 
 	@Override
-	public List<IBlock> getLineOfSight(HashSet<Byte> transparent, int maxDistance)
-	{
-		return ObjectWrapper.convert(livingEntity.getLineOfSight(transparent, maxDistance));
-	}
-	@Deprecated
-	@Override
-	public IBlock getTargetBlock(HashSet<Byte> transparent, int maxDistance)
-	{
-		return ObjectWrapper.convert(livingEntity.getTargetBlock(transparent, maxDistance));
-	}
-	@Deprecated
-	@Override
-	public List<IBlock> getLastTwoTargetBlocks(HashSet<Byte> transparent, int maxDistance)
-	{
-		return ObjectWrapper.convert(livingEntity.getLastTwoTargetBlocks(transparent, maxDistance));
-	}
-
-	@Override
 	public int getRemainingAir()
 	{
 		return livingEntity.getRemainingAir();
