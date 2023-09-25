@@ -1,7 +1,7 @@
 package no.runsafe.framework.minecraft.entity;
 
-import net.minecraft.server.v1_8_R3.EntityArrow;
-import net.minecraft.server.v1_8_R3.NBTTagCompound;
+import net.minecraft.server.v1_12_R1.EntityArrow;
+import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.entity.ILivingEntity;

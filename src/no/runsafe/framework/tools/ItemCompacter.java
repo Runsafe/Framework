@@ -1,7 +1,7 @@
 package no.runsafe.framework.tools;
 
-import net.minecraft.server.v1_8_R3.ItemStack;
-import net.minecraft.server.v1_8_R3.NBTTagCompound;
+import net.minecraft.server.v1_12_R1.ItemStack;
+import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 

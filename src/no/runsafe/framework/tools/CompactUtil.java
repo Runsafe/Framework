@@ -1,7 +1,7 @@
 package no.runsafe.framework.tools;
 
-import net.minecraft.server.v1_8_R3.NBTBase;
-import net.minecraft.server.v1_8_R3.NBTCompressedStreamTools;
+import net.minecraft.server.v1_12_R1.NBTBase;
+import net.minecraft.server.v1_12_R1.NBTCompressedStreamTools;
 
 import java.io.DataInput;
 import java.io.DataOutput;

@@ -1,9 +1,9 @@
 package no.runsafe.framework.minecraft.entity;
 
-import net.minecraft.server.v1_8_R3.EntityInsentient;
-import net.minecraft.server.v1_8_R3.EntityLiving;
-import net.minecraft.server.v1_8_R3.PathfinderGoal;
-import net.minecraft.server.v1_8_R3.PathfinderGoalSelector;
+import net.minecraft.server.v1_12_R1.EntityInsentient;
+import net.minecraft.server.v1_12_R1.EntityLiving;
+import net.minecraft.server.v1_12_R1.PathfinderGoal;
+import net.minecraft.server.v1_12_R1.PathfinderGoalSelector;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.internal.LegacyMaterial;
@@ -12,8 +12,8 @@ import no.runsafe.framework.internal.wrapper.entity.BukkitLivingEntity;
 import no.runsafe.framework.internal.wrapper.entity.BukkitProjectile;
 import no.runsafe.framework.tools.reflection.ReflectionHelper;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
-import org.bukkit.craftbukkit.v1_8_R3.util.UnsafeList;
+import org.bukkit.craftbukkit.v1_12_R1.entity.CraftLivingEntity;
+import org.bukkit.craftbukkit.v1_12_R1.util.UnsafeList;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;

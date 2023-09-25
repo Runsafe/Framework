@@ -1,7 +1,7 @@
 package no.runsafe.framework.minecraft.networking;
 
-import net.minecraft.server.v1_8_R3.Entity;
-import net.minecraft.server.v1_8_R3.PacketPlayOutAnimation;
+import net.minecraft.server.v1_12_R1.Entity;
+import net.minecraft.server.v1_12_R1.PacketPlayOutAnimation;
 import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.minecraft.AnimationType;

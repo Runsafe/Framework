@@ -1,6 +1,6 @@
 package no.runsafe.framework.internal.tag;
 
-import net.minecraft.server.v1_8_R3.NBTTagCompound;
+import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import no.runsafe.framework.internal.wrapper.IWrapper;
 import no.runsafe.framework.tools.reflection.ReflectionHelper;
 

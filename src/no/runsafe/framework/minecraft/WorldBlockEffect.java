@@ -1,6 +1,6 @@
 package no.runsafe.framework.minecraft;
 
-import net.minecraft.server.v1_8_R3.EnumParticle;
+import net.minecraft.server.v1_12_R1.EnumParticle;
 import no.runsafe.framework.api.IWorldEffect;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 

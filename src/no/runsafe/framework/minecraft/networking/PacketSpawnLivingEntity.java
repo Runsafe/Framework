@@ -1,6 +1,6 @@
 package no.runsafe.framework.minecraft.networking;
 
-import net.minecraft.server.v1_8_R3.PacketPlayOutSpawnEntityLiving;
+import net.minecraft.server.v1_12_R1.PacketPlayOutSpawnEntityLiving;
 import no.runsafe.framework.tools.reflection.ReflectionHelper;
 
 public class PacketSpawnLivingEntity extends RunsafePacket
