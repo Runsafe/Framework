@@ -86,7 +86,7 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 		if (!(rawLivingEntity instanceof EntityInsentient))
 			return;
 		EntityInsentient rawInsentientEntity = (EntityInsentient) rawLivingEntity;
-		// Field name stays the same up to Minecraft 1.12.
+		// Field name stays the same up to Minecraft 1.12. TODO: Verify
 		ReflectionHelper.setField(rawInsentientEntity.goalSelector, "b", new UnsafeList());
 		ReflectionHelper.setField(rawInsentientEntity.targetSelector, "b", new UnsafeList());
 	}

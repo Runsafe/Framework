@@ -12,7 +12,7 @@ public class CompactUtil
 	public static void writeTag(DataOutput output, NBTBase tag)
 	{
 		try
-		{
+		{ //TODO : figure out what "a" was changed to
 			Method method = NBTCompressedStreamTools.class.getDeclaredMethod("a", NBTBase.class, DataOutput.class);
 			method.setAccessible(true);
 			method.invoke(null, tag, output);
@@ -25,7 +25,7 @@ public class CompactUtil
 
 	public static NBTBase readTag(DataInput input)
 	{
-		try {
+		try { //TODO : figure out what "a" was changed to
 			Method method = NBTCompressedStreamTools.class.getDeclaredMethod("a", DataInput.class, int.class);
 			method.setAccessible(true);
 

@@ -15,7 +15,7 @@ public final class EntityRegister
 	public static <E extends Entity> void registerEntity(Class<E> customClass, String name, int id)
 	{
 		Class<?> types = EntityTypes.class;
-
+		//TODO : figure this obfuscated mess out
 		getMap(types, "c").put(name, customClass);
 		getMap(types, "d").put(customClass, name);
 		//getMap(types, "e").put(id, customClass);
@@ -26,7 +26,7 @@ public final class EntityRegister
 	public static <E extends Entity> void registerOverrideEntity(Class<E> customClass, String name, int id)
 	{
 		Class<?> types = EntityTypes.class;
-
+		//TODO : figure this obfuscated mess out
 		getMap(types, "c").put(name, customClass);
 		getMap(types, "d").put(customClass, name);
 		getMap(types, "e").put(id, customClass);
