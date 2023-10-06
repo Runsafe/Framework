@@ -1,6 +1,6 @@
 package no.runsafe.framework.api.entity;
 
-import net.minecraft.server.v1_8_R3.PathfinderGoal;
+import net.minecraft.server.v1_12_R1.PathfinderGoal;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
@@ -28,12 +28,6 @@ public interface ILivingEntity extends IDamageable, IProjectileSource
 	List<IBlock> getBlocksInLineOfSight(HashSet<Material> transparent, int maxDistance);
 	IBlock getTargetedBlock(HashSet<Material> transparent, int maxDistance);
 	List<IBlock> getLastTwoTargetedBlocks(HashSet<Material> transparent, int maxDistance);
-	@Deprecated
-	List<IBlock> getLineOfSight(HashSet<Byte> transparent, int maxDistance);
-	@Deprecated
-	IBlock getTargetBlock(HashSet<Byte> transparent, int maxDistance);
-	@Deprecated
-	List<IBlock> getLastTwoTargetBlocks(HashSet<Byte> transparent, int maxDistance);
 	int getRemainingAir();
 	void setRemainingAir(int remainingAirTicks);
 	int getMaximumAir();

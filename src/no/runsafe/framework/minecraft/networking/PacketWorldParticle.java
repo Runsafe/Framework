@@ -1,7 +1,7 @@
 package no.runsafe.framework.minecraft.networking;
 
-import net.minecraft.server.v1_8_R3.PacketPlayOutWorldParticles;
-import net.minecraft.server.v1_8_R3.EnumParticle;
+import net.minecraft.server.v1_12_R1.PacketPlayOutWorldParticles;
+import net.minecraft.server.v1_12_R1.EnumParticle;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorldEffect;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;

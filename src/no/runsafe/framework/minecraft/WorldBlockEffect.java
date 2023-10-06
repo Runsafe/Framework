@@ -1,6 +1,6 @@
 package no.runsafe.framework.minecraft;
 
-import net.minecraft.server.v1_8_R3.EnumParticle;
+import net.minecraft.server.v1_12_R1.EnumParticle;
 import no.runsafe.framework.api.IWorldEffect;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 
@@ -12,7 +12,7 @@ public class WorldBlockEffect implements IWorldEffect
 		RunsafeMeta item = blockType.getItem();
 		particle = type.getBukkitParticle();
 		name = type.getName();
-		blockID = item.getItemId();
+		block = blockType;
 		blockData = item.getData().getData();
 	}
 
@@ -28,9 +28,14 @@ public class WorldBlockEffect implements IWorldEffect
 		return particle;
 	}
 
+	@Deprecated
 	public int getBlockID()
 	{
-		return blockID;
+		return block.getItemID();
+	}
+	public RunsafeMeta getBlock()
+	{
+		return block.getItem();
 	}
 
 	public int getBlockData()
@@ -40,6 +45,6 @@ public class WorldBlockEffect implements IWorldEffect
 
 	private final EnumParticle particle;
 	private final String name;
-	private final int blockID;
+	private final Item block;
 	private final int blockData;
 }

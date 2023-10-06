@@ -1,7 +1,7 @@
 package no.runsafe.framework.tools.nms;
 
-import net.minecraft.server.v1_8_R3.Entity;
-import net.minecraft.server.v1_8_R3.EntityTypes;
+import net.minecraft.server.v1_12_R1.Entity;
+import net.minecraft.server.v1_12_R1.EntityTypes;
 
 import java.lang.reflect.Field;
 import java.util.Map;
@@ -12,6 +12,7 @@ public final class EntityRegister
 	{
 	}
 
+	//Broken after 1.7 TODO: fix
 	public static <E extends Entity> void registerEntity(Class<E> customClass, String name, int id)
 	{
 		Class<?> types = EntityTypes.class;
@@ -23,6 +24,7 @@ public final class EntityRegister
 		getMap(types, "g").put(name, id);
 	}
 
+	//Broken after 1.7 TODO: fix
 	public static <E extends Entity> void registerOverrideEntity(Class<E> customClass, String name, int id)
 	{
 		Class<?> types = EntityTypes.class;

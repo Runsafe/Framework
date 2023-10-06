@@ -8,6 +8,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
  * This class handles configuration file access
@@ -30,7 +31,7 @@ public final class PluginConfiguration extends Holder implements IConfiguration
 		InputStream defaults = configurationFile.getDefaultConfiguration();
 		if (defaults != null)
 		{
-			configFile.setDefaults(YamlConfiguration.loadConfiguration(defaults));
+			configFile.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(defaults)));
 			configFile.options().copyDefaults(true);
 		}
 		save();

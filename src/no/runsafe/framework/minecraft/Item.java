@@ -1351,6 +1351,7 @@ public class Item implements IEnchantable
 		return item == null ? convertToItem().getItem() : item;
 	}
 
+	@Deprecated
 	public int getItemID()
 	{
 		return getItem().getItemId();

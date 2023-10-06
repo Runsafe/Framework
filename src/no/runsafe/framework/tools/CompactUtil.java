@@ -1,7 +1,8 @@
 package no.runsafe.framework.tools;
 
-import net.minecraft.server.v1_8_R3.NBTBase;
-import net.minecraft.server.v1_8_R3.NBTCompressedStreamTools;
+import net.minecraft.server.v1_12_R1.NBTBase;
+import net.minecraft.server.v1_12_R1.NBTCompressedStreamTools;
+import net.minecraft.server.v1_12_R1.NBTReadLimiter;
 
 import java.io.DataInput;
 import java.io.DataOutput;
@@ -26,10 +27,10 @@ public class CompactUtil
 	public static NBTBase readTag(DataInput input)
 	{
 		try {
-			Method method = NBTCompressedStreamTools.class.getDeclaredMethod("a", DataInput.class, int.class);
+			Method method = NBTCompressedStreamTools.class.getDeclaredMethod("a", DataInput.class, int.class, NBTReadLimiter.class);
 			method.setAccessible(true);
 
-			return (NBTBase) method.invoke(null, input, 0);
+			return (NBTBase) method.invoke(null, input, 0, new NBTReadLimiter(1024));
 		}
 		catch (Exception e)
 		{

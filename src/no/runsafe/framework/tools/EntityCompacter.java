@@ -1,6 +1,6 @@
 package no.runsafe.framework.tools;
 
-import net.minecraft.server.v1_8_R3.*;
+import net.minecraft.server.v1_12_R1.*;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.entity.ILivingEntity;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;

@@ -1,6 +1,6 @@
 package no.runsafe.framework.minecraft.item;
 
-import net.minecraft.server.v1_8_R3.NBTTagCompound;
+import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import no.runsafe.framework.api.ITagObject;
 import no.runsafe.framework.api.minecraft.IEnchant;
 import no.runsafe.framework.api.minecraft.IEnchantable;
@@ -9,7 +9,7 @@ import no.runsafe.framework.internal.wrapper.item.BukkitItemStack;
 import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import no.runsafe.framework.tools.reflection.ReflectionHelper;
-import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
@@ -121,8 +121,8 @@ public abstract class RunsafeItemStack extends BukkitItemStack implements IEncha
 	@Override
 	public void setTagCompound(String key, String value)
 	{
-		net.minecraft.server.v1_8_R3.ItemStack rawItem =
-			(net.minecraft.server.v1_8_R3.ItemStack) ReflectionHelper.getObjectField(itemStack, "handle");
+		net.minecraft.server.v1_12_R1.ItemStack rawItem =
+			(net.minecraft.server.v1_12_R1.ItemStack) ReflectionHelper.getObjectField(itemStack, "handle");
 		if (!rawItem.hasTag())
 		{
 			NBTTagCompound tag = new NBTTagCompound();
@@ -149,7 +149,7 @@ public abstract class RunsafeItemStack extends BukkitItemStack implements IEncha
 	@Override
 	public RunsafeMeta cloneWithNewCompound(NBTTagCompound compound)
 	{
-		net.minecraft.server.v1_8_R3.ItemStack raw = CraftItemStack.asNMSCopy(itemStack);
+		net.minecraft.server.v1_12_R1.ItemStack raw = CraftItemStack.asNMSCopy(itemStack);
 		raw.setTag(compound);
 		return ObjectWrapper.convert(CraftItemStack.asCraftMirror(raw));
 	}

@@ -18,9 +18,9 @@ public class Sound
 	@SuppressWarnings("StaticVariableOfConcreteClass")
 	public static final class Ambiance
 	{
-		public static final Sound Cave = new Sound(org.bukkit.Sound.AMBIENCE_CAVE);
-		public static final Sound Rain = new Sound(org.bukkit.Sound.AMBIENCE_RAIN);
-		public static final Sound Thunder = new Sound(org.bukkit.Sound.AMBIENCE_THUNDER);
+		public static final Sound Cave = new Sound(org.bukkit.Sound.AMBIENT_CAVE);
+		public static final Sound Rain = new Sound(org.bukkit.Sound.WEATHER_RAIN);
+		public static final Sound Thunder = new Sound(org.bukkit.Sound.ENTITY_LIGHTNING_THUNDER);
 
 		private Ambiance()
 		{
@@ -29,9 +29,9 @@ public class Sound
 
 	public static final class Anvil
 	{
-		public static final Sound Break = new Sound(org.bukkit.Sound.ANVIL_BREAK);
-		public static final Sound Land = new Sound(org.bukkit.Sound.ANVIL_LAND);
-		public static final Sound Use = new Sound(org.bukkit.Sound.ANVIL_USE);
+		public static final Sound Break = new Sound(org.bukkit.Sound.BLOCK_ANVIL_BREAK);
+		public static final Sound Land = new Sound(org.bukkit.Sound.BLOCK_ANVIL_LAND);
+		public static final Sound Use = new Sound(org.bukkit.Sound.BLOCK_ANVIL_USE);
 
 		private Anvil()
 		{
@@ -40,8 +40,9 @@ public class Sound
 
 	public static final class Arrow
 	{
-		public static final Sound Shoot = new Sound(org.bukkit.Sound.SHOOT_ARROW);
-		public static final Sound Hit = new Sound(org.bukkit.Sound.ARROW_HIT);
+		public static final Sound Shoot = new Sound(org.bukkit.Sound.ENTITY_ARROW_SHOOT);
+		public static final Sound Hit = new Sound(org.bukkit.Sound.ENTITY_ARROW_HIT);
+		public static final Sound HitPlayer = new Sound(org.bukkit.Sound.ENTITY_ARROW_HIT_PLAYER);
 
 		private Arrow()
 		{
@@ -50,12 +51,12 @@ public class Sound
 
 	public static final class Player
 	{
-		public static final Sound Burp = new Sound(org.bukkit.Sound.BURP);
-		public static final Sound Drink = new Sound(org.bukkit.Sound.DRINK);
-		public static final Sound Eat = new Sound(org.bukkit.Sound.EAT);
-		public static final Sound HurtFlesh = new Sound(org.bukkit.Sound.HURT_FLESH);
-		public static final Sound LevelUp = new Sound(org.bukkit.Sound.LEVEL_UP);
-		public static final Sound OrbPickup = new Sound(org.bukkit.Sound.ORB_PICKUP);
+		public static final Sound Burp = new Sound(org.bukkit.Sound.ENTITY_PLAYER_BURP);
+		public static final Sound Drink = new Sound(org.bukkit.Sound.ENTITY_GENERIC_DRINK);
+		public static final Sound Eat = new Sound(org.bukkit.Sound.ENTITY_GENERIC_EAT);
+		public static final Sound HurtFlesh = new Sound(org.bukkit.Sound.ENTITY_GENERIC_HURT);
+		public static final Sound LevelUp = new Sound(org.bukkit.Sound.ENTITY_PLAYER_LEVELUP);
+		public static final Sound OrbPickup = new Sound(org.bukkit.Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
 
 		private Player()
 		{
@@ -64,8 +65,10 @@ public class Sound
 
 	public static final class Chest
 	{
-		public static final Sound Close = new Sound(org.bukkit.Sound.CHEST_CLOSE);
-		public static final Sound Open = new Sound(org.bukkit.Sound.CHEST_OPEN);
+		public static final Sound Close = new Sound(org.bukkit.Sound.BLOCK_CHEST_CLOSE);
+		public static final Sound Open = new Sound(org.bukkit.Sound.BLOCK_CHEST_OPEN);
+		public static final Sound ShulkerClose = new Sound(org.bukkit.Sound.BLOCK_SHULKER_BOX_CLOSE);
+		public static final Sound ShulkerOpen = new Sound(org.bukkit.Sound.BLOCK_SHULKER_BOX_OPEN);
 
 		private Chest()
 		{
@@ -74,8 +77,8 @@ public class Sound
 
 	public static final class Mechanical
 	{
-		public static final Sound Click = new Sound(org.bukkit.Sound.CLICK);
-		public static final Sound WoodClick = new Sound(org.bukkit.Sound.WOOD_CLICK);
+		public static final Sound Click = new Sound(org.bukkit.Sound.BLOCK_STONE_BUTTON_CLICK_ON);
+		public static final Sound WoodClick = new Sound(org.bukkit.Sound.BLOCK_WOOD_BUTTON_CLICK_ON);
 
 		private Mechanical()
 		{
@@ -83,8 +86,8 @@ public class Sound
 
 		public static final class Door
 		{
-			public static final Sound Close = new Sound(org.bukkit.Sound.DOOR_CLOSE);
-			public static final Sound Open = new Sound(org.bukkit.Sound.DOOR_OPEN);
+			public static final Sound Close = new Sound(org.bukkit.Sound.BLOCK_WOODEN_DOOR_CLOSE);
+			public static final Sound Open = new Sound(org.bukkit.Sound.BLOCK_WOODEN_DOOR_OPEN);
 
 			private Door()
 			{
@@ -94,8 +97,8 @@ public class Sound
 
 	public static final class Fall
 	{
-		public static final Sound Big = new Sound(org.bukkit.Sound.FALL_BIG);
-		public static final Sound Small = new Sound(org.bukkit.Sound.FALL_SMALL);
+		public static final Sound Big = new Sound(org.bukkit.Sound.ENTITY_GENERIC_BIG_FALL);
+		public static final Sound Small = new Sound(org.bukkit.Sound.ENTITY_GENERIC_SMALL_FALL);
 
 		private Fall()
 		{
@@ -104,18 +107,18 @@ public class Sound
 
 	public static final class Environment
 	{
-		public static final Sound Explode = new Sound(org.bukkit.Sound.EXPLODE);
-		public static final Sound Glass = new Sound(org.bukkit.Sound.GLASS);
-		public static final Sound Fire = new Sound(org.bukkit.Sound.FIRE);
-		public static final Sound Ignition = new Sound(org.bukkit.Sound.FIRE_IGNITE);
-		public static final Sound Fizz = new Sound(org.bukkit.Sound.FIZZ);
-		public static final Sound Fuse = new Sound(org.bukkit.Sound.FUSE);
-		public static final Sound Lava = new Sound(org.bukkit.Sound.LAVA);
-		public static final Sound LavaBubble = new Sound(org.bukkit.Sound.LAVA_POP);
-		public static final Sound Splash = new Sound(org.bukkit.Sound.SPLASH);
-		public static final Sound Splash2 = new Sound(org.bukkit.Sound.SPLASH2);
-		public static final Sound Swim = new Sound(org.bukkit.Sound.SWIM);
-		public static final Sound Water = new Sound(org.bukkit.Sound.WATER);
+		public static final Sound Explode = new Sound(org.bukkit.Sound.ENTITY_GENERIC_EXPLODE);
+		public static final Sound Glass = new Sound(org.bukkit.Sound.BLOCK_GLASS_FALL);
+		public static final Sound Fire = new Sound(org.bukkit.Sound.BLOCK_FIRE_AMBIENT);
+		public static final Sound Ignition = new Sound(org.bukkit.Sound.ENTITY_TNT_PRIMED);
+		public static final Sound Fizz = new Sound(org.bukkit.Sound.BLOCK_FIRE_EXTINGUISH);
+		public static final Sound Fuse = new Sound(org.bukkit.Sound.ENTITY_TNT_PRIMED);
+		public static final Sound Lava = new Sound(org.bukkit.Sound.BLOCK_LAVA_AMBIENT);
+		public static final Sound LavaBubble = new Sound(org.bukkit.Sound.BLOCK_LAVA_POP);
+		public static final Sound Splash = new Sound(org.bukkit.Sound.ENTITY_GENERIC_SPLASH);
+		public static final Sound Splash2 = new Sound(org.bukkit.Sound.ENTITY_GENERIC_SPLASH);
+		public static final Sound Swim = new Sound(org.bukkit.Sound.ENTITY_GENERIC_SWIM);
+		public static final Sound Water = new Sound(org.bukkit.Sound.BLOCK_WATER_AMBIENT);
 
 		private Environment()
 		{
@@ -123,14 +126,14 @@ public class Sound
 
 		public static final class Step
 		{
-			public static final Sound Grass = new Sound(org.bukkit.Sound.STEP_GRASS);
-			public static final Sound Gravel = new Sound(org.bukkit.Sound.STEP_GRAVEL);
-			public static final Sound Ladder = new Sound(org.bukkit.Sound.STEP_LADDER);
-			public static final Sound Sand = new Sound(org.bukkit.Sound.STEP_SAND);
-			public static final Sound Snow = new Sound(org.bukkit.Sound.STEP_SNOW);
-			public static final Sound Stone = new Sound(org.bukkit.Sound.STEP_STONE);
-			public static final Sound Wood = new Sound(org.bukkit.Sound.STEP_WOOD);
-			public static final Sound Wool = new Sound(org.bukkit.Sound.STEP_WOOL);
+			public static final Sound Grass = new Sound(org.bukkit.Sound.BLOCK_GRASS_STEP);
+			public static final Sound Gravel = new Sound(org.bukkit.Sound.BLOCK_GRAVEL_STEP);
+			public static final Sound Ladder = new Sound(org.bukkit.Sound.BLOCK_LADDER_STEP);
+			public static final Sound Sand = new Sound(org.bukkit.Sound.BLOCK_SAND_STEP);
+			public static final Sound Snow = new Sound(org.bukkit.Sound.BLOCK_SNOW_STEP);
+			public static final Sound Stone = new Sound(org.bukkit.Sound.BLOCK_STONE_STEP);
+			public static final Sound Wood = new Sound(org.bukkit.Sound.BLOCK_WOOD_STEP);
+			public static final Sound Wool = new Sound(org.bukkit.Sound.BLOCK_CLOTH_STEP);
 
 			private Step()
 			{
@@ -139,13 +142,13 @@ public class Sound
 
 		public static final class Dig
 		{
-			public static final Sound Wool = new Sound(org.bukkit.Sound.DIG_WOOL);
-			public static final Sound Grass = new Sound(org.bukkit.Sound.DIG_GRASS);
-			public static final Sound Gravel = new Sound(org.bukkit.Sound.DIG_GRAVEL);
-			public static final Sound Sand = new Sound(org.bukkit.Sound.DIG_SAND);
-			public static final Sound Snow = new Sound(org.bukkit.Sound.DIG_SNOW);
-			public static final Sound Stone = new Sound(org.bukkit.Sound.DIG_STONE);
-			public static final Sound Wood = new Sound(org.bukkit.Sound.DIG_WOOD);
+			public static final Sound Wool = new Sound(org.bukkit.Sound.BLOCK_CLOTH_BREAK);
+			public static final Sound Grass = new Sound(org.bukkit.Sound.BLOCK_GRASS_BREAK);
+			public static final Sound Gravel = new Sound(org.bukkit.Sound.BLOCK_GRAVEL_BREAK);
+			public static final Sound Sand = new Sound(org.bukkit.Sound.BLOCK_SAND_BREAK);
+			public static final Sound Snow = new Sound(org.bukkit.Sound.BLOCK_SNOW_BREAK);
+			public static final Sound Stone = new Sound(org.bukkit.Sound.BLOCK_STONE_BREAK);
+			public static final Sound Wood = new Sound(org.bukkit.Sound.BLOCK_WOOD_BREAK);
 
 			private Dig()
 			{
@@ -155,8 +158,8 @@ public class Sound
 
 	public static final class Item
 	{
-		public static final Sound Break = new Sound(org.bukkit.Sound.ITEM_BREAK);
-		public static final Sound PickUp = new Sound(org.bukkit.Sound.ITEM_PICKUP);
+		public static final Sound Break = new Sound(org.bukkit.Sound.ENTITY_ITEM_BREAK);
+		public static final Sound PickUp = new Sound(org.bukkit.Sound.ENTITY_ITEM_PICKUP);
 
 		private Item()
 		{
@@ -165,8 +168,8 @@ public class Sound
 
 	public static final class Minecart
 	{
-		public static final Sound Base = new Sound(org.bukkit.Sound.MINECART_BASE);
-		public static final Sound Inside = new Sound(org.bukkit.Sound.MINECART_INSIDE);
+		public static final Sound Base = new Sound(org.bukkit.Sound.ENTITY_MINECART_RIDING);
+		public static final Sound Inside = new Sound(org.bukkit.Sound.ENTITY_MINECART_INSIDE);
 
 		private Minecart()
 		{
@@ -175,13 +178,18 @@ public class Sound
 
 	public static final class Note
 	{
-		public static final Sound Bass = new Sound(org.bukkit.Sound.NOTE_BASS);
-		public static final Sound Piano = new Sound(org.bukkit.Sound.NOTE_PIANO);
-		public static final Sound BassDrum = new Sound(org.bukkit.Sound.NOTE_BASS_DRUM);
-		public static final Sound Sticks = new Sound(org.bukkit.Sound.NOTE_STICKS);
-		public static final Sound BassGuitar = new Sound(org.bukkit.Sound.NOTE_BASS_GUITAR);
-		public static final Sound Snare = new Sound(org.bukkit.Sound.NOTE_SNARE_DRUM);
-		public static final Sound Pling = new Sound(org.bukkit.Sound.NOTE_PLING);
+		public static final Sound Bass = new Sound(org.bukkit.Sound.BLOCK_NOTE_BASS);
+		public static final Sound Piano = new Sound(org.bukkit.Sound.BLOCK_NOTE_HARP);
+		public static final Sound BassDrum = new Sound(org.bukkit.Sound.BLOCK_NOTE_BASEDRUM);
+		public static final Sound Sticks = new Sound(org.bukkit.Sound.BLOCK_NOTE_HAT);
+		public static final Sound BassGuitar = new Sound(org.bukkit.Sound.BLOCK_NOTE_BASS);
+		public static final Sound Snare = new Sound(org.bukkit.Sound.BLOCK_NOTE_SNARE);
+		public static final Sound Pling = new Sound(org.bukkit.Sound.BLOCK_NOTE_PLING);
+		public static final Sound Bell = new Sound(org.bukkit.Sound.BLOCK_NOTE_BELL);
+		public static final Sound Chime = new Sound(org.bukkit.Sound.BLOCK_NOTE_CHIME);
+		public static final Sound Flute = new Sound(org.bukkit.Sound.BLOCK_NOTE_FLUTE);
+		public static final Sound Guitar = new Sound(org.bukkit.Sound.BLOCK_NOTE_GUITAR);
+		public static final Sound Xylophone = new Sound(org.bukkit.Sound.BLOCK_NOTE_XYLOPHONE);
 
 		private Note()
 		{
@@ -190,8 +198,8 @@ public class Sound
 
 	public static final class Piston
 	{
-		public static final Sound Extend = new Sound(org.bukkit.Sound.PISTON_EXTEND);
-		public static final Sound Retract = new Sound(org.bukkit.Sound.PISTON_RETRACT);
+		public static final Sound Extend = new Sound(org.bukkit.Sound.BLOCK_PISTON_EXTEND);
+		public static final Sound Retract = new Sound(org.bukkit.Sound.BLOCK_PISTON_CONTRACT);
 
 		private Piston()
 		{
@@ -200,9 +208,9 @@ public class Sound
 
 	public static final class Portal
 	{
-		public static final Sound Hum = new Sound(org.bukkit.Sound.PORTAL);
-		public static final Sound Travel = new Sound(org.bukkit.Sound.PORTAL_TRAVEL);
-		public static final Sound Trigger = new Sound(org.bukkit.Sound.PORTAL_TRIGGER);
+		public static final Sound Hum = new Sound(org.bukkit.Sound.BLOCK_PORTAL_AMBIENT);
+		public static final Sound Travel = new Sound(org.bukkit.Sound.BLOCK_PORTAL_TRAVEL);
+		public static final Sound Trigger = new Sound(org.bukkit.Sound.BLOCK_PORTAL_TRIGGER);
 
 		private Portal()
 		{
@@ -213,11 +221,11 @@ public class Sound
 	{
 		public static final class Bat
 		{
-			public static final Sound Death = new Sound(org.bukkit.Sound.BAT_DEATH);
-			public static final Sound Hurt = new Sound(org.bukkit.Sound.BAT_HURT);
-			public static final Sound Idle = new Sound(org.bukkit.Sound.BAT_IDLE);
-			public static final Sound Loop = new Sound(org.bukkit.Sound.BAT_LOOP);
-			public static final Sound Takeoff = new Sound(org.bukkit.Sound.BAT_TAKEOFF);
+			public static final Sound Death = new Sound(org.bukkit.Sound.ENTITY_BAT_DEATH);
+			public static final Sound Hurt = new Sound(org.bukkit.Sound.ENTITY_BAT_HURT);
+			public static final Sound Idle = new Sound(org.bukkit.Sound.ENTITY_BAT_AMBIENT);
+			public static final Sound Loop = new Sound(org.bukkit.Sound.ENTITY_BAT_LOOP);
+			public static final Sound Takeoff = new Sound(org.bukkit.Sound.ENTITY_BAT_TAKEOFF);
 
 			private Bat()
 			{
@@ -226,9 +234,9 @@ public class Sound
 
 		public static final class Blaze
 		{
-			public static final Sound Breath = new Sound(org.bukkit.Sound.BLAZE_BREATH);
-			public static final Sound Death = new Sound(org.bukkit.Sound.BLAZE_DEATH);
-			public static final Sound Hit = new Sound(org.bukkit.Sound.BLAZE_HIT);
+			public static final Sound Breath = new Sound(org.bukkit.Sound.ENTITY_BLAZE_AMBIENT);
+			public static final Sound Death = new Sound(org.bukkit.Sound.ENTITY_BLAZE_DEATH);
+			public static final Sound Hit = new Sound(org.bukkit.Sound.ENTITY_BLAZE_HURT);
 
 			private Blaze()
 			{
@@ -237,11 +245,11 @@ public class Sound
 
 		public static final class Cat
 		{
-			public static final Sound Hiss = new Sound(org.bukkit.Sound.CAT_HISS);
-			public static final Sound Hit = new Sound(org.bukkit.Sound.CAT_HIT);
-			public static final Sound Meow = new Sound(org.bukkit.Sound.CAT_MEOW);
-			public static final Sound Purr = new Sound(org.bukkit.Sound.CAT_PURR);
-			public static final Sound Purreow = new Sound(org.bukkit.Sound.CAT_PURREOW);
+			public static final Sound Hiss = new Sound(org.bukkit.Sound.ENTITY_CAT_HISS);
+			public static final Sound Hit = new Sound(org.bukkit.Sound.ENTITY_CAT_HURT);
+			public static final Sound Meow = new Sound(org.bukkit.Sound.ENTITY_CAT_AMBIENT);
+			public static final Sound Purr = new Sound(org.bukkit.Sound.ENTITY_CAT_PURR);
+			public static final Sound Purreow = new Sound(org.bukkit.Sound.ENTITY_CAT_PURREOW);
 
 			private Cat()
 			{
@@ -250,10 +258,10 @@ public class Sound
 
 		public static final class Chicken
 		{
-			public static final Sound Idle = new Sound(org.bukkit.Sound.CHICKEN_IDLE);
-			public static final Sound Hurt = new Sound(org.bukkit.Sound.CHICKEN_HURT);
-			public static final Sound EggPop = new Sound(org.bukkit.Sound.CHICKEN_EGG_POP);
-			public static final Sound Walk = new Sound(org.bukkit.Sound.CHICKEN_WALK);
+			public static final Sound Idle = new Sound(org.bukkit.Sound.ENTITY_CHICKEN_AMBIENT);
+			public static final Sound Hurt = new Sound(org.bukkit.Sound.ENTITY_CHICKEN_HURT);
+			public static final Sound EggPop = new Sound(org.bukkit.Sound.ENTITY_CHICKEN_EGG);
+			public static final Sound Walk = new Sound(org.bukkit.Sound.ENTITY_CHICKEN_STEP);
 
 			private Chicken()
 			{
@@ -262,9 +270,9 @@ public class Sound
 
 		public static final class Cow
 		{
-			public static final Sound Idle = new Sound(org.bukkit.Sound.COW_IDLE);
-			public static final Sound Hurt = new Sound(org.bukkit.Sound.COW_HURT);
-			public static final Sound Walk = new Sound(org.bukkit.Sound.COW_WALK);
+			public static final Sound Idle = new Sound(org.bukkit.Sound.ENTITY_COW_AMBIENT);
+			public static final Sound Hurt = new Sound(org.bukkit.Sound.ENTITY_COW_HURT);
+			public static final Sound Walk = new Sound(org.bukkit.Sound.ENTITY_COW_STEP);
 
 			private Cow()
 			{
@@ -273,8 +281,8 @@ public class Sound
 
 		public static final class Creeper
 		{
-			public static final Sound Hiss = new Sound(org.bukkit.Sound.CREEPER_HISS);
-			public static final Sound Death = new Sound(org.bukkit.Sound.CREEPER_DEATH);
+			public static final Sound Hiss = new Sound(org.bukkit.Sound.ENTITY_CREEPER_PRIMED);
+			public static final Sound Death = new Sound(org.bukkit.Sound.ENTITY_CREEPER_DEATH);
 
 			private Creeper()
 			{
@@ -283,10 +291,10 @@ public class Sound
 
 		public static final class EnderDragon
 		{
-			public static final Sound Death = new Sound(org.bukkit.Sound.ENDERDRAGON_DEATH);
-			public static final Sound Growl = new Sound(org.bukkit.Sound.ENDERDRAGON_GROWL);
-			public static final Sound Hit = new Sound(org.bukkit.Sound.ENDERDRAGON_HIT);
-			public static final Sound Flap = new Sound(org.bukkit.Sound.ENDERDRAGON_WINGS);
+			public static final Sound Death = new Sound(org.bukkit.Sound.ENTITY_ENDERDRAGON_DEATH);
+			public static final Sound Growl = new Sound(org.bukkit.Sound.ENTITY_ENDERDRAGON_GROWL);
+			public static final Sound Hit = new Sound(org.bukkit.Sound.ENTITY_ENDERDRAGON_HURT);
+			public static final Sound Flap = new Sound(org.bukkit.Sound.ENTITY_ENDERDRAGON_FLAP);
 
 			private EnderDragon()
 			{
@@ -295,12 +303,12 @@ public class Sound
 
 		public static final class Enderman
 		{
-			public static final Sound Death = new Sound(org.bukkit.Sound.ENDERMAN_DEATH);
-			public static final Sound Hit = new Sound(org.bukkit.Sound.ENDERMAN_HIT);
-			public static final Sound Idle = new Sound(org.bukkit.Sound.ENDERMAN_IDLE);
-			public static final Sound Teleport = new Sound(org.bukkit.Sound.ENDERMAN_TELEPORT);
-			public static final Sound Scream = new Sound(org.bukkit.Sound.ENDERMAN_SCREAM);
-			public static final Sound Stare = new Sound(org.bukkit.Sound.ENDERMAN_STARE);
+			public static final Sound Death = new Sound(org.bukkit.Sound.ENTITY_ENDERMEN_DEATH);
+			public static final Sound Hit = new Sound(org.bukkit.Sound.ENTITY_ENDERMEN_HURT);
+			public static final Sound Idle = new Sound(org.bukkit.Sound.ENTITY_ENDERMEN_AMBIENT);
+			public static final Sound Teleport = new Sound(org.bukkit.Sound.ENTITY_ENDERMEN_TELEPORT);
+			public static final Sound Scream = new Sound(org.bukkit.Sound.ENTITY_ENDERMEN_SCREAM);
+			public static final Sound Stare = new Sound(org.bukkit.Sound.ENTITY_ENDERMEN_STARE);
 
 			private Enderman()
 			{
@@ -309,12 +317,12 @@ public class Sound
 
 		public static final class Ghast
 		{
-			public static final Sound Scream = new Sound(org.bukkit.Sound.GHAST_SCREAM);
-			public static final Sound Scream2 = new Sound(org.bukkit.Sound.GHAST_SCREAM2);
-			public static final Sound Charge = new Sound(org.bukkit.Sound.GHAST_CHARGE);
-			public static final Sound Death = new Sound(org.bukkit.Sound.GHAST_DEATH);
-			public static final Sound Fireball = new Sound(org.bukkit.Sound.GHAST_FIREBALL);
-			public static final Sound Moan = new Sound(org.bukkit.Sound.GHAST_MOAN);
+			public static final Sound Scream = new Sound(org.bukkit.Sound.ENTITY_GHAST_SCREAM);
+			public static final Sound Scream2 = new Sound(org.bukkit.Sound.ENTITY_GHAST_SCREAM);
+			public static final Sound Charge = new Sound(org.bukkit.Sound.ENTITY_GHAST_WARN);
+			public static final Sound Death = new Sound(org.bukkit.Sound.ENTITY_GHAST_DEATH);
+			public static final Sound Fireball = new Sound(org.bukkit.Sound.ENTITY_GHAST_SHOOT);
+			public static final Sound Moan = new Sound(org.bukkit.Sound.ENTITY_GHAST_AMBIENT);
 
 			private Ghast()
 			{
@@ -323,10 +331,10 @@ public class Sound
 
 		public static final class Golem
 		{
-			public static final Sound Death = new Sound(org.bukkit.Sound.IRONGOLEM_DEATH);
-			public static final Sound Hit = new Sound(org.bukkit.Sound.IRONGOLEM_HIT);
-			public static final Sound Throw = new Sound(org.bukkit.Sound.IRONGOLEM_THROW);
-			public static final Sound Walk = new Sound(org.bukkit.Sound.IRONGOLEM_WALK);
+			public static final Sound Death = new Sound(org.bukkit.Sound.ENTITY_IRONGOLEM_DEATH);
+			public static final Sound Hit = new Sound(org.bukkit.Sound.ENTITY_IRONGOLEM_ATTACK);
+			public static final Sound Throw = new Sound(org.bukkit.Sound.ENTITY_IRONGOLEM_ATTACK);
+			public static final Sound Walk = new Sound(org.bukkit.Sound.ENTITY_IRONGOLEM_STEP);
 
 			private Golem()
 			{
@@ -335,9 +343,9 @@ public class Sound
 
 		public static final class MagmaCube
 		{
-			public static final Sound Walk = new Sound(org.bukkit.Sound.MAGMACUBE_WALK);
-			public static final Sound Walk2 = new Sound(org.bukkit.Sound.MAGMACUBE_WALK2);
-			public static final Sound Jump = new Sound(org.bukkit.Sound.MAGMACUBE_JUMP);
+			public static final Sound Walk = new Sound(org.bukkit.Sound.ENTITY_MAGMACUBE_SQUISH);
+			public static final Sound Walk2 = new Sound(org.bukkit.Sound.ENTITY_SMALL_MAGMACUBE_SQUISH);
+			public static final Sound Jump = new Sound(org.bukkit.Sound.ENTITY_MAGMACUBE_JUMP);
 
 			private MagmaCube()
 			{
@@ -346,9 +354,9 @@ public class Sound
 
 		public static final class Pig
 		{
-			public static final Sound Idle = new Sound(org.bukkit.Sound.PIG_IDLE);
-			public static final Sound Death = new Sound(org.bukkit.Sound.PIG_DEATH);
-			public static final Sound Walk = new Sound(org.bukkit.Sound.PIG_WALK);
+			public static final Sound Idle = new Sound(org.bukkit.Sound.ENTITY_PIG_AMBIENT);
+			public static final Sound Death = new Sound(org.bukkit.Sound.ENTITY_PIG_DEATH);
+			public static final Sound Walk = new Sound(org.bukkit.Sound.ENTITY_PIG_STEP);
 
 			private Pig()
 			{
@@ -357,9 +365,10 @@ public class Sound
 
 		public static final class Sheep
 		{
-			public static final Sound Idle = new Sound(org.bukkit.Sound.SHEEP_IDLE);
-			public static final Sound Shear = new Sound(org.bukkit.Sound.SHEEP_SHEAR);
-			public static final Sound Walk = new Sound(org.bukkit.Sound.SHEEP_WALK);
+
+			public static final Sound Idle = new Sound(org.bukkit.Sound.ENTITY_SHEEP_AMBIENT);
+			public static final Sound Shear = new Sound(org.bukkit.Sound.ENTITY_SHEEP_SHEAR);
+			public static final Sound Walk = new Sound(org.bukkit.Sound.ENTITY_SHEEP_STEP);
 
 			private Sheep()
 			{
@@ -368,10 +377,10 @@ public class Sound
 
 		public static final class Silverfish
 		{
-			public static final Sound Hit = new Sound(org.bukkit.Sound.SILVERFISH_HIT);
-			public static final Sound Kill = new Sound(org.bukkit.Sound.SILVERFISH_KILL);
-			public static final Sound Idle = new Sound(org.bukkit.Sound.SILVERFISH_IDLE);
-			public static final Sound Walk = new Sound(org.bukkit.Sound.SILVERFISH_WALK);
+			public static final Sound Hit = new Sound(org.bukkit.Sound.ENTITY_SILVERFISH_HURT);
+			public static final Sound Kill = new Sound(org.bukkit.Sound.ENTITY_SILVERFISH_DEATH);
+			public static final Sound Idle = new Sound(org.bukkit.Sound.ENTITY_SILVERFISH_AMBIENT);
+			public static final Sound Walk = new Sound(org.bukkit.Sound.ENTITY_SILVERFISH_STEP);
 
 			private Silverfish()
 			{
@@ -380,10 +389,10 @@ public class Sound
 
 		public static final class Skeleton
 		{
-			public static final Sound Idle = new Sound(org.bukkit.Sound.SKELETON_IDLE);
-			public static final Sound Death = new Sound(org.bukkit.Sound.SKELETON_DEATH);
-			public static final Sound Hurt = new Sound(org.bukkit.Sound.SKELETON_HURT);
-			public static final Sound Walk = new Sound(org.bukkit.Sound.SKELETON_WALK);
+			public static final Sound Idle = new Sound(org.bukkit.Sound.ENTITY_SKELETON_AMBIENT);
+			public static final Sound Death = new Sound(org.bukkit.Sound.ENTITY_SKELETON_DEATH);
+			public static final Sound Hurt = new Sound(org.bukkit.Sound.ENTITY_SKELETON_HURT);
+			public static final Sound Walk = new Sound(org.bukkit.Sound.ENTITY_SKELETON_STEP);
 
 			private Skeleton()
 			{
@@ -392,9 +401,9 @@ public class Sound
 
 		public static final class Slime
 		{
-			public static final Sound Attack = new Sound(org.bukkit.Sound.SLIME_ATTACK);
-			public static final Sound Walk = new Sound(org.bukkit.Sound.SLIME_WALK);
-			public static final Sound Walk2 = new Sound(org.bukkit.Sound.SLIME_WALK2);
+			public static final Sound Attack = new Sound(org.bukkit.Sound.ENTITY_SLIME_ATTACK);
+			public static final Sound Walk = new Sound(org.bukkit.Sound.ENTITY_SLIME_SQUISH);
+			public static final Sound Walk2 = new Sound(org.bukkit.Sound.ENTITY_SMALL_SLIME_SQUISH);
 
 			private Slime()
 			{
@@ -403,9 +412,9 @@ public class Sound
 
 		public static final class Spider
 		{
-			public static final Sound Idle = new Sound(org.bukkit.Sound.SPIDER_IDLE);
-			public static final Sound Death = new Sound(org.bukkit.Sound.SPIDER_DEATH);
-			public static final Sound Walk = new Sound(org.bukkit.Sound.SPIDER_WALK);
+			public static final Sound Idle = new Sound(org.bukkit.Sound.ENTITY_SPIDER_AMBIENT);
+			public static final Sound Death = new Sound(org.bukkit.Sound.ENTITY_SPIDER_DEATH);
+			public static final Sound Walk = new Sound(org.bukkit.Sound.ENTITY_SPIDER_STEP);
 
 			private Spider()
 			{
@@ -414,12 +423,12 @@ public class Sound
 
 		public static final class Villager
 		{
-			public static final Sound Idle = new Sound(org.bukkit.Sound.VILLAGER_IDLE);
-			public static final Sound Death = new Sound(org.bukkit.Sound.VILLAGER_DEATH);
-			public static final Sound Hurt = new Sound(org.bukkit.Sound.VILLAGER_HIT);
-			public static final Sound Haggle = new Sound(org.bukkit.Sound.VILLAGER_HAGGLE);
-			public static final Sound Yes = new Sound(org.bukkit.Sound.VILLAGER_YES);
-			public static final Sound No = new Sound(org.bukkit.Sound.VILLAGER_NO);
+			public static final Sound Idle = new Sound(org.bukkit.Sound.ENTITY_VILLAGER_AMBIENT);
+			public static final Sound Death = new Sound(org.bukkit.Sound.ENTITY_VILLAGER_DEATH);
+			public static final Sound Hurt = new Sound(org.bukkit.Sound.ENTITY_VILLAGER_HURT);
+			public static final Sound Haggle = new Sound(org.bukkit.Sound.ENTITY_VILLAGER_TRADING);
+			public static final Sound Yes = new Sound(org.bukkit.Sound.ENTITY_VILLAGER_YES);
+			public static final Sound No = new Sound(org.bukkit.Sound.ENTITY_VILLAGER_NO);
 
 			private Villager()
 			{
@@ -428,11 +437,11 @@ public class Sound
 
 		public static final class Wither
 		{
-			public static final Sound Death = new Sound(org.bukkit.Sound.WITHER_DEATH);
-			public static final Sound Hurt = new Sound(org.bukkit.Sound.WITHER_HURT);
-			public static final Sound Idle = new Sound(org.bukkit.Sound.WITHER_IDLE);
-			public static final Sound Shoot = new Sound(org.bukkit.Sound.WITHER_SHOOT);
-			public static final Sound Spawn = new Sound(org.bukkit.Sound.WITHER_SPAWN);
+			public static final Sound Death = new Sound(org.bukkit.Sound.ENTITY_WITHER_DEATH);
+			public static final Sound Hurt = new Sound(org.bukkit.Sound.ENTITY_WITHER_HURT);
+			public static final Sound Idle = new Sound(org.bukkit.Sound.ENTITY_WITHER_AMBIENT);
+			public static final Sound Shoot = new Sound(org.bukkit.Sound.ENTITY_WITHER_SHOOT);
+			public static final Sound Spawn = new Sound(org.bukkit.Sound.ENTITY_WITHER_SPAWN);
 
 			private Wither()
 			{
@@ -441,15 +450,15 @@ public class Sound
 
 		public static final class Wolf
 		{
-			public static final Sound Bark = new Sound(org.bukkit.Sound.WOLF_BARK);
-			public static final Sound Death = new Sound(org.bukkit.Sound.WOLF_DEATH);
-			public static final Sound Growl = new Sound(org.bukkit.Sound.WOLF_GROWL);
-			public static final Sound Howl = new Sound(org.bukkit.Sound.WOLF_HOWL);
-			public static final Sound Hurt = new Sound(org.bukkit.Sound.WOLF_HURT);
-			public static final Sound Pant = new Sound(org.bukkit.Sound.WOLF_PANT);
-			public static final Sound Shake = new Sound(org.bukkit.Sound.WOLF_SHAKE);
-			public static final Sound Walk = new Sound(org.bukkit.Sound.WOLF_WALK);
-			public static final Sound Whine = new Sound(org.bukkit.Sound.WOLF_WHINE);
+			public static final Sound Bark = new Sound(org.bukkit.Sound.ENTITY_WOLF_AMBIENT);
+			public static final Sound Death = new Sound(org.bukkit.Sound.ENTITY_WOLF_DEATH);
+			public static final Sound Growl = new Sound(org.bukkit.Sound.ENTITY_WOLF_GROWL);
+			public static final Sound Howl = new Sound(org.bukkit.Sound.ENTITY_WOLF_HOWL);
+			public static final Sound Hurt = new Sound(org.bukkit.Sound.ENTITY_WOLF_HURT);
+			public static final Sound Pant = new Sound(org.bukkit.Sound.ENTITY_WOLF_PANT);
+			public static final Sound Shake = new Sound(org.bukkit.Sound.ENTITY_WOLF_SHAKE);
+			public static final Sound Walk = new Sound(org.bukkit.Sound.ENTITY_WOLF_STEP);
+			public static final Sound Whine = new Sound(org.bukkit.Sound.ENTITY_WOLF_WHINE);
 
 			private Wolf()
 			{
@@ -458,15 +467,15 @@ public class Sound
 
 		public static final class Zombie
 		{
-			public static final Sound Metal = new Sound(org.bukkit.Sound.ZOMBIE_METAL);
-			public static final Sound Wood = new Sound(org.bukkit.Sound.ZOMBIE_WOOD);
-			public static final Sound WoodBreak = new Sound(org.bukkit.Sound.ZOMBIE_WOODBREAK);
-			public static final Sound Idle = new Sound(org.bukkit.Sound.ZOMBIE_IDLE);
-			public static final Sound Death = new Sound(org.bukkit.Sound.ZOMBIE_DEATH);
-			public static final Sound Hurt = new Sound(org.bukkit.Sound.ZOMBIE_HURT);
-			public static final Sound Infect = new Sound(org.bukkit.Sound.ZOMBIE_INFECT);
-			public static final Sound Disinfect = new Sound(org.bukkit.Sound.ZOMBIE_UNFECT);
-			public static final Sound Remedy = new Sound(org.bukkit.Sound.ZOMBIE_REMEDY);
+			public static final Sound Metal = new Sound(org.bukkit.Sound.ENTITY_ZOMBIE_ATTACK_IRON_DOOR);
+			public static final Sound Wood = new Sound(org.bukkit.Sound.ENTITY_ZOMBIE_ATTACK_DOOR_WOOD);
+			public static final Sound WoodBreak = new Sound(org.bukkit.Sound.ENTITY_ZOMBIE_BREAK_DOOR_WOOD);
+			public static final Sound Idle = new Sound(org.bukkit.Sound.ENTITY_ZOMBIE_AMBIENT);
+			public static final Sound Death = new Sound(org.bukkit.Sound.ENTITY_ZOMBIE_DEATH);
+			public static final Sound Hurt = new Sound(org.bukkit.Sound.ENTITY_ZOMBIE_HURT);
+			public static final Sound Infect = new Sound(org.bukkit.Sound.ENTITY_ZOMBIE_INFECT);
+			public static final Sound Disinfect = new Sound(org.bukkit.Sound.ENTITY_ZOMBIE_VILLAGER_CONVERTED);
+			public static final Sound Remedy = new Sound(org.bukkit.Sound.ENTITY_ZOMBIE_VILLAGER_CURE);
 
 			private Zombie()
 			{
@@ -475,10 +484,10 @@ public class Sound
 
 		public static final class PigZombie
 		{
-			public static final Sound Idle = new Sound(org.bukkit.Sound.ZOMBIE_PIG_IDLE);
-			public static final Sound Angry = new Sound(org.bukkit.Sound.ZOMBIE_PIG_ANGRY);
-			public static final Sound Death = new Sound(org.bukkit.Sound.ZOMBIE_PIG_DEATH);
-			public static final Sound Hurt = new Sound(org.bukkit.Sound.ZOMBIE_PIG_HURT);
+			public static final Sound Idle = new Sound(org.bukkit.Sound.ENTITY_ZOMBIE_PIG_AMBIENT);
+			public static final Sound Angry = new Sound(org.bukkit.Sound.ENTITY_ZOMBIE_PIG_ANGRY);
+			public static final Sound Death = new Sound(org.bukkit.Sound.ENTITY_ZOMBIE_PIG_DEATH);
+			public static final Sound Hurt = new Sound(org.bukkit.Sound.ENTITY_ZOMBIE_PIG_HURT);
 
 			private PigZombie()
 			{
