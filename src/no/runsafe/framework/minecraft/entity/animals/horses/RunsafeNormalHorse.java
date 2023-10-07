@@ -14,25 +14,6 @@ public class RunsafeNormalHorse extends RunsafeHorse implements INormalHorse
 	}
 
 	@Override
-	public Horse.Variant getType()
-	{
-		return normalHorse.getVariant();
-	}
-
-	@Override
-	public void setType(Horse.Variant type)
-	{
-		normalHorse.setVariant(type);
-	}
-
-	@Override
-	public void setRandomType()
-	{
-		Horse.Variant[] values = Horse.Variant.values();
-		normalHorse.setVariant(values[this.random.nextInt(values.length)]);
-	}
-
-	@Override
 	public Horse.Color getColour()
 	{
 		return normalHorse.getColor();

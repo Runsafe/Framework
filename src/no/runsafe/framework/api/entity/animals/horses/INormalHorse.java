@@ -5,12 +5,6 @@ import org.bukkit.entity.Horse;
 
 public interface INormalHorse extends IHorse
 {
-	Horse.Variant getType();
-
-	void setType(Horse.Variant type);
-
-	void setRandomType();
-
 	Horse.Color getColour();
 
 	void setColour(HorseColour colour);
