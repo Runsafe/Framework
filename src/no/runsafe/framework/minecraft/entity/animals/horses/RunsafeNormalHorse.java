@@ -14,34 +14,15 @@ public class RunsafeNormalHorse extends RunsafeHorse implements INormalHorse
 	}
 
 	@Override
-	public Horse.Variant getType()
-	{
-		return normalHorse.getVariant();
-	}
-
-	@Override
-	public void setType(Horse.Variant type)
-	{
-		normalHorse.setVariant(type);
-	}
-
-	@Override
-	public void setRandomType()
-	{
-		Horse.Variant[] values = Horse.Variant.values();
-		normalHorse.setVariant(values[this.random.nextInt(values.length)]);
-	}
-
-	@Override
 	public Horse.Color getColour()
 	{
 		return normalHorse.getColor();
 	}
 
 	@Override
-	public void setColour(Horse.Color colour)
+	public void setColour(HorseColour colour)
 	{
-		normalHorse.setColor(colour);
+		normalHorse.setColor(colour.getBukkitColour());
 	}
 
 	@Override
@@ -58,9 +39,9 @@ public class RunsafeNormalHorse extends RunsafeHorse implements INormalHorse
 	}
 
 	@Override
-	public void setStyle(Horse.Style style)
+	public void setStyle(HorseStyle style)
 	{
-		normalHorse.setStyle(style);
+		normalHorse.setStyle(style.getBukkitStyle());
 	}
 
 	@Override
