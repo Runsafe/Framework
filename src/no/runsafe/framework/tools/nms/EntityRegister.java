@@ -15,6 +15,7 @@ public final class EntityRegister
 	//Broken after 1.7 TODO: fix
 	public static <E extends Entity> void registerEntity(Class<E> customClass, String name, int id)
 	{
+		/*
 		Class<?> types = EntityTypes.class;
 
 		getMap(types, "c").put(name, customClass);
@@ -22,11 +23,13 @@ public final class EntityRegister
 		//getMap(types, "e").put(id, customClass);
 		getMap(types, "f").put(customClass, id);
 		getMap(types, "g").put(name, id);
+		*/
 	}
 
 	//Broken after 1.7 TODO: fix
 	public static <E extends Entity> void registerOverrideEntity(Class<E> customClass, String name, int id)
 	{
+		/*
 		Class<?> types = EntityTypes.class;
 
 		getMap(types, "c").put(name, customClass);
@@ -34,6 +37,7 @@ public final class EntityRegister
 		getMap(types, "e").put(id, customClass);
 		getMap(types, "f").put(customClass, id);
 		getMap(types, "g").put(name, id);
+		*/
 	}
 
 	private static Map getMap(Class typeClass, String fieldName)
