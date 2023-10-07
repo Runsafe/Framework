@@ -1,6 +1,5 @@
 package no.runsafe.framework.minecraft.entity.animals.horses;
 
-import no.runsafe.framework.minecraft.Sound;
 import org.bukkit.entity.Horse;
 
 public enum HorseColour
