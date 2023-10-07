@@ -39,9 +39,9 @@ public class RunsafeNormalHorse extends RunsafeHorse implements INormalHorse
 	}
 
 	@Override
-	public void setStyle(Horse.Style style)
+	public void setStyle(HorseStyle style)
 	{
-		normalHorse.setStyle(style);
+		normalHorse.setStyle(style.getBukkitStyle());
 	}
 
 	@Override

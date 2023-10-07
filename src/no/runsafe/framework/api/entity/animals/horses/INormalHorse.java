@@ -1,6 +1,7 @@
 package no.runsafe.framework.api.entity.animals.horses;
 
 import no.runsafe.framework.minecraft.entity.animals.horses.HorseColour;
+import no.runsafe.framework.minecraft.entity.animals.horses.HorseStyle;
 import org.bukkit.entity.Horse;
 
 public interface INormalHorse extends IHorse
@@ -13,7 +14,7 @@ public interface INormalHorse extends IHorse
 
 	Horse.Style getStyle();
 
-	void setStyle(Horse.Style style);
+	void setStyle(HorseStyle style);
 
 	void setRandomStyle();
 }
