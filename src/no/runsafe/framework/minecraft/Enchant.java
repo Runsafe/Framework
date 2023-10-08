@@ -22,9 +22,11 @@ public class Enchant implements IEnchant
 	public static final IEnchant WaterWorker = new Enchant(Enchantment.WATER_WORKER, true);
 	public static final IEnchant Thorns = new Enchant(Enchantment.THORNS, true);
 	public static final IEnchant DepthStrider = new Enchant(Enchantment.DEPTH_STRIDER, true);
+	public static final IEnchant FrostWalker = new Enchant(Enchantment.FROST_WALKER, true);
 	public static final IEnchant Damage = new Enchant(Enchantment.DAMAGE_ALL, true);
 	public static final IEnchant DamageUndead = new Enchant(Enchantment.DAMAGE_UNDEAD, true);
 	public static final IEnchant DamageArthropods = new Enchant(Enchantment.DAMAGE_ARTHROPODS, true);
+	public static final IEnchant SweepingEdge = new Enchant(Enchantment.SWEEPING_EDGE, true);
 	public static final IEnchant Knockback = new Enchant(Enchantment.KNOCKBACK, true);
 	public static final IEnchant Fire = new Enchant(Enchantment.FIRE_ASPECT, true);
 	public static final IEnchant MobLoot = new Enchant(Enchantment.LOOT_BONUS_MOBS, true);
@@ -38,6 +40,9 @@ public class Enchant implements IEnchant
 	public static final IEnchant InfiniteArrows = new Enchant(Enchantment.ARROW_INFINITE, true);
 	public static final IEnchant Lure = new Enchant(Enchantment.LURE, true);
 	public static final IEnchant Luck = new Enchant(Enchantment.LUCK, true);
+	public static final IEnchant Mending = new Enchant(Enchantment.MENDING, true);
+	public static final IEnchant BindingCurse = new Enchant(Enchantment.BINDING_CURSE, true);
+	public static final IEnchant VanishingCurse = new Enchant(Enchantment.VANISHING_CURSE, true);
 
 	@Nullable
 	public static IEnchant getByName(String name)
