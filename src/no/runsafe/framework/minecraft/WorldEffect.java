@@ -46,7 +46,14 @@ public enum WorldEffect implements IWorldEffect
 	BLOCK_DUST("blockdust_", EnumParticle.BLOCK_DUST),
 	WATER_DROP("droplet", EnumParticle.WATER_DROP),
 	ITEM_TAKE("take", EnumParticle.ITEM_TAKE),
-	GUARDIAN_POPUP("mobappearance", EnumParticle.MOB_APPEARANCE);
+	GUARDIAN_POPUP("mobappearance", EnumParticle.MOB_APPEARANCE),
+	DAMAGE_INDICATOR("damageindicator", EnumParticle.DAMAGE_INDICATOR),
+	DRAGON_BREATH("dragonbreath", EnumParticle.DRAGON_BREATH),
+	END_ROD("endrod", EnumParticle.END_ROD),
+	FALLING_DUST("fallingdust", EnumParticle.FALLING_DUST),
+	SPIT("spit", EnumParticle.SPIT),
+	SWEEP_ATTACK("sweepattack", EnumParticle.SWEEP_ATTACK),
+	TOTEM("totem", EnumParticle.TOTEM);
 
 	WorldEffect(String name, EnumParticle particle)
 	{

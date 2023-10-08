@@ -2,6 +2,7 @@ package no.runsafe.framework.internal.wrapper.player;
 
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.block.IBlock;
+import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.hook.IPlayerExtensions;
 import no.runsafe.framework.api.minecraft.IAnimalTamer;
 import no.runsafe.framework.api.minecraft.IInventoryHolder;
@@ -296,6 +297,26 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 			return null;
 
 		return basePlayer.getUniqueId();
+	}
+
+	public IEntity getLeftShoulderEntity()
+	{
+		return ObjectWrapper.convert(player.getShoulderEntityLeft());
+	}
+
+	public IEntity getRightShoulderEntity()
+	{
+		return ObjectWrapper.convert(player.getShoulderEntityRight());
+	}
+
+	public void setLeftShoulderEntity(IEntity entity)
+	{
+		player.setShoulderEntityLeft(ObjectUnwrapper.convert(entity));
+	}
+
+	public void setRightShoulderEntity(IEntity entity)
+	{
+		player.setShoulderEntityRight(ObjectUnwrapper.convert(entity));
 	}
 
 	/**
