@@ -9,16 +9,22 @@ import org.bukkit.entity.EntityType;
 public enum ProjectileEntity implements RunsafeEntityType
 {
 	Arrow(EntityType.ARROW),
+	DragonFireball(EntityType.DRAGON_FIREBALL),
 	Egg(EntityType.EGG),
 	EnderPearl(EntityType.ENDER_PEARL),
 	Fireball(EntityType.FIREBALL),
 	Firework(EntityType.FIREWORK),
 	FishingHook(EntityType.FISHING_HOOK),
+	LlamaSpit(EntityType.LLAMA_SPIT),
+	LingeringPotion(EntityType.LINGERING_POTION),
 	PrimedTNT(EntityType.PRIMED_TNT),
+	ShulkerBullet(EntityType.SHULKER_BULLET),
 	SmallFireball(EntityType.SMALL_FIREBALL),
 	Snowball(EntityType.SNOWBALL),
+	SpectralArrow(EntityType.SPECTRAL_ARROW),
 	SplashPotion(EntityType.SPLASH_POTION),
 	ThrownExperienceBottle(EntityType.THROWN_EXP_BOTTLE),
+	TippedArrow(EntityType.TIPPED_ARROW),
 	WitherSkull(EntityType.WITHER_SKULL);
 
 	ProjectileEntity(EntityType bukkitType)
