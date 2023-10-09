@@ -64,6 +64,11 @@ public class RunsafeEntityDamageEvent extends RunsafeCancellableEntityEvent
 		WITHER,
 		FALLING_BLOCK,
 		THORNS,
+		FLY_INTO_WALL,
+		CRAMMING,
+		DRAGON_BREATH,
+		ENTITY_SWEEP_ATTACK,
+		HOT_FLOOR,
 		CUSTOM
 	}
 
