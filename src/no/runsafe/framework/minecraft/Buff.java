@@ -16,6 +16,7 @@ public class Buff
 	{
 		public static final Buff Confusion = new Buff(PotionEffectType.CONFUSION, true);
 		public static final Buff Blindness = new Buff(PotionEffectType.BLINDNESS, true);
+		public static final Buff Glowing = new Buff(PotionEffectType.GLOWING, true);
 
 		private Combat()
 		{
@@ -39,6 +40,8 @@ public class Buff
 	{
 		public static final Buff Instant = new Buff(PotionEffectType.HEAL, true);
 		public static final Buff Regeneration = new Buff(PotionEffectType.REGENERATION, true);
+		public static final Buff HealthBoost = new Buff(PotionEffectType.HEALTH_BOOST, true);
+		public static final Buff Absorption = new Buff(PotionEffectType.ABSORPTION, true);
 
 		private Healing()
 		{
@@ -60,6 +63,8 @@ public class Buff
 		public static final Buff Invisibility = new Buff(PotionEffectType.INVISIBILITY, true);
 		public static final Buff NightVision = new Buff(PotionEffectType.NIGHT_VISION, true);
 		public static final Buff WaterBreathing = new Buff(PotionEffectType.WATER_BREATHING, true);
+		public static final Buff Luck = new Buff(PotionEffectType.LUCK, true);
+		public static final Buff Unluck = new Buff(PotionEffectType.UNLUCK, true);
 
 		private Utility()
 		{
@@ -70,6 +75,7 @@ public class Buff
 			public static final Buff IncreaseSpeed = new Buff(PotionEffectType.SPEED, true);
 			public static final Buff DecreaseSpeed = new Buff(PotionEffectType.SLOW, true);
 			public static final Buff JumpHeight = new Buff(PotionEffectType.JUMP, true);
+			public static final Buff Levitation = new Buff(PotionEffectType.LEVITATION, true);
 
 			private Movement()
 			{
@@ -90,6 +96,7 @@ public class Buff
 	public static final class Disease
 	{
 		public static final Buff Hunger = new Buff(PotionEffectType.HUNGER, true);
+		public static final Buff Saturation = new Buff(PotionEffectType.SATURATION, true);
 
 		private Disease()
 		{

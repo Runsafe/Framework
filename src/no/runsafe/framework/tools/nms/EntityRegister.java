@@ -3,8 +3,10 @@ package no.runsafe.framework.tools.nms;
 import net.minecraft.server.v1_12_R1.Entity;
 import net.minecraft.server.v1_12_R1.EntityTypes;
 
+import java.io.DataOutput;
 import java.lang.reflect.Field;
 import java.util.Map;
+import java.lang.reflect.Method;
 
 public final class EntityRegister
 {
@@ -12,28 +14,23 @@ public final class EntityRegister
 	{
 	}
 
-	//Broken after 1.8 TODO: fix
 	public static <E extends Entity> void registerEntity(Class<E> customClass, String name, int id)
 	{
-		Class<?> types = EntityTypes.class;
-
-		getMap(types, "c").put(name, customClass);
-		getMap(types, "d").put(customClass, name);
-		//getMap(types, "e").put(id, customClass);
-		getMap(types, "f").put(customClass, id);
-		getMap(types, "g").put(name, id);
+		try
+		{
+			Method method = EntityTypes.class.getDeclaredMethod("a", int.class, String.class, Class.class, String.class );
+			method.setAccessible(true);
+			method.invoke(EntityTypes.class, id, name, customClass, name);
+		}
+		catch (Exception e)
+		{
+			// no custom entities for you
+		}
 	}
 
-	//Broken after 1.8 TODO: fix
 	public static <E extends Entity> void registerOverrideEntity(Class<E> customClass, String name, int id)
 	{
-		Class<?> types = EntityTypes.class;
-
-		getMap(types, "c").put(name, customClass);
-		getMap(types, "d").put(customClass, name);
-		getMap(types, "e").put(id, customClass);
-		getMap(types, "f").put(customClass, id);
-		getMap(types, "g").put(name, id);
+		registerEntity(customClass, name, id);
 	}
 
 	private static Map getMap(Class typeClass, String fieldName)
