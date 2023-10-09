@@ -2,8 +2,6 @@ package no.runsafe.framework.tools.nms;
 
 import net.minecraft.server.v1_12_R1.Entity;
 import net.minecraft.server.v1_12_R1.EntityTypes;
-import net.minecraft.server.v1_12_R1.NBTBase;
-import net.minecraft.server.v1_12_R1.NBTCompressedStreamTools;
 
 import java.io.DataOutput;
 import java.lang.reflect.Field;
