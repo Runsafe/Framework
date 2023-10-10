@@ -2,6 +2,7 @@ package no.runsafe.framework.tools.nms;
 
 import net.minecraft.server.v1_12_R1.Entity;
 import net.minecraft.server.v1_12_R1.EntityTypes;
+import net.minecraft.server.v1_12_R1.MinecraftKey;
 
 import java.io.DataOutput;
 import java.lang.reflect.Field;
@@ -16,16 +17,9 @@ public final class EntityRegister
 
 	public static <E extends Entity> void registerEntity(Class<E> customClass, String name, int id)
 	{
-		try
-		{
-			Method method = EntityTypes.class.getDeclaredMethod("a", int.class, String.class, Class.class, String.class );
-			method.setAccessible(true);
-			method.invoke(EntityTypes.class, id, name, customClass, name);
-		}
-		catch (Exception e)
-		{
-			// no custom entities for you
-		}
+		MinecraftKey key = new MinecraftKey(name);
+		EntityTypes.b.a(id, key, customClass);
+		EntityTypes.d.add(key);
 	}
 
 	public static <E extends Entity> void registerOverrideEntity(Class<E> customClass, String name, int id)
