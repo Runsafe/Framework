@@ -2,7 +2,6 @@ package no.runsafe.framework.minecraft.bossBar;
 
 import no.runsafe.framework.api.IBossBar;
 import no.runsafe.framework.internal.wrapper.BukkitBossBar;
-import org.bukkit.FireworkEffect;
 import org.bukkit.boss.BossBar;
 import org.bukkit.craftbukkit.v1_12_R1.boss.CraftBossBar;
 
