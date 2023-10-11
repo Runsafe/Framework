@@ -573,6 +573,7 @@ public class Item implements IEnchantable
 			public static final Item Zombie = new Item(Material.SKULL_ITEM, true, (byte) 2);
 			public static final Item Human = new Item(Material.SKULL_ITEM, true, (byte) 3);
 			public static final Item Creeper = new Item(Material.SKULL_ITEM, true, (byte) 4);
+			public static final Item Dragon = new Item(Material.SKULL_ITEM, true, (byte) 5);
 
 			private Head()
 			{
@@ -592,6 +593,7 @@ public class Item implements IEnchantable
 		public static final Item Lever = new Item(Material.LEVER, true);
 		public static final Item TNT = new Item(Material.TNT, true);
 		public static final Item SlimeBlock = new Item(Material.SLIME_BLOCK, true);
+		public static final Item Observer = new Item(Material.OBSERVER, true);
 
 		private Redstone()
 		{
@@ -681,11 +683,21 @@ public class Item implements IEnchantable
 	public static final class Transportation
 	{
 		public static final Item Saddle = new Item(Material.SADDLE, true);
-		public static final Item Boat = new Item(Material.BOAT, true);
 		public static final Item CarrotOnAStick = new Item(Material.CARROT_STICK, true);
+		public static final Item Elytra = new Item(Material.ELYTRA, true);
 
 		private Transportation()
 		{
+		}
+
+		public static final class Boats
+		{
+			public static final Item Boat = new Item(Material.BOAT, true);
+			public static final Item SpruceBoat = new Item(Material.BOAT_SPRUCE, true);
+			public static final Item BirchBoat = new Item(Material.BOAT_BIRCH, true);
+			public static final Item JungleBoat = new Item(Material.BOAT_JUNGLE, true);
+			public static final Item AcaciaBoat = new Item(Material.BOAT_ACACIA, true);
+			public static final Item DarkOakBoat = new Item(Material.BOAT_DARK_OAK, true);
 		}
 
 		public static final class Rail
@@ -732,9 +744,33 @@ public class Item implements IEnchantable
 		public static final Item FireworkCharge = new Item(Material.FIREWORK_CHARGE, true);
 		public static final Item Leash = new Item(Material.LEASH, true);
 		public static final Item Banner = new Item(Material.BANNER, true);
-		
+		public static final Item EndCrystal = new Item(Material.END_CRYSTAL, true);
+
 		private Miscellaneous()
 		{
+		}
+
+		public static final class Shulker
+		{
+			public static final Item White = new Item(Material.WHITE_SHULKER_BOX, true);
+			public static final Item Orange = new Item(Material.ORANGE_SHULKER_BOX, true);
+			public static final Item Magenta = new Item(Material.MAGENTA_SHULKER_BOX, true);
+			public static final Item LightBlue = new Item(Material.LIGHT_BLUE_SHULKER_BOX, true);
+			public static final Item Yellow = new Item(Material.YELLOW_SHULKER_BOX, true);
+			public static final Item Lime = new Item(Material.LIME_SHULKER_BOX, true);
+			public static final Item Pink = new Item(Material.PINK_SHULKER_BOX, true);
+			public static final Item Gray = new Item(Material.GRAY_SHULKER_BOX, true);
+			public static final Item Silver = new Item(Material.SILVER_SHULKER_BOX, true);
+			public static final Item Cyan = new Item(Material.CYAN_SHULKER_BOX, true);
+			public static final Item Purple = new Item(Material.PURPLE_SHULKER_BOX, true);
+			public static final Item Blue = new Item(Material.BLUE_SHULKER_BOX, true);
+			public static final Item Brown = new Item(Material.BROWN_SHULKER_BOX, true);
+			public static final Item Green = new Item(Material.GREEN_SHULKER_BOX, true);
+			public static final Item Red = new Item(Material.RED_SHULKER_BOX, true);
+			public static final Item Black = new Item(Material.BLACK_SHULKER_BOX, true);
+			Shulker()
+			{
+			}
 		}
 
 		public static final class Bucket
@@ -764,8 +800,11 @@ public class Item implements IEnchantable
 			public static final Item Any = new Item(Material.MONSTER_EGG, true, AnyData);
 			public static final Item Creeper = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Creeper.getId());
 			public static final Item Skeleton = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Skeleton.getId());
+			public static final Item WitherSkeleton = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.WitherSkeleton.getId());
+			public static final Item Stray = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Stray.getId());
 			public static final Item Spider = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Spider.getId());
 			public static final Item Zombie = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Zombie.getId());
+			public static final Item Husk = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Husk.getId());
 			public static final Item Slime = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Slime.getId());
 			public static final Item Ghast = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Ghast.getId());
 			public static final Item ZombiePigman = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.PigZombie.getId());
@@ -785,9 +824,23 @@ public class Item implements IEnchantable
 			public static final Item Mooshroom = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.MushroomCow.getId());
 			public static final Item Ocelot = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Ocelot.getId());
 			public static final Item Villager = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Villager.getId());
+			public static final Item ZombieVillager = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.ZombieVillager.getId());
 			public static final Item Guardian = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Guardian.getId());
+			public static final Item ElderGuardian = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.ElderGuardian.getId());
 			public static final Item Endermite = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Endermite.getId());
 			public static final Item Rabbit = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Rabbit.getId());
+			public static final Item Donkey = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Donkey.getId());
+			public static final Item Mule = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Mule.getId());
+			public static final Item Horse = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Horse.getId());
+			public static final Item ZombieHorse = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.ZombieHorse.getId());
+			public static final Item SkeletonHorse = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.SkeletonHorse.getId());
+			public static final Item Llama = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Llama.getId());
+			public static final Item Evoker = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Evoker.getId());
+			public static final Item Vex = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Vex.getId());
+			public static final Item Vindicator = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Vindicator.getId());
+			public static final Item Parrot = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Parrot.getId());
+			public static final Item PolarBear = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.PolarBear.getId());
+			public static final Item Shulker = new Item(Material.MONSTER_EGG, true, (byte) LivingEntity.Shulker.getId());
 		}
 
 		public static final class Record
@@ -819,6 +872,7 @@ public class Item implements IEnchantable
 			public static final Item Melon = new Item(Material.MELON, true);
 			public static final Item Carrot = new Item(Material.CARROT_ITEM, true);
 			public static final Item Potato = new Item(Material.POTATO_ITEM, true);
+			public static final Item Beetroot = new Item(Material.BEETROOT, true);
 
 			private Plant()
 			{
@@ -854,6 +908,7 @@ public class Item implements IEnchantable
 		public static final class Cooked
 		{
 			public static final Item MushroomSoup = new Item(Material.MUSHROOM_SOUP, true);
+			public static final Item BeetrootSoup = new Item(Material.BEETROOT_SOUP, true);
 			public static final Item RabbitStew = new Item(Material.RABBIT_STEW, true);
 			public static final Item Bread = new Item(Material.BREAD, true);
 			public static final Item Pork = new Item(Material.GRILLED_PORK, true);
@@ -1134,6 +1189,7 @@ public class Item implements IEnchantable
 			public static final Item Wheat = new Item(Material.SEEDS, true);
 			public static final Item Pumpkin = new Item(Material.PUMPKIN_SEEDS, true);
 			public static final Item Melon = new Item(Material.MELON_SEEDS, true);
+			public static final Item Beetroot = new Item(Material.BEETROOT_SEEDS, true);
 
 			private Seed()
 			{
