@@ -44,7 +44,7 @@ public class BukkitBossBar implements IWrapper<BossBar>
 
     public List<IPlayer> getPlayers()
     {
-        return ObjectUnwrapper.convert(bossBar.getPlayers());
+        return ObjectWrapper.convert(bossBar.getPlayers());
     }
 
     public void removePlayer(IPlayer player)
