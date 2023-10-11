@@ -2,6 +2,7 @@ package no.runsafe.framework.internal.wrapper;
 
 import net.minecraft.server.v1_12_R1.EntityPlayer;
 import net.minecraft.server.v1_12_R1.MinecraftServer;
+import no.runsafe.framework.api.IBossBar;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.chunk.IChunk;
@@ -19,6 +20,7 @@ import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeTravelAgent;
 import no.runsafe.framework.internal.extension.RunsafeWorld;
+import no.runsafe.framework.minecraft.bossBar.RunsafeBossBar;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 import no.runsafe.framework.minecraft.enchantment.RunsafeEnchantment;
 import no.runsafe.framework.minecraft.entity.*;
@@ -30,6 +32,7 @@ import no.runsafe.framework.minecraft.item.meta.*;
 import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
 import org.bukkit.*;
 import org.bukkit.block.*;
+import org.bukkit.boss.BossBar;
 import org.bukkit.craftbukkit.v1_12_R1.CraftServer;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
@@ -167,6 +170,14 @@ public final class ObjectWrapper
 		if (toWrap == null)
 			return null;
 		return new RunsafeChunk(toWrap);
+	}
+
+	@Nullable
+	public static IBossBar convert (BossBar toWrap)
+	{
+		if (toWrap == null)
+			return null;
+		return new RunsafeBossBar(toWrap);
 	}
 
 	@Nullable
