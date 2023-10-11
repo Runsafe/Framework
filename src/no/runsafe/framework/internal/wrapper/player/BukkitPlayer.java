@@ -311,11 +311,21 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 
 	public void setLeftShoulderEntity(IEntity entity)
 	{
+		if (entity == null)
+		{
+			player.setShoulderEntityLeft(null);
+			return;
+		}
 		player.setShoulderEntityLeft(ObjectUnwrapper.convert(entity));
 	}
 
 	public void setRightShoulderEntity(IEntity entity)
 	{
+		if (entity == null)
+		{
+			player.setShoulderEntityRight(null);
+			return;
+		}
 		player.setShoulderEntityRight(ObjectUnwrapper.convert(entity));
 	}
 
