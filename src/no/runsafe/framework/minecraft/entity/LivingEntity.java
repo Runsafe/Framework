@@ -45,6 +45,7 @@ public enum LivingEntity implements RunsafeEntityType
 	Shulker(EntityType.SHULKER),
 	Silverfish(EntityType.SILVERFISH),
 	Skeleton(EntityType.SKELETON),
+	SkeletonHorse(EntityType.SKELETON_HORSE),
 	Slime(EntityType.SLIME),
 	Snowman(EntityType.SNOWMAN),
 	Spider(EntityType.SPIDER),
