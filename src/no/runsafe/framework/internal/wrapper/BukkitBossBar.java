@@ -22,79 +22,79 @@ public class BukkitBossBar implements IWrapper<BossBar>
         return bossBar;
     }
 
-    void addFlag(BarFlag flag)
+    public void addFlag(BarFlag flag)
     {
         bossBar.addFlag(flag.getBukkitFlag());
     }
 
-    boolean hasFlag(BarFlag flag)
+    public boolean hasFlag(BarFlag flag)
     {
         return bossBar.hasFlag(flag.getBukkitFlag());
     }
 
-    void removeFlag(BarFlag flag)
+    public void removeFlag(BarFlag flag)
     {
         bossBar.removeFlag(flag.getBukkitFlag());
     }
 
-    void addPlayer(IPlayer player)
+    public void addPlayer(IPlayer player)
     {
         bossBar.addPlayer(ObjectUnwrapper.convert(player));
     }
 
-    List<IPlayer> getPlayers()
+    public List<IPlayer> getPlayers()
     {
         return ObjectUnwrapper.convert(bossBar.getPlayers());
     }
 
-    void removePlayer(IPlayer player)
+    public void removePlayer(IPlayer player)
     {
         bossBar.removePlayer(ObjectUnwrapper.convert(player));
     }
 
-    void removeAllPlayers()
+    public void removeAllPlayers()
     {
         bossBar.removeAll();
     }
 
-    void setColour(BarColour colour)
+    public void setColour(BarColour colour)
     {
         bossBar.setColor(colour.getBukkitBarColour());
     }
 
-    void setProgress(double progress)
+    public void setProgress(double progress)
     {
         bossBar.setProgress(progress);
     }
 
-    double getProgress()
+    public double getProgress()
     {
         return bossBar.getProgress();
     }
 
-    void setStyle(BarStyle style)
+    public void setStyle(BarStyle style)
     {
         bossBar.setStyle(style.getBukkitBarStyle());
     }
 
-    void setTitle(String title)
+    public void setTitle(String title)
     {
         bossBar.setTitle(title);
     }
 
-    String getTitle()
+    public String getTitle()
     {
         return bossBar.getTitle();
     }
 
-    void setVisible(boolean visible)
+    public void setVisible(boolean visible)
     {
         bossBar.setVisible(visible);
     }
 
-    boolean isVisible()
+    public boolean isVisible()
     {
         return bossBar.isVisible();
     }
-    BossBar bossBar;
+    protected final BossBar bossBar;
 }

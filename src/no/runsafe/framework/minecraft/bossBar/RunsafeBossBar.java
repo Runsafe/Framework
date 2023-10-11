@@ -18,5 +18,5 @@ public class RunsafeBossBar extends BukkitBossBar implements IBossBar
         this(new CraftBossBar(title,colour.getBukkitBarColour(), style.getBukkitBarStyle()));
     }
 
-    BossBar bossbar;
+    private final BossBar bossbar;
 }
