@@ -27,7 +27,7 @@ public enum LivingEntity implements RunsafeEntityType
 	Giant(EntityType.GIANT),
 	Guardian(EntityType.GUARDIAN),
 	Horse(EntityType.HORSE),
-	Hust(EntityType.HUSK),
+	Husk(EntityType.HUSK),
 	Illusioner(EntityType.ILLUSIONER),
 	IronGolem(EntityType.IRON_GOLEM),
 	LavaSlime(EntityType.MAGMA_CUBE),
