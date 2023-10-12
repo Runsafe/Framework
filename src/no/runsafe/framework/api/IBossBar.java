@@ -24,4 +24,11 @@ public interface IBossBar
     String getTitle();
     void setVisible(boolean visible);
     boolean isVisible();
+
+    /**
+     * Set players who are viewing this boss bar.
+     * Removes players not on this list.
+     * @param players
+     */
+    void setActivePlayers(List<IPlayer> players);
 }
