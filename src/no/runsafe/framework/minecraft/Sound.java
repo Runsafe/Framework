@@ -190,6 +190,11 @@ public class Sound
 		public static final Sound Flute = new Sound(org.bukkit.Sound.BLOCK_NOTE_FLUTE);
 		public static final Sound Guitar = new Sound(org.bukkit.Sound.BLOCK_NOTE_GUITAR);
 		public static final Sound Xylophone = new Sound(org.bukkit.Sound.BLOCK_NOTE_XYLOPHONE);
+		public static final Sound Banjo = new Sound(org.bukkit.Sound.BLOCK_NOTE_GUITAR); // Placeholder
+		public static final Sound CowBell = new Sound(org.bukkit.Sound.BLOCK_NOTE_BELL); // Placeholder
+		public static final Sound Didgeridoo = new Sound(org.bukkit.Sound.BLOCK_NOTE_GUITAR); // Placeholder
+		public static final Sound Bit = new Sound(org.bukkit.Sound.BLOCK_NOTE_GUITAR); // Placeholder
+		public static final Sound IronXylophone = new Sound(org.bukkit.Sound.BLOCK_NOTE_XYLOPHONE); // Placeholder
 
 		private Note()
 		{
