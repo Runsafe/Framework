@@ -28,10 +28,7 @@ public class RunsafeBossBar extends BukkitBossBar implements IBossBar
         // Remove players not on the new list
         for (IPlayer bossBarPlayer : bossBarPlayers)
             if (!players.contains(bossBarPlayer))
-            {
                 this.removePlayer(bossBarPlayer);
-                bossBarPlayers.remove(bossBarPlayer);
-            }
 
         // Add players not on the old list
         for (IPlayer newPlayer : players)
