@@ -30,7 +30,7 @@ public class CompactUtil
 			Method method = NBTCompressedStreamTools.class.getDeclaredMethod("a", DataInput.class, int.class, NBTReadLimiter.class);
 			method.setAccessible(true);
 
-			return (NBTBase) method.invoke(null, input, 0, new NBTReadLimiter(1024));
+			return (NBTBase) method.invoke(null, input, 0, new NBTReadLimiter(65536));
 		}
 		catch (Exception e)
 		{
