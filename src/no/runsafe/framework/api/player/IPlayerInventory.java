@@ -23,8 +23,19 @@ public interface IPlayerInventory extends IInventoryHolder
 
 	void closeInventory();
 
+	@Deprecated
 	@Nullable
 	RunsafeMeta getItemInHand();
+
+	@Nullable
+	RunsafeMeta getItemInMainHand();
+
+	@Nullable
+	RunsafeMeta getItemInOffHand();
+
+	void setItemInMainHand(RunsafeMeta itemStack);
+
+	void setItemInOffHand(RunsafeMeta itemStack);
 
 	void updateInventory();
 
