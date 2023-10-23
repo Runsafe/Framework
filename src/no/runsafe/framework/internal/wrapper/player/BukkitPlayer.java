@@ -124,10 +124,35 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 			player.sendBlockChange((Location) ObjectUnwrapper.convert(location), itemId, data);
 	}
 
+	@Deprecated
 	@Nullable
 	public RunsafeMeta getItemInHand()
 	{
-		return player == null ? null : ObjectWrapper.convert(player.getItemInHand());
+		return getItemInMainHand();
+	}
+
+	@Nullable
+	public RunsafeMeta getItemInMainHand()
+	{
+		return player == null ? null : ObjectWrapper.convert(player.getInventory().getItemInMainHand());
+	}
+
+	@Nullable
+	public RunsafeMeta getItemInOffHand()
+	{
+		return player == null ? null : ObjectWrapper.convert(player.getInventory().getItemInOffHand());
+	}
+
+	public void setItemInMainHand(RunsafeMeta itemStack)
+	{
+		if (player != null)
+			player.getInventory().setItemInMainHand(itemStack.getRaw());
+	}
+
+	public void setItemInOffHand(RunsafeMeta itemStack)
+	{
+		if (player != null)
+			player.getInventory().setItemInOffHand(itemStack.getRaw());
 	}
 
 	public void sendMessage(String message)

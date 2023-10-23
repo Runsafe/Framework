@@ -415,6 +415,9 @@ public final class ObjectWrapper
 		if (toWrap instanceof Minecart)
 			return convert((Minecart) toWrap);
 
+		if (toWrap instanceof AreaEffectCloud)
+			return convert((AreaEffectCloud) toWrap);
+
 		return new RunsafeEntity(toWrap);
 	}
 
@@ -600,6 +603,14 @@ public final class ObjectWrapper
 		if (toWrap == null)
 			return null;
 		return new RunsafeMinecart(toWrap);
+	}
+
+	@Nullable
+	public static RunsafeAreaEffectCloud convert(AreaEffectCloud toWrap)
+	{
+		if (toWrap == null)
+			return null;
+		return new RunsafeAreaEffectCloud(toWrap);
 	}
 
 	@Nullable

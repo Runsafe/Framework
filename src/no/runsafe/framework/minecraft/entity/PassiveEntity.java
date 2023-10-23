@@ -9,6 +9,7 @@ import org.bukkit.entity.EntityType;
 public enum PassiveEntity implements RunsafeEntityType
 {
 	ArmorStand(EntityType.ARMOR_STAND),
+	AreaEffectCloud(EntityType.AREA_EFFECT_CLOUD),
 	Boat(EntityType.BOAT),
 	ComplexPart(EntityType.COMPLEX_PART),
 	DroppedItem(EntityType.DROPPED_ITEM),
