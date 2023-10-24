@@ -16,6 +16,6 @@ public class BukkitSpawnEgg extends RunsafeMeta
 
 	public RunsafeEntityType getEntityType()
 	{
-		return ObjectWrapper.convert(((SpawnEggMeta) itemStack).getSpawnedType());
+		return ObjectWrapper.convert(((SpawnEggMeta) itemStack.getItemMeta()).getSpawnedType());
 	}
 }
