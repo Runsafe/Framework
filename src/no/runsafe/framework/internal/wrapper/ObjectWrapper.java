@@ -641,6 +641,8 @@ public final class ObjectWrapper
 			return new RunsafePotion(toWrap);
 		if (meta instanceof SkullMeta)
 			return new RunsafeSkull(toWrap);
+		if (meta instanceof SpawnEggMeta)
+			return new RunsafeSpawnEgg(toWrap);
 		return new RunsafeMeta(toWrap);
 	}
 
