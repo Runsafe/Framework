@@ -1114,6 +1114,7 @@ public class Item implements IEnchantable
 		public static final Item Cauldron = new Item(Material.CAULDRON_ITEM, true);
 		public static final Item NetherWart = new Item(Material.NETHER_STALK, true);
 		public static final Item RabbitFoot = new Item(Material.RABBIT_FOOT, true);
+		public static final Item DragonsBreath = new Item(Material.DRAGONS_BREATH, true);
 
 		private Brewing()
 		{
