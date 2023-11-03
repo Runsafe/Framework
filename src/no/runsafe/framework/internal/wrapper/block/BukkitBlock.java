@@ -1,5 +1,9 @@
 package no.runsafe.framework.internal.wrapper.block;
 
+import net.minecraft.server.v1_12_R1.BlockPosition;
+import net.minecraft.server.v1_12_R1.Blocks;
+import net.minecraft.server.v1_12_R1.IBlockData;
+import net.minecraft.server.v1_12_R1.World;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.log.IConsole;
@@ -9,7 +13,9 @@ import no.runsafe.framework.internal.lua.GlobalEnvironment;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import no.runsafe.framework.minecraft.Item;
+import org.bukkit.Chunk;
 import org.bukkit.block.Block;
+import org.bukkit.craftbukkit.v1_12_R1.block.CraftBlock;
 
 public class BukkitBlock extends BukkitMetadata
 {
@@ -47,10 +53,11 @@ public class BukkitBlock extends BukkitMetadata
 		IConsole console = Console.Global();
 		org.bukkit.Material material = type.getType();
 		console.logInformation(
-			"setting bukkit block %d,%d,%d@%s to %s",
+			"setting bukkit block %d,%d,%d@%s to %s on thread %d %s",
 			block.getX(), block.getY(), block.getZ(), block.getWorld().getName(),
-			material.name()
+			material.name(), Thread.currentThread().getId(), Thread.currentThread().getName()
 		);
+
 		block.setType(type.getType());
 		setData(type.getData());
 	}
