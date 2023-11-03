@@ -58,8 +58,17 @@ public class BukkitBlock extends BukkitMetadata
 			material.name(), Thread.currentThread().getId(), Thread.currentThread().getName()
 		);
 
-		block.setType(type.getType());
+		boolean success = block.setTypeId(type.getType().getId(), false);
+		console.logInformation(
+			"Block set %s", success ? "successfully" : "failed"
+		);
 		setData(type.getData());
+
+		console.logInformation(
+			"bukkit block %d,%d,%d@%s is %s on thread %d %s",
+			block.getX(), block.getY(), block.getZ(), block.getWorld().getName(),
+			block.getType().name(), Thread.currentThread().getId(), Thread.currentThread().getName()
+		);
 	}
 
 	@Deprecated
