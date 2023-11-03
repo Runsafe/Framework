@@ -45,17 +45,7 @@ public abstract class EventRouterBase<Wrapper extends IRunsafeEvent, EventType e
 
 	private void invokeAsync(final EventType event)
 	{
-		scheduler.startAsyncTask(
-			new Runnable()
-			{
-				@Override
-				public void run()
-				{
-					invoke(event);
-				}
-			},
-			0
-		);
+		scheduler.startAsyncTask(() -> invoke(event), 0);
 	}
 
 	private void invoke(EventType event)

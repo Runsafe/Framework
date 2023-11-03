@@ -2,7 +2,10 @@ package no.runsafe.framework.internal.wrapper.block;
 
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.internal.LegacyMaterial;
+import no.runsafe.framework.internal.log.Console;
+import no.runsafe.framework.internal.lua.GlobalEnvironment;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import no.runsafe.framework.minecraft.Item;
@@ -23,6 +26,12 @@ public class BukkitBlock extends BukkitMetadata
 
 	public void setData(byte data)
 	{
+		IConsole console = Console.Global();
+		console.logInformation(
+			"setting bukkit block %d,%d,%d@%s to %d",
+			block.getX(), block.getY(), block.getZ(), block.getWorld().getName(),
+			data
+		);
 		block.setData(data);
 	}
 
@@ -35,6 +44,13 @@ public class BukkitBlock extends BukkitMetadata
 	@SuppressWarnings("InstanceMethodNamingConvention")
 	public void set(Item type)
 	{
+		IConsole console = Console.Global();
+		org.bukkit.Material material = type.getType();
+		console.logInformation(
+			"setting bukkit block %d,%d,%d@%s to %s",
+			block.getX(), block.getY(), block.getZ(), block.getWorld().getName(),
+			material.name()
+		);
 		block.setType(type.getType());
 		setData(type.getData());
 	}
