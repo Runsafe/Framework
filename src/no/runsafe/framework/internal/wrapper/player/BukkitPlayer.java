@@ -383,6 +383,16 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 			player.resetTitle();
 	}
 
+	public void setFacing(ILocation targetLocation)
+	{
+		// Calculate the direction vector from the player to the target location
+		Location playerLocation = player.getLocation();
+		playerLocation.setDirection(targetLocation.toVector().subtract(playerLocation.toVector()));
+
+		// Teleport the player to the updated location to apply the direction change
+		player.teleport(playerLocation);
+	}
+
 	protected String playerName = null;
 	private boolean nullName = false;
 	@Nullable

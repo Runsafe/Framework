@@ -1,5 +1,6 @@
 package no.runsafe.framework.api.player;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.entity.ILivingEntity;
@@ -17,4 +18,5 @@ public interface IPlayer extends
 	IEntity getRightShoulderEntity();
 	void setLeftShoulderEntity(IEntity entity);
 	void setRightShoulderEntity(IEntity entity);
+	void setFacing(ILocation location);
 }
