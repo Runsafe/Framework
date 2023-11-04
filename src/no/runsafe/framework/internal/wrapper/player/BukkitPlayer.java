@@ -402,7 +402,7 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 
 		// Calculate the new location behind the player
 		double x = playerLocation.getX() - playerDirection.getX() * distance;
-		double y = playerLocation.getY() - playerDirection.getY() * distance;
+		double y = playerLocation.getY();
 		double z = playerLocation.getZ() - playerDirection.getZ() * distance;
 
 		Location location = getHighestBlock
@@ -418,7 +418,7 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 		{
 			location.setY(playerLocation.getY());
 		}
-		location.setDirection(location.toVector().subtract(playerLocation.toVector()));
+		location.setDirection(playerLocation.toVector().subtract(location.toVector()));
 
 		return ObjectWrapper.convert(location);
 	}
