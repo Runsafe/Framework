@@ -145,6 +145,11 @@ public abstract class BukkitLocation implements IWrapper<Location>
 		return location.toVector();
 	}
 
+	public void face(ILocation otherLocation)
+	{
+		location.setDirection(location.toVector().subtract(otherLocation.toVector()));
+	}
+
 	@Override
 	public ILocation clone()
 	{

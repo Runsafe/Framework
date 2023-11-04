@@ -90,4 +90,6 @@ public interface ILocation
 	ILocation add(Vector vector);
 
 	Vector toVector();
+
+	void face(ILocation targetLocation);
 }
