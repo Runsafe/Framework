@@ -127,14 +127,15 @@ public final class Debug extends LoggingBase implements IDebug
 	private String formatDebugMessage(String message, Level messageLevel, Object... params)
 	{
 		String formatted = String.format(
-			"[%s%s%s] %s",
+			"[%d] [%s%s%s] %s",
+			Thread.currentThread().getId(),
 			ConsoleColour.DARK_GREEN,
 			messageLevel.getName(),
 			ConsoleColour.RESET,
 			String.format(message, params)
 		);
 
-		if (debugLevel.intValue() <= Level.FINEST.intValue())
+		if (debugLevel.intValue() == Level.ALL.intValue())
 			formatted = String.format("%s\nat %s", formatted, getStackTrace());
 
 		return formatted;
