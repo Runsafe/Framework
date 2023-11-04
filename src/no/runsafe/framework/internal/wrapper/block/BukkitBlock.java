@@ -56,6 +56,7 @@ public class BukkitBlock extends BukkitMetadata
 			material.name(), Thread.currentThread().getId(), Thread.currentThread().getName()
 		);
 
+		block.getLocation().getChunk().load(); //.setForceLoaded(true);
 		block.setType(material, false);
 
 		console.logInformation(
