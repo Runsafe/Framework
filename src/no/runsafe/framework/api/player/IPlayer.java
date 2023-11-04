@@ -19,5 +19,5 @@ public interface IPlayer extends
 	void setLeftShoulderEntity(IEntity entity);
 	void setRightShoulderEntity(IEntity entity);
 	void setFacing(ILocation location);
-	ILocation getLocationBehindPlayer(double distance);
+	ILocation getLocationBehindPlayer(double distance, boolean getHighestBlock);
 }

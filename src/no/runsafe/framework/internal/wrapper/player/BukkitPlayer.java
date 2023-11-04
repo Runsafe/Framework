@@ -395,7 +395,7 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 		player.teleport(playerLocation);
 	}
 
-	public ILocation getLocationBehindPlayer(double distance)
+	public ILocation getLocationBehindPlayer(double distance, boolean getHighestBlock)
 	{
 		Location playerLocation = player.getLocation();
 		Vector playerDirection = playerLocation.getDirection().normalize(); // Get the player's normalized direction vector
@@ -405,16 +405,20 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 		double y = playerLocation.getY() - playerDirection.getY() * distance;
 		double z = playerLocation.getZ() - playerDirection.getZ() * distance;
 
-		Location location = playerLocation.getWorld()
-			.getHighestBlockAt((int)Math.floor(x), (int)Math.floor(z))
-			.getLocation();
+		Location location = getHighestBlock
+			? playerLocation.getWorld()
+					.getHighestBlockAt((int)Math.floor(x), (int)Math.floor(z))
+					.getLocation()
+			: playerLocation.getWorld()
+					.getBlockAt((int)Math.floor(x), (int)Math.floor(y), (int)Math.floor(z))
+					.getLocation();
 
 		// If a massive difference, ignore
 		if (Math.abs(location.getBlockY() - playerLocation.getBlockY()) > 5)
 		{
 			location.setY(playerLocation.getY());
 		}
-		location.setDirection(playerLocation.toVector().subtract(playerLocation.toVector()));
+		location.setDirection(location.toVector().subtract(playerLocation.toVector()));
 
 		return ObjectWrapper.convert(location);
 	}
