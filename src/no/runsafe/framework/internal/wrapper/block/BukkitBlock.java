@@ -48,22 +48,8 @@ public class BukkitBlock extends BukkitMetadata
 	@SuppressWarnings("InstanceMethodNamingConvention")
 	public void set(Item type)
 	{
-		IConsole console = Console.Global();
-		org.bukkit.Material material = type.getType();
-		console.logInformation(
-			"setting bukkit block %d,%d,%d@%s to %s on thread %d %s",
-			block.getX(), block.getY(), block.getZ(), block.getWorld().getName(),
-			material.name(), Thread.currentThread().getId(), Thread.currentThread().getName()
-		);
-
 		block.getLocation().getChunk().load(); //.setForceLoaded(true);
-		block.setType(material, false);
-
-		console.logInformation(
-			"bukkit block %d,%d,%d@%s is %s on thread %d %s",
-			block.getX(), block.getY(), block.getZ(), block.getWorld().getName(),
-			block.getType().name(), Thread.currentThread().getId(), Thread.currentThread().getName()
-		);
+		block.setType(type.getType(), false);
 	}
 
 	@Deprecated
