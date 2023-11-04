@@ -387,23 +387,27 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 
 	public void setFacing(ILocation targetLocation)
 	{
-		// Calculate the direction vector from the player to the target location
-		Location playerLocation = player.getLocation();
-		playerLocation.setDirection(targetLocation.toVector().subtract(playerLocation.toVector()));
-
-		// Teleport the player to the updated location to apply the direction change
-		player.teleport(playerLocation);
+		Location target = ObjectUnwrapper.convert(targetLocation);
+		Vector dir = target.clone().subtract(player.getEyeLocation()).toVector();
+		Location loc = player.getLocation().setDirection(dir);
+		player.teleport(loc);
 	}
 
 	public ILocation getLocationBehindPlayer(double distance, boolean getHighestBlock)
 	{
 		Location playerLocation = player.getLocation();
-		Vector playerDirection = playerLocation.getDirection().normalize(); // Get the player's normalized direction vector
 
-		// Calculate the new location behind the player
-		double x = playerLocation.getX() - playerDirection.getX() * distance;
+		// Convert playerYaw from degrees to radians
+		double yawRadians = Math.toRadians(playerLocation.getYaw());
+
+		// Calculate the change in X and Z coordinates
+		double deltaX = -distance * Math.sin(yawRadians);
+		double deltaZ = -distance * Math.cos(yawRadians);
+
+		// Update the player's new coordinates
+		double x = playerLocation.getX() + deltaX;
+		double z = playerLocation.getZ() + deltaZ;
 		double y = playerLocation.getY();
-		double z = playerLocation.getZ() - playerDirection.getZ() * distance;
 
 		Location location = getHighestBlock
 			? playerLocation.getWorld()
@@ -418,7 +422,9 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 		{
 			location.setY(playerLocation.getY());
 		}
-		location.setDirection(playerLocation.toVector().subtract(location.toVector()));
+
+		Vector dir = location.subtract(playerLocation).toVector();
+		location.setDirection(dir);
 
 		return ObjectWrapper.convert(location);
 	}
