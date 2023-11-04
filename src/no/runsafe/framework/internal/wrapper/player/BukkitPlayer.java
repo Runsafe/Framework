@@ -179,7 +179,6 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 		return player == null ? null : new RunsafePlayerInventory(player.getInventory());
 	}
 
-	@SuppressWarnings("deprecation")
 	public void updateInventory()
 	{
 		if (player != null)

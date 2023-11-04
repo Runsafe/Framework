@@ -4,10 +4,13 @@ import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.ITimer;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.internal.Minecraft;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
-@SuppressWarnings("deprecation")
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class Scheduler implements IScheduler
 {
 	public Scheduler(BukkitScheduler scheduler, JavaPlugin plugin, IConsole console)
@@ -29,11 +32,32 @@ public class Scheduler implements IScheduler
 		return startSyncTask(func, seconds * Minecraft.TICKS_PER_SECOND);
 	}
 
+	/**
+	 * @deprecated Please do not use this, it can hard lock the server if called from the main thread
+	 * @param func A function to run immediately
+	 * @return
+	 */
+	@Deprecated
 	@Override
 	public boolean runNow(Runnable func)
 	{
+		console.logWarning("Scheduler.runNow invoked from %s", getStackTrace());
 		Runner runner = new Runner(func);
-		return runner.run();
+		return runner.start();
+	}
+
+	private static String getStackTrace()
+	{
+		int skip = 2;
+		Collection<String> stack = new ArrayList<String>(5);
+		for (StackTraceElement element : Thread.currentThread().getStackTrace())
+		{
+			if (skip < 1)
+				stack.add(element.toString());
+			else
+				skip--;
+		}
+		return StringUtils.join(stack, "\n\t");
 	}
 
 	private class Runner
@@ -46,7 +70,7 @@ public class Scheduler implements IScheduler
 			this.func = func;
 		}
 
-		public boolean run()
+		public boolean start()
 		{
 			scheduler.runTask(
 				plugin,

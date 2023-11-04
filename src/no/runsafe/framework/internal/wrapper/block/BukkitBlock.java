@@ -30,6 +30,10 @@ public class BukkitBlock extends BukkitMetadata
 		return block.getData();
 	}
 
+	/**
+	 * @deprecated Do not use this, setType with a material instead
+	 */
+	@Deprecated
 	public void setData(byte data)
 	{
 		IConsole console = Console.Global();
@@ -40,12 +44,6 @@ public class BukkitBlock extends BukkitMetadata
 		);
 		block.setData(data);
 	}
-
-//	@Deprecated
-//	public IBlockState getBlockState()
-//	{
-//		return ObjectWrapper.convert(block.getState());
-//	}
 
 	@SuppressWarnings("InstanceMethodNamingConvention")
 	public void set(Item type)
@@ -58,11 +56,7 @@ public class BukkitBlock extends BukkitMetadata
 			material.name(), Thread.currentThread().getId(), Thread.currentThread().getName()
 		);
 
-		boolean success = block.setTypeId(type.getType().getId(), false);
-		console.logInformation(
-			"Block set %s", success ? "successfully" : "failed"
-		);
-		setData(type.getData());
+		block.setType(material, false);
 
 		console.logInformation(
 			"bukkit block %d,%d,%d@%s is %s on thread %d %s",

@@ -56,7 +56,7 @@ public class Item implements IEnchantable
 		Matcher id = materialId.matcher(type);
 		if (id.matches())
 		{
-			Integer idPart = Integer.valueOf(id.group(1));
+			int idPart = Integer.parseInt(id.group(1));
 			String dataValue = id.group(3);
 			if (dataValue == null || dataValue.isEmpty())
 				dataValue = "0";
@@ -1324,7 +1324,6 @@ public class Item implements IEnchantable
 		return Drop(location, getStackSize());
 	}
 
-	@SuppressWarnings("LocalVariableOfConcreteClass")
 	public RunsafeItem Drop(ILocation location, int amount)
 	{
 		RunsafeMeta stack = getItem();

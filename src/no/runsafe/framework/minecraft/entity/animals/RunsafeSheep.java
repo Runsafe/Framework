@@ -56,6 +56,6 @@ public class RunsafeSheep extends RunsafeAgeable implements ISheep
 		return Sound.Creature.Sheep.Idle;
 	}
 
-	private static Random random = new Random();
+	private static final Random random = new Random();
 	private final Sheep sheep;
 }

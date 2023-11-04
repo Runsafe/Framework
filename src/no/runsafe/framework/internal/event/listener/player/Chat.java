@@ -19,7 +19,7 @@ public final class Chat extends EventRouterBase<IPlayerChatEvent, AsyncPlayerCha
 	}
 
 	@EventHandler
-	// This is async already, so no need to check..
+	// This is async already, so no need to check...
 	@Override
 	public void acceptEvent(AsyncPlayerChatEvent event)
 	{

@@ -6,7 +6,7 @@ import no.runsafe.framework.api.player.IPlayer;
 public interface IPlayerExecute
 {
 	/**
-	 * If you use optional arguments, you must still override this command but you can leave it blank.
+	 * If you use optional arguments, you must still override this command, but you can leave it blank.
 	 *
 	 *
 	 * @param executor   The player executing the command

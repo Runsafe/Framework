@@ -68,33 +68,33 @@ public final class Set implements ISet
 	}
 
 	@Override
-	public boolean containsAll(@Nonnull Collection<?> c)
+	public boolean containsAll(@Nonnull Collection<?> collection)
 	{
-		return list.containsAll(c);
+		return list.containsAll(collection);
 	}
 
 	@Override
-	public boolean addAll(@Nonnull Collection<? extends IRow> c)
+	public boolean addAll(@Nonnull Collection<? extends IRow> collection)
 	{
-		return list.addAll(c);
+		return list.addAll(collection);
 	}
 
 	@Override
-	public boolean addAll(int index, @Nonnull Collection<? extends IRow> c)
+	public boolean addAll(int index, @Nonnull Collection<? extends IRow> collection)
 	{
-		return list.addAll(index, c);
+		return list.addAll(index, collection);
 	}
 
 	@Override
-	public boolean removeAll(@Nonnull Collection<?> c)
+	public boolean removeAll(@Nonnull Collection<?> collection)
 	{
-		return list.removeAll(c);
+		return list.removeAll(collection);
 	}
 
 	@Override
-	public boolean retainAll(@Nonnull Collection<?> c)
+	public boolean retainAll(@Nonnull Collection<?> collection)
 	{
-		return list.retainAll(c);
+		return list.retainAll(collection);
 	}
 
 	@Override
@@ -192,7 +192,7 @@ public final class Set implements ISet
 		@Override
 		public Iterator<IRow> iterator()
 		{
-			return Collections.<IRow>emptyList().iterator();
+			return Collections.emptyIterator();
 		}
 
 		@Nonnull
@@ -222,31 +222,31 @@ public final class Set implements ISet
 		}
 
 		@Override
-		public boolean containsAll(@Nonnull Collection<?> c)
+		public boolean containsAll(@Nonnull Collection<?> collection)
 		{
 			return false;
 		}
 
 		@Override
-		public boolean addAll(@Nonnull Collection<? extends IRow> c)
+		public boolean addAll(@Nonnull Collection<? extends IRow> collection)
 		{
 			return false;
 		}
 
 		@Override
-		public boolean addAll(int index, @Nonnull Collection<? extends IRow> c)
+		public boolean addAll(int index, @Nonnull Collection<? extends IRow> collection)
 		{
 			return false;
 		}
 
 		@Override
-		public boolean removeAll(@Nonnull Collection<?> c)
+		public boolean removeAll(@Nonnull Collection<?> collection)
 		{
 			return false;
 		}
 
 		@Override
-		public boolean retainAll(@Nonnull Collection<?> c)
+		public boolean retainAll(@Nonnull Collection<?> collection)
 		{
 			return false;
 		}

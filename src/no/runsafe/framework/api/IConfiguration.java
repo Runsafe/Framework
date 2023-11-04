@@ -69,7 +69,7 @@ public interface IConfiguration
 
 	/**
 	 * @param key The configuration key
-	 * @return The section as a Integer map
+	 * @return The section as an Integer map
 	 */
 	Map<String, Integer> getConfigValuesAsIntegerMap(String key);
 

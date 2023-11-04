@@ -14,7 +14,6 @@ public final class FrameworkConfiguration extends Holder
 		load();
 	}
 
-	@SuppressWarnings({"HardcodedFileSeparator", "IOResourceOpenedButNotSafelyClosed"})
 	void load()
 	{
 		File file = new File("runsafe", "config.yml");

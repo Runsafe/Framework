@@ -12,7 +12,7 @@ public enum HorseColour
     DARK_BROWN(Horse.Color.DARK_BROWN),
     GREY(Horse.Color.GRAY);
 
-    private HorseColour(Horse.Color colour)
+    HorseColour(Horse.Color colour)
     {
         this.colour = colour;
     }
@@ -22,5 +22,5 @@ public enum HorseColour
         return colour;
     }
 
-    private Horse.Color colour;
+    private final Horse.Color colour;
 }

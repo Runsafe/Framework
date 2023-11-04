@@ -108,8 +108,8 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 	}
 
 	/**
-	 * Check if armour stand has a base plate.
-	 * @return True if it has a base plate.
+	 * Check if armour stand has a baseplate.
+	 * @return True if it has a baseplate.
 	 */
 	public boolean hasBasePlate()
 	{
@@ -117,8 +117,8 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 	}
 
 	/**
-	 * Set whether or not armour stand has a base plate.
-	 * @param basePlate True for base plate.
+	 * Set whether armour stand has a baseplate.
+	 * @param basePlate True for baseplate.
 	 */
 	public void setBasePlate(boolean basePlateValue)
 	{
@@ -135,7 +135,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 	}
 
 	/**
-	 * Choose whether or not this object will obey the laws of gravity.
+	 * Choose whether this object will obey the laws of gravity.
 	 * @param gravityValue True for gravity, false to just float there.
 	 */
 	public void setGravity(boolean gravityValue)
@@ -153,7 +153,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 	}
 
 	/**
-	 * Sets whether or not this object can be seen.
+	 * Sets whether this object can be seen.
 	 * Any blocks/armour on this armour stand can still be seen.
 	 * @param visibleValue True if visible.
 	 */
@@ -172,7 +172,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 	}
 
 	/**
-	 * Decide whether or not to give the armour stand arms.
+	 * Decide whether to give the armour stand arms.
 	 * @param armsValue True for arms
 	 */
 	public void setArms(boolean armsValue)
@@ -199,7 +199,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 	}
 
 	/**
-	 * Gets whether or not this armour stand is a marker.
+	 * Gets whether this armour stand is a marker.
 	 * Marker armour stands don't render client side.
 	 * NOT the same as being invisible.
 	 * @return True if it's a marker, false if not.
@@ -210,7 +210,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 	}
 
 	/**
-	 * Sets whether or not the armour stand is a marker.
+	 * Sets whether the armour stand is a marker.
 	 * @param markerValue
 	 */
 	public void setMarker(boolean markerValue)

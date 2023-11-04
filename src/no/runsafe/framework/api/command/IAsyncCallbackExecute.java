@@ -5,7 +5,7 @@ import no.runsafe.framework.api.command.argument.IArgumentList;
 public interface IAsyncCallbackExecute<T>
 {
 	/**
-	 * If you have optional arguments, you still need to override this method but you can leave it empty.
+	 * If you have optional arguments, you still need to override this method, but you may leave it empty.
 	 *
 	 *
 	 * @param executor   The player or console executing the command

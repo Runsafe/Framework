@@ -57,6 +57,6 @@ public class RunsafeNormalHorse extends RunsafeHorse implements INormalHorse
 		return normalHorse;
 	}
 
-	private static Random random = new Random();
+	private static final Random random = new Random();
 	Horse normalHorse;
 }

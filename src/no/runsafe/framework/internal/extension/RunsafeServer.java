@@ -171,8 +171,8 @@ public class RunsafeServer extends BukkitServer implements IServer
 		for (IPlayer player : players)
 			if (context.shouldNotSee(player))
 				filtered.add(player);
-		filtered.removeAll(filtered);
-		return filtered;
+		players.removeAll(filtered);
+		return players;
 	}
 
 	@Override
@@ -295,7 +295,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 	}
 
 	/**
-	 * Provides the Unique Id of the player who logged the most recently with a specified username.
+	 * Provides the UUID of the player who logged the most recently with a specified username.
 	 *
 	 * @param playerName Exact name of the player to lookup.
 	 * @return the UUID of the last player to loged in.

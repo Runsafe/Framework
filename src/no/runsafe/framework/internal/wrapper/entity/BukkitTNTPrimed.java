@@ -28,5 +28,5 @@ public abstract class BukkitTNTPrimed extends BukkitExplosive
 		return tnt;
 	}
 
-	private TNTPrimed tnt;
+	private final TNTPrimed tnt;
 }

@@ -88,7 +88,6 @@ public abstract class BukkitItemStack implements ConfigurationSerializable, IWra
 		return itemStack.getMaxStackSize();
 	}
 
-	@SuppressWarnings("InstanceofInterfaces")
 	public boolean equals(Object obj)
 	{
 		if (obj instanceof BukkitItemStack)

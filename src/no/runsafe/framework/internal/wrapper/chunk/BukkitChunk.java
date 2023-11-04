@@ -56,9 +56,9 @@ public abstract class BukkitChunk
 		return !chunk.isLoaded();
 	}
 
-	public boolean load(boolean b)
+	public boolean load(boolean generate)
 	{
-		return chunk.load(b);
+		return chunk.load(generate);
 	}
 
 	public boolean load()
@@ -66,14 +66,14 @@ public abstract class BukkitChunk
 		return chunk.load();
 	}
 
-	public boolean unload(boolean b, boolean b1)
+	public boolean unload(boolean save, boolean safe)
 	{
-		return chunk.unload(b, b1);
+		return chunk.unload(save, safe);
 	}
 
-	public boolean unload(boolean b)
+	public boolean unload(boolean save)
 	{
-		return chunk.unload(b);
+		return chunk.unload(save);
 	}
 
 	public boolean unload()

@@ -26,9 +26,6 @@ public class RunsafeBlock extends BukkitBlock implements IBlock
 	@Override
 	public boolean isAny(Item... type)
 	{
-		if(type.length == 0)
-			return false;
-
 		for(Item test : type)
 			if(is(test))
 				return true;
@@ -55,7 +52,6 @@ public class RunsafeBlock extends BukkitBlock implements IBlock
 	}
 
 	@Override
-	@SuppressWarnings("EnumSwitchStatementWhichMissesCases")
 	public boolean isHazardous()
 	{
 		switch (block.getType())

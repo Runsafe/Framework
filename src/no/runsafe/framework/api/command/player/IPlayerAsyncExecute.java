@@ -6,7 +6,7 @@ import no.runsafe.framework.api.player.IPlayer;
 public interface IPlayerAsyncExecute extends IPlayerExecute
 {
 	/**
-	 * If you use optional arguments, you still need to override this but you can leave it empty.
+	 * If you use optional arguments, you still need to override this, but you can leave it empty.
 	 *
 	 *
 	 * @param executor   The player executing the command

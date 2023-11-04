@@ -24,8 +24,8 @@ public interface IChunk
 	boolean isUnloaded();
 	boolean load(boolean generate);
 	boolean load();
-	boolean unload(boolean b, boolean b1);
-	boolean unload(boolean b);
+	boolean unload(boolean save, boolean safe);
+	boolean unload(boolean save);
 	boolean unload();
 	boolean locationIsInChunk(ILocation location);
 }

@@ -32,7 +32,7 @@ public class ErrorReportingQueue extends Worker<String, Throwable>
 	{
 		String report = createReport(key, value);
 
-		// This is where we would talk to some external system and submit the report..
+		// This is where we would talk to some external system and submit the report...
 		reported.put(key, new Object()); // Store some state object related to external system (ID)
 	}
 

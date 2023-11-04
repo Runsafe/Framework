@@ -26,7 +26,6 @@ import javax.annotation.Nullable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-@SuppressWarnings("LocalVariableOfConcreteClass")
 public class RunsafePlayer extends BukkitPlayer implements IPlayer
 {
 	public RunsafePlayer(OfflinePlayer toWrap)

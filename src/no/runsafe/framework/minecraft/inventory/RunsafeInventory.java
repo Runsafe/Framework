@@ -157,7 +157,7 @@ public class RunsafeInventory extends BukkitInventory
 	 */
 	public boolean isEmpty()
 	{
-		return this.getContents().size() == 0;
+		return this.getContents().isEmpty();
 	}
 
 	private static final RunsafeMeta AIR = Item.Unavailable.Air.getItem();

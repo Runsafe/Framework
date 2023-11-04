@@ -115,7 +115,6 @@ public enum LivingEntity implements RunsafeEntityType
 		return name();
 	}
 
-	@SuppressWarnings("CastToConcreteClass")
 	@Override
 	public IEntity spawn(ILocation location)
 	{

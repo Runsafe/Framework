@@ -232,9 +232,6 @@ public final class ObjectWrapper
 		if (state instanceof Dispenser)
 			return new RunsafeDispenser(toWrap, (Dispenser) state);
 
-//		if(state instanceof DoubleChest)
-//			return new RunsafeDoubleChest(toWrap);
-
 		if (state instanceof Dropper)
 			return new RunsafeDropper(toWrap, (Dropper) state);
 

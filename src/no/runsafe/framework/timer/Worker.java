@@ -25,7 +25,7 @@ public abstract class Worker<TokenType, StateType> implements Runnable
 	{
 		if (value != null)
 			state.put(key, value);
-		else if (state.containsKey(key))
+		else
 			state.remove(key);
 		if (!queue.contains(key))
 			queue.push(key);
@@ -43,7 +43,7 @@ public abstract class Worker<TokenType, StateType> implements Runnable
 		}
 
 		TokenType key = queue.pop();
-		StateType value = state.containsKey(key) ? state.get(key) : null;
+		StateType value = state.getOrDefault(key, null);
 		state.remove(key);
 		process(key, value);
 	}

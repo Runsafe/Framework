@@ -3,5 +3,5 @@ package no.runsafe.framework.api;
 @SuppressWarnings("InstanceMethodNamingConvention")
 public interface ILocalizer
 {
-	String _(String value);
+	String L(String value);
 }

@@ -104,14 +104,13 @@ public final class FileManager
 		return globalLogFormat.get("*");
 	}
 
-	@SuppressWarnings({"UseOfSystemOutOrSystemErr", "ConstantConditions"})
 	private void configure(FrameworkConfiguration config)
 	{
 		String logFolderString = config.getConfigValueAsString("output.folder");
 
 		if (logFolderString == null)
 		{
-			System.out.printf("output.folder missing from config.yml");
+			System.out.print("output.folder missing from config.yml");
 			System.exit(1);
 		}
 

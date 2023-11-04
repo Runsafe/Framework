@@ -49,7 +49,7 @@ public class UserGroupArgument extends CommandArgumentSpecification<String> impl
 	public String expand(ICommandExecutor context, @Nullable String value)
 	{
 		List<String> alternatives = getAlternatives(null, value);
-		return alternatives.isEmpty() || alternatives.size() > 1 ? null : alternatives.get(0);
+		return alternatives.size() != 1 ? null : alternatives.get(0);
 	}
 
 	@Override

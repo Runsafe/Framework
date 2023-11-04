@@ -45,10 +45,7 @@ public abstract class BukkitLivingEntity extends RunsafeEntity implements ILivin
 	@Override
 	public void setHealth(double health)
 	{
-		if(livingEntity.getMaxHealth() < health)
-			livingEntity.setHealth(livingEntity.getMaxHealth());
-		else
-			livingEntity.setHealth(health);
+		livingEntity.setHealth(Math.min(livingEntity.getMaxHealth(), health));
 	}
 
 	@Override

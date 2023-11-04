@@ -125,7 +125,7 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 	}
 
 	/**
-	 * @return Whether or not this entity will naturally despawn.
+	 * @return Whether this entity will naturally despawn.
 	 */
 	@Override
 	public boolean getPersistance()
@@ -134,7 +134,7 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 	}
 
 	/**
-	 * @param persistance Whether or not this entity will naturally depsawn.
+	 * @param persistance Whether this entity will naturally depsawn.
 	 */
 	@Override
 	public void setPersistance(boolean persistance)
@@ -142,7 +142,6 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 		livingEntity.setRemoveWhenFarAway(persistance);
 	}
 
-	@SuppressWarnings({"CastToConcreteClass", "InstanceofInterfaces", "LocalVariableOfConcreteClass"})
 	private RunsafeEntity Launch(Class<? extends Entity> launch)
 	{
 		Vector velocity = livingEntity.getEyeLocation().getDirection().multiply(2);

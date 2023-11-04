@@ -17,7 +17,7 @@ public class Localization implements ILocalizer
 	}
 
 	@Override
-	public String _(String value)
+	public String L(String value)
 	{
 		if (locale.getString(value) == null)
 		{

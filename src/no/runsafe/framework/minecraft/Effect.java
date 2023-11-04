@@ -5,7 +5,6 @@ import no.runsafe.framework.minecraft.Item;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
-@SuppressWarnings("StaticVariableOfConcreteClass")
 public class Effect
 {
 	public static final Effect Click1 = new Effect(org.bukkit.Effect.CLICK1);
@@ -71,7 +70,6 @@ public class Effect
 	public static final Effect EnderSignal = new Effect(org.bukkit.Effect.ENDER_SIGNAL);
 	public static final Effect MobSpawnerFlames = new Effect(org.bukkit.Effect.MOBSPAWNER_FLAMES);
 
-	@SuppressWarnings("CastToConcreteClass")
 	public void Play(ILocation location)
 	{
 		if (effect == org.bukkit.Effect.STEP_SOUND)

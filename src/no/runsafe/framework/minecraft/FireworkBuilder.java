@@ -140,7 +140,6 @@ public class FireworkBuilder
 		return this;
 	}
 
-	@SuppressWarnings({"CastToConcreteClass", "LocalVariableOfConcreteClass"})
 	public RunsafeMeta Create()
 	{
 		RunsafeFirework item = (RunsafeFirework) Item.Special.Crafted.Firework.getItem();
@@ -149,7 +148,6 @@ public class FireworkBuilder
 		return item;
 	}
 
-	@SuppressWarnings("CastToConcreteClass")
 	public void Fire(ILocation location)
 	{
 		IEntity fireworkEntity = ProjectileEntity.Firework.spawn(location);

@@ -10,7 +10,7 @@ public enum HorseStyle
     WHITE_DOTS(Horse.Style.WHITE_DOTS),
     WHITEFIELD(Horse.Style.WHITEFIELD);
 
-    private HorseStyle(Horse.Style style)
+    HorseStyle(Horse.Style style)
     {
         this.style = style;
     }
@@ -20,5 +20,5 @@ public enum HorseStyle
         return style;
     }
 
-    private Horse.Style style;
+    private final Horse.Style style;
 }

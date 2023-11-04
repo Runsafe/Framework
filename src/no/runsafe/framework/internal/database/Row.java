@@ -66,7 +66,6 @@ public final class Row implements IRow
 		return Location(world, x, y, z, "yaw", "pitch");
 	}
 
-	@SuppressWarnings("MethodWithTooManyParameters")
 	@Override
 	public ILocation Location(String world, String x, String y, String z, String yaw, String pitch)
 	{
@@ -163,7 +162,6 @@ public final class Row implements IRow
 			return null;
 		}
 
-		@SuppressWarnings("MethodWithTooManyParameters")
 		@Override
 		@Nullable
 		public ILocation Location(String world, String x, String y, String z, String yaw, String pitch)

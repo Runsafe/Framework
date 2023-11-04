@@ -41,7 +41,7 @@ public class Holder
 	public boolean getConfigValueAsBoolean(String key)
 	{
 		String value = getConfigValueAsString(key);
-		return value != null && Boolean.parseBoolean(value);
+		return Boolean.parseBoolean(value);
 	}
 
 	public int getConfigValueAsInt(String key)

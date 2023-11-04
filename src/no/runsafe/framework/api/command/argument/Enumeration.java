@@ -34,7 +34,6 @@ public class Enumeration extends CommandArgumentSpecification<Enum<?>> implement
 	@Override
 	public List<String> getAlternatives(IPlayer executor, String partial)
 	{
-		//noinspection ReturnOfCollectionOrArrayField
 		return alternatives;
 	}
 

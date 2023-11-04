@@ -3,7 +3,7 @@
 We welcome any to contribute to any of the Runsafe projects including the Framework, Huckleberry and any underlying plug-ins for these systems. If you wish to do so, please make sure you follow the guidelines set below. There is a high chance we will not accept a pull request if it does not follow our guidelines.
 
 * Our IDE of choice is IntelliJ. If you wish to use this, the project/inspection/library settings should be included with most projects.
-* Changes to project files for personal preference should not be committed unless vital to the running of the project (library includes etc).
+* Changes to project files for personal preference should not be committed unless vital to the running of the project (library includes etc.).
 * If you use another IDE, do not include any of the project settings with your commits.
 * Please make sure there is an issue open in the correct project regarding the enhancement/bug-fix you are working on.
 * All indents are TAB characters, not spaces.

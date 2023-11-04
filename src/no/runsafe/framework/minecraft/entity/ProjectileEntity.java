@@ -74,7 +74,6 @@ public enum ProjectileEntity implements RunsafeEntityType
 		return name();
 	}
 
-	@SuppressWarnings("CastToConcreteClass")
 	@Override
 	public IEntity spawn(ILocation location)
 	{

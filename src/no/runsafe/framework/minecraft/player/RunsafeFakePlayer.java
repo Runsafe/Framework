@@ -74,7 +74,6 @@ public class RunsafeFakePlayer extends RunsafePlayer implements IFakePlayer
 	{
 	}
 
-	@SuppressWarnings("ReturnOfCollectionOrArrayField")
 	@Override
 	public ImmutableList<String> getGroups()
 	{

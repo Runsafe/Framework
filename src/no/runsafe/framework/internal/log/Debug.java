@@ -115,7 +115,6 @@ public final class Debug extends LoggingBase implements IDebug
 		outputDebugToConsole(message, Level.FINEST, params);
 	}
 
-	@SuppressWarnings({"CastToConcreteClass", "InstanceofInterfaces"})
 	@Override
 	public void debugDump(Object object, Level messageLevel)
 	{
