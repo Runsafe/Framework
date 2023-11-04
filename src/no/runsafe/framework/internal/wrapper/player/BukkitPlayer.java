@@ -10,6 +10,7 @@ import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.LegacyMaterial;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
+import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.entity.RunsafeLivingEntity;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
 import no.runsafe.framework.minecraft.inventory.RunsafePlayerInventory;
@@ -18,6 +19,7 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
 
 import javax.annotation.Nullable;
 import java.net.InetSocketAddress;
@@ -391,6 +393,30 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 
 		// Teleport the player to the updated location to apply the direction change
 		player.teleport(playerLocation);
+	}
+
+	public ILocation getLocationBehindPlayer(double distance)
+	{
+		Location playerLocation = player.getLocation();
+		Vector playerDirection = playerLocation.getDirection().normalize(); // Get the player's normalized direction vector
+
+		// Calculate the new location behind the player
+		double x = playerLocation.getX() - playerDirection.getX() * distance;
+		double y = playerLocation.getY() - playerDirection.getY() * distance;
+		double z = playerLocation.getZ() - playerDirection.getZ() * distance;
+
+		Location location = playerLocation.getWorld()
+			.getHighestBlockAt((int)Math.floor(x), (int)Math.floor(z))
+			.getLocation();
+
+		// If a massive difference, ignore
+		if (Math.abs(location.getBlockY() - playerLocation.getBlockY()) > 5)
+		{
+			location.setY(playerLocation.getY());
+		}
+		location.setDirection(playerLocation.toVector().subtract(playerLocation.toVector()));
+
+		return ObjectWrapper.convert(location);
 	}
 
 	protected String playerName = null;
