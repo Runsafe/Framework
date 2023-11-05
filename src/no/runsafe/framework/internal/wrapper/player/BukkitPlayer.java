@@ -396,6 +396,7 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 	public ILocation getLocationBehindPlayer(double distance, boolean getHighestBlock)
 	{
 		Location playerLocation = player.getLocation();
+		Location location = playerLocation.clone();
 
 		// Convert playerYaw from degrees to radians
 		double yawRadians = Math.toRadians(playerLocation.getYaw());
@@ -405,27 +406,19 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 		double deltaZ = -distance * Math.cos(yawRadians);
 
 		// Update the player's new coordinates
-		double x = playerLocation.getX() + deltaX;
-		double z = playerLocation.getZ() + deltaZ;
-		double y = playerLocation.getY();
+		location.add(deltaX, 0, deltaZ);
 
-		Location location = getHighestBlock
-			? playerLocation.getWorld()
-					.getHighestBlockAt((int)Math.floor(x), (int)Math.floor(z))
-					.getLocation()
-			: playerLocation.getWorld()
-					.getBlockAt((int)Math.floor(x), (int)Math.floor(y), (int)Math.floor(z))
-					.getLocation();
-
-		// If a massive difference, ignore
-		if (Math.abs(location.getBlockY() - playerLocation.getBlockY()) > 5)
+		if (getHighestBlock)
 		{
-			location.setY(playerLocation.getY());
+			// If a massive difference, ignore
+			Location top = location.getWorld().getHighestBlockAt(location).getLocation();
+			if (Math.abs(top.getBlockY() - playerLocation.getBlockY()) > 5)
+			{
+				top.setY(playerLocation.getY());
+			}
 		}
-
 		Vector dir = location.subtract(playerLocation).toVector();
 		location.setDirection(dir);
-
 		return ObjectWrapper.convert(location);
 	}
 
