@@ -420,7 +420,7 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 		}
 
 		// Face the player
-		Vector dir = location.clone().subtract(playerLocation).toVector();
+		Vector dir = playerLocation.clone().subtract(location).toVector();
 		location.setDirection(dir);
 
 		return ObjectWrapper.convert(location);
