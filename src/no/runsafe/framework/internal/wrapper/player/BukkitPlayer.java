@@ -396,14 +396,20 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 	public ILocation getLocationBehindPlayer(double distance, boolean getHighestBlock)
 	{
 		Location playerLocation = player.getLocation();
-		Location location = playerLocation.clone();
-
 		// Convert playerYaw from degrees to radians
 		double yawRadians = Math.toRadians(playerLocation.getYaw());
 
 		// Calculate the change in X and Z coordinates
-		double deltaX = -distance * Math.sin(yawRadians);
-		double deltaZ = -distance * Math.cos(yawRadians);
+		int deltaX = (int)Math.floor(-distance * Math.sin(yawRadians));
+		int deltaZ = (int)Math.floor(-distance * Math.cos(yawRadians));
+
+		Location location = playerLocation.getWorld()
+			.getBlockAt(
+				playerLocation.getBlockX() + deltaX,
+				playerLocation.getBlockY(),
+				playerLocation.getBlockZ() + deltaZ
+			)
+			.getLocation();
 
 		// Update the player's new coordinates
 		location.add(deltaX, 0, deltaZ);
@@ -411,7 +417,7 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 		if (getHighestBlock)
 		{
 			// If a massive difference, ignore
-			Location top = location.getWorld().getHighestBlockAt(location).getLocation();
+			Location top = location.getWorld().getHighestBlockAt(location.getBlockX(), location.getBlockZ()).getLocation();
 			if (Math.abs(top.getBlockY() - playerLocation.getBlockY()) > 5)
 			{
 				top.setY(playerLocation.getY());
