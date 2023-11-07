@@ -88,7 +88,7 @@ public class RunsafeLocation extends BukkitLocation implements ILocation, IPoint
 	@Override
 	public String toString()
 	{
-		return String.format("world: %s X: %s Y: %s Z: %s", getWorld().getName(), getX(), getY(), getZ());
+		return String.format("(%.2f,%.2f,%.2f)@%s", getX(), getY(), getZ(), getWorld().getName());
 	}
 
 	@Override

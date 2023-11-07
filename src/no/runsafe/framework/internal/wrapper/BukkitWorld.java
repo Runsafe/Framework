@@ -6,6 +6,8 @@ import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.LegacyMaterial;
+import no.runsafe.framework.internal.log.Console;
+import no.runsafe.framework.internal.lua.GlobalEnvironment;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.Sound;
@@ -109,9 +111,21 @@ public abstract class BukkitWorld extends BukkitMetadata
 	}
 
 	@Nonnull
-	public IEntity spawnCreature(ILocation location, String type)
+	public IEntity spawnCreature(ILocation location, String typeName)
 	{
-		return ObjectWrapper.convert(world.spawnEntity((Location) ObjectUnwrapper.convert(location), EntityType.fromName(type)));
+		EntityType type = EntityType.fromName(typeName);
+		if (type == null)
+		{
+			Console.Global().logError("Tried to spawn an entity of unknown type %s at location %s", typeName, location);
+			return null;
+		}
+		Location bukkitLocation = ObjectUnwrapper.convert(location);
+		if (bukkitLocation == null)
+		{
+			Console.Global().logError("Tried to spawn an entity of type %s, but location was not valid", typeName);
+			return null;
+		}
+		return ObjectWrapper.convert(world.spawnEntity(bukkitLocation , type));
 	}
 
 	@Deprecated
