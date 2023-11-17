@@ -103,19 +103,29 @@ public final class SchemaUpdater
 	private int executeSchemaChanges(String tableName, int oldRevision, int newRevision, Iterable<String> queries)
 	{
 		ITransaction transaction = database.isolate();
-		console.logInformation("Updating table %s from revision %d to revision %d", tableName, oldRevision, newRevision);
-		for (String sql : queries)
+		try
 		{
-			if (!transaction.execute(sql))
+			console.logInformation("Updating table %s from revision %d to revision %d", tableName, oldRevision, newRevision);
+			for (String sql : queries)
 			{
-				console.writeColoured("Failed executing query:\n%s", Level.INFO, sql);
-				console.writeColoured("&cRolling back transaction..", Level.INFO);
-				transaction.Rollback();
-				return oldRevision;
+				if (!transaction.execute(sql))
+				{
+					console.writeColoured("Failed executing query:\n%s", Level.INFO, sql);
+					console.writeColoured("&cRolling back transaction..", Level.INFO);
+					transaction.Rollback();
+					return oldRevision;
+				}
 			}
+			transaction.Commit();
+			return newRevision;
 		}
-		transaction.Commit();
-		return newRevision;
+		catch(Throwable throwable)
+		{
+			console.writeColoured("Failed executing query:\n%s", Level.INFO, throwable.getMessage());
+			console.writeColoured("&cRolling back transaction..", Level.INFO);
+			transaction.Rollback();
+			return oldRevision;
+		}
 	}
 
 	private final IDatabase database;
