@@ -126,6 +126,11 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 			player.sendBlockChange((Location) ObjectUnwrapper.convert(location), itemId, data);
 	}
 
+	public void sendSignChange(ILocation location, String line1, String line2, String line3, String line4)
+	{
+		player.sendSignChange((Location) ObjectUnwrapper.convert(location), new String[]{line1, line2, line3, line4});
+	}
+
 	@Deprecated
 	@Nullable
 	public RunsafeMeta getItemInHand()
