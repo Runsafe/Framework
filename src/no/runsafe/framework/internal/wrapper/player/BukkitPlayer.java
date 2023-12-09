@@ -131,6 +131,16 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 		player.sendSignChange((Location) ObjectUnwrapper.convert(location), new String[]{line1, line2, line3, line4});
 	}
 
+	public void setCompassTarget(ILocation location)
+	{
+		player.setCompassTarget((Location) ObjectUnwrapper.convert(location));
+	}
+
+	public ILocation getCompassTarget()
+	{
+		return ObjectWrapper.convert(player.getCompassTarget());
+	}
+
 	@Deprecated
 	@Nullable
 	public RunsafeMeta getItemInHand()
