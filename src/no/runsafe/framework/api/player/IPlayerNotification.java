@@ -16,4 +16,8 @@ public interface IPlayerNotification
 	void sendBlockChange(ILocation location, int itemId, byte data);
 
 	void sendSignChange(ILocation location, String line1, String line2, String line3, String line4);
+
+	void setCompassTarget(ILocation location);
+
+	ILocation getCompassTarget();
 }

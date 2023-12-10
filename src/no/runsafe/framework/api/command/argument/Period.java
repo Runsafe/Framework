@@ -6,6 +6,11 @@ import org.joda.time.format.PeriodFormatterBuilder;
 
 import java.util.Map;
 
+/**
+ * Deprecated to move away from using org.joda.time
+ * Use Duration instead
+ */
+@Deprecated
 public class Period extends CommandArgumentSpecification<org.joda.time.Period>
 {
 	public Period()
