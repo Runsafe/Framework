@@ -6,6 +6,7 @@ import no.runsafe.framework.api.player.IPlayer;
 import org.joda.time.DateTime;
 
 import javax.annotation.Nullable;
+import java.time.Instant;
 
 public final class Value implements IValue
 {
@@ -47,9 +48,16 @@ public final class Value implements IValue
 	}
 
 	@Override
+	@Deprecated // Use Instant Instead
 	public DateTime DateTime()
 	{
 		return DataConverter.DateTime(raw);
+	}
+
+	@Override
+	public Instant Instant()
+	{
+		return DataConverter.Instant(raw);
 	}
 
 	@Override
@@ -115,7 +123,15 @@ public final class Value implements IValue
 
 		@Override
 		@Nullable
+		@Deprecated // Use Instant Instead
 		public DateTime DateTime()
+		{
+			return null;
+		}
+
+		@Override
+		@Nullable
+		public Instant Instant()
 		{
 			return null;
 		}

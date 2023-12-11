@@ -10,6 +10,7 @@ import org.joda.time.DateTime;
 import javax.annotation.Nullable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.Instant;
 import java.util.UUID;
 
 @SuppressWarnings("ChainOfInstanceofChecks")
@@ -131,11 +132,20 @@ final class DataConverter
 	}
 
 	@Nullable
+	@Deprecated // Use Instant instead
 	static DateTime DateTime(Object value)
 	{
 		if (value == null)
 			return null;
 		return new DateTime(value);
+	}
+
+	@Nullable
+	static Instant Instant(Object value)
+	{
+		if (value == null)
+			return null;
+		return Instant.parse(value.toString());
 	}
 
 	@SuppressWarnings("MethodWithTooManyParameters")

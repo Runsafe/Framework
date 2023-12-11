@@ -1,8 +1,7 @@
 package no.runsafe.framework.internal.log;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
-import org.joda.time.format.DateTimeFormatter;
-import org.joda.time.format.DateTimeFormatterBuilder;
+import org.apache.commons.lang.time.DateFormatUtils;
 
 import java.util.logging.LogRecord;
 import java.util.logging.SimpleFormatter;
@@ -32,8 +31,7 @@ public final class RunsafeLogFormatter extends SimpleFormatter
 			message = message + '\n' + ExceptionUtils.getFullStackTrace(exception);
 		return String.format(
 			logFormat + '\n',
-			datestamp.print(record.getMillis()),
-			timestamp.print(record.getMillis()),
+			DateFormatUtils.format(record.getMillis(), "yyyy'-'MM'-'dd' 'HH':'mm':'ss"),
 			fileManager.colorize(record.getLevel()),
 			message
 		);
@@ -41,10 +39,4 @@ public final class RunsafeLogFormatter extends SimpleFormatter
 
 	private final String fallbackFormat;
 	private final FileManager fileManager;
-	private final DateTimeFormatter datestamp = new DateTimeFormatterBuilder()
-		.appendYear(4, 4).appendLiteral('-').appendMonthOfYear(2).appendLiteral('-').appendDayOfMonth(2)
-		.toFormatter();
-	private final DateTimeFormatter timestamp = new DateTimeFormatterBuilder()
-		.appendHourOfDay(2).appendLiteral(':').appendMinuteOfHour(2).appendLiteral(':').appendSecondOfMinute(2)
-		.toFormatter();
 }

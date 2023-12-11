@@ -12,6 +12,7 @@ import org.joda.time.DateTime;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.time.Instant;
 import java.util.List;
 
 @SuppressWarnings("AnonymousInnerClass")
@@ -109,6 +110,7 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 
 	@Nonnull
 	@Override
+	@Deprecated // Use Instant Instead
 	public List<DateTime> queryDateTimes(String query, Object... params)
 	{
 		return Lists.transform(
@@ -120,6 +122,24 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 				{
 					assert value != null;
 					return value.DateTime();
+				}
+			}
+		);
+	}
+
+	@Nonnull
+	@Override
+	public List<Instant> queryInstants(String query, Object... params)
+	{
+		return Lists.transform(
+			queryColumn(query, params),
+			new Function<IValue, Instant>()
+			{
+				@Override
+				public Instant apply(@Nullable IValue value)
+				{
+					assert value != null;
+					return value.Instant();
 				}
 			}
 		);
@@ -210,9 +230,16 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 	}
 
 	@Override
+	@Deprecated // Use Instant Instead
 	public DateTime queryDateTime(String query, Object... params)
 	{
 		return queryValue(query, params).DateTime();
+	}
+
+	@Override
+	public Instant queryInstant(String query, Object... params)
+	{
+		return queryValue(query, params).Instant();
 	}
 
 	@Override
