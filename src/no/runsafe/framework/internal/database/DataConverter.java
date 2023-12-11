@@ -145,7 +145,7 @@ final class DataConverter
 	{
 		if (value == null)
 			return null;
-		return Instant.parse(value.toString());
+		return Instant.parse(value.toString().replace(" ", "T") + "0Z");
 	}
 
 	@SuppressWarnings("MethodWithTooManyParameters")
