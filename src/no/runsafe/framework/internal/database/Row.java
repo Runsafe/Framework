@@ -7,6 +7,7 @@ import no.runsafe.framework.api.player.IPlayer;
 import org.joda.time.DateTime;
 
 import javax.annotation.Nullable;
+import java.time.Instant;
 import java.util.Map;
 
 public final class Row implements IRow
@@ -49,9 +50,16 @@ public final class Row implements IRow
 	}
 
 	@Override
+	@Deprecated // Use Instant instead
 	public DateTime DateTime(String column)
 	{
 		return DataConverter.DateTime(getValue(column));
+	}
+
+	@Override
+	public Instant Instant(String column)
+	{
+		return DataConverter.Instant(getValue(column));
 	}
 
 	@Override
@@ -143,7 +151,15 @@ public final class Row implements IRow
 
 		@Override
 		@Nullable
+		@Deprecated // Use Instant instead
 		public DateTime DateTime(String column)
+		{
+			return null;
+		}
+
+		@Override
+		@Nullable
+		public Instant Instant(String column)
 		{
 			return null;
 		}
