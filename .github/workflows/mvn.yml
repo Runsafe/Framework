@@ -69,9 +69,10 @@ jobs:
           body="runsafe/framework@${{ needs.prepare.outputs.commit }}"
           gh release create --draft "$tag" --title "$tag" --notes "$body"
 
+
   build:
     runs-on: ubuntu-latest
-    needs: [prepare,spigot,release]
+    needs: [prepare,release]
     if: needs.prepare.outputs.should_build == 'true'
     steps:
       - name: Clone framework
