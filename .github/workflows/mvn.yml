@@ -87,7 +87,12 @@ jobs:
           distribution: 'temurin'
       - name: Build spigot
         shell: bash
-        run: prepare.sh
+        run: |
+          cd ..
+          mkdir spigotmc
+          cd spigotmc
+          curl https://hub.spigotmc.org/jenkins/job/BuildTools/lastStableBuild/artifact/target/BuildTools.jar -o BuildTools.jar
+          java -jar BuildTools.jar --rev 1.12.2
       - name: Build with Maven
         run: mvn -B package --file pom.xml
       - name: Upload Built framework jar
