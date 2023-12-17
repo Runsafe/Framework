@@ -19,6 +19,34 @@
             <url>https://maven.pkg.github.com/runsafe/Framework</url>
         </repository>
     </distributionManagement>
+    <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.8</version>
+        <executions>
+            <execution>
+                <id>attach-artifacts</id>
+                <phase>package</phase>
+                <goals>
+                    <goal>attach-artifact</goal>
+                </goals>
+                <configuration>
+                    <artifacts>
+                        <artifact>
+                            <file>craftbukkit-1.12.2.jar</file>
+                            <type>jar</type>
+                            <classifier>optional</classifier>
+                        </artifact>
+                        <artifact>
+                            <file>spigot-1.12.2.jar</file>
+                            <type>jar</type>
+                            <classifier>optional</classifier>
+                        </artifact>
+                    </artifacts>
+                </configuration>
+            </execution>
+        </executions>
+    </plugin>
     <dependencies>
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
