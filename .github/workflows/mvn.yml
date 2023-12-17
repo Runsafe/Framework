@@ -103,7 +103,7 @@ jobs:
         run: |
           sed -e "s/1.12-SNAPSHOT/$SEMVER/" pom.xml > patched.xml
           mvn -B deploy -f patched.xml
-          mvn deploy:deploy-file -DgroupId=no.runsafe -DartifactId=framework -DrepositoryId=framework -Dversion=$SEMVER -DgeneratePom=true -Dfiles=spigot-1.12.2jar,craftbukkit-1.12.2.jar -Dfile=framework.jar -f patched.pom
+          mvn deploy:deploy-file -DgroupId=no.runsafe -DartifactId=framework -DrepositoryId=framework -Dversion=$SEMVER -DgeneratePom=true -Dfiles=spigot-1.12.2jar,craftbukkit-1.12.2.jar -Dfile=framework.jar -f patched.xml
         env:
           GITHUB_TOKEN: ${{ github.token }}
           SEMVER: ${{ needs.prepare.outputs.semVer }}
