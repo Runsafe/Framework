@@ -4,14 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>no.runsafe</groupId>
     <artifactId>framework</artifactId>
-    <version>${revision}</version>
+    <version>1.12-SNAPSHOT</version>
     <name>no.runsafe.api</name>
     <url>https://minecraft.runsafe.no</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <revision>1.12-SNAPSHOT</revision>
     </properties>
     <distributionManagement>
         <repository>
