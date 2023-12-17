@@ -45,29 +45,29 @@ jobs:
           }
         result-encoding: string
 
-  release:
-    runs-on: ubuntu-latest
-    needs: [prepare]
-    outputs:
-      tag: ${{ steps.tag.outputs.tag }}
-    steps:
-      - name: Set tag name
-        id: tag
-        run: |
-          tag=v$(date +%Y%m%d.%H%M%S)
-          echo "tag=$tag" >> $GITHUB_OUTPUT
-      - name: Create Release
-        env:
-          GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
-        run: |
-          tag="${{ steps.tag.outputs.tag }}"
-          body="runsafe/framework@${{ needs.prepare.outputs.commit }}"
-          gh release create --draft "$tag" --title "$tag" --notes "$body"
+#  release:
+#    runs-on: ubuntu-latest
+#    needs: [prepare]
+#    outputs:
+#      tag: ${{ steps.tag.outputs.tag }}
+#    steps:
+#      - name: Set tag name
+#        id: tag
+#        run: |
+#          tag=v$(date +%Y%m%d.%H%M%S)
+#          echo "tag=$tag" >> $GITHUB_OUTPUT
+#      - name: Create Release
+#        env:
+#          GH_TOKEN: ${{ github.token }}
+#          GH_REPO: ${{ github.repository }}
+#        run: |
+#          tag="${{ steps.tag.outputs.tag }}"
+#          body="runsafe/framework@${{ needs.prepare.outputs.commit }}"
+#          gh release create --draft "$tag" --title "$tag" --notes "$body"
 
   build:
     runs-on: ubuntu-latest
-    needs: [prepare,release]
+    needs: [prepare]
     if: needs.prepare.outputs.should_build == 'true'
     steps:
       - name: Clone framework
@@ -89,26 +89,28 @@ jobs:
           curl https://hub.spigotmc.org/jenkins/job/BuildTools/lastStableBuild/artifact/target/BuildTools.jar -o BuildTools.jar
           java -jar BuildTools.jar --rev 1.12.2
       - name: Build with Maven
-        run: mvn -B package --file pom.xml
-      - name: Upload Built framework jar
+        run: mvn -B deploy --file pom.xml
         env:
-          GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
-        run: gh release upload "${{ needs.release.outputs.tag }}" "target/framework.jar"
+          GITHUB_TOKEN: ${{ github.token }}
+#      - name: Upload Built framework jar
+#        env:
+#          GH_TOKEN: ${{ github.token }}
+#          GH_REPO: ${{ github.repository }}
+#        run: gh release upload "${{ needs.release.outputs.tag }}" "target/framework.jar"
 
-  publish:
-    name: Publish Release
-    needs: [release, build]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Publish Release
-        env:
-          GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
-        run: gh release edit "${{ needs.release.outputs.tag }}" --draft=false
-      - uses: eregon/keep-last-n-releases@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          n: 3
-          remove_tags_without_release: true
+#  publish:
+#    name: Publish Release
+#    needs: [release, build]
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Publish Release
+#        env:
+#          GH_TOKEN: ${{ github.token }}
+#          GH_REPO: ${{ github.repository }}
+#        run: gh release edit "${{ needs.release.outputs.tag }}" --draft=false
+#      - uses: eregon/keep-last-n-releases@v1
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          n: 3
+#          remove_tags_without_release: true
