@@ -20,7 +20,6 @@ jobs:
       uses: actions/checkout@v3
     - name: Set latest_commit
       id: latest_commit
-      working-directory: ruby
       run: echo "commit=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
     - name: Check if latest commit already built
       uses: actions/github-script@v6
@@ -32,7 +31,7 @@ jobs:
           let { data: release } = await github.rest.repos.getLatestRelease({ owner, repo })
           const latestReleaseCommit = release.body.split('@')[1]
           console.log(`Latest release commit: ${latestReleaseCommit}`)
-          console.log(`Latest ruby commit: ${latestDevCommit}`)
+          console.log(`Latest dev commit: ${latestDevCommit}`)
           if (latestReleaseCommit === latestDevCommit) {
             return 'false'
           } else {
