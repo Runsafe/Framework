@@ -72,12 +72,12 @@
                                 <artifact>
                                     <file>craftbukkit-1.12.2.jar</file>
                                     <type>jar</type>
-                                    <classifier>optional</classifier>
+                                    <classifier>craftbukkit</classifier>
                                 </artifact>
                                 <artifact>
                                     <file>spigot-1.12.2.jar</file>
                                     <type>jar</type>
-                                    <classifier>optional</classifier>
+                                    <classifier>spigot</classifier>
                                 </artifact>
                             </artifacts>
                         </configuration>
