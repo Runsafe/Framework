@@ -93,9 +93,8 @@ jobs:
       - name: Build spigot
         shell: bash
         run: |
-          cd ..
-          mkdir spigotmc
-          cd spigotmc
+          mkdir target
+          cd target
           curl https://hub.spigotmc.org/jenkins/job/BuildTools/lastStableBuild/artifact/target/BuildTools.jar -o BuildTools.jar
           java -jar BuildTools.jar --rev 1.12.2
       - name: Build with Maven
@@ -103,6 +102,7 @@ jobs:
         run: |
           sed -e "s/1.12-SNAPSHOT/$SEMVER/" pom.xml > patched.xml
           mvn -B deploy -f patched.xml
+          mvn deploy:deploy-file -DgroupId=no.runsafe -DartifactId=framework -DrepositoryId=framework -Dversion=$SEMVER -DgeneratePom=true -Dfiles=spigot-1.12.2jar,craftbukkit-1.12.2.jar -Dfile=framework.jar -f patched.pom
         env:
           GITHUB_TOKEN: ${{ github.token }}
           SEMVER: ${{ needs.prepare.outputs.semVer }}

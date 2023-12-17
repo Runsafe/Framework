@@ -50,7 +50,7 @@
             <artifactId>spigot</artifactId>
             <version>1.12.2</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/../spigotmc/spigot-1.12.2.jar</systemPath>
+            <systemPath>${project.basedir}/target/spigot-1.12.2.jar</systemPath>
         </dependency>
     </dependencies>
     <build>
