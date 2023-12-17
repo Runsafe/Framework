@@ -98,12 +98,11 @@ jobs:
           cd spigotmc
           curl https://hub.spigotmc.org/jenkins/job/BuildTools/lastStableBuild/artifact/target/BuildTools.jar -o BuildTools.jar
           java -jar BuildTools.jar --rev 1.12.2
-      - name: Set Version
-        run: mvn versions:set -DnewVersion=$SEMVER
-        env:
-          SEMVER: ${{ needs.calculate-version.outputs.semVer }}
       - name: Build with Maven
-        run: mvn -B deploy
+        shell: bash
+        run: |
+          sed -e "s/1.12-SNAPSHOT/$SEMVER/" pom.xml > patched.xml
+          mvn -B deploy -f patched.xml
         env:
           GITHUB_TOKEN: ${{ github.token }}
           SEMVER: ${{ needs.calculate-version.outputs.semVer }}
