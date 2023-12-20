@@ -22,5 +22,7 @@ public interface IPlayerNotification
 
 	ILocation getCompassTarget();
 
+	void playSound(Sound sound);
+
 	void playSound(Sound sound, float volume, float pitch);
 }
