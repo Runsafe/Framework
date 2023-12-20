@@ -11,6 +11,7 @@ import no.runsafe.framework.internal.LegacyMaterial;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.RunsafeLocation;
+import no.runsafe.framework.minecraft.Sound;
 import no.runsafe.framework.minecraft.entity.RunsafeLivingEntity;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
 import no.runsafe.framework.minecraft.inventory.RunsafePlayerInventory;
@@ -139,6 +140,11 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 	public ILocation getCompassTarget()
 	{
 		return ObjectWrapper.convert(player.getCompassTarget());
+	}
+
+	public void playSound(Sound sound, float volume, float pitch)
+	{
+		player.playSound(player.getLocation(), sound.getSound(), volume, pitch);
 	}
 
 	@Deprecated
