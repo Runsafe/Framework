@@ -142,6 +142,11 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 		return ObjectWrapper.convert(player.getCompassTarget());
 	}
 
+	public void playSound(Sound sound)
+	{
+		playSound(sound, 5, 1);
+	}
+
 	public void playSound(Sound sound, float volume, float pitch)
 	{
 		player.playSound(player.getLocation(), sound.getSound(), volume, pitch);

@@ -20,6 +20,7 @@ public class Sound
 	{
 		public static final Sound Cave = new Sound(org.bukkit.Sound.AMBIENT_CAVE);
 		public static final Sound Rain = new Sound(org.bukkit.Sound.WEATHER_RAIN);
+		public static final Sound RainAbove = new Sound(org.bukkit.Sound.WEATHER_RAIN_ABOVE);
 		public static final Sound Thunder = new Sound(org.bukkit.Sound.ENTITY_LIGHTNING_THUNDER);
 
 		private Ambiance()
@@ -27,10 +28,64 @@ public class Sound
 		}
 	}
 
+	public static final class UI
+	{
+		public static final Sound ButtonClick = new Sound(org.bukkit.Sound.UI_BUTTON_CLICK);
+		public static final Sound ChallengeComplete = new Sound(org.bukkit.Sound.UI_TOAST_CHALLENGE_COMPLETE);
+		public static final Sound ToastIn = new Sound(org.bukkit.Sound.UI_TOAST_IN);
+		public static final Sound ToastOut = new Sound(org.bukkit.Sound.UI_TOAST_OUT);
+
+		private UI()
+		{
+		}
+	}
+
+	public static final class Music
+	{
+		public static final Sound Creative = new Sound(org.bukkit.Sound.MUSIC_CREATIVE);
+		public static final Sound Credits = new Sound(org.bukkit.Sound.MUSIC_CREDITS);
+		public static final Sound Dragon = new Sound(org.bukkit.Sound.MUSIC_DRAGON);
+		public static final Sound End = new Sound(org.bukkit.Sound.MUSIC_END);
+		public static final Sound Game = new Sound(org.bukkit.Sound.MUSIC_GAME);
+		public static final Sound Menu = new Sound(org.bukkit.Sound.MUSIC_MENU);
+		public static final Sound Nether = new Sound(org.bukkit.Sound.MUSIC_NETHER);
+
+		private Music()
+		{
+		}
+	}
+
+	public static final class Record
+	{
+		public static final Sound Thirteen = new Sound(org.bukkit.Sound.RECORD_13);
+		public static final Sound Cat = new Sound(org.bukkit.Sound.RECORD_CAT);
+		public static final Sound Blocks = new Sound(org.bukkit.Sound.RECORD_BLOCKS);
+		public static final Sound Chirp = new Sound(org.bukkit.Sound.RECORD_CHIRP);
+		public static final Sound Far = new Sound(org.bukkit.Sound.RECORD_FAR);
+		public static final Sound Mall = new Sound(org.bukkit.Sound.RECORD_MALL);
+		public static final Sound Mellohi = new Sound(org.bukkit.Sound.RECORD_MELLOHI);
+		public static final Sound Stal = new Sound(org.bukkit.Sound.RECORD_STAL);
+		public static final Sound Strad = new Sound(org.bukkit.Sound.RECORD_STRAD);
+		public static final Sound Ward = new Sound(org.bukkit.Sound.RECORD_WARD);
+		public static final Sound Eleven = new Sound(org.bukkit.Sound.RECORD_11);
+		public static final Sound Wait = new Sound(org.bukkit.Sound.RECORD_WAIT);
+		public static final Sound Pigstep = new Sound(org.bukkit.Sound.ENTITY_PIG_STEP); // placeholder
+		public static final Sound Otherside = new Sound(org.bukkit.Sound.RECORD_13); // placeholder
+		public static final Sound Relic = new Sound(org.bukkit.Sound.RECORD_13); // placeholder
+		public static final Sound Five = new Sound(org.bukkit.Sound.RECORD_13); // placeholder
+
+		private Record()
+		{
+		}
+	}
+
 	public static final class Anvil
 	{
-		public static final Sound Break = new Sound(org.bukkit.Sound.BLOCK_ANVIL_BREAK);
+		public static final Sound Destroy = new Sound(org.bukkit.Sound.BLOCK_ANVIL_DESTROY);
+		public static final Sound Fall = new Sound(org.bukkit.Sound.BLOCK_ANVIL_FALL);
+		public static final Sound Hit = new Sound(org.bukkit.Sound.BLOCK_ANVIL_HIT);
 		public static final Sound Land = new Sound(org.bukkit.Sound.BLOCK_ANVIL_LAND);
+		public static final Sound Place = new Sound(org.bukkit.Sound.BLOCK_ANVIL_PLACE);
 		public static final Sound Use = new Sound(org.bukkit.Sound.BLOCK_ANVIL_USE);
 
 		private Anvil()
@@ -67,10 +122,34 @@ public class Sound
 	{
 		public static final Sound Close = new Sound(org.bukkit.Sound.BLOCK_CHEST_CLOSE);
 		public static final Sound Open = new Sound(org.bukkit.Sound.BLOCK_CHEST_OPEN);
+		public static final Sound Locked = new Sound(org.bukkit.Sound.BLOCK_CHEST_LOCKED);
 		public static final Sound ShulkerClose = new Sound(org.bukkit.Sound.BLOCK_SHULKER_BOX_CLOSE);
 		public static final Sound ShulkerOpen = new Sound(org.bukkit.Sound.BLOCK_SHULKER_BOX_OPEN);
+		public static final Sound EnderChestClose = new Sound(org.bukkit.Sound.BLOCK_ENDERCHEST_CLOSE);
+		public static final Sound EnderChestOpen = new Sound(org.bukkit.Sound.BLOCK_ENDERCHEST_OPEN);
 
 		private Chest()
+		{
+		}
+	}
+
+	public static final class ChorusFlower
+	{
+		public static final Sound Death = new Sound(org.bukkit.Sound.BLOCK_CHORUS_FLOWER_DEATH);
+		public static final Sound Grow = new Sound(org.bukkit.Sound.BLOCK_CHORUS_FLOWER_GROW);
+
+		private ChorusFlower()
+		{
+		}
+	}
+
+	public static final class UtilityBlock
+	{
+		public static final Sound Brew = new Sound(org.bukkit.Sound.BLOCK_BREWING_STAND_BREW);
+		public static final Sound EnchantmentTableUse = new Sound(org.bukkit.Sound.BLOCK_ENCHANTMENT_TABLE_USE);
+		public static final Sound FurnaceCrackle = new Sound(org.bukkit.Sound.BLOCK_FURNACE_FIRE_CRACKLE);
+
+		UtilityBlock()
 		{
 		}
 	}
@@ -90,6 +169,16 @@ public class Sound
 			public static final Sound Open = new Sound(org.bukkit.Sound.BLOCK_WOODEN_DOOR_OPEN);
 
 			private Door()
+			{
+			}
+		}
+
+		public static final class Fence
+		{
+			public static final Sound Close = new Sound(org.bukkit.Sound.BLOCK_FENCE_GATE_CLOSE);
+			public static final Sound Open = new Sound(org.bukkit.Sound.BLOCK_FENCE_GATE_OPEN);
+
+			private Fence()
 			{
 			}
 		}
@@ -126,6 +215,8 @@ public class Sound
 
 		public static final class Step
 		{
+			public static final Sound Anvil = new Sound(org.bukkit.Sound.BLOCK_ANVIL_STEP);
+			public static final Sound Glass = new Sound(org.bukkit.Sound.BLOCK_GLASS_STEP);
 			public static final Sound Grass = new Sound(org.bukkit.Sound.BLOCK_GRASS_STEP);
 			public static final Sound Gravel = new Sound(org.bukkit.Sound.BLOCK_GRAVEL_STEP);
 			public static final Sound Ladder = new Sound(org.bukkit.Sound.BLOCK_LADDER_STEP);
@@ -142,7 +233,9 @@ public class Sound
 
 		public static final class Dig
 		{
-			public static final Sound Wool = new Sound(org.bukkit.Sound.BLOCK_CLOTH_BREAK);
+			public static final Sound Anvil = new Sound(org.bukkit.Sound.BLOCK_ANVIL_BREAK);
+			public static final Sound Wool = new Sound(org.bukkit.Sound.BLOCK_CLOTH_BREAK); // TODO wool sounds
+			public static final Sound Glass = new Sound(org.bukkit.Sound.BLOCK_GLASS_BREAK);
 			public static final Sound Grass = new Sound(org.bukkit.Sound.BLOCK_GRASS_BREAK);
 			public static final Sound Gravel = new Sound(org.bukkit.Sound.BLOCK_GRAVEL_BREAK);
 			public static final Sound Sand = new Sound(org.bukkit.Sound.BLOCK_SAND_BREAK);
@@ -161,8 +254,64 @@ public class Sound
 		public static final Sound Break = new Sound(org.bukkit.Sound.ENTITY_ITEM_BREAK);
 		public static final Sound PickUp = new Sound(org.bukkit.Sound.ENTITY_ITEM_PICKUP);
 
+		public static final Sound ChorusFruitTeleport = new Sound(org.bukkit.Sound.ITEM_CHORUS_FRUIT_TELEPORT);
+		public static final Sound ElytraFlying = new Sound(org.bukkit.Sound.ITEM_ELYTRA_FLYING);
+		public static final Sound FirechargeUse = new Sound(org.bukkit.Sound.ITEM_FIRECHARGE_USE);
+		public static final Sound FlintAndSteelUse = new Sound(org.bukkit.Sound.ITEM_FLINTANDSTEEL_USE);
+		public static final Sound HoeTill = new Sound(org.bukkit.Sound.ITEM_HOE_TILL);
+		public static final Sound ShovelFlatten = new Sound(org.bukkit.Sound.ITEM_SHOVEL_FLATTEN);
+		public static final Sound TotemUse = new Sound(org.bukkit.Sound.ITEM_TOTEM_USE);
+
 		private Item()
 		{
+		}
+
+		public static final class Armour
+		{
+			public static final Sound EquipChain = new Sound(org.bukkit.Sound.ITEM_ARMOR_EQUIP_CHAIN);
+			public static final Sound EquipDiamond = new Sound(org.bukkit.Sound.ITEM_ARMOR_EQUIP_DIAMOND);
+			public static final Sound EquipElytra = new Sound(org.bukkit.Sound.ITEM_ARMOR_EQUIP_ELYTRA);
+			public static final Sound EquipGeneric = new Sound(org.bukkit.Sound.ITEM_ARMOR_EQUIP_GENERIC);
+			public static final Sound EquipGold = new Sound(org.bukkit.Sound.ITEM_ARMOR_EQUIP_GOLD);
+			public static final Sound EquipIron = new Sound(org.bukkit.Sound.ITEM_ARMOR_EQUIP_IRON);
+			public static final Sound EquipLeather = new Sound(org.bukkit.Sound.ITEM_ARMOR_EQUIP_LEATHER);
+
+			private Armour()
+			{
+			}
+		}
+
+		public static final class Bottle
+		{
+			public static final Sound Empty = new Sound(org.bukkit.Sound.ITEM_BOTTLE_EMPTY);
+			public static final Sound Fill = new Sound(org.bukkit.Sound.ITEM_BOTTLE_FILL);
+			public static final Sound FillDragonbreath = new Sound(org.bukkit.Sound.ITEM_BOTTLE_FILL_DRAGONBREATH);
+
+			private Bottle()
+			{
+			}
+		}
+
+		public static final class Bucket
+		{
+			public static final Sound Empty = new Sound(org.bukkit.Sound.ITEM_BUCKET_EMPTY);
+			public static final Sound EmptyLava = new Sound(org.bukkit.Sound.ITEM_BUCKET_EMPTY_LAVA);
+			public static final Sound Fill = new Sound(org.bukkit.Sound.ITEM_BUCKET_FILL);
+			public static final Sound FillLava = new Sound(org.bukkit.Sound.ITEM_BUCKET_FILL_LAVA);
+
+			private Bucket()
+			{
+			}
+		}
+
+		public static final class Shield
+		{
+			public static final Sound Block = new Sound(org.bukkit.Sound.ITEM_SHIELD_BLOCK);
+			public static final Sound Break = new Sound(org.bukkit.Sound.ITEM_SHIELD_BREAK);
+
+			private Shield()
+			{
+			}
 		}
 	}
 
@@ -201,13 +350,33 @@ public class Sound
 		}
 	}
 
-	public static final class Piston
+	public static final class Redstone
 	{
-		public static final Sound Extend = new Sound(org.bukkit.Sound.BLOCK_PISTON_EXTEND);
-		public static final Sound Retract = new Sound(org.bukkit.Sound.BLOCK_PISTON_CONTRACT);
+		public static final Sound ComparatorClick = new Sound(org.bukkit.Sound.BLOCK_COMPARATOR_CLICK);
 
-		private Piston()
+		private Redstone()
 		{
+		}
+
+		public static final class Dispenser
+		{
+			public static final Sound Dispense = new Sound(org.bukkit.Sound.BLOCK_DISPENSER_DISPENSE);
+			public static final Sound Fail = new Sound(org.bukkit.Sound.BLOCK_DISPENSER_FAIL);
+			public static final Sound Launch = new Sound(org.bukkit.Sound.BLOCK_DISPENSER_LAUNCH);
+
+			Dispenser()
+			{
+			}
+		}
+
+		public static final class Piston
+		{
+			public static final Sound Extend = new Sound(org.bukkit.Sound.BLOCK_PISTON_EXTEND);
+			public static final Sound Retract = new Sound(org.bukkit.Sound.BLOCK_PISTON_CONTRACT);
+
+			private Piston()
+			{
+			}
 		}
 	}
 
@@ -216,6 +385,12 @@ public class Sound
 		public static final Sound Hum = new Sound(org.bukkit.Sound.BLOCK_PORTAL_AMBIENT);
 		public static final Sound Travel = new Sound(org.bukkit.Sound.BLOCK_PORTAL_TRAVEL);
 		public static final Sound Trigger = new Sound(org.bukkit.Sound.BLOCK_PORTAL_TRIGGER);
+
+		public static final Sound EndGatewaySpawn = new Sound(org.bukkit.Sound.BLOCK_END_GATEWAY_SPAWN);
+		public static final Sound EndPortalFrameFill = new Sound(org.bukkit.Sound.BLOCK_END_PORTAL_FRAME_FILL);
+		public static final Sound EndPortalSpawn = new Sound(org.bukkit.Sound.BLOCK_END_PORTAL_SPAWN);
+
+
 
 		private Portal()
 		{
@@ -346,6 +521,44 @@ public class Sound
 			}
 		}
 
+		public static final class Illager
+		{
+			private Illager()
+			{
+			}
+
+			public static final class Evocation
+			{
+				public static final Sound Fang = new Sound(org.bukkit.Sound.ENTITY_EVOCATION_FANGS_ATTACK);
+				public static final Sound Ambient = new Sound(org.bukkit.Sound.ENTITY_EVOCATION_ILLAGER_AMBIENT);
+				public static final Sound CastSpell = new Sound(org.bukkit.Sound.ENTITY_EVOCATION_ILLAGER_CAST_SPELL);
+				public static final Sound Death = new Sound(org.bukkit.Sound.ENTITY_EVOCATION_ILLAGER_DEATH);
+				public static final Sound Hurt = new Sound(org.bukkit.Sound.ENTITY_EVOCATION_ILLAGER_HURT);
+				public static final Sound PrepareAttack = new Sound(org.bukkit.Sound.ENTITY_EVOCATION_ILLAGER_PREPARE_ATTACK);
+				public static final Sound PrepareSummon = new Sound(org.bukkit.Sound.ENTITY_EVOCATION_ILLAGER_PREPARE_SUMMON);
+				public static final Sound PrepareWololo = new Sound(org.bukkit.Sound.ENTITY_EVOCATION_ILLAGER_PREPARE_WOLOLO);
+
+				private Evocation()
+				{
+				}
+			}
+
+			public static final class Illusion
+			{
+				public static final Sound Ambient = new Sound(org.bukkit.Sound.ENTITY_ILLUSION_ILLAGER_AMBIENT);
+				public static final Sound CastSpell = new Sound(org.bukkit.Sound.ENTITY_ILLUSION_ILLAGER_CAST_SPELL);
+				public static final Sound Death = new Sound(org.bukkit.Sound.ENTITY_ILLUSION_ILLAGER_DEATH);
+				public static final Sound Hurt = new Sound(org.bukkit.Sound.ENTITY_ILLUSION_ILLAGER_HURT);
+				public static final Sound MirrorMove = new Sound(org.bukkit.Sound.ENTITY_ILLUSION_ILLAGER_MIRROR_MOVE);
+				public static final Sound PrepareBlindness = new Sound(org.bukkit.Sound.ENTITY_ILLUSION_ILLAGER_PREPARE_BLINDNESS);
+				public static final Sound PrepareMirror = new Sound(org.bukkit.Sound.ENTITY_ILLUSION_ILLAGER_PREPARE_MIRROR);
+
+				private Illusion()
+				{
+				}
+			}
+		}
+
 		public static final class MagmaCube
 		{
 			public static final Sound Walk = new Sound(org.bukkit.Sound.ENTITY_MAGMACUBE_SQUISH);
@@ -354,6 +567,54 @@ public class Sound
 
 			private MagmaCube()
 			{
+			}
+		}
+
+		public static final class Parrot
+		{
+			public static final Sound Ambient = new Sound(org.bukkit.Sound.ENTITY_PARROT_AMBIENT);
+			public static final Sound Death = new Sound(org.bukkit.Sound.ENTITY_PARROT_DEATH);
+			public static final Sound Eat = new Sound(org.bukkit.Sound.ENTITY_PARROT_EAT);
+			public static final Sound Fly = new Sound(org.bukkit.Sound.ENTITY_PARROT_FLY);
+			public static final Sound Hurt = new Sound(org.bukkit.Sound.ENTITY_PARROT_HURT);
+			public static final Sound Step = new Sound(org.bukkit.Sound.ENTITY_PARROT_STEP);
+
+			private Parrot()
+			{
+			}
+
+			public static final class Imitate
+			{
+				public static final Sound Blaze = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_BLAZE);
+				public static final Sound Creeper = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_CREEPER);
+				public static final Sound ElderGuardian = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_ELDER_GUARDIAN);
+				public static final Sound EnderDragon = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_ENDERDRAGON);
+				public static final Sound Enderman = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_ENDERMAN);
+				public static final Sound EvocationIllager = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_EVOCATION_ILLAGER);
+				public static final Sound Ghast = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_GHAST);
+				public static final Sound Husk = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_HUSK);
+				public static final Sound IllusionIllager = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_ILLUSION_ILLAGER);
+				public static final Sound MagmaCube = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_MAGMACUBE);
+				public static final Sound PolarBear = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_POLAR_BEAR);
+				public static final Sound Shulker = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_SHULKER);
+				public static final Sound Silverfish = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_SILVERFISH);
+				public static final Sound Skeleton = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_SKELETON);
+				public static final Sound Slime = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_SLIME);
+				public static final Sound Spider = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_SPIDER);
+				public static final Sound Stray = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_STRAY);
+				public static final Sound Vex = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_VEX);
+				public static final Sound VindicationIllager = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_VINDICATION_ILLAGER);
+				public static final Sound Witch = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_WITCH);
+				public static final Sound Wither = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_WITHER);
+				public static final Sound WitherSkeleton = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_WITHER_SKELETON);
+				public static final Sound Wolf = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_WOLF);
+				public static final Sound Zombie = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_ZOMBIE);
+				public static final Sound ZombiePigman = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_ZOMBIE_PIGMAN);
+				public static final Sound ZombieVillager = new Sound(org.bukkit.Sound.ENTITY_PARROT_IMITATE_ZOMBIE_VILLAGER);
+
+				private Imitate()
+				{
+				}
 			}
 		}
 
@@ -523,5 +784,5 @@ public class Sound
 	}
 
 	private final org.bukkit.Sound sample;
-	private static final Map<String, Sound> soundboard = new HashMap<String, Sound>(org.bukkit.Sound.values().length);
+	private static final Map<String, Sound> soundboard = new HashMap<>(org.bukkit.Sound.values().length);
 }
