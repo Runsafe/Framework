@@ -145,7 +145,11 @@ final class DataConverter
 	{
 		if (value == null)
 			return null;
-		return Instant.parse(value.toString().replace(" ", "T") + "0Z");
+
+		// Example of date format needed: 2024-12-19T15:35:25Z
+		// Example of date format given: 2024-12-19 15:35:25
+
+		return Instant.parse(value.toString().replace(" ", "T") + "Z");
 	}
 
 	@SuppressWarnings("MethodWithTooManyParameters")
