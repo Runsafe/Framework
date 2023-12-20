@@ -2,6 +2,7 @@ package no.runsafe.framework.api.player;
 
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.block.IBlock;
+import no.runsafe.framework.minecraft.Sound;
 
 public interface IPlayerNotification
 {
@@ -20,4 +21,6 @@ public interface IPlayerNotification
 	void setCompassTarget(ILocation location);
 
 	ILocation getCompassTarget();
+
+	void playSound(Sound sound, float volume, float pitch);
 }
