@@ -11,6 +11,9 @@ import javax.annotation.Nullable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @SuppressWarnings("ChainOfInstanceofChecks")
@@ -146,10 +149,14 @@ final class DataConverter
 		if (value == null)
 			return null;
 
-		// Example of date format needed: 2024-12-19T15:35:25Z
+		// Example of date format needed: 2024-12-19T15:35:25
 		// Example of date format given: 2024-12-19 15:35:25
 
-		return Instant.parse(value.toString().replace(" ", "T") + "Z");
+		// Input value was recorded in the server's time zone, convert it before turning it into an Instant
+		return ZonedDateTime.of(
+			LocalDateTime.parse(value.toString().replace(" ", "T")),
+			ZoneId.systemDefault()
+		).toInstant();
 	}
 
 	@SuppressWarnings("MethodWithTooManyParameters")
