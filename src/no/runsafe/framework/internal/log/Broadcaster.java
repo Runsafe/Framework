@@ -1,9 +1,5 @@
 package no.runsafe.framework.internal.log;
 
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.ComponentBuilder;
-import net.md_5.bungee.api.chat.HoverEvent;
-import net.md_5.bungee.api.chat.TextComponent;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.player.IPlayer;

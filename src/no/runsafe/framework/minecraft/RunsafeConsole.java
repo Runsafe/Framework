@@ -1,14 +1,9 @@
 package no.runsafe.framework.minecraft;
 
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.ComponentBuilder;
-import net.md_5.bungee.api.chat.HoverEvent;
-import net.md_5.bungee.api.chat.TextComponent;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.configuration.FrameworkConfiguration;
-import no.runsafe.framework.text.ChatColour;
 import org.apache.commons.lang.NotImplementedException;
 
 import java.util.UUID;
