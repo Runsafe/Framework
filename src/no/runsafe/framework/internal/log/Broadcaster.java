@@ -1,5 +1,9 @@
 package no.runsafe.framework.internal.log;
 
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.player.IPlayer;
@@ -23,6 +27,14 @@ public final class Broadcaster extends LoggingBase implements IOutput
 		String message = String.format(format, params);
 		writeLog(Level.INFO, ChatColour.ToConsole(message));
 		broadcast(ChatColour.ToMinecraft(message));
+	}
+
+	@Override
+	public void broadcastComplex(String message, String hoverText, String clickCommand)
+	{
+		writeLog(Level.INFO, message + " Hover Text: " + hoverText + " Click Command: " + clickCommand);
+		for (IPlayer player : serverOutput.getOnlinePlayers())
+			player.sendComplexMessage(message, hoverText, clickCommand);
 	}
 
 	private void broadcast(String message)
