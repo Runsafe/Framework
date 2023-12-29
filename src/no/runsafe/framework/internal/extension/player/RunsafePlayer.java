@@ -1,10 +1,15 @@
 package no.runsafe.framework.internal.extension.player;
 
 import com.google.common.collect.ImmutableList;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IUniverse;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.chunk.IChunk;
+import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.hook.IPlayerExtensions;
 import no.runsafe.framework.api.networking.IPacket;
 import no.runsafe.framework.api.player.IPlayer;
@@ -12,6 +17,7 @@ import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.wrapper.BukkitLocation;
 import no.runsafe.framework.internal.wrapper.player.BukkitPlayer;
 import no.runsafe.framework.minecraft.Item;
+import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.minecraft.event.player.RunsafeOperatorEvent;
 import no.runsafe.framework.minecraft.inventory.RunsafePlayerInventory;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
@@ -304,6 +310,23 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 	{
 		if (format != null)
 			sendMessage(ChatColour.ToMinecraft(String.format(format, params)));
+	}
+
+	@Override
+	public void sendComplexMessage(String message, String hoverText, String clickCommand)
+	{
+		if (message == null)
+			return;
+
+		TextComponent component = new TextComponent(ChatColour.ToMinecraft(message));
+
+		if (hoverText != null)
+			component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(ChatColour.ToMinecraft(hoverText)).create()));
+
+		if (clickCommand != null)
+			component.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, clickCommand));
+
+		player.spigot().sendMessage(component);
 	}
 
 	@SuppressWarnings("CastToConcreteClass")

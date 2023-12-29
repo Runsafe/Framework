@@ -1,9 +1,14 @@
 package no.runsafe.framework.minecraft;
 
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.configuration.FrameworkConfiguration;
+import no.runsafe.framework.text.ChatColour;
 import org.apache.commons.lang.NotImplementedException;
 
 import java.util.UUID;
@@ -43,6 +48,21 @@ public class RunsafeConsole implements ICommandExecutor
 	public void sendColouredMessage(String format, Object... params)
 	{
 		output.writeColoured(format, Level.INFO, params);
+	}
+
+	@Override
+	public void sendComplexMessage(String message, String hoverText, String clickCommand)
+	{
+		if (message == null)
+			return;
+
+		if (hoverText != null)
+			message += (" Hover Text: " + hoverText);
+
+		if (clickCommand != null)
+			message += (" Click Command: " + clickCommand);
+
+		output.writeColoured(message, Level.INFO);
 	}
 
 	@Override
