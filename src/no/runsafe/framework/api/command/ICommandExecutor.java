@@ -8,6 +8,7 @@ public interface ICommandExecutor
 	UUID getUniqueId();
 	void sendMessage(String message);
 	void sendColouredMessage(String format, Object... params);
+	void sendComplexMessage(String message, String hoverText, String clickCommand);
 	boolean hasPermission(String permission);
 	boolean performCommand(String command);
 	@Override boolean equals(Object o);

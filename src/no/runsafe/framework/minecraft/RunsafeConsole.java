@@ -46,6 +46,21 @@ public class RunsafeConsole implements ICommandExecutor
 	}
 
 	@Override
+	public void sendComplexMessage(String message, String hoverText, String clickCommand)
+	{
+		if (message == null)
+			return;
+
+		if (hoverText != null)
+			message += (" Hover Text: " + hoverText);
+
+		if (clickCommand != null)
+			message += (" Click Command: " + clickCommand);
+
+		output.writeColoured(message, Level.INFO);
+	}
+
+	@Override
 	public boolean hasPermission(String permission)
 	{
 		return true;

@@ -57,7 +57,7 @@ public class Duration extends CommandArgumentSpecification<java.time.Duration>
 	private void sendInvalidInputMessage(IPlayer player)
 	{
 		if (player != null)
-			player.sendMessage("&cUnrecognized time format, use &ry/w/d/h/m/s");
+			player.sendColouredMessage("&cUnrecognized time format, use &ry/w/d/h/m/s");
 	}
 
 	@Override

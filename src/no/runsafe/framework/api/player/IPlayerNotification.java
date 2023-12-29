@@ -8,6 +8,8 @@ public interface IPlayerNotification
 {
 	void sendColouredMessage(String format, Object... params);
 
+	void sendComplexMessage(String message, String hoverText, String clickCommand);
+
 	void sendTitle(String title, String subtitle);
 
 	void resetTitle();
