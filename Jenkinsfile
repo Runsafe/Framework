@@ -1,11 +1,11 @@
 pipeline {
-  agent { label 'kubeagent' }
+  agent { label 'ant' }
   stages {
     stage('Debug') {
       steps {
         sh 'ant -version'
-	      sh 'java -version'
-	      sh 'git --version'
+        sh 'java -version'
+        sh 'git --version'
       }
     }
     stage('Ant Build') {
