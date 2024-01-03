@@ -1,5 +1,6 @@
 pipeline {
   agent { label 'ant' }
+  options { copyArtifactPermission('*'); }
   triggers { pollSCM '@monthly' }
   stages {
     stage('Ant Build') {
