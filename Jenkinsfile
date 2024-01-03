@@ -1,6 +1,9 @@
 pipeline {
   agent { label 'ant' }
-  triggers { githubPush }
+  triggers {
+    pollSCM '@monthly'
+    githubPush ''
+  }
   stages {
     stage('Ant Build') {
       steps {
