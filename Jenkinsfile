@@ -1,5 +1,6 @@
 pipeline {
   agent { label 'ant' }
+  triggers { githubPush }
   stages {
     stage('Ant Build') {
       steps {
