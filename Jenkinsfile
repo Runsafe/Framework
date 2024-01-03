@@ -1,17 +1,12 @@
 pipeline {
   agent { label 'ant' }
   stages {
-    stage('Debug') {
-      steps {
-        sh 'ant -version'
-        sh 'java -version'
-        sh 'git --version'
-      }
-    }
     stage('Ant Build') {
       steps {
-        checkout scm
-        sh 'ant'
+        withAnt(installation: 'Ant 1.10.14', jdk: 'JDK 1.8') {
+          sh "ant -f ant.xml"
+        }
+        archiveArtifacts artifacts: 'build/jar/*.jar, lib/*', followSymlinks: false, onlyIfSuccessful: true
       }
     }
   }
