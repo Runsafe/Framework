@@ -9,7 +9,7 @@ pipeline {
           sh "ant -f ant.xml"
         }
         sh "tar -cvf framework.tar -C build/jar/ ."
-        sh "tar -Avf framework.tar -C lib ."
+        sh "tar -Avf framework.tar -C lib/ ."
         archiveArtifacts artifacts: 'framework.tar', onlyIfSuccessful: true
       }
     }
