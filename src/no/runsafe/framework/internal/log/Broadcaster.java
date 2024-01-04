@@ -28,7 +28,7 @@ public final class Broadcaster extends LoggingBase implements IOutput
 	@Override
 	public void broadcastComplex(String message, String hoverText, String clickCommand)
 	{
-		writeLog(Level.INFO, message + " Hover Text: " + hoverText + " Click Command: " + clickCommand);
+		writeLog(Level.INFO, ChatColour.ToConsole(message + " Hover Text: " + hoverText + " Click Command: " + clickCommand));
 		for (IPlayer player : serverOutput.getOnlinePlayers())
 			player.sendComplexMessage(message, hoverText, clickCommand);
 	}

@@ -16,6 +16,7 @@ import no.runsafe.framework.minecraft.entity.RunsafeLivingEntity;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
 import no.runsafe.framework.minecraft.inventory.RunsafePlayerInventory;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
+import no.runsafe.framework.text.ChatColour;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
@@ -398,7 +399,7 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 		if (subtitle == null)
 			subtitle = "";
 
-		player.sendTitle(title, subtitle);
+		player.sendTitle(ChatColour.ToMinecraft(title), ChatColour.ToMinecraft(subtitle));
 	}
 
 	/**
