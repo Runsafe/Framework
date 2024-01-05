@@ -1,9 +1,5 @@
 pipeline {
   agent none
-  tools {
-    ant 'Ant 1.10.14'
-    jdk 'JDK 1.8'
-  }
   options {
     copyArtifactPermission('*');
     skipDefaultCheckout true
@@ -12,6 +8,10 @@ pipeline {
   stages {
     stage('Ant Build') {
       agent { label 'ant' }
+      tools {
+        ant 'Ant 1.10.14'
+        jdk 'JDK 1.8'
+      }
       steps {
         checkout scm
         sh 'ant -f ant.xml'
