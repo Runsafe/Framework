@@ -11,6 +11,7 @@ pipeline {
         sh "tar -cvf framework.tar -C build/jar/ ."
         sh "tar -rvf framework.tar -C lib/ ."
         archiveArtifacts artifacts: 'framework.tar', onlyIfSuccessful: true
+        discordSend description: 'Build finished', enableArtifactsList: true, footer: '', image: '', link: env.BUILD_URL, result: 'SUCCESS', scmWebUrl: '', showChangeset: true, thumbnail: '', title: env.JOB_NAME, webhookURL: env.DISCORD_WEBHOOK
       }
     }
   }
