@@ -27,7 +27,7 @@ pipeline {
           stash includes: 'framework.tar', name: 'archive'
         }
         recordIssues enabledForFailure: true, tool: java(), unhealthy: 10
-        discordSend description: 'Build finished', enableArtifactsList: true, footer: '', image: '', link: env.BUILD_URL, result: currentBuild.currentResult, scmWebUrl: '', showChangeset: true, thumbnail: '', title: env.JOB_NAME, webhookURL: env.DISCORD_WEBHOOK
+        buildReport 'Framework'
       }
     }
     stage('Deploy to test server') {
