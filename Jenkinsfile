@@ -1,13 +1,16 @@
 pipeline {
   agent { label 'ant' }
+  tools {
+    ant 'Ant 1.10.14'
+    jdk 'JDK 1.8'
+  }
   options { copyArtifactPermission('*'); }
   triggers { pollSCM '@monthly' }
   stages {
     stage('Ant Build') {
       steps {
-        withAnt(installation: 'Ant 1.10.14', jdk: 'JDK 1.8') {
-          sh "ant -f ant.xml"
-        }
+        sh "ant -f ant.xml"
+        scanForIssues tool: java()
         sh "tar -cvf framework.tar -C build/jar/ ."
         sh "tar -rvf framework.tar -C lib/ ."
         archiveArtifacts artifacts: 'framework.tar', onlyIfSuccessful: true
