@@ -17,7 +17,8 @@ pipeline {
         sh 'ant -f ant.xml'
         scanForIssues tool: java()
         dir('artifacts') {
-          sh 'mkdir runsafe'
+          sh 'rm -rf runsafe'
+          sh 'mkdir -p runsafe'
           sh 'cp -a ../build/jar/*.jar runsafe/'
           sh 'cp -a ../lib/* runsafe/'
           sh 'cp -a ../lua runsafe/'
