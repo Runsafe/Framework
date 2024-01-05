@@ -16,16 +16,11 @@ pipeline {
         checkout scm
         sh 'ant -f ant.xml'
         scanForIssues tool: java()
-        dir('artifacts') {
-          sh 'rm -rf runsafe'
-          sh 'mkdir -p runsafe'
-          sh 'cp -a ../build/jar/*.jar runsafe/'
-          sh 'cp -a ../lib/* runsafe/'
-          sh 'cp -a ../lua runsafe/'
-          sh 'tar -cvf framework.tar runsafe'
-          archiveArtifacts artifacts: 'framework.tar', onlyIfSuccessful: true
-          stash includes: 'framework.tar', name: 'archive'
-        }
+        archive(
+          targetFolder: 'runsafe',
+          artifacts: ['../build/jar/*.jar', '../lib/*', '../lua'],
+          'framework.tar'
+        )
         recordIssues enabledForFailure: true, tool: java(), unhealthy: 10
         buildReport 'Framework'
       }
