@@ -1,5 +1,5 @@
 pipeline {
-  agent { label 'ant' }
+  agent none
   tools {
     ant 'Ant 1.10.14'
     jdk 'JDK 1.8'
@@ -8,13 +8,30 @@ pipeline {
   triggers { pollSCM '@monthly' }
   stages {
     stage('Ant Build') {
+      agent { label 'ant' }
       steps {
-        sh "ant -f ant.xml"
+        sh 'ant -f ant.xml'
         scanForIssues tool: java()
-        sh "tar -cvf framework.tar -C build/jar/ ."
-        sh "tar -rvf framework.tar -C lib/ ."
-        archiveArtifacts artifacts: 'framework.tar', onlyIfSuccessful: true
-        discordSend description: 'Build finished', enableArtifactsList: true, footer: '', image: '', link: env.BUILD_URL, result: 'SUCCESS', scmWebUrl: '', showChangeset: true, thumbnail: '', title: env.JOB_NAME, webhookURL: env.DISCORD_WEBHOOK
+        dir('artifacts') {
+          sh 'mkdir runsafe'
+          sh 'cp -a ../build/jar/*.jar runsafe/'
+          sh 'cp -a ../lib/* runsafe/'
+          sh 'cp -a ../lua runsafe/'
+          sh 'tar -cvf framework.tar runsafe'
+          archiveArtifacts artifacts: 'framework.tar', onlyIfSuccessful: true
+          stash includes: 'framework.tar', name: 'archive'
+        }
+        recordIssues enabledForFailure: true, tool: java(), unhealthy: 10
+        discordSend description: 'Build finished', enableArtifactsList: true, footer: '', image: '', link: env.BUILD_URL, result: currentBuild.currentResult, scmWebUrl: '', showChangeset: true, thumbnail: '', title: env.JOB_NAME, webhookURL: env.DISCORD_WEBHOOK
+      }
+    }
+    stage('Deploy to test server') {
+      agent { label 'server4' }
+      scm none
+      steps {
+        unstash 'archive'
+        sh 'mkdir -p ~/bukkit/plugins'
+        sh 'tar -xvf framework.tar -C ~/bukkit/plugins'
       }
     }
   }
