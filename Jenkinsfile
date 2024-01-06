@@ -37,5 +37,5 @@ pipeline {
       }
     }
   }
-  post { failure { buildReport 'Framework' 'Build failed' } }
+  post { failure { buildReport 'Framework', 'Build failed' } }
 }
