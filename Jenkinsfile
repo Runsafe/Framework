@@ -18,7 +18,6 @@ pipeline {
         scanForIssues tool: java()
         recordIssues enabledForFailure: true, tool: java(), unhealthy: 10
         archivePlugin 'runsafe', '../build/jar/*.jar,../lib/*,../lua', 'framework.tar'
-        buildReport 'Framework'
       }
     }
     stage('Deploy to test server') {
