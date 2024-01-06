@@ -35,6 +35,7 @@ pipeline {
         stagePlugin 'framework.tar'
         buildReport 'Framework', 'Deployed to production server'
       }
+    }
   }
   post { failure { buildReport 'Framework' 'Build failed' } }
 }
