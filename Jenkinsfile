@@ -22,7 +22,17 @@ pipeline {
     stage('Deploy to test server') {
       agent { label 'server4' }
       steps { installPlugin 'framework.tar' }
+      buildReport 'Framework' 'Deployed to test server'
     }
+    stage('Wait for promotion') {
+      input message: 'Promote to server1?', submitter: 'mortenn'
+    }
+    stage('Deploy to production server') {
+      agent { label 'server1' }
+      steps {
+        stagePlugin 'framework.tar'
+        buildReport 'Framework' 'Deployed to production server'
+      }
   }
-  post { always { buildReport 'Framework' } }
+  post { failure { buildReport 'Framework' 'Build failed' } }
 }
