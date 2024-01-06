@@ -15,7 +15,6 @@ pipeline {
       steps {
         checkout scm
         sh 'ant -f ant.xml'
-        scanForIssues tool: java()
         recordIssues enabledForFailure: true, tool: java(), unhealthy: 10
         archivePlugin 'runsafe', '../build/jar/*.jar,../lib/*,../lua', 'framework.tar'
       }
