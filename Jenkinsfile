@@ -21,8 +21,10 @@ pipeline {
     }
     stage('Deploy to test server') {
       agent { label 'server4' }
-      steps { installPlugin 'framework.tar' }
-      buildReport 'Framework' 'Deployed to test server'
+      steps {
+        installPlugin 'framework.tar'
+        buildReport 'Framework' 'Deployed to test server'
+      }
     }
     stage('Wait for promotion') {
       input message: 'Promote to server1?', submitter: 'mortenn'
