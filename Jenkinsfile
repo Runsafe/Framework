@@ -27,7 +27,7 @@ pipeline {
       }
     }
     stage('Wait for promotion') {
-      input message: 'Promote to server1?', submitter: 'mortenn'
+      steps { input message: 'Promote to server1?', submitter: 'mortenn' }
     }
     stage('Deploy to production server') {
       agent { label 'server1' }
