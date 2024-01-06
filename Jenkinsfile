@@ -16,10 +16,10 @@ pipeline {
         checkout scm
         sh 'ant -f ant.xml'
         scanForIssues tool: java()
-        archive(
+        archivePlugin(
           targetFolder: 'runsafe',
           artifacts: ['../build/jar/*.jar', '../lib/*', '../lua'],
-          'framework.tar'
+          archive: 'framework.tar'
         )
         recordIssues enabledForFailure: true, tool: java(), unhealthy: 10
         buildReport 'Framework'
