@@ -23,7 +23,7 @@ pipeline {
       agent { label 'server4' }
       steps {
         installPlugin 'framework.tar'
-        buildReport 'Framework' 'Deployed to test server'
+        buildReport 'Framework', 'Deployed to test server'
       }
     }
     stage('Wait for promotion') {
@@ -33,7 +33,7 @@ pipeline {
       agent { label 'server1' }
       steps {
         stagePlugin 'framework.tar'
-        buildReport 'Framework' 'Deployed to production server'
+        buildReport 'Framework', 'Deployed to production server'
       }
   }
   post { failure { buildReport 'Framework' 'Build failed' } }
