@@ -16,24 +16,15 @@ pipeline {
         checkout scm
         sh 'ant -f ant.xml'
         scanForIssues tool: java()
-        archivePlugin 'runsafe', '../build/jar/*.jar,../lib/*,../lua', 'framework.tar'
         recordIssues enabledForFailure: true, tool: java(), unhealthy: 10
+        archivePlugin 'runsafe', '../build/jar/*.jar,../lib/*,../lua', 'framework.tar'
         buildReport 'Framework'
       }
     }
     stage('Deploy to test server') {
       agent { label 'server4' }
-      steps {
-        installPlugin 'framework.tar'
-      }
+      steps { installPlugin 'framework.tar' }
     }
   }
-  post {
-    always {
-      buildReport 'Framework'
-    }
-    success {
-      deleteDir()
-    }
-  }
+  post { always { buildReport 'Framework' } }
 }
