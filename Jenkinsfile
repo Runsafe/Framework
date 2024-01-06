@@ -18,7 +18,7 @@ pipeline {
         scanForIssues tool: java()
         archivePlugin(
           targetFolder: 'runsafe',
-          artifacts: ['../build/jar/*.jar', '../lib/*', '../lua'],
+          artifacts: '../build/jar/*.jar,../lib/*,../lua',
           archive: 'framework.tar'
         )
         recordIssues enabledForFailure: true, tool: java(), unhealthy: 10
