@@ -16,11 +16,7 @@ pipeline {
         checkout scm
         sh 'ant -f ant.xml'
         scanForIssues tool: java()
-        archivePlugin(
-          targetFolder: 'runsafe',
-          artifacts: '../build/jar/*.jar,../lib/*,../lua',
-          archive: 'framework.tar'
-        )
+        archivePlugin 'runsafe', '../build/jar/*.jar,../lib/*,../lua', 'framework.tar'
         recordIssues enabledForFailure: true, tool: java(), unhealthy: 10
         buildReport 'Framework'
       }
@@ -28,10 +24,16 @@ pipeline {
     stage('Deploy to test server') {
       agent { label 'server4' }
       steps {
-        unstash 'archive'
-        sh 'mkdir -p ~/bukkit/plugins'
-        sh 'tar -xvf framework.tar -C ~/bukkit/plugins'
+        installPlugin 'framework.tar'
       }
+    }
+  }
+  post {
+    always {
+      buildReport 'Framework'
+    }
+    success {
+      deleteDir()
     }
   }
 }
