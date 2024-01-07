@@ -26,15 +26,8 @@ pipeline {
         buildReport 'Framework', 'Deployed to test server'
       }
     }
-    stage('Wait for promotion') {
-      steps { input message: 'Promote to server1?', submitter: 'mortenn' }
-    }
-    stage('Deploy to production server') {
-      agent { label 'server1' }
-      steps {
-        stagePlugin 'framework.tar'
-        buildReport 'Framework', 'Deployed to production server'
-      }
+    stage('Ask for promotion') {
+      steps { build wait: false, job: '/Stage update to server1', parameters: [string(name: 'repository', value: 'Framework'), string(name: 'BUILD_SELECTOR', value: "<SpecificBuildSelector plugin="copyartifact@722.v0662a_9b_e22a_c">  <buildNumber>${env.BUILD_NUMBER}</buildNumber></SpecificBuildSelector>")] }
     }
   }
   post { failure { buildReport 'Framework', 'Build failed' } }
