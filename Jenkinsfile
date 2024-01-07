@@ -16,7 +16,7 @@ pipeline {
         checkout scm
         sh 'ant -f ant.xml'
         recordIssues enabledForFailure: true, tool: java(), unhealthy: 10
-        archivePlugin 'runsafe', '../build/jar/*.jar,../lib/*,../lua', 'framework.tar'
+        archivePlugin 'runsafe', 'build/jar/*.jar,lib/*,lua', 'framework.tar'
       }
     }
     stage('Deploy to test server') {
