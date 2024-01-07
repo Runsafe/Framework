@@ -27,7 +27,9 @@ pipeline {
       }
     }
     stage('Ask for promotion') {
-      steps { build wait: false, job: '/Stage update to server1', parameters: [string(name: 'repository', value: 'Framework'), string(name: 'BUILD_SELECTOR', value: "<SpecificBuildSelector plugin=\"copyartifact@722.v0662a_9b_e22a_c\">  <buildNumber>${env.BUILD_NUMBER}</buildNumber></SpecificBuildSelector>")] }
+      steps {
+        build wait: false, job: '/Runsafe/Deployment/main', parameters: [string(name: 'repository', value: 'Framework'), string(name: 'build', value: env.BUILD_NUMBER)]
+      }
     }
   }
   post { failure { buildReport 'Framework', 'Build failed' } }
