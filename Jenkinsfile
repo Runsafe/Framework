@@ -28,7 +28,7 @@ pipeline {
     }
     stage('Ask for promotion') {
       steps {
-        build wait: false, job: '/Runsafe/Deployment/main', parameters: [string(name: 'repository', value: 'Framework'), string(name: 'build', value: env.BUILD_NUMBER)]
+        build wait: false, job: '/Runsafe/Deployment/main', parameters: [string(name: 'project', value: currentBuild.fullProjectName), string(name: 'build', value: env.BUILD_NUMBER)]
       }
     }
   }
