@@ -479,9 +479,6 @@ public final class ObjectWrapper
 		if (toWrap instanceof EnderDragon)
 			return new RunsafeEnderDragon((EnderDragon) toWrap);
 
-		if (toWrap instanceof Wither)
-			return new RunsafeWitherBoss((Wither) toWrap);
-
 		return new RunsafeLivingEntity(toWrap);
 	}
 
@@ -529,6 +526,9 @@ public final class ObjectWrapper
 
 		if (toWrap instanceof Silverfish)
 			return new RunsafeSilverfish((Silverfish) toWrap);
+
+		if (toWrap instanceof Wither)
+			return new RunsafeWitherBoss((Wither) toWrap);
 
 		return new RunsafeMonster(toWrap);
 	}
