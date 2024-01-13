@@ -3,7 +3,6 @@ package no.runsafe.framework.internal.database;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.database.IValue;
 import no.runsafe.framework.api.player.IPlayer;
-import org.joda.time.DateTime;
 
 import javax.annotation.Nullable;
 import java.time.Instant;
@@ -45,13 +44,6 @@ public final class Value implements IValue
 	public Float Float()
 	{
 		return DataConverter.Float(raw);
-	}
-
-	@Override
-	@Deprecated // Use Instant Instead
-	public DateTime DateTime()
-	{
-		return DataConverter.DateTime(raw);
 	}
 
 	@Override
@@ -117,14 +109,6 @@ public final class Value implements IValue
 		@Override
 		@Nullable
 		public Float Float()
-		{
-			return null;
-		}
-
-		@Override
-		@Nullable
-		@Deprecated // Use Instant Instead
-		public DateTime DateTime()
 		{
 			return null;
 		}
