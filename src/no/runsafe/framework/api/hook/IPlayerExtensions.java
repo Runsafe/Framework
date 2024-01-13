@@ -4,9 +4,9 @@ import com.google.common.collect.ImmutableList;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.extension.player.RunsafePlayer;
 import no.runsafe.framework.minecraft.player.RunsafeFakePlayer;
-import org.joda.time.DateTime;
 
 import javax.annotation.Nullable;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -19,7 +19,7 @@ public interface IPlayerExtensions
 	boolean isNew(RunsafePlayer player);
 	Map<String, String> data(RunsafePlayer player);
 	@Nullable
-	DateTime logout(RunsafePlayer player);
+	Instant logout(RunsafePlayer player);
 	@Nullable
 	String banReason(RunsafePlayer player);
 	boolean shouldNotSee(RunsafePlayer player, IPlayer target);

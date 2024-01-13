@@ -23,10 +23,10 @@ import no.runsafe.framework.text.ChatColour;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
-import org.joda.time.DateTime;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.time.Instant;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -144,7 +144,7 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 
 	@Override
 	@Nullable
-	public DateTime lastLogout()
+	public Instant lastLogout()
 	{
 		return InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).logout(this);
 	}
