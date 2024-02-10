@@ -12,7 +12,6 @@ import no.runsafe.framework.internal.database.Row;
 import no.runsafe.framework.internal.database.Set;
 import no.runsafe.framework.internal.database.Value;
 import org.apache.commons.lang.StringUtils;
-import org.joda.time.ReadableInstant;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -242,9 +241,7 @@ abstract class QueryExecutor extends QueryExecutorBase
 	{
 		for (int i = 0; i < params.length; i++)
 		{
-			if (params[i] instanceof ReadableInstant)
-				statement.setObject(i + 1, new Timestamp(((ReadableInstant) params[i]).getMillis()));
-			else if (params[i] instanceof Instant)
+			if (params[i] instanceof Instant)
 				statement.setObject(i + 1, new Timestamp(((Instant) params[i]).toEpochMilli()));
 			else if (params[i] instanceof IPlayer)
 				statement.setObject(i + 1, ((IPlayer) params[i]).getUniqueId().toString());

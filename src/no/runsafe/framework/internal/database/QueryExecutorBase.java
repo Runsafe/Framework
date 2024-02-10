@@ -8,7 +8,6 @@ import no.runsafe.framework.api.database.IQueryExecutor;
 import no.runsafe.framework.api.database.IRow;
 import no.runsafe.framework.api.database.IValue;
 import no.runsafe.framework.api.player.IPlayer;
-import org.joda.time.DateTime;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -103,25 +102,6 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 				{
 					assert value != null;
 					return value.Float();
-				}
-			}
-		);
-	}
-
-	@Nonnull
-	@Override
-	@Deprecated // Use Instant Instead
-	public List<DateTime> queryDateTimes(String query, Object... params)
-	{
-		return Lists.transform(
-			queryColumn(query, params),
-			new Function<IValue, DateTime>()
-			{
-				@Override
-				public DateTime apply(@Nullable IValue value)
-				{
-					assert value != null;
-					return value.DateTime();
 				}
 			}
 		);
@@ -227,13 +207,6 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 	public Float queryFloat(String query, Object... params)
 	{
 		return queryValue(query, params).Float();
-	}
-
-	@Override
-	@Deprecated // Use Instant Instead
-	public DateTime queryDateTime(String query, Object... params)
-	{
-		return queryValue(query, params).DateTime();
 	}
 
 	@Override

@@ -5,7 +5,6 @@ import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.Player;
 import no.runsafe.framework.internal.brane.Multiverse;
-import org.joda.time.DateTime;
 
 import javax.annotation.Nullable;
 import java.math.BigDecimal;
@@ -132,15 +131,6 @@ final class DataConverter
 			return ((Number) value).floatValue();
 
 		return null;
-	}
-
-	@Nullable
-	@Deprecated // Use Instant instead
-	static DateTime DateTime(Object value)
-	{
-		if (value == null)
-			return null;
-		return new DateTime(value);
 	}
 
 	@Nullable

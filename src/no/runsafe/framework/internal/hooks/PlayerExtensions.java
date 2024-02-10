@@ -6,9 +6,9 @@ import no.runsafe.framework.api.hook.*;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.extension.player.RunsafePlayer;
 import no.runsafe.framework.minecraft.player.RunsafeFakePlayer;
-import org.joda.time.DateTime;
 
 import javax.annotation.Nullable;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -66,15 +66,15 @@ public final class PlayerExtensions implements IPlayerExtensions
 
 	@Override
 	@Nullable
-	public DateTime logout(RunsafePlayer player)
+	public Instant logout(RunsafePlayer player)
 	{
 		List<IPlayerSessionDataProvider> dataHooks = getHooks(IPlayerSessionDataProvider.class);
 		if (player.isOnline() || dataHooks.isEmpty())
 			return null;
-		DateTime logout = null;
+		Instant logout = null;
 		for (IPlayerSessionDataProvider provider : dataHooks)
 		{
-			DateTime value = provider.GetPlayerLogout(player);
+			Instant value = provider.GetPlayerLogout(player);
 			if (value != null && (logout == null || value.isAfter(logout)))
 				logout = value;
 		}

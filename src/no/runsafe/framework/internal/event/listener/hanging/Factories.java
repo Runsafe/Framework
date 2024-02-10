@@ -12,5 +12,6 @@ public final class Factories
 	{
 		BukkitEventMapper.Register(ItemFramePlace.Factory());
 		BukkitEventMapper.Register(PaintingPlace.Factory());
+		BukkitEventMapper.Register(PaintingBreakByEntity.Factory());
 	}
 }

@@ -4,7 +4,6 @@ import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.database.IRow;
 import no.runsafe.framework.api.player.IPlayer;
-import org.joda.time.DateTime;
 
 import javax.annotation.Nullable;
 import java.time.Instant;
@@ -47,13 +46,6 @@ public final class Row implements IRow
 	public Float Float(String column)
 	{
 		return DataConverter.Float(getValue(column));
-	}
-
-	@Override
-	@Deprecated // Use Instant instead
-	public DateTime DateTime(String column)
-	{
-		return DataConverter.DateTime(getValue(column));
 	}
 
 	@Override
@@ -145,14 +137,6 @@ public final class Row implements IRow
 		@Override
 		@Nullable
 		public Float Float(String column)
-		{
-			return null;
-		}
-
-		@Override
-		@Nullable
-		@Deprecated // Use Instant instead
-		public DateTime DateTime(String column)
 		{
 			return null;
 		}

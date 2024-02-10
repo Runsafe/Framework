@@ -1,8 +1,7 @@
 package no.runsafe.framework.api.player;
 
-import org.joda.time.DateTime;
-
 import javax.annotation.Nullable;
+import java.time.Instant;
 import java.util.Map;
 
 public interface IPlayerControl
@@ -17,7 +16,7 @@ public interface IPlayerControl
 	Map<String, String> getBasicData();
 
 	@Nullable
-	DateTime lastLogout();
+	Instant lastLogout();
 
 	@Nullable
 	String getBanReason();

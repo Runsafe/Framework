@@ -2,7 +2,8 @@ package no.runsafe.framework.api.hook;
 
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.extension.player.RunsafePlayer;
-import org.joda.time.DateTime;
+
+import java.time.Instant;
 
 public interface IPlayerSessionDataProvider extends IFrameworkHook
 {
@@ -10,7 +11,7 @@ public interface IPlayerSessionDataProvider extends IFrameworkHook
 	 * Called by {@link RunsafePlayer#lastLogout()} on behalf of plugins that
 	 * want to find out when a player left the server
 	 */
-	DateTime GetPlayerLogout(IPlayer player);
+	Instant GetPlayerLogout(IPlayer player);
 
 	/**
 	 * Called by {@link RunsafePlayer#getBanReason()} on behalf of plugins that
