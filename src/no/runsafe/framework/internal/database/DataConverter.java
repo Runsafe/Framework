@@ -43,7 +43,9 @@ final class DataConverter
 		if (value instanceof String)
 			return Integer.valueOf((String) value);
 
-		return null;
+		throw new NumberFormatException(
+			String.format("The value of type %s is unsupported for Integer()", value.getClass().getCanonicalName())
+		);
 	}
 
 	@Nullable
