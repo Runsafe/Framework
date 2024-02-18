@@ -42,7 +42,6 @@ public abstract class RunsafeItemStack extends BukkitItemStack implements IEncha
 		return result;
 	}
 
-	@SuppressWarnings("InstanceMethodNamingConvention")
 	public boolean is(Item type)
 	{
 		return itemStack.getType() == type.getType()

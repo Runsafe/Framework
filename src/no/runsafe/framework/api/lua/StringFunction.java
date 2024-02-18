@@ -11,6 +11,5 @@ public abstract class StringFunction extends Function
 		return varargsOf(new LuaValue[]{valueOf(run(varargsToParameters(args)))});
 	}
 
-	@SuppressWarnings("InstanceMethodNamingConvention")
 	public abstract String run(FunctionParameters parameters);
 }

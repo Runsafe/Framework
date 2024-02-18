@@ -6,7 +6,6 @@ public interface IEnchant
 {
 	IEnchant power(int power);
 
-	@SuppressWarnings("InstanceMethodNamingConvention")
 	IEnchant max();
 
 	IEnchant applyTo(IEnchantable target);

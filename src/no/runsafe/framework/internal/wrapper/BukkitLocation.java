@@ -8,7 +8,6 @@ import no.runsafe.framework.internal.extension.RunsafeWorld;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
 
-@SuppressWarnings("InstanceMethodNamingConvention")
 public abstract class BukkitLocation implements IWrapper<Location>
 {
 	protected BukkitLocation(Location toWrap)

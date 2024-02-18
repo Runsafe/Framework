@@ -13,7 +13,6 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("AnonymousInnerClass")
 public abstract class QueryExecutorBase implements IQueryExecutor
 {
 	@Nonnull

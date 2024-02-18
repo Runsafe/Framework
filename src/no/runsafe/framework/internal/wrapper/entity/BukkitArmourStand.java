@@ -26,7 +26,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 
 	/**
 	 * Makes the armour stand hold an item.
-	 * @param item Thing to be held.
+	 * @param itemStack Thing to be held.
 	 */
 	public void setItemInHand(RunsafeMeta itemStack)
 	{
@@ -44,7 +44,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 
 	/**
 	 * Give this armour stand boots.
-	 * @param item boots
+	 * @param itemStack boots
 	 */
 	public void setBoots(RunsafeMeta itemStack)
 	{
@@ -62,7 +62,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 
 	/**
 	 * Give this armour stand pants.
-	 * @param item pants
+	 * @param itemStack pants
 	 */
 	public void setLeggings(RunsafeMeta itemStack)
 	{
@@ -80,7 +80,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 
 	/**
 	 * Set a chestplate.
-	 * @param item Chestplate
+	 * @param itemStack Chestplate
 	 */
 	public void setChestplate(RunsafeMeta itemStack)
 	{
@@ -100,7 +100,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 	/**
 	 * Set helmet slot.
 	 * Can be a block or item, not limited to normal helmets.
-	 * @param item Hat
+	 * @param itemStack Hat
 	 */
 	public void setHelmet(RunsafeMeta itemStack)
 	{
@@ -118,7 +118,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 
 	/**
 	 * Set whether armour stand has a baseplate.
-	 * @param basePlate True for baseplate.
+	 * @param basePlateValue True for baseplate.
 	 */
 	public void setBasePlate(boolean basePlateValue)
 	{

@@ -23,6 +23,5 @@ public abstract class LocationFunction extends Function
 		return objectListToVarargs(values);
 	}
 
-	@SuppressWarnings("InstanceMethodNamingConvention")
 	public abstract ILocation run(FunctionParameters parameters);
 }

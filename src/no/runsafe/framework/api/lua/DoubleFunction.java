@@ -11,6 +11,5 @@ public abstract class DoubleFunction extends Function
 		return varargsOf(new LuaValue[]{valueOf(run(varargsToParameters(args)))});
 	}
 
-	@SuppressWarnings("InstanceMethodNamingConvention")
 	public abstract Double run(FunctionParameters parameters);
 }

@@ -20,33 +20,42 @@ We welcome any to contribute to any of the Runsafe projects including the Framew
 
 #### Code Example A:
 ```java
-public boolean canLockBlock(IBlock block)
+public class Example
 {
-    for (Item item : LockedObjectHandler.lockableItems)
-        if (block.is(item))
-            return true;
+	public boolean canLockBlock(IBlock block)
+	{
+		for (Item item : LockedObjectHandler.lockableItems)
+			if (block.is(item))
+				return true;
 
-    return false;
+		return false;
+	}
 }
 ```
 
 #### Code Example B:
 ```java
-switch (myValue)
+public class Example
 {
-    case 0: suchCase(); break;
-    case 1: veryBreak(); break;
-    case 2: wow(); break;
-}
+	public void Example()
+    {
+	    switch (myValue)
+	    {
+		    case 0: suchCase(); break;
+		    case 1: veryBreak(); break;
+		    case 2: wow(); break;
+	    }
 
-switch (myValue)
-{
-    case 0:
-        if (isTrue)
-        {
-            suchCase();
-            veryBreak();
-        }
-    break;
+	    switch (myValue)
+	    {
+		    case 0:
+			    if (isTrue)
+			    {
+				    suchCase();
+				    veryBreak();
+			    }
+			    break;
+	    }			
+    }
 }
 ```

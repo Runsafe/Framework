@@ -1,4 +1,6 @@
 out
+build
+target
 .idea/workspace.xml
 .idea/ant.xml
 .idea/runConfigurations

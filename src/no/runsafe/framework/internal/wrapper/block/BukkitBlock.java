@@ -45,7 +45,6 @@ public class BukkitBlock extends BukkitMetadata
 		block.setData(data);
 	}
 
-	@SuppressWarnings("InstanceMethodNamingConvention")
 	public void set(Item type)
 	{
 		block.getLocation().getChunk().load(); //.setForceLoaded(true);

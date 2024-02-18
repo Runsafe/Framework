@@ -39,7 +39,7 @@ public abstract class ConsoleAsyncCallbackCommand<T> extends AsyncCallbackComman
 	}
 
 	/**
-	 * This method is called on the main thread before {@link ConsoleAsyncCallbackCommand#OnAsyncExecute(Map)}
+	 * This method is called on the main thread before {@link ConsoleAsyncCallbackCommand#OnAsyncExecute(IArgumentList)}
 	 * Override this method if you don't use optional arguments
 	 *
 	 * @param parameters The arguments you defined in the constructor and their values as supplied by the user
