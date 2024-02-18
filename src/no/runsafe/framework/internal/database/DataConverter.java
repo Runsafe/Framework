@@ -37,20 +37,11 @@ final class DataConverter
 		if (value == null)
 			return null;
 
-		if (value instanceof BigDecimal)
+		if (value instanceof Number)
 			return ((Number) value).intValue();
 
 		if (value instanceof String)
 			return Integer.valueOf((String) value);
-
-		if (value instanceof Integer)
-			return (Integer) value;
-
-		if (value instanceof Long)
-			return ((Long) value).intValue();
-
-		if (value instanceof BigInteger)
-			return ((Number) value).intValue();
 
 		return null;
 	}
@@ -61,20 +52,11 @@ final class DataConverter
 		if (value == null)
 			return null;
 
-		if (value instanceof BigDecimal)
+		if (value instanceof Number)
 			return ((Number) value).longValue();
 
 		if (value instanceof String)
 			return Long.valueOf((String) value);
-
-		if (value instanceof Long)
-			return (Long) value;
-
-		if (value instanceof Integer)
-			return Long.valueOf((Integer) value);
-
-		if (value instanceof BigInteger)
-			return ((Number) value).longValue();
 
 		return null;
 	}
@@ -94,13 +76,7 @@ final class DataConverter
 		if (value instanceof String)
 			return Double.valueOf((String) value);
 
-		if (value instanceof Long)
-			return ((Long) value).doubleValue();
-
-		if (value instanceof Integer)
-			return ((Integer) value).doubleValue();
-
-		if (value instanceof BigInteger)
+		if (value instanceof Number)
 			return ((Number) value).doubleValue();
 
 		return null;
@@ -121,13 +97,7 @@ final class DataConverter
 		if (value instanceof String)
 			return Float.valueOf((String) value);
 
-		if (value instanceof Long)
-			return ((Long) value).floatValue();
-
-		if (value instanceof Integer)
-			return ((Integer) value).floatValue();
-
-		if (value instanceof BigInteger)
+		if (value instanceof Number)
 			return ((Number) value).floatValue();
 
 		return null;
