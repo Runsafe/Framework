@@ -6,6 +6,7 @@ import no.runsafe.framework.api.database.IDatabase;
 import no.runsafe.framework.api.database.ISchemaChanges;
 import no.runsafe.framework.api.database.ITransaction;
 
+import javax.activation.UnsupportedDataTypeException;
 import java.util.logging.Level;
 
 /**
@@ -53,7 +54,16 @@ public final class SchemaUpdater
 
 	int getRevision(String table)
 	{
-		Integer revision = database.queryInteger("SELECT `revision` FROM runsafe_schema WHERE `table`=?", table);
+		Integer revision = null;
+		try
+		{
+			revision = database.queryInteger("SELECT `revision` FROM runsafe_schema WHERE `table`=?", table);
+		}
+		catch (UnsupportedDataTypeException e)
+		{
+			// If this happens, database schema has been modified
+			throw new RuntimeException(e);
+		}
 		return revision == null ? 0 : revision;
 	}
 

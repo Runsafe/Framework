@@ -4,6 +4,7 @@ import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.database.IValue;
 import no.runsafe.framework.api.player.IPlayer;
 
+import javax.activation.UnsupportedDataTypeException;
 import javax.annotation.Nullable;
 import java.time.Instant;
 
@@ -23,25 +24,25 @@ public final class Value implements IValue
 	}
 
 	@Override
-	public Integer Integer()
+	public Integer Integer() throws UnsupportedDataTypeException
 	{
 		return DataConverter.Integer(raw);
 	}
 
 	@Override
-	public Long Long()
+	public Long Long() throws UnsupportedDataTypeException
 	{
 		return DataConverter.Long(raw);
 	}
 
 	@Override
-	public Double Double()
+	public Double Double() throws UnsupportedDataTypeException
 	{
 		return DataConverter.Double(raw);
 	}
 
 	@Override
-	public Float Float()
+	public Float Float() throws UnsupportedDataTypeException
 	{
 		return DataConverter.Float(raw);
 	}

@@ -1,7 +1,5 @@
 package no.runsafe.framework.internal.database;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Lists;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.database.IQueryExecutor;
@@ -9,9 +7,10 @@ import no.runsafe.framework.api.database.IRow;
 import no.runsafe.framework.api.database.IValue;
 import no.runsafe.framework.api.player.IPlayer;
 
+import javax.activation.UnsupportedDataTypeException;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("AnonymousInnerClass")
@@ -21,162 +20,108 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 	@Override
 	public List<String> queryStrings(String query, Object... params)
 	{
-		return Lists.transform(
-			queryColumn(query, params),
-			new Function<IValue, String>()
-			{
-				@Override
-				public String apply(@Nullable IValue value)
-				{
-					assert value != null;
-					return value.String();
-				}
-			}
-		);
+		List<String> result = new ArrayList<>();
+		for(IValue value : queryColumn(query, params))
+		{
+			result.add(value.String());
+		}
+		return result;
 	}
 
 	@Nonnull
 	@Override
-	public List<Integer> queryIntegers(String query, Object... params)
+	public List<Integer> queryIntegers(String query, Object... params) throws UnsupportedDataTypeException
 	{
-		return Lists.transform(
-			queryColumn(query, params),
-			new Function<IValue, Integer>()
-			{
-				@Override
-				public Integer apply(@Nullable IValue value)
-				{
-					assert value != null;
-					return value.Integer();
-				}
-			}
-		);
+		List<Integer> result = new ArrayList<>();
+		for(IValue value : queryColumn(query, params))
+		{
+			result.add(value.Integer());
+		}
+		return result;
 	}
 
 	@Nonnull
 	@Override
-	public List<Long> queryLongs(String query, Object... params)
+	public List<Long> queryLongs(String query, Object... params) throws UnsupportedDataTypeException
 	{
-		return Lists.transform(
-			queryColumn(query, params),
-			new Function<IValue, Long>()
-			{
-				@Override
-				public Long apply(@Nullable IValue value)
-				{
-					assert value != null;
-					return value.Long();
-				}
-			}
-		);
+		List<Long> result = new ArrayList<>();
+		for(IValue value : queryColumn(query, params))
+		{
+			result.add(value.Long());
+		}
+		return result;
 	}
 
 	@Nonnull
 	@Override
-	public List<Double> queryDoubles(String query, Object... params)
+	public List<Double> queryDoubles(String query, Object... params) throws UnsupportedDataTypeException
 	{
-		return Lists.transform(
-			queryColumn(query, params),
-			new Function<IValue, Double>()
-			{
-				@Override
-				public Double apply(@Nullable IValue value)
-				{
-					assert value != null;
-					return value.Double();
-				}
-			}
-		);
+		List<Double> result = new ArrayList<>();
+		for(IValue value : queryColumn(query, params))
+		{
+			result.add(value.Double());
+		}
+		return result;
 	}
 
 	@Nonnull
 	@Override
-	public List<Float> queryFloats(String query, Object... params)
+	public List<Float> queryFloats(String query, Object... params) throws UnsupportedDataTypeException
 	{
-		return Lists.transform(
-			queryColumn(query, params),
-			new Function<IValue, Float>()
-			{
-				@Override
-				public Float apply(@Nullable IValue value)
-				{
-					assert value != null;
-					return value.Float();
-				}
-			}
-		);
+		List<Float> result = new ArrayList<>();
+		for(IValue value : queryColumn(query, params))
+		{
+			result.add(value.Float());
+		}
+		return result;
 	}
 
 	@Nonnull
 	@Override
 	public List<Instant> queryInstants(String query, Object... params)
 	{
-		return Lists.transform(
-			queryColumn(query, params),
-			new Function<IValue, Instant>()
-			{
-				@Override
-				public Instant apply(@Nullable IValue value)
-				{
-					assert value != null;
-					return value.Instant();
-				}
-			}
-		);
+		List<Instant> result = new ArrayList<>();
+		for(IValue value : queryColumn(query, params))
+		{
+			result.add(value.Instant());
+		}
+		return result;
 	}
 
 	@Nonnull
 	@Override
 	public List<IPlayer> queryPlayers(String query, Object... params)
 	{
-		return Lists.transform(
-			queryColumn(query, params),
-			new Function<IValue, IPlayer>()
-			{
-				@Override
-				public IPlayer apply(@Nullable IValue value)
-				{
-					assert value != null;
-					return value.Player();
-				}
-			}
-		);
+		List<IPlayer> result = new ArrayList<>();
+		for(IValue value : queryColumn(query, params))
+		{
+			result.add(value.Player());
+		}
+		return result;
 	}
 
 	@Nonnull
 	@Override
 	public List<IWorld> queryWorlds(String query, Object... params)
 	{
-		return Lists.transform(
-			queryColumn(query, params),
-			new Function<IValue, IWorld>()
-			{
-				@Override
-				public IWorld apply(@Nullable IValue value)
-				{
-					assert value != null;
-					return value.World();
-				}
-			}
-		);
+		List<IWorld> result = new ArrayList<>();
+		for(IValue value : queryColumn(query, params))
+		{
+			result.add(value.World());
+		}
+		return result;
 	}
 
 	@Nonnull
 	@Override
-	public List<ILocation> queryLocations(String query, Object... params)
+	public List<ILocation> queryLocations(String query, Object... params) throws UnsupportedDataTypeException
 	{
-		return Lists.transform(
-			query(query, params),
-			new Function<IRow, ILocation>()
-			{
-				@Override
-				public ILocation apply(@Nullable IRow row)
-				{
-					assert row != null;
-					return row.Location();
-				}
-			}
-		);
+		List<ILocation> result = new ArrayList<>();
+		for(IRow row : query(query, params))
+		{
+			result.add(row.Location());
+		}
+		return result;
 	}
 
 	@Override
@@ -186,25 +131,25 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 	}
 
 	@Override
-	public Integer queryInteger(String query, Object... params)
+	public Integer queryInteger(String query, Object... params) throws UnsupportedDataTypeException
 	{
 		return queryValue(query, params).Integer();
 	}
 
 	@Override
-	public Long queryLong(String query, Object... params)
+	public Long queryLong(String query, Object... params) throws UnsupportedDataTypeException
 	{
 		return queryValue(query, params).Long();
 	}
 
 	@Override
-	public Double queryDouble(String query, Object... params)
+	public Double queryDouble(String query, Object... params) throws UnsupportedDataTypeException
 	{
 		return queryValue(query, params).Double();
 	}
 
 	@Override
-	public Float queryFloat(String query, Object... params)
+	public Float queryFloat(String query, Object... params) throws UnsupportedDataTypeException
 	{
 		return queryValue(query, params).Float();
 	}
@@ -228,7 +173,7 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 	}
 
 	@Override
-	public ILocation queryLocation(String query, Object... params)
+	public ILocation queryLocation(String query, Object... params) throws UnsupportedDataTypeException
 	{
 		return queryRow(query, params).Location();
 	}

@@ -5,6 +5,7 @@ import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.database.IRow;
 import no.runsafe.framework.api.player.IPlayer;
 
+import javax.activation.UnsupportedDataTypeException;
 import javax.annotation.Nullable;
 import java.time.Instant;
 import java.util.Map;
@@ -25,25 +26,25 @@ public final class Row implements IRow
 	}
 
 	@Override
-	public Integer Integer(String column)
+	public Integer Integer(String column) throws UnsupportedDataTypeException
 	{
 		return DataConverter.Integer(getValue(column));
 	}
 
 	@Override
-	public Long Long(String column)
+	public Long Long(String column) throws UnsupportedDataTypeException
 	{
 		return DataConverter.Long(getValue(column));
 	}
 
 	@Override
-	public Double Double(String column)
+	public Double Double(String column) throws UnsupportedDataTypeException
 	{
 		return DataConverter.Double(getValue(column));
 	}
 
 	@Override
-	public Float Float(String column)
+	public Float Float(String column) throws UnsupportedDataTypeException
 	{
 		return DataConverter.Float(getValue(column));
 	}
@@ -55,19 +56,19 @@ public final class Row implements IRow
 	}
 
 	@Override
-	public ILocation Location()
+	public ILocation Location() throws UnsupportedDataTypeException
 	{
 		return Location("world", "x", "y", "z", "yaw", "pitch");
 	}
 
 	@Override
-	public ILocation Location(String world, String x, String y, String z)
+	public ILocation Location(String world, String x, String y, String z) throws UnsupportedDataTypeException
 	{
 		return Location(world, x, y, z, "yaw", "pitch");
 	}
 
 	@Override
-	public ILocation Location(String world, String x, String y, String z, String yaw, String pitch)
+	public ILocation Location(String world, String x, String y, String z, String yaw, String pitch) throws UnsupportedDataTypeException
 	{
 		return DataConverter.Location(getValue(world), getValue(x), getValue(y), getValue(z), getValue(yaw), getValue(pitch));
 	}
@@ -82,6 +83,12 @@ public final class Row implements IRow
 	public IPlayer Player(String column)
 	{
 		return DataConverter.Player(getValue(column));
+	}
+
+	@Override
+	public Boolean Boolean(String column) throws UnsupportedDataTypeException
+	{
+		return DataConverter.Boolean(getValue(column));
 	}
 
 	@Override
@@ -182,6 +189,9 @@ public final class Row implements IRow
 		{
 			return null;
 		}
+
+		@Override
+		public Boolean Boolean(String column) { return null; }
 
 		@Override
 		public boolean isEmpty()

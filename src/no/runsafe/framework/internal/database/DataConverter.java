@@ -6,9 +6,8 @@ import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.Player;
 import no.runsafe.framework.internal.brane.Multiverse;
 
+import javax.activation.UnsupportedDataTypeException;
 import javax.annotation.Nullable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -32,7 +31,7 @@ final class DataConverter
 	}
 
 	@Nullable
-	static Integer Integer(Object value)
+	static Integer Integer(Object value) throws UnsupportedDataTypeException
 	{
 		if (value == null)
 			return null;
@@ -43,13 +42,11 @@ final class DataConverter
 		if (value instanceof String)
 			return Integer.valueOf((String) value);
 
-		throw new NumberFormatException(
-			String.format("The value of type %s is unsupported for Integer()", value.getClass().getCanonicalName())
-		);
+		throw Unsupported(value, "Integer");
 	}
 
 	@Nullable
-	static Long Long(Object value)
+	static Long Long(Object value) throws UnsupportedDataTypeException
 	{
 		if (value == null)
 			return null;
@@ -60,11 +57,11 @@ final class DataConverter
 		if (value instanceof String)
 			return Long.valueOf((String) value);
 
-		return null;
+		throw Unsupported(value, "Long");
 	}
 
 	@Nullable
-	static Double Double(Object value)
+	static Double Double(Object value) throws UnsupportedDataTypeException
 	{
 		if (value == null)
 			return null;
@@ -81,11 +78,11 @@ final class DataConverter
 		if (value instanceof Number)
 			return ((Number) value).doubleValue();
 
-		return null;
+		throw Unsupported(value, "Double");
 	}
 
 	@Nullable
-	static Float Float(Object value)
+	static Float Float(Object value) throws UnsupportedDataTypeException
 	{
 		if (value == null)
 			return null;
@@ -102,7 +99,7 @@ final class DataConverter
 		if (value instanceof Number)
 			return ((Number) value).floatValue();
 
-		return null;
+		throw Unsupported(value, "Float");
 	}
 
 	@Nullable
@@ -123,7 +120,7 @@ final class DataConverter
 
 	@SuppressWarnings("MethodWithTooManyParameters")
 	@Nullable
-	static ILocation Location(Object world, Object x, Object y, Object z, Object yaw, Object pitch)
+	static ILocation Location(Object world, Object x, Object y, Object z, Object yaw, Object pitch) throws UnsupportedDataTypeException
 	{
 		IWorld targetWorld = World(world);
 		if (targetWorld == null)
@@ -159,5 +156,26 @@ final class DataConverter
 			return Player.Get().getExact(UUID.fromString(valueString));
 
 		return Player.Get().getExact(valueString);
+	}
+
+	public static Boolean Boolean(Object value) throws UnsupportedDataTypeException
+	{
+		if (value == null)
+			return null;
+
+		if (value instanceof Boolean)
+			return (Boolean)value;
+
+		if (value instanceof Number)
+			return ((Number)value).intValue() != 0;
+
+		throw Unsupported(value, "Boolean");
+	}
+
+	private static UnsupportedDataTypeException Unsupported(Object value, String targetType)
+	{
+		return new UnsupportedDataTypeException(
+			String.format("The value of type %s is unsupported for %s()", value.getClass().getCanonicalName(), targetType)
+		);
 	}
 }
