@@ -28,7 +28,7 @@ public class ListOf<T> implements IArgument, IValueExpander, ITabComplete, IValu
 		if (value == null)
 			return null;
 		String[] values = LISTSEPARATOR.split(value);
-		List<String> result = new ArrayList<String>(values.length);
+		List<String> result = new ArrayList<>(values.length);
 		for (String val : values)
 		{
 			String expanded = argument.expand(context, value);
@@ -46,11 +46,11 @@ public class ListOf<T> implements IArgument, IValueExpander, ITabComplete, IValu
 			return null;
 		String[] rawValues = LISTSEPARATOR.split(value);
 		List<T> values = Lists.newArrayList();
-		Map<String, String> dummy = new HashMap<String, String>(1);
+		Map<String, String> dummy = new HashMap<>(1);
 		for (String val : rawValues)
 		{
 			dummy.put(name, val);
-			T expanded = (T) argument.getValue(context, dummy);
+			T expanded = argument.getValue(context, dummy);
 			if (expanded != null)
 				values.add(expanded);
 		}
@@ -87,6 +87,7 @@ public class ListOf<T> implements IArgument, IValueExpander, ITabComplete, IValu
 		return name.charAt(index);
 	}
 
+	@Nonnull
 	@Override
 	public CharSequence subSequence(int start, int end)
 	{

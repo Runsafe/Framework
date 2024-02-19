@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Enchant implements IEnchant
 {
-	public static final Collection<IEnchant> All = new ArrayList<IEnchant>(Enchantment.values().length);
+	public static final Collection<IEnchant> All = new ArrayList<>(Enchantment.values().length);
 	public static final IEnchant EnvironmentalProtection = new Enchant(Enchantment.PROTECTION_ENVIRONMENTAL, true);
 	public static final IEnchant FireProtection = new Enchant(Enchantment.PROTECTION_FIRE, true);
 	public static final IEnchant FallProtection = new Enchant(Enchantment.PROTECTION_FALL, true);
@@ -55,7 +55,7 @@ public class Enchant implements IEnchant
 
 	public static List<IEnchant> getByTarget(IEnchantable target)
 	{
-		List<IEnchant> enchants = new ArrayList<IEnchant>(All.size());
+		List<IEnchant> enchants = new ArrayList<>(All.size());
 		for (IEnchant enchant : All)
 			if (enchant.canEnchant(target))
 				enchants.add(enchant);

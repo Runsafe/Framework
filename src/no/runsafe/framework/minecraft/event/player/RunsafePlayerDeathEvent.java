@@ -1,5 +1,6 @@
 package no.runsafe.framework.minecraft.event.player;
 
+import net.minecraft.server.v1_12_R1.EntityPlayer;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.event.IFakeableEvent;
 import no.runsafe.framework.api.event.player.IPlayerDeathEvent;
@@ -51,12 +52,16 @@ public class RunsafePlayerDeathEvent extends RunsafeEntityDeathEvent implements 
 
 	public int getLevelAmount()
 	{
-		return ObjectUnwrapper.getMinecraft(getEntity()).oldLevel;
+		EntityPlayer entity = ObjectUnwrapper.getMinecraft(getEntity());
+		return entity == null ? 0 : entity.oldLevel;
 	}
 
 	public void setNewLevelAmount(int level)
 	{
-		ObjectUnwrapper.getMinecraft(getEntity()).expLevel = level;
+		EntityPlayer entity = ObjectUnwrapper.getMinecraft(getEntity());
+		if (entity == null)
+			return;
+		entity.expLevel = level;
 	}
 
 	private final PlayerDeathEvent event;

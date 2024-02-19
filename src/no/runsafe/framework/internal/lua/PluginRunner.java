@@ -63,10 +63,15 @@ public class PluginRunner
 		if (!(scripts.exists() && scripts.isDirectory()))
 			return Collections.emptySet();
 
-		Collection<File> list = FileUtils.listFiles(scripts, new String[]{"lua"}, false);
-		if (list == null)
+		Collection<File> list;
+		try
+		{
+			list = FileUtils.listFiles(scripts, new String[]{"lua"}, false);
+		}
+		catch (Exception e)
+		{
 			return Collections.emptySet();
-
+		}
 		return list;
 	}
 

@@ -5,7 +5,6 @@ import no.runsafe.framework.api.entity.ILivingEntity;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.entity.Creature;
-import org.bukkit.entity.LivingEntity;
 
 public class RunsafeCreature extends RunsafeLivingEntity implements ICreature
 {
@@ -24,7 +23,7 @@ public class RunsafeCreature extends RunsafeLivingEntity implements ICreature
 	@Override
 	public void setTarget(ILivingEntity target)
 	{
-		creature.setTarget((LivingEntity) ObjectUnwrapper.convert(target));
+		creature.setTarget(ObjectUnwrapper.convert(target));
 	}
 
 	private final Creature creature;

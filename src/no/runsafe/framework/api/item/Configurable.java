@@ -24,7 +24,7 @@ public final class Configurable
 			materials.put(material.getName(), material);
 	}
 
-	private static final Map<String, IMaterial> materials = new ConcurrentHashMap<String, IMaterial>();
+	private static final Map<String, IMaterial> materials = new ConcurrentHashMap<>();
 	static final char ID_SEPARATOR = ':';
 
 	static

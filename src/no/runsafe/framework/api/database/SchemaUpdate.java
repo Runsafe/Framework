@@ -24,5 +24,5 @@ public class SchemaUpdate implements ISchemaUpdate
 	}
 
 	private int currentRevision = 1;
-	private final HashMap<Integer, List<String>> queries = new LinkedHashMap<Integer, List<String>>(0);
+	private final HashMap<Integer, List<String>> queries = new LinkedHashMap<>(0);
 }

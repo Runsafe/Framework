@@ -17,7 +17,7 @@ public final class BukkitEventMapper
 {
 	static
 	{
-		factories = new HashMap<Class<? extends IRunsafeEvent>, EventRouterFactory>(0);
+		factories = new HashMap<>(0);
 	}
 
 	public BukkitEventMapper(
@@ -49,7 +49,7 @@ public final class BukkitEventMapper
 
 	private Iterable<Listener> getListeners()
 	{
-		List<Listener> listeners = new ArrayList<Listener>(eventSubscribers.size());
+		List<Listener> listeners = new ArrayList<>(eventSubscribers.size());
 		for (IRunsafeEvent sub : eventSubscribers)
 			listeners.addAll(getRouters(sub));
 		return listeners;
@@ -57,7 +57,7 @@ public final class BukkitEventMapper
 
 	private Collection<Listener> getRouters(IRunsafeEvent subscriber)
 	{
-		List<Listener> routers = new ArrayList<Listener>(factories.size());
+		List<Listener> routers = new ArrayList<>(factories.size());
 		for (Map.Entry<Class<? extends IRunsafeEvent>, EventRouterFactory> factory : factories.entrySet())
 			if (factory.getKey().isAssignableFrom(subscriber.getClass()))
 				routers.add(factory.getValue().getListener(output, scheduler, subscriber));

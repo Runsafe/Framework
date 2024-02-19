@@ -1,7 +1,5 @@
 package no.runsafe.framework.internal.wrapper.entity;
 
-import no.runsafe.framework.api.entity.IEntity;
-import org.bukkit.entity.Explosive;
 import org.bukkit.entity.TNTPrimed;
 
 public abstract class BukkitTNTPrimed extends BukkitExplosive

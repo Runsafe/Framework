@@ -43,7 +43,7 @@ public class PluginDataFile implements IPluginDataFile
 	@Override
 	public List<String> getLines()
 	{
-		List<String> lines = new ArrayList<String>(0);
+		List<String> lines = new ArrayList<>(0);
 
 		try
 		{

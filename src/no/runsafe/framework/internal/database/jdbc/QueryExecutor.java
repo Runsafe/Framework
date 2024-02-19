@@ -11,7 +11,6 @@ import no.runsafe.framework.internal.database.QueryExecutorBase;
 import no.runsafe.framework.internal.database.Row;
 import no.runsafe.framework.internal.database.Set;
 import no.runsafe.framework.internal.database.Value;
-import org.apache.commons.lang.StringUtils;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -193,7 +192,7 @@ abstract class QueryExecutor extends QueryExecutorBase
 		int cols = meta.getColumnCount();
 		if (cols == 0)
 			return Set.Empty;
-		ArrayList<IRow> results = new ArrayList<IRow>(1);
+		ArrayList<IRow> results = new ArrayList<>(1);
 		while (!result.isAfterLast())
 		{
 			results.add(readRow(meta, result));
@@ -212,7 +211,7 @@ abstract class QueryExecutor extends QueryExecutorBase
 		int cols = meta.getColumnCount();
 		if (cols == 0)
 			return Lists.newArrayList();
-		List<IValue> results = new ArrayList<IValue>(1);
+		List<IValue> results = new ArrayList<>(1);
 		while (!result.isAfterLast())
 		{
 			results.add(readValue(result));
@@ -226,7 +225,7 @@ abstract class QueryExecutor extends QueryExecutorBase
 	static IRow readRow(ResultSetMetaData meta, ResultSet result) throws SQLException
 	{
 		int cols = meta.getColumnCount();
-		HashMap<String, Object> row = new HashMap<String, Object>(cols);
+		HashMap<String, Object> row = new HashMap<>(cols);
 		for (int i = 0; i < cols; ++i)
 			row.put(meta.getColumnName(i + 1), result.getObject(i + 1));
 		return new Row(row);

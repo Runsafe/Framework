@@ -39,30 +39,18 @@ public final class PreparedAsynchronousCommand extends PreparedCommand
 	{
 		final IAsyncExecute target = (IAsyncExecute) command.peek();
 		scheduler.startAsyncTask(
-			new Runnable()
-			{
-				@Override
-				public void run()
+			() -> {
+				try
 				{
-					try
-					{
-						final String result = target.OnAsyncExecute(executor, parameters);
-						if (result != null && executor != null)
-							scheduler.startSyncTask(
-								new Runnable()
-								{
-									@Override
-									public void run()
-									{
-										executor.sendColouredMessage(result);
-									}
-								}, 1L
-							);
-					}
-					catch (Exception e)
-					{
-						Console.Global().logException(e);
-					}
+					final String result = target.OnAsyncExecute(executor, parameters);
+					if (result != null && executor != null)
+						scheduler.startSyncTask(
+							() -> executor.sendColouredMessage(result), 1L
+						);
+				}
+				catch (Exception e)
+				{
+					Console.Global().logException(e);
 				}
 			},
 			1L

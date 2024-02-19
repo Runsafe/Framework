@@ -152,5 +152,5 @@ public final class BranchingCommandTabExecutor implements ITabExecutor
 	private final ICommandExecutor console;
 	private final IDebug debugger;
 	private final IConsole consoleLog;
-	private final Map<Integer, ICommandHandler> branches = new ConcurrentHashMap<Integer, ICommandHandler>(2);
+	private final Map<Integer, ICommandHandler> branches = new ConcurrentHashMap<>(2);
 }

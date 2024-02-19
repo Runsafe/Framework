@@ -101,5 +101,5 @@ public class FunctionParameters
 		return parameters.size() >= index + 1;
 	}
 
-	private final List<LuaValue> parameters = new ArrayList<LuaValue>(0);
+	private final List<LuaValue> parameters = new ArrayList<>(0);
 }

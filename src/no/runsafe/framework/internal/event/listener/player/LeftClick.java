@@ -25,15 +25,9 @@ public final class LeftClick extends EventRouterBase<IPlayerLeftClickEvent, Play
 	@Override
 	public void acceptEvent(PlayerInteractEvent event)
 	{
-		boolean accept = false;
-		if (handler instanceof IPlayerLeftClickAirEvent && event.getAction() == Action.LEFT_CLICK_AIR)
-			accept = true;
-
-		if (handler instanceof IPlayerLeftClickBlockEvent && event.getAction() == Action.LEFT_CLICK_BLOCK)
-			accept = true;
-
-		if (!(handler instanceof IPlayerLeftClickAirEvent || handler instanceof IPlayerLeftClickBlockEvent))
-			accept = true;
+		boolean accept = handler instanceof IPlayerLeftClickAirEvent && event.getAction() == Action.LEFT_CLICK_AIR
+			|| handler instanceof IPlayerLeftClickBlockEvent && event.getAction() == Action.LEFT_CLICK_BLOCK
+			|| !(handler instanceof IPlayerLeftClickAirEvent || handler instanceof IPlayerLeftClickBlockEvent);
 
 		if (accept)
 			super.acceptEvent(event);

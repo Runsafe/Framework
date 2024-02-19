@@ -12,7 +12,6 @@ public class RunsafeBat extends RunsafeLivingEntity implements IBat
 	public RunsafeBat(Bat toWrap)
 	{
 		super(toWrap);
-		bat = toWrap;
 	}
 
 	@Override
@@ -21,6 +20,4 @@ public class RunsafeBat extends RunsafeLivingEntity implements IBat
 	{
 		return Sound.Creature.Bat.Idle;
 	}
-
-	private final Bat bat;
 }

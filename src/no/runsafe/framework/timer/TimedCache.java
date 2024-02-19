@@ -55,14 +55,7 @@ public class TimedCache<Key, Value>
 			scheduler.cancelTask(timers.get(key));
 
 		int task = scheduler.startAsyncTask(
-			new Runnable()
-			{
-				@Override
-				public void run()
-				{
-					Invalidate(key);
-				}
-			},
+			() -> Invalidate(key),
 			timeout
 		);
 		Integer activeTask = timers.putIfAbsent(key, task);
@@ -70,8 +63,8 @@ public class TimedCache<Key, Value>
 			scheduler.cancelTask(task);
 	}
 
-	private final ConcurrentHashMap<Key, Value> cache = new ConcurrentHashMap<Key, Value>();
-	private final ConcurrentHashMap<Key, Integer> timers = new ConcurrentHashMap<Key, Integer>();
+	private final ConcurrentHashMap<Key, Value> cache = new ConcurrentHashMap<>();
+	private final ConcurrentHashMap<Key, Integer> timers = new ConcurrentHashMap<>();
 	private final IScheduler scheduler;
 	private final int timeout;
 	private static final int DEFAULT_TIMEOUT = 300;

@@ -8,12 +8,13 @@ import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.math.BigInteger;
+import java.util.Objects;
 
 public class ItemCompacter
 {
 	public static String convertToString(RunsafeMeta item)
 	{
-		ItemStack itemStack = (ItemStack) ObjectUnwrapper.getMinecraft(item);
+		ItemStack itemStack = Objects.requireNonNull(ObjectUnwrapper.getMinecraft(item));
 		NBTTagCompound compound = new NBTTagCompound();
 		itemStack.save(compound);
 

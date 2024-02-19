@@ -1,7 +1,6 @@
 package no.runsafe.framework.api.entity;
 
 import no.runsafe.framework.internal.vector.Point3D;
-import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 
 public interface IArmourStand extends ILivingEntity

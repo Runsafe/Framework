@@ -36,7 +36,7 @@ public class UserGroupArgument extends CommandArgumentSpecification<String> impl
 			return options;
 
 		String match = partial.toLowerCase();
-		List<String> candidates = new ArrayList<String>(options.size());
+		List<String> candidates = new ArrayList<>(options.size());
 		for (String option : options)
 			if (option.toLowerCase().startsWith(match))
 				candidates.add(option);

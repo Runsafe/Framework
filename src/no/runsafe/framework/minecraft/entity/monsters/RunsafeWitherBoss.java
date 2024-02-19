@@ -11,5 +11,5 @@ public class RunsafeWitherBoss extends RunsafeMonster implements IWitherBoss
 		wither = toWrap;
 	}
 
-	Wither wither;
+	final Wither wither;
 }

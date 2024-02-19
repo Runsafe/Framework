@@ -1,10 +1,8 @@
 package no.runsafe.framework.minecraft.networking;
 
 import net.minecraft.server.v1_12_R1.PacketPlayOutWorldParticles;
-import net.minecraft.server.v1_12_R1.EnumParticle;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorldEffect;
-import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.minecraft.WorldBlockEffect;
 
 public class PacketWorldParticle extends RunsafePacket
@@ -13,7 +11,7 @@ public class PacketWorldParticle extends RunsafePacket
 	public PacketWorldParticle(IWorldEffect effect, ILocation location, WorldParticleOffset offset, float speed, int amount)
 	{
 		//Set item values if needed.
-		int[] itemValues = null;
+		int[] itemValues;
 		if(effect instanceof WorldBlockEffect)
 		{
 			WorldBlockEffect blockEffect = (WorldBlockEffect) effect;

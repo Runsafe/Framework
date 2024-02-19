@@ -6,7 +6,6 @@ import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.Sound;
 import no.runsafe.framework.minecraft.entity.RunsafeAgeable;
-import org.bukkit.entity.AnimalTamer;
 import org.bukkit.entity.Ocelot;
 
 import javax.annotation.Nullable;
@@ -58,7 +57,7 @@ public class RunsafeOcelot extends RunsafeAgeable implements IOcelot
 	@Override
 	public void setOwner(IAnimalTamer tamer)
 	{
-		ocelot.setOwner((AnimalTamer) ObjectUnwrapper.convert(tamer));
+		ocelot.setOwner(ObjectUnwrapper.convert(tamer));
 	}
 
 	@Override

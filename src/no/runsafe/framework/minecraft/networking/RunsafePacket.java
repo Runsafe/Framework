@@ -27,16 +27,16 @@ public abstract class RunsafePacket implements IPacket
 			rawPlayer.playerConnection.sendPacket(packet);
 	}
 
-	public void setPacket(Packet packet)
+	public void setPacket(Packet<?> packet)
 	{
 		this.packet = packet;
 	}
 
 	@Override
-	public Packet getRawPacket()
+	public Packet<?> getRawPacket()
 	{
 		return packet;
 	}
 
-	protected Packet packet;
+	protected Packet<?> packet;
 }

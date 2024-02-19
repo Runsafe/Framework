@@ -1,7 +1,6 @@
 package no.runsafe.framework.minecraft.entity;
 
 import no.runsafe.framework.api.entity.villagers.IVillager;
-import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.Sound;
 import org.bukkit.entity.Villager;
 
@@ -34,5 +33,5 @@ public class RunsafeVillager extends RunsafeAgeable implements IVillager
 		return Sound.Creature.Villager.Idle;
 	}
 
-	Villager villager;
+	final Villager villager;
 }

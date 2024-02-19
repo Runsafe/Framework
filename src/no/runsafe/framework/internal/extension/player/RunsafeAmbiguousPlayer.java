@@ -21,8 +21,8 @@ public class RunsafeAmbiguousPlayer extends RunsafePlayer implements IAmbiguousP
 
 	public RunsafeAmbiguousPlayer(List<IPlayer> online)
 	{
-		super((OfflinePlayer) ObjectUnwrapper.convert(online.get(0)));
-		ambiguity = new ArrayList<String>(online.size());
+		super(ObjectUnwrapper.convert(online.get(0)));
+		ambiguity = new ArrayList<>(online.size());
 		for (IPlayer option : online)
 			ambiguity.add(option.getName());
 	}

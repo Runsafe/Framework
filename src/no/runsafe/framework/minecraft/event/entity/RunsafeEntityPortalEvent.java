@@ -27,5 +27,5 @@ public class RunsafeEntityPortalEvent extends RunsafeEntityTeleportEvent
 		return ObjectWrapper.convert(event.getPortalTravelAgent());
 	}
 
-	EntityPortalEvent event;
+	final EntityPortalEvent event;
 }

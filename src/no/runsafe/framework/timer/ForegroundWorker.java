@@ -74,6 +74,6 @@ public abstract class ForegroundWorker<TokenType, StateType> implements Runnable
 
 	private final IScheduler scheduler;
 	private ITimer worker;
-	private final ConcurrentHashMap<TokenType, StateType> state = new ConcurrentHashMap<TokenType, StateType>();
-	private final Stack<TokenType> queue = new Stack<TokenType>();
+	private final ConcurrentHashMap<TokenType, StateType> state = new ConcurrentHashMap<>();
+	private final Stack<TokenType> queue = new Stack<>();
 }

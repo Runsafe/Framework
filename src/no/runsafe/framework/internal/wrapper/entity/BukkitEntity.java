@@ -117,7 +117,7 @@ public abstract class BukkitEntity extends BukkitMetadata
 
 	public boolean setPassenger(IEntity entity)
 	{
-		return this.entity.setPassenger((Entity) ObjectUnwrapper.convert(entity));
+		return this.entity.setPassenger(ObjectUnwrapper.convert(entity));
 	}
 
 	/**

@@ -70,14 +70,7 @@ public abstract class TimerFactory<T>
 	void ScheduleCompletion(final T state)
 	{
 		scheduler.startSyncTask(
-			new Runnable()
-			{
-				@Override
-				public void run()
-				{
-					OnTimerCompleted(state);
-				}
-			},
+			() -> OnTimerCompleted(state),
 			1L
 		);
 	}

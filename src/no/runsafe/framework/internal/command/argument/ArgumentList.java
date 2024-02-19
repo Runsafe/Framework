@@ -62,6 +62,7 @@ public class ArgumentList implements IArgumentList
 		return false;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Nullable
 	public <T> T getValue(String param)
@@ -72,6 +73,7 @@ public class ArgumentList implements IArgumentList
 		return ((IValueProvider<T>) argument).getValue(context, parameterList);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Nonnull
 	public <T> T getRequired(String param)

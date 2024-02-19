@@ -41,7 +41,7 @@ public abstract class RunsafePlugin extends InjectionPlugin implements IPluginFi
 			return pluginContainer.getComponents(RunsafePlugin.class);
 
 		String lookup = name.toLowerCase();
-		List<RunsafePlugin> plugins = new ArrayList<RunsafePlugin>(1);
+		List<RunsafePlugin> plugins = new ArrayList<>(1);
 		for (RunsafePlugin plugin : pluginContainer.getComponents(RunsafePlugin.class))
 			if (plugin.getName().toLowerCase().startsWith(lookup))
 				plugins.add(plugin);
@@ -119,14 +119,9 @@ public abstract class RunsafePlugin extends InjectionPlugin implements IPluginFi
 		final List<IServerReady> listeners = getComponents(IServerReady.class);
 		if (listeners != null && !listeners.isEmpty())
 			getComponent(IScheduler.class).createSyncTimer(
-				new Runnable()
-				{
-					@Override
-					public void run()
-					{
-						for (IServerReady listener : listeners)
-							listener.OnServerReady();
-					}
+				() -> {
+					for (IServerReady listener : listeners)
+						listener.OnServerReady();
 				},
 				0
 			);

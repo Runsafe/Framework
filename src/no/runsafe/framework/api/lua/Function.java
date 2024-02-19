@@ -29,7 +29,7 @@ public abstract class Function extends VarArgFunction
 	@SuppressWarnings("ChainOfInstanceofChecks")
 	protected Varargs objectListToVarargs(Iterable<Object> objects)
 	{
-		List<LuaValue> values = new ArrayList<LuaValue>(0);
+		List<LuaValue> values = new ArrayList<>(0);
 
 		if (objects != null)
 		{
@@ -51,6 +51,6 @@ public abstract class Function extends VarArgFunction
 					values.add(valueOf((Float) object));
 			}
 		}
-		return varargsOf(values.toArray(new LuaValue[values.size()]));
+		return varargsOf(values.toArray(new LuaValue[0]));
 	}
 }

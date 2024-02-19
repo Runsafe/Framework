@@ -9,8 +9,5 @@ public class RunsafeArmourStand extends BukkitArmourStand implements IArmourStan
 	public RunsafeArmourStand(ArmorStand toWrap)
 	{
 		super(toWrap);
-		stand = toWrap;
 	}
-
-	private final ArmorStand stand;
 }

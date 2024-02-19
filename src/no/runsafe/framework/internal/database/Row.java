@@ -5,7 +5,6 @@ import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.database.IRow;
 import no.runsafe.framework.api.player.IPlayer;
 
-import javax.activation.UnsupportedDataTypeException;
 import javax.annotation.Nullable;
 import java.time.Instant;
 import java.util.Map;
@@ -26,25 +25,25 @@ public final class Row implements IRow
 	}
 
 	@Override
-	public Integer Integer(String column) throws UnsupportedDataTypeException
+	public Integer Integer(String column)
 	{
 		return DataConverter.Integer(getValue(column));
 	}
 
 	@Override
-	public Long Long(String column) throws UnsupportedDataTypeException
+	public Long Long(String column)
 	{
 		return DataConverter.Long(getValue(column));
 	}
 
 	@Override
-	public Double Double(String column) throws UnsupportedDataTypeException
+	public Double Double(String column)
 	{
 		return DataConverter.Double(getValue(column));
 	}
 
 	@Override
-	public Float Float(String column) throws UnsupportedDataTypeException
+	public Float Float(String column)
 	{
 		return DataConverter.Float(getValue(column));
 	}
@@ -56,19 +55,19 @@ public final class Row implements IRow
 	}
 
 	@Override
-	public ILocation Location() throws UnsupportedDataTypeException
+	public ILocation Location()
 	{
 		return Location("world", "x", "y", "z", "yaw", "pitch");
 	}
 
 	@Override
-	public ILocation Location(String world, String x, String y, String z) throws UnsupportedDataTypeException
+	public ILocation Location(String world, String x, String y, String z)
 	{
 		return Location(world, x, y, z, "yaw", "pitch");
 	}
 
 	@Override
-	public ILocation Location(String world, String x, String y, String z, String yaw, String pitch) throws UnsupportedDataTypeException
+	public ILocation Location(String world, String x, String y, String z, String yaw, String pitch)
 	{
 		return DataConverter.Location(getValue(world), getValue(x), getValue(y), getValue(z), getValue(yaw), getValue(pitch));
 	}
@@ -86,7 +85,7 @@ public final class Row implements IRow
 	}
 
 	@Override
-	public Boolean Boolean(String column) throws UnsupportedDataTypeException
+	public Boolean Boolean(String column)
 	{
 		return DataConverter.Boolean(getValue(column));
 	}

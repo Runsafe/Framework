@@ -8,7 +8,6 @@ import no.runsafe.framework.minecraft.RunsafeConsole;
 import no.runsafe.framework.api.IScheduler;
 
 import javax.annotation.Nullable;
-import java.util.Map;
 
 /**
  * Base class representing a command that can only be executed by the console and has an implementation that can be executed asynchronously

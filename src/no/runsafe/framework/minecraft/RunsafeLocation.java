@@ -103,7 +103,7 @@ public class RunsafeLocation extends BukkitLocation implements ILocation, IPoint
 	public List<IPlayer> getPlayersInRange(double range)
 	{
 		List<IPlayer> allPlayers = getWorld().getPlayers();
-		List<IPlayer> players = new ArrayList<IPlayer>(allPlayers.size());
+		List<IPlayer> players = new ArrayList<>(allPlayers.size());
 
 		for (IPlayer player : allPlayers)
 		{

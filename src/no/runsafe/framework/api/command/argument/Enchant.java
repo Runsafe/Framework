@@ -25,7 +25,7 @@ public class Enchant extends CommandArgumentSpecification<IEnchant> implements L
 	public List<String> getAlternatives(IPlayer executor, String partial)
 	{
 		String filter = partial == null ? null : partial.toLowerCase();
-		List<String> alternates = new ArrayList<String>(no.runsafe.framework.minecraft.Enchant.All.size());
+		List<String> alternates = new ArrayList<>(no.runsafe.framework.minecraft.Enchant.All.size());
 		for (IEnchant enchant : no.runsafe.framework.minecraft.Enchant.All)
 		{
 			if (filter == null)

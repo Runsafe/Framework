@@ -6,5 +6,5 @@ import no.runsafe.framework.api.player.IPlayer;
 public interface IPacket
 {
 	void sendPacket(IPlayer player);
-	Packet getRawPacket();
+	Packet<?> getRawPacket();
 }

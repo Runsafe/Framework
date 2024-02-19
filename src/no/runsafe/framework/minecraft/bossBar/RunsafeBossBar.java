@@ -13,7 +13,6 @@ public class RunsafeBossBar extends BukkitBossBar implements IBossBar
     public RunsafeBossBar(BossBar toWrap)
     {
         super(toWrap);
-        bossbar = toWrap;
     }
 
     public RunsafeBossBar(String title, BarColour colour, BarStyle style)
@@ -35,6 +34,4 @@ public class RunsafeBossBar extends BukkitBossBar implements IBossBar
             if (!bossBarPlayers.contains(newPlayer))
                 this.addPlayer(newPlayer);
     }
-
-    private final BossBar bossbar;
 }

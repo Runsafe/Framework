@@ -13,6 +13,7 @@ import org.bukkit.entity.Entity;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Objects;
 
 public class RunsafeWorld extends BukkitWorld implements IWorld
 {
@@ -53,7 +54,7 @@ public class RunsafeWorld extends BukkitWorld implements IWorld
 	@Override
 	public IUniverse getUniverse()
 	{
-		return Multiverse.getInstance().getByWorld(this);
+		return Objects.requireNonNull(Multiverse.getInstance().getByWorld(this));
 	}
 
 	@Override

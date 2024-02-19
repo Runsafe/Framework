@@ -10,7 +10,6 @@ import no.runsafe.framework.minecraft.inventory.RunsafeInventoryView;
 import no.runsafe.framework.minecraft.inventory.RunsafePlayerInventory;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import org.bukkit.GameMode;
-import org.bukkit.Location;
 import org.bukkit.entity.HumanEntity;
 
 public abstract class BukkitHumanEntity extends RunsafeEntity implements IAnimalTamer
@@ -49,12 +48,12 @@ public abstract class BukkitHumanEntity extends RunsafeEntity implements IAnimal
 
 	public RunsafeInventoryView openWorkbench(ILocation location, boolean force)
 	{
-		return ObjectWrapper.convert(humanEntity.openWorkbench((Location) ObjectUnwrapper.convert(location), force));
+		return ObjectWrapper.convert(humanEntity.openWorkbench(ObjectUnwrapper.convert(location), force));
 	}
 
 	public RunsafeInventoryView openEnchanting(ILocation location, boolean force)
 	{
-		return ObjectWrapper.convert(humanEntity.openEnchanting((Location) ObjectUnwrapper.convert(location), force));
+		return ObjectWrapper.convert(humanEntity.openEnchanting(ObjectUnwrapper.convert(location), force));
 	}
 
 	public void openInventory(RunsafeInventoryView inventory)

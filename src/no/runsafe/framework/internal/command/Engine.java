@@ -59,8 +59,8 @@ public final class Engine
 			return ImmutableList.of();
 		}
 
-		Map<String, BranchingCommandTabExecutor> branches = new HashMap<String, BranchingCommandTabExecutor>(0);
-		Collection<ITabExecutor> handlers = new ArrayList<ITabExecutor>(commands.size());
+		Map<String, BranchingCommandTabExecutor> branches = new HashMap<>(0);
+		Collection<ITabExecutor> handlers = new ArrayList<>(commands.size());
 		for (ICommandHandler command : commands)
 		{
 			command.setConsole(output);

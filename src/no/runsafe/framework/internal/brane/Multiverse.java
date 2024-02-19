@@ -100,8 +100,8 @@ public final class Multiverse implements IUniverseManager
 		universe.put(name, new DefaultUniverse(name));
 	}
 
-	private final Map<String, IUniverse> branes = new ConcurrentHashMap<String, IUniverse>();
-	private final Map<String, IUniverse> universe = new ConcurrentHashMap<String, IUniverse>();
+	private final Map<String, IUniverse> branes = new ConcurrentHashMap<>();
+	private final Map<String, IUniverse> universe = new ConcurrentHashMap<>();
 	private final IServer server;
-	private final Collection<IUniverseMapper> mappers = new ArrayList<IUniverseMapper>(0);
+	private final Collection<IUniverseMapper> mappers = new ArrayList<>(0);
 }

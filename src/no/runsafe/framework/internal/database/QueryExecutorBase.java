@@ -7,7 +7,6 @@ import no.runsafe.framework.api.database.IRow;
 import no.runsafe.framework.api.database.IValue;
 import no.runsafe.framework.api.player.IPlayer;
 
-import javax.activation.UnsupportedDataTypeException;
 import javax.annotation.Nonnull;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 
 	@Nonnull
 	@Override
-	public List<Integer> queryIntegers(String query, Object... params) throws UnsupportedDataTypeException
+	public List<Integer> queryIntegers(String query, Object... params)
 	{
 		List<Integer> result = new ArrayList<>();
 		for(IValue value : queryColumn(query, params))
@@ -41,7 +40,7 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 
 	@Nonnull
 	@Override
-	public List<Long> queryLongs(String query, Object... params) throws UnsupportedDataTypeException
+	public List<Long> queryLongs(String query, Object... params)
 	{
 		List<Long> result = new ArrayList<>();
 		for(IValue value : queryColumn(query, params))
@@ -53,7 +52,7 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 
 	@Nonnull
 	@Override
-	public List<Double> queryDoubles(String query, Object... params) throws UnsupportedDataTypeException
+	public List<Double> queryDoubles(String query, Object... params)
 	{
 		List<Double> result = new ArrayList<>();
 		for(IValue value : queryColumn(query, params))
@@ -65,7 +64,7 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 
 	@Nonnull
 	@Override
-	public List<Float> queryFloats(String query, Object... params) throws UnsupportedDataTypeException
+	public List<Float> queryFloats(String query, Object... params)
 	{
 		List<Float> result = new ArrayList<>();
 		for(IValue value : queryColumn(query, params))
@@ -113,7 +112,7 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 
 	@Nonnull
 	@Override
-	public List<ILocation> queryLocations(String query, Object... params) throws UnsupportedDataTypeException
+	public List<ILocation> queryLocations(String query, Object... params)
 	{
 		List<ILocation> result = new ArrayList<>();
 		for(IRow row : query(query, params))
@@ -130,25 +129,25 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 	}
 
 	@Override
-	public Integer queryInteger(String query, Object... params) throws UnsupportedDataTypeException
+	public Integer queryInteger(String query, Object... params)
 	{
 		return queryValue(query, params).Integer();
 	}
 
 	@Override
-	public Long queryLong(String query, Object... params) throws UnsupportedDataTypeException
+	public Long queryLong(String query, Object... params)
 	{
 		return queryValue(query, params).Long();
 	}
 
 	@Override
-	public Double queryDouble(String query, Object... params) throws UnsupportedDataTypeException
+	public Double queryDouble(String query, Object... params)
 	{
 		return queryValue(query, params).Double();
 	}
 
 	@Override
-	public Float queryFloat(String query, Object... params) throws UnsupportedDataTypeException
+	public Float queryFloat(String query, Object... params)
 	{
 		return queryValue(query, params).Float();
 	}
@@ -172,7 +171,7 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 	}
 
 	@Override
-	public ILocation queryLocation(String query, Object... params) throws UnsupportedDataTypeException
+	public ILocation queryLocation(String query, Object... params)
 	{
 		return queryRow(query, params).Location();
 	}

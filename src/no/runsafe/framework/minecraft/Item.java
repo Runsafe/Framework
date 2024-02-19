@@ -60,7 +60,7 @@ public class Item implements IEnchantable
 			String dataValue = id.group(3);
 			if (dataValue == null || dataValue.isEmpty())
 				dataValue = "0";
-			return getItem(LegacyMaterial.getById(idPart), Byte.valueOf(dataValue));
+			return getItem(LegacyMaterial.getById(idPart), Byte.parseByte(dataValue));
 		}
 		Material material = Material.getMaterial(type);
 		if (material == null)
@@ -1451,7 +1451,7 @@ public class Item implements IEnchantable
 			items.put(key, item);
 	}
 
-	private static final Map<String, Item> items = new HashMap<String, Item>(Material.values().length);
+	private static final Map<String, Item> items = new HashMap<>(Material.values().length);
 	private static final Pattern materialId = Pattern.compile("^-?(\\d+)(\\.(\\d+))?$");
 	private final Material material;
 	private final boolean root;

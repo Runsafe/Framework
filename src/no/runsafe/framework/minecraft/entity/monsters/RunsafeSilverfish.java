@@ -11,7 +11,6 @@ public class RunsafeSilverfish extends RunsafeMonster implements ISilverfish
 	public RunsafeSilverfish(Silverfish toWrap)
 	{
 		super(toWrap);
-		silverfish = toWrap;
 	}
 
 	@Override
@@ -20,6 +19,4 @@ public class RunsafeSilverfish extends RunsafeMonster implements ISilverfish
 	{
 		return Sound.Creature.Silverfish.Idle;
 	}
-
-	private final Silverfish silverfish;
 }

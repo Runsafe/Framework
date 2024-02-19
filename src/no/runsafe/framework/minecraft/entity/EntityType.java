@@ -56,7 +56,7 @@ public final class EntityType
 	public static List<RunsafeEntityType> getTypesByName(String name)
 	{
 		name = name.toLowerCase();
-		List<RunsafeEntityType> types = new ArrayList<RunsafeEntityType>(0);
+		List<RunsafeEntityType> types = new ArrayList<>(0);
 
 		for (LivingEntity entity : LivingEntity.values())
 			typeCheck(name, entity, types);
@@ -84,5 +84,5 @@ public final class EntityType
 	}
 
 	private static final Map<org.bukkit.entity.EntityType, RunsafeEntityType> types =
-		new EnumMap<org.bukkit.entity.EntityType, RunsafeEntityType>(org.bukkit.entity.EntityType.class);
+		new EnumMap<>(org.bukkit.entity.EntityType.class);
 }

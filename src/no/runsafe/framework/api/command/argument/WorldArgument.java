@@ -1,6 +1,5 @@
 package no.runsafe.framework.api.command.argument;
 
-import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import no.runsafe.framework.api.IUniverseManager;
 import no.runsafe.framework.api.IWorld;
@@ -36,14 +35,9 @@ public class WorldArgument extends CommandArgumentSpecification<IWorld> implemen
 	{
 		return Lists.transform(
 			Multiverse.getInstance().getAllWorlds(),
-			new Function<IWorld, String>()
-			{
-				@Override
-				public String apply(@Nullable IWorld world)
-				{
-					assert world != null;
-					return world.getName();
-				}
+			world -> {
+				assert world != null;
+				return world.getName();
 			}
 		);
 	}

@@ -41,7 +41,7 @@ public abstract class BukkitEnchantmentStorage extends RunsafeMeta
 	public Map<RunsafeEnchantment, Integer> getStoredEnchants()
 	{
 		Map<Enchantment, Integer> bukkitEnchants = getRawMeta().getStoredEnchants();
-		Map<RunsafeEnchantment, Integer> enchants = new HashMap<RunsafeEnchantment, Integer>(bukkitEnchants.size());
+		Map<RunsafeEnchantment, Integer> enchants = new HashMap<>(bukkitEnchants.size());
 			for (Map.Entry<Enchantment, Integer> enchantment : bukkitEnchants.entrySet())
 				enchants.put(ObjectWrapper.convert(enchantment.getKey()), enchantment.getValue());
 			return enchants;

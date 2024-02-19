@@ -1,6 +1,5 @@
 package no.runsafe.framework.internal.wrapper.item.meta;
 
-import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;

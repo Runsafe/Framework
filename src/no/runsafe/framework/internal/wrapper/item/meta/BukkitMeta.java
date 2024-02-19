@@ -109,7 +109,7 @@ public abstract class BukkitMeta extends RunsafeItemStack
 		{
 			List<String> currentLore = meta.getLore();
 			if (currentLore == null)
-				currentLore = new ArrayList<String>(1);
+				currentLore = new ArrayList<>(1);
 			currentLore.add(lore);
 			meta.setLore(currentLore);
 			itemStack.setItemMeta(meta);

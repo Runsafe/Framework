@@ -114,7 +114,7 @@ public abstract class BukkitItemStack implements ConfigurationSerializable, IWra
 	public Map<RunsafeEnchantment, Integer> getEnchantments()
 	{
 		Map<Enchantment, Integer> bukkitEnchants = itemStack.getEnchantments();
-		Map<RunsafeEnchantment, Integer> enchants = new HashMap<RunsafeEnchantment, Integer>(bukkitEnchants.size());
+		Map<RunsafeEnchantment, Integer> enchants = new HashMap<>(bukkitEnchants.size());
 		for (Map.Entry<Enchantment, Integer> enchantment : bukkitEnchants.entrySet())
 			enchants.put(ObjectWrapper.convert(enchantment.getKey()), enchantment.getValue());
 		return enchants;

@@ -41,7 +41,7 @@ public class Command implements ICommandHandler
 		name = commandName;
 		this.permission = permission;
 		this.description = description;
-		Map<String, IArgument> argumentMap = new LinkedHashMap<String, IArgument>(arguments.length);
+		Map<String, IArgument> argumentMap = new LinkedHashMap<>(arguments.length);
 		for (IArgument argument : arguments)
 			argumentMap.put(argument.toString(), argument);
 		argumentList = Collections.unmodifiableMap(argumentMap);
@@ -57,7 +57,7 @@ public class Command implements ICommandHandler
 	public String getUsage(@Nonnull ICommandExecutor executor)
 	{
 		Map<String, String> available = getAvailableSubCommands(executor);
-		List<String> usage = new ArrayList<String>(subCommands.size());
+		List<String> usage = new ArrayList<>(subCommands.size());
 		if (available.isEmpty())
 			return "\n " + description;
 
@@ -153,6 +153,7 @@ public class Command implements ICommandHandler
 			if (params.has(param))
 			{
 				if (params.getValue(param) != null)
+					//noinspection DataFlowIssue
 					effectivePermission = effectivePermission.replace(paramTag, params.getValue(param));
 			}
 			else if (argumentList.containsKey(param))
@@ -222,7 +223,7 @@ public class Command implements ICommandHandler
 	@Override
 	public final List<String> getSubCommands(ICommandExecutor executor)
 	{
-		List<String> available = new ArrayList<String>(subCommands.size());
+		List<String> available = new ArrayList<>(subCommands.size());
 		for (Map.Entry<String, ICommandHandler> stringCommandEntry : subCommands.entrySet())
 			if (stringCommandEntry.getValue().isTabCompletable(executor))
 				available.add(stringCommandEntry.getKey());
@@ -258,14 +259,14 @@ public class Command implements ICommandHandler
 	public final IPreparedCommand prepare(ICommandExecutor executor, @Nonnull String... args)
 	{
 		console.debugFiner("Preparing command %s %s", name, StringUtils.join(args, " "));
-		return prepareCommand(executor, new HashMap<String, String>(args.length), args, new Stack<ICommandHandler>());
+		return prepareCommand(executor, new HashMap<>(args.length), args, new Stack<>());
 	}
 
 	@Override
 	public IPreparedCommand prepareTabComplete(ICommandExecutor executor, String... args)
 	{
 		console.debugFiner("Preparing command %s %s for tab completion", name, StringUtils.join(args, " "));
-		return prepareTabCompleteCommand(executor, new HashMap<String, String>(args.length), args, new Stack<ICommandHandler>());
+		return prepareTabCompleteCommand(executor, new HashMap<>(args.length), args, new Stack<>());
 	}
 
 	@Override
@@ -428,7 +429,7 @@ public class Command implements ICommandHandler
 
 	private Map<String, String> getAvailableSubCommands(ICommandExecutor executor)
 	{
-		Map<String, String> available = new HashMap<String, String>(subCommands.size());
+		Map<String, String> available = new HashMap<>(subCommands.size());
 		for (ICommandHandler sub : subCommands.values())
 		{
 			if (sub.isTabCompletable(executor))
@@ -439,7 +440,7 @@ public class Command implements ICommandHandler
 
 	private Map<String, String> parseParameters(ICommandExecutor context, String... args)
 	{
-		Map<String, String> parameters = new HashMap<String, String>(args.length);
+		Map<String, String> parameters = new HashMap<>(args.length);
 
 		int index = 0;
 		for (IArgument parameter : argumentList.values())
@@ -467,7 +468,7 @@ public class Command implements ICommandHandler
 
 	protected IDebug console;
 	protected final Map<String, IArgument> argumentList;
-	private final Map<String, ICommandHandler> subCommands = new HashMap<String, ICommandHandler>(0);
+	private final Map<String, ICommandHandler> subCommands = new HashMap<>(0);
 	private final String name;
 	private final String permission;
 	private final String description;

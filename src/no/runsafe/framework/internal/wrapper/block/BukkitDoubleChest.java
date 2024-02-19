@@ -21,14 +21,7 @@ public abstract class BukkitDoubleChest implements IInventoryHolder
 
 	public IInventoryHolder getLeftSide()
 	{
-		return new IInventoryHolder()
-		{
-			@Override
-			public RunsafeInventory getInventory()
-			{
-				return ObjectWrapper.convert(chest.getLeftSide().getInventory());
-			}
-		};
+		return () -> ObjectWrapper.convert(chest.getLeftSide().getInventory());
 	}
 
 	public ILocation getLocation()
@@ -38,14 +31,7 @@ public abstract class BukkitDoubleChest implements IInventoryHolder
 
 	public IInventoryHolder getRightSide()
 	{
-		return new IInventoryHolder()
-		{
-			@Override
-			public RunsafeInventory getInventory()
-			{
-				return ObjectWrapper.convert(chest.getRightSide().getInventory());
-			}
-		};
+		return () -> ObjectWrapper.convert(chest.getRightSide().getInventory());
 	}
 
 	public double getX()

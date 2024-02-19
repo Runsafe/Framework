@@ -16,7 +16,7 @@ public class Enumeration extends CommandArgumentSpecification<Enum<?>> implement
 	public Enumeration(String name, Enum<?>... values)
 	{
 		super(name);
-		List<String> names = new ArrayList<String>(values.length);
+		List<String> names = new ArrayList<>(values.length);
 		for (Enum<?> value : values)
 		{
 			this.values.put(value.name(), value);
@@ -61,5 +61,5 @@ public class Enumeration extends CommandArgumentSpecification<Enum<?>> implement
 	}
 
 	private final ImmutableList<String> alternatives;
-	private final Map<String, Enum<?>> values = new HashMap<String, Enum<?>>(0);
+	private final Map<String, Enum<?>> values = new HashMap<>(0);
 }

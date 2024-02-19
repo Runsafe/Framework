@@ -10,6 +10,9 @@ public class PacketAnimation extends RunsafePacket
 {
 	public PacketAnimation(IEntity selectedEntity, AnimationType animation)
 	{
-		setPacket(new PacketPlayOutAnimation(ObjectUnwrapper.getMinecraft(selectedEntity), animation.getValue()));
+		Entity entity = ObjectUnwrapper.getMinecraft(selectedEntity);
+		if (entity == null)
+			return;
+		setPacket(new PacketPlayOutAnimation(entity, animation.getValue()));
 	}
 }

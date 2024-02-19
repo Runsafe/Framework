@@ -47,7 +47,7 @@ public class RunsafePlayerInventory extends BukkitPlayerInventory
 			ConfigurationSection contents = unserialize.getConfigurationSection("contents");
 			ConfigurationSection armour = unserialize.getConfigurationSection("armour");
 			for (String index : contents.getKeys(false))
-				playerInventory.setItem(Integer.valueOf(index), contents.getItemStack(index));
+				playerInventory.setItem(Integer.parseInt(index), contents.getItemStack(index));
 			playerInventory.setHelmet(armour.getItemStack("helmet"));
 			playerInventory.setChestplate(armour.getItemStack("chestplate"));
 			playerInventory.setLeggings(armour.getItemStack("leggings"));

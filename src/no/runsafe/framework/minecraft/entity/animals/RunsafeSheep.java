@@ -40,7 +40,7 @@ public class RunsafeSheep extends RunsafeAgeable implements ISheep
 	public void setRandomColour()
 	{
 		DyeColour[] values = DyeColour.values();
-		this.setColour(values[this.random.nextInt(values.length)]);
+		this.setColour(values[random.nextInt(values.length)]);
 	}
 
 	@Override

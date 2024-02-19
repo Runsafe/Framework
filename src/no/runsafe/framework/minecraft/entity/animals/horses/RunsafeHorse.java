@@ -81,5 +81,5 @@ public class RunsafeHorse extends RunsafeAgeable implements IHorse
 		return horse;
 	}
 
-	Horse horse;
+	final Horse horse;
 }

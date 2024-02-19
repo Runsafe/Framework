@@ -43,36 +43,26 @@ public final class PreparedAsynchronousCallbackCommand extends PreparedCommand
 		{
 			final IAsyncCallbackExecute<T> target = (IAsyncCallbackExecute<T>) peek;
 			scheduler.startAsyncTask(
-				new Runnable()
-				{
-					@Override
-					public void run()
+				() -> {
+					try
 					{
-						try
-						{
-							final T result = target.OnAsyncExecute(executor, parameters);
-							scheduler.startSyncTask(
-								new Runnable()
+						final T result = target.OnAsyncExecute(executor, parameters);
+						scheduler.startSyncTask(
+							() -> {
+								try
 								{
-									@Override
-									public void run()
-									{
-										try
-										{
-											target.SyncPostExecute(result);
-										}
-										catch (Exception e)
-										{
-											Console.Global().logException(e);
-										}
-									}
-								}, 1L
-							);
-						}
-						catch (Exception e)
-						{
-							Console.Global().logException(e);
-						}
+									target.SyncPostExecute(result);
+								}
+								catch (Exception e)
+								{
+									Console.Global().logException(e);
+								}
+							}, 1L
+						);
+					}
+					catch (Exception e)
+					{
+						Console.Global().logException(e);
 					}
 				},
 				1L

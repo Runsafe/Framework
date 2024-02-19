@@ -32,7 +32,7 @@ public abstract class RunsafeCancellableCustomEvent extends RunsafeCustomEvent i
 	public void addCancellationHandle(Runnable callback)
 	{
 		if (onCancelled == null)
-			onCancelled = new ArrayList<Runnable>(1);
+			onCancelled = new ArrayList<>(1);
 		onCancelled.add(callback);
 	}
 

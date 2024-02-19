@@ -31,7 +31,7 @@ public class EntityType extends CommandArgumentSpecification<RunsafeEntityType> 
 	public List<String> getAlternatives(IPlayer executor, String partial)
 	{
 		String filter = partial == null ? null : partial.toLowerCase();
-		List<String> alternates = new ArrayList<String>();
+		List<String> alternates = new ArrayList<>();
 
 		for (RunsafeEntityType type : no.runsafe.framework.minecraft.entity.EntityType.getTypesByName(filter))
 			alternates.add(type.getAPIName());

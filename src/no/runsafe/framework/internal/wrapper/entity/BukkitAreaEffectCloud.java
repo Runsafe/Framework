@@ -3,10 +3,8 @@ package no.runsafe.framework.internal.wrapper.entity;
 import no.runsafe.framework.api.entity.IProjectileSource;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.minecraft.WorldEffect;
 import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import org.bukkit.entity.AreaEffectCloud;
-import org.bukkit.entity.Parrot;
 
 public class BukkitAreaEffectCloud extends RunsafeEntity
 {

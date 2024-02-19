@@ -9,8 +9,5 @@ public class RunsafeAreaEffectCloud extends BukkitAreaEffectCloud implements IAr
     public RunsafeAreaEffectCloud(AreaEffectCloud toWrap)
     {
         super(toWrap);
-        cloud = toWrap;
     }
-
-    private final AreaEffectCloud cloud;
 }

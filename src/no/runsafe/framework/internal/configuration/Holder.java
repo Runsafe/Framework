@@ -90,7 +90,7 @@ public class Holder
 		if (configFile == null)
 			return null;
 		ConfigurationSection section = configFile.getConfigurationSection(key);
-		Map<String, String> values = new HashMap<String, String>(1);
+		Map<String, String> values = new HashMap<>(1);
 		if (section != null)
 			for (String subKey : section.getKeys(true))
 				values.put(subKey, section.getString(subKey));
@@ -103,7 +103,7 @@ public class Holder
 		if (configFile == null)
 			return null;
 		ConfigurationSection section = configFile.getConfigurationSection(key);
-		Map<String, Integer> values = new HashMap<String, Integer>(1);
+		Map<String, Integer> values = new HashMap<>(1);
 		if (section != null)
 			for (String subKey : section.getKeys(true))
 				values.put(subKey, section.getInt(subKey));
@@ -116,7 +116,7 @@ public class Holder
 		if (configFile == null)
 			return null;
 		ConfigurationSection section = configFile.getConfigurationSection(key);
-		Map<String, Map<String, String>> results = new HashMap<String, Map<String, String>>(1);
+		Map<String, Map<String, String>> results = new HashMap<>(1);
 		if (section != null)
 			for (String subKey : section.getKeys(false))
 				results.put(subKey, getConfigValuesAsMap(key + '.' + subKey));
@@ -129,7 +129,7 @@ public class Holder
 		if (configFile == null)
 			return null;
 		ConfigurationSection section = configFile.getConfigurationSection(key);
-		Map<String, List<String>> results = new HashMap<String, List<String>>(1);
+		Map<String, List<String>> results = new HashMap<>(1);
 		if (section != null)
 			for (String subKey : section.getKeys(true))
 				results.put(subKey, getConfigValueAsList(key + '.' + subKey));
@@ -142,7 +142,7 @@ public class Holder
 		if (configFile == null)
 			return null;
 		ConfigurationSection section = configFile.getConfigurationSection(key);
-		Map<String, List<Integer>> results = new HashMap<String, List<Integer>>(1);
+		Map<String, List<Integer>> results = new HashMap<>(1);
 		if (section != null)
 			for (String subKey : section.getKeys(true))
 				results.put(subKey, getConfigValueAsIntegerList(key + '.' + subKey));
@@ -176,6 +176,9 @@ public class Holder
 				section.getDouble("z")
 			);
 
+			if (location == null)
+				return null;
+
 			if (section.contains("yaw"))
 				location.setYaw(Float.parseFloat(section.getString("yaw")));
 
@@ -189,7 +192,8 @@ public class Holder
 
 	public IMaterial getConfigValueAsMaterial(String key)
 	{
-		return Configurable.getMaterial(getConfigValueAsString(key));
+		String config = getConfigValueAsString(key);
+		return config == null ? null : Configurable.getMaterial(config);
 	}
 
 	@Nullable

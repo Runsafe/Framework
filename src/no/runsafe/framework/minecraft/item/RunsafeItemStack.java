@@ -16,6 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public abstract class RunsafeItemStack extends BukkitItemStack implements IEnchantable, ITagObject
 {
@@ -36,7 +37,7 @@ public abstract class RunsafeItemStack extends BukkitItemStack implements IEncha
 
 	public static List<RunsafeMeta> convert(ItemStack... items)
 	{
-		List<RunsafeMeta> result = new ArrayList<RunsafeMeta>(items.length);
+		List<RunsafeMeta> result = new ArrayList<>(items.length);
 		for (ItemStack item : items)
 			result.add(ObjectWrapper.convert(item));
 		return result;
@@ -97,6 +98,7 @@ public abstract class RunsafeItemStack extends BukkitItemStack implements IEncha
 		return Item.get(itemStack.getType(), itemStack.getData().getData());
 	}
 
+	@SuppressWarnings("MethodDoesntCallSuperMethod")
 	@Override
 	public RunsafeMeta clone()
 	{
@@ -121,14 +123,18 @@ public abstract class RunsafeItemStack extends BukkitItemStack implements IEncha
 	{
 		net.minecraft.server.v1_12_R1.ItemStack rawItem =
 			(net.minecraft.server.v1_12_R1.ItemStack) ReflectionHelper.getObjectField(itemStack, "handle");
+		if (rawItem == null)
+			return;
 		if (!rawItem.hasTag())
 		{
 			NBTTagCompound tag = new NBTTagCompound();
 			tag.setString(key, value);
 			ReflectionHelper.setField(rawItem, "tag", tag);
+			return;
 		}
-		else
-			rawItem.getTag().setString(key, value);
+
+		NBTTagCompound tag = Objects.requireNonNull(rawItem.getTag());
+		tag.setString(key, value);
 	}
 
 	@Override

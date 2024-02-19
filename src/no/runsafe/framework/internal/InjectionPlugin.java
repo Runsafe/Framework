@@ -78,7 +78,7 @@ public abstract class InjectionPlugin extends JavaPlugin implements IKernel
 	 */
 	public static <T> List<T> getPluginAPI(Class<T> apiType)
 	{
-		List<T> results = new ArrayList<T>(1);
+		List<T> results = new ArrayList<>(1);
 		for (IKernel kernel : pluginContainer.getComponents(IKernel.class))
 		{
 			List<T> instance = kernel.getComponents(apiType);

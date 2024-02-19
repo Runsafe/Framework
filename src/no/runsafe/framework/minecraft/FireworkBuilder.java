@@ -47,37 +47,37 @@ public class FireworkBuilder
 
 	public FireworkBuilder Effect(Firework.EffectType effect)
 	{
-		builder = builder.with(effect.getType());
+		builder.with(effect.getType());
 		return this;
 	}
 
 	public FireworkBuilder Ball()
 	{
-		builder = builder.with(FireworkEffect.Type.BALL);
+		builder.with(FireworkEffect.Type.BALL);
 		return this;
 	}
 
 	public FireworkBuilder LargeBall()
 	{
-		builder = builder.with(FireworkEffect.Type.BALL_LARGE);
+		builder.with(FireworkEffect.Type.BALL_LARGE);
 		return this;
 	}
 
 	public FireworkBuilder Star()
 	{
-		builder = builder.with(FireworkEffect.Type.STAR);
+		builder.with(FireworkEffect.Type.STAR);
 		return this;
 	}
 
 	public FireworkBuilder Burst()
 	{
-		builder = builder.with(FireworkEffect.Type.BURST);
+		builder.with(FireworkEffect.Type.BURST);
 		return this;
 	}
 
 	public FireworkBuilder Creeper()
 	{
-		builder = builder.with(FireworkEffect.Type.CREEPER);
+		builder.with(FireworkEffect.Type.CREEPER);
 		return this;
 	}
 
@@ -88,7 +88,7 @@ public class FireworkBuilder
 
 	public FireworkBuilder Trail(boolean trail)
 	{
-		builder = builder.trail(trail);
+		builder.trail(trail);
 		return this;
 	}
 
@@ -99,31 +99,31 @@ public class FireworkBuilder
 
 	public FireworkBuilder Flicker(boolean flicker)
 	{
-		builder = builder.flicker(flicker);
+		builder.flicker(flicker);
 		return this;
 	}
 
 	public FireworkBuilder Colour(String rgb)
 	{
-		builder = builder.withColor(Color.fromRGB(Integer.parseInt(rgb, HEXADECIMAL)));
+		builder.withColor(Color.fromRGB(Integer.parseInt(rgb, HEXADECIMAL)));
 		return this;
 	}
 
 	public FireworkBuilder Colour(byte red, byte green, byte blue)
 	{
-		builder = builder.withColor(Color.fromRGB(red, green, blue));
+		builder.withColor(Color.fromRGB(red, green, blue));
 		return this;
 	}
 
 	public FireworkBuilder Fade(String rgb)
 	{
-		builder = builder.withFade(Color.fromRGB(Integer.parseInt(rgb, HEXADECIMAL)));
+		builder.withFade(Color.fromRGB(Integer.parseInt(rgb, HEXADECIMAL)));
 		return this;
 	}
 
 	public FireworkBuilder Fade(byte red, byte green, byte blue)
 	{
-		builder = builder.withFade(Color.fromRGB(red, green, blue));
+		builder.withFade(Color.fromRGB(red, green, blue));
 		return this;
 	}
 
@@ -152,11 +152,14 @@ public class FireworkBuilder
 	{
 		IEntity fireworkEntity = ProjectileEntity.Firework.spawn(location);
 		org.bukkit.entity.Firework firework = ObjectUnwrapper.convert(fireworkEntity);
+		if (firework == null)
+			return;
 
-		firework.getFireworkMeta().setPower(power);
+		FireworkMeta meta = firework.getFireworkMeta();
+		meta.setPower(power);
 		if (!effects.isEmpty())
-			firework.getFireworkMeta().addEffects(effects);
-		firework.getFireworkMeta().addEffect(builder.build());
+			meta.addEffects(effects);
+		meta.addEffect(builder.build());
 	}
 
 	public void Give(IPlayer player)
@@ -170,7 +173,7 @@ public class FireworkBuilder
 	}
 
 	private FireworkEffect.Builder builder;
-	private final Collection<FireworkEffect> effects = new ArrayList<FireworkEffect>(0);
+	private final Collection<FireworkEffect> effects = new ArrayList<>(0);
 	private int power;
 
 	private static final Random rng = new Random();

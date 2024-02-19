@@ -116,7 +116,7 @@ public class Player extends BasePlayerArgument
 			if (!isRequired() && expand)
 				return null;
 		}
-		if (matches != null && matches.size() == 1)
+		if (matches.size() == 1)
 			return matches.get(0);
 
 		context.sendColouredMessage("Unable to locate any players matching '%s'!", value);
@@ -143,7 +143,7 @@ public class Player extends BasePlayerArgument
 			if (!isRequired() && expand)
 				return null;
 		}
-		if (matches != null && matches.size() == 1)
+		if (matches.size() == 1)
 			return matches.get(0);
 
 		context.sendColouredMessage("Unable to locate any players matching '%s'!", value);

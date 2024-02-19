@@ -2,7 +2,6 @@ package no.runsafe.framework.minecraft;
 
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.minecraft.Item;
-import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 public class Effect

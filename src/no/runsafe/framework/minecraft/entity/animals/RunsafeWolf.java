@@ -8,7 +8,6 @@ import no.runsafe.framework.minecraft.Sound;
 import no.runsafe.framework.minecraft.entityData.DyeColour;
 import no.runsafe.framework.minecraft.entity.RunsafeAgeable;
 import org.bukkit.DyeColor;
-import org.bukkit.entity.AnimalTamer;
 import org.bukkit.entity.Wolf;
 
 import javax.annotation.Nullable;
@@ -72,7 +71,7 @@ public class RunsafeWolf extends RunsafeAgeable implements IWolf
 	@Override
 	public void setOwner(IAnimalTamer tamer)
 	{
-		wolf.setOwner((AnimalTamer) ObjectUnwrapper.convert(tamer));
+		wolf.setOwner(ObjectUnwrapper.convert(tamer));
 	}
 
 	@Override

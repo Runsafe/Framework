@@ -34,7 +34,7 @@ public class RunsafeCancellableBlockEvent extends RunsafeBlockEvent implements C
 	public void addCancellationHandle(Runnable callback)
 	{
 		if (cancellationCallbacks == null)
-			cancellationCallbacks = new ArrayList<Runnable>(1);
+			cancellationCallbacks = new ArrayList<>(1);
 		cancellationCallbacks.add(callback);
 	}
 

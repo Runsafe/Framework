@@ -47,10 +47,10 @@ public class RunsafeEntityEquipment extends BukkitEntityEquipment
 
 	public RunsafeEntityEquipment setArmorContents(Iterable<RunsafeMeta> itemStacks)
 	{
-		Collection<ItemStack> bukkitItemStacks = new ArrayList<ItemStack>(4);
+		Collection<ItemStack> bukkitItemStacks = new ArrayList<>(4);
 		for (RunsafeMeta itemStack : itemStacks)
 			bukkitItemStacks.add(itemStack.getRaw());
-		entityEquipment.setArmorContents(bukkitItemStacks.toArray(new ItemStack[bukkitItemStacks.size()]));
+		entityEquipment.setArmorContents(bukkitItemStacks.toArray(new ItemStack[0]));
 		return this;
 	}
 

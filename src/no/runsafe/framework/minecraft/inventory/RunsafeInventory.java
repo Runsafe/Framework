@@ -143,7 +143,7 @@ public class RunsafeInventory extends BukkitInventory
 			unserialize.loadFromString(serialized);
 			ConfigurationSection contents = unserialize.getConfigurationSection("contents");
 			for (String index : contents.getKeys(false))
-				inventory.setItem(Integer.valueOf(index), contents.getItemStack(index));
+				inventory.setItem(Integer.parseInt(index), contents.getItemStack(index));
 		}
 		catch (InvalidConfigurationException e)
 		{

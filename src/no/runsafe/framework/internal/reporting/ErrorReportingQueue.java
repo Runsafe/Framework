@@ -46,7 +46,7 @@ public class ErrorReportingQueue extends Worker<String, Throwable>
 		);
 	}
 
-	private final ConcurrentMap<String, Object> reported = new ConcurrentHashMap<String, Object>();
+	private final ConcurrentMap<String, Object> reported = new ConcurrentHashMap<>();
 	private final MessageDigest hasher;
 	private final Plugin plugin;
 }

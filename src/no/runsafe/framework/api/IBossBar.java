@@ -28,7 +28,7 @@ public interface IBossBar
     /**
      * Set players who are viewing this boss bar.
      * Removes players not on this list.
-     * @param players
+     * @param players the active players
      */
     void setActivePlayers(List<IPlayer> players);
 }

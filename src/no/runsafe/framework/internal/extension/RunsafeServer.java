@@ -101,7 +101,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 			return null;
 
 		String lookup = playerName.toLowerCase();
-		List<OfflinePlayer> players = new ArrayList<OfflinePlayer>(server.getOnlinePlayers().size());
+		List<OfflinePlayer> players = new ArrayList<>(server.getOnlinePlayers().size());
 		for (OfflinePlayer player : server.getOnlinePlayers())
 			if (player.getName().toLowerCase().startsWith(lookup))
 				players.add(player);
@@ -117,7 +117,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 			return null;
 
 		String lookup = playerName.toLowerCase();
-		List<String> players = new ArrayList<String>(server.getOnlinePlayers().size());
+		List<String> players = new ArrayList<>(server.getOnlinePlayers().size());
 		for (OfflinePlayer player : server.getOnlinePlayers())
 			if (player.getName().toLowerCase().startsWith(lookup))
 				players.add(player.getName());
@@ -167,7 +167,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 		if (context == null || players == null)
 			return players;
 
-		List<IPlayer> filtered = new ArrayList<IPlayer>(players.size());
+		List<IPlayer> filtered = new ArrayList<>(players.size());
 		for (IPlayer player : players)
 			if (context.shouldNotSee(player))
 				filtered.add(player);
@@ -227,7 +227,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 		if (permission == null || permission.isEmpty())
 			return Lists.newArrayList();
 
-		List<IPlayer> results = new ArrayList<IPlayer>(server.getOnlinePlayers().size());
+		List<IPlayer> results = new ArrayList<>(server.getOnlinePlayers().size());
 		for (Player player : server.getOnlinePlayers())
 			if (player.hasPermission(permission))
 				results.add(ObjectWrapper.convert((OfflinePlayer) player));
@@ -254,7 +254,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 		if (matches == null || matches.isEmpty())
 			return Lists.newArrayList();
 
-		List<String> players = new ArrayList<String>(matches.size());
+		List<String> players = new ArrayList<>(matches.size());
 		for (IPlayer player : matches)
 		{
 			if (context.shouldNotSee(player))

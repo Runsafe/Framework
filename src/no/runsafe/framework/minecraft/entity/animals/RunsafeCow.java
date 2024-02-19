@@ -12,7 +12,6 @@ public class RunsafeCow extends RunsafeAgeable implements ICow
 	public RunsafeCow(Cow toWrap)
 	{
 		super(toWrap);
-		cow = toWrap;
 	}
 
 	@Override
@@ -21,6 +20,4 @@ public class RunsafeCow extends RunsafeAgeable implements ICow
 	{
 		return Sound.Creature.Cow.Idle;
 	}
-
-	private final Cow cow;
 }

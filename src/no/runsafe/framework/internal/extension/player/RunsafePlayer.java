@@ -104,6 +104,8 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 	public void teleport(IWorld world, double x, double y, double z)
 	{
 		ILocation target = world.getLocation(x, y, z);
+		if (target == null)
+			return;
 		IChunk chunk = target.getChunk();
 		if (chunk.isUnloaded())
 			chunk.load();
@@ -120,7 +122,7 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 	@SuppressWarnings("HardcodedFileSeparator")
 	public Map<String, String> getBasicData()
 	{
-		Map<String, String> data = new LinkedHashMap<String, String>(7);
+		Map<String, String> data = new LinkedHashMap<>(7);
 		if (player != null && isOnline())
 		{
 			data.put("game.ip",
@@ -227,6 +229,8 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 	{
 		int found = 0;
 		RunsafePlayerInventory inventory = getInventory();
+		if (inventory == null)
+			return false;
 
 		for (int slot = 0; slot < inventory.getSize(); slot++)
 		{
@@ -313,7 +317,7 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 	@Override
 	public void sendComplexMessage(String message, String hoverText, String clickCommand)
 	{
-		if (message == null)
+		if (message == null || player == null)
 			return;
 
 		TextComponent component = new TextComponent(ChatColour.ToMinecraft(message));

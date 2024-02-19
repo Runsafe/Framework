@@ -13,6 +13,10 @@ public class EntityCompacter
 	public static String convertEntityToString(ILivingEntity livingEntity)
 	{
 		EntityLiving entity = (EntityLiving) ObjectUnwrapper.getMinecraft(livingEntity);
+		if (entity == null)
+		{
+			throw new RuntimeException("Entity could not be unwrapped");
+		}
 		NBTTagCompound compound = new NBTTagCompound();
 		entity.b(compound);
 

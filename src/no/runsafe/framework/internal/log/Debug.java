@@ -7,6 +7,7 @@ import no.runsafe.framework.internal.text.ConsoleColour;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 
+import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,7 +16,8 @@ import java.util.logging.Level;
 
 public final class Debug extends LoggingBase implements IDebug
 {
-	@SuppressWarnings({"ReturnOfNull", "CallToPrintStackTrace", "NonThreadSafeLazyInitialization", "StaticVariableUsedBeforeInitialization"})
+	@SuppressWarnings("CallToPrintStackTrace")
+	@Nonnull
 	public static IDebug Global()
 	{
 		try
@@ -26,7 +28,7 @@ public final class Debug extends LoggingBase implements IDebug
 		catch (IOException e)
 		{
 			e.printStackTrace();
-			return null;
+			throw new RuntimeException(e);
 		}
 		return globalDebugger;
 	}
@@ -153,7 +155,7 @@ public final class Debug extends LoggingBase implements IDebug
 	private static String getStackTrace()
 	{
 		int skip = 5;
-		Collection<String> stack = new ArrayList<String>(5);
+		Collection<String> stack = new ArrayList<>(5);
 		for (StackTraceElement element : Thread.currentThread().getStackTrace())
 		{
 			if (skip < 1)

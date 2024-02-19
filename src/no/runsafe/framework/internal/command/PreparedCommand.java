@@ -61,7 +61,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 		if (takeSub)
 			return filterList(command.peek().getSubCommands(executor), args[args.length - 1]);
 
-		if (takeParams && whitespaceInclusive)
+		if (whitespaceInclusive)
 			return getSuggestions(params.get(params.size() - 1), args);
 
 		return null;
@@ -102,7 +102,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 	@Override
 	public String usage(ICommandHandler target)
 	{
-		Collection<String> params = new ArrayList<String>(command.size());
+		Collection<String> params = new ArrayList<>(command.size());
 		for (ICommandHandler tier : command)
 			params.add(tier.getUsageCommandParams(executor));
 
@@ -114,7 +114,7 @@ public abstract class PreparedCommand implements IPreparedCommand
 	{
 		if (filter == null || filter.isEmpty())
 			return Lists.newArrayList(values);
-		List<String> matches = new ArrayList<String>(1);
+		List<String> matches = new ArrayList<>(1);
 		for (String value : values)
 			if (value.toLowerCase().startsWith(filter.toLowerCase()))
 				matches.add(value);

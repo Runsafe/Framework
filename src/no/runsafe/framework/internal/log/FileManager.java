@@ -18,10 +18,10 @@ public final class FileManager
 {
 	public FileManager(FrameworkConfiguration config)
 	{
-		levelFormat = new HashMap<Level, String>(0);
-		globalLogFormat = new HashMap<String, String>(0);
-		defaultDebugLevel = new HashMap<String, Level>(0);
-		logFormats = new HashMap<String, Map<String, String>>(0);
+		levelFormat = new HashMap<>(0);
+		globalLogFormat = new HashMap<>(0);
+		defaultDebugLevel = new HashMap<>(0);
+		logFormats = new HashMap<>(0);
 
 		configure(config);
 	}
@@ -122,23 +122,35 @@ public final class FileManager
 				System.exit(1);
 			}
 		logToOriginalConsole = !config.getConfigValueAsBoolean("output.split");
-		defaultDebugLevel.putAll(castLevelMap(config.getConfigValuesAsMap("output.debug")));
-		levelFormat.putAll(castStringLevel(config.getConfigValuesAsMap("output.format.level")));
-		logFormats.putAll(config.getConfigSectionsAsMap("output.format.logger"));
-		globalLogFormat.putAll(config.getConfigValuesAsMap("output.format.global"));
+
+		Map<String, String> debug = config.getConfigValuesAsMap("output.debug");
+		if (debug != null)
+			defaultDebugLevel.putAll(castLevelMap(debug));
+
+		Map<String, String> level = config.getConfigValuesAsMap("output.format.level");
+		if (level != null)
+			levelFormat.putAll(castStringLevel(level));
+
+		Map<String, Map<String, String>> logger = config.getConfigSectionsAsMap("output.format.logger");
+		if (logger != null)
+			logFormats.putAll(logger);
+
+		Map<String, String> global = config.getConfigValuesAsMap("output.format.global");
+		if (global != null)
+			globalLogFormat.putAll(global);
 	}
 
 	private final Map<String, Map<String, String>> logFormats;
 	private final Map<String, String> globalLogFormat;
 	private final Map<Level, String> levelFormat;
 	private final Map<String, Level> defaultDebugLevel;
-	private final Map<String, Logger> loggers = new ConcurrentHashMap<String, Logger>();
+	private final Map<String, Logger> loggers = new ConcurrentHashMap<>();
 	private boolean logToOriginalConsole;
 	private File logFolder;
 
 	private static Map<String, Level> castLevelMap(Map<String, String> data)
 	{
-		Map<String, Level> cast = new HashMap<String, Level>(data.size());
+		Map<String, Level> cast = new HashMap<>(data.size());
 		for (Map.Entry<String, String> entry : data.entrySet())
 			cast.put(entry.getKey(), Level.parse(entry.getValue().toUpperCase()));
 		return cast;
@@ -146,7 +158,7 @@ public final class FileManager
 
 	private static Map<Level, String> castStringLevel(Map<String, String> data)
 	{
-		Map<Level, String> cast = new HashMap<Level, String>(data.size());
+		Map<Level, String> cast = new HashMap<>(data.size());
 		for (Map.Entry<String, String> entry : data.entrySet())
 			cast.put(Level.parse(entry.getKey().toUpperCase()), ChatColour.ToConsole(entry.getValue()));
 		return cast;

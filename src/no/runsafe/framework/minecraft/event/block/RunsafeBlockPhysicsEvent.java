@@ -7,8 +7,5 @@ public class RunsafeBlockPhysicsEvent extends RunsafeCancellableBlockEvent
 	public RunsafeBlockPhysicsEvent(BlockPhysicsEvent toWrap)
 	{
 		super(toWrap);
-		event = toWrap;
 	}
-
-	private final BlockPhysicsEvent event;
 }

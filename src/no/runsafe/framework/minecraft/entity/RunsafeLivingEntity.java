@@ -3,10 +3,8 @@ package no.runsafe.framework.minecraft.entity;
 import net.minecraft.server.v1_12_R1.EntityInsentient;
 import net.minecraft.server.v1_12_R1.EntityLiving;
 import net.minecraft.server.v1_12_R1.PathfinderGoal;
-import net.minecraft.server.v1_12_R1.PathfinderGoalSelector;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.minecraft.RunsafeEntityType;
-import no.runsafe.framework.internal.LegacyMaterial;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.entity.BukkitLivingEntity;
 import no.runsafe.framework.internal.wrapper.entity.BukkitProjectile;
@@ -22,7 +20,6 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.Vector;
 
 import javax.annotation.Nullable;
-import java.lang.reflect.Field;
 import java.util.HashSet;
 
 public class RunsafeLivingEntity extends BukkitLivingEntity
@@ -87,14 +84,14 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 			return;
 		EntityInsentient rawInsentientEntity = (EntityInsentient) rawLivingEntity;
 		// Field name stays the same up to Minecraft 1.12.
-		ReflectionHelper.setField(rawInsentientEntity.goalSelector, "b", new UnsafeList());
-		ReflectionHelper.setField(rawInsentientEntity.targetSelector, "b", new UnsafeList());
+		ReflectionHelper.setField(rawInsentientEntity.goalSelector, "b", new UnsafeList<>());
+		ReflectionHelper.setField(rawInsentientEntity.targetSelector, "b", new UnsafeList<>());
 	}
 
 	/**
 	 * Adds a new pathfinding goal.
 	 * Reccomended to stop all pathfinding before using this to avoid problems with the goal number.
-	 * @param priority
+	 * @param priority The priority of the goal
 	 * @param goal The pathfinding goal to use.
 	 */
 	@Override
@@ -110,7 +107,7 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 
 	/**
 	 * Adds a new pathfinding target.
-	 * @param priority
+	 * @param priority The priority of the goal
 	 * @param target The pathfinding target to use.
 	 */
 	@Override

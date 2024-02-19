@@ -24,7 +24,7 @@ public class Duration extends CommandArgumentSpecification<java.time.Duration>
 		if (param == null || param.isEmpty())
 			return defaultValue;
 
-		param.toLowerCase();
+		param = param.toLowerCase();
 		if (!param.matches("^[0-9]+[y|wdhms]$"))
 		{
 			sendInvalidInputMessage(context);
@@ -32,9 +32,12 @@ public class Duration extends CommandArgumentSpecification<java.time.Duration>
 		}
 
 		char timeType = param.charAt(param.length() - 1);
-		Long duration = Long.valueOf(StringUtils.substring(param, 0, param.length() - 1));
-
-		if (duration == null)
+		long duration;
+		try
+		{
+			duration = Long.parseLong(StringUtils.substring(param, 0, param.length() - 1));
+		}
+		catch (NumberFormatException e)
 		{
 			sendInvalidInputMessage(context);
 			return null;

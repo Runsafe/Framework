@@ -63,5 +63,5 @@ public final class Player
 	}
 
 	private final IServer server;
-	private final ConcurrentHashMap<UUID, IPlayer> kickingPlayer = new ConcurrentHashMap<UUID, IPlayer>();
+	private final ConcurrentHashMap<UUID, IPlayer> kickingPlayer = new ConcurrentHashMap<>();
 }

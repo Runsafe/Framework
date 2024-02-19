@@ -10,7 +10,6 @@ import no.runsafe.framework.api.event.player.IPlayerRespawn;
 import no.runsafe.framework.internal.event.listener.EventRouterBase;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -40,7 +39,7 @@ public final class Respawn extends EventRouterBase<IPlayerRespawn, PlayerRespawn
 			event.isBedSpawn()
 		);
 		if (redirect != null && !(handler instanceof IAsyncEvent))
-			event.setRespawnLocation((Location) ObjectUnwrapper.convert(redirect));
+			event.setRespawnLocation(ObjectUnwrapper.convert(redirect));
 
 		return false;
 	}

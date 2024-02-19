@@ -1,5 +1,8 @@
 package no.runsafe.framework.internal.wrapper.player;
 
+import net.minecraft.server.v1_12_R1.Entity;
+import net.minecraft.server.v1_12_R1.EntityHuman;
+import net.minecraft.server.v1_12_R1.EntityTypes;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.entity.IEntity;
@@ -10,7 +13,6 @@ import no.runsafe.framework.internal.InjectionPlugin;
 import no.runsafe.framework.internal.LegacyMaterial;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
-import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.Sound;
 import no.runsafe.framework.minecraft.entity.RunsafeLivingEntity;
 import no.runsafe.framework.minecraft.inventory.RunsafeInventory;
@@ -125,22 +127,24 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 	public void sendBlockChange(ILocation location, int itemId, byte data)
 	{
 		if (player != null)
-			player.sendBlockChange((Location) ObjectUnwrapper.convert(location), itemId, data);
+			player.sendBlockChange(ObjectUnwrapper.convert(location), itemId, data);
 	}
 
 	public void sendSignChange(ILocation location, String line1, String line2, String line3, String line4)
 	{
-		player.sendSignChange((Location) ObjectUnwrapper.convert(location), new String[]{line1, line2, line3, line4});
+		if (player != null)
+			player.sendSignChange(ObjectUnwrapper.convert(location), new String[]{line1, line2, line3, line4});
 	}
 
 	public void setCompassTarget(ILocation location)
 	{
-		player.setCompassTarget((Location) ObjectUnwrapper.convert(location));
+		if (player != null)
+			player.setCompassTarget(ObjectUnwrapper.convert(location));
 	}
 
 	public ILocation getCompassTarget()
 	{
-		return ObjectWrapper.convert(player.getCompassTarget());
+		return player == null ? null : ObjectWrapper.convert(player.getCompassTarget());
 	}
 
 	public void playSound(Sound sound)
@@ -150,7 +154,8 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 
 	public void playSound(Sound sound, float volume, float pitch)
 	{
-		player.playSound(player.getLocation(), sound.getSound(), volume, pitch);
+		if (player != null)
+			player.playSound(player.getLocation(), sound.getSound(), volume, pitch);
 	}
 
 	@Deprecated
@@ -354,32 +359,46 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 
 	public IEntity getLeftShoulderEntity()
 	{
-		return ObjectWrapper.convert(player.getShoulderEntityLeft());
+		if (player == null || !(player instanceof EntityHuman))
+			return null;
+
+		EntityHuman human = (EntityHuman)player;
+		Entity entity = EntityTypes.a(human.getShoulderEntityLeft(), human.world);
+		return entity == null ? null : ObjectWrapper.convert(entity.getBukkitEntity());
 	}
 
 	public IEntity getRightShoulderEntity()
 	{
-		return ObjectWrapper.convert(player.getShoulderEntityRight());
+		if (player == null || !(player instanceof EntityHuman))
+			return null;
+
+		EntityHuman human = (EntityHuman)player;
+		Entity entity = EntityTypes.a(human.getShoulderEntityRight(), human.world);
+		return entity == null ? null : ObjectWrapper.convert(entity.getBukkitEntity());
 	}
 
 	public void setLeftShoulderEntity(IEntity entity)
 	{
+		if (player == null || !(player instanceof EntityHuman))
+			return;
 		if (entity == null)
 		{
-			player.setShoulderEntityLeft(null);
+			((EntityHuman)player).setShoulderEntityLeft(null);
 			return;
 		}
-		player.setShoulderEntityLeft(ObjectUnwrapper.convert(entity));
+		((EntityHuman)player).setShoulderEntityLeft(ObjectUnwrapper.convert(entity));
 	}
 
 	public void setRightShoulderEntity(IEntity entity)
 	{
+		if (player == null || !(player instanceof EntityHuman))
+			return;
 		if (entity == null)
 		{
-			player.setShoulderEntityRight(null);
+			((EntityHuman)player).setShoulderEntityRight(null);
 			return;
 		}
-		player.setShoulderEntityRight(ObjectUnwrapper.convert(entity));
+		((EntityHuman)player).setShoulderEntityRight(ObjectUnwrapper.convert(entity));
 	}
 
 	/**
@@ -388,7 +407,13 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 	 * @param title Main title message.
 	 * @param subtitle Subtitle message.
 	 */
+	@Deprecated
 	public void sendTitle(String title, String subtitle)
+	{
+		sendtitle(title, subtitle, 10, 70, 20);
+	}
+
+	public void sendtitle(String title, String subtitle, int fadeIn, int stay, int fadeOut)
 	{
 		if (player == null)
 			return;
@@ -399,12 +424,12 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 		if (subtitle == null)
 			subtitle = "";
 
-		player.sendTitle(ChatColour.ToMinecraft(title), ChatColour.ToMinecraft(subtitle));
+		player.sendTitle(ChatColour.ToMinecraft(title), ChatColour.ToMinecraft(subtitle), fadeIn, stay, fadeOut);
 	}
 
 	/**
 	 * Resets title sent to player.
-	 * Makes title dissapear from player's view if it hasn't already
+	 * Makes title disappear from player's view if it hasn't already
 	 */
 	public void resetTitle()
 	{
@@ -414,7 +439,13 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 
 	public void setFacing(ILocation targetLocation)
 	{
+		if (player == null)
+			return;
+
 		Location target = ObjectUnwrapper.convert(targetLocation);
+		if (target == null)
+			return;
+
 		Vector dir = target.clone().subtract(player.getEyeLocation()).toVector();
 		Location loc = player.getLocation().setDirection(dir);
 		player.teleport(loc);
@@ -422,6 +453,9 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 
 	public ILocation getLocationBehindPlayer(double distance, boolean getHighestBlock)
 	{
+		if (player == null)
+			return null;
+
 		Location playerLocation = player.getLocation();
 		Location location = playerLocation.clone();
 

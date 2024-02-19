@@ -141,7 +141,7 @@ public final class PlayerExtensions implements IPlayerExtensions
 	@Override
 	public ImmutableList<String> getGroups(RunsafePlayer player)
 	{
-		List<String> result = new ArrayList<String>(5);
+		List<String> result = new ArrayList<>(5);
 		for (IPlayerPermissions hook : getHooks(IPlayerPermissions.class))
 		{
 			List<String> groups = hook.getUserGroups(player);
@@ -202,7 +202,7 @@ public final class PlayerExtensions implements IPlayerExtensions
 		if (hooks == null)
 			return Lists.newArrayList();
 
-		List<String> groups = new ArrayList<String>(hooks.size() * 5);
+		List<String> groups = new ArrayList<>(hooks.size() * 5);
 		for (IPlayerPermissions hook : hooks)
 		{
 			List<String> hookGroups = hook.getGroups();
@@ -218,7 +218,7 @@ public final class PlayerExtensions implements IPlayerExtensions
 		if (playerName == null || playerName.isEmpty())
 			return ImmutableList.of();
 
-		List<String> hits = new ArrayList<String>(1);
+		List<String> hits = new ArrayList<>(1);
 		for (IPlayerLookupService lookup : getHooks(IPlayerLookupService.class))
 		{
 			List<String> data = lookup.findPlayer(playerName);

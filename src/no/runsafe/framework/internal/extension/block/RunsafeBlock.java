@@ -94,9 +94,9 @@ public class RunsafeBlock extends BukkitBlock implements IBlock
 		return block.getType().hasGravity();
 	}
 
-	private static final Collection<Material> passableBlocks = new ArrayList<Material>(40);
-	private static final Collection<Material> interfaceBlocks = new ArrayList<Material>(12);
-	private static final Collection<Material> interactBlocks = new ArrayList<Material>(12);
+	private static final Collection<Material> passableBlocks = new ArrayList<>(40);
+	private static final Collection<Material> interfaceBlocks = new ArrayList<>(12);
+	private static final Collection<Material> interactBlocks = new ArrayList<>(12);
 
 	static
 	{

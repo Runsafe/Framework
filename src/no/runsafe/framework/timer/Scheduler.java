@@ -35,7 +35,7 @@ public class Scheduler implements IScheduler
 	/**
 	 * @deprecated Please do not use this, it can hard lock the server if called from the main thread
 	 * @param func A function to run immediately
-	 * @return
+	 * @return true if function did not throw an exception
 	 */
 	@Deprecated
 	@Override
@@ -49,7 +49,7 @@ public class Scheduler implements IScheduler
 	private static String getStackTrace()
 	{
 		int skip = 2;
-		Collection<String> stack = new ArrayList<String>(5);
+		Collection<String> stack = new ArrayList<>(5);
 		for (StackTraceElement element : Thread.currentThread().getStackTrace())
 		{
 			if (skip < 1)
@@ -74,24 +74,19 @@ public class Scheduler implements IScheduler
 		{
 			scheduler.runTask(
 				plugin,
-				new Runnable()
-				{
-					@Override
-					public void run()
+				() -> {
+					try
 					{
-						try
-						{
-							func.run();
-							success = true;
-						}
-						catch (Exception e)
-						{
-							console.logException(e);
-						}
-						finally
-						{
-							running = false;
-						}
+						func.run();
+						success = true;
+					}
+					catch (Exception e)
+					{
+						console.logException(e);
+					}
+					finally
+					{
+						running = false;
 					}
 				}
 			);

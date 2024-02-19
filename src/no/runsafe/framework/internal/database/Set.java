@@ -316,5 +316,5 @@ public final class Set implements ISet
 		}
 	}
 
-	private final ArrayList<IRow> list = new ArrayList<IRow>(0);
+	private final ArrayList<IRow> list = new ArrayList<>(0);
 }

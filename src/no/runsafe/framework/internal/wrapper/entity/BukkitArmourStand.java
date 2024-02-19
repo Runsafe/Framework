@@ -191,7 +191,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 
 	/**
 	 * Makes armour stand big or small.
-	 * @param smallValue
+	 * @param smallValue true for small
 	 */
 	public void setSmall(boolean smallValue)
 	{
@@ -211,7 +211,7 @@ public abstract class BukkitArmourStand extends RunsafeLivingEntity
 
 	/**
 	 * Sets whether the armour stand is a marker.
-	 * @param markerValue
+	 * @param markerValue true for marker
 	 */
 	public void setMarker(boolean markerValue)
 	{

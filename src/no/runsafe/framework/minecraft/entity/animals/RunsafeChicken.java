@@ -12,7 +12,6 @@ public class RunsafeChicken extends RunsafeAgeable implements IChicken
 	public RunsafeChicken(Chicken toWrap)
 	{
 		super(toWrap);
-		chicken = toWrap;
 	}
 
 	@Override
@@ -21,6 +20,4 @@ public class RunsafeChicken extends RunsafeAgeable implements IChicken
 	{
 		return Sound.Creature.Chicken.Idle;
 	}
-
-	private final Chicken chicken;
 }

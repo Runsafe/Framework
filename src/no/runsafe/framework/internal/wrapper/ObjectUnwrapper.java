@@ -10,7 +10,6 @@ import no.runsafe.framework.minecraft.entity.RunsafeProjectile;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_12_R1.block.CraftBlock;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftProjectile;
@@ -44,7 +43,7 @@ public final class ObjectUnwrapper
 		if (bukkitBlock == null)
 			return null;
 
-		return CraftMagicNumbers.getBlock((CraftBlock) bukkitBlock);
+		return CraftMagicNumbers.getBlock(bukkitBlock);
 	}
 
 	@Nullable
@@ -69,7 +68,7 @@ public final class ObjectUnwrapper
 	public static World getMinecraft(IWorld world)
 	{
 		org.bukkit.World bukkitWorld = convert(world);
-		return ((CraftWorld) bukkitWorld).getHandle();
+		return bukkitWorld == null ? null : ((CraftWorld) bukkitWorld).getHandle();
 	}
 
 	@Nullable

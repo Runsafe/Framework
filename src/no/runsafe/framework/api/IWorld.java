@@ -61,7 +61,7 @@ public interface IWorld extends IMetadata
 
 	int getMaxHeight();
 
-	@Nonnull
+	@Nullable
 	IEntity spawnCreature(ILocation location, String type);
 
 	@Nonnull

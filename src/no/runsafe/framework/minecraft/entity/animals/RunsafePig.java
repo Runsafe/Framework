@@ -12,7 +12,6 @@ public class RunsafePig extends RunsafeAgeable implements IPig
 	public RunsafePig(Pig toWrap)
 	{
 		super(toWrap);
-		pig = toWrap;
 	}
 
 	@Override
@@ -21,6 +20,4 @@ public class RunsafePig extends RunsafeAgeable implements IPig
 	{
 		return Sound.Creature.Pig.Idle;
 	}
-
-	private final Pig pig;
 }

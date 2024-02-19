@@ -6,12 +6,14 @@ import no.runsafe.framework.text.ChatColour;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 
+import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.util.logging.Level;
 
 public final class Console extends LoggingBase implements IConsole
 {
-	@SuppressWarnings({"ReturnOfNull", "CallToPrintStackTrace", "NonThreadSafeLazyInitialization", "StaticVariableUsedBeforeInitialization"})
+	@SuppressWarnings("CallToPrintStackTrace")
+	@Nonnull
 	public static IConsole Global()
 	{
 		try
@@ -22,7 +24,7 @@ public final class Console extends LoggingBase implements IConsole
 		catch (IOException e)
 		{
 			e.printStackTrace();
-			return null;
+			throw new RuntimeException(e);
 		}
 		return globalConsole;
 	}

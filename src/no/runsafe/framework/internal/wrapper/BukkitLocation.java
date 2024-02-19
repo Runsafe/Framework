@@ -118,15 +118,19 @@ public abstract class BukkitLocation implements IWrapper<Location>
 
 	public double distance(ILocation location)
 	{
-		if (!location.getWorld().getName().equals(((Location) ObjectUnwrapper.convert(location)).getWorld().getName()))
+		Location other = ObjectUnwrapper.convert(location);
+		if (other == null)
 			return Double.NaN;
 
-		return this.location.distance((Location) ObjectUnwrapper.convert(location));
+		if (!this.location.getWorld().getName().equals(other.getWorld().getName()))
+			return Double.NaN;
+
+		return this.location.distance(other);
 	}
 
 	public double distanceSquared(ILocation location)
 	{
-		return this.location.distanceSquared((Location) ObjectUnwrapper.convert(location));
+		return this.location.distanceSquared(ObjectUnwrapper.convert(location));
 	}
 
 	public ILocation multiply(double factor)
@@ -149,6 +153,7 @@ public abstract class BukkitLocation implements IWrapper<Location>
 		location.setDirection(location.toVector().subtract(otherLocation.toVector()));
 	}
 
+	@SuppressWarnings("MethodDoesntCallSuperMethod")
 	@Override
 	public ILocation clone()
 	{

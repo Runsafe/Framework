@@ -28,8 +28,8 @@ public final class LegacyMaterial
 
 	static
 	{
-		legacyIdMap = new ConcurrentHashMap<Integer, Material>();
-		legacyMaterialMap = new ConcurrentHashMap<Material, Integer>();
+		legacyIdMap = new ConcurrentHashMap<>();
+		legacyMaterialMap = new ConcurrentHashMap<>();
 
 		Map(0, Material.AIR);
 		Map(1, Material.STONE);

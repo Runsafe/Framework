@@ -13,8 +13,8 @@ import no.runsafe.framework.minecraft.entity.RunsafeEntity;
 import no.runsafe.framework.minecraft.entity.RunsafeProjectile;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Projectile;
 import org.bukkit.util.Vector;
 import org.bukkit.Material;
 
@@ -129,7 +129,7 @@ public abstract class BukkitLivingEntity extends RunsafeEntity implements ILivin
 	@Override
 	public void damage(double damage, IEntity source)
 	{
-		livingEntity.damage(damage, (Entity)ObjectUnwrapper.convert(source));
+		livingEntity.damage(damage, ObjectUnwrapper.convert(source));
 	}
 
 	@Override
@@ -232,12 +232,14 @@ public abstract class BukkitLivingEntity extends RunsafeEntity implements ILivin
 
 	public <T extends RunsafeProjectile> T launchProjectile(Class<? extends T> projectile)
 	{
-		return this.launchProjectile(projectile, (Vector)null);
+		return this.launchProjectile(projectile, null);
 	}
 
+	@SuppressWarnings("unchecked")
 	public <T extends RunsafeProjectile> T launchProjectile(Class<? extends T> projectile, Vector velocity)
 	{
-		return this.launchProjectile(projectile, velocity);
+		Projectile launched = livingEntity.launchProjectile(ObjectUnwrapper.convert(projectile), velocity);
+		return (T) ObjectWrapper.convert(launched);
 	}
 
 	@Nullable

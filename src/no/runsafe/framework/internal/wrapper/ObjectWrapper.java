@@ -66,17 +66,17 @@ public final class ObjectWrapper
 		if (toWrap == null)
 			return Collections.emptyList();
 
-		List<Wrap> results = new ArrayList<Wrap>(toWrap.size());
+		List<Wrap> results = new ArrayList<>(toWrap.size());
 		for (Object item : toWrap)
 		{
-			if (item instanceof Metadatable)
+			if (item instanceof CraftPlayer)
+				results.add((Wrap) convert((CraftPlayer) item));
+			else if (item instanceof Metadatable)
 				results.add((Wrap) convert((Metadatable) item));
 			else if (item instanceof ItemStack)
 				results.add((Wrap) convert((ItemStack) item));
 			else if (item instanceof OfflinePlayer)
 				results.add((Wrap) convert((OfflinePlayer) item));
-			else if (item instanceof CraftPlayer)
-				results.add((Wrap) convert((CraftPlayer) item));
 		}
 		return results;
 	}
@@ -87,7 +87,7 @@ public final class ObjectWrapper
 		if (toWrap == null)
 			return Collections.emptyList();
 
-		List<Wrapper> results = new ArrayList<Wrapper>(toWrap.length);
+		List<Wrapper> results = new ArrayList<>(toWrap.length);
 		for (Raw item : toWrap)
 			results.add((Wrapper) convert(item));
 		return results;
@@ -99,7 +99,7 @@ public final class ObjectWrapper
 		if (toWrap == null)
 			return Collections.emptyList();
 
-		List<Wrapper> results = new ArrayList<Wrapper>(toWrap.length);
+		List<Wrapper> results = new ArrayList<>(toWrap.length);
 		for (Raw item : toWrap)
 			results.add((Wrapper) convert(item));
 		return results;
@@ -111,7 +111,7 @@ public final class ObjectWrapper
 		if (toWrap == null)
 			return Collections.emptyList();
 
-		List<Wrapper> results = new ArrayList<Wrapper>(toWrap.length);
+		List<Wrapper> results = new ArrayList<>(toWrap.length);
 		for (Raw item : toWrap)
 			results.add((Wrapper) convert(item));
 		return results;
@@ -123,7 +123,7 @@ public final class ObjectWrapper
 		if (toWrap == null)
 			return Collections.emptyList();
 
-		List<Wrapper> results = new ArrayList<Wrapper>(toWrap.length);
+		List<Wrapper> results = new ArrayList<>(toWrap.length);
 		for (Raw item : toWrap)
 			results.add((Wrapper) convert(item));
 		return results;
@@ -482,7 +482,7 @@ public final class ObjectWrapper
 		return new RunsafeLivingEntity(toWrap);
 	}
 
-	@Nullable
+	@Nonnull
 	public static RunsafeCreature convert(org.bukkit.entity.Creature toWrap)
 	{
 		if (toWrap instanceof Monster)
@@ -515,7 +515,7 @@ public final class ObjectWrapper
 		return new RunsafeCreature(toWrap);
 	}
 
-	@Nullable
+	@Nonnull
 	public static RunsafeMonster convert(org.bukkit.entity.Monster toWrap)
 	{
 		if (toWrap instanceof PigZombie)

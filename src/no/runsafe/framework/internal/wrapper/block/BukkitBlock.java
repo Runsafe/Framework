@@ -1,21 +1,14 @@
 package no.runsafe.framework.internal.wrapper.block;
 
-import net.minecraft.server.v1_12_R1.BlockPosition;
-import net.minecraft.server.v1_12_R1.Blocks;
-import net.minecraft.server.v1_12_R1.IBlockData;
-import net.minecraft.server.v1_12_R1.World;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.internal.LegacyMaterial;
 import no.runsafe.framework.internal.log.Console;
-import no.runsafe.framework.internal.lua.GlobalEnvironment;
 import no.runsafe.framework.internal.wrapper.ObjectWrapper;
 import no.runsafe.framework.internal.wrapper.metadata.BukkitMetadata;
 import no.runsafe.framework.minecraft.Item;
-import org.bukkit.Chunk;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_12_R1.block.CraftBlock;
 
 public class BukkitBlock extends BukkitMetadata
 {

@@ -13,7 +13,7 @@ public final class ReflectionHelper
 
 	private static Map<String, Field> getFullFieldList(Object object, Map<String, Field> mapIn, Class<?> typeIn)
 	{
-		Map<String, Field> map = mapIn == null ? new HashMap<String, Field>(0) : mapIn;
+		Map<String, Field> map = mapIn == null ? new HashMap<>(0) : mapIn;
 		Class<?> type = typeIn == null ? object.getClass() : typeIn;
 
 		for (Field field : type.getDeclaredFields())
@@ -63,9 +63,9 @@ public final class ReflectionHelper
 		try
 		{
 			Field field = getField(object, fieldName);
+			if (field == null) return;
 			field.setAccessible(true);
-			if (field != null)
-				field.set(object, value);
+			field.set(object, value);
 		}
 		catch (Exception e)
 		{

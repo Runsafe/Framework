@@ -29,7 +29,7 @@ public class RunsafeNormalHorse extends RunsafeHorse implements INormalHorse
 	public void setRandomColour()
 	{
 		Horse.Color[] values = Horse.Color.values();
-		normalHorse.setColor(values[this.random.nextInt(values.length)]);
+		normalHorse.setColor(values[random.nextInt(values.length)]);
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class RunsafeNormalHorse extends RunsafeHorse implements INormalHorse
 	public void setRandomStyle()
 	{
 		Horse.Style[] values = Horse.Style.values();
-		normalHorse.setStyle(values[this.random.nextInt(values.length)]);
+		normalHorse.setStyle(values[random.nextInt(values.length)]);
 	}
 
 	@Override
@@ -58,5 +58,5 @@ public class RunsafeNormalHorse extends RunsafeHorse implements INormalHorse
 	}
 
 	private static final Random random = new Random();
-	Horse normalHorse;
+	final Horse normalHorse;
 }
