@@ -1,5 +1,7 @@
 package no.runsafe.framework.api;
 
+import java.util.function.Consumer;
+
 public interface IScheduler
 {
 	/**
@@ -48,7 +50,9 @@ public interface IScheduler
 	 */
 	int startSyncRepeatingTask(Runnable func, long delay, long period);
 
-	boolean runNow(Runnable func);
+	void runNow(Runnable func);
+
+	void runNow(Runnable func, Consumer<Boolean> callback);
 
 	/**
 	 * Don't use this method, use createSyncTimer.

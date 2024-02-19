@@ -38,13 +38,23 @@ public class Scheduler implements IScheduler
 	 * @param func A function to run immediately
 	 * @return true if function did not throw an exception
 	 */
-	@Deprecated
 	@Override
-	public boolean runNow(Runnable func)
+	public void runNow(Runnable func)
 	{
-		console.logWarning("Scheduler.runNow invoked from %s", getStackTrace());
-		Runner runner = new Runner(func);
-		return runner.start();
+		scheduler.runTask(
+			plugin,
+			() -> {
+				try
+				{
+					func.run();
+					return;
+				}
+				catch (Exception e)
+				{
+					console.logException(e);
+				}
+			}
+		);
 	}
 
 	public void runNow(Runnable func, Consumer<Boolean> callback)
@@ -79,52 +89,6 @@ public class Scheduler implements IScheduler
 				skip--;
 		}
 		return StringUtils.join(stack, "\n\t");
-	}
-
-	@Deprecated
-	private class Runner
-	{
-		private volatile boolean success;
-		private volatile boolean running = true;
-
-		Runner(Runnable func)
-		{
-			this.func = func;
-		}
-
-		public boolean start()
-		{
-			scheduler.runTask(
-				plugin,
-				() -> {
-					try
-					{
-						func.run();
-						success = true;
-					}
-					catch (Exception e)
-					{
-						console.logException(e);
-					}
-					finally
-					{
-						running = false;
-					}
-				}
-			);
-			while (running)
-				try
-				{
-					Thread.sleep(1);
-				}
-				catch (InterruptedException e)
-				{
-					console.logException(e);
-				}
-			return success;
-		}
-
-		private final Runnable func;
 	}
 
 	@Override
