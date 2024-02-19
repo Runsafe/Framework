@@ -10,6 +10,7 @@ import org.bukkit.scheduler.BukkitScheduler;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.function.Consumer;
 
 public class Scheduler implements IScheduler
 {
@@ -46,6 +47,26 @@ public class Scheduler implements IScheduler
 		return runner.start();
 	}
 
+	public void runNow(Runnable func, Consumer<Boolean> callback)
+	{
+		scheduler.runTask(
+			plugin,
+			() -> {
+				try
+				{
+					func.run();
+					callback.accept(true);
+					return;
+				}
+				catch (Exception e)
+				{
+					console.logException(e);
+				}
+				callback.accept(false);
+			}
+		);
+	}
+
 	private static String getStackTrace()
 	{
 		int skip = 2;
@@ -60,6 +81,7 @@ public class Scheduler implements IScheduler
 		return StringUtils.join(stack, "\n\t");
 	}
 
+	@Deprecated
 	private class Runner
 	{
 		private volatile boolean success;
