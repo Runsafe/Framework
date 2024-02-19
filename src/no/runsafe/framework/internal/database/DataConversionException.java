@@ -7,8 +7,13 @@ public class DataConversionException extends RuntimeException
 		super(message);
 	}
 
-	public DataConversionException(Object sourceType, Class<?> targetType)
+	public DataConversionException(Object value, Class<?> targetType)
 	{
-		super(String.format("Conversion from type %s to %s is unsupported", sourceType.getCanonicalName(), targetType.getCanonicalName()));
+		super(String.format(
+			"Conversion of value \"%s\" from type %s to %s is unsupported",
+			value.toString(),
+			value.getClass().getCanonicalName(),
+			targetType.getCanonicalName()
+		));
 	}
 }
