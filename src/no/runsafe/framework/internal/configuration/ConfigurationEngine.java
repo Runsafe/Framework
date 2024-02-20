@@ -16,13 +16,6 @@ import java.util.ArrayList;
 @SuppressWarnings("LocalVariableOfConcreteClass")
 public final class ConfigurationEngine
 {
-	public IConfiguration loadConfiguration(String fileName)
-	{
-		PluginConfiguration config = new PluginConfiguration(console, debugger);
-		config.load(new File(fileName));
-		return config;
-	}
-
 	public IConfiguration loadConfiguration(File configFile)
 	{
 		PluginConfiguration config = new PluginConfiguration(console, debugger);
@@ -54,8 +47,10 @@ public final class ConfigurationEngine
 	 */
 	public void load()
 	{
-		configuration.load(configurationFile);
-		notifySubscribers();
+		if (configuration.load(configurationFile))
+		{
+			notifySubscribers();
+		}
 	}
 
 	/**

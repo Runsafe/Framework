@@ -20,9 +20,11 @@ public final class PluginConfiguration extends Holder implements IConfiguration
 		super(debugger, console);
 	}
 
-	void load(IConfigurationFile configurationFile)
+	Boolean load(IConfigurationFile configurationFile)
 	{
 		String filePath = configurationFile.getConfigurationPath();
+		if (filePath == null)
+			return false;
 		debugger.debugFine("Loading configuration from %s", filePath);
 		File file = new File(filePath);
 
@@ -35,5 +37,6 @@ public final class PluginConfiguration extends Holder implements IConfiguration
 			configFile.options().copyDefaults(true);
 		}
 		save();
+		return true;
 	}
 }
