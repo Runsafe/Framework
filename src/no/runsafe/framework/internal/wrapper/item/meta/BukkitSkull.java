@@ -1,5 +1,7 @@
 package no.runsafe.framework.internal.wrapper.item.meta;
 
+import no.runsafe.framework.api.player.IPlayer;
+import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -27,12 +29,10 @@ public abstract class BukkitSkull extends RunsafeMeta
 		return getRawMeta().hasOwner();
 	}
 
-	public boolean setOwner(String owner)
+	public void setOwner(IPlayer owner)
 	{
 		SkullMeta meta = getRawMeta();
-		boolean success = meta.setOwner(owner);
-		if(success)
+		if(meta.setOwningPlayer(ObjectUnwrapper.convert(owner)))
 			itemStack.setItemMeta(meta);
-		return success;
 	}
 }

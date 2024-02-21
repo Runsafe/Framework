@@ -7,7 +7,7 @@ import java.util.Set;
 
 public interface IArgumentList
 {
-	boolean isAborted();
+	boolean isCompleted();
 	int size();
 	@Nullable
 	String getRaw(String key);

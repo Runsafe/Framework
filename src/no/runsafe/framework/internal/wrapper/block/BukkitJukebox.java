@@ -27,9 +27,9 @@ public abstract class BukkitJukebox extends BukkitBlockState
 		return jukebox.isPlaying();
 	}
 
-	public boolean eject()
+	public void eject()
 	{
-		return jukebox.eject();
+		jukebox.eject();
 	}
 
 	protected final Jukebox jukebox;

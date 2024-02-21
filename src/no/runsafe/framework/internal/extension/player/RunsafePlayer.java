@@ -199,9 +199,9 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 	}
 
 	@Override
-	public boolean canBuildNow()
+	public boolean cannotBuild()
 	{
-		return InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).canBuildNow(this);
+		return !InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).canBuildNow(this);
 	}
 
 	@Override

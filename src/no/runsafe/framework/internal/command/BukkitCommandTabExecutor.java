@@ -73,7 +73,7 @@ public final class BukkitCommandTabExecutor implements ITabExecutor
 
 	private Iterable<String> tabCompleteCommand(CommandSender sender, String... args)
 	{
-		IPreparedCommand preparedCommand = preparedTabCompleteCommand(sender, true, args);
+		IPreparedCommand preparedCommand = preparedTabCompleteCommand(sender, args);
 		Iterable<String> options = preparedCommand.tabComplete(args);
 		debugger.debugFine("Tab completion options to return: %s", options);
 		return options;
@@ -81,7 +81,7 @@ public final class BukkitCommandTabExecutor implements ITabExecutor
 
 	private void executeCommand(CommandSender sender, String... args)
 	{
-		IPreparedCommand preparedCommand = preparedCommand(sender, false, args);
+		IPreparedCommand preparedCommand = preparedCommand(sender, args);
 		String permission = preparedCommand.getRequiredPermission();
 		if (!(sender instanceof Player) || permission == null || sender.hasPermission(permission))
 		{
@@ -104,19 +104,19 @@ public final class BukkitCommandTabExecutor implements ITabExecutor
 		}
 	}
 
-	private IPreparedCommand preparedCommand(CommandSender sender, boolean skipLast, String... args)
+	private IPreparedCommand preparedCommand(CommandSender sender, String... args)
 	{
 		return command.prepare(
 			sender instanceof Player ? ObjectWrapper.convert((OfflinePlayer) sender) : console,
-			skipLast ? Arrays.copyOfRange(args, 0, args.length - 1) : args
+			args
 		);
 	}
 
-	private IPreparedCommand preparedTabCompleteCommand(CommandSender sender, boolean skipLast, String... args)
+	private IPreparedCommand preparedTabCompleteCommand(CommandSender sender, String... args)
 	{
 		return command.prepareTabComplete(
 			sender instanceof Player ? ObjectWrapper.convert((OfflinePlayer) sender) : console,
-			skipLast ? Arrays.copyOfRange(args, 0, args.length - 1) : args
+			Arrays.copyOfRange(args, 0, args.length - 1)
 		);
 	}
 

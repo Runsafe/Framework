@@ -10,7 +10,7 @@ public interface ICommandExecutor
 	void sendColouredMessage(String format, Object... params);
 	void sendComplexMessage(String message, String hoverText, String clickCommand);
 	boolean hasPermission(String permission);
-	boolean performCommand(String command);
+	void performCommand(String command);
 	@Override boolean equals(Object o);
 	@Override int hashCode();
 }

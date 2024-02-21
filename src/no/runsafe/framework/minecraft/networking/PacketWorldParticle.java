@@ -4,6 +4,7 @@ import net.minecraft.server.v1_12_R1.PacketPlayOutWorldParticles;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorldEffect;
 import no.runsafe.framework.minecraft.WorldBlockEffect;
+import org.bukkit.material.MaterialData;
 
 public class PacketWorldParticle extends RunsafePacket
 {
@@ -15,7 +16,10 @@ public class PacketWorldParticle extends RunsafePacket
 		if(effect instanceof WorldBlockEffect)
 		{
 			WorldBlockEffect blockEffect = (WorldBlockEffect) effect;
-			itemValues = new int[]{blockEffect.getBlockID(), blockEffect.getBlockData()};
+			MaterialData data = blockEffect.getBlock().getData().getRaw();
+
+			// There is no obvious alternative to these deprecated methods
+			itemValues = new int[]{data.getItemType().getId(), data.getData()};
 		}
 		else
 			itemValues = new int[0];

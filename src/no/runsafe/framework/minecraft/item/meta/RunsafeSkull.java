@@ -12,9 +12,9 @@ public class RunsafeSkull extends BukkitSkull
 		super(stack);
 	}
 
-	public boolean setPlayer(IPlayer owner)
+	public void setPlayer(IPlayer owner)
 	{
-		return setOwner(owner.getName());
+		setOwner(owner);
 	}
 
 	public IPlayer getPlayer()

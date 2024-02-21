@@ -16,7 +16,7 @@ public interface IPlayerGameplay
 
 	boolean isPvPFlagged();
 
-	boolean canBuildNow();
+	boolean cannotBuild();
 
 	void heal(double amount);
 

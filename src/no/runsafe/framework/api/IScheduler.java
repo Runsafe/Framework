@@ -1,7 +1,5 @@
 package no.runsafe.framework.api;
 
-import java.util.function.Consumer;
-
 public interface IScheduler
 {
 	/**
@@ -52,8 +50,6 @@ public interface IScheduler
 
 	void runNow(Runnable func);
 
-	void runNow(Runnable func, Consumer<Boolean> callback);
-
 	/**
 	 * Don't use this method, use createSyncTimer.
 	 *
@@ -99,18 +95,16 @@ public interface IScheduler
 	 * @param func   Code to be executed
 	 * @param delay  Delay before first execution in seconds
 	 * @param period Delay between each execution in seconds
-	 * @return a timer
 	 */
-	ITimer createSyncTimer(Runnable func, int delay, int period);
+	void createSyncTimer(Runnable func, int delay, int period);
 
 	/**
 	 * Create a timer that will run on the main thread periodically
 	 *
-	 * @param func  Code to be executed
+	 * @param func    Code to be executed
 	 * @param seconds Delay before first execution in seconds
-	 * @return a timer
 	 */
-	ITimer createSyncTimer(Runnable func, int seconds);
+	void createSyncTimer(Runnable func, int seconds);
 
 	/**
 	 * Create a timer that will run on a background thread periodically
@@ -125,30 +119,19 @@ public interface IScheduler
 	/**
 	 * Create a timer that will run on a background thread periodically
 	 *
-	 * @param func  Code to be executed
-	 * @param ticks Delay before first execution in ticks
-	 * @return a timer
-	 */
-	ITimer createAsyncTimer(Runnable func, Long ticks);
-
-	/**
-	 * Create a timer that will run on a background thread periodically
-	 *
 	 * @param func   Code to be executed
 	 * @param delay  Delay before first execution in seconds
 	 * @param period Delay between each execution in seconds
-	 * @return a timer
 	 */
-	ITimer createAsyncTimer(Runnable func, int delay, int period);
+	void createAsyncTimer(Runnable func, int delay, int period);
 
 	/**
 	 * Create a timer that will run on a background thread periodically
 	 *
-	 * @param func  Code to be executed
+	 * @param func    Code to be executed
 	 * @param seconds Delay before first execution in seconds
-	 * @return a timer
 	 */
-	ITimer createAsyncTimer(Runnable func, int seconds);
+	void createAsyncTimer(Runnable func, int seconds);
 
 	/**
 	 * Cancels a timer, should not be used directly

@@ -67,7 +67,7 @@ public class RunsafeConsole implements ICommandExecutor
 	}
 
 	@Override
-	public boolean performCommand(String command)
+	public void performCommand(String command)
 	{
 		throw new NotImplementedException("It is not yet supported running commands as the console from code.");
 	}

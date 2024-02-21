@@ -4,13 +4,8 @@ import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.ITimer;
 import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.internal.Minecraft;
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.function.Consumer;
 
 public class Scheduler implements IScheduler
 {
@@ -54,7 +49,7 @@ public class Scheduler implements IScheduler
 		);
 	}
 
-	public void runNow(Runnable func, Consumer<Boolean> callback)
+	/*public void runNow(Runnable func, Consumer<Boolean> callback)
 	{
 		scheduler.runTask(
 			plugin,
@@ -72,21 +67,7 @@ public class Scheduler implements IScheduler
 				callback.accept(false);
 			}
 		);
-	}
-
-	private static String getStackTrace()
-	{
-		int skip = 2;
-		Collection<String> stack = new ArrayList<>(5);
-		for (StackTraceElement element : Thread.currentThread().getStackTrace())
-		{
-			if (skip < 1)
-				stack.add(element.toString());
-			else
-				skip--;
-		}
-		return StringUtils.join(stack, "\n\t");
-	}
+	}*/
 
 	@Override
 	public int startSyncRepeatingTask(Runnable func, int delay, int period)
@@ -101,15 +82,15 @@ public class Scheduler implements IScheduler
 	}
 
 	@Override
-	public ITimer createSyncTimer(Runnable func, int seconds)
+	public void createSyncTimer(Runnable func, int seconds)
 	{
-		return createSyncTimer(func, seconds, 0);
+		createSyncTimer(func, seconds, 0);
 	}
 
 	@Override
-	public ITimer createSyncTimer(Runnable func, int delay, int period)
+	public void createSyncTimer(Runnable func, int delay, int period)
 	{
-		return createSyncTimer(func, delay * Minecraft.TICKS_PER_SECOND, period * Minecraft.TICKS_PER_SECOND);
+		createSyncTimer(func, delay * Minecraft.TICKS_PER_SECOND, period * Minecraft.TICKS_PER_SECOND);
 	}
 
 	@Override
@@ -125,21 +106,15 @@ public class Scheduler implements IScheduler
 	}
 
 	@Override
-	public ITimer createAsyncTimer(Runnable func, int seconds)
+	public void createAsyncTimer(Runnable func, int seconds)
 	{
-		return createAsyncTimer(func, seconds, 0);
+		createAsyncTimer(func, seconds, 0);
 	}
 
 	@Override
-	public ITimer createAsyncTimer(Runnable func, int delay, int period)
+	public void createAsyncTimer(Runnable func, int delay, int period)
 	{
-		return createAsyncTimer(func, delay * Minecraft.TICKS_PER_SECOND, period * Minecraft.TICKS_PER_SECOND);
-	}
-
-	@Override
-	public ITimer createAsyncTimer(Runnable func, Long ticks)
-	{
-		return createAsyncTimer(func, ticks, 0L);
+		createAsyncTimer(func, delay * Minecraft.TICKS_PER_SECOND, period * Minecraft.TICKS_PER_SECOND);
 	}
 
 	@Override

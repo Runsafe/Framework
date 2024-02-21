@@ -7,5 +7,5 @@ public interface IJukebox extends IBlockState, IBlock
 	Item getPlaying();
 	void setPlaying(Item material);
 	boolean isPlaying();
-	boolean eject();
+	void eject();
 }

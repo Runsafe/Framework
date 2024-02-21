@@ -115,9 +115,9 @@ public abstract class BukkitEntity extends BukkitMetadata
 		return ObjectWrapper.convert(entity.getPassenger());
 	}
 
-	public boolean setPassenger(IEntity entity)
+	public void setPassenger(IEntity entity)
 	{
-		return this.entity.setPassenger(ObjectUnwrapper.convert(entity));
+		this.entity.setPassenger(ObjectUnwrapper.convert(entity));
 	}
 
 	/**
@@ -131,11 +131,10 @@ public abstract class BukkitEntity extends BukkitMetadata
 
 	/**
 	 * If there is an entity riding this entity, eject them.
-	 * @return True if passenger was ejected, false otherwise.
 	 */
-	public boolean eject()
+	public void eject()
 	{
-		return entity.eject();
+		entity.eject();
 	}
 
 	public float getFallDistance()
@@ -192,11 +191,10 @@ public abstract class BukkitEntity extends BukkitMetadata
 
 	/**
 	 * Dismounts whatever is being ridden.
-	 * @return True if dismounted, false if not riding anything.
 	 */
-	public boolean leaveVehicle()
+	public void leaveVehicle()
 	{
-		return entity.leaveVehicle();
+		entity.leaveVehicle();
 	}
 
 	public IEntity getVehicle()

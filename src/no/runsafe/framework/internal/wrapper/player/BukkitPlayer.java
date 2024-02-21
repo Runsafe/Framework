@@ -328,9 +328,12 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 		return player.getAddress();
 	}
 
-	public boolean performCommand(String command)
+	public void performCommand(String command)
 	{
-		return player != null && player.performCommand(command);
+		if (player != null)
+		{
+			player.performCommand(command);
+		}
 	}
 
 	@Nullable

@@ -49,16 +49,16 @@ public class ArgumentList implements IArgumentList
 	}
 
 	@Override
-	public boolean isAborted()
+	public boolean isCompleted()
 	{
 		if (parameterList.containsValue(null))
-			return true;
+			return false;
 
 		for (IArgument argument : arguments.values())
 			if (argument.isRequired() && argument instanceof IValueExpander && parameterList.get(argument.toString()) == null)
-				return true;
+				return false;
 
-		return false;
+		return true;
 	}
 
 	@SuppressWarnings("unchecked")

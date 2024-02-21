@@ -17,14 +17,14 @@ public class RunsafePlayerInteractEvent extends RunsafeCancellablePlayerEvent
 		event = toWrap;
 	}
 
-	public boolean isRightClick()
+	public boolean isNotRightClick()
 	{
-		return event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR;
+		return event.getAction() != Action.RIGHT_CLICK_BLOCK && event.getAction() != Action.RIGHT_CLICK_AIR;
 	}
 
-	public boolean isLeftClick()
+	public boolean isNotLeftClick()
 	{
-		return event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_AIR;
+		return event.getAction() != Action.LEFT_CLICK_BLOCK && event.getAction() != Action.LEFT_CLICK_AIR;
 	}
 
 	public boolean hasItem()
