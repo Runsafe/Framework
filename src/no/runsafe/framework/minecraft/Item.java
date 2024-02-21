@@ -11,9 +11,7 @@ import no.runsafe.framework.minecraft.entity.RunsafeItem;
 import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import no.runsafe.framework.minecraft.material.RunsafeMaterialData;
 import org.bukkit.Material;
-import org.bukkit.TreeSpecies;
 import org.bukkit.material.MaterialData;
-import org.bukkit.material.Wood;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -247,7 +245,7 @@ public class Item implements IEnchantable
 			@SuppressWarnings("InnerClassFieldHidesOuterClassField")
 			public static final class Plank
 			{
-				public static final Item Any = new Item(new org.bukkit.material.Wood(Material.WOOD, TreeSpecies.GENERIC), true);
+				public static final Item Any = new Item(Material.WOOD, true, (byte) -1);
 				public static final Item Oak = new Item(Material.WOOD, true, (byte) 0);
 				public static final Item Spruce = new Item(Material.WOOD, true, (byte) 1);
 				public static final Item Birch = new Item(Material.WOOD, true, (byte) 2);
@@ -1430,13 +1428,13 @@ public class Item implements IEnchantable
 			addItem(this);
 	}
 
-	//@Deprecated
 	Item(Material material, boolean root, byte dataByte)
 	{
 		this.material = material;
 		this.root = root;
 		data = dataByte;
-		item = root ? null : new RunsafeMaterialData(material.getId(), dataByte).toItemStack(1);
+
+		item = root ? null : new RunsafeMaterialData(material).toItemStack(1);
 
 		if (root)
 			//noinspection ThisEscapedInObjectConstruction
@@ -1445,7 +1443,7 @@ public class Item implements IEnchantable
 
 	private Item convertToItem()
 	{
-		return new Item(material, false, data);
+		return new Item(new MaterialData(material), false);
 	}
 
 	private static Item getItem(Material material, byte dataByte)

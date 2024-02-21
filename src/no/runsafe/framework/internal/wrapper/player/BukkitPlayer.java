@@ -158,13 +158,6 @@ public class BukkitPlayer extends RunsafeLivingEntity implements IInventoryHolde
 			player.playSound(player.getLocation(), sound.getSound(), volume, pitch);
 	}
 
-	@Deprecated
-	@Nullable
-	public RunsafeMeta getItemInHand()
-	{
-		return getItemInMainHand();
-	}
-
 	@Nullable
 	public RunsafeMeta getItemInMainHand()
 	{

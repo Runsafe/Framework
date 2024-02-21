@@ -1,6 +1,5 @@
 package no.runsafe.framework.minecraft.event.player;
 
-import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.player.IPlayer;
 
 import javax.annotation.Nullable;
@@ -10,12 +9,6 @@ import java.util.List;
 
 public class RunsafePlayerFakeChatEvent extends RunsafePlayerChatEvent
 {
-	@Deprecated
-	public static void Broadcast(IPlayer player, String message, IOutput output)
-	{
-		new RunsafePlayerFakeChatEvent(player, message).Fire();
-	}
-
 	protected RunsafePlayerFakeChatEvent(IPlayer player, String message)
 	{
 		super(null);
