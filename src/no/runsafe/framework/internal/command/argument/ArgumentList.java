@@ -30,8 +30,7 @@ public class ArgumentList implements IArgumentList
 	}
 
 	@Override
-	@Deprecated
-	public String get(Object key)
+	public String getRaw(String key)
 	{
 		return parameterList.get(key);
 	}

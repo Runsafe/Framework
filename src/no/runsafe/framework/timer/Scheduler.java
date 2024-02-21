@@ -34,9 +34,7 @@ public class Scheduler implements IScheduler
 	}
 
 	/**
-	 * @deprecated Please do not use this, it can hard lock the server if called from the main thread
 	 * @param func A function to run immediately
-	 * @return true if function did not throw an exception
 	 */
 	@Override
 	public void runNow(Runnable func)
@@ -47,7 +45,6 @@ public class Scheduler implements IScheduler
 				try
 				{
 					func.run();
-					return;
 				}
 				catch (Exception e)
 				{

@@ -2,6 +2,8 @@ package no.runsafe.framework.minecraft.inventory;
 
 import org.bukkit.event.inventory.InventoryType;
 
+import javax.annotation.Nonnull;
+
 public enum RunsafeInventoryType
 {
 	CHEST(27, "Chest"),
@@ -39,6 +41,7 @@ public enum RunsafeInventoryType
 		return title;
 	}
 
+	@Nonnull
 	public InventoryType getRaw()
 	{
 		return InventoryType.valueOf(name());

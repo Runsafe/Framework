@@ -10,8 +10,7 @@ public interface IArgumentList
 	boolean isAborted();
 	int size();
 	@Nullable
-	@Deprecated
-	String get(Object key);
+	String getRaw(String key);
 	boolean has(String param);
 	@Nullable
 	<T> T getValue(String param);
