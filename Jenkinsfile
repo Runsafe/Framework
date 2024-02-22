@@ -4,13 +4,16 @@ pipeline {
     copyArtifactPermission('*');
     skipDefaultCheckout true
   }
-  triggers { pollSCM '@monthly' }
+  environment { plugin = "Framework" }
+  triggers {
+    pollSCM '@monthly'
+  }
   stages {
     stage('Ant Build') {
       agent { label 'ant' }
       tools {
-        ant 'Ant 1.10.14'
-        jdk 'JDK 1.8'
+        ant 'default'
+        jdk 'default'
       }
       steps {
         checkout scm
@@ -20,17 +23,21 @@ pipeline {
       }
     }
     stage('Deploy to test server') {
+      when { not { branch 'master' } }
       agent { label 'server4' }
       steps {
-        installPlugin 'framework.tar'
-        buildReport 'Framework', 'Deployed to test server'
+        installPlugin "${env.plugin}.tar"
+        buildReport env.plugin, 'Deployed to test server'
       }
     }
-    stage('Ask for promotion') {
+    stage('Deploy to production') {
+      when { branch 'master' }
+      agent { label 'server1' }
       steps {
-        build wait: false, job: '/Runsafe/Deployment/main', parameters: [string(name: 'project', value: currentBuild.fullProjectName), string(name: 'build', value: env.BUILD_NUMBER)]
+        stagePlugin "${env.plugin}.tar"
+        buildReport env.plugin, 'Staged on production server'
       }
     }
   }
-  post { failure { buildReport 'Framework', 'Build failed' } }
+  post { failure { buildReport env.plugin, 'Build failed' } }
 }
