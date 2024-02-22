@@ -12,8 +12,8 @@ pipeline {
     stage('Ant Build') {
       agent { label 'ant' }
       tools {
-        ant 'default'
-        jdk 'default'
+        ant 'Default'
+        jdk 'Default'
       }
       steps {
         checkout scm
