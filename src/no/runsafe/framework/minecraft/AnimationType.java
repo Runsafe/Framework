@@ -16,7 +16,7 @@ public enum AnimationType
 	/*
 	 * Turns entities red.
 	 * Gives camera view a shake when used on a player.
-	 * Do not spam this animation at a player, may cause headaces.
+	 * Do not spam this animation at a player, may cause headaches.
 	 */
 	DAMAGE(1),
 
@@ -37,7 +37,7 @@ public enum AnimationType
 	NORMAL_CRITICAL(4),
 
 	/*
-	 * Plays a magical criticle hit animation.
+	 * Plays a magical critical hit animation.
 	 * Uses cyan diamond shaped particles.
 	 */
 	MAGICAL_CRITICAL(5);

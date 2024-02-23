@@ -1,7 +1,7 @@
 package no.runsafe.framework.api.database;
 
 /**
- * Base class for database repositories, providing methods for converting SQL Timestamp to and from Joda DateTime
+ * Base class for database repositories
  */
 public abstract class Repository implements ISchemaChanges
 {

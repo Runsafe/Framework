@@ -280,8 +280,8 @@ public class Command implements ICommandHandler
 	{
 		stack.add(this);
 		String[] args = extractSubCommandArguments(executor, params, arguments);
-		IArgumentList myargs = new ArgumentList(executor, populateArgumentList(stack), params);
-		String permission = getEffectivePermission(myargs);
+		IArgumentList myArgs = new ArgumentList(executor, populateArgumentList(stack), params);
+		String permission = getEffectivePermission(myArgs);
 		if (args.length > 0 && (permission == null || paramPermission.matcher(permission).find() || executor.hasPermission(permission)))
 		{
 			console.debugFiner("Looking for subcommand %s for tab completion", args[0]);
@@ -294,7 +294,7 @@ public class Command implements ICommandHandler
 				return subCommand.prepareTabCompleteCommand(executor, params, args, stack);
 			}
 		}
-		return stack.peek().createAction(executor, stack, args, myargs);
+		return stack.peek().createAction(executor, stack, args, myArgs);
 	}
 
 	@Nonnull
@@ -308,7 +308,7 @@ public class Command implements ICommandHandler
 	{
 		stack.add(this);
 		String[] args = extractSubCommandArguments(executor, params, arguments);
-		IArgumentList myargs = new ArgumentList(executor, populateArgumentList(stack), params);
+		IArgumentList myArgs = new ArgumentList(executor, populateArgumentList(stack), params);
 		if (args.length > 0)
 		{
 			console.debugFiner("Looking for subcommand %s", args[0]);
@@ -321,7 +321,7 @@ public class Command implements ICommandHandler
 				return subCommand.prepareCommand(executor, params, args, stack);
 			}
 		}
-		return stack.peek().createAction(executor, stack, args, myargs);
+		return stack.peek().createAction(executor, stack, args, myArgs);
 	}
 
 	private String[] extractSubCommandArguments(ICommandExecutor executor, Map<String, String> params, String[] arguments)
@@ -341,14 +341,14 @@ public class Command implements ICommandHandler
 
 	private Map<String, IArgument> populateArgumentList(Stack<ICommandHandler> stack)
 	{
-		Map<String, IArgument> myargs = Maps.newHashMap(argumentList);
+		Map<String, IArgument> myArgs = Maps.newHashMap(argumentList);
 		for (ICommandHandler command : stack)
 		{
 			for (IArgument argument : command.getParameters())
-				if (!myargs.containsKey(argument.toString()))
-					myargs.put(argument.toString(), argument);
+				if (!myArgs.containsKey(argument.toString()))
+					myArgs.put(argument.toString(), argument);
 		}
-		return myargs;
+		return myArgs;
 	}
 
 	@Nonnull

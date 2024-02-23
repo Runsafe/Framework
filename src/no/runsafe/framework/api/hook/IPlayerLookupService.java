@@ -15,7 +15,7 @@ public interface IPlayerLookupService extends IFrameworkHook
 	 * Looks up the UUID of the player who logged the most recently with a specified username.
 	 *
 	 * @param playerName Exact name of the player to lookup.
-	 * @return the UUID of the last player to loged in.
+	 * @return the UUID of the last player to logged in.
 	 *         Null if the player can't be found.
 	 */
 	@Nullable

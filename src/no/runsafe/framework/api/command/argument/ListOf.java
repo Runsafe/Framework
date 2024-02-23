@@ -27,7 +27,7 @@ public class ListOf<T> implements IArgument, IValueExpander, ITabComplete, IValu
 	{
 		if (value == null)
 			return null;
-		String[] values = LISTSEPARATOR.split(value);
+		String[] values = LIST_SEPARATOR.split(value);
 		List<String> result = new ArrayList<>(values.length);
 		for (String val : values)
 		{
@@ -44,7 +44,7 @@ public class ListOf<T> implements IArgument, IValueExpander, ITabComplete, IValu
 		String value = params.get(name);
 		if (value == null)
 			return null;
-		String[] rawValues = LISTSEPARATOR.split(value);
+		String[] rawValues = LIST_SEPARATOR.split(value);
 		List<T> values = Lists.newArrayList();
 		Map<String, String> dummy = new HashMap<>(1);
 		for (String val : rawValues)
@@ -114,5 +114,5 @@ public class ListOf<T> implements IArgument, IValueExpander, ITabComplete, IValu
 	private boolean required;
 	private final String name;
 	private final Compatible<T> argument;
-	static final Pattern LISTSEPARATOR = Pattern.compile("\\s+");
+	static final Pattern LIST_SEPARATOR = Pattern.compile("\\s+");
 }

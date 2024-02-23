@@ -268,7 +268,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 	 * Converts a list of UUIDs in the form of strings into IPlayers.
 	 *
 	 * @param playerIds List of player UUIDs in the form of strings.
-	 *                  Prefferably obtained through UUID's toString method.
+	 *                  Preferably obtained through UUID's toString method.
 	 *                  If a string is null or not 36 characters in length it will not be used.
 	 *                  When they are valid UUIDs, assumed to be player Ids.
 	 *
@@ -298,7 +298,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 	 * Provides the UUID of the player who logged the most recently with a specified username.
 	 *
 	 * @param playerName Exact name of the player to lookup.
-	 * @return the UUID of the last player to loged in.
+	 * @return the UUID of the last player to log in.
 	 *         Null if the player can't be found.
 	 */
 	@Nullable

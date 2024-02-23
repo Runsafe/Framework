@@ -90,7 +90,7 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 
 	/**
 	 * Adds a new pathfinding goal.
-	 * Reccomended to stop all pathfinding before using this to avoid problems with the goal number.
+	 * Recommended to stop all pathfinding before using this to avoid problems with the goal number.
 	 * @param priority The priority of the goal
 	 * @param goal The pathfinding goal to use.
 	 */
@@ -125,18 +125,18 @@ public class RunsafeLivingEntity extends BukkitLivingEntity
 	 * @return Whether this entity will naturally despawn.
 	 */
 	@Override
-	public boolean getPersistance()
+	public boolean getPersistence()
 	{
 		return livingEntity.getRemoveWhenFarAway();
 	}
 
 	/**
-	 * @param persistance Whether this entity will naturally depsawn.
+	 * @param persistence Whether this entity will naturally despawn.
 	 */
 	@Override
-	public void setPersistance(boolean persistance)
+	public void setPersistence(boolean persistence)
 	{
-		livingEntity.setRemoveWhenFarAway(persistance);
+		livingEntity.setRemoveWhenFarAway(persistence);
 	}
 
 	private RunsafeEntity Launch(Class<? extends Entity> launch)
