@@ -1434,7 +1434,7 @@ public class Item implements IEnchantable
 		this.root = root;
 		data = dataByte;
 
-		item = root ? null : new RunsafeMaterialData(material).toItemStack(1);
+		item = root ? null : new RunsafeMaterialData(material.getId(), dataByte).toItemStack(1);
 
 		if (root)
 			//noinspection ThisEscapedInObjectConstruction
@@ -1443,7 +1443,7 @@ public class Item implements IEnchantable
 
 	private Item convertToItem()
 	{
-		return new Item(new MaterialData(material), false);
+		return new Item(material, false, data);
 	}
 
 	private static Item getItem(Material material, byte dataByte)
