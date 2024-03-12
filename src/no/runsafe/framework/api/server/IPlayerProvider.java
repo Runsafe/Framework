@@ -8,7 +8,13 @@ import java.util.UUID;
 
 public interface IPlayerProvider
 {
+	/***
+	 * @deprecated Use getOfflinePlayerExact or getPlayerExact
+	 * @param playerName the name of the player
+	 * @return the player object
+	 */
 	@Nullable
+	@Deprecated
 	IPlayer getPlayer(String playerName);
 
 	@Nullable

@@ -37,6 +37,7 @@ public class RunsafeServer extends BukkitServer implements IServer
 
 	@Override
 	@Nullable
+	@Deprecated
 	public IPlayer getPlayer(String playerName)
 	{
 		if (playerName == null)
@@ -150,10 +151,13 @@ public class RunsafeServer extends BukkitServer implements IServer
 
 		UUID playerId = getUniqueId(playerName);
 
-		if (playerId == null)
-			return new RunsafePlayer(server.getOfflinePlayer(playerName), playerName);
-		else
+		if (playerId != null)
+		{
 			return new RunsafePlayer(server.getOfflinePlayer(playerId), playerName);
+		}
+
+		// Fallback if player has not been seen before
+		return new RunsafePlayer(server.getOfflinePlayer(playerName), playerName);
 	}
 
 	@Nonnull

@@ -2,6 +2,7 @@ package no.runsafe.framework.internal.hooks;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.hook.*;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.extension.player.RunsafePlayer;
@@ -9,10 +10,7 @@ import no.runsafe.framework.minecraft.player.RunsafeFakePlayer;
 
 import javax.annotation.Nullable;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @SuppressWarnings("MethodWithMultipleLoops")
 public final class PlayerExtensions implements IPlayerExtensions
@@ -52,16 +50,15 @@ public final class PlayerExtensions implements IPlayerExtensions
 	}
 
 	@Override
-	public Map<String, String> data(RunsafePlayer player)
+	public Map<String, String> data(RunsafePlayer player, ICommandExecutor context, String[] filter)
 	{
-		Map<String, String> results = player.getBasicData();
+		PlayerData data = new PlayerData(player, context, filter);
+		player.getBasicData(data);
 		for (IPlayerDataProvider provider : getHooks(IPlayerDataProvider.class))
 		{
-			Map<String, String> data = provider.GetPlayerData(player);
-			if (data != null)
-				results.putAll(data);
+			provider.GetPlayerData(data);
 		}
-		return results;
+		return data.getData();
 	}
 
 	@Override
