@@ -9,7 +9,9 @@ import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IUniverse;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.chunk.IChunk;
+import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.hook.IPlayerExtensions;
+import no.runsafe.framework.api.hook.PlayerData;
 import no.runsafe.framework.api.networking.IPacket;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.InjectionPlugin;
@@ -27,7 +29,6 @@ import org.bukkit.OfflinePlayer;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.time.Instant;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class RunsafePlayer extends BukkitPlayer implements IPlayer
@@ -113,35 +114,40 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 	}
 
 	@Override
-	public Map<String, String> getData()
+	public Map<String, String> getData(ICommandExecutor context, String... filter)
 	{
-		return InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).data(this);
+		return InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).data(this, context, filter);
 	}
 
 	@Override
 	@SuppressWarnings("HardcodedFileSeparator")
-	public Map<String, String> getBasicData()
+	public void getBasicData(PlayerData data)
 	{
-		Map<String, String> data = new LinkedHashMap<>(7);
 		if (player != null && isOnline())
 		{
-			data.put("game.ip",
-				String.format("%s [%s]",
+			data.addData(
+				"game.ip",
+        () -> String.format("%s [%s]",
 					player.getAddress().getAddress().getHostAddress(),
 					player.getAddress().getHostName()
 				)
 			);
-			data.put("game.mode", player.getGameMode().name());
-			data.put("game.flying", player.isFlying() ? "true" : "false");
-			data.put("game.health", String.format("%.1f/%.1f", getHealth(), getMaxHealth()));
-			Location location = player.getLocation();
-			data.put("game.location", String.format("[%.2f,%.2f,%.2f@%s]", location.getX(), location.getY(), location.getZ(), location.getWorld().getName()));
+			data.addData("game.mode", () -> player.getGameMode().name());
+			data.addData("game.flying", () -> player.isFlying() ? "true" : "false");
+			data.addData("game.health", () -> String.format("%.1f/%.1f", getHealth(), getMaxHealth()));
+			data.addData(
+				"game.location",
+				() ->
+				{
+					Location location = player.getLocation();
+					return String.format("[%.2f,%.2f,%.2f@%s]", location.getX(), location.getY(), location.getZ(), location.getWorld().getName());
+				}
+			);
 		}
-		data.put("game.uniqueId", getUniqueId().toString());
-		data.put("game.experience", String.format("%.1f", getXP()));
-		data.put("game.level", String.format("%d", getLevel()));
-		data.put("game.op", isOP() ? "true" : "false");
-		return data;
+		data.addData("game.uniqueId", () -> getUniqueId().toString());
+		data.addData("game.experience", () -> String.format("%.1f", getXP()));
+		data.addData("game.level", () -> String.format("%d", getLevel()));
+		data.addData("game.op", () -> isOP() ? "true" : "false");
 	}
 
 	@Override
@@ -156,16 +162,6 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 	public String getBanReason()
 	{
 		return InjectionPlugin.getGlobalComponent(IPlayerExtensions.class).banReason(this);
-	}
-
-	@Override
-	@Nullable
-	public String getDataValue(String key)
-	{
-		Map<String, String> data = getData();
-		if (data.containsKey(key))
-			return data.get(key);
-		return null;
 	}
 
 	@Override

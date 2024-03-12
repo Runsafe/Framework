@@ -1,6 +1,7 @@
 package no.runsafe.framework.api.hook;
 
 import com.google.common.collect.ImmutableList;
+import no.runsafe.framework.api.command.ICommandExecutor;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.extension.player.RunsafePlayer;
 import no.runsafe.framework.minecraft.player.RunsafeFakePlayer;
@@ -17,7 +18,7 @@ public interface IPlayerExtensions
 	String seen(RunsafePlayer player, IPlayer checker);
 	String decorate(IPlayer player);
 	boolean isNew(RunsafePlayer player);
-	Map<String, String> data(RunsafePlayer player);
+	Map<String, String> data(RunsafePlayer player, ICommandExecutor context, String[] filter);
 	@Nullable
 	Instant logout(RunsafePlayer player);
 	@Nullable

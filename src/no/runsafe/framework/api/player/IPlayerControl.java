@@ -1,5 +1,8 @@
 package no.runsafe.framework.api.player;
 
+import no.runsafe.framework.api.command.ICommandExecutor;
+import no.runsafe.framework.api.hook.PlayerData;
+
 import javax.annotation.Nullable;
 import java.time.Instant;
 import java.util.Map;
@@ -11,18 +14,15 @@ public interface IPlayerControl
 
 	boolean isNew();
 
-	Map<String, String> getData();
+	Map<String, String> getData(ICommandExecutor context, String... filter);
 
-	Map<String, String> getBasicData();
+	void getBasicData(PlayerData data);
 
 	@Nullable
 	Instant lastLogout();
 
 	@Nullable
 	String getBanReason();
-
-	@Nullable
-	String getDataValue(String key);
 
 	boolean isWhitelisted();
 
