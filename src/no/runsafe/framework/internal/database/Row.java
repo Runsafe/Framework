@@ -6,6 +6,7 @@ import no.runsafe.framework.api.database.IRow;
 import no.runsafe.framework.api.player.IPlayer;
 
 import javax.annotation.Nullable;
+import java.time.Duration;
 import java.time.Instant;
 import java.util.Map;
 
@@ -52,6 +53,12 @@ public final class Row implements IRow
 	public Instant Instant(String column)
 	{
 		return DataConverter.Instant(getValue(column));
+	}
+
+	@Override
+	public Duration Duration(String column)
+	{
+		return DataConverter.Duration(getValue(column));
 	}
 
 	@Override
@@ -150,6 +157,13 @@ public final class Row implements IRow
 		@Override
 		@Nullable
 		public Instant Instant(String column)
+		{
+			return null;
+		}
+
+		@Override
+		@Nullable
+		public Duration Duration(String column)
 		{
 			return null;
 		}
