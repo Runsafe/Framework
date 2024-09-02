@@ -5,6 +5,7 @@ import no.runsafe.framework.api.database.IValue;
 import no.runsafe.framework.api.player.IPlayer;
 
 import javax.annotation.Nullable;
+import java.time.Duration;
 import java.time.Instant;
 
 public final class Value implements IValue
@@ -50,6 +51,12 @@ public final class Value implements IValue
 	public Instant Instant()
 	{
 		return DataConverter.Instant(raw);
+	}
+
+	@Override
+	public Duration Duration()
+	{
+		return DataConverter.Duration(raw);
 	}
 
 	@Override
@@ -116,6 +123,13 @@ public final class Value implements IValue
 		@Override
 		@Nullable
 		public Instant Instant()
+		{
+			return null;
+		}
+
+		@Override
+		@Nullable
+		public Duration Duration()
 		{
 			return null;
 		}

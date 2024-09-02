@@ -4,6 +4,7 @@ import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.player.IPlayer;
 
+import java.time.Duration;
 import java.time.Instant;
 
 public interface IRow extends IResult
@@ -14,6 +15,7 @@ public interface IRow extends IResult
 	Double Double(String column);
 	Float Float(String column);
 	Instant Instant(String column);
+	Duration Duration(String column);
 	ILocation Location();
 	ILocation Location(String world, String x, String y, String z);
 	@SuppressWarnings("MethodWithTooManyParameters")

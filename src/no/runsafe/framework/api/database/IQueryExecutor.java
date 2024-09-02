@@ -5,6 +5,7 @@ import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.player.IPlayer;
 
 import javax.annotation.Nonnull;
+import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
 
@@ -26,6 +27,8 @@ public interface IQueryExecutor
 	List<Float> queryFloats(String query, Object... params);
 	@Nonnull
 	List<Instant> queryInstants(String query, Object... params);
+	@Nonnull
+	List<Duration> queryDurations(String query, Object... params);
 	@Nonnull
 	List<IPlayer> queryPlayers(String query, Object... params);
 	@Nonnull
