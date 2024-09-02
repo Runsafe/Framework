@@ -7,10 +7,7 @@ import no.runsafe.framework.internal.Player;
 import no.runsafe.framework.internal.brane.Multiverse;
 
 import javax.annotation.Nullable;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.util.UUID;
 
 @SuppressWarnings("ChainOfInstanceofChecks")
@@ -115,6 +112,15 @@ final class DataConverter
 			LocalDateTime.parse(value.toString().replace(" ", "T")),
 			ZoneId.systemDefault()
 		).toInstant();
+	}
+
+	@Nullable
+	static Duration Duration(Object value)
+	{
+		if (value == null)
+			return null;
+
+		return Duration(value);
 	}
 
 	@SuppressWarnings("MethodWithTooManyParameters")

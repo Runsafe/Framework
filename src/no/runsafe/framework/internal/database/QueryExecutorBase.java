@@ -8,6 +8,7 @@ import no.runsafe.framework.api.database.IValue;
 import no.runsafe.framework.api.player.IPlayer;
 
 import javax.annotation.Nonnull;
+import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -82,6 +83,18 @@ public abstract class QueryExecutorBase implements IQueryExecutor
 		for(IValue value : queryColumn(query, params))
 		{
 			result.add(value.Instant());
+		}
+		return result;
+	}
+
+	@Nonnull
+	@Override
+	public List<Duration> queryDurations(String query, Object... params)
+	{
+		List<Duration> result = new ArrayList<>();
+		for(IValue value : queryColumn(query, params))
+		{
+			result.add(value.Duration());
 		}
 		return result;
 	}
