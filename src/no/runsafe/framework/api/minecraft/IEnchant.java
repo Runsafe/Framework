@@ -8,7 +8,11 @@ public interface IEnchant
 
 	IEnchant max();
 
+	//Only apply enchant if it's valid
 	IEnchant applyTo(IEnchantable target);
+
+	//Allow for applying invalid enchants
+	IEnchant applyUnsafeTo(IEnchantable target);
 
 	int getId();
 

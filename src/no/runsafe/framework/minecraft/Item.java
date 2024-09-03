@@ -1362,6 +1362,16 @@ public class Item implements IEnchantable
 	}
 
 	@Override
+	public IEnchantable enchantUnsafe(IEnchant enchant)
+	{
+		if (root || item == null)
+			return convertToItem().enchantUnsafe(enchant);
+
+		item.enchantUnsafe(enchant);
+		return this;
+	}
+
+	@Override
 	public IEnchantable enchant(Iterable<IEnchant> enchants)
 	{
 		if (material.isBlock())
@@ -1371,6 +1381,16 @@ public class Item implements IEnchantable
 			return convertToItem().enchant(enchants);
 
 		item.enchant(enchants);
+		return this;
+	}
+
+	@Override
+	public IEnchantable enchantUnsafe(Iterable<IEnchant> enchants)
+	{
+		if (root || item == null)
+			return convertToItem().enchantUnsafe(enchants);
+
+		item.enchantUnsafe(enchants);
 		return this;
 	}
 
