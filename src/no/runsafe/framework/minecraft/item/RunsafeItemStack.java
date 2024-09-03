@@ -70,10 +70,25 @@ public abstract class RunsafeItemStack extends BukkitItemStack implements IEncha
 	}
 
 	@Override
+	public IEnchantable enchantUnsafe(IEnchant enchant)
+	{
+		itemStack.addUnsafeEnchantment(enchant.getEnchant().getRaw(), enchant.power());
+		return this;
+	}
+
+	@Override
 	public IEnchantable enchant(Iterable<IEnchant> enchants)
 	{
 		for (IEnchant enchant : enchants)
 			enchant(enchant);
+		return this;
+	}
+
+	@Override
+	public IEnchantable enchantUnsafe(Iterable<IEnchant> enchants)
+	{
+		for (IEnchant enchant : enchants)
+			enchantUnsafe(enchant);
 		return this;
 	}
 

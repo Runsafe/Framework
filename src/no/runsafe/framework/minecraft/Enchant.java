@@ -130,6 +130,13 @@ public class Enchant implements IEnchant
 	}
 
 	@Override
+	public IEnchant applyUnsafeTo(IEnchantable target)
+	{
+		target.enchantUnsafe(this);
+		return this;
+	}
+
+	@Override
 	public int power()
 	{
 		return Math.max(getStartLevel(), Math.min(getMaxLevel(), power));
