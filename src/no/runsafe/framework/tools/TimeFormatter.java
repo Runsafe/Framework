@@ -32,6 +32,9 @@ public class TimeFormatter
 
 	private static String formatMillis(long millis)
 	{
+		if (millis == 0)
+			return "Zero";
+
 		if (millis < SECOND_MILLISECONDS)
 			return "Less than one second";
 
