@@ -19,7 +19,7 @@ public class TimeFormatter
 		if (instant == null)
 			return "Invalid Time";
 
-		return formatMillis(Duration.between(instant, Instant.now()).toMillis());
+		return formatMillis(Duration.between(instant, Instant.now()).abs().toMillis());
 	}
 
 	public static String formatDate(Instant date)
