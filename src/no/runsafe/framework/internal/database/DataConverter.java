@@ -120,7 +120,7 @@ final class DataConverter
 		if (value == null)
 			return null;
 
-		return Duration(value);
+		return java.time.Duration.parse(value.toString());
 	}
 
 	@SuppressWarnings("MethodWithTooManyParameters")

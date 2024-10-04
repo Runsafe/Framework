@@ -273,6 +273,20 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 	}
 
 	@Override
+	public int getInventoryFreeSpaces()
+	{
+		if (player == null || getInventory() == null)
+			return -1;
+
+		return (36 - getInventory().getContents().size()) // Adjust for items in offhand / armor slots
+			+ (getItemInOffHand() == null || getItemInOffHand().is(Item.Unavailable.Air) ? 0 : 1)
+			+ (getHelmet() == null || getHelmet().is(Item.Unavailable.Air) ? 0 : 1)
+			+ (getChestplate() == null || getChestplate().is(Item.Unavailable.Air) ? 0 : 1)
+			+ (getLeggings() == null || getLeggings().is(Item.Unavailable.Air) ? 0 : 1)
+			+ (getBoots() == null || getBoots().is(Item.Unavailable.Air) ? 0 : 1);
+	}
+
+	@Override
 	public void removeExactItem(RunsafeMeta item)
 	{
 		removeExactItem(item, 1);

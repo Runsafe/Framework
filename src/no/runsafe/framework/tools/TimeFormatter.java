@@ -19,7 +19,7 @@ public class TimeFormatter
 		if (instant == null)
 			return "Invalid Time";
 
-		return formatMillis(Duration.between(instant, Instant.now()).toMillis());
+		return formatMillis(Duration.between(instant, Instant.now()).abs().toMillis());
 	}
 
 	public static String formatDate(Instant date)
@@ -32,6 +32,9 @@ public class TimeFormatter
 
 	private static String formatMillis(long millis)
 	{
+		if (millis == 0)
+			return "Zero";
+
 		if (millis < SECOND_MILLISECONDS)
 			return "Less than one second";
 
