@@ -37,6 +37,13 @@ public interface IPlayerInventory extends IInventoryHolder
 
 	void openInventory(RunsafeInventory inventory);
 
+	/**
+	 * Gets the number of spaces free.
+	 * Ignore armor slots / offhand
+	 * @return number of free spaces. -1 if something goes wrong
+	 */
+	int getInventoryFreeSpaces();
+
 	@Nullable
 	RunsafeMeta getHelmet();
 
