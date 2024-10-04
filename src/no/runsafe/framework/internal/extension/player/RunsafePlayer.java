@@ -279,11 +279,11 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 			return -1;
 
 		return (36 - getInventory().getSize()) // Adjust for items in offhand / armor slots
-			+ (getItemInOffHand() == null || getItemInOffHand().is(Item.Unavailable.Air) ? 1 : 0)
-			+ (getHelmet() == null || getHelmet().is(Item.Unavailable.Air) ? 1 : 0)
-			+ (getChestplate() == null || getChestplate().is(Item.Unavailable.Air) ? 1 : 0)
-			+ (getLeggings() == null || getLeggings().is(Item.Unavailable.Air) ? 1 : 0)
-			+ (getBoots() == null || getBoots().is(Item.Unavailable.Air) ? 1 : 0);
+			+ (getItemInOffHand() == null || getItemInOffHand().is(Item.Unavailable.Air) ? 0 : 1)
+			+ (getHelmet() == null || getHelmet().is(Item.Unavailable.Air) ? 0 : 1)
+			+ (getChestplate() == null || getChestplate().is(Item.Unavailable.Air) ? 0 : 1)
+			+ (getLeggings() == null || getLeggings().is(Item.Unavailable.Air) ? 0 : 1)
+			+ (getBoots() == null || getBoots().is(Item.Unavailable.Air) ? 0 : 1);
 	}
 
 	@Override
