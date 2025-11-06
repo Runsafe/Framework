@@ -29,5 +29,6 @@ public final class Factories
 		BukkitEventMapper.Register(ItemSpawn.Factory());
 		BukkitEventMapper.Register(Explode.Factory());
 		BukkitEventMapper.Register(ItemDespawn.Factory());
+		BukkitEventMapper.Register(EntityToggleGlide.Factory());
 	}
 }
