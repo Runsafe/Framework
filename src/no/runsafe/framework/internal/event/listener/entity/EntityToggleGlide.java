@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityToggleGlideEvent;
 
-public class EntityToggleGlide extends EventRouterBase<IEntityToggleGlideEvent, EntityToggleGlideEvent>
+public final class EntityToggleGlide extends EventRouterBase<IEntityToggleGlideEvent, EntityToggleGlideEvent>
 {
 	EntityToggleGlide(IConsole output, IScheduler scheduler, IEntityToggleGlideEvent handler)
 	{
