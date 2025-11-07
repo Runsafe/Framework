@@ -12,4 +12,8 @@ public interface IPlayerKinematics
 	void throwToPoint(ILocation location);
 
 	void throwFromPoint(ILocation location);
+
+	boolean isGliding();
+
+	void setGliding(boolean gliding);
 }

@@ -362,6 +362,22 @@ public class RunsafePlayer extends BukkitPlayer implements IPlayer
 	}
 
 	@Override
+	public boolean isGliding()
+	{
+		if (player == null)
+			return false;
+
+		return player.isGliding();
+	}
+
+	@Override
+	public void setGliding(boolean gliding)
+	{
+		if (player != null)
+			player.setGliding(gliding);
+	}
+
+	@Override
 	public void heal(double amount)
 	{
 		double heal = getHealth() + amount;
