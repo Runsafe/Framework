@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityTeleportEvent;
 
-public class TeleportEvent extends EventRouterBase<IEntityTeleport, EntityTeleportEvent>
+public final class TeleportEvent extends EventRouterBase<IEntityTeleport, EntityTeleportEvent>
 {
 	TeleportEvent(IConsole output, IScheduler scheduler, IEntityTeleport handler)
 	{
