@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPortalEvent;
 
-public class PortalEvent extends EventRouterBase<IEntityPortal, EntityPortalEvent>
+public final class PortalEvent extends EventRouterBase<IEntityPortal, EntityPortalEvent>
 {
 	PortalEvent(IConsole output, IScheduler scheduler, IEntityPortal handler)
 	{
